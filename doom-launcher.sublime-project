@@ -1,0 +1,21 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "src",
+			"folder_exclude_patterns" : ["lib"]
+		}
+	],
+	
+	"build_systems":
+    [
+       {
+       	"name": "Start NW",
+	    "cmd": ["nw.exe", "--enable-logging", "${project_path:${file_path}}"],
+	    "working_dir": "${project_path:${file_path}}",
+	    "path": "C:/Users/FreaK/projects/doom-launcher/nw",
+	    "shell": true
+		}
+    ]
+}
