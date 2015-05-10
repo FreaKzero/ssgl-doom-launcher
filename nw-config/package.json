@@ -1,0 +1,9 @@
+{
+    "name": "gzdoom-launcher",
+    "main": "../src/index.html",
+    "window": {
+        "toolbar": true,
+        "width": 1000,
+        "height": 600
+    }
+}
