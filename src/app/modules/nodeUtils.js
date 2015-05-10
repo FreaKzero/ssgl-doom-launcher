@@ -59,15 +59,16 @@ define(function() {
 
             recursive(wadpath, function(err, files) {
                 var wad;
+                var len = files.length;
 
-                for (var i = 0; i < files.length; i++) {
+                for (var i = 0; i < len; i++) {
                     var allowed = ['PK3', 'WAD'];
 
                     var struc = files[i].split('\\'),
                         dirname = struc[struc.length - 2],
                         ext = struc[struc.length - 1].slice(-3).toUpperCase(),
                         name = struc[struc.length - 1].slice(0, -4);
-
+                        
                     if (allowed.indexOf(ext) < 0) {
                         continue;
                     }
@@ -91,6 +92,10 @@ define(function() {
                     obj.wads.push(wad);
                 }
 
+                if (len > 0 && tree.length === 0) {
+                    tree.push(obj);
+                }
+                
                 defer.resolve(tree);
             });
 
