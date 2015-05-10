@@ -1,0 +1,25 @@
+
+
+<ul class="uk-nestable" data-uk-nestable="{maxDepth: 2, group:'wads'}">
+    {{#component}}
+    <li class="uk-nestable-list-item uk-parent uk-collapsed">
+        <div class="uk-nestable-item">
+            <div class="uk-nestable-handle"></div>
+            <div data-nestable-action="toggle"></div>
+            {{name}}
+        </div>
+        
+        <ul class="uk-nestable-list">
+        {{#wads}}
+        <li class="uk-nestable-list-item" data-result="{{path}}">
+            <div class="uk-nestable-item">
+                <div class="uk-nestable-handle"></div>
+                <div data-nestable-action="toggle"></div>
+                <strong class="ext {{ext}}">{{ext}}</strong> {{name}}
+            </div>
+        </li>
+        {{/wads}}
+        </ul>
+</li>
+{{/component}}
+</ul>

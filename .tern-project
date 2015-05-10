@@ -1,0 +1,18 @@
+{
+  "libs": [
+    "browser",
+    "react"
+  ],
+  "plugins": {
+    "requirejs": {
+      "baseUrl": "app/",
+      "paths": {
+        "text": "plugins/text",
+        "jsx": "plugins/jsx",
+        "cfg": "config/config",
+        "react": "lib/react",
+        "JSXTransformer": "lib/JSXTransformer"
+      }
+    }
+  }
+}

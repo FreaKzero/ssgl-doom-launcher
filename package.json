@@ -1,0 +1,20 @@
+{
+  "name": "sendhybrid_PDF_CLIENT",
+  "version": "0.0.0",
+  "description": "",
+  "homepage": "",
+
+  "devDependencies": {
+      "grunt": "*",
+      "grunt-contrib-watch": "*",
+      "grunt-contrib-less": "*",      
+      "grunt-contrib-cssmin": "*",
+      "grunt-contrib-copy": "*",
+      "grunt-autoprefixer": "*",
+      "grunt-contrib-requirejs": "*",
+	    "grunt-contrib-yuidoc": "*",
+      "grunt-properties-to-json": "*",
+      "grunt-browser-sync": "*",
+      "grunt-beep": "*"
+  }
+}

@@ -1,0 +1,17 @@
+<input type="text" id="name" data-bind="name" /> <br/>
+<input type="text" id="meta" data-bind="meta" /> <br/>
+<input type="text" id="pic" data-bind="pic" /> <br/>
+<br/><br/>
+<button id="add">add</button>
+<button id="del">del</button>
+<button id="sort_name">sort name</button>
+<button id="sort_id">sort id</button>
+<ul id="SignatureRedrawMenu">
+{{#data}}
+	<li data-id="{{id}}">
+		<strong>{{name}}</strong>
+		<span class="meta">{{meta}}</span>
+		{{pic}}
+	</li>
+{{/data}}
+</ul>
