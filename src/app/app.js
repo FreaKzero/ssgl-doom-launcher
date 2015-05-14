@@ -1,3 +1,6 @@
+var gui = require('nw.gui');
+gui.App.clearCache();
+
 requirejs.config({
     baseUrl: 'app/',
     paths: {
@@ -39,8 +42,15 @@ requirejs.config({
     }
 });
 
-requirejs(['components/iWadSelector', 'components/WadSelector', 'components/SettingsModal', 'nodeUtils', 'jquery', 'uikit-nestable'],
-    function(iwad, wad, settings, nodeUtils, $) {
+requirejs(['components/iWadSelector',
+           'components/WadSelector', 
+           'components/SettingsModal', 
+           'nodeUtils',
+           'jquery', 'uikit-nestable'],
+    function(iwad,
+             wad,
+             settings,
+             nodeUtils, $) {
 
         nodeUtils.loadSettings(function(data) {
             settings.setData(data, false).mount('#settingsmount');
@@ -68,15 +78,32 @@ requirejs(['components/iWadSelector', 'components/WadSelector', 'components/Sett
 
         iwad.$message.on('iwad selected', function(selected) {
             $('#launch').prop('disabled', false).text('Launch ' + selected.iwad);
+            $('#oblique').prop('disabled', false).text('Launch Random ' + selected.iwad + ' Episode');
         });
 
         settings.$message.on('save-settings', function(data) {
             nodeUtils.saveSettings(data);
+            location.reload();
         });
         
+
+        $('#oblique').on('click', function() {
+            var oblique = nodeUtils.launchOblique();
+            $('#LOADER').fadeIn('slow');
+
+            oblique.on('exit', function(code) {
+                $('#LOADER').fadeOut('fast');
+                
+                nodeUtils.launch(
+                    iwad.getResult(),
+                    wad.getResult(),
+                    $('#gzDoom').val()
+                );
+            });
+        });
+
         // todo - check if wad is selected
         $('#launch').on('click', function() {
-            $('#fileDialog').val();
             nodeUtils.launch(
                 iwad.getResult(),
                 wad.getResult(),

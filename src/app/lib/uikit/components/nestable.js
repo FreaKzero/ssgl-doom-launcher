@@ -407,10 +407,13 @@
 
             // fix for zepto.js
             //this.placeEl.replaceWith(this.dragEl.children(this.options.itemNodeName + ':first').detach());
+            
             var el   = this.dragEl.children(this.options.itemNodeName).first(),
                 root = this.placeEl.parents('.'+this.options.listBaseClass+':first');
-            
-                el[0].parentNode.removeChild(el[0]);                            
+                                
+            if (typeof el[0] !== 'undefined') {
+                el[0].parentNode.removeChild(el[0]);
+            }
 
             this.placeEl.replaceWith(el);
 

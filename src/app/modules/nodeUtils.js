@@ -33,12 +33,28 @@ define(function() {
             });
         },
 
+         launchOblique: function() {
+            var child;
+            var params = ['--batch', 'C:/Users/FreaK/Desktop/DOOM/wads/oblique/obliquerandom.wad'];
+            var endparam = params.concat(['--load'],  'C:/Users/FreaK/Desktop/DOOM/Oblige-6.20/CONFIG.txt');
+
+            child = execFile('C:/Users/FreaK/Desktop/DOOM/Oblige-6.20/Oblige.exe', endparam,
+                function(error, stdout, stderr) {
+                    if (error) {
+                        console.log(error.stack);
+                        console.log('Error code: ' + error.code + ' ' + error.signal);
+                    }
+                });
+
+            return child;
+        },
+
         launch: function(iwad, wads, doompath) {
             var child;
             var params = ['-iwad', iwad];
-            var endparam = params.concat(['-file'], wads);
+                params = params.concat(['-file'], wads);                      
 
-            child = execFile(doompath, endparam,
+            child = execFile(doompath, params,
                 function(error, stdout, stderr) {
                     if (error) {
                         console.log(error.stack);

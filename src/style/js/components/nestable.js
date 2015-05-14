@@ -410,9 +410,9 @@
             var el   = this.dragEl.children(this.options.itemNodeName).first(),
                 root = this.placeEl.parents('.'+this.options.listBaseClass+':first');
 
-            if (typeof el[0] !== 'undefined') {
+                alert("FUCK YO")
                 el[0].parentNode.removeChild(el[0]);
-            }
+            
 
             this.placeEl.replaceWith(el);
 
