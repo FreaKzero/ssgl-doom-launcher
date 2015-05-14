@@ -43,27 +43,28 @@ requirejs.config({
 });
 
 requirejs(['components/iWadSelector',
-           'components/WadSelector', 
-           'components/SettingsModal', 
-           'nodeUtils',
-           'jquery', 'uikit-nestable'],
+        'components/WadSelector',
+        'components/SettingsModal',
+        'nodeUtils',
+        'jquery', 'uikit-nestable'
+    ],
     function(iwad,
-             wad,
-             settings,
-             nodeUtils, $) {
+        wad,
+        settingsComponent,
+        nodeUtils, $) {
 
-        nodeUtils.loadSettings(function(data) {
-            settings.setData(data, false).mount('#settingsmount');
+        nodeUtils.loadSettings(function(settings) {
+            settingsComponent.setData(settings, false).mount('#settingsmount');
 
-            if (data.wadpath) {
-                nodeUtils.getWads(data.wadpath).done(function(data) {
+            if (settings.wadpath) {
+                nodeUtils.getWads(settings.wadpath).done(function(data) {
                     wad.setData(data, false).mount('#wadselector');
                     UIkit.nestable('.uk-nestable');
                 });
             }
 
-            if (data.iwadpath) {
-                nodeUtils.getFiles(data.iwadpath).done(function(data) {
+            if (settings.iwadpath) {
+                nodeUtils.getFiles(settings.iwadpath).done(function(data) {
                     var md = {
                         selected: 'Select WAD',
                         result: null,
@@ -73,34 +74,45 @@ requirejs(['components/iWadSelector',
                     iwad.setData(md, false).mount('#iwadselector');
                 });
             }
+
+            $('#oblige').on('click', function() {
+                            
+                var oblige = nodeUtils.launchOblige(settings.obligepath, settings.obligeconfigpath, settings.randmappath);
+                console.log(oblige)
+
+                $('#LOADER').fadeIn('slow');
+
+                oblige.on('exit', function(code) {
+                    $('#LOADER').fadeOut('fast');
+
+                    nodeUtils.launch(
+                        iwad.getResult(),
+                        wad.getResult(),
+                        $('#gzDoom').val()
+                    );
+                });
+            });
+
         });
 
 
         iwad.$message.on('iwad selected', function(selected) {
             $('#launch').prop('disabled', false).text('Launch ' + selected.iwad);
-            $('#oblique').prop('disabled', false).text('Launch Random ' + selected.iwad + ' Episode');
+            $('#oblige').prop('disabled', false).text('Launch Random ' + selected.iwad + ' Episode');
         });
 
-        settings.$message.on('save-settings', function(data) {
-            nodeUtils.saveSettings(data);
-            location.reload();
-        });
-        
+        settingsComponent.$message.on('save-settings', function(data) {
+            var error = nodeUtils.settingsHasErrors(data);
 
-        $('#oblique').on('click', function() {
-            var oblique = nodeUtils.launchOblique();
-            $('#LOADER').fadeIn('slow');
+            if (error) {                
+                settingsComponent.$message.emit('highlightErrors', error);
 
-            oblique.on('exit', function(code) {
-                $('#LOADER').fadeOut('fast');
-                
-                nodeUtils.launch(
-                    iwad.getResult(),
-                    wad.getResult(),
-                    $('#gzDoom').val()
-                );
-            });
+            } else {
+                nodeUtils.saveSettings(data);
+                location.reload();
+            }            
         });
+
 
         // todo - check if wad is selected
         $('#launch').on('click', function() {

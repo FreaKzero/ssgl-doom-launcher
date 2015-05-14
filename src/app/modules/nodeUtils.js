@@ -20,6 +20,26 @@ define(function() {
             });
         },
 
+        settingsHasErrors: function(input) {
+            var toCheck = ['gzDoom', 'obligepath', 'obligeconfigpath'];
+            var error = [];
+
+            for (var prop in input) {                
+                if (toCheck.indexOf(prop) > -1) {
+                    if (!fs.existsSync(input[prop])) {
+                        error.push(prop);
+                    }                  
+                }                
+            }
+
+            if (error.length > 0) {
+                return error;
+            } else {
+                return false;
+            }
+
+        },
+
         saveSettings: function(input) {
             var appPath = path.dirname(process.execPath);
             input = JSON.stringify(input, null, 4);
@@ -27,22 +47,21 @@ define(function() {
             fs.writeFile(appPath + '/config.json', input, function(err) {
 
                 if (err) {
-                    console.log(err);
+                    throw err;
                 }
 
             });
         },
 
-         launchOblique: function() {
+         launchOblige: function(bin, config, map) {
             var child;
-            var params = ['--batch', 'C:/Users/FreaK/Desktop/DOOM/wads/oblique/obliquerandom.wad'];
-            var endparam = params.concat(['--load'],  'C:/Users/FreaK/Desktop/DOOM/Oblige-6.20/CONFIG.txt');
+            var params = ['--batch', map];
+            var endparam = params.concat(['--load'],  config);
 
-            child = execFile('C:/Users/FreaK/Desktop/DOOM/Oblige-6.20/Oblige.exe', endparam,
+            child = execFile(bin, endparam,
                 function(error, stdout, stderr) {
                     if (error) {
-                        console.log(error.stack);
-                        console.log('Error code: ' + error.code + ' ' + error.signal);
+                        return error.signal;
                     }
                 });
 

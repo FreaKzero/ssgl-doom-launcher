@@ -53,8 +53,47 @@
         top: 30%;
         position: absolute;
     }
+
+    #ERROR {
+        border: 1px solid red;
+        background-color: pink;
+        width: 70%;
+        min-height: 100px;
+        border-radius: 3px;
+        position: absolute;
+        z-index: 999;
+        margin-left; -35%;
+        left: 15%;
+        top: 20%;
+        padding: 15px;
+        display:none;
+    }
+
+    #ERROR > h2 {
+        text-align:center;
+        color: red;
+    }
+
+    #ERROR .message {
+        background-color: white;
+        border: 1px solid red;
+        width: 100%;
+        min-height: 60px;
+        border-radius: 3px;
+        font-family: monospace;
+        font-size: 15px;
+    }
+
     </style>
     <body>
+    
+    <div id="ERROR">
+    <h2>ERROR</h2>
+
+        <div class="message">
+        fugg dat shit
+        </div>
+    </div>
 
     <div id="LOADER">
     <img src="style/assets/preloader.gif" />
@@ -96,7 +135,7 @@
                   <button id="launch" class="uk-button uk-button-success  uk-width-1-1" disabled>Launch gzDoom</button>                                  
                 </div>
                 <div class="uk-width-1-2">
-                    <button id="oblique" class="uk-button uk-button-primary  uk-width-1-1" disabled>Random</button>
+                    <button id="oblige" class="uk-button uk-button-primary  uk-width-1-1" disabled>Random</button>
                 </div>
             </div>
         </div>
