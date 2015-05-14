@@ -31,9 +31,14 @@ define(function() {
         },
 
         settingsHasErrors: function(input) {
-            // todo: make oblige not mandatory
-            var toCheck = ['gzDoom', 'obligepath', 'obligeconfigpath'];
+            var toCheck;
             var error = [];
+            
+            if (input.activateoblige === true) {
+                toCheck = ['gzDoom', 'obligepath', 'obligeconfigpath'];
+            } else {
+                toCheck = ['gzDoom'];
+            }
 
             for (var prop in input) {
                 if (toCheck.indexOf(prop) > -1) {
@@ -83,7 +88,7 @@ define(function() {
             if (typeof randmap !== 'undefined') {
                 wads.push(randmap);
             }
-            
+
             console.log(wads);
             var child;
             var params = ['-iwad', iwad];

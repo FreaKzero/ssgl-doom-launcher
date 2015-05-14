@@ -1,30 +1,32 @@
 <div class="uk-modal" id="settings-modal">
     <div class="uk-modal-dialog">
         <form class="uk-form">
-            <fieldset data-uk-margin id="settings-form"> 
-
+            <fieldset data-uk-margin id="settings-form">
                 <label for="gzDoom">gzDoom Path:</label><br />
                 <input value="{{gzDoom}}" name="gzdDoom" id="gzDoom" type="text" placeholder="" class="uk-form-width-large">
-               <br /><br />
+                <br /><br />
                 <label for="iwadpath">iWAD Path:</label><br />
                 <input value="{{iwadpath}}" name="iwadpath" id="iwadpath" type="text" placeholder="" class="uk-form-width-large">
-<br /><br />
+                <br /><br />
                 <label for="wadpath">WAD Path:</label><br />
                 <input value="{{wadpath}}" name="wadpath" id="wadpath" type="text" placeholder="" class="uk-form-width-large">
-<br /><br />
-                <label for="obligepath">Oblige Path:</label><br />
-                <input value="{{obligepath}}" name="obligepath" id="obligepath" type="text" placeholder="" class="uk-form-width-large">
-<br /><br />
-
-                <label for="obligeconfigpath">Oblige Map-Config Path:</label><br />
-                <input value="{{obligeconfigpath}}" name="obligeconfigpath" id="obligeconfigpath" type="text" placeholder="" class="uk-form-width-large">
-<br /><br />
-
-                <label for="randmappath">Oblige Random Map Path:</label><br />
-                <input value="{{randmappath}}" name="randmappath" id="randmappath" type="text" placeholder="" class="uk-form-width-large">
-<br /><br />                
+                <br /><br /><br />
+                <div class="obligefields">
+                    <label for="obligepath">Oblige Path:</label><br />
+                    <input value="{{obligepath}}" name="obligepath" id="obligepath" type="text" placeholder="" class="uk-form-width-large" {{^activateoblige}}disabled{{/activateoblige}}>
+                    <br /><br />
+                    <label for="obligeconfigpath">Oblige Map-Config Path:</label><br />
+                    <input value="{{obligeconfigpath}}" name="obligeconfigpath" id="obligeconfigpath" type="text" placeholder="" class="uk-form-width-large" {{^activateoblige}}disabled{{/activateoblige}}>
+                    <br /><br />
+                    <label for="randmappath">Oblige Random Map Path:</label><br />
+                    <input value="{{randmappath}}" name="randmappath" id="randmappath" type="text" placeholder="" class="uk-form-width-large" {{^activateoblige}}disabled{{/activateoblige}}>
+                    <br /><br />
+                </div>
             </fieldset>
         </form>
-        <button class="uk-button uk-button-primary" id="save-settings">Save Settings</button>
+        <div class="uk-clearfix">            
+            <label style="margin-top: 10px;"><input type="checkbox" id="activateoblige" {{#activateoblige}} checked{{/activateoblige}}/> Activate Oblige</label>            
+            <button class="uk-button uk-button-primary uk-float-right" id="save-settings">Save Settings</button>
+        </div>
     </div>
 </div>

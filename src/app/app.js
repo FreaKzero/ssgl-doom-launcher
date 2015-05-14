@@ -100,7 +100,6 @@ requirejs(['components/iWadSelector',
                     });
                 });
             }
-
         });
 
 
@@ -117,7 +116,7 @@ requirejs(['components/iWadSelector',
 
             } else {
                 nodeUtils.saveSettings(data);
-                location.reload();
+                //location.reload();
             }
         });
 

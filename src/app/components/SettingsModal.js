@@ -10,14 +10,31 @@ define(['text!fixtures/SettingsModal.html', 'Component'],
             events: function(scope) {
                 scope.$comp.on('click', '#save-settings', function() {
                     // todo: check for empty
+                    // todo: check oblige
                     scope.$message.emit('save-settings', {
                         gzDoom: $('#gzDoom').val(),
                         iwadpath: $('#iwadpath').val(),
                         wadpath: $('#wadpath').val(),
                         obligepath: $('#obligepath').val(),
                         obligeconfigpath: $('#obligeconfigpath').val(),
-                        randmappath: $('#randmappath').val()
+                        randmappath: $('#randmappath').val(),
+                        activateoblige: $('#activateoblige').is(':checked')
                     });
+                });
+
+                scope.$comp.on('change', '#activateoblige', function() {
+                    var $c = scope.$comp.find('.obligefields input');
+                    var $l = scope.$comp.find('.obligefields label');
+                    var $a = scope.$comp.find('.obligefields .appended');
+                    
+                    if ($(this).is(':checked')) {
+                        $c.prop('disabled', false);
+                    } else {
+                        $c.prop('disabled', true);
+                        $c.removeClass('uk-form-danger');
+                        $l.removeClass('uk-form-danger');                        
+                        $a.remove();
+                    }
                 });
 
                 scope.$message.on('highlightErrors', function(arr) {
@@ -36,7 +53,7 @@ define(['text!fixtures/SettingsModal.html', 'Component'],
                     }
 
                 });
-            }                
+            }
         });
 
         return SettingsModal;
