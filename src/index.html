@@ -43,15 +43,23 @@
         z-index: 999;
         left: 0;
         top: 0;    
-        display: none;        
+        display:none;
+    }
+    
+    #LOADER .message {
+        width: 40%;
+        margin-left: -20%;
+        left: 50%;
+        top: 15%;
+        position: absolute;
+        text-align:center;
     }
 
-    #LOADER img {
-        width: 20%;
-        margin-left: -10%;
-        left: 50%;
-        top: 30%;
-        position: absolute;
+ 
+    #LOADER .message p {
+        font-style: italic;
+        margin: 0;
+        padding: 0;
     }
 
     #ERROR {
@@ -96,7 +104,11 @@
     </div>
 
     <div id="LOADER">
-    <img src="style/assets/preloader.gif" />
+        <div class="message">
+        <h2>Oblige is building your Episode ...</h2>
+        <p>Game will start immediately after generating</p>
+        <img src="style/assets/preloader.gif" />
+        </div>    
     </div>
         <nav class="uk-navbar uk-navbar-attached">
             <a class="uk-navbar-brand" href="#">DOOM Launcher</a>

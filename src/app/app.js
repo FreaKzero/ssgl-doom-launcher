@@ -58,7 +58,7 @@ requirejs(['components/iWadSelector',
             if (settings.error) {
                 $('#LOADER').show();
                 settingsComponent.setData({}, false).mount('#settingsmount');
-                UIkit.modal('#settings-modal').show();
+                var modal = UIkit.modal('#settings-modal').show();
 
             } else {
 

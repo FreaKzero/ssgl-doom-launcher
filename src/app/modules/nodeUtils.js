@@ -23,9 +23,6 @@ define(function() {
                     callback(JSON.parse(data.toString()));
                 });
             } else {
-                
-                // generating File
-                //fs.closeSync(fs.openSync(cfgFile, 'w'));
                 callback({
                     error: true
                 });
