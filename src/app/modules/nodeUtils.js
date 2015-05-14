@@ -79,7 +79,12 @@ define(function() {
             return child;
         },
 
-        launch: function(iwad, wads, doompath) {
+        launch: function(iwad, wads, doompath, randmap) {
+            if (typeof randmap !== 'undefined') {
+                wads.push(randmap);
+            }
+            
+            console.log(wads);
             var child;
             var params = ['-iwad', iwad];
             params = params.concat(['-file'], wads);

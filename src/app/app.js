@@ -94,7 +94,8 @@ requirejs(['components/iWadSelector',
                         nodeUtils.launch(
                             iwad.getResult(),
                             wad.getResult(),
-                            $('#gzDoom').val()
+                            $('#gzDoom').val(),
+                             settings.randmappath
                         );
                     });
                 });
@@ -105,7 +106,7 @@ requirejs(['components/iWadSelector',
 
         iwad.$message.on('iwad selected', function(selected) {
             $('#launch').prop('disabled', false).text('Launch ' + selected.iwad);
-            $('#oblige').prop('disabled', false).text('Launch Random ' + selected.iwad + ' Episode');
+            $('#oblige').prop('disabled', false).text('Oblige build and play ' + selected.iwad);
         });
 
         settingsComponent.$message.on('save-settings', function(data) {
