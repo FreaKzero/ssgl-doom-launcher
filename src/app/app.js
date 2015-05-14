@@ -54,44 +54,51 @@ requirejs(['components/iWadSelector',
         nodeUtils, $) {
 
         nodeUtils.loadSettings(function(settings) {
-            settingsComponent.setData(settings, false).mount('#settingsmount');
 
-            if (settings.wadpath) {
-                nodeUtils.getWads(settings.wadpath).done(function(data) {
-                    wad.setData(data, false).mount('#wadselector');
-                    UIkit.nestable('.uk-nestable');
+            if (settings.error) {
+                $('#LOADER').show();
+                settingsComponent.setData({}, false).mount('#settingsmount');
+                UIkit.modal('#settings-modal').show();
+
+            } else {
+
+                settingsComponent.setData(settings, false).mount('#settingsmount');
+
+                if (settings.wadpath) {
+                    nodeUtils.getWads(settings.wadpath).done(function(data) {
+                        wad.setData(data, false).mount('#wadselector');
+                        UIkit.nestable('.uk-nestable');
+                    });
+                }
+
+                if (settings.iwadpath) {
+                    nodeUtils.getFiles(settings.iwadpath).done(function(data) {
+                        var md = {
+                            selected: 'Select WAD',
+                            result: null,
+                            data: data
+                        };
+
+                        iwad.setData(md, false).mount('#iwadselector');
+                    });
+                }
+
+                $('#oblige').on('click', function() {
+
+                    var oblige = nodeUtils.launchOblige(settings.obligepath, settings.obligeconfigpath, settings.randmappath);
+                    $('#LOADER').fadeIn('slow');
+
+                    oblige.on('exit', function(code) {
+                        $('#LOADER').fadeOut();
+
+                        nodeUtils.launch(
+                            iwad.getResult(),
+                            wad.getResult(),
+                            $('#gzDoom').val()
+                        );
+                    });
                 });
             }
-
-            if (settings.iwadpath) {
-                nodeUtils.getFiles(settings.iwadpath).done(function(data) {
-                    var md = {
-                        selected: 'Select WAD',
-                        result: null,
-                        data: data
-                    };
-
-                    iwad.setData(md, false).mount('#iwadselector');
-                });
-            }
-
-            $('#oblige').on('click', function() {
-                            
-                var oblige = nodeUtils.launchOblige(settings.obligepath, settings.obligeconfigpath, settings.randmappath);
-                console.log(oblige)
-
-                $('#LOADER').fadeIn('slow');
-
-                oblige.on('exit', function(code) {
-                    $('#LOADER').fadeOut('fast');
-
-                    nodeUtils.launch(
-                        iwad.getResult(),
-                        wad.getResult(),
-                        $('#gzDoom').val()
-                    );
-                });
-            });
 
         });
 
@@ -104,13 +111,13 @@ requirejs(['components/iWadSelector',
         settingsComponent.$message.on('save-settings', function(data) {
             var error = nodeUtils.settingsHasErrors(data);
 
-            if (error) {                
+            if (error) {
                 settingsComponent.$message.emit('highlightErrors', error);
 
             } else {
                 nodeUtils.saveSettings(data);
                 location.reload();
-            }            
+            }
         });
 
 

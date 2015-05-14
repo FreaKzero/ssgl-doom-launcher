@@ -9,6 +9,7 @@ define(['text!fixtures/SettingsModal.html', 'Component'],
 
             events: function(scope) {
                 scope.$comp.on('click', '#save-settings', function() {
+                    // todo: check for empty
                     scope.$message.emit('save-settings', {
                         gzDoom: $('#gzDoom').val(),
                         iwadpath: $('#iwadpath').val(),
@@ -31,7 +32,7 @@ define(['text!fixtures/SettingsModal.html', 'Component'],
                         var label = 'label[for='+arr[i]+']';
 
                         $(elem).addClass('uk-form-danger');
-                        $(label).addClass('uk-form-danger').append(' <span class="uk-form-danger appended">No executable found</span>');
+                        $(label).addClass('uk-form-danger').append(' <span class="uk-form-danger appended">No File Found</span>');
                     }
 
                 });

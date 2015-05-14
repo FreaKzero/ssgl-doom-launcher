@@ -6,30 +6,44 @@ var fs = require('fs'),
 
 define(function() {
 
+    var CONFIGFILE = '/gzDoomLauncher.json';
+
     var sys = {
 
         loadSettings: function(callback) {
-            var appPath = path.dirname(process.execPath);
-            fs.readFile(appPath + '/config.json', function(err, data) {
-                if (err) {
-                    console.log(err);
-                    return {};
-                }
+            var cfgFile = path.dirname(process.execPath) + CONFIGFILE;
 
-                callback(JSON.parse(data.toString()));
-            });
+            if (fs.existsSync(cfgFile)) {
+
+                fs.readFile(cfgFile, function(err, data) {
+                    if (err) {
+                        return {};
+                    }
+
+                    callback(JSON.parse(data.toString()));
+                });
+            } else {
+                
+                // generating File
+                //fs.closeSync(fs.openSync(cfgFile, 'w'));
+                callback({
+                    error: true
+                });
+
+            }
         },
 
         settingsHasErrors: function(input) {
+            // todo: make oblige not mandatory
             var toCheck = ['gzDoom', 'obligepath', 'obligeconfigpath'];
             var error = [];
 
-            for (var prop in input) {                
+            for (var prop in input) {
                 if (toCheck.indexOf(prop) > -1) {
                     if (!fs.existsSync(input[prop])) {
                         error.push(prop);
-                    }                  
-                }                
+                    }
+                }
             }
 
             if (error.length > 0) {
@@ -44,7 +58,7 @@ define(function() {
             var appPath = path.dirname(process.execPath);
             input = JSON.stringify(input, null, 4);
 
-            fs.writeFile(appPath + '/config.json', input, function(err) {
+            fs.writeFile(appPath + CONFIGFILE, input, function(err) {
 
                 if (err) {
                     throw err;
@@ -53,10 +67,10 @@ define(function() {
             });
         },
 
-         launchOblige: function(bin, config, map) {
+        launchOblige: function(bin, config, map) {
             var child;
             var params = ['--batch', map];
-            var endparam = params.concat(['--load'],  config);
+            var endparam = params.concat(['--load'], config);
 
             child = execFile(bin, endparam,
                 function(error, stdout, stderr) {
@@ -71,7 +85,7 @@ define(function() {
         launch: function(iwad, wads, doompath) {
             var child;
             var params = ['-iwad', iwad];
-                params = params.concat(['-file'], wads);                      
+            params = params.concat(['-file'], wads);
 
             child = execFile(doompath, params,
                 function(error, stdout, stderr) {
@@ -103,7 +117,7 @@ define(function() {
                         dirname = struc[struc.length - 2],
                         ext = struc[struc.length - 1].slice(-3).toUpperCase(),
                         name = struc[struc.length - 1].slice(0, -4);
-                        
+
                     if (allowed.indexOf(ext) < 0) {
                         continue;
                     }
@@ -130,7 +144,7 @@ define(function() {
                 if (len > 0 && tree.length === 0) {
                     tree.push(obj);
                 }
-                
+
                 defer.resolve(tree);
             });
 
