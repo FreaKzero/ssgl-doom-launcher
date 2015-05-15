@@ -63,7 +63,7 @@ define(['jquery', 'mustache', 'evnt', 'Collection'],
 
                 this.$comp.html(this.component);
                 this.events(this, this.collection);
-                this.isMounted(this);
+                this.isMounted(this, this.collection);
             },
 
             fetchBinds: function() {
@@ -88,7 +88,9 @@ define(['jquery', 'mustache', 'evnt', 'Collection'],
             syncView: function() {
                 this.component = $(mustache.render(this.template, this.mustacheObject()));
                 this.$comp.html(this.component);
-            }
+            },
+
+
         };
 
         function makeComponent(def) {

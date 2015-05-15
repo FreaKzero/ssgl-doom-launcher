@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="style/css/uikit.min.css">
         <link rel="stylesheet" href="style/css/uikit.almost-flat.min.css">
         <link rel="stylesheet" href="style/css/components/nestable.almost-flat.min.css">
+        <link rel="stylesheet" href="style/css/components/notify.almost-flat.min.css">
         
     </head>
     <style type="text/css">
@@ -111,11 +112,16 @@
         </div>    
     </div>
         <nav class="uk-navbar uk-navbar-attached">
-            <a class="uk-navbar-brand" href="#">DOOM Launcher</a>
+            <a class="uk-navbar-brand" href="#">gzDoom Launcher</a>
             <div class="uk-navbar-content uk-navbar-flip">
                 <div class="uk-button-group">
                     <div id="iwadselector">
                     </div>
+
+                    <button class="uk-button uk-button-success" id="reload">
+                    <i class="uk-icon-refresh"></i>
+                    </button>
+
                     <button class="uk-button uk-button-success" data-uk-modal="{target:'#settings-modal'}">
                     <i class="uk-icon-gear"></i>
                     </button>
@@ -147,11 +153,12 @@
                   <button id="launch" class="uk-button uk-button-success  uk-width-1-1" disabled>Launch gzDoom</button>                                  
                 </div>
                 <div class="uk-width-1-2">
-                    <button id="oblige" class="uk-button uk-button-primary  uk-width-1-1" disabled>Oblige</button>
+                    <button data-uk-modal="{target:'#oblige-dialog'}" class="uk-button uk-button-primary  uk-width-1-1">Oblige</button>
                 </div>
             </div>
         </div>
         <div id="settingsmount"></div>
+        <div id="obligemount"></div>
         <script src="require.js" data-main="app/app.js"></script>
     </body>
 </html>

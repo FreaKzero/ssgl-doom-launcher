@@ -10,7 +10,6 @@ define(['text!fixtures/SettingsModal.html', 'Component'],
             events: function(scope) {
                 scope.$comp.on('click', '#save-settings', function() {
                     // todo: check for empty
-                    // todo: check oblige
                     scope.$message.emit('save-settings', {
                         gzDoom: $('#gzDoom').val(),
                         iwadpath: $('#iwadpath').val(),

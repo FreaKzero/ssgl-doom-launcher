@@ -183,7 +183,7 @@ define(function() {
 
                 }).filter(function(file) {
                     var isFile = fs.statSync(file.path).isFile();
-
+                    
                     if (allowed && allowed.indexOf(file.ext) > -1 && isFile === true) {
                         return true;
                     } else {
