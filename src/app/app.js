@@ -84,7 +84,7 @@ requirejs(['components/iWadSelector',
                 }
 
                 if (settings.iwadpath) {
-                    nodeUtils.getFiles(settings.iwadpath).done(function(data) {
+                    nodeUtils.getFiles(settings.iwadpath, ['wad']).done(function(data) {
                         var md = {
                             selected: 'Select WAD',
                             result: null,
@@ -97,7 +97,7 @@ requirejs(['components/iWadSelector',
 
                 if (settings.activateoblige === true) {
 
-                    nodeUtils.getFiles(settings.obligeconfigpath).done(function(data) {
+                    nodeUtils.getFiles(settings.obligeconfigpath, ['txt']).done(function(data) {
 
                         var md = {
                             selected: 'Select Oblige Config',

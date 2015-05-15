@@ -175,7 +175,7 @@ define(function() {
                 files.map(function(file) {
 
                     return {
-                        name: file.slice(0, -4).toUpperCase(),
+                        name: file.slice(0, -4),
                         path: path.join(p, file),
                         realpath: fs.realpathSync(path.join(p, file)),
                         ext: file.slice(-3).toLowerCase()
@@ -184,9 +184,9 @@ define(function() {
                 }).filter(function(file) {
                     var isFile = fs.statSync(file.path).isFile();
                     
-                    if (allowed && allowed.indexOf(file.ext) > -1 && isFile === true) {
-                        return true;
-                    } else {
+                    if (allowed && isFile) {
+                        return allowed.indexOf(file.ext) > -1;
+                    } else if (!allowed && isFile) {
                         return isFile;
                     }
 
