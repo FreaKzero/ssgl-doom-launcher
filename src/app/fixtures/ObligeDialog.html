@@ -1,26 +1,22 @@
-<div class="uk-modal" id="oblige-dialog">
-	<div class="uk-modal-dialog">
-		<div class="uk-modal-header"><h3>Building Oblige Options</h3></div>
-		<div class="uk-button-dropdown" data-uk-dropdown="{mode:'click'}">
-			<button class="uk-button uk-button-success">
-			<span class="selected"></span>
-			&nbsp;
-			<i class="uk-icon-caret-down"></i>
-			</button>
-			<div class="uk-dropdown uk-dropdown-center">
-				<ul class="uk-nav uk-nav-dropdown">
-					{{#data}}
-					<li><a href="#" data-path="{{realpath}}">{{name}}</a></li>
-					{{/data}}
-				</ul>
-			</div>
-		</div>
-		<div class="uk-modal-footer uk-clearfix">
-			<div class="uk-float-right">
-				<button class="uk-button uk-button-primary" id="launch-oblige-ui">Open Oblige UI</button>
-				<button class="uk-button uk-button-primary" id="launch-oblige">Build and Play</button>
-			</div>
-			
-		</div>
+<div class="uk-modal-header"><h3>Building Oblige Options</h3></div>
+<div class="uk-button-dropdown" data-uk-dropdown="{mode:'click'}">
+	<button class="uk-button uk-button-success">
+	<span class="selected"></span>
+	&nbsp;
+	<i class="uk-icon-caret-down"></i>
+	</button>
+	<div class="uk-dropdown uk-dropdown-center">
+		<ul class="uk-nav uk-nav-dropdown">
+			{{#data}}
+			<li><a href="#" data-path="{{realpath}}">{{name}}</a></li>
+			{{/data}}
+		</ul>
 	</div>
+</div>
+<div class="uk-modal-footer uk-clearfix">
+	<div class="uk-float-right">
+		<button class="uk-button uk-button-primary" id="launch-oblige-ui">Open Oblige UI</button>
+		<button class="uk-button uk-button-primary" id="launch-oblige">Build and Play</button>
+	</div>
+	
 </div>

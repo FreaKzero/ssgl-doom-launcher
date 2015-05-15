@@ -67,51 +67,63 @@ requirejs(['components/iWadSelector',
 
         nodeUtils.loadSettings(function(settings) {
 
-            if (settings.error) {
-                $('#LOADER').show();
-                settingsComponent.setData({}, false).mount('#settingsmount');
-                var modal = UIkit.modal('#settings-modal').show();
+                if (settings.error) {
+                    $('#LOADER').show();
+                    settingsComponent.setData({}, false).mount('#settingsmount');
+                    var modal = UIkit.modal('#settings-modal').show();
 
-            } else {
+                } else {
 
-                settingsComponent.setData(settings, false).mount('#settingsmount');
+                    settingsComponent.setData(settings, false).mount('#settingsmount');
 
-                if (settings.wadpath) {
-                    nodeUtils.getWads(settings.wadpath).done(function(data) {
-                        wad.setData(data, false).mount('#wadselector');
-                        UIkit.nestable('.uk-nestable');
+                    if (settings.wadpath) {
+                        nodeUtils.getWads(settings.wadpath).done(function(data) {
+                            wad.setData(data, false).mount('#wadselector');
+                            UIkit.nestable('.uk-nestable');
+                        });
+                    }
+
+                    if (settings.iwadpath) {
+                        nodeUtils.getFiles(settings.iwadpath, ['wad']).done(function(data) {
+                            var md = {
+                                selected: 'Select iWAD',
+                                result: null,
+                                data: data
+                            };
+
+                            iwad.setData(md, false).mount('#iwadselector');
+                        });
+                    }
+
+                    if (settings.activateoblige === true) {
+
+                        nodeUtils.getFiles(settings.obligeconfigpath, ['txt']).done(function(data) {
+
+                            var md = {
+                                selected: 'Select Oblige Config',
+                                result: null,
+                                data: data
+                            };
+
+                            obligeDialog.setData(md, false).mount('#obligemount');
+                        });
+                    }
+
+                    obligeDialog.$message.on('launch-oblige-ui', function() {
+                            var ui = nodeUtils.launchObligeGUI(settings.obligepath);
+                            ui.on('exit', function(code) {
+                                nodeUtils.getFiles(settings.obligeconfigpath, ['txt']).done(function(data) {
+                                    
+                                    var md = {
+                                        selected: 'Select Oblige Config',
+                                        result: null,
+                                        data: data
+                                    };
+                                    
+                                    obligeDialog.setData(md, false).syncView();
+                                });
+                            });
                     });
-                }
-
-                if (settings.iwadpath) {
-                    nodeUtils.getFiles(settings.iwadpath, ['wad']).done(function(data) {
-                        var md = {
-                            selected: 'Select iWAD',
-                            result: null,
-                            data: data
-                        };
-
-                        iwad.setData(md, false).mount('#iwadselector');
-                    });
-                }
-
-                if (settings.activateoblige === true) {
-
-                    nodeUtils.getFiles(settings.obligeconfigpath, ['txt']).done(function(data) {
-
-                        var md = {
-                            selected: 'Select Oblige Config',
-                            result: null,
-                            data: data
-                        };
-
-                        obligeDialog.setData(md, false).mount('#obligemount');
-                    });
-                }
-
-                obligeDialog.$message.on('launch-oblige-ui', function() {
-                    nodeUtils.launchObligeGUI(settings.obligepath);
-                });
 
                 obligeDialog.$message.on('launch-oblige', function(config) {
                     UIkit.modal('#oblige-dialog').hide();
@@ -133,56 +145,56 @@ requirejs(['components/iWadSelector',
         });
 
 
-        iwad.$message.on('iwad selected', function(selected) {
-            $('#launch').prop('disabled', false).text('Launch ' + selected.iwad);
-            $('#oblige').prop('disabled', false).text('Oblige build and play ' + selected.iwad);
-        });
+    iwad.$message.on('iwad selected', function(selected) {
+        $('#launch').prop('disabled', false).text('Launch ' + selected.iwad);
+        $('#oblige').prop('disabled', false).text('Oblige build and play ' + selected.iwad);
+    });
 
-        settingsComponent.$message.on('save-settings', function(data) {
-            var error = nodeUtils.settingsHasErrors(data);
+    settingsComponent.$message.on('save-settings', function(data) {
+        var error = nodeUtils.settingsHasErrors(data);
 
-            if (error) {
-                settingsComponent.$message.emit('highlightErrors', error);
+        if (error) {
+            settingsComponent.$message.emit('highlightErrors', error);
 
-                UIkit.notify({
-                    message: 'Errors occured, config not saved',
-                    status: 'danger',
-                    timeout: 2000,
-                    pos: 'bottom-center'
-                });
+            UIkit.notify({
+                message: 'Errors occured, config not saved',
+                status: 'danger',
+                timeout: 2000,
+                pos: 'bottom-center'
+            });
 
 
-            } else {
-                nodeUtils.saveSettings(data);
+        } else {
+            nodeUtils.saveSettings(data);
 
-                UIkit.notify({
-                    message: 'Config saved successfully, restarting ...',
-                    status: 'success',
-                    timeout: 2000,
-                    pos: 'bottom-center'
-                });
+            UIkit.notify({
+                message: 'Config saved successfully, restarting ...',
+                status: 'success',
+                timeout: 2000,
+                pos: 'bottom-center'
+            });
 
-                setTimeout(function() {
-                    location.reload();
-                }, 2000);
-
-            }
-        });
-
-        $('#reload').on('click', function() {
-            $(this).children().addClass('uk-icon-spin');
             setTimeout(function() {
                 location.reload();
-            }, 1000);
-        });
+            }, 2000);
 
-        // todo - check if wad is selected
-        $('#launch').on('click', function() {
-            nodeUtils.launch(
-                iwad.getResult(),
-                wad.getResult(),
-                $('#gzDoom').val()
-            );
-        });
-
+        }
     });
+
+    $('#reload').on('click', function() {
+        $(this).children().addClass('uk-icon-spin');
+        setTimeout(function() {
+            location.reload();
+        }, 1000);
+    });
+
+    // todo - check if wad is selected
+    $('#launch').on('click', function() {
+        nodeUtils.launch(
+            iwad.getResult(),
+            wad.getResult(),
+            $('#gzDoom').val()
+        );
+    });
+
+});

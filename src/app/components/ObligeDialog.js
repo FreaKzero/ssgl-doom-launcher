@@ -25,6 +25,10 @@ define(['text!fixtures/ObligeDialog.html', 'Component'],
                 });
 
             },
+			
+			isSynced: function(scope, collection) {
+				scope.$comp.find('.selected').text(collection.selected);
+			},
 
             isMounted: function(scope, collection) {
             	scope.$comp.find('.selected').text(collection.selected);

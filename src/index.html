@@ -35,93 +35,83 @@
     width: 95%;
     margin: 0 auto;
     }
-
     #LOADER {
-        width: 100%;
-        height: 100%;
-        background-color: white;
-        position: absolute;
-        z-index: 999;
-        left: 0;
-        top: 0;    
-        display:none;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    position: absolute;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    display:none;
     }
     
     #LOADER .message {
-        width: 40%;
-        margin-left: -20%;
-        left: 50%;
-        top: 15%;
-        position: absolute;
-        text-align:center;
+    width: 40%;
+    margin-left: -20%;
+    left: 50%;
+    top: 15%;
+    position: absolute;
+    text-align:center;
     }
-
- 
+    
     #LOADER .message p {
-        font-style: italic;
-        margin: 0;
-        padding: 0;
+    font-style: italic;
+    margin: 0;
+    padding: 0;
     }
-
     #ERROR {
-        border: 1px solid red;
-        background-color: pink;
-        width: 70%;
-        min-height: 100px;
-        border-radius: 3px;
-        position: absolute;
-        z-index: 999;
-        margin-left; -35%;
-        left: 15%;
-        top: 20%;
-        padding: 15px;
-        display:none;
+    border: 1px solid red;
+    background-color: pink;
+    width: 70%;
+    min-height: 100px;
+    border-radius: 3px;
+    position: absolute;
+    z-index: 999;
+    margin-left; -35%;
+    left: 15%;
+    top: 20%;
+    padding: 15px;
+    display:none;
     }
-
     #ERROR > h2 {
-        text-align:center;
-        color: red;
+    text-align:center;
+    color: red;
     }
-
     #ERROR .message {
-        background-color: white;
-        border: 1px solid red;
-        width: 100%;
-        min-height: 60px;
-        border-radius: 3px;
-        font-family: monospace;
-        font-size: 15px;
+    background-color: white;
+    border: 1px solid red;
+    width: 100%;
+    min-height: 60px;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 15px;
     }
-
     </style>
     <body>
-    
-    <div id="ERROR">
-    <h2>ERROR</h2>
-
-        <div class="message">
-        fugg dat shit
+        
+        <div id="ERROR">
+            <h2>ERROR</h2>
+            <div class="message">
+                fugg dat shit
+            </div>
         </div>
-    </div>
-
-    <div id="LOADER">
-        <div class="message">
-        <h2>Oblige is building your Episode ...</h2>
-        <p>Game will start immediately after generating</p>
-        <img src="style/assets/preloader.gif" />
-        </div>    
-    </div>
+        <div id="LOADER">
+            <div class="message">
+                <h2>Oblige is building your Episode ...</h2>
+                <p>Game will start immediately after generating</p>
+                <img src="style/assets/preloader.gif" />
+            </div>
+        </div>
         <nav class="uk-navbar uk-navbar-attached">
             <a class="uk-navbar-brand" href="#">gzDoom Launcher</a>
             <div class="uk-navbar-content uk-navbar-flip">
                 <div class="uk-button-group">
                     <div id="iwadselector">
                     </div>
-
                     <button class="uk-button uk-button-success" id="reload">
                     <i class="uk-icon-refresh"></i>
                     </button>
-
                     <button class="uk-button uk-button-success" data-uk-modal="{target:'#settings-modal'}">
                     <i class="uk-icon-gear"></i>
                     </button>
@@ -147,10 +137,9 @@
                 </div>
             </div>
             <br />
-
             <div class="uk-grid">
                 <div class="uk-width-1-2">
-                  <button id="launch" class="uk-button uk-button-success  uk-width-1-1" disabled>Launch gzDoom</button>                                  
+                    <button id="launch" class="uk-button uk-button-success  uk-width-1-1" disabled>Launch gzDoom</button>
                 </div>
                 <div class="uk-width-1-2">
                     <button data-uk-modal="{target:'#oblige-dialog'}" class="uk-button uk-button-primary  uk-width-1-1">Oblige</button>
@@ -158,7 +147,11 @@
             </div>
         </div>
         <div id="settingsmount"></div>
-        <div id="obligemount"></div>
+        <div class="uk-modal" id="oblige-dialog">
+            <div class="uk-modal-dialog">
+            <div id="obligemount"></div>
+            </div>
+        </div>        
         <script src="require.js" data-main="app/app.js"></script>
     </body>
 </html>

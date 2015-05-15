@@ -21,6 +21,8 @@ define(['jquery', 'mustache', 'evnt', 'Collection'],
 
             isMounted: function() {},
 
+            isSynced: function() {},
+
             setData: function(data, makeCollection) {
 
                 if (typeof makeCollection === 'undefined' || makeCollection === true) {
@@ -88,6 +90,7 @@ define(['jquery', 'mustache', 'evnt', 'Collection'],
             syncView: function() {
                 this.component = $(mustache.render(this.template, this.mustacheObject()));
                 this.$comp.html(this.component);
+                this.isSynced(this, this.collection);
             },
 
 
