@@ -1,5 +1,6 @@
 <div class="uk-modal" id="settings-modal">
     <div class="uk-modal-dialog">
+    <div class="uk-modal-header"><h3>Settings</h3></div>
         <form class="uk-form">
             <fieldset data-uk-margin id="settings-form">
                 <label for="gzDoom">gzDoom Path:</label><br />
@@ -23,8 +24,8 @@
                     <br /><br />
                 </div>
             </fieldset>
-        </form>
-        <div class="uk-clearfix">            
+        </form>        
+        <div class="uk-modal-footer uk-clearfix">
             <label style="margin-top: 10px;"><input type="checkbox" id="activateoblige" {{#activateoblige}} checked{{/activateoblige}}/> Activate Oblige</label>            
             <button class="uk-button uk-button-primary uk-float-right" id="save-settings">Save Settings</button>
         </div>

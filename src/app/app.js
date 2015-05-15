@@ -86,7 +86,7 @@ requirejs(['components/iWadSelector',
                 if (settings.iwadpath) {
                     nodeUtils.getFiles(settings.iwadpath, ['wad']).done(function(data) {
                         var md = {
-                            selected: 'Select WAD',
+                            selected: 'Select iWAD',
                             result: null,
                             data: data
                         };
@@ -108,6 +108,10 @@ requirejs(['components/iWadSelector',
                         obligeDialog.setData(md, false).mount('#obligemount');
                     });
                 }
+
+                obligeDialog.$message.on('launch-oblige-ui', function() {
+                    nodeUtils.launchObligeGUI(settings.obligepath);
+                });
 
                 obligeDialog.$message.on('launch-oblige', function(config) {
                     UIkit.modal('#oblige-dialog').hide();

@@ -84,6 +84,19 @@ define(function() {
             return child;
         },
 
+        launchObligeGUI: function(path) {
+            var child;            
+
+            child = execFile(path, [],
+                function(error, stdout, stderr) {
+                    if (error) {
+                        return error.signal;
+                    }
+                });
+
+            return child;
+        },
+
         launch: function(iwad, wads, doompath, randmap) {
             if (typeof randmap !== 'undefined') {
                 wads.push(randmap);

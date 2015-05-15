@@ -19,10 +19,14 @@ define(['text!fixtures/ObligeDialog.html', 'Component'],
                 scope.$comp.on('click', '#launch-oblige', function() {
                 	scope.$message.emit('launch-oblige', RESULT);
                 });
+
+                scope.$comp.on('click', '#launch-oblige-ui', function() {
+                	scope.$message.emit('launch-oblige-ui');
+                });
+
             },
 
             isMounted: function(scope, collection) {
-            	console.log(this.collection);
             	scope.$comp.find('.selected').text(collection.selected);
             },
 
