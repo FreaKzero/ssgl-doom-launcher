@@ -124,7 +124,7 @@ define(function() {
             var defer = Q.defer();
 
             var tree = [];
-
+            var index = [];
 
             recursive(wadpath, function(err, files) {
                 var wad;
@@ -136,33 +136,30 @@ define(function() {
                     var struc = files[i].split('\\'),
                         dirname = struc[struc.length - 2],
                         ext = struc[struc.length - 1].slice(-3).toUpperCase(),
-                        name = struc[struc.length - 1].slice(0, -4);
+                        name = struc[struc.length - 1].slice(0, -4),
+                        cursor = index.indexOf(dirname);
 
                     if (allowed.indexOf(ext) < 0) {
                         continue;
                     }
 
-                    if (typeof obj === 'undefined' || obj.name !== dirname) {
-
-                        if (typeof obj !== 'undefined') {
-                            tree.push(obj);
-                        }
+                    if (cursor === -1) {
+                        index.push(dirname);
+                        cursor = index.length - 1;
 
                         var obj = {};
                         obj.wads = [];
                         obj.name = dirname;
+                        tree.push(obj);                   
                     }
 
-                    wad = {};
+                        
+                    wad = {}; 
                     wad.name = name;
                     wad.ext = ext;
-                    wad.path = fs.realpathSync(files[i]);
+                    wad.path = fs.realpathSync(files[i]);                    
 
-                    obj.wads.push(wad);
-                }
-
-                if (len > 0 && tree.length === 0) {
-                    tree.push(obj);
+                    tree[cursor].wads.push(wad);
                 }
 
                 defer.resolve(tree);
