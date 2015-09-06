@@ -11,9 +11,9 @@
       </md-list-item>   
 
       <md-list-item ng-repeat="iwad in iwads" ng-if="obligeactive">           
-		<md-button class="md-grid-item-content" ng-click="startGameOblige($index)">
+		<md-button class="md-grid-item-content" ng-click="startGameOblige($event, $index)">
         <img src="{{iwad.cover}}" width="50"/>
-        <div class="md-grid-text"> {{iwad.name}} <br />Oblige</div>
+        <div class="md-grid-text">{{iwad.name}} <br />(Oblige)</div>
       </md-button>
       </md-list-item>
       </div>

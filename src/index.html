@@ -111,24 +111,34 @@
         <script src="app/lib/angular-aria/angular-aria.js"></script>
         <script type="text/javascript" src="app/lib/angular-material/angular-material.js"></script>
         <script type="text/javascript">
-        var fs = require('fs');
-        var app = angular.module('gzdoom-launcher', ['ngMaterial']);
-        
-        app.config(function($mdThemingProvider) {
-           $mdThemingProvider.theme('default')
-    .primaryPalette('blue-grey', {
-      'default': '400', // by default use shade 400 from the pink palette for primary intentions
-      'hue-1': '100', // use shade 100 for the <code>md-hue-1</code> class
-      'hue-2': '600', // use shade 600 for the <code>md-hue-2</code> class
-      'hue-3': 'A100' // use shade A100 for the <code>md-hue-3</code> class
-    })
-    // If you specify less than all of the keys, it will inherit from the
-    // default shades
-    .accentPalette('deep-orange').dark();
-        });
-    
-        app.run(function ($rootScope, $http) {        
+            var fs = require('fs');
+            var app = angular.module('gzdoom-launcher', ['ngMaterial']);
+            
+            app.config(function($mdThemingProvider) {
+               $mdThemingProvider.theme('default')
+                .primaryPalette('blue-grey', {
+                  'default': '400', 
+                  'hue-1': '100', 
+                  'hue-2': '600', 
+                  'hue-3': 'A100'
+                })
+                .accentPalette('deep-orange').dark();
+            });
+
+            app.run(function ($rootScope, $http) {        
             $rootScope.config = JSON.parse(fs.readFileSync('config.json', "utf8"));
+
+            try {
+                var mapconfigs = fs.readdirSync($rootScope.config.mapconfig);
+                $rootScope.mapconfigs = mapconfigs.map(function(cfg) {
+                    return {
+                        name: cfg,
+                        path: $rootScope.config.mapconfig + cfg
+                    };
+                });
+            } catch (e) {
+                $rootScope.mapconfigs = [];
+            }
 
             try {
             var iwads = fs.readdirSync($rootScope.config.iwadpath);
@@ -143,7 +153,7 @@
             } catch (e) {
                 $rootScope.iwads = [];
             }        
-        });
+    });
         </script>
         <script src="app/appController.js"></script>
         <script src="app/mods/modService.js"></script>

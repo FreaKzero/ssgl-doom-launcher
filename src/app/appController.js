@@ -6,13 +6,11 @@ app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSh
 
 function appController($scope, $mdDialog, $mdToast, $mdBottomSheet) {
 
-    var CONFIG = $scope.config;
+    var $PARENT = $scope;
     var CONFIGFILE = '/config.json';
     var TOASTDELAY = 1500;
-    
-    $scope.showGameSelection = function($event) {
-        var $PARENT = $scope;        
 
+    $scope.showGameSelection = function($event) {
         $mdBottomSheet.show({
             templateUrl: 'app/templates/GameSelection.html',
             controller: GameSelectionController,
@@ -20,7 +18,7 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet) {
         });
 
         function GameSelectionController($scope, $mdBottomSheet) {
-            $scope.obligeactive = CONFIG.obligeactive;
+            $scope.obligeactive = $PARENT.config.obligeactive;
 
             $scope.startGame = function($index) {
                 var iwad = $scope.iwads[$index].file;
@@ -28,14 +26,33 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet) {
                 $mdBottomSheet.hide();
             };
 
-            $scope.startGameOblige = function($index) {
-                 var iwad = $scope.iwads[$index].file;
-                 $PARENT.$broadcast('STARTOBLIGE', iwad);
-                 $mdBottomSheet.hide();
+            $scope.startGameOblige = function(ev, $index) {
+                var iwad = $scope.iwads[$index].file;
+                
+                $mdBottomSheet.hide();
+                $mdDialog.show({
+                    controller: ConfigDialogController,
+                    templateUrl: 'app/templates/SelectConfig.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: false
+                });
+
+                function ConfigDialogController($scope, $mdDialog) {
+                    $scope.mapconfigs = $PARENT.mapconfigs;
+                    $scope.selected = $PARENT.mapconfigs[0];
+
+                    $scope.start = function($index) {                        
+                        $PARENT.$broadcast('STARTOBLIGE', iwad, $scope.selected);
+                    };
+
+                    $scope.cancel = function() {
+                        $mdDialog.hide();
+                    };
+                }                                
             };
         }
     };
-
 
     $scope.showSettings = function(ev) {
         $mdDialog.show({
@@ -48,11 +65,10 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet) {
 
         function DialogController($scope, $mdDialog) {
 
-            $scope.settings = CONFIG;
-
+            $scope.settings = $PARENT.config;
+            
             $scope.cancel = function() {
                 $mdDialog.cancel();
-                window.location.reload(); 
             };
 
             $scope.save = function() {
@@ -70,9 +86,9 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet) {
                             $mdToast.simple().content('Saved Settings - Reloading...').position('bottom').hideDelay(TOASTDELAY)
                         );
                         setTimeout(function() {
-                            window.location.reload(); 
+                            window.location.reload();
 
-                        }, TOASTDELAY + 500);                        
+                        }, TOASTDELAY + 500);
                     }
 
                 });

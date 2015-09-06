@@ -34,7 +34,7 @@ function modController($scope, modService, $mdDialog) {
         }
     };
 
-    $scope.$on('STARTOBLIGE', function(ev, iwad) {
+    $scope.$on('STARTOBLIGE', function(ev, iwad, config) {
 
         $mdDialog.show({
             templateUrl: 'app/templates/ObligeLoading.html',
@@ -45,8 +45,8 @@ function modController($scope, modService, $mdDialog) {
         
         var child;
         var params = ['--batch', $scope.config.mappath];
-        var endparam = params.concat(['--load'], $scope.config.mapconfig);
-
+        var endparam = params.concat(['--load'], $scope.config.mapconfig+config);
+        console.log($scope.config.mapconfig+config);
         child = execFile($scope.config.oblige, endparam, function(error, stdout, stderr) {
             if (error) {
                 $mdDialog.hide();
