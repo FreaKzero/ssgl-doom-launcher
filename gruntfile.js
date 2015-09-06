@@ -9,7 +9,7 @@ module.exports = function(grunt) {
                     buildDir: './build', // Where the build version of my node-webkit app is saved 
                     version: 'v0.12.0'
                 },
-                src: ['./src/**/**', '!./src/app/lib/package.json'] // Your node-webkit app 
+                src: ['./src/**/**', '!./src/app/lib/package.json', '!./src/config.*'] // Your node-webkit app 
             }
     });
 

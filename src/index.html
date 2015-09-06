@@ -112,6 +112,8 @@
         <script type="text/javascript" src="app/lib/angular-material/angular-material.js"></script>
         <script type="text/javascript">
             var fs = require('fs');
+            var path = require('path');
+
             var app = angular.module('gzdoom-launcher', ['ngMaterial']);
             
             app.config(function($mdThemingProvider) {
@@ -125,8 +127,21 @@
                 .accentPalette('deep-orange').dark();
             });
 
-            app.run(function ($rootScope, $http) {        
-            $rootScope.config = JSON.parse(fs.readFileSync('config.json', "utf8"));
+            app.run(function ($rootScope, $http) {
+
+            try {
+                $rootScope.config = JSON.parse(fs.readFileSync(path.dirname(process.execPath)+'\\config.json', "utf8"));
+            } catch (e) {
+                $rootScope.config = {
+                    obligeactive: false,
+                    gzDoom: "",
+                    iwadpath: "",
+                    wadpath: "",
+                    oblige: "",
+                    mapconfig: "",
+                    mappath: ""
+                };
+            }
 
             try {
                 var mapconfigs = fs.readdirSync($rootScope.config.mapconfig);
