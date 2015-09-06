@@ -130,7 +130,6 @@
         app.run(function ($rootScope, $http) {        
             $rootScope.config = JSON.parse(fs.readFileSync('config.json', "utf8"));
 
-
             try {
             var iwads = fs.readdirSync($rootScope.config.iwadpath);
                 $rootScope.iwads = iwads.map(function(item) {
@@ -143,10 +142,7 @@
                 });
             } catch (e) {
                 $rootScope.iwads = [];
-            }
-
-            
-            console.log($rootScope.iwads);
+            }        
         });
         </script>
         <script src="app/appController.js"></script>

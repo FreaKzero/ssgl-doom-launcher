@@ -1,14 +1,23 @@
 
 
 <md-bottom-sheet class="md-grid">
-<md-subheader>Select iWAD</md-subheader>
+<md-subheader>Select iWAD {{obligeactive}}</md-subheader>
   <md-list>
     <md-list-item ng-repeat="iwad in iwads">
       <md-button class="md-grid-item-content" ng-click="startGame($index)">
         <img src="{{iwad.cover}}" width="50"/>
         <div class="md-grid-text"> {{iwad.name}} </div>
       </md-button>
-    </md-list-item>
+      </md-list-item>   
+
+      <md-list-item ng-repeat="iwad in iwads" ng-if="obligeactive">           
+		<md-button class="md-grid-item-content" ng-click="startGameOblige($index)">
+        <img src="{{iwad.cover}}" width="50"/>
+        <div class="md-grid-text"> {{iwad.name}} <br />Oblige</div>
+      </md-button>
+      </md-list-item>
+      </div>
+    
   </md-list>
 </md-bottom-sheet>
 

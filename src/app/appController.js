@@ -11,22 +11,27 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet) {
     var TOASTDELAY = 1500;
     
     $scope.showGameSelection = function($event) {
-        var $PARENT = $scope;
+        var $PARENT = $scope;        
 
         $mdBottomSheet.show({
             templateUrl: 'app/templates/GameSelection.html',
             controller: GameSelectionController,
             targetEvent: $event
-        }).then(function(clickedItem) {
-            alert(clickedItem.name + ' clicked!');
         });
 
         function GameSelectionController($scope, $mdBottomSheet) {
+            $scope.obligeactive = CONFIG.obligeactive;
 
             $scope.startGame = function($index) {
                 var iwad = $scope.iwads[$index].file;
                 $PARENT.$broadcast('STARTGZDOOM', iwad);
                 $mdBottomSheet.hide();
+            };
+
+            $scope.startGameOblige = function($index) {
+                 var iwad = $scope.iwads[$index].file;
+                 $PARENT.$broadcast('STARTOBLIGE', iwad);
+                 $mdBottomSheet.hide();
             };
         }
     };
@@ -47,6 +52,7 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet) {
 
             $scope.cancel = function() {
                 $mdDialog.cancel();
+                window.location.reload(); 
             };
 
             $scope.save = function() {
@@ -61,8 +67,12 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet) {
                         throw err;
                     } else {
                         $mdToast.show(
-                            $mdToast.simple().content('Saved Settings').position('bottom').hideDelay(TOASTDELAY)
+                            $mdToast.simple().content('Saved Settings - Reloading...').position('bottom').hideDelay(TOASTDELAY)
                         );
+                        setTimeout(function() {
+                            window.location.reload(); 
+
+                        }, TOASTDELAY + 500);                        
                     }
 
                 });
