@@ -4,3 +4,4 @@ nw/*
 build/*
 Thumbs.db
 src/app/lib
+cache/*

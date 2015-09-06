@@ -1,20 +1,12 @@
 {
   "name": "gzdoom-launcher",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
-  "homepage": "",
+  "homepage": "http://www.freakzero.com",
 
   "devDependencies": {
       "grunt": "*",
-      "grunt-contrib-watch": "*",
-      "grunt-contrib-less": "*",      
-      "grunt-contrib-cssmin": "*",
-      "grunt-contrib-copy": "*",
-      "grunt-autoprefixer": "*",
-      "grunt-contrib-requirejs": "*",
-	    "grunt-contrib-yuidoc": "*",
-      "grunt-properties-to-json": "*",
-      "grunt-browser-sync": "*",
-      "grunt-beep": "*"
+      "grunt-nw-builder": "*",      
+      "grunt-contrib-copy": "*"      
   }
 }

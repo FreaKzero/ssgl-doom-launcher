@@ -129,15 +129,21 @@
     
         app.run(function ($rootScope, $http) {        
             $rootScope.config = JSON.parse(fs.readFileSync('config.json', "utf8"));
+
+
+            try {
             var iwads = fs.readdirSync($rootScope.config.iwadpath);
-            $rootScope.iwads = iwads.map(function(item) {
-                var n = item.split('.')[0];
-                return {
-                    file: item,
-                    name: n,
-                    cover: 'app/covers/'+n.toLowerCase()+'.jpg'
-                };
-            });
+                $rootScope.iwads = iwads.map(function(item) {
+                    var n = item.split('.')[0];
+                    return {
+                        file: item,
+                        name: n,
+                        cover: 'app/covers/'+n.toLowerCase()+'.jpg'
+                    };
+                });
+            } catch (e) {
+                $rootScope.iwads = [];
+            }
 
             
             console.log($rootScope.iwads);
@@ -146,7 +152,6 @@
         <script src="app/appController.js"></script>
         <script src="app/mods/modService.js"></script>
         <script src="app/mods/modController.js"></script>
-        <script src="app/mods/fabController.js"></script>
         
         
     </body>
