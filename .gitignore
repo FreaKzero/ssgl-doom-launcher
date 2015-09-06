@@ -3,3 +3,4 @@ node_modules/*
 nw/*
 build/*
 Thumbs.db
+src/app/lib
