@@ -9,7 +9,7 @@
   <md-dialog-content style="max-width:800px;max-height:830px;">
     <div>
       
-    <md-checkbox ng-model="settings.obliqeactive" aria-label="Activate Oblige">
+    <md-checkbox ng-model="obligeactive" aria-label="Activate Oblige">
       <p style="color:white;margin-left: 10px;">Activate Oblige</p>      
     </md-checkbox>
       
@@ -28,7 +28,7 @@
       <input ng-model="settings.iwadpath">
     </md-input-container>
 
-    <div ng-show="settings.obliqeactive">
+    <div ng-show="obligeactive">
       <md-input-container>
         <label>Oblige Path:</label>
         <input ng-model="settings.oblige">

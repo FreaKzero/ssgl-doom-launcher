@@ -1,8 +1,8 @@
 var execFile = require('child_process').execFile;
 
-app.controller('modController', ['$scope', 'modService', modController]);
+app.controller('modController', ['$scope', 'modService', '$mdDialog', modController]);
 
-function modController($scope, modService) {
+function modController($scope, modService, $mdDialog) {
     var self = this;
 
     modService.getMods($scope.config).then(function(mods) {
@@ -35,17 +35,28 @@ function modController($scope, modService) {
     };
 
     $scope.$on('STARTOBLIGE', function(ev, iwad) {
+
+        $mdDialog.show({
+            templateUrl: 'app/templates/ObligeLoading.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: false
+        });
+        
         var child;
         var params = ['--batch', $scope.config.mappath];
         var endparam = params.concat(['--load'], $scope.config.mapconfig);
 
         child = execFile($scope.config.oblige, endparam, function(error, stdout, stderr) {
             if (error) {
-                return error.signal;
+                $mdDialog.hide();
+                alert(error.signal);
+                return false;
             }
         });
 
         child.on('exit', function(code) {
+            $mdDialog.hide();
             $scope.$broadcast('STARTGZDOOM', iwad, $scope.config.mappath);
         });
 
