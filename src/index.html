@@ -1,157 +1,153 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" >
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="chrome=1">
         <title>gzDoom Launcher</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
-        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-        <meta http-equiv="Pragma" content="no-cache" />
-        <meta http-equiv="Expires" content="0" />
-        <link rel="stylesheet" href="style/css/uikit.min.css">
-        <link rel="stylesheet" href="style/css/uikit.almost-flat.min.css">
-        <link rel="stylesheet" href="style/css/components/nestable.almost-flat.min.css">
-        <link rel="stylesheet" href="style/css/components/notify.almost-flat.min.css">
-        
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+        <link rel="stylesheet" href="app/lib/angular-material/angular-material.css"/>
+        <link href="app/lib/mdi/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
     </head>
-    <style type="text/css">
-    .ext {
-    font-size:10px;
-    vertical-align: middle
-    }
-    .WAD {
-    color: green;
-    }
-    .PK3 {
-    color: blue;
-    }
-    .uk-panel-box {
-    height: 500px;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    }
-    .selectorcontainer{
-    width: 95%;
-    margin: 0 auto;
-    }
-    #LOADER {
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    position: absolute;
-    z-index: 999;
-    left: 0;
-    top: 0;
-    display:none;
-    }
-    
-    #LOADER .message {
-    width: 40%;
-    margin-left: -20%;
-    left: 50%;
-    top: 15%;
-    position: absolute;
-    text-align:center;
-    }
-    
-    #LOADER .message p {
-    font-style: italic;
-    margin: 0;
-    padding: 0;
-    }
-    #ERROR {
-    border: 1px solid red;
-    background-color: pink;
-    width: 70%;
-    min-height: 100px;
-    border-radius: 3px;
-    position: absolute;
-    z-index: 999;
-    margin-left; -35%;
-    left: 15%;
-    top: 20%;
-    padding: 15px;
-    display:none;
-    }
-    #ERROR > h2 {
-    text-align:center;
-    color: red;
-    }
-    #ERROR .message {
-    background-color: white;
-    border: 1px solid red;
-    width: 100%;
-    min-height: 60px;
-    border-radius: 3px;
-    font-family: monospace;
-    font-size: 15px;
-    }
-    </style>
-    <body>
+    <body ng-app="gzdoom-launcher" layout="column" ng-controller="appController">
         
-        <div id="ERROR">
-            <h2>ERROR</h2>
-            <div class="message">
-                fugg dat shit
+        <md-toolbar layout="row">
+        <div class="md-toolbar-tools">
+            <h1>gzDoom Launcher</h1>
+        </div>
+
+        <md-button ng-click="showSettings($event)"><i class="mdi mdi-settings" style="font-size: 35px; margin-top: 8px;"></i></md-button>
+        </md-toolbar>
+        
+        <div layout="row" ng-controller="modController">
+            <div flex>
+                <md-content layout-padding style="height: 570px;">
+                <md-input-container>
+                <label>Search</label>
+                <input ng-model="searchterm">
+                </md-input-container>
+                
+                <md-list>
+                <md-list-item class="md-2-line" ng-repeat="mod in mods | filter:searchterm">
+                <div class="md-list-item-text">
+                    <h3>{{ mod.name }}</h3>
+                    <p>{{ mod.dir }}</p>
+                </div>
+                
+                <md-checkbox aria-label="select" class="md-secondary" ng-model="mod.checked" ng-click="checked(mod)" ></md-checkbox>
+                </md-list-item>
+                </md-list>
+                </md-content>
+            </div>
+            <div flex>
+                <md-content layout-padding style="height: 570px;">
+                <md-list>
+                <md-list-item class="md-2-line" ng-repeat="mod in selected">
+                <div class="md-list-item-text">
+                    <h3>{{ mod.name }}</h3>
+                    <p>{{ mod.dir }}</p>
+                </div>
+                <div class="md-secondary">
+                    <p ng-click="moveUp($index)"><i class="mdi mdi-chevron-up btn-sort"></i></p>
+                    <p ng-click="moveDown($index)"><i class="mdi mdi-chevron-down btn-sort"></i></p>
+                </div>
+                
+                </md-list-item>
+                </md-list>
+                </md-content>
             </div>
         </div>
-        <div id="LOADER">
-            <div class="message">
-                <h2>Oblige is building your Episode ...</h2>
-                <p>Game will start immediately after generating</p>
-                <img src="style/assets/preloader.gif" />
-            </div>
+
+
+        <div class="lock-size" layout="row" layout-align="end end">        
+            <md-button aria-label="play" class="md-fab" ng-click="showGameSelection()">
+                <i class="mdi mdi-play" style="font-size: 30px; margin-top: 13px;"></i>
+            </md-button>            
         </div>
-        <nav class="uk-navbar uk-navbar-attached">
-            <a class="uk-navbar-brand" href="#">gzDoom Launcher</a>
-            <div class="uk-navbar-content uk-navbar-flip">
-                <div class="uk-button-group">
-                    <div id="iwadselector">
-                    </div>
-                    <button class="uk-button uk-button-success" id="reload">
-                    <i class="uk-icon-refresh"></i>
-                    </button>
-                    <button class="uk-button uk-button-success" data-uk-modal="{target:'#settings-modal'}">
-                    <i class="uk-icon-gear"></i>
-                    </button>
-                </div>
-            </div>
-        </nav>
-        <br>
-        <div class="selectorcontainer">
-            <div class="uk-grid">
-                <div class="uk-width-1-2">
-                    <div class="uk-panel uk-panel-box">
-                        <h3 class="uk-panel-title">Available</h3>
-                        <div id="wadselector"></div>
-                    </div>
-                    
-                </div>
-                <div class="uk-width-1-2">
-                    <div class="uk-panel uk-panel-box">
-                        <h3 class="uk-panel-title">Load</h3>
-                        <ul class="uk-nestable" data-uk-nestable="{maxDepth: 2, group:'wads'}" id="wadselectorresult">
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div class="uk-grid">
-                <div class="uk-width-1-2">
-                    <button id="launch" class="uk-button uk-button-success  uk-width-1-1" disabled>Launch gzDoom</button>
-                </div>
-                <div class="uk-width-1-2">
-                    <button data-uk-modal="{target:'#oblige-dialog'}" class="uk-button uk-button-primary  uk-width-1-1">Oblige</button>
-                </div>
-            </div>
-        </div>
-        <div id="settingsmount"></div>
-        <div class="uk-modal" id="oblige-dialog">
-            <div class="uk-modal-dialog">
-            <div id="obligemount"></div>
-            </div>
-        </div>        
-        <script src="require.js" data-main="app/app.js"></script>
+        
+
+        
+        <style>    
+        *:focus {
+            outline:none;
+        }    
+
+        .disabled {
+            opacity: 0.3;
+            cursor: default !important;
+        }
+
+        .btn-sort {            
+            cursor: pointer;
+            color: white;
+            border-radius: 100%;
+            padding: 3px;
+            transition: all 0.3s ease-out;
+        }
+
+        .btn-sort:hover {
+            background-color: rgba(158, 158, 158, 0.4);
+        }
+
+        md-bottom-sheet .md-subheader .md-subheader-inner {
+            padding: 0 !important;
+            color: black;
+        }   
+             
+        md-list md-list-item {
+            transition: all 0.3s ease-out;
+        }
+
+        md-list md-list-item:hover {            
+            background-color: rgba(158, 158, 158, 0.2);
+        }
+
+        </style>
+        <script src="app/lib/underscore/underscore.js"></script>
+        <script src="app/_mixins.js"></script>
+        <script src="app/lib/angular/angular.js"></script>
+        <script src="app/lib/angular-animate/angular-animate.js"></script>
+        <script src="app/lib/angular-aria/angular-aria.js"></script>
+        <script type="text/javascript" src="app/lib/angular-material/angular-material.js"></script>
+        <script type="text/javascript">
+        var fs = require('fs');
+        var app = angular.module('gzdoom-launcher', ['ngMaterial']);
+        
+        app.config(function($mdThemingProvider) {
+           $mdThemingProvider.theme('default')
+    .primaryPalette('blue-grey', {
+      'default': '400', // by default use shade 400 from the pink palette for primary intentions
+      'hue-1': '100', // use shade 100 for the <code>md-hue-1</code> class
+      'hue-2': '600', // use shade 600 for the <code>md-hue-2</code> class
+      'hue-3': 'A100' // use shade A100 for the <code>md-hue-3</code> class
+    })
+    // If you specify less than all of the keys, it will inherit from the
+    // default shades
+    .accentPalette('deep-orange').dark();
+        });
+    
+        app.run(function ($rootScope, $http) {        
+            $rootScope.config = JSON.parse(fs.readFileSync('config.json', "utf8"));
+            var iwads = fs.readdirSync($rootScope.config.iwadpath);
+            $rootScope.iwads = iwads.map(function(item) {
+                var n = item.split('.')[0];
+                return {
+                    file: item,
+                    name: n,
+                    cover: 'app/covers/'+n.toLowerCase()+'.jpg'
+                };
+            });
+
+            
+            console.log($rootScope.iwads);
+        });
+        </script>
+        <script src="app/appController.js"></script>
+        <script src="app/mods/modService.js"></script>
+        <script src="app/mods/modController.js"></script>
+        <script src="app/mods/fabController.js"></script>
+        
+        
     </body>
 </html>

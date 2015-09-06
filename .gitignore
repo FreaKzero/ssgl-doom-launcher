@@ -1,4 +1,5 @@
 *.sublime-workspace
 node_modules/*
 nw/*
+build/*
 Thumbs.db

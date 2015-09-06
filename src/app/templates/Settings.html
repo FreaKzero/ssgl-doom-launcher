@@ -1,0 +1,58 @@
+<md-dialog style="width:80%;">
+  <form style="overflow:hidden;">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Settings</h2>
+      <span flex></span>      
+    </div>
+  </md-toolbar>
+  <md-dialog-content style="max-width:800px;max-height:830px;">
+    <div>
+
+     <md-input-container>
+      <label>gzDoom Path:</label>
+      <input ng-model="settings.gzDoom">
+    </md-input-container>
+
+    <md-input-container>
+      <label>WAD Path:</label>
+      <input ng-model="settings.wadpath">
+    </md-input-container>
+
+    <md-input-container>
+      <label>iWAD Path:</label>
+      <input ng-model="settings.iwadpath">
+    </md-input-container>
+
+
+    <md-input-container>
+      <label>Oblige Path:</label>
+      <input ng-model="settings.oblige">
+    </md-input-container>
+
+
+    <md-input-container>
+      <label>Oblige MapConfig Path:</label>
+      <input ng-model="settings.mapconfig">
+    </md-input-container>
+
+
+    <md-input-container>
+      <label>Oblige Random Map Path:</label>
+      <input ng-model="settings.mappath">
+    </md-input-container>
+
+    </div>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">    
+    <span flex></span>
+    <md-button ng-click="cancel()">
+     Cancel
+    </md-button>
+    <md-button class="md-primary" ng-click="save()" style="margin-right:20px;">
+      Save
+    </md-button>
+  </div>
+  </form>
+</md-dialog>
+

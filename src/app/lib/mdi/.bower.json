@@ -1,0 +1,46 @@
+{
+  "name": "mdi",
+  "version": "1.2.65",
+  "main": [
+    "css/materialdesignicons.css",
+    "fonts/*",
+    "css/*",
+    "scss/*",
+    "package.json",
+    "preview.html"
+  ],
+  "homepage": "http://materialdesignicons.com",
+  "authors": [
+    {
+      "name": "Austin Andrews",
+      "homepage": "http://templarian.com"
+    },
+    {
+      "name": "Google",
+      "homepage": "http://www.google.com/design"
+    }
+  ],
+  "license": [
+    "OFL-1.1",
+    "MIT"
+  ],
+  "ignore": [
+    "*.md",
+    "*.json"
+  ],
+  "keywords": [
+    "material",
+    "design",
+    "icons",
+    "webfont"
+  ],
+  "_release": "1.2.65",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.2.65",
+    "commit": "26c91cdce488fe42876178e37c07e9965356984a"
+  },
+  "_source": "git://github.com/Templarian/MaterialDesign-Webfont.git",
+  "_target": "*",
+  "_originalSource": "mdi"
+}
