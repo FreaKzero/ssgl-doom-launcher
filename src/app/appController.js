@@ -19,6 +19,8 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet) {
         });
 
         function GameSelectionController($scope, $mdBottomSheet) {
+            $scope.obligeactive = $PARENT.config.obligeactive;
+
             $scope.startGame = function($index) {
                 var iwad = $scope.iwads[$index].file;
                 $PARENT.$broadcast('STARTGZDOOM', iwad);
