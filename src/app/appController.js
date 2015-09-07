@@ -11,6 +11,7 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet) {
     var TOASTDELAY = 1500;
 
     $scope.showGameSelection = function($event) {
+
         $mdBottomSheet.show({
             templateUrl: 'app/templates/GameSelection.html',
             controller: GameSelectionController,
@@ -18,8 +19,6 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet) {
         });
 
         function GameSelectionController($scope, $mdBottomSheet) {
-            $scope.obligeactive = $PARENT.config.obligeactive;
-
             $scope.startGame = function($index) {
                 var iwad = $scope.iwads[$index].file;
                 $PARENT.$broadcast('STARTGZDOOM', iwad);
