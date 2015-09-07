@@ -12,6 +12,10 @@ function modService($q) {
     	var defer = $q.defer();
 
         recursive(wadpath, function(err, files) {
+            if (typeof files === 'undefined') {
+                return [];
+            }
+            
             var wad;
             var len = files.length;
             var index = [];

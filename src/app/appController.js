@@ -55,6 +55,10 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet) {
         }
     };
 
+    $scope.reload = function() {
+        window.location.reload();
+    }
+    
     $scope.showSettings = function(ev) {
         $mdDialog.show({
             controller: DialogController,

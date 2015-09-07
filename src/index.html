@@ -17,7 +17,8 @@
             <h1>gzDoom Launcher</h1>
         </div>
 
-        <md-button ng-click="showSettings($event)"><i class="mdi mdi-settings" style="font-size: 35px; margin-top: 8px;"></i></md-button>
+        <md-button style="min-width: 50px;margin:0;" ng-click="reload()"><i class="mdi mdi-refresh" style="font-size: 35px; margin-top: 8px;margin-left: -3px;"></i></md-button>
+        <md-button style="min-width: 50px;margin:0;" ng-click="showSettings($event)"><i class="mdi mdi-settings" style="font-size: 35px; margin-top: 8px;"></i></md-button>
         </md-toolbar>
         
         <div layout="row" ng-controller="modController">
@@ -60,7 +61,7 @@
         </div>
 
 
-        <div class="lock-size" layout="row" layout-align="end end">        
+        <div class="lock-size" layout="row" layout-align="end end" ng-show="config.iwadpath.length > 0">        
             <md-button aria-label="play" class="md-fab" ng-click="showGameSelection()">
                 <i class="mdi mdi-play" style="font-size: 30px; margin-top: 13px;"></i>
             </md-button>            
