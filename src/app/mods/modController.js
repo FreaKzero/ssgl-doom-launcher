@@ -34,7 +34,6 @@ function modController($scope, modService, modlistService, $mdDialog) {
         });
 
         $scope.selected = [];
-
         $scope.usedList = false;
     };
 
@@ -48,6 +47,8 @@ function modController($scope, modService, modlistService, $mdDialog) {
         });
 
         function saveSelectedController($scope, $mdDialog, modlistService) {
+            $scope.title = 'Save List';
+
             if ($parent.usedList !== false) {
                 $scope.listname = $parent.usedList;
             }
@@ -79,7 +80,7 @@ function modController($scope, modService, modlistService, $mdDialog) {
         }
     };
 
-    $scope.checked = function(mod) {
+    $scope.checked = function(mod) {        
         if (mod.checked === false) {
             $scope.selected = _($scope.selected).filter(function(item) {
                 return item.path !== mod.path;

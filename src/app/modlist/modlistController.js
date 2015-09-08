@@ -27,6 +27,7 @@ function modlistController($scope, modlistService, $rootScope, $mdDialog) {
         function renameListController($scope, $mdDialog, modlistService) {
             $scope.listname = item.name;
             $scope.double = [];
+            $scope.title = 'Save List';
 
             $scope.checkdoubles = function() {
                 $scope.double = $parent.modlist.filter(function(list) {
