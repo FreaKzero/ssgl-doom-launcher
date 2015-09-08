@@ -67,7 +67,7 @@ function modlistController($scope, modlistService, $rootScope, $mdDialog) {
 
     };
 
-    $scope.select = function($index) {
-        $rootScope.$broadcast('USELIST', $scope.modlist[$index].wads);
+    $scope.selectList = function($index) {
+        $rootScope.$broadcast('USELIST', $scope.modlist[$index].wads, $scope.modlist[$index].name);
     };
 }

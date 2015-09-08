@@ -10,15 +10,35 @@ function modController($scope, modService, modlistService, $mdDialog) {
         $scope.mods = mods;
     });
 
+    $scope.usedList = false;
     $scope.selected = [];
 
-    $scope.$on('USELIST', function(ev, wads) {
+    $scope.$on('USELIST', function(ev, wads, name) {
         $scope.selected = wads;
-    });
-    
+        $scope.usedList = name;
 
-    $scope.saveSelected = function(ev) {
+        $scope.mods.filter(function(item) {
+            item.checked = false;
+        });
 
+        _.each(wads, function(item) {
+            var index = _.findIndex($scope.mods, {path: item.path});
+            $scope.mods[index].checked = true;
+        });
+
+    });    
+
+    $scope.newSelected = function() {
+        $scope.mods.filter(function(item) {
+            item.checked = false;
+        });
+
+        $scope.selected = [];
+
+        $scope.usedList = false;
+    };
+
+    $scope.saveSelected = function(ev) {        
         $mdDialog.show({
             controller: saveSelectedController,
             templateUrl: 'app/templates/AddListPrompt.html',
@@ -28,15 +48,22 @@ function modController($scope, modService, modlistService, $mdDialog) {
         });
 
         function saveSelectedController($scope, $mdDialog, modlistService) {
-            
+            if ($parent.usedList !== false) {
+                $scope.listname = $parent.usedList;
+            }
+
+            $scope.double = [];            
+
             $scope.cancel = function() {
                 $mdDialog.cancel();
             };
 
+            $scope.checkdoubles = function() {};
+
             $scope.submitForm = function() {
                 modlistService.saveSelected($scope.listname, $parent.selected);
                 $mdDialog.cancel();
-            }
+            };
         }    
     }; 
 
@@ -53,7 +80,6 @@ function modController($scope, modService, modlistService, $mdDialog) {
     };
 
     $scope.checked = function(mod) {
-        console.log("fire")
         if (mod.checked === false) {
             $scope.selected = _($scope.selected).filter(function(item) {
                 return item.path !== mod.path;

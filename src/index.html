@@ -20,6 +20,7 @@
 
         <md-button style="min-width: 50px;margin:0;" ng-click="reload()"><i class="mdi mdi-refresh" style="font-size: 35px; margin-top: 8px;margin-left: -3px;"></i></md-button>
         <md-button style="min-width: 50px;margin:0;" ng-click="showSettings($event)"><i class="mdi mdi-settings" style="font-size: 35px; margin-top: 8px;"></i></md-button>
+
         </md-toolbar>
         
         <md-sidenav class="md-sidenav-left md-whiteframe-z2 dark" md-component-id="left">
@@ -36,7 +37,7 @@
                 </div>                      
                 <div class="md-secondary">
 
-                    <i class="mdi mdi-briefcase-check" ng-click="select($index)" style="color:white;margin-top: 3px;margin-right: 3px;"></i>
+                    <i class="mdi mdi-briefcase-check" ng-click="selectList($index)" style="color:white;margin-top: 3px;margin-right: 3px;"></i>
 
                     <i class="mdi mdi-rename-box" ng-click="rename($event, $index)"style="color:white;margin-top: 3px;"></i>
                     <i class="mdi mdi-delete" ng-click="delete($event, $index)" style="color:white;margin-top: 3px;"></i>                    
@@ -69,7 +70,11 @@
             </div>
             <div flex>
                 <md-content layout-padding style="height: 570px;">
+                    
                     <md-button class="md-accent" ng-show="selected.length > 0"ng-click="saveSelected($event)">Save as List</md-button>
+
+                    <md-button class="md-accent" ng-show="usedList" ng-click="newSelected()">Start new List</md-button>
+
                 <md-list>
                 <md-list-item class="md-2-line" ng-repeat="mod in selected">
                 <div class="md-list-item-text">
