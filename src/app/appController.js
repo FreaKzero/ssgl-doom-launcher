@@ -1,10 +1,10 @@
 var path = require('path'),
     fs = require('fs');
 
-app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', appController]);
+app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav','modlistService', appController]);
 
 
-function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav) {
+function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService) {
 
     var $PARENT = $scope;
     var CONFIGFILE = '/config.json';
@@ -13,10 +13,6 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav) 
 
     $scope.reload = function() {
         window.location.reload();
-    };
-
-    $scope.saveSelected = function() {
-        alert("MEHEHEHEHEH")
     };
 
     $scope.toggleSidebar = function() {
@@ -78,6 +74,9 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav) 
         });
 
         function DialogController($scope, $mdDialog) {
+            modlistService.getLists().then(function(list) {
+                $scope.modlist = list;
+            });
 
             $scope.settings = $PARENT.config;
             

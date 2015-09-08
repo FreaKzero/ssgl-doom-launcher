@@ -7,11 +7,7 @@ app.factory('modlistService', ['$q', '$rootScope',modlistService]);
 function modlistService($q, $rootScope) {
     var service = {};
     var listDir = path.dirname(process.execPath)+'\\lists\\';
-
-    service.checkDir = function() {
-
-    };
-
+    
     service.rename = function(item) {
         var newPath = path.dirname(item.path) +'\\'+item.name+'.json';
         fs.rename(item.path, newPath, function(err) {

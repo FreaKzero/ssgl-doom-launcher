@@ -9,10 +9,21 @@
   <md-dialog-content style="max-width:800px;max-height:830px;">
     <div>
       
+      <div layout="row">
+      <div flex>
     <md-checkbox ng-model="settings.obligeactive" aria-label="Activate Oblige">
       <p style="color:white;margin-left: 10px;">Activate Oblige</p>      
     </md-checkbox>
-      
+      </div>
+      <div flex>
+      <label style="color: #b2b2b2;font-size: 12px;font-weight:bold;">Select list for Startup</label>
+        <md-select style="padding:0;"ng-model="settings.initList" placeholder="Select List" ng-disabled="modlist.length === 0">
+          <md-option value="{{false}}">Deactivate</md-option>
+          <md-option ng-repeat="list in modlist" value="{{list}}">{{list.name}}</md-option>
+        </md-select>
+        </div>
+        </div>
+
      <md-input-container>
       <label>gzDoom Path:</label>
       <input ng-model="settings.gzDoom">
@@ -27,7 +38,7 @@
       <label>iWAD Path:</label>
       <input ng-model="settings.iwadpath">
     </md-input-container>
-
+  
     <div ng-show="settings.obligeactive">
       <md-input-container>
         <label>Oblige Path:</label>

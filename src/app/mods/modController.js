@@ -6,12 +6,22 @@ function modController($scope, modService, modlistService, $mdDialog) {
     var self = this;
     var $parent = $scope;
 
-    modService.getMods($scope.config).then(function(mods) {
-        $scope.mods = mods;
-    });
-
-    $scope.usedList = false;
+    $scope.usedList = false;    
     $scope.selected = [];
+
+    modService.getMods($scope.config).then(function(mods) {        
+        $scope.mods = mods;
+
+        // damn you angular...
+        if ($scope.config.initList !== 'false') {
+            try {
+                var initList = JSON.parse($scope.config.initList);
+                $scope.$broadcast('USELIST', initList.wads, initList.name);        
+            } catch(e) {
+                console.log('Malformed JSON');
+            }
+        }
+    });
 
     $scope.$on('USELIST', function(ev, wads, name) {
         $scope.selected = wads;
@@ -22,11 +32,13 @@ function modController($scope, modService, modlistService, $mdDialog) {
         });
 
         _.each(wads, function(item) {
-            var index = _.findIndex($scope.mods, {path: item.path});
+            var index = _.findIndex($scope.mods, {
+                path: item.path
+            });
             $scope.mods[index].checked = true;
         });
 
-    });    
+    });
 
     $scope.newSelected = function() {
         $scope.mods.filter(function(item) {
@@ -37,7 +49,7 @@ function modController($scope, modService, modlistService, $mdDialog) {
         $scope.usedList = false;
     };
 
-    $scope.saveSelected = function(ev) {        
+    $scope.saveSelected = function(ev) {
         $mdDialog.show({
             controller: saveSelectedController,
             templateUrl: 'app/templates/AddListPrompt.html',
@@ -53,7 +65,7 @@ function modController($scope, modService, modlistService, $mdDialog) {
                 $scope.listname = $parent.usedList;
             }
 
-            $scope.double = [];            
+            $scope.double = [];
 
             $scope.cancel = function() {
                 $mdDialog.cancel();
@@ -65,8 +77,8 @@ function modController($scope, modService, modlistService, $mdDialog) {
                 modlistService.saveSelected($scope.listname, $parent.selected);
                 $mdDialog.cancel();
             };
-        }    
-    }; 
+        }
+    };
 
     $scope.moveUp = function($index) {
         if ($index > 0) {
@@ -80,7 +92,7 @@ function modController($scope, modService, modlistService, $mdDialog) {
         }
     };
 
-    $scope.checked = function(mod) {        
+    $scope.checked = function(mod) {
         if (mod.checked === false) {
             $scope.selected = _($scope.selected).filter(function(item) {
                 return item.path !== mod.path;
@@ -99,10 +111,10 @@ function modController($scope, modService, modlistService, $mdDialog) {
             targetEvent: ev,
             clickOutsideToClose: false
         });
-        
+
         var child;
         var params = ['--batch', $scope.config.mappath];
-        var endparam = params.concat(['--load'], $scope.config.mapconfig+config);
+        var endparam = params.concat(['--load'], $scope.config.mapconfig + config);
 
         child = execFile($scope.config.oblige, endparam, function(error, stdout, stderr) {
             if (error) {
@@ -128,7 +140,7 @@ function modController($scope, modService, modlistService, $mdDialog) {
         var params = ['-iwad', $scope.config.iwadpath + iwad];
 
         var wads = $scope.selected.map(function(item) {
-                return item.path;
+            return item.path;
         });
 
         if (map !== false) {
