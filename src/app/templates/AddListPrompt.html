@@ -21,13 +21,10 @@
     </div>
   </md-dialog-content>
   <div class="md-actions" layout="row">    
-    <span flex></span>
-    <md-button ng-click="cancel()">
-     Cancel
-    </md-button>
-
+    <span flex></span>          
+    <md-button type="button" ng-click="cancel()">Cancel</md-button>
     <button type="submit" class="md-button md-accent" ng-disabled="namelistform.$invalid">Save</button>  
-
+    </form>
   </div>
-  </form>
+  
 </md-dialog>

@@ -62,6 +62,7 @@ function modController($scope, modService, modlistService, $mdDialog) {
             $scope.checkdoubles = function() {};
 
             $scope.submitForm = function() {
+                alert("SAVE")
                 modlistService.saveSelected($scope.listname, $parent.selected);
                 $mdDialog.cancel();
             };
