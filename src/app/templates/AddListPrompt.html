@@ -1,0 +1,30 @@
+<md-dialog style="width:50%;">
+  <form style="overflow:hidden;">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Save List</h2>
+      <span flex></span>      
+    </div>
+  </md-toolbar>
+  <md-dialog-content style="max-width:800px;max-height:830px;">
+    <div>
+
+     <md-input-container>
+      <label>Name of your List</label>
+      <input ng-model="listname">
+    </md-input-container>
+    
+    </div>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">    
+    <span flex></span>
+    <md-button ng-click="cancel()">
+     Cancel
+    </md-button>
+    <md-button class="md-primary" ng-click="saveList()" style="margin-right:20px;">
+      Save
+    </md-button>
+  </div>
+  </form>
+</md-dialog>
+

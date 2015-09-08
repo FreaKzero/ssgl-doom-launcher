@@ -1,15 +1,45 @@
 var execFile = require('child_process').execFile;
 
-app.controller('modController', ['$scope', 'modService', '$mdDialog', modController]);
+app.controller('modController', ['$scope', 'modService', 'modlistService', '$mdDialog', modController]);
 
-function modController($scope, modService, $mdDialog) {
+function modController($scope, modService, modlistService, $mdDialog) {
     var self = this;
+    var $parent = $scope;
 
     modService.getMods($scope.config).then(function(mods) {
         $scope.mods = mods;
     });
 
     $scope.selected = [];
+
+    $scope.$on('USELIST', function(ev, wads) {
+        $scope.selected = wads;
+    });
+    
+
+    $scope.saveSelected = function(ev) {
+
+        $mdDialog.show({
+            controller: saveSelectedController,
+            templateUrl: 'app/templates/AddListPrompt.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: false
+        });
+
+        function saveSelectedController($scope, $mdDialog, modlistService) {
+            
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+
+            $scope.saveList = function() {
+                modlistService.saveSelected($scope.listname, $parent.selected);
+                $mdDialog.cancel();
+            };
+
+        }    
+    }; 
 
     $scope.moveUp = function($index) {
         if ($index > 0) {
@@ -46,7 +76,7 @@ function modController($scope, modService, $mdDialog) {
         var child;
         var params = ['--batch', $scope.config.mappath];
         var endparam = params.concat(['--load'], $scope.config.mapconfig+config);
-        console.log($scope.config.mapconfig+config);
+
         child = execFile($scope.config.oblige, endparam, function(error, stdout, stderr) {
             if (error) {
                 $mdDialog.hide();

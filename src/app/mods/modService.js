@@ -1,7 +1,4 @@
-var fs = require('fs'),
-    path = require('path'),
-    execFile = require('child_process').execFile,
-    recursive = require('recursive-readdir');
+var recursive = require('recursive-readdir');
 
 app.factory('modService', ['$q',modService]);
 

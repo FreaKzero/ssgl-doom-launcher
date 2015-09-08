@@ -1,14 +1,27 @@
 var path = require('path'),
     fs = require('fs');
 
-app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', appController]);
+app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', appController]);
 
 
-function appController($scope, $mdDialog, $mdToast, $mdBottomSheet) {
+function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav) {
 
     var $PARENT = $scope;
     var CONFIGFILE = '/config.json';
     var TOASTDELAY = 1500;
+
+
+    $scope.reload = function() {
+        window.location.reload();
+    };
+
+    $scope.saveSelected = function() {
+        alert("MEHEHEHEHEH")
+    };
+
+    $scope.toggleSidebar = function() {
+        $mdSidenav('left').toggle();
+    };
 
     $scope.showGameSelection = function($event) {
 
@@ -54,10 +67,6 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet) {
             };
         }
     };
-
-    $scope.reload = function() {
-        window.location.reload();
-    }
     
     $scope.showSettings = function(ev) {
         $mdDialog.show({

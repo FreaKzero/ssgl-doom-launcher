@@ -14,13 +14,39 @@
         
         <md-toolbar layout="row">
         <div class="md-toolbar-tools">
-            <h1>gzDoom Launcher</h1>
+            <md-button style="min-width: 50px;margin:0 0 0 -10px;;" ng-click="toggleSidebar()"><i class="mdi mdi-menu" style="font-size: 35px; margin-top: 8px;"></i></md-button>
+            <h1 style="margin-left: 10px;">gzDoom Launcher</h1>
         </div>
 
         <md-button style="min-width: 50px;margin:0;" ng-click="reload()"><i class="mdi mdi-refresh" style="font-size: 35px; margin-top: 8px;margin-left: -3px;"></i></md-button>
         <md-button style="min-width: 50px;margin:0;" ng-click="showSettings($event)"><i class="mdi mdi-settings" style="font-size: 35px; margin-top: 8px;"></i></md-button>
         </md-toolbar>
         
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2 dark" md-component-id="left">
+            <md-toolbar>
+                <h1 class="md-toolbar-tools">Saved Lists</h1>
+            </md-toolbar>
+
+            <md-content ng-controller="modlistController">    
+
+            <md-list>
+                <md-list-item class="md-2-line" ng-repeat="list in modlist" md-ink-ripple>                
+                <div class="md-list-item-text">                            
+                    <p>{{ list.name }}</p>
+                </div>                      
+                <div class="md-secondary">
+
+                    <i class="mdi mdi-briefcase-check" ng-click="select($index)" style="color:white;margin-top: 3px;margin-right: 3px;"></i>
+
+                    <i class="mdi mdi-rename-box" ng-click="rename($event, $index)"style="color:white;margin-top: 3px;"></i>
+                    <i class="mdi mdi-delete" ng-click="delete($event, $index)" style="color:white;margin-top: 3px;"></i>                    
+                </div>
+                </md-list-item>
+                </md-list>
+
+            </md-content>
+        </md-sidenav>
+
         <div layout="row" ng-controller="modController">
             <div flex>
                 <md-content layout-padding style="height: 570px;">
@@ -43,6 +69,7 @@
             </div>
             <div flex>
                 <md-content layout-padding style="height: 570px;">
+                    <md-button class="md-accent" ng-show="selected.length > 0"ng-click="saveSelected($event)">Save as List</md-button>
                 <md-list>
                 <md-list-item class="md-2-line" ng-repeat="mod in selected">
                 <div class="md-list-item-text">
@@ -70,6 +97,10 @@
 
         
         <style>    
+
+        body {
+            color: white;
+        }
         *:focus {
             outline:none;
         }    
@@ -98,6 +129,22 @@
              
         md-list md-list-item:hover {            
             background-color: rgba(158, 158, 158, 0.2);
+        }
+
+        .md-whiteframe-z2.dark {
+            background-color: #424242 !important;
+        }
+        
+        .dark md-list md-list-item i {
+            cursor: pointer;
+            color: white;
+            border-radius: 100%;
+            padding: 3px;
+            transition: all 0.3s ease-out;
+        }
+
+        .dark md-list md-list-item i:hover {
+            background-color: rgba(158, 158, 158, 0.4);
         }
 
         </style>
@@ -168,9 +215,13 @@
     });
         </script>
         <script src="app/appController.js"></script>
+        
         <script src="app/mods/modService.js"></script>
         <script src="app/mods/modController.js"></script>
-        
+
+        <script src="app/modlist/modlistController.js"></script>
+        <script src="app/modlist/modlistService.js"></script>
+
         
     </body>
 </html>
