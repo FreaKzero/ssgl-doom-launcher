@@ -157,6 +157,13 @@
         <script type="text/javascript">
             var fs = require('fs');
             var path = require('path');
+            var EXECPATH = path.dirname(process.execPath);
+            
+            fs.exists(EXECPATH+'\\lists', function(exists) {
+                if (!exists) {
+                    fs.mkdirSync(EXECPATH+'\\lists');
+                }
+            });
 
             var app = angular.module('gzdoom-launcher', ['ngMaterial']);
             
@@ -174,7 +181,7 @@
             app.run(function ($rootScope, $http) {
 
             try {
-                $rootScope.config = JSON.parse(fs.readFileSync(path.dirname(process.execPath)+'\\config.json', "utf8"));
+                $rootScope.config = JSON.parse(fs.readFileSync(EXECPATH+'\\config.json', "utf8"));
             } catch (e) {
                 $rootScope.config = {
                     obligeactive: false,
