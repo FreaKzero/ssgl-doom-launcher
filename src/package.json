@@ -6,7 +6,8 @@
         "toolbar": false,
         "width": 1000,
         "height": 650,
-        "resizable": false
+        "resizable": false,
+        "title" : "gzDoom Launcher"
     },
      "devDependencies": {
       "recursive-readdir": "*"

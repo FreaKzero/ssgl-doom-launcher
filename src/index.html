@@ -6,12 +6,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-        <link rel='stylesheet' href='app/font/roboto-webfont.css'>
+        <link rel="stylesheet" href="app/font/roboto-webfont.css">
         <link rel="stylesheet" href="app/lib/angular-material/angular-material.css"/>
         <link href="app/lib/mdi/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
     </head>
-    <body ng-app="gzdoom-launcher" layout="column" ng-controller="appController">
-        
+    <body ng-app="gzdoom-launcher" layout="column" ng-controller="appController" id="app">
         <md-toolbar layout="row">
         <div class="md-toolbar-tools">
             <md-button style="min-width: 50px;margin:0 0 0 -10px;;" ng-click="toggleSidebar()"><i class="mdi mdi-menu" style="font-size: 35px; margin-top: 8px;"></i></md-button>
@@ -39,7 +38,7 @@
 
                     <i class="mdi mdi-briefcase-check" ng-click="selectList($index)" style="color:white;margin-top: 3px;margin-right: 3px;"></i>
 
-                    <i class="mdi mdi-rename-box" ng-click="rename($event, $index)"style="color:white;margin-top: 3px;"></i>
+                    <i class="mdi mdi-rename-box" ng-click="rename($event, $index)" style="color:white;margin-top: 3px;"></i>
                     <i class="mdi mdi-delete" ng-click="delete($event, $index)" style="color:white;margin-top: 3px;"></i>                    
                 </div>
                 </md-list-item>
@@ -71,7 +70,7 @@
             <div flex>
                 <md-content layout-padding style="height: 570px;">
                     
-                    <md-button class="md-accent" ng-show="selected.length > 0"ng-click="saveSelected($event)">Save as List</md-button>
+                    <md-button class="md-accent" ng-show="selected.length > 0" ng-click="saveSelected($event)">Save as List</md-button>
 
                     <md-button class="md-accent" ng-show="usedList" ng-click="newSelected()">Start new List</md-button>
 
@@ -93,7 +92,7 @@
         </div>
 
 
-        <div class="lock-size" layout="row" layout-align="end end" ng-show="config.iwadpath.length > 0">        
+        <div class="lock-size" layout="row" layout-align="end end" layout-padding ng-show="config.iwadpath.length > 0">        
             <md-button aria-label="play" class="md-fab" ng-click="showGameSelection()">
                 <i class="mdi mdi-play" style="font-size: 30px; margin-top: 13px;"></i>
             </md-button>            
@@ -103,8 +102,14 @@
         
         <style>    
 
-        body {
+        #app {
             color: white;
+            opacity: 0;
+            transition: all 0.3s ease-out;
+        }
+
+        #app.show {
+            opacity: 1;
         }
         *:focus {
             outline:none;
@@ -164,6 +169,11 @@
             var path = require('path');
             var EXECPATH = path.dirname(process.execPath);
             
+
+            document.addEventListener("DOMContentLoaded", function(event) { 
+                document.getElementById('app').className = 'show';
+            });
+
             fs.exists(EXECPATH+'\\lists', function(exists) {
                 if (!exists) {
                     fs.mkdirSync(EXECPATH+'\\lists');
@@ -232,8 +242,6 @@
         <script src="app/mods/modController.js"></script>
 
         <script src="app/modlist/modlistController.js"></script>
-        <script src="app/modlist/modlistService.js"></script>
-
-        
+        <script src="app/modlist/modlistService.js"></script>     
     </body>
 </html>
