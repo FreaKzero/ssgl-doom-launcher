@@ -111,6 +111,7 @@
         #app.show {
             opacity: 1;
         }
+
         *:focus {
             outline:none;
         }    
@@ -132,13 +133,69 @@
             background-color: rgba(158, 158, 158, 0.4);
         }
 
-        md-bottom-sheet .md-subheader .md-subheader-inner {
-            padding: 0 !important;
+        md-bottom-sheet {
             color: black;
+        }
+
+        md-bottom-sheet .md-subheader .md-subheader-inner {
+            padding: 0 !important;          
+            color: black;  
         }   
              
         md-list md-list-item:hover {            
             background-color: rgba(158, 158, 158, 0.2);
+        }
+
+        .gameholder {
+            border-radius: 100%;
+            width: 70px;
+            height: 70px;
+            overflow: hidden;
+            position: relative;
+            color: white;
+        }
+
+        .gameholder .tint {
+            border-radius: 100%;
+            width: 70px;
+            height: 70px;
+            background-color: rgba(0,0,0,0.5);
+            position: absolute;
+            left:0;
+            top:0;
+            opacity: 0;
+            transition: all 0.3s ease-out;
+            text-align:center;
+        }
+
+        .gameholder .tint i {
+            font-size: 30px;
+            margin-top: 20px;
+            opacity: 0.7;
+        }
+
+        .gameholder > .tint:hover{
+            opacity: 1;
+        }
+
+
+
+        md-bottom-sheet img {
+            
+            width: 80px !important;
+            height: 80px !important;
+        }
+        
+        md-bottom-sheet md-list-item:hover {
+            background-color: transparent;
+        }
+
+        md-bottom-sheet md-grid-text {
+            color: black !important;
+        }
+        
+        md-bottom-sheet.md-grid md-list-item {
+            max-width: 10%;
         }
 
         .md-whiteframe-z2.dark {
