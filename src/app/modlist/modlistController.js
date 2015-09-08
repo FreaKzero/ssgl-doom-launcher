@@ -6,6 +6,7 @@ function modlistController($scope, modlistService, $rootScope, $mdDialog) {
         $scope.modlist = list;
     });
 
+    $parent = $scope;    
     $scope.$on('MODIFIEDLISTS', function() {
         modlistService.getLists().then(function(list) {
             $scope.modlist = list;
@@ -25,10 +26,22 @@ function modlistController($scope, modlistService, $rootScope, $mdDialog) {
 
         function renameListController($scope, $mdDialog, modlistService) {
             $scope.listname = item.name;
+            $scope.double = [];
 
-            $scope.saveList = function() {
-                item.name = $scope.listname;
-                modlistService.rename(item);
+            $scope.checkdoubles = function() {
+                $scope.double = $parent.modlist.filter(function(list) {
+                    return $scope.listname === list.name;
+                });
+            };
+
+            $scope.submitForm = function(valid) {
+                                              
+                
+                if (valid && $scope.double.length === 0) {
+                    item.name = $scope.listname;
+                    modlistService.rename(item);
+                    $mdDialog.cancel();           
+                }
             };
 
             $scope.cancel = function() {

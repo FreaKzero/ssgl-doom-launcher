@@ -33,11 +33,10 @@ function modController($scope, modService, modlistService, $mdDialog) {
                 $mdDialog.cancel();
             };
 
-            $scope.saveList = function() {
+            $scope.submitForm = function() {
                 modlistService.saveSelected($scope.listname, $parent.selected);
                 $mdDialog.cancel();
-            };
-
+            }
         }    
     }; 
 
@@ -54,6 +53,7 @@ function modController($scope, modService, modlistService, $mdDialog) {
     };
 
     $scope.checked = function(mod) {
+        console.log("fire")
         if (mod.checked === false) {
             $scope.selected = _($scope.selected).filter(function(item) {
                 return item.path !== mod.path;
