@@ -11,7 +11,7 @@
         <link href="app/lib/mdi/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
     </head>
     <body ng-app="gzdoom-launcher" layout="column" ng-controller="appController" id="app">
-        <md-toolbar layout="row">
+        <md-toolbar layout="row" style="overflow:hidden">
         <div class="md-toolbar-tools">
             <md-button style="min-width: 50px;margin:0 0 0 -10px;;" ng-click="toggleSidebar()"><i class="mdi mdi-menu" style="font-size: 35px; margin-top: 8px;"></i></md-button>
             <h1 style="margin-left: 10px;">Super Shotgun Launcher</h1>
@@ -19,8 +19,8 @@
         <md-button style="min-width: 50px;margin:0;" ng-click="showSettings($event)"><i class="mdi mdi-settings" style="font-size: 35px; margin-top: 8px;"></i></md-button>
 
         <md-menu>
-          <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
-            <i class="mdi mdi-dots-vertical" style="font-size: 35px; margin-top: 8px;margin-left: 5px;"></i>
+          <md-button class="md-icon-button" style="padding:0;margin:0 0 0 0;" ng-click="openMenu($mdOpenMenu, $event)">
+            <i class="mdi mdi-dots-vertical" style="font-size: 35px; margin-top: 8px;"></i>
           </md-button>
           <md-menu-content width="6">
                         
@@ -40,10 +40,6 @@
             
           </md-menu-content>
         </md-menu>
-      </div>
-
-
-
         </md-toolbar>
         
         <md-sidenav class="md-sidenav-left md-whiteframe-z2 dark" md-component-id="left">
@@ -115,12 +111,11 @@
             </div>
         </div>
 
-
-        <div class="lock-size" layout="row" layout-align="end end" layout-padding ng-show="config.iwadpath.length > 0">        
-            <md-button aria-label="play" class="md-fab special-fab" ng-click="showGameSelection()">
+        
+            <md-button aria-label="play" class="md-fab special-fab md-fab-bottom-right" ng-click="showGameSelection()" ng-show="config.iwadpath.length > 0">
                 <i class="mdi mdi-play"></i>
             </md-button>            
-        </div>
+        
         
 
         
@@ -135,6 +130,7 @@
         #app.show {
             opacity: 1;
         }
+
 
         * {
             -webkit-user-select: none;  /* Chrome all / Safari all */
