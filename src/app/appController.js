@@ -1,7 +1,7 @@
 var path = require('path'),
     fs = require('fs');
 
-app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav','modlistService', appController]);
+app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', appController]);
 
 
 function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService) {
@@ -13,6 +13,11 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
 
     $scope.reload = function() {
         window.location.reload();
+    };
+
+    $scope.openMenu = function($mdOpenMenu, ev) {
+        originatorEv = ev;
+        $mdOpenMenu(ev);
     };
 
     $scope.toggleSidebar = function() {

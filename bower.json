@@ -5,6 +5,7 @@
   "homepage": "https://github.com/angular/material-start",
   "license": "MIT",
   "private": true,
+  
   "dependencies": {
     "angular": "*",
     "angular-animate": "*",
@@ -13,7 +14,8 @@
     "underscore": "*",
     "mdi": "*"
   },
+
   "devDependencies": {
-    "angular-material": "~0.9.4"
+    "angular-material": "*"
   }
 }
