@@ -6,7 +6,7 @@ function modlistController($scope, modlistService, $rootScope, $mdDialog) {
         $scope.modlist = list;
     });
 
-    $parent = $scope;    
+    $parent = $scope;
     $scope.$on('MODIFIEDLISTS', function() {
         modlistService.getLists().then(function(list) {
             $scope.modlist = list;

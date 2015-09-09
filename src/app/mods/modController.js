@@ -1,4 +1,5 @@
-var execFile = require('child_process').execFile;
+var execFile = require('child_process').execFile,
+    fs = require('fs');
 
 app.controller('modController', ['$scope', 'modService', 'modlistService', '$mdDialog', modController]);
 
@@ -11,14 +12,14 @@ function modController($scope, modService, modlistService, $mdDialog) {
 
     modService.getMods($scope.config).then(function(mods) {        
         $scope.mods = mods;
-
-        // damn you angular...
-        if ($scope.config.initList !== 'false') {
+        if ($scope.config.initList !== false) {
             try {
-                var initList = JSON.parse($scope.config.initList);
-                $scope.$broadcast('USELIST', initList.wads, initList.name);        
+                var startListJSON = JSON.parse($scope.config.initList);
+                var startList = JSON.parse(fs.readFileSync(startListJSON.path, "utf8"));   
+                
+                $scope.$broadcast('USELIST', startList, startListJSON.name);        
             } catch(e) {
-                console.log('Malformed JSON');
+                console.log(e);
             }
         }
     });
@@ -114,8 +115,8 @@ function modController($scope, modService, modlistService, $mdDialog) {
 
         var child;
         var params = ['--batch', $scope.config.mappath];
-        var endparam = params.concat(['--load'], config);
-        
+        var endparam = params.concat(['--load'], $scope.config.mapconfig + config);
+
         child = execFile($scope.config.oblige, endparam, function(error, stdout, stderr) {
             if (error) {
                 $mdDialog.hide();
