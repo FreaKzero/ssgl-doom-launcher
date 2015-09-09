@@ -3,6 +3,7 @@
     "version": "0.0.1",
     "main": "index.html",
     "window": {
+        "icon": "./ssgl.png",
         "toolbar": false,
         "width": 1000,
         "height": 650,

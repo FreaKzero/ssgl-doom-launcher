@@ -6,7 +6,6 @@
 
   "devDependencies": {
       "grunt": "*",
-      "grunt-nw-builder": "*",      
-      "grunt-contrib-copy": "*"      
+      "grunt-nw-builder": "*"
   }
 }
