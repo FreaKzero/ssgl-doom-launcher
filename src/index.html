@@ -16,21 +16,26 @@
             <md-button style="min-width: 50px;margin:0 0 0 -10px;;" ng-click="toggleSidebar()"><i class="mdi mdi-menu" style="font-size: 35px; margin-top: 8px;"></i></md-button>
             <h1 style="margin-left: 10px;">Super Shotgun Launcher</h1>
         </div>
-
-        <md-button style="min-width: 50px;margin:0;" ng-click="reload()"><i class="mdi mdi-refresh" style="font-size: 35px; margin-top: 8px;margin-left: -3px;"></i></md-button>
         <md-button style="min-width: 50px;margin:0;" ng-click="showSettings($event)"><i class="mdi mdi-settings" style="font-size: 35px; margin-top: 8px;"></i></md-button>
 <!-- -->
         <md-menu>
           <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
-            <i class="mdi mdi-dots-vertical"></i>
+            <i class="mdi mdi-dots-vertical" style="font-size: 35px; margin-top: 8px;margin-left: 5px;"></i>
           </md-button>
           <md-menu-content width="6">
-            <md-menu-item ng-repeat="item in [1, 2, 3]">
-              <md-button>
-                <md-icon md-menu-align-target md-svg-icon="call:no-sim"></md-icon>
-                Option {{item}}
-              </md-button>
+                        
+            <md-menu-item>
+            <md-button ng-click="reload()">Scan Modfolder</md-button>
             </md-menu-item>
+
+            <md-menu-item>
+            <md-button>Check for Updates</md-button>
+            </md-menu-item>            
+
+            <md-menu-item>
+            <md-button>About</md-button>
+            </md-menu-item>
+            
           </md-menu-content>
         </md-menu>
       </div>
