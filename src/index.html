@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
     <head>
-        <title>gzDoom Launcher</title>
+        <title>Super Shotgun Launcher</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
@@ -14,7 +14,7 @@
         <md-toolbar layout="row">
         <div class="md-toolbar-tools">
             <md-button style="min-width: 50px;margin:0 0 0 -10px;;" ng-click="toggleSidebar()"><i class="mdi mdi-menu" style="font-size: 35px; margin-top: 8px;"></i></md-button>
-            <h1 style="margin-left: 10px;">gzDoom Launcher</h1>
+            <h1 style="margin-left: 10px;">Super Shotgun Launcher</h1>
         </div>
 
         <md-button style="min-width: 50px;margin:0;" ng-click="reload()"><i class="mdi mdi-refresh" style="font-size: 35px; margin-top: 8px;margin-left: -3px;"></i></md-button>
@@ -93,8 +93,8 @@
 
 
         <div class="lock-size" layout="row" layout-align="end end" layout-padding ng-show="config.iwadpath.length > 0">        
-            <md-button aria-label="play" class="md-fab" ng-click="showGameSelection()">
-                <i class="mdi mdi-play" style="font-size: 30px; margin-top: 13px;"></i>
+            <md-button aria-label="play" class="md-fab special-fab" ng-click="showGameSelection()">
+                <i class="mdi mdi-play"></i>
             </md-button>            
         </div>
         
@@ -120,6 +120,29 @@
         *:focus {
             outline:none;
         }    
+        .special-fab {
+            height: 60px !important; 
+            width: 60px !important;
+            background: url('ssgl.png');
+            background-size: cover;
+            box-shadow: none !important;
+            border-radius: 50% !important;
+            background-color: transparent !important;
+        }
+
+        .special-fab i {
+            font-size: 30px;
+            margin-top: 15px; 
+            opacity: 0;
+            transition: all 0.25s ease-out;
+            transform: scale(0);
+            text-shadow: 0px 0px 5px rgba(0, 0, 0, 1);            
+        }
+    
+        .special-fab:hover > i {
+            opacity: 1;
+            transform: scale(1);
+        }   
 
         .disabled {
             opacity: 0.3;
@@ -160,6 +183,11 @@
             color: white;
         }
 
+        .gameholder img {
+            width: 70px;
+            height: 70px;
+            margin-left: -5px;
+        }
         .gameholder .tint {
             border-radius: 100%;
             width: 70px;
@@ -289,11 +317,18 @@
             try {
             var iwads = fs.readdirSync($rootScope.config.iwadpath);
                 $rootScope.iwads = iwads.map(function(item) {
-                    var n = item.split('.')[0];
+                    var n = item.split('.')[0].toLowerCase();
+                    var available = ['doom','doom2','freedm','freedoom1','freedoom2','hacx','heretic','heretic1','hexdd','hexen','plutonia','strife0','strife1','tnt'];
+                    var cover = 'ssgl.png';
+
+                    if (available.indexOf(n) > -1) {
+                        cover = 'app/covers/'+n+'.jpg';
+                    }
+            
                     return {
                         file: item,
-                        name: n,
-                        cover: 'app/covers/'+n.toLowerCase()+'.jpg'
+                        name: n.toUpperCase(),
+                        cover: cover
                     };
                 });
             } catch (e) {
