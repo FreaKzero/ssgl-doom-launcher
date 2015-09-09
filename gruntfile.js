@@ -8,7 +8,7 @@ module.exports = function(grunt) {
                 platforms: ['win'],
                 buildDir: './build', // Where the build version of my node-webkit app is saved 
                 version: 'v0.12.0',
-                winIco: './icons/ssgl.ico'
+                winIco: './icons/ssgl1.ico'
             },
             src: ['./src/**/**', '!./src/app/lib/package.json', '!./src/config.*'] // Your node-webkit app 
         }    
