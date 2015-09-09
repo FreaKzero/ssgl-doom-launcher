@@ -24,6 +24,18 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
         $mdSidenav('left').toggle();
     };
 
+    $scope.showAboutDialog = function(ev) {
+        $mdDialog.show(
+            $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#popupContainer')))
+            .clickOutsideToClose(true)
+            .title('About')
+            .content('(c) 2015 FreaKzero, Licensed under MIT License. \n Angular Material, NWJS')
+            .ok('Yup')
+            .targetEvent(ev)
+        );
+    };
+
     $scope.showGameSelection = function($event) {
 
         $mdBottomSheet.show({

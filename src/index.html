@@ -17,7 +17,7 @@
             <h1 style="margin-left: 10px;">Super Shotgun Launcher</h1>
         </div>
         <md-button style="min-width: 50px;margin:0;" ng-click="showSettings($event)"><i class="mdi mdi-settings" style="font-size: 35px; margin-top: 8px;"></i></md-button>
-<!-- -->
+
         <md-menu>
           <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
             <i class="mdi mdi-dots-vertical" style="font-size: 35px; margin-top: 8px;margin-left: 5px;"></i>
@@ -25,21 +25,23 @@
           <md-menu-content width="6">
                         
             <md-menu-item>
-            <md-button ng-click="reload()">Scan Modfolder</md-button>
+            <md-button ng-click="reload()">Rescan Modfolder</md-button>
             </md-menu-item>
 
+            <!--
             <md-menu-item>
             <md-button>Check for Updates</md-button>
             </md-menu-item>            
+            -->
 
-            <md-menu-item>
+            <md-menu-item ng-click="showAboutDialog($event)">
             <md-button>About</md-button>
             </md-menu-item>
             
           </md-menu-content>
         </md-menu>
       </div>
-<!-- -->
+
 
 
         </md-toolbar>
