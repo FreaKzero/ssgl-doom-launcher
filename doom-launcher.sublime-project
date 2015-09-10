@@ -16,6 +16,11 @@
 	    "working_dir": "${project_path:${file_path}}",
 	    "path": "C:/Users/FreaK/projects/gzdoom-launcher/nw",
 	    "shell": true
-		}
+	   },
+
+	   {
+	   	"name": "build launcher",
+		"shell_cmd": "grunt build"
+	   }
     ]
 }

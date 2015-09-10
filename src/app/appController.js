@@ -1,6 +1,7 @@
 var path = require('path'),
-    fs = require('fs');
-
+    fs = require('fs'),
+    gui = require('nw.gui');
+    
 app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', appController]);
 
 
@@ -25,15 +26,25 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
     };
 
     $scope.showAboutDialog = function(ev) {
-        $mdDialog.show(
-            $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#popupContainer')))
-            .clickOutsideToClose(true)
-            .title('About')
-            .content('(c) 2015 FreaKzero, Licensed under MIT License. \n Angular Material, NWJS')
-            .ok('Yup')
-            .targetEvent(ev)
-        );
+        
+        $mdDialog.show({
+            controller: AboutDialogController,
+            templateUrl: 'app/templates/AboutDialog.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true
+        });
+
+        function AboutDialogController($scope, $mdBottomSheet) {
+            
+            $scope.openURL = function(url) {
+                gui.Shell.openExternal(url);
+            };
+
+            $scope.yup = function() {
+                $mdDialog.cancel();
+            }   
+        }    
     };
 
     $scope.showGameSelection = function($event) {

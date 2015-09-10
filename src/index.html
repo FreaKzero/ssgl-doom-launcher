@@ -16,16 +16,18 @@
             <md-button style="min-width: 50px;margin:0 0 0 -10px;;" ng-click="toggleSidebar()"><i class="mdi mdi-menu" style="font-size: 35px; margin-top: 8px;"></i></md-button>
             <h1 style="margin-left: 10px;">Super Shotgun Launcher</h1>
         </div>
+
         <md-button style="min-width: 50px;margin:0;" ng-click="showSettings($event)"><i class="mdi mdi-settings" style="font-size: 35px; margin-top: 8px;"></i></md-button>
 
         <md-menu>
           <md-button class="md-icon-button" style="padding:0;margin:0 0 0 0;" ng-click="openMenu($mdOpenMenu, $event)">
             <i class="mdi mdi-dots-vertical" style="font-size: 35px; margin-top: 8px;"></i>
           </md-button>
+
           <md-menu-content width="6">
                         
             <md-menu-item>
-            <md-button ng-click="reload()">Rescan Modfolder</md-button>
+                <md-button ng-click="reload()">Restart App</md-button>
             </md-menu-item>
 
             <!--
@@ -35,13 +37,14 @@
             -->
 
             <md-menu-item ng-click="showAboutDialog($event)">
-            <md-button>About</md-button>
+                <md-button>About</md-button>
             </md-menu-item>
             
           </md-menu-content>
+
         </md-menu>
+
         </md-toolbar>
-        
         <md-sidenav class="md-sidenav-left md-whiteframe-z2 dark" md-component-id="left">
             <md-toolbar>
                 <h1 class="md-toolbar-tools">Saved Lists</h1>
@@ -74,16 +77,22 @@
                 <label>Search</label>
                 <input ng-model="searchterm">
                 </md-input-container>
-                
                 <md-list>
-                <md-list-item class="md-2-line" ng-repeat="mod in mods | filter:searchterm">
+                
+                <md-list-item class="md-2-line" ng-repeat="mod in filtered = (mods | filter:searchterm)">
                 <div class="md-list-item-text">
                     <h3>{{ mod.name }}</h3>
                     <p>{{ mod.dir }}</p>
                 </div>
-                
                 <md-checkbox aria-label="select" class="md-secondary" ng-model="mod.checked" ng-click="checked(mod)" ></md-checkbox>
                 </md-list-item>
+
+                <div ng-hide="filtered.length > 0" style="text-align:center;">
+                
+                <img src="nof.png" />
+                    <p>Sorry, No Mods Found</p>
+                </div>
+
                 </md-list>
                 </md-content>
             </div>
@@ -115,9 +124,7 @@
             <md-button aria-label="play" class="md-fab special-fab md-fab-bottom-right" ng-click="showGameSelection()" ng-show="config.iwadpath.length > 0">
                 <i class="mdi mdi-play"></i>
             </md-button>            
-        
-        
-
+            
         
         <style>    
 
@@ -136,7 +143,14 @@
             -webkit-user-select: none;  /* Chrome all / Safari all */
             user-select: none; 
         }
-        
+
+        .aboutpic {
+            border-radius: 100%;
+            width: 120px;
+            height: 120px;
+            box-shadow: 0px 0px 0px 5px white;
+        }
+
         *:focus {
             outline:none;
         }    
