@@ -8,6 +8,7 @@
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="app/font/roboto-webfont.css">
         <link rel="stylesheet" href="app/lib/angular-material/angular-material.css"/>
+        <link rel="stylesheet" href="app/assets/custom.css"/>
         <link href="app/lib/mdi/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
     </head>
     <body ng-app="gzdoom-launcher" layout="column" ng-controller="appController" id="app">
@@ -89,7 +90,7 @@
 
                 <div ng-hide="filtered.length > 0" style="text-align:center;">
                 
-                <img src="nof.png" />
+                <img src="app/assets/nof.png" />
                     <p>Sorry, No Mods Found</p>
                 </div>
 
@@ -119,171 +120,11 @@
                 </md-content>
             </div>
         </div>
-
         
             <md-button aria-label="play" class="md-fab special-fab md-fab-bottom-right" ng-click="showGameSelection()" ng-show="config.iwadpath.length > 0">
                 <i class="mdi mdi-play"></i>
             </md-button>            
             
-        
-        <style>    
-
-        #app {
-            color: white;
-            opacity: 0;
-            transition: all 0.3s ease-out;
-        }
-
-        #app.show {
-            opacity: 1;
-        }
-
-
-        * {
-            -webkit-user-select: none;  /* Chrome all / Safari all */
-            user-select: none; 
-        }
-
-        .aboutpic {
-            border-radius: 100%;
-            width: 120px;
-            height: 120px;
-            box-shadow: 0px 0px 0px 5px white;
-        }
-
-        *:focus {
-            outline:none;
-        }    
-        .special-fab {
-            height: 60px !important; 
-            width: 60px !important;
-            background: url('ssgl.png');
-            background-size: cover;
-            box-shadow: none !important;
-            border-radius: 0 !important;
-            background-color: transparent !important;
-        }
-
-        .special-fab i {
-            font-size: 30px;
-            margin-top: 15px; 
-            opacity: 0;
-            transition: all 0.25s ease-out;
-            transform: scale(0);
-            text-shadow: 0px 0px 5px rgba(0, 0, 0, 1);            
-        }
-    
-        .special-fab:hover > i {
-            opacity: 1;
-            transform: scale(1);
-        }   
-
-        .disabled {
-            opacity: 0.3;
-            cursor: default !important;
-        }
-
-        .btn-sort {            
-            cursor: pointer;
-            color: white;
-            border-radius: 100%;
-            padding: 3px;
-            transition: all 0.3s ease-out;
-        }
-
-        .btn-sort:hover {
-            background-color: rgba(158, 158, 158, 0.4);
-        }
-
-        md-bottom-sheet {
-            color: black;
-        }
-
-        md-bottom-sheet .md-subheader .md-subheader-inner {
-            padding: 0 !important;          
-            color: black;  
-        }   
-             
-        md-list md-list-item:hover {            
-            background-color: rgba(158, 158, 158, 0.2);
-        }
-
-        .gameholder {
-            border-radius: 100%;
-            width: 70px;
-            height: 70px;
-            overflow: hidden;
-            position: relative;
-            color: white;
-        }
-
-        .gameholder img {
-            width: 70px;
-            height: 70px;
-            margin-left: -5px;
-        }
-        .gameholder .tint {
-            border-radius: 100%;
-            width: 70px;
-            height: 70px;
-            background-color: rgba(0,0,0,0.5);
-            position: absolute;
-            left:0;
-            top:0;
-            opacity: 0;
-            transition: all 0.25s ease-in;
-            transform: scale(0);
-            text-align:center;
-        }
-
-        .gameholder .tint i {
-            font-size: 30px;
-            margin-top: 20px;
-            opacity: 0.7;
-        }
-
-        .gameholder:hover > .tint {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-
-
-        md-bottom-sheet img {
-            
-            width: 80px !important;
-            height: 80px !important;
-        }
-        
-        md-bottom-sheet md-list-item:hover {
-            background-color: transparent;
-        }
-
-        md-bottom-sheet md-grid-text {
-            color: black !important;
-        }
-        
-        md-bottom-sheet.md-grid md-list-item {
-            max-width: 10%;
-        }
-
-        .md-whiteframe-z2.dark {
-            background-color: #424242 !important;
-        }
-        
-        .dark md-list md-list-item i {
-            cursor: pointer;
-            color: white;
-            border-radius: 100%;
-            padding: 3px;
-            transition: all 0.3s ease-out;
-        }
-
-        .dark md-list md-list-item i:hover {
-            background-color: rgba(158, 158, 158, 0.4);
-        }
-
-        </style>
         <script src="app/lib/underscore/underscore.js"></script>
         <script src="app/_mixins.js"></script>
         <script src="app/lib/angular/angular.js"></script>

@@ -6,6 +6,7 @@
 
   "devDependencies": {
       "grunt": "*",
-      "grunt-nw-builder": "*"
+      "grunt-nw-builder": "*",
+      "grunt-shell": "*"
   }
 }

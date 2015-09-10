@@ -43,7 +43,7 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
 
             $scope.yup = function() {
                 $mdDialog.cancel();
-            }   
+            };
         }    
     };
 

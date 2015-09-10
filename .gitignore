@@ -2,6 +2,8 @@
 node_modules/*
 nw/*
 build/*
+src/node_modules/*
 Thumbs.db
 src/app/lib
 cache/*
+npm-debug.log
