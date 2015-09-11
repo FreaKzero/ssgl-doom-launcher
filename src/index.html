@@ -10,11 +10,11 @@
         <link rel="stylesheet" href="app/lib/angular-material/angular-material.css"/>
         <link rel="stylesheet" href="app/assets/custom.css"/>        
         <script type="text/javascript" src="app/lib/jquery/dist/jquery.min.js"></script>        
-        <script type="text/javascript" src="app/lib/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+        <script type="text/javascript" src="app/lib/jquery-slimscroll/jquery.slimscroll.js"></script>
         <link href="app/lib/mdi/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
     </head>
     <body ng-app="gzdoom-launcher" layout="column" ng-controller="appController" id="app">
-        <md-toolbar layout="row" style="overflow:hidden">
+        <md-toolbar layout="row">
         <div class="md-toolbar-tools">
             <md-button style="min-width: 50px;margin:0 0 0 -10px;;" ng-click="toggleSidebar()"><i class="mdi mdi-menu" style="font-size: 35px; margin-top: 8px;"></i></md-button>
             <h1 style="margin-left: 10px;">Super Shotgun Launcher</h1>
@@ -82,7 +82,7 @@
                 </md-input-container>
                 <md-list>
                 
-                <md-list-item class="md-2-line" ng-repeat="mod in filtered = (mods | filter:searchterm)" ng-click="checked(mod)">
+                <md-list-item class="md-2-line repeat-animation init-animation" ng-repeat="mod in filtered = (mods | filter:searchterm)" ng-click="checked(mod)">
                 <div class="md-list-item-text">
                     <h3>{{ mod.name }}</h3>
                     <p>{{ mod.dir }}</p>
@@ -100,14 +100,18 @@
                 </md-content>
             </div>
             <div flex>
-                <md-content layout-padding class="slimscroll">
-                    
+            
+            <md-toolbar class="md-hue-2 menu-animation" ng-show="selected.length > 0 || usedList">
+                <div class="md-toolbar-tools">
                     <md-button class="md-accent" ng-show="selected.length > 0" ng-click="saveSelected($event)">Save as List</md-button>
 
                     <md-button class="md-accent" ng-show="usedList" ng-click="newSelected()">Start new List</md-button>
+                </div>
+            </md-toolbar>
 
+                <md-content layout-padding class="slimscroll">                                    
                 <md-list>
-                <md-list-item class="md-2-line" ng-repeat="mod in selected">
+                <md-list-item class="md-2-line repeat-animation" ng-repeat="mod in selected">
                 <div class="md-list-item-text">
                     <h3>{{ mod.name }}</h3>
                     <p>{{ mod.dir }}</p>

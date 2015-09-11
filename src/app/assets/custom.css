@@ -1,9 +1,12 @@
 
+        html, body {
+            overflow:hidden;
+            background-color: #424242;
+        }
         #app {
             color: white;
             opacity: 0;
-            transition: all 0.3s ease-out;
-            overflow:hidden;
+            transition: all 0.3s ease-out;            
         }
 
         #app.show {
@@ -143,10 +146,7 @@
             background-color: transparent;
         }
 
-        /* Scrollbars ... */
-        md-bottom-sheet {
-            z-index: 9999999;
-        }
+        
 
         md-bottom-sheet md-grid-text {
             color: black !important;
@@ -183,4 +183,44 @@
             opacity:0;
         }
 
+        
+.repeat-animation.ng-enter,
+.repeat-animation.ng-leave,
+.repeat-animation.ng-move {  
+  transition: all 0.26s ease-out;  
+}
+.repeat-animation.ng-enter {
+    transform: translateX(-100px);    
+  opacity: 0;
+}
+.repeat-animation.ng-enter.ng-enter-active {
+    transform: translateX(0px);
+  opacity: 1;
+}
+.repeat-animation.ng-leave {
+  opacity: 1;
+}
+.repeat-animation.ng-leave.ng-leave-active {
+    transform: translateX(-100px);
+    opacity: 0;
+}
+.repeat-animation.ng-move {
+  opacity: 0.5;
+}
+.repeat-animation.ng-move.ng-move-active {
+  left:0;
+  opacity: 1;
+}
 
+.menu-animation {
+    transition: all 0.26s ease-out;
+    z-index: 1;
+}
+
+.menu-animation.ng-show {
+    transform: translateY(0px);
+}
+
+.menu-animation.ng-hide {
+    transform: translateY(-80px);
+}
