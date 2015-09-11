@@ -76,6 +76,7 @@ function modController($scope, modService, modlistService, $mdDialog) {
 
             $scope.submitForm = function() {
                 modlistService.saveSelected($scope.listname, $parent.selected);
+                $parent.usedList = $scope.listname;
                 $mdDialog.cancel();
             };
         }
