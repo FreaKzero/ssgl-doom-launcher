@@ -62,10 +62,9 @@
                 </div>                      
                 <div class="md-secondary">
 
-                    <i class="mdi mdi-briefcase-check" ng-click="selectList($index)" style="color:white;margin-top: 3px;margin-right: 3px;"></i>
-
-                    <i class="mdi mdi-rename-box" ng-click="rename($event, $index)" style="color:white;margin-top: 3px;"></i>
-                    <i class="mdi mdi-delete" ng-click="delete($event, $index)" style="color:white;margin-top: 3px;"></i>                    
+                    <i class="mdi mdi-briefcase-check" ng-click="selectList($index)" style="color:white;margin-top: 3px;margin-right: 3px;"><md-tooltip>Use List</md-tooltip></i>
+                    <i class="mdi mdi-rename-box" ng-click="rename($event, $index)" style="color:white;margin-top: 3px;"><md-tooltip>Rename List</md-tooltip></i>
+                    <i class="mdi mdi-delete" ng-click="delete($event, $index)" style="color:white;margin-top: 3px;"><md-tooltip>Delete List</md-tooltip></i>                    
                 </div>
                 </md-list-item>
                 </md-list>
@@ -103,9 +102,12 @@
             
             <md-toolbar class="md-hue-2 menu-animation" ng-show="selected.length > 0 || usedList">
                 <div class="md-toolbar-tools">
-                    <md-button class="md-accent" ng-show="selected.length > 0" ng-click="saveSelected($event)">Save as List</md-button>
+                
+          <p>{{usedList || 'Untitled'}}</p>        
+          <span flex></span>
+                    <md-button class="md-accent" ng-show="selected.length > 0" ng-click="saveSelected($event)"><i class="mdi mdi-content-save"></i> Save</md-button>
 
-                    <md-button class="md-accent" ng-show="usedList" ng-click="newSelected()">Start new List</md-button>
+                    <md-button class="md-accent" ng-show="usedList" ng-click="newSelected()"><i class="mdi mdi-playlist-plus"></i> New</md-button>
                 </div>
             </md-toolbar>
 
@@ -141,12 +143,7 @@
             var fs = require('fs');
             var path = require('path');
             var EXECPATH = path.dirname(process.execPath);
-            
-
-            document.addEventListener("DOMContentLoaded", function(event) { 
-                document.getElementById('app').className = 'show';
-            });
-
+                    
             fs.exists(EXECPATH+'\\lists', function(exists) {
                 if (!exists) {
                     fs.mkdirSync(EXECPATH+'\\lists');

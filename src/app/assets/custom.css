@@ -3,20 +3,22 @@
             overflow:hidden;
             background-color: #424242;
         }
+
         #app {
             color: white;
-            opacity: 0;
-            transition: all 0.3s ease-out;            
         }
 
-        #app.show {
-            opacity: 1;
+        md-tooltip {
+            color: black;
         }
-
-
+        
         * {
             -webkit-user-select: none;  /* Chrome all / Safari all */
             user-select: none; 
+        }
+
+        i.controlbtn {
+
         }
 
         .slimscroll {
