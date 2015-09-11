@@ -15,16 +15,28 @@
             user-select: none; 
         }
 
-        .aboutpic {
+        .customAboutContainer img {
             border-radius: 100%;
             width: 120px;
             height: 120px;
             box-shadow: 0px 0px 0px 5px white;
         }
 
+        .customAboutContainer a, .customAboutContainer a:link, .customAboutContainer a:visited, .customAboutContainer a:active {
+            color: #E75426;
+            cursor: pointer;
+            text-decoration:none;
+            transition: color 0.15s ease-out;
+        }
+
+        .customAboutContainer a:hover {
+            color: #FF9675;            
+        }
+
         *:focus {
             outline:none;
         }    
+
         .special-fab {
             height: 60px !important; 
             width: 60px !important;
