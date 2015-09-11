@@ -8,7 +8,9 @@
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="app/font/roboto-webfont.css">
         <link rel="stylesheet" href="app/lib/angular-material/angular-material.css"/>
-        <link rel="stylesheet" href="app/assets/custom.css"/>
+        <link rel="stylesheet" href="app/assets/custom.css"/>        
+        <script type="text/javascript" src="app/lib/jquery/dist/jquery.min.js"></script>        
+        <script type="text/javascript" src="app/lib/jquery-slimscroll/jquery.slimscroll.min.js"></script>
         <link href="app/lib/mdi/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
     </head>
     <body ng-app="gzdoom-launcher" layout="column" ng-controller="appController" id="app">
@@ -73,19 +75,19 @@
 
         <div layout="row" ng-controller="modController">
             <div flex>
-                <md-content layout-padding style="height: 570px;">
+                <md-content layout-padding class="slimscroll">
                 <md-input-container>
                 <label>Search</label>
                 <input ng-model="searchterm">
                 </md-input-container>
                 <md-list>
                 
-                <md-list-item class="md-2-line" ng-repeat="mod in filtered = (mods | filter:searchterm)">
+                <md-list-item class="md-2-line" ng-repeat="mod in filtered = (mods | filter:searchterm)" ng-click="checked(mod)">
                 <div class="md-list-item-text">
                     <h3>{{ mod.name }}</h3>
                     <p>{{ mod.dir }}</p>
                 </div>
-                <md-checkbox aria-label="select" class="md-secondary" ng-model="mod.checked" ng-click="checked(mod)" ></md-checkbox>
+                <i class="mdi mdi-checkbox-marked-circle-outline custom-check" style="font-size: 25px;color: #ff5722;" ng-show="mod.checked"></i>                
                 </md-list-item>
 
                 <div ng-hide="filtered.length > 0" style="text-align:center;">
@@ -98,7 +100,7 @@
                 </md-content>
             </div>
             <div flex>
-                <md-content layout-padding style="height: 570px;">
+                <md-content layout-padding class="slimscroll">
                     
                     <md-button class="md-accent" ng-show="selected.length > 0" ng-click="saveSelected($event)">Save as List</md-button>
 
@@ -209,6 +211,18 @@
             } catch (e) {
                 $rootScope.iwads = [];
             }        
+    });
+
+
+    $(document).ready(function() {
+        $('.slimscroll').slimScroll({
+            position: 'right',
+            height: '586px',
+            railVisible: true,
+            alwaysVisible: false,
+            color: '#78909c',
+            wheelStep: 7        
+        });
     });
         </script>
         <script src="app/appController.js"></script>

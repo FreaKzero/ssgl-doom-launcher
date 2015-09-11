@@ -3,6 +3,7 @@
             color: white;
             opacity: 0;
             transition: all 0.3s ease-out;
+            overflow:hidden;
         }
 
         #app.show {
@@ -13,6 +14,10 @@
         * {
             -webkit-user-select: none;  /* Chrome all / Safari all */
             user-select: none; 
+        }
+
+        .slimscroll {
+            height: 570px;
         }
 
         .customAboutContainer img {
@@ -87,9 +92,7 @@
             color: black;  
         }   
              
-        md-list md-list-item:hover {            
-            background-color: rgba(158, 158, 158, 0.2);
-        }
+        
 
         .gameholder {
             border-radius: 100%;
@@ -163,3 +166,21 @@
         .dark md-list md-list-item i:hover {
             background-color: rgba(158, 158, 158, 0.4);
         }
+
+
+
+
+        
+
+        .custom-check {
+            transform: scale(1);
+            transition: all 0.32s cubic-bezier(.83,.04,.54,1.52);
+            opacity: 1;
+        }
+
+        .custom-check.ng-hide {
+            transform: scale(0);            
+            opacity:0;
+        }
+
+

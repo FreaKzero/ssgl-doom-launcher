@@ -12,7 +12,9 @@
     "angular-aria": "*",
     "angular-material": "*",
     "underscore": "*",
-    "mdi": "*"
+    "mdi": "*",
+    "jquery": "*",
+    "jquery-slimscroll": "*"
   },
 
   "devDependencies": {

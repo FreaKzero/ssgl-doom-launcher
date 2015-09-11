@@ -95,12 +95,14 @@ function modController($scope, modService, modlistService, $mdDialog) {
 
     $scope.checked = function(mod) {
         if (mod.checked === false) {
+            mod.checked = true;
+            $scope.selected.push(mod);
+
+        } else {
+            mod.checked = false;            
             $scope.selected = _($scope.selected).filter(function(item) {
                 return item.path !== mod.path;
             });
-
-        } else {
-            $scope.selected.push(mod);
         }
     };
 
