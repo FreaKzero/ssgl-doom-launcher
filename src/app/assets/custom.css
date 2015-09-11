@@ -143,6 +143,11 @@
             background-color: transparent;
         }
 
+        /* Scrollbars ... */
+        md-bottom-sheet {
+            z-index: 9999999;
+        }
+
         md-bottom-sheet md-grid-text {
             color: black !important;
         }
@@ -167,14 +172,9 @@
             background-color: rgba(158, 158, 158, 0.4);
         }
 
-
-
-
-        
-
         .custom-check {
             transform: scale(1);
-            transition: all 0.32s cubic-bezier(.83,.04,.54,1.52);
+            transition: all 0.26s cubic-bezier(.83,.04,.54,1.52);
             opacity: 1;
         }
 
