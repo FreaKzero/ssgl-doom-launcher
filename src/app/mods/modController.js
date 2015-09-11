@@ -118,7 +118,7 @@ function modController($scope, modService, modlistService, $mdDialog) {
 
         var child;
         var params = ['--batch', $scope.config.mappath];
-        var endparam = params.concat(['--load'], $scope.config.mapconfig + config);
+        var endparam = params.concat(['--load'], config);
 
         child = execFile($scope.config.oblige, endparam, function(error, stdout, stderr) {
             if (error) {
