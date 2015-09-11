@@ -5,13 +5,19 @@
         }
 
         #app {
+            transition: all 0.26s ease-out;  
             color: white;
+            opacity: 0;
+        }
+
+        #app.show {
+            opacity:1;
         }
 
         md-tooltip {
             color: black;
         }
-        
+
         * {
             -webkit-user-select: none;  /* Chrome all / Safari all */
             user-select: none; 

@@ -216,13 +216,18 @@
 
 
     $(document).ready(function() {
+
+        setTimeout(function() {
+            $('#app').addClass('show');
+        },100);
+        
         $('.slimscroll').slimScroll({
             position: 'right',
             height: '586px',
             railVisible: true,
             alwaysVisible: true,
             color: '#78909c',
-            wheelStep: 7        
+            wheelStep: 7
         });
     });
         </script>
