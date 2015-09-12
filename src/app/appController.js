@@ -1,19 +1,50 @@
 var path = require('path'),
     fs = require('fs'),
     gui = require('nw.gui');
-    
-app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', appController]);
+
+app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', appController]);
 
 
-function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService) {
+function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService, $http) {
 
     var $PARENT = $scope;
     var CONFIGFILE = '/config.json';
     var TOASTDELAY = 1500;
-
+    var VERSION = '0.0.1';
 
     $scope.reload = function() {
         window.location.reload();
+    };
+
+    $scope.checkUpdates = function(ev) {    
+        $http.get('https://raw.githubusercontent.com/FreaKzero/gzdoom-launcher/master/package.json').
+        then(function(response) {
+
+            if ( response.data.version !== VERSION) {
+                
+            $mdDialog.show(
+                  $mdDialog.alert()                    
+                    .clickOutsideToClose(true)
+                    .title('New Version available!')
+                    .content('Download it here: '+ response.data.releaseDownload)
+                    .ok('Yup')
+                    .targetEvent(ev)
+                );
+            
+            } else {
+                $mdDialog.show(
+                  $mdDialog.alert()                    
+                    .clickOutsideToClose(true)
+                    .title('No new Updates')
+                    .content('You have the most recent Version')
+                    .ok('Yup')
+                    .targetEvent(ev)
+                );
+            }
+
+        }, function(response) {
+            console.log('ERROR: ' + response);
+        });
     };
 
     $scope.openMenu = function($mdOpenMenu, ev) {
@@ -26,7 +57,7 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
     };
 
     $scope.showAboutDialog = function(ev) {
-        
+
         $mdDialog.show({
             controller: AboutDialogController,
             templateUrl: 'app/templates/AboutDialog.html',
@@ -36,7 +67,7 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
         });
 
         function AboutDialogController($scope, $mdBottomSheet) {
-            
+
             $scope.openURL = function(url) {
                 gui.Shell.openExternal(url);
             };
@@ -44,7 +75,7 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
             $scope.yup = function() {
                 $mdDialog.cancel();
             };
-        }    
+        }
     };
 
     $scope.showGameSelection = function($event) {
@@ -66,7 +97,7 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
 
             $scope.startGameOblige = function(ev, $index) {
                 var iwad = $scope.iwads[$index].file;
-                
+
                 $mdBottomSheet.hide();
                 $mdDialog.show({
                     controller: ConfigDialogController,
@@ -81,18 +112,18 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
                     console.log($scope.mapconfigs);
                     $scope.selected = $scope.mapconfigs[0].path;
 
-                    $scope.start = function($index) {                        
+                    $scope.start = function($index) {
                         $PARENT.$broadcast('STARTOBLIGE', iwad, $scope.selected);
                     };
 
                     $scope.cancel = function() {
                         $mdDialog.hide();
                     };
-                }                                
+                }
             };
         }
     };
-    
+
     $scope.showSettings = function(ev) {
         $mdDialog.show({
             controller: DialogController,
@@ -108,7 +139,7 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
             });
 
             $scope.settings = $PARENT.config;
-            
+
             $scope.cancel = function() {
                 $mdDialog.cancel();
             };

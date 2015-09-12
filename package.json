@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "",
   "homepage": "http://www.freakzero.com",
-
+  "releaseDownload": "http://www.freakzero.com/asdf",
+  
   "devDependencies": {
       "grunt": "*",
       "grunt-nw-builder": "*",
