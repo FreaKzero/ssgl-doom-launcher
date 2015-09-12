@@ -78,7 +78,8 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
 
                 function ConfigDialogController($scope, $mdDialog) {
                     $scope.mapconfigs = $PARENT.mapconfigs;
-                    $scope.selected = $PARENT.mapconfigs[0];
+                    console.log($scope.mapconfigs);
+                    $scope.selected = $scope.mapconfigs[0].path;
 
                     $scope.start = function($index) {                        
                         $PARENT.$broadcast('STARTOBLIGE', iwad, $scope.selected);
