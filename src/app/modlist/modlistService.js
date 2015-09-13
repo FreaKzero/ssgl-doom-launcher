@@ -2,7 +2,7 @@ var path = require('path'),
     fs = require('fs'),
     recursive = require('recursive-readdir');
 
-app.factory('modlistService', ['$q', '$rootScope',modlistService]);
+app.factory('modlistService', ['$q', '$rootScope', modlistService]);
 
 function modlistService($q, $rootScope) {
     var service = {};
@@ -26,7 +26,9 @@ function modlistService($q, $rootScope) {
             }    
         });
 
-        $rootScope.$broadcast('MODIFIEDLISTS');
+        setTimeout(function() {
+            $rootScope.$broadcast('MODIFIEDLISTS');
+        },1500);
     };
 
     service.readDir = function(wadpath) {
