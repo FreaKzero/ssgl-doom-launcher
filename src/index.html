@@ -33,10 +33,13 @@
                 <md-button ng-click="reload()">Restart App</md-button>
             </md-menu-item>
 
+            <md-menu-item>
+            <md-button ng-click="openWADFolder()">Open WAD Folder</md-button>
+            </md-menu-item>
             
             <md-menu-item>
             <md-button ng-click="checkUpdates($event)">Check for Updates</md-button>
-            </md-menu-item>            
+            </md-menu-item>
             
 
             <md-menu-item ng-click="showAboutDialog($event)">
@@ -164,7 +167,7 @@
             });
 
             app.run(function ($rootScope, $http) {
-
+                $rootScope.APPVERSION = '0.0.1';
             try {
                 $rootScope.config = JSON.parse(fs.readFileSync(EXECPATH+'\\config.json', "utf8"));
             } catch (e) {

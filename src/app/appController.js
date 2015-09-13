@@ -1,6 +1,7 @@
 var path = require('path'),
     fs = require('fs'),
     gui = require('nw.gui');
+    gui = require('nw.gui');
 
 app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', appController]);
 
@@ -10,17 +11,20 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
     var $PARENT = $scope;
     var CONFIGFILE = '/config.json';
     var TOASTDELAY = 1500;
-    var VERSION = '0.0.1';
 
     $scope.reload = function() {
         window.location.reload();
+    };
+
+    $scope.openWADFolder = function() {
+        gui.Shell.openItem($scope.config.wadpath);
     };
 
     $scope.checkUpdates = function(ev) {    
         $http.get('https://raw.githubusercontent.com/FreaKzero/gzdoom-launcher/master/package.json').
         then(function(response) {
 
-            if ( response.data.version !== VERSION) {
+            if ( response.data.version !== $scope.APPVERSION) {
                 
             $mdDialog.show(
                   $mdDialog.alert()                    
@@ -123,7 +127,7 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
             };
         }
     };
-
+    
     $scope.showSettings = function(ev) {
         $mdDialog.show({
             controller: DialogController,
