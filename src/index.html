@@ -74,14 +74,14 @@
 
         <div layout="row" ng-controller="modController">
             <div flex>
-                <md-content layout-padding class="slimscroll">
+                <md-content layout-padding class="slimscroll-l">
                 <md-input-container>
                 <label>Search</label>
                 <input ng-model="searchterm">
                 </md-input-container>
                 <md-list>
                 
-                <md-list-item class="md-2-line repeat-animation init-animation" ng-repeat="mod in filtered = (mods | filter:searchterm)" ng-click="checked(mod)">
+                <md-list-item class="md-2-line repeat-animation init-animation" ng-repeat="mod in filtered = (mods | filter:searchterm) track by mod.path" ng-click="checked(mod)">
                 <div class="md-list-item-text">
                     <h3>{{ mod.name }}</h3>
                     <p>{{ mod.dir }}</p>
@@ -105,15 +105,15 @@
                 
           <p>{{usedList || 'Untitled'}}</p>        
           <span flex></span>
-                    <md-button class="md-accent" ng-show="selected.length > 0" ng-click="saveSelected($event)"><i class="mdi mdi-content-save"></i> Save</md-button>
+                    <md-button class="md-accent" ng-click="saveSelected($event)"><i class="mdi mdi-content-save"></i> Save</md-button>
 
-                    <md-button class="md-accent" ng-show="usedList" ng-click="newSelected()"><i class="mdi mdi-playlist-plus"></i> New</md-button>
+                    <md-button class="md-accent" ng-click="newSelected()"><i class="mdi mdi-playlist-plus"></i> New</md-button>
                 </div>
             </md-toolbar>
 
-                <md-content layout-padding class="slimscroll">                                    
+                <md-content layout-padding class="slimscroll-r">                                    
                 <md-list>
-                <md-list-item class="md-2-line repeat-animation" ng-repeat="mod in selected">
+                <md-list-item class="md-2-line repeat-animation" ng-repeat="mod in selected track by mod.path">
                 <div class="md-list-item-text">
                     <h3>{{ mod.name }}</h3>
                     <p>{{ mod.dir }}</p>
@@ -221,7 +221,7 @@
             $('#app').addClass('show');
         },100);
         
-        $('.slimscroll').slimScroll({
+        $('.slimscroll-l').slimScroll({
             position: 'right',
             height: '586px',
             railVisible: true,
@@ -229,6 +229,16 @@
             color: '#78909c',
             wheelStep: 7
         });
+
+        $('.slimscroll-r').slimScroll({
+            position: 'right',
+            height: '525px',
+            railVisible: true,
+            alwaysVisible: true,
+            color: '#78909c',
+            wheelStep: 7
+        });
+
     });
         </script>
         <script src="app/appController.js"></script>

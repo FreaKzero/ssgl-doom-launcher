@@ -27,8 +27,12 @@
 
         }
 
-        .slimscroll {
+        .slimscroll-l {
             height: 570px;
+        }
+
+        .slimscroll-r {
+            
         }
 
         .customAboutContainer img {
