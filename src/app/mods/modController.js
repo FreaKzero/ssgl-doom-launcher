@@ -38,7 +38,6 @@ function modController($scope, modService, modlistService, $mdDialog) {
             });
             $scope.mods[index].checked = true;
         });
-
     });
 
     $scope.newSelected = function() {
@@ -141,8 +140,13 @@ function modController($scope, modService, modlistService, $mdDialog) {
         }
 
         var child;
-        var params = ['-iwad', $scope.config.iwadpath + iwad];
+        var SAVEDIR = $scope.config.savegamepath + 'default';
 
+        if ($scope.usedList !== false) {
+            SAVEDIR = $scope.config.savegamepath + $scope.usedList;
+        }
+
+        var params = ['-iwad', $scope.config.iwadpath + iwad, '-savedir', SAVEDIR];
         var wads = $scope.selected.map(function(item) {
             return item.path;
         });
