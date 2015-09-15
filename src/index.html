@@ -8,8 +8,8 @@
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="app/font/roboto-webfont.css">
         <link rel="stylesheet" href="app/lib/angular-material/angular-material.css"/>
-        <link rel="stylesheet" href="app/assets/custom.css"/>        
-        <script type="text/javascript" src="app/lib/jquery/dist/jquery.min.js"></script>        
+        <link rel="stylesheet" href="app/assets/custom.css"/>
+        <script type="text/javascript" src="app/lib/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="app/lib/jquery-slimscroll/jquery.slimscroll.js"></script>
         <link href="app/lib/mdi/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
     </head>
@@ -28,7 +28,7 @@
           </md-button>
 
           <md-menu-content width="6">
-                        
+
             <md-menu-item>
                 <md-button ng-click="reload()">Restart App</md-button>
             </md-menu-item>
@@ -36,16 +36,16 @@
             <md-menu-item>
             <md-button ng-click="openWADFolder()">Open WAD Folder</md-button>
             </md-menu-item>
-            
+
             <md-menu-item>
             <md-button ng-click="checkUpdates($event)">Check for Updates</md-button>
             </md-menu-item>
-            
+
 
             <md-menu-item ng-click="showAboutDialog($event)">
                 <md-button>About</md-button>
             </md-menu-item>
-            
+
           </md-menu-content>
 
         </md-menu>
@@ -56,18 +56,18 @@
                 <h1 class="md-toolbar-tools">Saved Lists</h1>
             </md-toolbar>
 
-            <md-content ng-controller="modlistController">    
+            <md-content ng-controller="modlistController">
 
             <md-list>
-                <md-list-item class="md-2-line repeat-animation" ng-repeat="list in modlist" md-ink-ripple>                
-                <div class="md-list-item-text">                            
+                <md-list-item class="md-2-line repeat-animation" ng-repeat="list in modlist" md-ink-ripple>
+                <div class="md-list-item-text">
                     <p>{{ list.name }}</p>
-                </div>                      
+                </div>
                 <div class="md-secondary">
 
                     <i class="mdi mdi-briefcase-check" ng-click="selectList($index)" style="color:white;margin-top: 3px;margin-right: 3px;"><md-tooltip>Use List</md-tooltip></i>
                     <i class="mdi mdi-rename-box" ng-click="rename($event, $index)" style="color:white;margin-top: 3px;"><md-tooltip>Rename List</md-tooltip></i>
-                    <i class="mdi mdi-delete" ng-click="delete($event, $index)" style="color:white;margin-top: 3px;"><md-tooltip>Delete List</md-tooltip></i>                    
+                    <i class="mdi mdi-delete" ng-click="delete($event, $index)" style="color:white;margin-top: 3px;"><md-tooltip>Delete List</md-tooltip></i>
                 </div>
                 </md-list-item>
                 </md-list>
@@ -83,30 +83,30 @@
                 <input ng-model="searchterm">
                 </md-input-container>
                 <md-list>
-                
+
                 <md-list-item class="md-2-line repeat-animation init-animation" ng-repeat="mod in filtered = (mods | filter:searchterm) track by mod.path" ng-click="checked(mod)">
                 <div class="md-list-item-text">
                     <h3>{{ mod.name }}</h3>
                     <p>{{ mod.dir }}</p>
                 </div>
-                <i class="mdi mdi-checkbox-marked-circle-outline custom-check" style="font-size: 25px;color: #ff5722;" ng-show="mod.checked"></i>                
-                </md-list-item>            
+                <i class="mdi mdi-checkbox-marked-circle-outline custom-check" style="font-size: 25px;color: #ff5722;" ng-show="mod.checked"></i>
+                </md-list-item>
                 </md-list>
 
                  <div ng-hide="filtered.length > 0" style="text-align:center;">
-                
+
                 <img src="app/assets/nof.png" />
                     <p>Sorry, No Mods Found</p>
                 </div>
-                
+
                 </md-content>
             </div>
             <div flex>
-            
+
             <md-toolbar class="md-hue-2 menu-animation" ng-show="selected.length > 0 || usedList">
                 <div class="md-toolbar-tools">
-                
-          <p>{{usedList || 'Untitled'}}</p>        
+
+          <p>{{usedList || 'Untitled'}}</p>
           <span flex></span>
                     <md-button class="md-accent" ng-click="saveSelected($event)"><i class="mdi mdi-content-save"></i> Save</md-button>
 
@@ -114,7 +114,7 @@
                 </div>
             </md-toolbar>
 
-                <md-content layout-padding class="slimscroll-r">                                    
+                <md-content layout-padding class="slimscroll-r">
                 <md-list>
                 <md-list-item class="md-2-line repeat-animation" ng-repeat="mod in selected track by mod.path">
                 <div class="md-list-item-text">
@@ -125,17 +125,17 @@
                     <p ng-click="moveUp($index)"><i class="mdi mdi-chevron-up btn-sort"></i></p>
                     <p ng-click="moveDown($index)"><i class="mdi mdi-chevron-down btn-sort"></i></p>
                 </div>
-                
+
                 </md-list-item>
                 </md-list>
                 </md-content>
             </div>
         </div>
-        
+
             <md-button aria-label="play" class="md-fab special-fab md-fab-bottom-right" ng-click="showGameSelection()" ng-show="config.iwadpath.length > 0">
                 <i class="mdi mdi-play"></i>
-            </md-button>            
-            
+            </md-button>
+
         <script src="app/lib/underscore/underscore.js"></script>
         <script src="app/_mixins.js"></script>
         <script src="app/lib/angular/angular.js"></script>
@@ -143,46 +143,43 @@
         <script src="app/lib/angular-aria/angular-aria.js"></script>
         <script type="text/javascript" src="app/lib/angular-material/angular-material.js"></script>
         <script type="text/javascript">
-           
 
+            $(document).ready(function() {
 
-    $(document).ready(function() {
+                setTimeout(function() {
+                    $('#app').addClass('show');
+                },100);
 
-        setTimeout(function() {
-            $('#app').addClass('show');
-        },100);
-        
-        $('.slimscroll-l').slimScroll({
-            position: 'right',
-            height: '586px',
-            railVisible: true,
-            alwaysVisible: true,
-            color: '#78909c',
-            wheelStep: 7
-        });
+                $('.slimscroll-l').slimScroll({
+                    position: 'right',
+                    height: '586px',
+                    railVisible: true,
+                    alwaysVisible: true,
+                    color: '#78909c',
+                    wheelStep: 7
+                });
 
-        $('.slimscroll-r').slimScroll({
-            position: 'right',
-            height: '525px',
-            railVisible: true,
-            alwaysVisible: true,
-            color: '#78909c',
-            wheelStep: 7
-        });
-
-    });
+                $('.slimscroll-r').slimScroll({
+                    position: 'right',
+                    height: '525px',
+                    railVisible: true,
+                    alwaysVisible: true,
+                    color: '#78909c',
+                    wheelStep: 7
+                });
+            });
         </script>
 
         <script src="app/main.js"></script>
-        
+
         <script src="app/controllers/modlistController.js"></script>
         <script src="app/controllers/appController.js"></script>
         <script src="app/controllers/modController.js"></script>
 
-        <script src="app/services/modlistService.js"></script>             
-        <script src="app/services/modService.js"></script>            
-        <script src="app/services/iwadService.js"></script>             
-        <script src="app/services/mapconfigService.js"></script>     
-        
+        <script src="app/services/modlistService.js"></script>
+        <script src="app/services/modService.js"></script>
+        <script src="app/services/iwadService.js"></script>
+        <script src="app/services/mapconfigService.js"></script>
+
     </body>
 </html>

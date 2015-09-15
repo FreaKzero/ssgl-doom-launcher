@@ -21,7 +21,7 @@
                 .accentPalette('deep-orange').dark();
             });
 
-            app.run(function ($rootScope, $http) {
+            app.run(function ($rootScope) {
                 $rootScope.APPVERSION = '0.0.1';
             try {
                 $rootScope.config = JSON.parse(fs.readFileSync(EXECPATH+'\\config.json', "utf8"));
