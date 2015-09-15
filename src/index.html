@@ -143,80 +143,7 @@
         <script src="app/lib/angular-aria/angular-aria.js"></script>
         <script type="text/javascript" src="app/lib/angular-material/angular-material.js"></script>
         <script type="text/javascript">
-            var fs = require('fs');
-            var path = require('path');
-            var EXECPATH = path.dirname(process.execPath);
-                    
-            fs.exists(EXECPATH+'\\lists', function(exists) {
-                if (!exists) {
-                    fs.mkdirSync(EXECPATH+'\\lists');
-                }
-            });
-
-            var app = angular.module('gzdoom-launcher', ['ngMaterial']);
-            
-            app.config(function($mdThemingProvider) {
-               $mdThemingProvider.theme('default')
-                .primaryPalette('blue-grey', {
-                  'default': '400', 
-                  'hue-1': '100', 
-                  'hue-2': '600', 
-                  'hue-3': 'A100'
-                })
-                .accentPalette('deep-orange').dark();
-            });
-
-            app.run(function ($rootScope, $http) {
-                $rootScope.APPVERSION = '0.0.1';
-            try {
-                $rootScope.config = JSON.parse(fs.readFileSync(EXECPATH+'\\config.json', "utf8"));
-            } catch (e) {
-                $rootScope.config = {
-                    obligeactive: false,
-                    gzDoom: "",
-                    iwadpath: "",
-                    wadpath: "",
-                    oblige: "",
-                    mapconfig: "",
-                    mappath: "",
-                    savegamepath: "",
-                    initList: false
-                };
-            }
-
-            try {
-                var mapconfigs = fs.readdirSync($rootScope.config.mapconfig);
-                $rootScope.mapconfigs = mapconfigs.map(function(cfg) {
-                    return {
-                        name: cfg,
-                        path: $rootScope.config.mapconfig + cfg
-                    };
-                });
-            } catch (e) {
-                $rootScope.mapconfigs = [];
-            }
-
-            try {
-            var iwads = fs.readdirSync($rootScope.config.iwadpath);
-                $rootScope.iwads = iwads.map(function(item) {
-                    var n = item.split('.')[0].toLowerCase();
-                    var available = ['doom','doom2','freedm','freedoom1','freedoom2','hacx','heretic','heretic1','hexdd','hexen','plutonia','strife0','strife1','tnt'];
-                    var cover = 'ssgl.png';
-
-                    if (available.indexOf(n) > -1) {
-                        cover = 'app/covers/'+n+'.jpg';
-                    }
-            
-                    return {
-                        file: item,
-                        name: n.toUpperCase(),
-                        cover: cover
-                    };
-                });
-            } catch (e) {
-                $rootScope.iwads = [];
-            }        
-    });
+           
 
 
     $(document).ready(function() {
@@ -245,12 +172,17 @@
 
     });
         </script>
-        <script src="app/appController.js"></script>
-        
-        <script src="app/mods/modService.js"></script>
-        <script src="app/mods/modController.js"></script>
 
-        <script src="app/modlist/modlistController.js"></script>
-        <script src="app/modlist/modlistService.js"></script>     
+        <script src="app/main.js"></script>
+        
+        <script src="app/controllers/modlistController.js"></script>
+        <script src="app/controllers/appController.js"></script>
+        <script src="app/controllers/modController.js"></script>
+
+        <script src="app/services/modlistService.js"></script>             
+        <script src="app/services/modService.js"></script>            
+        <script src="app/services/iwadService.js"></script>             
+        <script src="app/services/mapconfigService.js"></script>     
+        
     </body>
 </html>

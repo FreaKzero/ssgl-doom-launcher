@@ -3,10 +3,10 @@ var path = require('path'),
     gui = require('nw.gui');
     gui = require('nw.gui');
 
-app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', appController]);
+app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', 'iwadService', 'mapconfigService', appController]);
 
 
-function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService, $http) {
+function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService, $http, iwadService, mapconfigService) {
 
     var $PARENT = $scope;
     var CONFIGFILE = '/config.json';
@@ -90,11 +90,13 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
             targetEvent: $event
         });
 
-        function GameSelectionController($scope, $mdBottomSheet) {
+        function GameSelectionController($scope, $mdBottomSheet, iwadService) {
             $scope.obligeactive = $PARENT.config.obligeactive;
-
+            $scope.iwads = iwadService.getIWADS($PARENT.config.iwadpath);
+            
             $scope.startGame = function($index) {
                 var iwad = $scope.iwads[$index].file;
+
                 $PARENT.$broadcast('STARTGZDOOM', iwad);
                 $mdBottomSheet.hide();
             };
@@ -111,8 +113,8 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
                     clickOutsideToClose: false
                 });
 
-                function ConfigDialogController($scope, $mdDialog) {
-                    $scope.mapconfigs = $PARENT.mapconfigs;
+                function ConfigDialogController($scope, $mdDialog, mapconfigService) {
+                    $scope.mapconfigs = mapconfigService.getMapConfigs($PARENT.config.mapconfig);
                     console.log($scope.mapconfigs);
                     $scope.selected = $scope.mapconfigs[0].path;
 
