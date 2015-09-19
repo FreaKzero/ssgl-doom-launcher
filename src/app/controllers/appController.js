@@ -119,7 +119,11 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
                     $scope.selected = $scope.mapconfigs[0].path;
 
                     $scope.start = function($index) {
-                        $PARENT.$broadcast('STARTOBLIGE', iwad, $scope.selected);
+                        $PARENT.$broadcast('STARTOBLIGE', iwad, $scope.selected, false);
+                    };
+
+                    $scope.continue = function() {
+                        $PARENT.$broadcast('STARTGZDOOM', iwad, $PARENT.config.mappath);
                     };
 
                     $scope.cancel = function() {
