@@ -1,4 +1,15 @@
 <md-dialog style="width:80%;">
+<script>
+$('input').on('click', function() {
+  var $chooser = $('#nodewebkit-filechooser');
+      $chooser.unbind('change');  
+
+      $chooser.change(function(evt) {
+        alert($(this).val());
+      });
+  });
+
+</script>
   <form style="overflow:hidden;">
   <md-toolbar>
     <div class="md-toolbar-tools">
@@ -23,44 +34,27 @@
         </md-select>
         </div>
         </div>
-
-     <md-input-container>
-      <label>gzDoom Path:</label>
-      <input ng-model="settings.gzDoom">
-    </md-input-container>
-
-    <md-input-container>
-      <label>WAD Path:</label>
-      <input ng-model="settings.wadpath">
-    </md-input-container>
-
-    <md-input-container>
-      <label>iWAD Path:</label>
-      <input ng-model="settings.iwadpath">
-    </md-input-container>
     
-    <md-input-container>
-        <label>Savegame Path:</label>
-        <input ng-model="settings.savegamepath">
-      </md-input-container>
+
+    <file-choose label="gzDoom Path:" ng-model="settings.gzDoom"></file-choose>
+
+    <dir-choose label="WAD Path:" ng-model="settings.wadpath"></dir-choose>
+
+    <dir-choose label="iWAD Path:" ng-model="settings.iwadpath"></dir-choose>
+
+    <dir-choose label="Savegame Path:" ng-model="settings.savegamepath"></dir-choose>
+
 
     <div ng-show="settings.obligeactive">
-      <md-input-container>
-        <label>Oblige Path:</label>
-        <input ng-model="settings.oblige">
-      </md-input-container>
 
-      <md-input-container>
-        <label>Oblige MapConfig Path:</label>
-        <input ng-model="settings.mapconfig">
-      </md-input-container>
+    <file-choose label="Oblige Path:" ng-model="settings.oblige"></file-choose>
 
-      <md-input-container>
-        <label>Oblige Random Map Path:</label>
-        <input ng-model="settings.mappath">
-      </md-input-container>
+    <dir-choose label="Oblige MapConfig Path:" ng-model="settings.mapconfig"></dir-choose>
+
+    <file-choose label="Oblige Random Map Path:" ng-model="settings.mappath"></file-choose>
+
     </div>
-
+      
     </div>
   </md-dialog-content>
   <div class="md-actions" layout="row">    
@@ -72,6 +66,6 @@
       Save
     </md-button>
   </div>
-  </form>
+  </form>  
 </md-dialog>
 
