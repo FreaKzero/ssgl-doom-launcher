@@ -5,12 +5,14 @@ app.directive('dirChoose', function() {
         require: 'ngModel',
         scope: {
           dirpath: '=',
-          ngModel: '='     
+          ngModel: '=',
+          wdir: '='
         },
 
-        template: '<div><md-input-container><label>{{label}}</label><input class="fileInput" type="text" ng-click="openDialog()" ng-model="ngModel"></md-input-container><input type="file" class="fileDialog" style="display:none" nwdirectory /></div>',
+        template: '<div><md-input-container><label>{{label}}</label><input class="fileInput" type="text" ng-click="openDialog()" ng-model="ngModel"></md-input-container><input type="file" nwworkingdir="{{wdir}}" class="fileDialog" style="display:none" nwdirectory /></div>',
         link: function($scope, elem, att, ngModel) {
 
+            $scope.wdir = $scope.ngModel;
             $scope.label= att.label;
 
             var z = elem[0].querySelector('.fileDialog');
@@ -43,13 +45,14 @@ app.directive('fileChoose', function() {
         require: 'ngModel',
         scope: {
           dirpath: '=',
-          ngModel: '='
+          ngModel: '=',
+          wdir: '='
         },
 
-        template: '<div><md-input-container><label>{{label}}</label><input class="fileInput" type="text" ng-click="openDialog()" ng-model="ngModel"></md-input-container><input class="fileDialog" type="file" style="display:none;"></div>',        
+        template: '<div><md-input-container><label>{{label}}</label><input class="fileInput" type="text" ng-click="openDialog()" ng-model="ngModel"></md-input-container><input class="fileDialog" nwworkingdir="{{wdir}}" type="file" style="display:none;"></div>',        
 
         link: function($scope, elem, att, ngModel) {
-
+            $scope.wdir = $scope.ngModel.substring(0, $scope.ngModel.lastIndexOf('\\'));
             $scope.label= att.label;
 
             var z = elem[0].querySelector('.fileDialog');
