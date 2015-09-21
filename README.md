@@ -2,7 +2,7 @@
 Gamelauncher for gzDoom and Zandronum written in AngularMaterial on NWJS
 Be aware that this is currently not tested on Linuxbuilds.
 
-![Demo](https://raw.githubusercontent.com/FreaKzero/brackets-swatcher/master/readme/readme.gif)
+![Demo](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/readme.gif)
 
 ##Howto Build:
 Be sure that bower and npm is installed  
