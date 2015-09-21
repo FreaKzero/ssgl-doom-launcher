@@ -12,8 +12,10 @@ Install all dependencies with bower install
 grunt build  
 
 Features:  
+- Painfree modern UI
 - Easy Filtering through your wads (directory-names and wad-names)
 - Creating/Saving wadlists for faster access
 - Automatic using/creating Savefolders based on used wadlists
 - gzDoom and Zandronum Support
 - Oblige "Build and Play" via Oblige Configfiles (Also able to resume last built file)
+- Easy sorting for wad loading order
