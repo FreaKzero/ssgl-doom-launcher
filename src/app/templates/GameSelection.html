@@ -1,11 +1,19 @@
 
 
 <md-bottom-sheet class="md-grid">
-<md-subheader>Select iWAD</md-subheader>
+<md-subheader>Select iWAD for <b>{{engine}}</b><div style="float:right; margin-top: 5px;">
+  
+  <div class="md-actions" layout="row" ng-show="settings.gzdoomactive == true && settings.zandronumactive == true"> 
+    <md-button ng-click="engine='gzDoom'" >GzDoom</md-button>
+    <md-button ng-click="engine='Zandronum'">Zandronum</md-button>
+  </div>  
+
+</div><div class="clear:both;"></div></md-subheader>
+
   <md-list>
     <md-list-item ng-repeat="iwad in iwads">   
     
-    <div class="gameholder" class="md-grid-item-content" ng-click="startGame($index)">
+    <div class="gameholder" class="md-grid-item-content" ng-click="startGame($index, engine)">
     <div class="tint"><i class="mdi mdi-play"></i></div>
         <img src="{{iwad.cover}}" />
     </div>
@@ -13,9 +21,9 @@
         <div class="md-grid-text"> {{iwad.name}} </div>      
       </md-list-item>   
 
-      <md-list-item ng-repeat="iwad in iwads" ng-if="obligeactive">           
+      <md-list-item ng-repeat="iwad in iwads" ng-if="settings.obligeactive">           
 		    
-        <div class="gameholder" class="md-grid-item-content" ng-click="startGameOblige($event, $index)">
+        <div class="gameholder" class="md-grid-item-content" ng-click="startGameOblige($event, $index, engine)">
           <div class="tint"><i class="mdi mdi-play"></i></div>
           <img src="{{iwad.cover}}" />
         </div>

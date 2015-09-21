@@ -106,7 +106,7 @@ function modController($scope, modService, modlistService, $mdDialog) {
         }
     };
 
-    $scope.$on('STARTOBLIGE', function(ev, iwad, config) {
+    $scope.$on('STARTOBLIGE', function(ev, iwad, config, engine) {
 
         $mdDialog.show({
             templateUrl: 'app/templates/ObligeLoading.html',
@@ -129,12 +129,12 @@ function modController($scope, modService, modlistService, $mdDialog) {
 
         child.on('exit', function(code) {
             $mdDialog.hide();
-            $scope.$broadcast('STARTGZDOOM', iwad, $scope.config.mappath);
+            $scope.$broadcast('STARTGZDOOM', iwad, $scope.config.mappath, engine);
         });
 
     });
 
-    $scope.$on('STARTGZDOOM', function(ev, iwad, map) {
+    $scope.$on('STARTGZDOOM', function(ev, iwad, map, engine) {
         if (typeof map === 'undefined') {
             map = false;
         }
@@ -157,7 +157,18 @@ function modController($scope, modService, modlistService, $mdDialog) {
 
         params = params.concat(['-file'], wads);
 
-        child = execFile($scope.config.gzDoom, params,
+        var useEngine = "";
+        switch(engine.toLowerCase()) {
+            case "gzdoom":
+                useEngine = $scope.config.gzDoom;
+            break;
+
+            case "zandronum":
+                useEngine = $scope.config.zandronum;
+            break;
+        }
+
+        child = execFile(useEngine, params,
             function(error, stdout, stderr) {
                 if (error) {
                     console.log(error.stack);

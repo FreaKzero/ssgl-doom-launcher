@@ -91,17 +91,25 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
         });
 
         function GameSelectionController($scope, $mdBottomSheet, iwadService) {
-            $scope.obligeactive = $PARENT.config.obligeactive;
             $scope.iwads = iwadService.getIWADS($PARENT.config.iwadpath);
-            
-            $scope.startGame = function($index) {
+            $scope.settings = $PARENT.config;
+
+            if ($PARENT.config.zandronumactive) {
+                $scope.engine = 'Zandronum';
+            } 
+
+            if ($PARENT.config.gzdoomactive) {
+                $scope.engine = 'gzDoom';
+            }
+
+            $scope.startGame = function($index, engine) {
                 var iwad = $scope.iwads[$index].file;
 
-                $PARENT.$broadcast('STARTGZDOOM', iwad);
+                $PARENT.$broadcast('STARTGZDOOM', iwad, false, engine);
                 $mdBottomSheet.hide();
             };
 
-            $scope.startGameOblige = function(ev, $index) {
+            $scope.startGameOblige = function(ev, $index, engine) {
                 var iwad = $scope.iwads[$index].file;
 
                 $mdBottomSheet.hide();
@@ -119,11 +127,11 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
                     $scope.selected = $scope.mapconfigs[0].path;
 
                     $scope.start = function($index) {
-                        $PARENT.$broadcast('STARTOBLIGE', iwad, $scope.selected, false);
+                        $PARENT.$broadcast('STARTOBLIGE', iwad, $scope.selected, engine);
                     };
 
                     $scope.continue = function() {
-                        $PARENT.$broadcast('STARTGZDOOM', iwad, $PARENT.config.mappath);
+                        $PARENT.$broadcast('STARTGZDOOM', iwad, $PARENT.config.mappath, engine);
                     };
 
                     $scope.cancel = function() {
