@@ -25,7 +25,7 @@
                 $rootScope.APPVERSION = '0.0.1';
             try {
                 $rootScope.config = JSON.parse(fs.readFileSync(EXECPATH+'\\config.json', "utf8"));
-            } catch (e) {
+            } catch (e) {                
                 $rootScope.config = {                    
                     gzDoom: "",
                     zandronum: "",
@@ -38,7 +38,8 @@
                     initList: false,
                     gzdoomactive: false,
                     zandronumactive: false,
-                    obligeactive: false
+                    obligeactive: false,
+                    freshinstall: true
                 };
             }
     });

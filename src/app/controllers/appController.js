@@ -1,7 +1,7 @@
 var path = require('path'),
     fs = require('fs'),
     gui = require('nw.gui');
-    gui = require('nw.gui');
+gui = require('nw.gui');
 
 app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', 'iwadService', 'mapconfigService', appController]);
 
@@ -12,6 +12,14 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
     var CONFIGFILE = '/config.json';
     var TOASTDELAY = 1500;
 
+    if ($scope.config.freshinstall === true) {
+        SettingsDialog(null);
+    }
+
+    $scope.showSettings = function(ev) {
+        SettingsDialog(ev);
+    };
+    
     $scope.reload = function() {
         window.location.reload();
     };
@@ -31,27 +39,27 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
 
         child.on('exit', function(code) {
             console.log('EXIT: ' + code);
-        });        
+        });
     };
 
-    $scope.checkUpdates = function(ev) {    
+    $scope.checkUpdates = function(ev) {
         $http.get('https://raw.githubusercontent.com/FreaKzero/gzdoom-launcher/master/package.json').
         then(function(response) {
 
-            if ( response.data.version !== $scope.APPVERSION) {
-                
-            $mdDialog.show(
-                  $mdDialog.alert()                    
+            if (response.data.version !== $scope.APPVERSION) {
+
+                $mdDialog.show(
+                    $mdDialog.alert()
                     .clickOutsideToClose(true)
                     .title('New Version available!')
-                    .content('Download it here: '+ response.data.releaseDownload)
+                    .content('Download it here: ' + response.data.releaseDownload)
                     .ok('Yup')
                     .targetEvent(ev)
                 );
-            
+
             } else {
                 $mdDialog.show(
-                  $mdDialog.alert()                    
+                    $mdDialog.alert()
                     .clickOutsideToClose(true)
                     .title('No new Updates')
                     .content('You have the most recent Version')
@@ -110,7 +118,7 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
 
             if ($PARENT.config.zandronumactive) {
                 $scope.engine = 'Zandronum';
-            } 
+            }
 
             if ($PARENT.config.gzdoomactive) {
                 $scope.engine = 'gzDoom';
@@ -156,7 +164,7 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
         }
     };
     
-    $scope.showSettings = function(ev) {
+    function SettingsDialog(ev) {
         $mdDialog.show({
             controller: DialogController,
             templateUrl: 'app/templates/Settings.html',
@@ -178,6 +186,7 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
 
             $scope.save = function() {
                 var appPath = path.dirname(process.execPath);
+                $scope.settings.freshinstall = false;
                 fs.writeFile(appPath + CONFIGFILE, JSON.stringify($scope.settings, null, 4), function(err) {
 
                     if (err) {
@@ -201,5 +210,5 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
                 $mdDialog.cancel();
             };
         }
-    };
+    }
 }
