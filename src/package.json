@@ -1,5 +1,5 @@
 {
-    "name": "gzdoom-launcher",
+    "name": "SSGL",
     "version": "0.0.1",
     "main": "index.html",
     "window": {
@@ -8,7 +8,7 @@
         "width": 1000,
         "height": 650,
         "resizable": false,
-        "title" : "gzDoom Launcher"
+        "title" : "Super Shotgun Launcher"
     },
      "devDependencies": {
       "recursive-readdir": "*"

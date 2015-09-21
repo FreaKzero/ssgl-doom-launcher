@@ -43,7 +43,7 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
     };
 
     $scope.checkUpdates = function(ev) {
-        $http.get('https://raw.githubusercontent.com/FreaKzero/gzdoom-launcher/master/package.json').
+        $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
         then(function(response) {
 
             if (response.data.version !== $scope.APPVERSION) {

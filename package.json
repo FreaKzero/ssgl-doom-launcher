@@ -1,9 +1,9 @@
 {
-  "name": "gzdoom-launcher",
+  "name": "SSGL",
   "version": "0.0.1",
   "description": "",
-  "homepage": "http://www.freakzero.com",
-  "releaseDownload": "http://www.freakzero.com/asdf",
+  "homepage": "https://github.com/FreaKzero/ssgl-doom-launcher",
+  "releaseDownload": "https://github.com/FreaKzero/ssgl-doom-launcher/releases",
   
   "devDependencies": {
       "grunt": "*",
