@@ -20,6 +20,20 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
         gui.Shell.openItem($scope.config.wadpath);
     };
 
+    $scope.openOblige = function() {
+        child = execFile($scope.config.oblige, [],
+            function(error, stdout, stderr) {
+                if (error) {
+                    console.log(error.stack);
+                    console.log('Error code: ' + error.code + ' ' + error.signal);
+                }
+            });
+
+        child.on('exit', function(code) {
+            console.log('EXIT: ' + code);
+        });        
+    };
+
     $scope.checkUpdates = function(ev) {    
         $http.get('https://raw.githubusercontent.com/FreaKzero/gzdoom-launcher/master/package.json').
         then(function(response) {
