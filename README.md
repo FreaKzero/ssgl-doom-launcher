@@ -7,6 +7,15 @@ Gamelauncher for gzDoom and Zandronum written in AngularMaterial on NWJS
 ##Just gimme the Binary Release:
 [32 and 64bit Windows Releases](https://github.com/FreaKzero/ssgl-doom-launcher/releases)
 
+##Features:  
+- Painfree modern UI
+- Easy Filtering through your wads (directory-names and wad-names)
+- Creating/Saving wadlists for faster access
+- Automatic using/creating Savefolders based on used wadlists
+- [gzDoom](https://github.com/coelckers/gzdoom) and [Zandronum](https://zandronum.com/) Support
+- [Oblige](http://oblige.sourceforge.net/) "Build and Play" via Configfiles (Also able to resume last built map)
+- Easy sorting for wad loading order
+
 ##If you want to Help/Contribute  
 Taiga: https://tree.taiga.io/project/freakzero-gzdoom-launcher  
 
@@ -23,13 +32,3 @@ Unpack the folder as ./nw into the root (./nw is defined in the .gitignore alrea
 go into the ./nw folder and install recursive-readdir via npm ```npm install recursive-readdir```  
 copy package.json from the ./cfg folder into ./nw  
 have fun :]  
-  
-##Features:  
-- Painfree modern UI
-- Easy Filtering through your wads (directory-names and wad-names)
-- Creating/Saving wadlists for faster access
-- Automatic using/creating Savefolders based on used wadlists
-- [gzDoom](https://github.com/coelckers/gzdoom) and [Zandronum](https://zandronum.com/) Support
-- [Oblige](http://oblige.sourceforge.net/) "Build and Play" via Configfiles (Also able to resume last built map)
-- Easy sorting for wad loading order
-
