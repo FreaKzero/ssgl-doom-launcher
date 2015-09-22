@@ -4,6 +4,9 @@ Gamelauncher for gzDoom and Zandronum written in AngularMaterial on NWJS
 
 ![Demo](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/readme.gif)
 
+##Just gimme the Binary Release:
+[32 and 64bit Windows Releases](https://github.com/FreaKzero/ssgl-doom-launcher/releases)
+
 ##If you want to Help/Contribute  
 Taiga: https://tree.taiga.io/project/freakzero-gzdoom-launcher  
 
