@@ -22,17 +22,7 @@
         };
 
         $scope.openOblige = function() {
-            child = execFile($scope.config.oblige.binary, [],
-                function(error, stdout, stderr) {
-                    if (error) {
-                        console.log(error.stack);
-                        console.log('Error code: ' + error.code + ' ' + error.signal);
-                    }
-                });
-
-            child.on('exit', function(code) {
-                console.log('EXIT: ' + code);
-            });
+            nwService.getShell().openItem($scope.config.oblige.binary);
         };
 
         $scope.checkUpdates = function(ev) {
@@ -66,9 +56,9 @@
             });
         };
 
-        $scope.openMenu = function($mdOpenMenu, ev) {
-            originatorEv = ev;
-            $mdOpenMenu(ev);
+        $scope.openMenu = function($mdOpenMenu, ev) {            
+            var originatorEv = ev;
+            $mdOpenMenu();
         };
 
         $scope.toggleSidebar = function() {
@@ -141,7 +131,8 @@
                     });
 
                     function ConfigDialogController($scope, $mdDialog, nwService) {
-                        
+                        $scope.outputlog = false;
+
                         nwService.getDir($PARENT.config.oblige.configs).then(function(files) {
                             $scope.mapconfigs = files.map(function(cfg) {
                                 return {
@@ -153,11 +144,10 @@
                             if ($scope.mapconfigs.length > 0) {
                                 $scope.selected = $scope.mapconfigs[0].path;
                             }
-
                         });
                                                                                                         
                         $scope.start = function($index) {
-                            $PARENT.$broadcast('STARTOBLIGE', iwad, $scope.selected, engine);
+                            $PARENT.$broadcast('STARTOBLIGE', iwad, $scope.selected, engine, $scope.outputlog);
                         };
 
                         $scope.continue = function() {

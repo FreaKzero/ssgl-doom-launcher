@@ -12,12 +12,13 @@
 
         modService.getMods($scope.config).then(function(mods) {
             $scope.mods = mods;
+
             if ($scope.config.initList !== false) {
                 try {
                     var startListJSON = JSON.parse($scope.config.initList);
                     var startList = nwService.readJSON(startListJSON.path);
 
-                    $scope.$broadcast('USELIST', startList, startListJSON.name);
+                   $scope.$broadcast('USELIST', startList, startListJSON.name);
                 } catch (e) {
                     console.log(e);
                 }
@@ -36,6 +37,7 @@
                 var index = _.findIndex($scope.mods, {
                     path: item.path
                 });
+
                 $scope.mods[index].checked = true;
             });
         });
@@ -106,7 +108,7 @@
             }
         };
 
-        $scope.$on('STARTOBLIGE', function(ev, iwad, config, engine) {
+        $scope.$on('STARTOBLIGE', function(ev, iwad, config, engine, log) {
             $mdDialog.show({
                 templateUrl: 'app/templates/ObligeLoading.html',
                 parent: angular.element(document.body),
@@ -117,9 +119,14 @@
             var child;
             var params = ['--batch', $scope.config.oblige.mappath];
             var endparam = params.concat(['--load'], config);
-
+            
             child = execFile($scope.config.oblige.binary, endparam, function(error, stdout, stderr) {
-                console.log(stdout);
+                if (log === true) {
+                    nwService.writeTxt(stdout, 'obligelog.txt').then(function() {
+                        nwService.getShell().openItem('obligelog.txt');                        
+                    });
+                }
+
                 if (error) {
                     $mdDialog.hide();
                     alert(error.signal);
@@ -129,9 +136,10 @@
 
             child.on('exit', function(code) {
                 $mdDialog.hide();
-                $scope.$broadcast('STARTGZDOOM', iwad, $scope.config.oblige.mappath, engine);
+                setTimeout(function() {
+                     $scope.$broadcast('STARTGZDOOM', iwad, $scope.config.oblige.mappath, engine);
+                 }, 1500);               
             });
-
         });
 
         $scope.$on('STARTGZDOOM', function(ev, iwad, map, engine) {

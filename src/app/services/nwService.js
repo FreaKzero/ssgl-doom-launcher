@@ -22,9 +22,9 @@
 
             return path;
         }
-        
+
         service.getAbsolute = function(string) {
-            return service.execpath +  string;
+            return service.execpath + string;
         };
 
         service.getDirname = function(file) {
@@ -36,7 +36,7 @@
                 if (err) console.log('ERROR: ' + err);
             });
         };
-        
+
         service.remove = function(path) {
             FS.unlinkSync(path);
         };
@@ -91,6 +91,21 @@
 
             return def.promise;
         };
+
+        service.writeTxt = function(content, path, relative) {
+            var def = $q.defer();
+            path = _checkRel(path, relative);
+
+            FS.writeFile(path, content, function(err) {
+                if (err) {
+                    def.reject(err);
+                } else {
+                    def.resolve();
+                }
+            });
+
+            return def.promise;
+        }
 
         service.writeJSON = function(givenObject, path, relative) {
             var def = $q.defer();

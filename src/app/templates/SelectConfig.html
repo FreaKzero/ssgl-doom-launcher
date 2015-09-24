@@ -1,36 +1,35 @@
 <md-dialog style="width:80%;">
-  <md-toolbar>
-    <div class="md-toolbar-tools">
-      <h2>Select Oblige Config</h2>
-      <span flex></span>      
-    </div>
-  </md-toolbar>
-
-  <md-dialog-content style="max-width:800px;max-height:830px;">
-    
-  <div layout="row">
-        <md-select ng-model="selected" placeholder="Select Config">
-          <md-option ng-repeat="conf in mapconfigs" value="{{conf.path}}">{{conf.name}}</md-option>
-        </md-select>            
-
+<md-toolbar>
+<div class="md-toolbar-tools">
+  <h2>Select Oblige Config</h2>
+  <span flex></span>
 </div>
-  </md-dialog-content>  
+</md-toolbar>
+<md-dialog-content style="max-width:800px;max-height:830px;">
 
-  <div class="md-actions" layout="row">    
-    <span flex></span>
-    
-    <md-button ng-click="cancel()">
-     Cancel
-    </md-button>
-
-    <md-button ng-click="continue()">
-     Continue Last
-    </md-button>
-
-    <md-button class="md-primary" ng-click="start()" style="margin-right:20px;">
-      Build & Start
-    </md-button>
-  </div>
-
+<div layout="row">
+  <md-select ng-model="selected" placeholder="Select Config">
+  <md-option ng-repeat="conf in mapconfigs" value="{{conf.path}}">{{conf.name}}</md-option>
+  </md-select>
+  
+  <br /><br />
+  
+</div>
+</md-dialog-content>
+<div class="md-actions" layout="row">
+  <md-checkbox ng-model="outputlog" aria-label="Output Log">
+  <p style="color:white;margin-left: 10px;">Output Log</p>
+  </md-checkbox>
+  <span flex></span>
+  
+  <md-button ng-click="cancel()">
+  Cancel
+  </md-button>
+  <md-button ng-click="continue()">
+  Continue Last
+  </md-button>
+  <md-button class="md-primary" ng-click="start()" style="margin-right:20px;">
+  Build & Start
+  </md-button>
+</div>
 </md-dialog>
-
