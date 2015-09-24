@@ -13,7 +13,7 @@
         <script type="text/javascript" src="app/lib/jquery-slimscroll/jquery.slimscroll.js"></script>
         <link href="app/lib/mdi/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
     </head>
-    <body ng-app="gzdoom-launcher" layout="column" ng-controller="appController" id="app">
+    <body ng-app="ssgl" layout="column" ng-controller="appController" id="app">
         <md-toolbar layout="row">
         <div class="md-toolbar-tools">
             <md-button style="min-width: 50px;margin:0 0 0 -10px;;" ng-click="toggleSidebar()"><i class="mdi mdi-menu" style="font-size: 35px; margin-top: 8px;"></i></md-button>
@@ -174,15 +174,15 @@
         </script>
 
         <script src="app/main.js"></script>
-
-        <script src="app/controllers/modlistController.js"></script>
+        <script src="app/services/nwService.js"></script>
+        
         <script src="app/controllers/appController.js"></script>
+        <script src="app/controllers/modlistController.js"></script>        
         <script src="app/controllers/modController.js"></script>
 
         <script src="app/services/modlistService.js"></script>
         <script src="app/services/modService.js"></script>
         <script src="app/services/iwadService.js"></script>
-        <script src="app/services/mapconfigService.js"></script>
 
         <script src="app/directives/directory-chooser.js"></script>
 

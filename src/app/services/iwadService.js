@@ -1,11 +1,11 @@
-fs = require('fs'),
+(function() {
 
-app.factory('iwadService', [
-    function iwadService() {
+    app.factory('iwadService', ['$q', 'nwService', iwadService]);
+
+    function iwadService($q, nwService) {
 
         var covers = ['doom', 'doom2', 'freedm', 'freedoom1', 'freedoom2', 'hacx', 'heretic', 'heretic1', 'hexdd', 'hexen', 'plutonia', 'strife0', 'strife1', 'tnt'];
-        var nocover = 'app/assets/ssgl.png';
-
+        var nocover = 'app/assets/ssgl.png';        
         return {
             IWADS: [],
 
@@ -13,13 +13,14 @@ app.factory('iwadService', [
                 if (this.IWADS.length === 0) {
                     this.IWADS = this.read(path);
                 }
-                
+
                 return this.IWADS;
             },
 
             read: function(path) {
-                try {
-                    var files = fs.readdirSync(path);
+                var def = $q.defer();
+                
+                nwService.getDir(path).then(function(files) {
                     var cover = nocover;
 
                     var iwads = files.map(function(item) {
@@ -36,14 +37,13 @@ app.factory('iwadService', [
                         };
                     });
 
-                    return iwads;
+                    def.resolve(iwads);
+                    
+                });
 
-                } catch (e) {
-                    console.log(e);
-                    return [];
-                }
+                return def.promise;
             }
 
         };
     }
-]);
+})();

@@ -3,7 +3,7 @@
 <md-bottom-sheet class="md-grid">
 <md-subheader>Select iWAD for <b>{{engine}}</b><div style="float:right; margin-top: 5px;">
   
-  <div class="md-actions" layout="row" ng-show="settings.gzdoomactive == true && settings.zandronumactive == true"> 
+  <div class="md-actions" layout="row" ng-show="config.active.gzdoom == true && config.active.zandronum == true"> 
     <md-button ng-click="engine='gzDoom'" >GzDoom</md-button>
     <md-button ng-click="engine='Zandronum'">Zandronum</md-button>
   </div>  
@@ -21,7 +21,7 @@
         <div class="md-grid-text"> {{iwad.name}} </div>      
       </md-list-item>   
 
-      <md-list-item ng-repeat="iwad in iwads" ng-if="settings.obligeactive">           
+      <md-list-item ng-repeat="iwad in iwads" ng-if="config.active.oblige">           
 		    
         <div class="gameholder" class="md-grid-item-content" ng-click="startGameOblige($event, $index, engine)">
           <div class="tint"><i class="mdi mdi-play"></i></div>

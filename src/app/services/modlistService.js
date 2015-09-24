@@ -1,75 +1,48 @@
-var path = require('path'),
-    fs = require('fs'),
-    recursive = require('recursive-readdir');
+(function() {
+    app.factory('modlistService', ['$q', '$rootScope', 'nwService', modlistService]);
 
-app.factory('modlistService', ['$q', '$rootScope', modlistService]);
+    function modlistService($q, $rootScope, nwService) {
+        var service = {};
+        var listDir = '\\lists\\';
 
-function modlistService($q, $rootScope) {
-    var service = {};
-    var listDir = path.dirname(process.execPath)+'\\lists\\';
-    
-    service.rename = function(item) {
-        var newPath = path.dirname(item.path) +'\\'+item.name+'.json';
-        fs.rename(item.path, newPath, function(err) {
-            if ( err ) console.log('ERROR: ' + err);
-        });        
-    };
+        service.rename = function(item) {
+            var newPath = nwService.getDirname(item.path) + '\\' + item.name + '.json';
+            nwService.rename(item.path, newPath);
+        };
 
-    service.remove = function(path) {
-        fs.unlinkSync(path);
-    };
+        service.remove = function(item) {
+            nwService.remove(item.path);
+        };
 
-    service.saveSelected = function(name, list) {
-        fs.writeFile(listDir+name+".json", JSON.stringify(list), function(err) {        
-            if(err) {
-                return alert(err);
-            }    
-        });
+        service.saveSelected = function(name, list) {
 
-        setTimeout(function() {
-            $rootScope.$broadcast('MODIFIEDLISTS');
-        },1500);
-    };
+            nwService.writeJSON(list, listDir + name + '.json', true);
 
-    service.readDir = function(wadpath) {
-    	var defer = $q.defer();
+            // todo: need ?
+            setTimeout(function() {
+                $rootScope.$broadcast('MODIFIEDLISTS');
+            }, 1500);
+        };
 
-        recursive(wadpath, function(err, files) {
-            if (typeof files === 'undefined') {
-                return [];
-            }
-            
-            var wad;
-            var len = files.length;
-            var index = [];
-            var lists = [];
-            var allowed = ['JSON'];
+        service.getLists = function() {
+            var def = $q.defer();
 
-            for (var i = 0; i < len; i++) {
-                var struc = files[i].split('\\'),
-					ext = struc[struc.length - 1].slice(-4).toUpperCase(),
-					name = struc[struc.length - 1].slice(0, -5);
-                    
-					if (allowed.indexOf(ext) < 0) {
-                        continue;
-                    }
+            nwService.getDir(listDir, true).then(function(items) {
+                var lists = items.map(function(item) {
+                    return {
+                        name: item.replace(/^.*[\\\/]/, '').slice(0, -5),
+                        path: nwService.getAbsolute(listDir + item),
+                        wads: nwService.readSyncJSON(listDir+item, true)
+                    };
+                });
 
-					lists.push({
-                        name: name,
-                        path: files[i],
-                        wads: JSON.parse(fs.readFileSync(files[i], "utf8"))
-                    });
-            }
+                def.resolve(lists);
+            });
 
-            defer.resolve(lists);
-        });
+            return def.promise;
 
-        return defer.promise;
-    };
+        };
+        return service;
+    }
 
-    service.getLists = function() {
-        return service.readDir(listDir);
-    };
-
-    return service;
-}
+})();
