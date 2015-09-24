@@ -26,19 +26,34 @@
             try {
                 $rootScope.config = JSON.parse(fs.readFileSync(EXECPATH+'\\config.json', "utf8"));
             } catch (e) {                
-                $rootScope.config = {                    
-                    gzDoom: "",
-                    zandronum: "",
+                $rootScope.config = { 
+                    engines: {
+                        gzdoom: "",    
+                        zandronum: "",
+                    },
+
+                    savepaths: {
+                        gzdoom: "",
+                        zandronum: ""
+                    },
+
+                    oblige: {
+                        binary: "",                        
+                        configs: "",
+                        mappath: ""
+
+                    },
+
+                    active: {
+                        gzdoom: "",
+                        zandronum: "",
+                        oblige: ""
+                    },
+
                     iwadpath: "",
                     wadpath: "",
-                    oblige: "",
-                    mapconfig: "",
-                    mappath: "",
-                    savegamepath: "",
+
                     initList: false,
-                    gzdoomactive: false,
-                    zandronumactive: false,
-                    obligeactive: false,
                     freshinstall: true
                 };
             }

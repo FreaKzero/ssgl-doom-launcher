@@ -178,7 +178,7 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
                 $scope.modlist = list;
             });
 
-            $scope.settings = $PARENT.config;
+            $scope.config = $PARENT.config;
 
             $scope.cancel = function() {
                 $mdDialog.cancel();
@@ -186,8 +186,8 @@ function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, 
 
             $scope.save = function() {
                 var appPath = path.dirname(process.execPath);
-                $scope.settings.freshinstall = false;
-                fs.writeFile(appPath + CONFIGFILE, JSON.stringify($scope.settings, null, 4), function(err) {
+                $scope.config.freshinstall = false;
+                fs.writeFile(appPath + CONFIGFILE, JSON.stringify($scope.config, null, 4), function(err) {
 
                     if (err) {
                         $mdToast.show(
