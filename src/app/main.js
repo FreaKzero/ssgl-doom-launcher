@@ -13,7 +13,7 @@ var app = angular.module('ssgl', ['ngMaterial']);
     });
 
     app.run(function($rootScope, nwService) {
-        $rootScope.APPVERSION = '0.0.1';
+        $rootScope.APPVERSION = '0.1.1';
         nwService.mkDir('\\lists', true);
 
         try {

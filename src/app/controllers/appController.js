@@ -1,8 +1,29 @@
 (function() {
     app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', 'iwadService', 'nwService', appController]);
+
     function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService, $http, iwadService, nwService) {
 
-        var $PARENT = $scope;        
+
+        $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
+        then(function(response) {
+
+            if (response.data.version !== $scope.APPVERSION) {
+
+                $mdDialog.show(
+                    $mdDialog.alert()
+                    .clickOutsideToClose(true)
+                    .title('New Version available!')
+                    .content('Download it here: <a href="' + response.data.releaseDownload + '">'+response.data.releaseDownload +'</a>')
+                    .ok('Yup')
+                );
+
+            }
+
+        }, function(response) {
+            console.log('ERROR: ' + response);
+        });
+
+        var $PARENT = $scope;
         var TOASTDELAY = 1500;
 
         if ($scope.config.freshinstall === true) {
@@ -25,38 +46,7 @@
             nwService.getShell().openItem($scope.config.oblige.binary);
         };
 
-        $scope.checkUpdates = function(ev) {
-            $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
-            then(function(response) {
-
-                if (response.data.version !== $scope.APPVERSION) {
-
-                    $mdDialog.show(
-                        $mdDialog.alert()
-                        .clickOutsideToClose(true)
-                        .title('New Version available!')
-                        .content('Download it here: ' + response.data.releaseDownload)
-                        .ok('Yup')
-                        .targetEvent(ev)
-                    );
-
-                } else {
-                    $mdDialog.show(
-                        $mdDialog.alert()
-                        .clickOutsideToClose(true)
-                        .title('No new Updates')
-                        .content('You have the most recent Version')
-                        .ok('Yup')
-                        .targetEvent(ev)
-                    );
-                }
-
-            }, function(response) {
-                console.log('ERROR: ' + response);
-            });
-        };
-
-        $scope.openMenu = function($mdOpenMenu, ev) {            
+        $scope.openMenu = function($mdOpenMenu, ev) {
             var originatorEv = ev;
             $mdOpenMenu();
         };
@@ -95,7 +85,7 @@
                 targetEvent: $event
             });
 
-            function GameSelectionController($scope, $mdBottomSheet, iwadService) {  
+            function GameSelectionController($scope, $mdBottomSheet, iwadService) {
                 iwadService.getIWADS($PARENT.config.iwadpath).then(function(iwads) {
                     $scope.iwads = iwads;
                 });
@@ -145,7 +135,7 @@
                                 $scope.selected = $scope.mapconfigs[0].path;
                             }
                         });
-                                                                                                        
+
                         $scope.start = function($index) {
                             $PARENT.$broadcast('STARTOBLIGE', iwad, $scope.selected, engine, $scope.outputlog);
                         };
@@ -194,7 +184,7 @@
                             $mdToast.simple().content('Error Occured please Restart').position('bottom').hideDelay(TOASTDELAY)
                         );
                     });
-                    
+
                     setTimeout(function() {
                         window.location.reload();
                     }, TOASTDELAY + 500);
