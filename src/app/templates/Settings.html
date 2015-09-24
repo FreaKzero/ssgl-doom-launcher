@@ -52,14 +52,10 @@
 
     <dir-choose label="iWAD Path:" ng-model="config.iwadpath"></dir-choose>
     
-    <div ng-show="config.obligeactive">
-
-    <file-choose label="Oblige Path:" ng-model="config.oblige.binary"></file-choose>
-
-    <dir-choose label="Oblige MapConfig Path:" ng-model="config.oblige.configs"></dir-choose>
-
-    <file-choose label="Oblige Random Map Path:" ng-model="config.oblige.mappath"></file-choose>
-
+    <div ng-show="config.active.oblige">
+      <file-choose label="Oblige Path:" ng-model="config.oblige.binary"></file-choose>
+      <dir-choose label="Oblige MapConfig Path:" ng-model="config.oblige.configs"></dir-choose>
+      <file-choose label="Oblige Random Map Path:" ng-model="config.oblige.mappath"></file-choose>
     </div>
       
     </div>
