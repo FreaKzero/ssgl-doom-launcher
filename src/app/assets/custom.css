@@ -30,11 +30,7 @@
         .slimscroll-l {
             height: 570px;
         }
-
-        .slimscroll-r {
-            
-        }
-
+    
         .customAboutContainer img {
             border-radius: 100%;
             width: 120px;
@@ -42,14 +38,14 @@
             box-shadow: 0px 0px 0px 5px white;
         }
 
-        .customAboutContainer a, .customAboutContainer a:link, .customAboutContainer a:visited, .customAboutContainer a:active {
+        .browserlink, a.browserlink, a:link.browserlink, a:visited.browserlink, a:active.browserlink {
             color: #E75426;
             cursor: pointer;
             text-decoration:none;
             transition: color 0.15s ease-out;
         }
 
-        .customAboutContainer a:hover {
+        .browserlink:hover {
             color: #FF9675;            
         }
 
@@ -106,9 +102,7 @@
             padding: 0 !important;          
             color: black;  
         }   
-             
-        
-
+                 
         .gameholder {
             border-radius: 100%;
             width: 70px;
@@ -123,6 +117,7 @@
             height: 70px;
             margin-left: -5px;
         }
+
         .gameholder .tint {
             border-radius: 100%;
             width: 70px;
@@ -157,9 +152,7 @@
         md-bottom-sheet md-list-item:hover {
             background-color: transparent;
         }
-
-        
-
+    
         md-bottom-sheet md-grid-text {
             color: black !important;
         }

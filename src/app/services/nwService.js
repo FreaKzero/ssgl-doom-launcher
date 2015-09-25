@@ -3,8 +3,8 @@
         FS = require('fs'),
         GUI = require('nw.gui'),
         execFile = require('child_process').execFile;
-    recursive = require('recursive-readdir');
-
+        recursive = require('recursive-readdir');
+ 
     app.factory('nwService', ['$q', nwService]);
 
     function nwService($q) {
@@ -22,6 +22,10 @@
 
             return path;
         }
+
+        service.getManifest = function() {
+            return GUI.App.manifest;
+        };
 
         service.getAbsolute = function(string) {
             return service.execpath + string;
@@ -61,8 +65,6 @@
         };
 
         service.mkDir = function(path, relative) {
-
-
             FS.exists(path, function(exists) {
                 if (!exists) {
                     FS.mkdirSync(path);

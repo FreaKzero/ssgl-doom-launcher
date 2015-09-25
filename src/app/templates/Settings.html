@@ -31,7 +31,7 @@
     
 
     <label style="color: #b2b2b2;font-size: 12px;font-weight:bold;">Select list for Startup</label>
-        <md-select style="margin-top: -3px;padding:0;"ng-model="config.initList" placeholder="Select List" ng-disabled="modlist.length === 0">
+        <md-select style="margin-top: -3px;padding:0;" ng-model="config.initList" placeholder="Select List" ng-disabled="modlist.length === 0">
           <md-option value="{{false}}">Deactivate</md-option>
           <md-option ng-repeat="list in modlist" value="{{list}}">{{list.name}}</md-option>
         </md-select>

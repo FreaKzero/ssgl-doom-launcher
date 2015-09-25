@@ -16,7 +16,7 @@
             if ($scope.config.initList !== false) {
                 try {
                     var startListJSON = JSON.parse($scope.config.initList);
-                    var startList = nwService.readJSON(startListJSON.path);
+                    var startList = nwService.readSyncJSON(startListJSON.path);
 
                    $scope.$broadcast('USELIST', startList, startListJSON.name);
                 } catch (e) {
@@ -37,7 +37,6 @@
                 var index = _.findIndex($scope.mods, {
                     path: item.path
                 });
-
                 $scope.mods[index].checked = true;
             });
         });
@@ -143,7 +142,6 @@
         });
 
         $scope.$on('STARTGZDOOM', function(ev, iwad, map, engine) {
-
             if (typeof map === 'undefined') {
                 map = false;
             }
@@ -185,7 +183,7 @@
             }
 
             params = params.concat(['-file'], wads);
-            
+            console.log(params);            
             child = execFile(useEngine, params,
                 function(error, stdout, stderr) {
                     if (error) {

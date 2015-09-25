@@ -3,25 +3,30 @@
 
     function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService, $http, iwadService, nwService) {
 
-
         $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
         then(function(response) {
+            if ($scope.APPVERSION !== '0.0.0' && response.data.version !== $scope.APPVERSION) {
 
-            if (response.data.version !== $scope.APPVERSION) {
+                $mdDialog.show({
+                    controller: function($scope) {
+                        $scope.downloadversion = response.data.version;
+                        $scope.download = function(url) {
+                            var release = 'https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v'+response.data.version;
+                            nwService.getShell().openExternal(release);
+                        };
+                    },
 
-                $mdDialog.show(
-                    $mdDialog.alert()
-                    .clickOutsideToClose(true)
-                    .title('New Version available!')
-                    .content('Download it here: <a href="' + response.data.releaseDownload + '">'+response.data.releaseDownload +'</a>')
-                    .ok('Yup')
-                );
-
+                    templateUrl: 'app/templates/Update.html',
+                    parent: angular.element(document.body),
+                    clickOutsideToClose: true
+                });
             }
 
         }, function(response) {
             console.log('ERROR: ' + response);
         });
+
+
 
         var $PARENT = $scope;
         var TOASTDELAY = 1500;
@@ -29,6 +34,7 @@
         if ($scope.config.freshinstall === true) {
             SettingsDialog(null);
         }
+
 
         $scope.showSettings = function(ev) {
             SettingsDialog(ev);
@@ -66,7 +72,6 @@
             });
 
             function AboutDialogController($scope, $mdBottomSheet) {
-
                 $scope.openURL = function(url) {
                     nwService.getShell().openExternal(url);
                 };

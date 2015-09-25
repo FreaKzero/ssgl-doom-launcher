@@ -1,5 +1,6 @@
 {
     "name": "ssgl-dev",
+    "version": "0.0.0",
     "main": "../src/index.html",
     "window": {
         "toolbar": true,
@@ -9,5 +10,5 @@
     },
     "devDependencies": {
       "recursive-readdir": "*"
-  	}
+    }
 }

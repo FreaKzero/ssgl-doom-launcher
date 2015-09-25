@@ -12,8 +12,8 @@ var app = angular.module('ssgl', ['ngMaterial']);
             .accentPalette('deep-orange').dark();
     });
 
-    app.run(function($rootScope, nwService) {
-        $rootScope.APPVERSION = '0.1.1';
+    app.run(function($rootScope, nwService) {      
+        $rootScope.APPVERSION = nwService.readSyncJSON('package.json').version;
         nwService.mkDir('\\lists', true);
 
         try {
@@ -39,9 +39,9 @@ var app = angular.module('ssgl', ['ngMaterial']);
                 },
 
                 active: {
-                    gzdoom: "",
-                    zandronum: "",
-                    oblige: ""
+                    gzdoom: false,
+                    zandronum: false,
+                    oblige: false
                 },
 
                 iwadpath: "",
