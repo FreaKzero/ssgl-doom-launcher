@@ -1,7 +1,7 @@
 {
   "directory": "src/app/lib",
   "scripts": {
-    "preinstall": "npm install grunt grunt-nw-builder grunt-shell",
+    "preinstall": "npm install",
     "postinstall": "grunt init"
   }
 }
