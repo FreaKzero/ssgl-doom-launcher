@@ -1,24 +1,22 @@
-var recursive = require('recursive-readdir');
-
 (function() {
-    app.factory('modService', ['$q', modService]);
+    app.factory('modService', ['$q', 'nwService', modService]);
 
-    function modService($q) {
+    function modService($q, nwService) {
         var service = {};
 
-        service.readDir = function(wadpath) {
+        service.getMods = function(wadpath) {
             var defer = $q.defer();
 
-            recursive(wadpath, function(err, files) {
+            nwService.recursiveDir(wadpath, function(files) {
                 if (typeof files === 'undefined') {
                     return [];
                 }
 
                 var wad;
-                var len = files.length;
-                var index = [];
-                var mods = [];
-                var allowed = ['PK3', 'WAD'];
+                    len = files.length,
+                    index = [],
+                    mods = [],
+                    allowed = ['PK3', 'WAD'];
 
                 for (var i = 0; i < len; i++) {
                     var struc = files[i].split('\\'),
@@ -43,11 +41,7 @@ var recursive = require('recursive-readdir');
 
             return defer.promise;
         };
-
-        service.getMods = function(config) {
-            return service.readDir(config.wadpath);
-        };
-
+        
         return service;
     }
 })();

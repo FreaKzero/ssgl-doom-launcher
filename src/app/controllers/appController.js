@@ -5,7 +5,7 @@
 
         $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
         then(function(response) {
-            if ($scope.APPVERSION !== '0.0.2' && response.data.version !== $scope.APPVERSION) {
+            if ($scope.APPVERSION !== '0.0.0' && response.data.version !== $scope.APPVERSION) {
 
                 $mdDialog.show({
                     controller: function($scope) {
@@ -30,7 +30,6 @@
         }, function(response) {
             console.log('ERROR: ' + response);
         });
-
 
 
         var $PARENT = $scope;

@@ -12,7 +12,7 @@ var app = angular.module('ssgl', ['ngMaterial']);
             .accentPalette('deep-orange').dark();
     });
 
-    app.run(function($rootScope, nwService) {      
+    app.run(function($rootScope, nwService) {
         $rootScope.APPVERSION = nwService.readSyncJSON('package.json').version;
         nwService.mkDir('\\lists', true);
 

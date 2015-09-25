@@ -10,7 +10,7 @@
         $scope.usedList = false;
         $scope.selected = [];
 
-        modService.getMods($scope.config).then(function(mods) {
+        modService.getMods($scope.config.wadpath).then(function(mods) {
             $scope.mods = mods;
 
             if ($scope.config.initList !== false) {

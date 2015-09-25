@@ -23,6 +23,19 @@
             return path;
         }
 
+        service.recursiveDir = function(path, callback) {
+            var def = $q.defer();            
+            recursive(path, function(err, files) {
+                if (err) {
+                    def.reject(err);
+                } else {
+                    def.resolve(callback(files));
+                }
+            });
+
+            return def.promise;
+        };
+
         service.getManifest = function() {
             return GUI.App.manifest;
         };
