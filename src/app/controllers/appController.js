@@ -10,9 +10,14 @@
                 $mdDialog.show({
                     controller: function($scope) {
                         $scope.downloadversion = response.data.version;
+
                         $scope.download = function(url) {
                             var release = 'https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v'+response.data.version;
                             nwService.getShell().openExternal(release);
+                        };
+
+                        $scope.close = function() {
+                            $mdDialog.cancel();
                         };
                     },
 
