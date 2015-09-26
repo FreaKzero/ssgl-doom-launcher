@@ -4,6 +4,7 @@
     function modService($q, nwService) {
         var service = {};
 
+        service.mods = [];
         service.getMods = function(wadpath) {
             var defer = $q.defer();
 
@@ -15,7 +16,6 @@
                 var wad;
                     len = files.length,
                     index = [],
-                    mods = [],
                     allowed = ['PK3', 'WAD'];
 
                 for (var i = 0; i < len; i++) {
@@ -28,7 +28,7 @@
                         continue;
                     }
 
-                    mods.push({
+                    service.mods.push({
                         name: name,
                         dir: dirname,
                         checked: false,
@@ -36,7 +36,7 @@
                     });
                 }
 
-                defer.resolve(mods);
+                defer.resolve(service.mods);
             });
 
             return defer.promise;

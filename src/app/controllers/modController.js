@@ -1,18 +1,21 @@
  (function() {
 
     var execFile = require('child_process').execFile;       
-    app.controller('modController', ['$scope', 'modService', 'modlistService', '$mdDialog', 'nwService', modController]);
+    app.controller('modController', ['$scope', 'modService', 'modlistService', '$mdDialog', 'nwService','modselectedService', modController]);
 
-    function modController($scope, modService, modlistService, $mdDialog, nwService) {
+    function modController($scope, modService, modlistService, $mdDialog, nwService, modselectedService) {
         var self = this;
         var $parent = $scope;
 
         $scope.usedList = false;
-        $scope.selected = [];
+    
+        modselectedService.getSelected().then(function(selected) {
+            $scope.selected = selected;
+        });
 
         modService.getMods($scope.config.wadpath).then(function(mods) {
             $scope.mods = mods;
-
+            
             if ($scope.config.initList !== false) {
                 try {
                     var startListJSON = JSON.parse($scope.config.initList);
@@ -23,8 +26,9 @@
                     console.log(e);
                 }
             }
+            
         });
-
+        
         $scope.$on('USELIST', function(ev, wads, name) {
             $scope.selected = wads;
             $scope.usedList = name;
