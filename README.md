@@ -27,8 +27,4 @@ Install all dependencies with ```bower install``` (bower configuration handles n
 ```grunt build``` for building 32 and 64 bit Binaries (will be generated into ./build folder)  
 
 ##Development Environment  
-Get NWJS v.12 from here: https://github.com/nwjs/nw.js/releases/tag/nw-v0.12.0  
-Unpack the folder as ./nw into the root (./nw is defined in the .gitignore already)  
-go into the ./nw folder and install recursive-readdir via npm ```npm install recursive-readdir```  
-copy package.json from the ./cfg folder into ./nw  
-have fun :]  
+After you've done ```bower install```, you can build your development environment with ```grunt build-devenv``` it will make a new folder in your root named ./nw (Version 0.12.0 of NodeWebkit will be fetched via curl(), that can take a while) - with all dependencies and configs installed for development use (so you dont have to build everytime).
