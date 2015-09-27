@@ -49,9 +49,15 @@
         };
 
         service.rename = function(oldpath, newpath) {
+            var def = $q.defer();
             FS.rename(oldpath, newpath, function(err) {
-                if (err) console.log('ERROR: ' + err);
+                if (err) {
+                    def.reject(err);
+                } else {
+                    def.resolve(newpath.replace(/^.*[\\\/]/, ''));
+                }
             });
+            return def.promise;
         };
 
         service.remove = function(path) {
@@ -130,7 +136,7 @@
                 if (err) {
                     def.reject(err);
                 } else {
-                    def.resolve();
+                    def.resolve(path.replace(/^.*[\\\/]/, ''));
                 }
             });
 

@@ -1,9 +1,9 @@
  (function() {
 
     var execFile = require('child_process').execFile;       
-    app.controller('modController', ['$scope', 'modService', 'modlistService', '$mdDialog', 'nwService','modselectedService', modController]);
+    app.controller('modController', ['$scope', 'modService', 'modlistService', '$mdDialog', 'nwService','modselectedService', '$mdToast', modController]);
 
-    function modController($scope, modService, modlistService, $mdDialog, nwService, modselectedService) {
+    function modController($scope, modService, modlistService, $mdDialog, nwService, modselectedService, $mdToast) {
         var self = this;
         var $parent = $scope;
 
@@ -64,6 +64,8 @@
             });
 
             function saveSelectedController($scope, $mdDialog, modlistService) {
+                var toastContent;
+
                 $scope.title = 'Save List';
 
                 if ($parent.usedList !== false) {
@@ -79,7 +81,20 @@
                 $scope.checkdoubles = function() {};
 
                 $scope.submitForm = function() {
-                    modlistService.saveSelected($scope.listname, $parent.selected);
+                    modlistService.saveSelected($scope.listname, $parent.selected).then(function(listname) {
+                        $mdToast.show(
+                            $mdToast.simple()
+                            .content('Saved List to '+listname).position('bottom').hideDelay(1500)
+                        );
+                    }, function(error) {
+                        $mdToast.show(
+                            $mdToast.simple()
+                            .content(error.message).position('bottom').hideDelay(1500)
+                        );
+                    });
+
+                    
+
                     $parent.usedList = $scope.listname;
                     $mdDialog.cancel();
                 };
