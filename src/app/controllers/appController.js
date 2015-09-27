@@ -152,7 +152,7 @@
                         };
 
                         $scope.continue = function() {
-                            $PARENT.$broadcast('STARTGZDOOM', iwad, $PARENT.config.oblige.mappath, engine);
+                            $PARENT.$broadcast('STARTGZDOOM', iwad, $PARENT.config.oblige.mappath, engine, $mdDialog);
                         };
 
                         $scope.cancel = function() {

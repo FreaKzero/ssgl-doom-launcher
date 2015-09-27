@@ -145,9 +145,13 @@
             });
         });
 
-        $scope.$on('STARTGZDOOM', function(ev, iwad, map, engine) {
+        $scope.$on('STARTGZDOOM', function(ev, iwad, map, engine, dialog) {
             if (typeof map === 'undefined') {
                 map = false;
+            }
+
+            if (typeof dialog === 'undefined') {
+                dialog = false;
             }
 
             var child;
@@ -186,9 +190,14 @@
                 wads.push(map);
             }
 
+            if (dialog !== false) {
+                dialog.hide();
+            }
+
             params = params.concat(['-file'], wads);
             console.log(params);            
             child = execFile(useEngine, params,
+
                 function(error, stdout, stderr) {
                     if (error) {
                         console.log(error.stack);
