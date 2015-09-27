@@ -6,8 +6,11 @@
         var listDir = '\\lists\\';
 
         service.rename = function(item) {
+            var oldPath = item.path;
             var newPath = nwService.getDirname(item.path) + '\\' + item.name + '.json';
-            return nwService.rename(item.path, newPath);
+            
+            item.path = nwService.getDirname(item.path) + '\\' + item.name + '.json';
+            return nwService.rename(oldPath, newPath);
         };
 
         service.remove = function(item) {

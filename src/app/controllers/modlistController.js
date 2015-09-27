@@ -41,20 +41,18 @@
                     var toastContent;
                     if (valid && $scope.double.length === 0) {
                         item.name = $scope.listname;
-
+                        
                         modlistService.rename(item).then(function(renamed) {
                             $mdToast.show(
                                 $mdToast.simple()
                                 .content('List renamed to ' + renamed).position('bottom').hideDelay(1500)
-                            );                        
+                            );
                         }, function(error) {
                             $mdToast.show(
                                 $mdToast.simple()
                                 .content(error.message).position('bottom').hideDelay(1500)
-                            );                            
+                            );
                         });
-
-                        
 
                         $mdDialog.cancel();
                     }
