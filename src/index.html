@@ -76,11 +76,20 @@
 
         <div layout="row" ng-controller="modController">
             <div flex>
-                <md-content layout-padding class="slimscroll-l">
-                <md-input-container>
-                <label>Search</label>
-                <input ng-model="searchterm">
+
+                <md-toolbar class="md-hue-2">
+                <div class="md-toolbar-tools">
+
+                <md-input-container style="width: 100%">
+                    <label class="filterlabel" style="color: #78909c;font-weight: normal;">Filter</label>
+                    <input ng-model="searchterm">
                 </md-input-container>
+          
+                </div>
+            </md-toolbar>
+
+                <md-content layout-padding class="slimscroll-l">
+                
                 <md-list>
 
                 <md-list-item class="md-2-line repeat-animation init-animation" ng-repeat="mod in filtered = (mods | filter:searchterm) track by mod.path" ng-click="checked(mod)">
@@ -151,7 +160,7 @@
 
                 $('.slimscroll-l').slimScroll({
                     position: 'right',
-                    height: '586px',
+                    height: '525px',
                     railVisible: true,
                     alwaysVisible: true,
                     color: '#78909c',

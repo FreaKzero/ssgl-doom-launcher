@@ -23,6 +23,10 @@
             user-select: none; 
         }
 
+        .md-input-focused > .filterlabel {
+            opacity: 0;
+        }
+
         i.controlbtn {
 
         }
