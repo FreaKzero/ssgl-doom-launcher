@@ -195,7 +195,6 @@
             }
 
             params = params.concat(['-file'], wads);
-            console.log(params);            
             child = execFile(useEngine, params,
 
                 function(error, stdout, stderr) {

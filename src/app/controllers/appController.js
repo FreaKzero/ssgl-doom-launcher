@@ -2,6 +2,14 @@
     app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', 'iwadService', 'nwService', appController]);
 
     function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService, $http, iwadService, nwService) {
+        var $PARENT = $scope;
+        var TOASTDELAY = 1500;
+
+        $mdToast.show(
+            $mdToast.simple()
+            .content('Checking for Updates...').
+            position('bottom').hideDelay(TOASTDELAY)
+        );
 
         $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
         then(function(response) {
@@ -30,10 +38,6 @@
         }, function(response) {
             console.log('ERROR: ' + response);
         });
-
-
-        var $PARENT = $scope;
-        var TOASTDELAY = 1500;
 
         if ($scope.config.freshinstall === true) {
             SettingsDialog(null);
@@ -76,7 +80,6 @@
             });
 
             function AboutDialogController($scope, $mdBottomSheet) {
-                console.log($PARENT.APPVERSION)
                 $scope.version = $PARENT.APPVERSION;
                 $scope.openURL = function(url) {
                     nwService.getShell().openExternal(url);
