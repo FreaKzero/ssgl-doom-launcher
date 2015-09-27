@@ -16,14 +16,14 @@
     <body ng-app="ssgl" layout="column" ng-controller="appController" id="app">
         <md-toolbar layout="row">
         <div class="md-toolbar-tools">
-            <md-button style="min-width: 50px;margin:0 0 0 -10px;;" ng-click="toggleSidebar()"><i class="mdi mdi-menu" style="font-size: 35px; margin-top: 8px;"></i></md-button>
+            <md-button aria-label="Open Modlists" style="min-width: 50px;margin:0 0 0 -10px;;" ng-click="toggleSidebar()"><i class="mdi mdi-menu" style="font-size: 35px; margin-top: 8px;"></i></md-button>
             <h1 style="margin-left: 10px;">Super Shotgun Launcher</h1>
         </div>
 
-        <md-button style="min-width: 50px;margin:0;" ng-click="showSettings($event)"><i class="mdi mdi-settings" style="font-size: 35px; margin-top: 8px;"></i></md-button>
+        <md-button aria-label="Open Settings" style="min-width: 50px;margin:0;" ng-click="showSettings($event)"><i class="mdi mdi-settings" style="font-size: 35px; margin-top: 8px;"></i></md-button>
 
         <md-menu>
-          <md-button class="md-icon-button" style="padding:0;margin:0 0 0 0;" ng-click="openMenu($mdOpenMenu, $event)">
+          <md-button aria-label="Open Menu" class="md-icon-button" style="padding:0;margin:0 0 0 0;" ng-click="openMenu($mdOpenMenu, $event)">
             <i class="mdi mdi-dots-vertical" style="font-size: 35px; margin-top: 8px;"></i>
           </md-button>
 
