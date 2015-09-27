@@ -1,0 +1,27 @@
+<md-dialog style="width:80%;">
+  <form style="overflow:hidden;">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>New Update Available!</h2>
+      <span flex></span>      
+    </div>
+  </md-toolbar>
+  <md-dialog-content style="max-width:800px;max-height:830px;">
+    <div>
+      <strong>Version {{downloadversion}}</strong> is available for Download here: <br /><br />
+      <div style="text-align:center;">
+        <md-button class="md-accent"><i class="mdi mdi-briefcase-download"></i> &nbsp;&nbsp;<a target="_blank" ng-click="download()">Download</a></md-button>
+      </div>
+      
+      
+    </div>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">    
+    <span flex></span>    
+    <md-button ng-click="close()">
+      Close
+    </md-button>  
+  </div>
+  </form>  
+</md-dialog>
+

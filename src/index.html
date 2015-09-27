@@ -13,17 +13,17 @@
         <script type="text/javascript" src="app/lib/jquery-slimscroll/jquery.slimscroll.js"></script>
         <link href="app/lib/mdi/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
     </head>
-    <body ng-app="gzdoom-launcher" layout="column" ng-controller="appController" id="app">
+    <body ng-app="ssgl" layout="column" ng-controller="appController" id="app">
         <md-toolbar layout="row">
         <div class="md-toolbar-tools">
-            <md-button style="min-width: 50px;margin:0 0 0 -10px;;" ng-click="toggleSidebar()"><i class="mdi mdi-menu" style="font-size: 35px; margin-top: 8px;"></i></md-button>
+            <md-button aria-label="Open Modlists" style="min-width: 50px;margin:0 0 0 -10px;;" ng-click="toggleSidebar()"><i class="mdi mdi-menu" style="font-size: 35px; margin-top: 8px;"></i></md-button>
             <h1 style="margin-left: 10px;">Super Shotgun Launcher</h1>
         </div>
 
-        <md-button style="min-width: 50px;margin:0;" ng-click="showSettings($event)"><i class="mdi mdi-settings" style="font-size: 35px; margin-top: 8px;"></i></md-button>
+        <md-button aria-label="Open Settings" style="min-width: 50px;margin:0;" ng-click="showSettings($event)"><i class="mdi mdi-settings" style="font-size: 35px; margin-top: 8px;"></i></md-button>
 
         <md-menu>
-          <md-button class="md-icon-button" style="padding:0;margin:0 0 0 0;" ng-click="openMenu($mdOpenMenu, $event)">
+          <md-button aria-label="Open Menu" class="md-icon-button" style="padding:0;margin:0 0 0 0;" ng-click="openMenu($mdOpenMenu, $event)">
             <i class="mdi mdi-dots-vertical" style="font-size: 35px; margin-top: 8px;"></i>
           </md-button>
 
@@ -33,14 +33,10 @@
             <md-button ng-click="openWADFolder()">Open WAD Folder</md-button>
             </md-menu-item>
 
-            <md-menu-item ng-show="config.obligeactive">
+            <md-menu-item ng-show="config.active.oblige">
             <md-button ng-click="openOblige()">Open Oblige</md-button>
             </md-menu-item>
-
-            <md-menu-item>
-            <md-button ng-click="checkUpdates($event)">Check for Updates</md-button>
-            </md-menu-item>
-
+            
             <md-menu-item>
                 <md-button ng-click="reload()">Restart App</md-button>
             </md-menu-item>
@@ -80,11 +76,20 @@
 
         <div layout="row" ng-controller="modController">
             <div flex>
-                <md-content layout-padding class="slimscroll-l">
-                <md-input-container>
-                <label>Search</label>
-                <input ng-model="searchterm">
+
+                <md-toolbar class="md-hue-2">
+                <div class="md-toolbar-tools">
+
+                <md-input-container style="width: 100%">
+                    <label class="filterlabel" style="color: #78909c;font-weight: normal;">Filter</label>
+                    <input ng-model="searchterm">
                 </md-input-container>
+          
+                </div>
+            </md-toolbar>
+
+                <md-content layout-padding class="slimscroll-l">
+                
                 <md-list>
 
                 <md-list-item class="md-2-line repeat-animation init-animation" ng-repeat="mod in filtered = (mods | filter:searchterm) track by mod.path" ng-click="checked(mod)">
@@ -155,7 +160,7 @@
 
                 $('.slimscroll-l').slimScroll({
                     position: 'right',
-                    height: '586px',
+                    height: '525px',
                     railVisible: true,
                     alwaysVisible: true,
                     color: '#78909c',
@@ -174,17 +179,19 @@
         </script>
 
         <script src="app/main.js"></script>
-
-        <script src="app/controllers/modlistController.js"></script>
+        <script src="app/services/nwService.js"></script>
+        
         <script src="app/controllers/appController.js"></script>
+        <script src="app/controllers/modlistController.js"></script>        
         <script src="app/controllers/modController.js"></script>
 
+        <script src="app/services/modselectedService.js"></script>
         <script src="app/services/modlistService.js"></script>
         <script src="app/services/modService.js"></script>
         <script src="app/services/iwadService.js"></script>
-        <script src="app/services/mapconfigService.js"></script>
 
         <script src="app/directives/directory-chooser.js"></script>
+        <script src="app/directives/file-chooser.js"></script>
 
     </body>
 </html>

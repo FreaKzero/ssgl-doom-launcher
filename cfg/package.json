@@ -1,10 +1,14 @@
 {
-    "name": "gzdoom-launcher",
+    "name": "ssgl-dev",
+    "version": "0.0.0",
     "main": "../src/index.html",
     "window": {
         "toolbar": true,
         "width": 1000,
         "height": 550,
-        "resizable": false
+        "resizable": true
+    },
+    "devDependencies": {
+      "recursive-readdir": "*"
     }
 }

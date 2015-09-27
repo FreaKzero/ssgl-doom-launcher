@@ -19,5 +19,20 @@
 
   "devDependencies": {
     "angular-material": "*"
-  }
+  },
+
+  "ignore": [
+    "**/.*",
+    "*.gzip",
+    "*.map",
+    "*.md",  
+    "node_modules",
+    "bower_components",
+    "test",      
+    "node_modules",
+    "bower_components",
+    "test",
+    "package.json",
+    "src"
+  ]
 }

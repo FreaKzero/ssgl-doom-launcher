@@ -8,6 +8,8 @@
   "devDependencies": {
       "grunt": "*",
       "grunt-nw-builder": "*",
-      "grunt-shell": "*"
+      "grunt-shell": "*",
+      "grunt-curl": "*",
+      "grunt-zip": "*"      
   }
 }

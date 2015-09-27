@@ -23,6 +23,10 @@
             user-select: none; 
         }
 
+        .md-input-focused > .filterlabel {
+            opacity: 0;
+        }
+
         i.controlbtn {
 
         }
@@ -30,11 +34,7 @@
         .slimscroll-l {
             height: 570px;
         }
-
-        .slimscroll-r {
-            
-        }
-
+    
         .customAboutContainer img {
             border-radius: 100%;
             width: 120px;
@@ -42,14 +42,14 @@
             box-shadow: 0px 0px 0px 5px white;
         }
 
-        .customAboutContainer a, .customAboutContainer a:link, .customAboutContainer a:visited, .customAboutContainer a:active {
+        .browserlink, a.browserlink, a:link.browserlink, a:visited.browserlink, a:active.browserlink {
             color: #E75426;
             cursor: pointer;
             text-decoration:none;
             transition: color 0.15s ease-out;
         }
 
-        .customAboutContainer a:hover {
+        .browserlink:hover {
             color: #FF9675;            
         }
 
@@ -106,9 +106,7 @@
             padding: 0 !important;          
             color: black;  
         }   
-             
         
-
         .gameholder {
             border-radius: 100%;
             width: 70px;
@@ -116,6 +114,8 @@
             overflow: hidden;
             position: relative;
             color: white;
+            box-shadow: 0px 0px 0px 3px #686868;
+            transition: box-shadow 0.25s ease-in;
         }
 
         .gameholder img {
@@ -123,6 +123,7 @@
             height: 70px;
             margin-left: -5px;
         }
+
         .gameholder .tint {
             border-radius: 100%;
             width: 70px;
@@ -140,12 +141,29 @@
         .gameholder .tint i {
             font-size: 30px;
             margin-top: 20px;
-            opacity: 0.7;
+            color:#78909c;            
         }
 
         .gameholder:hover > .tint {
             opacity: 1;
             transform: scale(1);
+        }
+
+        .gameholder-txt {
+            color: #686868;
+            transition: color 0.25s ease-in;
+        }
+
+        .gameholder:hover ~ .gameholder-txt {
+            color: #78909c;
+        }
+
+        .gameholder:hover {
+            box-shadow: 0px 0px 0px 3px #ff5722;
+        }
+
+        md-bottom-sheet.md-grid {
+            padding-left: 0;
         }
 
         md-bottom-sheet img {
@@ -154,16 +172,17 @@
             height: 80px !important;
         }
         
+        md-bottom-sheet.md-grid md-list-item .md-grid-item-content {
+            width: 70px !important;
+        }    
+
+        .md-tab {
+            max-width: 100% !important;
+        }
         md-bottom-sheet md-list-item:hover {
             background-color: transparent;
         }
-
-        
-
-        md-bottom-sheet md-grid-text {
-            color: black !important;
-        }
-        
+            
         md-bottom-sheet.md-grid md-list-item {
             max-width: 10%;
         }

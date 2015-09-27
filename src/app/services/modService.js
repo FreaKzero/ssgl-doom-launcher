@@ -1,46 +1,47 @@
-var recursive = require('recursive-readdir');
+(function() {
+    app.factory('modService', ['$q', 'nwService', modService]);
 
-app.factory('modService', ['$q',modService]);
+    function modService($q, nwService) {
+        var service = {};
 
-function modService($q) {
-    var service = {};
+        service.mods = [];
+        service.getMods = function(wadpath) {
+            var defer = $q.defer();
 
-    service.readDir = function(wadpath) {
-    	var defer = $q.defer();
+            nwService.recursiveDir(wadpath, function(files) {
+                if (typeof files === 'undefined') {
+                    return [];
+                }
 
-        recursive(wadpath, function(err, files) {
-            if (typeof files === 'undefined') {
-                return [];
-            }
-            
-            var wad;
-            var len = files.length;
-            var index = [];
-            var mods = [];
-            var allowed = ['PK3', 'WAD'];
+                var wad;
+                    len = files.length,
+                    index = [],
+                    allowed = ['PK3', 'WAD'];
 
-            for (var i = 0; i < len; i++) {
-                var struc = files[i].split('\\'),
-					dirname = struc[struc.length - 2],
-					ext = struc[struc.length - 1].slice(-3).toUpperCase(),
-					name = struc[struc.length - 1].slice(0, -4);
+                for (var i = 0; i < len; i++) {
+                    var struc = files[i].split('\\'),
+                        dirname = struc[struc.length - 2],
+                        ext = struc[struc.length - 1].slice(-3).toUpperCase(),
+                        name = struc[struc.length - 1].slice(0, -4);
 
-					if (allowed.indexOf(ext) < 0) {
+                    if (allowed.indexOf(ext) < 0) {
                         continue;
                     }
 
-					mods.push({name: name, dir: dirname, checked: false, path: files[i]});
-            }
+                    service.mods.push({
+                        name: name,
+                        dir: dirname,
+                        checked: false,
+                        path: files[i]
+                    });
+                }
 
-            defer.resolve(mods);
-        });
+                defer.resolve(service.mods);
+            });
 
-        return defer.promise;
-    };
-
-    service.getMods = function(config) {
-        return service.readDir(config.wadpath);
-    };
-
-    return service;
-}
+            return defer.promise;
+        };
+        
+        return service;
+    }
+})();

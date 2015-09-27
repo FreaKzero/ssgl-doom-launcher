@@ -1,4 +1,4 @@
-<md-dialog style="width:80%;">
+<md-dialog style="width:90%;">
   <form style="overflow:hidden;">
   <md-toolbar>
     <div class="md-toolbar-tools">
@@ -11,19 +11,19 @@
       
       <div layout="row">
       <div flex>
-    <md-checkbox ng-model="settings.gzdoomactive" aria-label="Activate GZDoom">
+    <md-checkbox ng-model="config.active.gzdoom" aria-label="Activate GZDoom">
       <p style="color:white;margin-left: 10px;">Activate GZDoom</p>      
     </md-checkbox>
 
       </div>
       <div flex>
-      <md-checkbox ng-model="settings.zandronumactive" aria-label="Activate Zandronum">
+      <md-checkbox ng-model="config.active.zandronum" aria-label="Activate Zandronum">
       <p style="color:white;margin-left: 10px;">Activate Zandronum</p>      
     </md-checkbox>
         </div>
 
         <div flex>
-        <md-checkbox ng-model="settings.obligeactive" aria-label="Activate Oblige">
+        <md-checkbox ng-model="config.active.oblige" aria-label="Activate Oblige">
       <p style="color:white;margin-left: 10px;">Activate Oblige</p>      
     </md-checkbox>
         </div>
@@ -31,30 +31,31 @@
     
 
     <label style="color: #b2b2b2;font-size: 12px;font-weight:bold;">Select list for Startup</label>
-        <md-select style="margin-top: -3px;padding:0;"ng-model="settings.initList" placeholder="Select List" ng-disabled="modlist.length === 0">
+        <md-select style="margin-top: -3px;padding:0;" ng-model="config.initList" placeholder="Select List" ng-disabled="modlist.length === 0">
           <md-option value="{{false}}">Deactivate</md-option>
           <md-option ng-repeat="list in modlist" value="{{list}}">{{list.name}}</md-option>
         </md-select>
 
 
-    <file-choose label="gzDoom Path:" ng-show="settings.gzdoomactive" ng-model="settings.gzDoom"></file-choose>
-    <file-choose label="Zandronum Path:" ng-show="settings.zandronumactive" ng-model="settings.zandronum"></file-choose>
 
-    <dir-choose label="WAD Path:" ng-model="settings.wadpath"></dir-choose>
+    <div ng-show="config.active.gzdoom">
+      <file-choose label="gzDoom Path:"  ng-model="config.engines.gzdoom"></file-choose>
+      <dir-choose label="gzDoom Savegames:" ng-model="config.savepaths.gzdoom"></dir-choose>
+    </div>
+  
+    <div ng-show="config.active.zandronum">
+      <file-choose label="Zandronum Path:" ng-model="config.engines.zandronum"></file-choose>
+      <dir-choose label="Zandronum Savegames:" ng-model="config.savepaths.zandronum"></dir-choose>
+    </div>
 
-    <dir-choose label="iWAD Path:" ng-model="settings.iwadpath"></dir-choose>
+    <dir-choose label="WAD Path:" ng-model="config.wadpath"></dir-choose>
 
-    <dir-choose label="Savegame Path:" ng-model="settings.savegamepath"></dir-choose>
-
-
-    <div ng-show="settings.obligeactive">
-
-    <file-choose label="Oblige Path:" ng-model="settings.oblige"></file-choose>
-
-    <dir-choose label="Oblige MapConfig Path:" ng-model="settings.mapconfig"></dir-choose>
-
-    <file-choose label="Oblige Random Map Path:" ng-model="settings.mappath"></file-choose>
-
+    <dir-choose label="iWAD Path:" ng-model="config.iwadpath"></dir-choose>
+    
+    <div ng-show="config.active.oblige">
+      <file-choose label="Oblige Path:" ng-model="config.oblige.binary"></file-choose>
+      <dir-choose label="Oblige MapConfig Path:" ng-model="config.oblige.configs"></dir-choose>
+      <file-choose label="Oblige Random Map Path:" ng-model="config.oblige.mappath"></file-choose>
     </div>
       
     </div>
@@ -70,4 +71,3 @@
   </div>
   </form>  
 </md-dialog>
-
