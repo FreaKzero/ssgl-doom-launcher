@@ -8,13 +8,13 @@
         service.rename = function(item) {
             var oldPath = item.path;
             var newPath = nwService.getDirname(item.path) + '\\' + item.name + '.json';
-            
+
             item.path = nwService.getDirname(item.path) + '\\' + item.name + '.json';
             return nwService.rename(oldPath, newPath);
         };
 
         service.remove = function(item) {
-            nwService.remove(item.path);
+            return nwService.remove(item.path);
         };
 
         service.saveSelected = function(name, list) {

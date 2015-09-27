@@ -37,11 +37,9 @@
                 };
 
                 $scope.submitForm = function(valid) {
-
-                    var toastContent;
                     if (valid && $scope.double.length === 0) {
                         item.name = $scope.listname;
-                        
+
                         modlistService.rename(item).then(function(renamed) {
                             $mdToast.show(
                                 $mdToast.simple()
@@ -73,7 +71,19 @@
                 .targetEvent(ev);
 
             $mdDialog.show(confirm).then(function() {
-                modlistService.remove($scope.modlist[$index]);
+                
+                modlistService.remove($scope.modlist[$index]).then(function(listname) {
+                    $mdToast.show(
+                        $mdToast.simple()
+                        .content('List ' + listname + ' removed').position('bottom').hideDelay(1500)
+                    );
+                }, function(error) {
+                    $mdToast.show(
+                        $mdToast.simple()
+                        .content(error.message).position('bottom').hideDelay(1500)
+                    );
+                });
+
                 $scope.modlist.splice($index, 1);
             }, function() {
                 $mdDialog.cancel();

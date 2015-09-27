@@ -64,8 +64,6 @@
             });
 
             function saveSelectedController($scope, $mdDialog, modlistService) {
-                var toastContent;
-
                 $scope.title = 'Save List';
 
                 if ($parent.usedList !== false) {

@@ -3,8 +3,8 @@
         FS = require('fs'),
         GUI = require('nw.gui'),
         execFile = require('child_process').execFile;
-        recursive = require('recursive-readdir');
- 
+    recursive = require('recursive-readdir');
+
     app.factory('nwService', ['$q', nwService]);
 
     function nwService($q) {
@@ -24,7 +24,7 @@
         }
 
         service.recursiveDir = function(path, callback) {
-            var def = $q.defer();            
+            var def = $q.defer();
             recursive(path, function(err, files) {
                 if (err) {
                     def.reject(err);
@@ -61,7 +61,16 @@
         };
 
         service.remove = function(path) {
-            FS.unlinkSync(path);
+            var def = $q.defer();
+
+            FS.unlink(path, function(err) {
+                if (err) {
+                    def.reject(err);
+                } else {
+                    def.resolve(path.replace(/^.*[\\\/]/, ''));
+                }
+            });
+            return def.promise;
         };
 
         service.getDir = function(path, relative) {
