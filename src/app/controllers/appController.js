@@ -76,6 +76,8 @@
             });
 
             function AboutDialogController($scope, $mdBottomSheet) {
+                console.log($PARENT.APPVERSION)
+                $scope.version = $PARENT.APPVERSION;
                 $scope.openURL = function(url) {
                     nwService.getShell().openExternal(url);
                 };
