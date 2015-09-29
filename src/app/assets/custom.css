@@ -24,9 +24,11 @@
             user-select: none; 
         }
 
-        .md-input-focused > .filterlabel {
-            opacity: 0;
+        .filtericon {
+            color: #677e89;
+            font-size: 25px !important;
         }
+        
                
         .customAboutContainer img {
             border-radius: 100%;
