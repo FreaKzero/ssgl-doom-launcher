@@ -7,9 +7,9 @@
     <md-tab label="ZDOOM" md-on-select="engine='zdoom'" style="width: 120px;" ng-disabled="!config.active.zdoom"></md-tab>
   </md-tabs>  
   
-  <div style="float:right;margin-top: -60px; !important; font-size: 14px;">
+  <div style="position: absolute; bottom: 70px; right: 10px; z-index: 999; font-size: 14px;">
     <md-checkbox ng-model="useoblige" aria-label="Oblige" ng-disabled="!config.active.oblige">
-      <p style="margin-left: 5px;">Random Map</p>      
+      <p style="margin-left: 5px;">Use Oblige</p>
     </md-checkbox>
   </div>
 
@@ -26,9 +26,8 @@
 
         <div class="md-grid-text gameholder-txt"> {{iwad.name}} </div>      
       </md-list-item>   
-    </md-list>
-
-        <div class="md-grid-text gameholder-txt"> {{iwad.name}} </div>        
+    </md-list>   
+    <br />   
     </md-content>
 </md-bottom-sheet>
 

@@ -99,8 +99,7 @@
         }
         
         md-bottom-sheet .md-subheader .md-subheader-inner {
-            padding: 0 !important;          
-            color: black;  
+            padding: 0 !important;
         }   
         
         .gameholder {
@@ -169,8 +168,12 @@
         }
         
         md-bottom-sheet.md-grid md-list-item .md-grid-item-content {
-            width: 70px !important;
+            width: 70px !important;            
         }    
+
+         md-bottom-sheet.md-grid md-list-item {
+            padding: 5px;
+        }
 
         .md-tab {
             max-width: 100% !important;
