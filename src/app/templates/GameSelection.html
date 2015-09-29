@@ -1,17 +1,22 @@
 <md-bottom-sheet class="md-grid" style="background-color: #424242; border-color: #424242;">
 
-
   <md-tabs md-dynamic-height md-no-pagination >
     <md-tab label="GZDOOM" md-on-select="engine='gzDoom'" style="width: 120px;" ng-disabled="!config.active.gzdoom"></md-tab>
     <md-tab label="ZANDRONUM" md-on-select="engine='Zandronum'" ng-disabled="!config.active.zandronum"style="width: 120px;"></md-tab>
     <md-tab label="ZDOOM" md-on-select="engine='zdoom'" style="width: 120px;" ng-disabled="!config.active.zdoom"></md-tab>
-
   </md-tabs>  
+  
+  <div style="float:right;margin-top: -60px; !important; font-size: 14px;" ng-show="config.active.oblige">
+    <md-checkbox ng-model="useoblige" aria-label="Oblige">
+      <p style="color:white;margin-left: 5px;">Oblige</p>      
+    </md-checkbox>
+  </div>
+
 <br />
     <md-content>
      <md-list>
     
-    <md-list-item ng-repeat="iwad in iwads">   
+   <md-list-item ng-repeat="iwad in iwads">   
     
     <div class="gameholder md-grid-item-content" ng-click="startGame($index, engine)">
     <div class="tint"><i class="mdi mdi-play"></i></div>
@@ -20,19 +25,9 @@
 
         <div class="md-grid-text gameholder-txt"> {{iwad.name}} </div>      
       </md-list-item>   
+    </md-list>
 
-      <md-list-item ng-repeat="iwad in iwads" ng-if="config.active.oblige">           
-        
-        <div class="gameholder md-grid-item-content" ng-click="startGameOblige($event, $index, engine)">
-          <div class="tint"><i class="mdi mdi-play"></i></div>
-          <img src="{{iwad.cover}}" />
-        </div>
-
-        <div class="md-grid-text gameholder-txt">{{iwad.name}} (Oblige)</div>
-      </md-list-item>      
-    
-  </md-list>
+        <div class="md-grid-text gameholder-txt"> {{iwad.name}} </div>        
     </md-content>
-
-
 </md-bottom-sheet>
+

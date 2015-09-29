@@ -7,8 +7,7 @@
 
         $mdToast.show(
             $mdToast.simple()
-            .content('Checking for Updates...').
-            position('bottom').hideDelay(TOASTDELAY)
+            .content('Checking for Updates...').position('bottom').hideDelay(TOASTDELAY)
         );
 
         $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
@@ -20,7 +19,7 @@
                         $scope.downloadversion = response.data.version;
 
                         $scope.download = function(url) {
-                            var release = 'https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v'+response.data.version;
+                            var release = 'https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v' + response.data.version;
                             nwService.getShell().openExternal(release);
                         };
 
@@ -100,6 +99,8 @@
             });
 
             function GameSelectionController($scope, $mdBottomSheet, iwadService) {
+                $scope.useoblige = false;
+
                 iwadService.getIWADS($PARENT.config.iwadpath).then(function(iwads) {
                     $scope.iwads = iwads;
                 });
@@ -114,11 +115,14 @@
                     $scope.engine = 'gzDoom';
                 }
 
-                $scope.startGame = function($index, engine) {
-                    var iwad = $scope.iwads[$index].file;
-
-                    $PARENT.$broadcast('STARTGZDOOM', iwad, false, engine);
-                    $mdBottomSheet.hide();
+                $scope.startGame = function($index, engine, $event) {
+                    if ($scope.useoblige === false) {
+                        var iwad = $scope.iwads[$index].file;
+                        $PARENT.$broadcast('STARTGZDOOM', iwad, false, engine);
+                        $mdBottomSheet.hide();
+                    } else {
+                        $scope.startGameOblige($event, $index, engine);
+                    }
                 };
 
                 $scope.startGameOblige = function(ev, $index, engine) {

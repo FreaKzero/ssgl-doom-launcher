@@ -123,7 +123,7 @@
                 });
             }
         };
-
+     
         $scope.$on('STARTOBLIGE', function(ev, iwad, config, engine, log) {
             $mdDialog.show({
                 templateUrl: 'app/templates/ObligeLoading.html',
