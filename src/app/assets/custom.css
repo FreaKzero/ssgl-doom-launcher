@@ -2,6 +2,7 @@
         html, body {
             overflow:hidden;
             background-color: #424242;
+            font-size: 14px !important;
         }
 
         #app {
@@ -9,7 +10,7 @@
             color: white;
             opacity: 0;
         }
-
+     
         #app.show {
             opacity:1;
         }
@@ -26,15 +27,7 @@
         .md-input-focused > .filterlabel {
             opacity: 0;
         }
-
-        i.controlbtn {
-
-        }
-
-        .slimscroll-l {
-            height: 570px;
-        }
-    
+               
         .customAboutContainer img {
             border-radius: 100%;
             width: 120px;
@@ -178,6 +171,7 @@
         .md-tab {
             max-width: 100% !important;
         }
+
         md-bottom-sheet md-list-item:hover {
             background-color: transparent;
         }
