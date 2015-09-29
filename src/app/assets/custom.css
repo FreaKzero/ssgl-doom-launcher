@@ -97,11 +97,7 @@
         .btn-sort:hover {
             background-color: rgba(158, 158, 158, 0.4);
         }
-
-        md-bottom-sheet {
-            color: black;
-        }
-
+        
         md-bottom-sheet .md-subheader .md-subheader-inner {
             padding: 0 !important;          
             color: black;  
@@ -213,7 +209,6 @@
             transform: scale(0);            
             opacity:0;
         }
-
         
 .repeat-animation.ng-enter,
 .repeat-animation.ng-leave,
