@@ -11,22 +11,31 @@
       
       <div layout="row">
       <div flex>
-    <md-checkbox ng-model="config.active.gzdoom" aria-label="Activate GZDoom">
-      <p style="color:white;margin-left: 10px;">Activate GZDoom</p>      
+    <md-checkbox ng-model="config.active.gzdoom" aria-label="GZDoom">
+      <p style="color:white;margin-left: 10px;">GZDoom</p>      
     </md-checkbox>
 
       </div>
       <div flex>
-      <md-checkbox ng-model="config.active.zandronum" aria-label="Activate Zandronum">
-      <p style="color:white;margin-left: 10px;">Activate Zandronum</p>      
+      <md-checkbox ng-model="config.active.zandronum" aria-label="Zandronum">
+      <p style="color:white;margin-left: 10px;">Zandronum</p>      
     </md-checkbox>
         </div>
 
         <div flex>
-        <md-checkbox ng-model="config.active.oblige" aria-label="Activate Oblige">
-      <p style="color:white;margin-left: 10px;">Activate Oblige</p>      
-    </md-checkbox>
+        <md-checkbox ng-model="config.active.zdoom" aria-label="Oblige">
+          <p style="color:white;margin-left: 10px;">zDoom</p>      
+        </md-checkbox>
         </div>
+
+        <div flex>
+        <md-checkbox ng-model="config.active.oblige" aria-label="Oblige">
+          <p style="color:white;margin-left: 10px;">Oblige</p>      
+        </md-checkbox>
+        </div>
+
+        
+
         </div>
     
 
@@ -42,7 +51,12 @@
       <file-choose label="gzDoom Path:"  ng-model="config.engines.gzdoom"></file-choose>
       <dir-choose label="gzDoom Savegames:" ng-model="config.savepaths.gzdoom"></dir-choose>
     </div>
-  
+    
+    <div ng-show="config.active.zdoom">
+      <file-choose label="zDoom Path:" ng-model="config.engines.zdoom"></file-choose>
+      <dir-choose label="zDoom Savegames:" ng-model="config.savepaths.zdoom"></dir-choose>
+    </div>
+
     <div ng-show="config.active.zandronum">
       <file-choose label="Zandronum Path:" ng-model="config.engines.zandronum"></file-choose>
       <dir-choose label="Zandronum Savegames:" ng-model="config.savepaths.zandronum"></dir-choose>

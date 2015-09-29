@@ -192,6 +192,17 @@
                         SAVEDIR = $scope.config.savepaths.zandronum + 'default';
                     }
                     break;
+
+                case "zdoom":
+                    useEngine = $scope.config.engines.zdoom;
+
+                    if ($scope.usedList !== false) {
+                        SAVEDIR = $scope.config.savepaths.zdoom + $scope.usedList;
+                    } else {
+                        SAVEDIR = $scope.config.savepaths.zdoom + 'default';
+                    }
+
+                    break;
             }
            
             var params = ['-iwad', $scope.config.iwadpath + iwad, '-savedir', SAVEDIR];

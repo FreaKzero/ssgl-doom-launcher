@@ -22,11 +22,13 @@ var app = angular.module('ssgl', ['ngMaterial']);
 
             $rootScope.config = {
                 engines: {
+                    zdoom: "",
                     gzdoom: "",
                     zandronum: "",
                 },
 
                 savepaths: {
+                    zdoom: "",
                     gzdoom: "",
                     zandronum: ""
                 },
@@ -41,7 +43,8 @@ var app = angular.module('ssgl', ['ngMaterial']);
                 active: {
                     gzdoom: false,
                     zandronum: false,
-                    oblige: false
+                    oblige: false,
+                    zdoom: false
                 },
 
                 iwadpath: "",
