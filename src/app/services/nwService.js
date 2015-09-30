@@ -2,8 +2,9 @@
     var PATH = require('path'),
         FS = require('fs'),
         GUI = require('nw.gui'),
-        execFile = require('child_process').execFile;
-    recursive = require('recursive-readdir');
+        execFile = require('child_process').execFile,
+        recursive = require('recursive-readdir'),
+        request = require('request');
 
     app.factory('nwService', ['$q', nwService]);
 
@@ -22,6 +23,19 @@
 
             return path;
         }
+
+        service.requestDoomWorld = function(search) {
+            request({
+              uri: 'http://www.doomworld.com/idgames/api/api.php?callback=&action=search&out=json&query='+search+'&sort=date&type=filename',
+              method: 'GET',
+              timeout: 10000,
+              followRedirect: true,
+              maxRedirects: 10
+            }, function(error, response, body) {
+              console.log(body);
+            });
+
+        };
 
         service.recursiveDir = function(path, callback) {
             var def = $q.defer();
@@ -135,7 +149,7 @@
             });
 
             return def.promise;
-        }
+        };
 
         service.writeJSON = function(givenObject, path, relative) {
             var def = $q.defer();
