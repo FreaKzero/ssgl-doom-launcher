@@ -11,10 +11,11 @@
     "angular-animate": "*",
     "angular-aria": "*",
     "angular-material": "*",
+    "angular-ui-router": "*",
     "underscore": "*",
     "mdi": "*",
     "jquery": "*",
-    "jquery-slimscroll": "*"
+    "jquery-slimscroll": "*"    
   },
 
   "devDependencies": {
