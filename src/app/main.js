@@ -1,6 +1,17 @@
-var app = angular.module('ssgl', ['ngMaterial']);
+var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
 
 (function() {
+
+    app.config(function($stateProvider, $urlRouterProvider) {
+
+        $urlRouterProvider.otherwise('home');
+
+        $stateProvider.state('home', {
+            url: '/',
+            templateUrl: 'app/templates/MainMods.html'
+        });
+    });
+
     app.config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
             .primaryPalette('blue-grey', {
