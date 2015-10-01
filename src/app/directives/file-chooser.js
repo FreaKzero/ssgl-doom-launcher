@@ -1,5 +1,5 @@
 (function() {
-    app.directive('fileChoose', function() {
+    app.directive('fileChoose', ['nwService', function(nwService) {
         return {
             restrict: 'AE',
             replace: 'true',
@@ -17,7 +17,7 @@
                 if (typeof $scope.ngModel !== 'undefined' && $scope.ngModel !== '') {
                     $scope.wdir = $scope.ngModel.substring(0, $scope.ngModel.lastIndexOf('\\'));
                 } else {
-                    $scope.wdir = '';
+                    $scope.wdir = nwService.execpath;
                 }
 
                 $scope.label = att.label;
@@ -44,5 +44,5 @@
                 };
             }
         };
-    });
+    }]);
 })();

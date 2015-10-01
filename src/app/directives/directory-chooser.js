@@ -1,5 +1,5 @@
 (function() {
-    app.directive('dirChoose', function() {
+    app.directive('dirChoose', ['nwService', function(nwService) {
         return {
             restrict: 'AE',
             replace: 'true',
@@ -13,7 +13,12 @@
             template: '<div><md-input-container><label>{{label}}</label><input class="fileInput" type="text" ng-click="openDialog()" ng-model="ngModel"></md-input-container><input type="file" nwworkingdir="{{wdir}}" class="fileDialog" style="display:none" nwdirectory /></div>',
             link: function($scope, elem, att, ngModel) {
 
-                $scope.wdir = $scope.ngModel;
+                if (typeof $scope.ngModel !== 'undefined' && $scope.ngModel !== '') {
+                    $scope.wdir = $scope.ngModel;                    
+                } else {
+                    $scope.wdir = nwService.execpath;
+                }
+                
                 $scope.label = att.label;
 
                 var z = elem[0].querySelector('.fileDialog');
@@ -27,7 +32,6 @@
                         $scope.$apply(function() {
                             $scope.ngModel = newPath;
                         });
-
                     }
 
                 }, false);
@@ -37,5 +41,5 @@
                 };
             }
         };
-    });
+    }]);
 })();
