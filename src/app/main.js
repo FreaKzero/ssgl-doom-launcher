@@ -1,6 +1,17 @@
-var app = angular.module('ssgl', ['ngMaterial']);
+var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
 
 (function() {
+
+    app.config(function($stateProvider, $urlRouterProvider) {
+
+        $urlRouterProvider.otherwise('home');
+
+        $stateProvider.state('home', {
+            url: '/',
+            templateUrl: 'app/templates/MainMods.html'
+        });
+    });
+
     app.config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
             .primaryPalette('blue-grey', {
@@ -22,11 +33,13 @@ var app = angular.module('ssgl', ['ngMaterial']);
 
             $rootScope.config = {
                 engines: {
+                    zdoom: "",
                     gzdoom: "",
                     zandronum: "",
                 },
 
                 savepaths: {
+                    zdoom: "",
                     gzdoom: "",
                     zandronum: ""
                 },
@@ -41,7 +54,8 @@ var app = angular.module('ssgl', ['ngMaterial']);
                 active: {
                     gzdoom: false,
                     zandronum: false,
-                    oblige: false
+                    oblige: false,
+                    zdoom: false
                 },
 
                 iwadpath: "",

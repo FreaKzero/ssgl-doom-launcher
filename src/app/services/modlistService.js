@@ -6,22 +6,24 @@
         var listDir = '\\lists\\';
 
         service.rename = function(item) {
+            var oldPath = item.path;
             var newPath = nwService.getDirname(item.path) + '\\' + item.name + '.json';
-            nwService.rename(item.path, newPath);
+
+            item.path = nwService.getDirname(item.path) + '\\' + item.name + '.json';
+            return nwService.rename(oldPath, newPath);
         };
 
         service.remove = function(item) {
-            nwService.remove(item.path);
+            return nwService.remove(item.path);
         };
 
         service.saveSelected = function(name, list) {
 
-            nwService.writeJSON(list, listDir + name + '.json', true);
-
-            // todo: need ?
             setTimeout(function() {
                 $rootScope.$broadcast('MODIFIEDLISTS');
             }, 1500);
+
+            return nwService.writeJSON(list, listDir + name + '.json', true);
         };
 
         service.getLists = function() {
@@ -32,7 +34,7 @@
                     return {
                         name: item.replace(/^.*[\\\/]/, '').slice(0, -5),
                         path: nwService.getAbsolute(listDir + item),
-                        wads: nwService.readSyncJSON(listDir+item, true)
+                        wads: nwService.readSyncJSON(listDir + item, true)
                     };
                 });
 

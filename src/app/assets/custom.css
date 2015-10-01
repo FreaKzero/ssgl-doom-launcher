@@ -2,6 +2,7 @@
         html, body {
             overflow:hidden;
             background-color: #424242;
+            font-size: 14px !important;
         }
 
         #app {
@@ -9,7 +10,7 @@
             color: white;
             opacity: 0;
         }
-
+     
         #app.show {
             opacity:1;
         }
@@ -18,23 +19,17 @@
             color: black;
         }
 
-        * {
+        * {#
             -webkit-user-select: none;  /* Chrome all / Safari all */
             user-select: none; 
         }
 
-        .md-input-focused > .filterlabel {
-            opacity: 0;
+        .filtericon {
+            color: #677e89;
+            font-size: 25px !important;
         }
-
-        i.controlbtn {
-
-        }
-
-        .slimscroll-l {
-            height: 570px;
-        }
-    
+        
+               
         .customAboutContainer img {
             border-radius: 100%;
             width: 120px;
@@ -97,14 +92,9 @@
         .btn-sort:hover {
             background-color: rgba(158, 158, 158, 0.4);
         }
-
-        md-bottom-sheet {
-            color: black;
-        }
-
+        
         md-bottom-sheet .md-subheader .md-subheader-inner {
-            padding: 0 !important;          
-            color: black;  
+            padding: 0 !important;
         }   
         
         .gameholder {
@@ -173,12 +163,17 @@
         }
         
         md-bottom-sheet.md-grid md-list-item .md-grid-item-content {
-            width: 70px !important;
+            width: 70px !important;            
         }    
+
+         md-bottom-sheet.md-grid md-list-item {
+            padding: 5px;
+        }
 
         .md-tab {
             max-width: 100% !important;
         }
+
         md-bottom-sheet md-list-item:hover {
             background-color: transparent;
         }
@@ -213,7 +208,6 @@
             transform: scale(0);            
             opacity:0;
         }
-
         
 .repeat-animation.ng-enter,
 .repeat-animation.ng-leave,

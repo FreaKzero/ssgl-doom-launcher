@@ -74,81 +74,15 @@
             </md-content>
         </md-sidenav>
 
-        <div layout="row" ng-controller="modController">
-            <div flex>
-
-                <md-toolbar class="md-hue-2">
-                <div class="md-toolbar-tools">
-
-                <md-input-container style="width: 100%">
-                    <label class="filterlabel" style="color: #78909c;font-weight: normal;">Filter</label>
-                    <input ng-model="searchterm">
-                </md-input-container>
-          
-                </div>
-            </md-toolbar>
-
-                <md-content layout-padding class="slimscroll-l">
-                
-                <md-list>
-
-                <md-list-item class="md-2-line repeat-animation init-animation" ng-repeat="mod in filtered = (mods | filter:searchterm) track by mod.path" ng-click="checked(mod)">
-                <div class="md-list-item-text">
-                    <h3>{{ mod.name }}</h3>
-                    <p>{{ mod.dir }}</p>
-                </div>
-                <i class="mdi mdi-checkbox-marked-circle-outline custom-check" style="font-size: 25px;color: #ff5722;" ng-show="mod.checked"></i>
-                </md-list-item>
-                </md-list>
-
-                 <div ng-hide="filtered.length > 0" style="text-align:center;">
-
-                <img src="app/assets/nof.png" />
-                    <p>Sorry, No Mods Found</p>
-                </div>
-
-                </md-content>
-            </div>
-            <div flex>
-
-            <md-toolbar class="md-hue-2 menu-animation" ng-show="selected.length > 0 || usedList">
-                <div class="md-toolbar-tools">
-
-          <p>{{usedList || 'Untitled'}}</p>
-          <span flex></span>
-                    <md-button class="md-accent" ng-click="saveSelected($event)"><i class="mdi mdi-content-save"></i> Save</md-button>
-
-                    <md-button class="md-accent" ng-click="newSelected()"><i class="mdi mdi-playlist-plus"></i> New</md-button>
-                </div>
-            </md-toolbar>
-
-                <md-content layout-padding class="slimscroll-r">
-                <md-list>
-                <md-list-item class="md-2-line repeat-animation" ng-repeat="mod in selected track by mod.path">
-                <div class="md-list-item-text">
-                    <h3>{{ mod.name }}</h3>
-                    <p>{{ mod.dir }}</p>
-                </div>
-                <div class="md-secondary">
-                    <p ng-click="moveUp($index)"><i class="mdi mdi-chevron-up btn-sort"></i></p>
-                    <p ng-click="moveDown($index)"><i class="mdi mdi-chevron-down btn-sort"></i></p>
-                </div>
-
-                </md-list-item>
-                </md-list>
-                </md-content>
-            </div>
-        </div>
-
-            <md-button aria-label="play" class="md-fab special-fab md-fab-bottom-right" ng-click="showGameSelection()" ng-show="config.iwadpath.length > 0">
-                <i class="mdi mdi-play"></i>
-            </md-button>
+        
+        <div ui-view></div>
 
         <script src="app/lib/underscore/underscore.js"></script>
         <script src="app/_mixins.js"></script>
         <script src="app/lib/angular/angular.js"></script>
         <script src="app/lib/angular-animate/angular-animate.js"></script>
         <script src="app/lib/angular-aria/angular-aria.js"></script>
+        <script src="app/lib/angular-ui-router/release/angular-ui-router.min.js"></script>        
         <script type="text/javascript" src="app/lib/angular-material/angular-material.js"></script>
         <script type="text/javascript">
 

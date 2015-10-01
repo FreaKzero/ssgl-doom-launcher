@@ -2,9 +2,10 @@
     var PATH = require('path'),
         FS = require('fs'),
         GUI = require('nw.gui'),
-        execFile = require('child_process').execFile;
-        recursive = require('recursive-readdir');
- 
+        execFile = require('child_process').execFile,
+        recursive = require('recursive-readdir'),
+        request = require('request');
+
     app.factory('nwService', ['$q', nwService]);
 
     function nwService($q) {
@@ -23,8 +24,21 @@
             return path;
         }
 
+        service.requestDoomWorld = function(search) {
+            request({
+              uri: 'http://www.doomworld.com/idgames/api/api.php?callback=&action=search&out=json&query='+search+'&sort=date&type=filename',
+              method: 'GET',
+              timeout: 10000,
+              followRedirect: true,
+              maxRedirects: 10
+            }, function(error, response, body) {
+              console.log(body);
+            });
+
+        };
+
         service.recursiveDir = function(path, callback) {
-            var def = $q.defer();            
+            var def = $q.defer();
             recursive(path, function(err, files) {
                 if (err) {
                     def.reject(err);
@@ -49,13 +63,28 @@
         };
 
         service.rename = function(oldpath, newpath) {
+            var def = $q.defer();
             FS.rename(oldpath, newpath, function(err) {
-                if (err) console.log('ERROR: ' + err);
+                if (err) {
+                    def.reject(err);
+                } else {
+                    def.resolve(newpath.replace(/^.*[\\\/]/, ''));
+                }
             });
+            return def.promise;
         };
 
         service.remove = function(path) {
-            FS.unlinkSync(path);
+            var def = $q.defer();
+
+            FS.unlink(path, function(err) {
+                if (err) {
+                    def.reject(err);
+                } else {
+                    def.resolve(path.replace(/^.*[\\\/]/, ''));
+                }
+            });
+            return def.promise;
         };
 
         service.getDir = function(path, relative) {
@@ -120,7 +149,7 @@
             });
 
             return def.promise;
-        }
+        };
 
         service.writeJSON = function(givenObject, path, relative) {
             var def = $q.defer();
@@ -130,7 +159,7 @@
                 if (err) {
                     def.reject(err);
                 } else {
-                    def.resolve();
+                    def.resolve(path.replace(/^.*[\\\/]/, ''));
                 }
             });
 

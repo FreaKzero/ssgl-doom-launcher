@@ -2,6 +2,13 @@
     app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', 'iwadService', 'nwService', appController]);
 
     function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService, $http, iwadService, nwService) {
+        var $PARENT = $scope;
+        var TOASTDELAY = 1500;
+
+        $mdToast.show(
+            $mdToast.simple()
+            .content('Checking for Updates...').position('bottom').hideDelay(TOASTDELAY)
+        );
 
         $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
         then(function(response) {
@@ -12,7 +19,7 @@
                         $scope.downloadversion = response.data.version;
 
                         $scope.download = function(url) {
-                            var release = 'https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v'+response.data.version;
+                            var release = 'https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v' + response.data.version;
                             nwService.getShell().openExternal(release);
                         };
 
@@ -30,10 +37,6 @@
         }, function(response) {
             console.log('ERROR: ' + response);
         });
-
-
-        var $PARENT = $scope;
-        var TOASTDELAY = 1500;
 
         if ($scope.config.freshinstall === true) {
             SettingsDialog(null);
@@ -76,7 +79,6 @@
             });
 
             function AboutDialogController($scope, $mdBottomSheet) {
-                console.log($PARENT.APPVERSION)
                 $scope.version = $PARENT.APPVERSION;
                 $scope.openURL = function(url) {
                     nwService.getShell().openExternal(url);
@@ -97,6 +99,8 @@
             });
 
             function GameSelectionController($scope, $mdBottomSheet, iwadService) {
+                $scope.useoblige = false;
+
                 iwadService.getIWADS($PARENT.config.iwadpath).then(function(iwads) {
                     $scope.iwads = iwads;
                 });
@@ -111,11 +115,14 @@
                     $scope.engine = 'gzDoom';
                 }
 
-                $scope.startGame = function($index, engine) {
-                    var iwad = $scope.iwads[$index].file;
-
-                    $PARENT.$broadcast('STARTGZDOOM', iwad, false, engine);
-                    $mdBottomSheet.hide();
+                $scope.startGame = function($index, engine, $event) {
+                    if ($scope.useoblige === false) {
+                        var iwad = $scope.iwads[$index].file;
+                        $PARENT.$broadcast('STARTGZDOOM', iwad, false, engine);
+                        $mdBottomSheet.hide();
+                    } else {
+                        $scope.startGameOblige($event, $index, engine);
+                    }
                 };
 
                 $scope.startGameOblige = function(ev, $index, engine) {
@@ -152,7 +159,7 @@
                         };
 
                         $scope.continue = function() {
-                            $PARENT.$broadcast('STARTGZDOOM', iwad, $PARENT.config.oblige.mappath, engine);
+                            $PARENT.$broadcast('STARTGZDOOM', iwad, $PARENT.config.oblige.mappath, engine, $mdDialog);
                         };
 
                         $scope.cancel = function() {

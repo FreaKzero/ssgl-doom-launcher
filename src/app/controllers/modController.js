@@ -1,9 +1,9 @@
  (function() {
 
     var execFile = require('child_process').execFile;       
-    app.controller('modController', ['$scope', 'modService', 'modlistService', '$mdDialog', 'nwService','modselectedService', modController]);
+    app.controller('modController', ['$scope', 'modService', 'modlistService', '$mdDialog', 'nwService','modselectedService', '$mdToast', modController]);
 
-    function modController($scope, modService, modlistService, $mdDialog, nwService, modselectedService) {
+    function modController($scope, modService, modlistService, $mdDialog, nwService, modselectedService, $mdToast) {
         var self = this;
         var $parent = $scope;
 
@@ -79,7 +79,20 @@
                 $scope.checkdoubles = function() {};
 
                 $scope.submitForm = function() {
-                    modlistService.saveSelected($scope.listname, $parent.selected);
+                    modlistService.saveSelected($scope.listname, $parent.selected).then(function(listname) {
+                        $mdToast.show(
+                            $mdToast.simple()
+                            .content('Saved List to '+listname).position('bottom').hideDelay(1500)
+                        );
+                    }, function(error) {
+                        $mdToast.show(
+                            $mdToast.simple()
+                            .content(error.message).position('bottom').hideDelay(1500)
+                        );
+                    });
+
+                    
+
                     $parent.usedList = $scope.listname;
                     $mdDialog.cancel();
                 };
@@ -110,7 +123,7 @@
                 });
             }
         };
-
+     
         $scope.$on('STARTOBLIGE', function(ev, iwad, config, engine, log) {
             $mdDialog.show({
                 templateUrl: 'app/templates/ObligeLoading.html',
@@ -145,9 +158,13 @@
             });
         });
 
-        $scope.$on('STARTGZDOOM', function(ev, iwad, map, engine) {
+        $scope.$on('STARTGZDOOM', function(ev, iwad, map, engine, dialog) {
             if (typeof map === 'undefined') {
                 map = false;
+            }
+
+            if (typeof dialog === 'undefined') {
+                dialog = false;
             }
 
             var child;
@@ -175,6 +192,17 @@
                         SAVEDIR = $scope.config.savepaths.zandronum + 'default';
                     }
                     break;
+
+                case "zdoom":
+                    useEngine = $scope.config.engines.zdoom;
+
+                    if ($scope.usedList !== false) {
+                        SAVEDIR = $scope.config.savepaths.zdoom + $scope.usedList;
+                    } else {
+                        SAVEDIR = $scope.config.savepaths.zdoom + 'default';
+                    }
+
+                    break;
             }
            
             var params = ['-iwad', $scope.config.iwadpath + iwad, '-savedir', SAVEDIR];
@@ -186,9 +214,13 @@
                 wads.push(map);
             }
 
+            if (dialog !== false) {
+                dialog.hide();
+            }
+
             params = params.concat(['-file'], wads);
-            console.log(params);            
             child = execFile(useEngine, params,
+
                 function(error, stdout, stderr) {
                     if (error) {
                         console.log(error.stack);
