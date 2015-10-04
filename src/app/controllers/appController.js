@@ -165,8 +165,7 @@
                                 iwad: iwad,
                                 config: $scope.selectedconfig,
                                 engine: engine,
-                                log: $scope.outputlog,
-                                dialog: $mdDialog
+                                log: $scope.outputlog
                             });
                         };
 
