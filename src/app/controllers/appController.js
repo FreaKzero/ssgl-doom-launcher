@@ -1,7 +1,7 @@
 (function() {
-    app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', 'iwadService', 'nwService', appController]);
+    app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', 'iwadService', 'nwService','gameService', appController]);
 
-    function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService, $http, iwadService, nwService) {
+    function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService, $http, iwadService, nwService, gameService) {
         var $PARENT = $scope;
         var TOASTDELAY = 1500;
 
@@ -112,12 +112,22 @@
                 $scope.config = $PARENT.config;
                 
                 $scope.startGame = function($index, engine, $event) {
+
                     if ($scope.useoblige === false) {
-                        var iwad = $scope.iwads[$index].file;
-                        $PARENT.$broadcast('STARTGZDOOM', iwad, false, engine);
+                        
+                        gameService.startDoom({
+                            iwad: $scope.iwads[$index].file,
+                            map: false, 
+                            engine: engine, 
+                            dialog: null
+                        });
+
                         $mdBottomSheet.hide();
+
                     } else {
+
                         $scope.startGameOblige($event, $index, engine);
+
                     }
                 };
 
@@ -151,11 +161,22 @@
                         });
 
                         $scope.start = function($index) {
-                            $PARENT.$broadcast('STARTOBLIGE', iwad, $scope.selected, engine, $scope.outputlog);
+                            gameService.startOblige({
+                                iwad: iwad,
+                                config: $scope.selectedconfig,
+                                engine: engine,
+                                log: $scope.outputlog
+                            });
                         };
 
                         $scope.continue = function() {
-                            $PARENT.$broadcast('STARTGZDOOM', iwad, $PARENT.config.oblige.mappath, engine, $mdDialog);
+                            gameService.startDoom({
+                                iwad: iwad,
+                                config: $scope.selectedconfig,
+                                engine: engine,
+                                log: $scope.outputlog,
+                                map: $PARENT.config.oblige.mappath
+                            });
                         };
 
                         $scope.cancel = function() {
