@@ -114,7 +114,7 @@
                 $scope.startGame = function($index, engine, $event) {
 
                     if ($scope.useoblige === false) {
-                        
+                        //TODO: usedlist
                         gameService.startDoom({
                             iwad: $scope.iwads[$index].file,
                             map: false, 

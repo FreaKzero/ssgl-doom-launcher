@@ -1,12 +1,14 @@
 (function() {
     app.factory('modselectedService', ['$q', modselectedService]);
         selected = [];
+        listname = 'Untitled';
 
     function modselectedService($q) {    
         var service = {};        
 
-        service.sync = function(data) {
+        service.sync = function(data, name) {
             selected = data;
+            listname = name;
         };
 
         service.getPaths = function() {
@@ -17,7 +19,11 @@
 
         service.get = function() {
             return selected;
-        }
+        };
+
+        service.getListname = function() {
+            return listname;
+        };
         
         return service;
     }

@@ -16,7 +16,7 @@
             }
 
             var child, 
-                savedir = $rootScope.config.savepaths[opt.engine] + '\\' + opt.usedList, 
+                savedir = $rootScope.config.savepaths[opt.engine] + '\\' +modselectedService.getListname();
                 useEngine = $rootScope.config.engines[opt.engine];
             
             var wads = modselectedService.getPaths();
@@ -30,7 +30,7 @@
             if (wads.length > 0) {
                 params = params.concat(['-file'], wads);
             }
-                                        
+
             child = execFile(useEngine, params, function(error, stdout, stderr) {
                     //TODO better...
                     if (error) {

@@ -24,8 +24,13 @@
 
          });
 
+         //TODO make 1 Object
+         $scope.$watch('usedList', function(nv, ov) {
+            modselectedService.sync(nv, $scope.usedList);
+         });
+
          $scope.$watchCollection('selected', function(nv, ov) {
-            modselectedService.sync(nv);
+            modselectedService.sync(nv, $scope.usedList);
          });
 
          $scope.$on('USELIST', function(ev, wads, name) {
