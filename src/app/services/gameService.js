@@ -5,8 +5,7 @@
 
     function gameService($q, $rootScope, $mdDialog, modselectedService, nwService) {
         var service = {};        
-        service.selected =  modselectedService.selected;
-        
+                
         service.startDoom = function(opt) {
             if (typeof opt.map === 'undefined' || opt.map === null) {
                 opt.map = false;
@@ -19,11 +18,9 @@
             var child, 
                 savedir = $rootScope.config.savepaths[opt.engine] + '\\' + opt.usedList, 
                 useEngine = $rootScope.config.engines[opt.engine];
-           
-            var wads = service.selected.map(function(item) {
-                return item.path;
-            });
-
+            
+            var wads = modselectedService.getPaths();
+            
             if (opt.map !== false) {
                 wads.push(opt.map);
             }

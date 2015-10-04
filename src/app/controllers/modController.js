@@ -6,11 +6,8 @@
          var $parent = $scope;
 
          $scope.usedList = 'Untitled';
-
-         modselectedService.getSelected().then(function(selected) {
-             $scope.selected = selected;
-         });
-
+         $scope.selected = modselectedService.selected;
+         
          modService.getMods($scope.config.wadpath).then(function(mods) {
              $scope.mods = mods;
 
@@ -25,6 +22,10 @@
                  }
              }
 
+         });
+
+         $scope.$watchCollection('selected', function(nv, ov) {
+            modselectedService.sync(nv);
          });
 
          $scope.$on('USELIST', function(ev, wads, name) {

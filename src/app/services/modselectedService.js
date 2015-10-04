@@ -1,19 +1,24 @@
 (function() {
     app.factory('modselectedService', ['$q', modselectedService]);
+        selected = [];
 
-    function modselectedService($q) {
-        var service = {};
-        service.selected = [];
+    function modselectedService($q) {    
+        var service = {};        
 
-        service.getSelected = function() {
-            var def = $q.defer();
-
-            def.resolve(service.selected);
-
-            return def.promise;
+        service.sync = function(data) {
+            selected = data;
         };
 
+        service.getPaths = function() {
+            return selected.map(function(item) {
+                return item.path;
+            });
+        };
 
+        service.get = function() {
+            return selected;
+        }
+        
         return service;
     }
 })();
