@@ -7,7 +7,7 @@
          var self = this;
          var $parent = $scope;
 
-         $scope.usedList = false;
+         $scope.usedList = 'Untitled';
 
          modselectedService.getSelected().then(function(selected) {
              $scope.selected = selected;
@@ -51,7 +51,7 @@
              });
 
              $scope.selected = [];
-             $scope.usedList = false;
+             $scope.usedList = 'Untitled';
          };
 
          $scope.saveSelected = function(ev) {
@@ -66,7 +66,7 @@
              function saveSelectedController($scope, $mdDialog, modlistService) {
                  $scope.title = 'Save List';
 
-                 if ($parent.usedList !== false) {
+                 if ($parent.usedList !== 'Untitled') {
                      $scope.listname = $parent.usedList;
                  }
 
