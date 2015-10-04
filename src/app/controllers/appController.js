@@ -111,15 +111,6 @@
 
                 $scope.config = $PARENT.config;
                 
-                // TODO: make loop - find first active                
-                if ($PARENT.config.active.zandronum) {
-                    $scope.engine = 'Zandronum';
-                }
-
-                if ($PARENT.config.active.gzdoom) {
-                    $scope.engine = 'gzDoom';
-                }
-
                 $scope.startGame = function($index, engine, $event) {
                     if ($scope.useoblige === false) {
                         var iwad = $scope.iwads[$index].file;

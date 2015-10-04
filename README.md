@@ -1,6 +1,5 @@
 # Super Shotgun Launcher  
-Gamelauncher for gzDoom and Zandronum written in AngularMaterial on NWJS  
-*Be aware that this is currently not tested on Linuxbuilds.*
+WAD Loader / Gamelauncher with Oblige mapbuild Integration for zdoom, gzDoom, Skulltag and Zandronum written in AngularMaterial on NWJS. 
 
 ![Demo](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/readme.gif)
 
@@ -9,12 +8,14 @@ Gamelauncher for gzDoom and Zandronum written in AngularMaterial on NWJS
 
 ##Features:  
 - Painfree modern UI
-- Easy Filtering through your wads (directory-names and wad-names)
+- Easy Filtering through your WADs (directory-names and wad-names)
+- Loadorder sorting for chosen WADs
 - Creating/Saving wadlists for faster access
-- Automatic using/creating Savefolders based on used wadlists
-- [gzDoom](https://github.com/coelckers/gzdoom) and [Zandronum](https://zandronum.com/) Support
+- Automatic using/creating Savefolders based on the name on used wadlist
+- [zDoom](http://zdoom.org), [gzDoom](https://github.com/coelckers/gzdoom), [Skulltag](http://www.skulltag.com/) and [Zandronum](https://zandronum.com/) Support
 - [Oblige](http://oblige.sourceforge.net/) "Build and Play" via Configfiles (Also able to resume last built map)
-- Easy sorting for wad loading order
+- Fast access to your favourite DoomSeeker Client and Oblige Frontend
+- Automatic Update Notifier
 
 ##If you want to Help/Contribute  
 Taiga: https://tree.taiga.io/project/freakzero-gzdoom-launcher  
