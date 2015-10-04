@@ -1,6 +1,4 @@
  (function() {
-
-     var execFile = require('child_process').execFile;
      app.controller('modController', ['$scope', 'modService', 'modlistService', '$mdDialog', 'nwService', 'modselectedService', '$mdToast', modController]);
 
      function modController($scope, modService, modlistService, $mdDialog, nwService, modselectedService, $mdToast) {
