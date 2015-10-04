@@ -34,8 +34,18 @@ module.exports = function(grunt) {
 
         curl: {
 
-            nwdev: {
+            win64: {
                 src: 'http://dl.nwjs.io/v0.12.0/nwjs-v0.12.0-win-x64.zip',
+                dest: './cache/nwdev.zip'
+            },
+
+            nwdevTux32: {
+              src: 'http://dl.nwjs.io/v0.12.0/nwjs-v0.12.0-linux-ia32.tar.gz',
+                dest: './cache/nwdev.zip'
+            },
+
+            nwdevTux64: {
+              src: 'http://dl.nwjs.io/v0.12.0/nwjs-v0.12.0-linux-x64.tar.gz',
                 dest: './cache/nwdev.zip'
             }
         },
@@ -57,8 +67,11 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', ['nwjs:win']);
     grunt.registerTask('build-linux', ['nwjs:tux']);
-    
+
     grunt.registerTask('init', ['shell:npmInstall']);
-    grunt.registerTask('build-devenv', ['curl', 'unzip', 'shell:devInstall']);
+
+    grunt.registerTask('build-devenv', ['curl:win64', 'unzip', 'shell:devInstall']);
+    grunt.registerTask('build-devenv-linux32', ['curl:nwdevTux32', 'unzip', 'shell:devInstall']);
+    grunt.registerTask('build-devenv-linux64', ['curl:nwdevTux64', 'unzip', 'shell:devInstall']);
 
 };
