@@ -59,6 +59,10 @@
             nwService.getShell().openItem($scope.config.oblige.binary);
         };
 
+        $scope.openMultiplayer = function() {
+            nwService.getShell().openItem($scope.config.online.client);
+        };
+
         $scope.openMenu = function($mdOpenMenu, ev) {
             var originatorEv = ev;
             $mdOpenMenu();
@@ -106,15 +110,7 @@
                 });
 
                 $scope.config = $PARENT.config;
-
-                if ($PARENT.config.active.zandronum) {
-                    $scope.engine = 'Zandronum';
-                }
-
-                if ($PARENT.config.active.gzdoom) {
-                    $scope.engine = 'gzDoom';
-                }
-
+                
                 $scope.startGame = function($index, engine, $event) {
                     if ($scope.useoblige === false) {
                         var iwad = $scope.iwads[$index].file;
