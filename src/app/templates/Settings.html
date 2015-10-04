@@ -48,6 +48,10 @@
           <md-option ng-repeat="list in modlist" value="{{list}}">{{list.name}}</md-option>
         </md-select>
 
+    <div ng-show="config.active.zandronum === true || config.active.skulltag === true">
+      <file-choose label="Online Client:" ng-model="config.online.client"></file-choose>
+    </div>
+
     <div ng-show="config.active.gzdoom">
       <file-choose label="gzDoom Path:"  ng-model="config.engines.gzdoom"></file-choose>
       <dir-choose label="gzDoom Savegames:" ng-model="config.savepaths.gzdoom"></dir-choose>
@@ -78,11 +82,7 @@
       <dir-choose label="Oblige MapConfig Path:" ng-model="config.oblige.configs"></dir-choose>
       <file-choose label="Oblige Random Map Path:" ng-model="config.oblige.mappath"></file-choose>
     </div>
-    
-    <div>
-      <file-choose label="Online Client:" ng-model="config.online.client"></file-choose>
-    </div>
-
+       
     </div>
   </md-dialog-content>
   <div class="md-actions" layout="row">    
