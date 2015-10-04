@@ -29,10 +29,16 @@
         </div>
 
         <div flex>
+        <md-checkbox ng-model="config.active.skulltag" aria-label="Skulltag">
+          <p style="color:white;">Skulltag</p>      
+        </md-checkbox>
+        </div>
+
+        <div flex>
         <md-checkbox ng-model="config.active.oblige" aria-label="Oblige">
           <p style="color:white;">Oblige</p>      
         </md-checkbox>
-        </div>    
+        </div>   
         </div>
     
 
@@ -56,6 +62,12 @@
       <file-choose label="Zandronum Path:" ng-model="config.engines.zandronum"></file-choose>
       <dir-choose label="Zandronum Savegames:" ng-model="config.savepaths.zandronum"></dir-choose>
     </div>
+
+    <div ng-show="config.active.skulltag">
+      <file-choose label="Skulltag Path:"  ng-model="config.engines.skulltag"></file-choose>
+      <dir-choose label="Skulltag Savegames:" ng-model="config.savepaths.skulltag"></dir-choose>
+    </div>
+
 
     <dir-choose label="WAD Path:" ng-model="config.wadpath"></dir-choose>
 

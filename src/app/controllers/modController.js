@@ -203,6 +203,18 @@
                     }
 
                     break;
+
+                 case "skulltag":
+                    useEngine = $scope.config.engines.skulltag;
+
+                    if ($scope.usedList !== false) {
+                        SAVEDIR = $scope.config.savepaths.skulltag + $scope.usedList;
+                    } else {
+                        SAVEDIR = $scope.config.savepaths.skulltag + 'default';
+                    }
+
+                    break;
+
             }
            
             var params = ['-iwad', $scope.config.iwadpath + iwad, '-savedir', SAVEDIR];

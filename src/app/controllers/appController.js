@@ -110,7 +110,8 @@
                 });
 
                 $scope.config = $PARENT.config;
-
+                
+                // TODO: make loop - find first active                
                 if ($PARENT.config.active.zandronum) {
                     $scope.engine = 'Zandronum';
                 }
