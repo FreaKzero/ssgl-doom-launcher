@@ -59,6 +59,10 @@
             nwService.getShell().openItem($scope.config.oblige.binary);
         };
 
+        $scope.openMultiplayer = function() {
+            nwService.getShell().openItem($scope.config.online.client);
+        };
+
         $scope.openMenu = function($mdOpenMenu, ev) {
             var originatorEv = ev;
             $mdOpenMenu();

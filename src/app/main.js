@@ -58,6 +58,10 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                     zdoom: false
                 },
 
+                online: {
+                    client: ""                  
+                },
+
                 iwadpath: "",
                 wadpath: "",
 

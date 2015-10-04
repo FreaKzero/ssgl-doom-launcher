@@ -20,8 +20,10 @@
             <h1 style="margin-left: 10px;">Super Shotgun Launcher</h1>
         </div>
 
-        <md-button aria-label="Open Settings" style="min-width: 50px;margin:0;" ng-click="showSettings($event)"><i class="mdi mdi-settings" style="font-size: 35px; margin-top: 8px;"></i></md-button>
+        <md-button ng-show="config.active.oblige" aria-label="Open Oblige" style="min-width: 50px;margin:0;" ng-click="openOblige()"><i class="mdi mdi-map" style="font-size: 35px; margin-top: 8px;"></i></md-button>
 
+        <md-button ng-show="config.online.client !== ''" aria-label="Open Multiplayer Client" style="min-width: 50px;margin:0;" ng-click="openMultiplayer()"><i class="mdi mdi-server-network" style="font-size: 35px; margin-top: 8px;"></i></md-button>
+        
         <md-menu>
           <md-button aria-label="Open Menu" class="md-icon-button" style="padding:0;margin:0 0 0 0;" ng-click="openMenu($mdOpenMenu, $event)">
             <i class="mdi mdi-dots-vertical" style="font-size: 35px; margin-top: 8px;"></i>
@@ -33,8 +35,8 @@
             <md-button ng-click="openWADFolder()">Open WAD Folder</md-button>
             </md-menu-item>
 
-            <md-menu-item ng-show="config.active.oblige">
-            <md-button ng-click="openOblige()">Open Oblige</md-button>
+            <md-menu-item>
+            <md-button ng-click="showSettings($event)">Settings</md-button>
             </md-menu-item>
             
             <md-menu-item>
