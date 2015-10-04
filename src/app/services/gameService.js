@@ -1,9 +1,9 @@
 (function() {
     
     var execFile = require('child_process').execFile;
-    app.factory('gameService', ['$q','$rootScope', 'modselectedService', 'nwService', gameService]);
+    app.factory('gameService', ['$q','$rootScope', '$mdDialog', 'modselectedService', 'nwService', gameService]);
 
-    function gameService($q, $rootScope, modselectedService, nwService) {
+    function gameService($q, $rootScope, $mdDialog, modselectedService, nwService) {
         var service = {};        
         service.selected =  modselectedService.selected;
         
@@ -33,11 +33,7 @@
             if (wads.length > 0) {
                 params = params.concat(['-file'], wads);
             }
-            
-            if (opt.dialog !== false) {
-                dialog.hide();
-            }
-                     
+                                        
             child = execFile(useEngine, params, function(error, stdout, stderr) {
                     //TODO better...
                     if (error) {
@@ -52,6 +48,15 @@
         };
 
         service.startOblige = function(opt) {
+
+            $mdDialog.show({
+                templateUrl: 'app/templates/ObligeLoading.html',
+                parent: angular.element(document.body),
+                targetEvent: null,
+                clickOutsideToClose: false
+            });
+
+            opt.map = $rootScope.config.oblige.mappath;
             var params = ['--batch', $rootScope.config.oblige.mappath, '--load', opt.config];
 
             if (opt.log === true) {
@@ -72,16 +77,16 @@
                     alert(error.signal);
                     return false;
                 }
+
             }); 
 
             child.on('exit', function(code) {
-                if (opt.dialog) {
-                    opt.dialog.hide();
-                }
+                $mdDialog.cancel();
+
                 setTimeout(function() {
                      service.startDoom(opt);
                  }, 1500);               
-            });        
+            });
 
         };
 
