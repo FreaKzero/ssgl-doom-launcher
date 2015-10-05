@@ -145,7 +145,6 @@
                     });
 
                     function ConfigDialogController($scope, $mdDialog, nwService) {
-                        $scope.outputlog = false;
 
                         nwService.getDir($PARENT.config.oblige.configs).then(function(files) {
                             $scope.mapconfigs = files.map(function(cfg) {
@@ -164,8 +163,7 @@
                             gameService.startOblige({
                                 iwad: iwad,
                                 config: $scope.selectedconfig,
-                                engine: engine,
-                                log: $scope.outputlog
+                                engine: engine
                             });
                         };
 
@@ -174,7 +172,6 @@
                                 iwad: iwad,
                                 config: $scope.selectedconfig,
                                 engine: engine,
-                                log: $scope.outputlog,
                                 map: $PARENT.config.oblige.mappath
                             });
                         };

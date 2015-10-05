@@ -1,11 +1,11 @@
 (function() {
-    
+
     var execFile = require('child_process').execFile;
     app.factory('gameService', ['$q','$rootScope', '$mdDialog', 'modselectedService', 'nwService', gameService]);
 
     function gameService($q, $rootScope, $mdDialog, modselectedService, nwService) {
-        var service = {};        
-                
+        var service = {};
+
         service.startDoom = function(opt) {
             if (typeof opt.map === 'undefined' || opt.map === null) {
                 opt.map = false;
@@ -15,12 +15,12 @@
                 opt.dialog = false;
             }
 
-            var child, 
+            var child,
                 savedir = $rootScope.config.savepaths[opt.engine] + '\\' +modselectedService.getListname();
                 useEngine = $rootScope.config.engines[opt.engine];
-            
+
             var wads = modselectedService.getPaths();
-            
+
             if (opt.map !== false) {
                 wads.push(opt.map);
             }
@@ -56,38 +56,23 @@
             opt.map = $rootScope.config.oblige.mappath;
             var params = ['--batch', $rootScope.config.oblige.mappath, '--load', opt.config];
 
-            if (opt.log === true) {
-                nwService.writeTxt(stdout, 'obligelog.txt').then(function() {
-                    nwService.getShell().openItem('obligelog.txt');                        
-                });
-            }
-
             child = execFile($rootScope.config.oblige.binary, params, function(error, stdout, stderr) {
-                if (opt.log === true) {
-                    nwService.writeTxt(stdout, 'obligelog.txt').then(function() {
-                        nwService.getShell().openItem('obligelog.txt');                        
-                    });
-                }
-
                 //TODO better...
                 if (error) {
                     alert(error.signal);
                     return false;
                 }
 
-            }); 
+            });
 
             child.on('exit', function(code) {
                 $mdDialog.cancel();
-
-                setTimeout(function() {
-                     service.startDoom(opt);
-                 }, 1500);               
+                service.startDoom(opt);
             });
 
         };
 
-        return service;    
+        return service;
     }
 
 })();
