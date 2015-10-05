@@ -19,6 +19,7 @@ WAD Loader / Gamelauncher with Oblige mapbuild Integration for zdoom, gzDoom, Sk
 
 ##If you want to Help/Contribute  
 Taiga: https://tree.taiga.io/project/freakzero-gzdoom-launcher  
+Gitter: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/FreaKzero/ssgl-doom-launcher?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge)
 
 ##Howto Build:
 Be sure that bower and npm is installed  
