@@ -174,6 +174,8 @@
                                 engine: engine,
                                 map: $PARENT.config.oblige.mappath
                             });
+
+                            $mdDialog.cancel();
                         };
 
                         $scope.cancel = function() {
