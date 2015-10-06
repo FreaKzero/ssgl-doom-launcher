@@ -56,6 +56,11 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
      * @requires nwService     
      */
     app.run(function($rootScope, nwService) {
+
+        /**
+         * @property {String} APPVERSION Versionnumber
+         * @type {String}
+         */
         $rootScope.APPVERSION = nwService.readSyncJSON('package.json').version;
         document.title = 'Super Shotgun Launcher v'+$rootScope.APPVERSION;
         nwService.mkDir('\\lists', true);

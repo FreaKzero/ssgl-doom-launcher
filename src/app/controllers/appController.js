@@ -7,16 +7,16 @@
      
      * @module ssgl
      * @submodule appController
-     * @param  Service $scope         
-     * @param  Service $mdDialog      
-     * @param  Service $mdToast       
-     * @param  Service $mdBottomSheet 
-     * @param  Service $mdSidenav
-     * @param  Service modlistService modlist Holder Service
-     * @param  Service $http
-     * @param  Service iwadService iwad Holder Service
-     * @param  Service nwService Node Webkit Service
-     * @param  Service gameService Service to Start Doom Engines or Oblige    
+     * @param Service $scope         
+     * @param Service $mdDialog      
+     * @param Service $mdToast       
+     * @param Service $mdBottomSheet 
+     * @param Service $mdSidenav
+     * @param Service modlistService modlist Holder Service
+     * @param Service $http
+     * @param Service iwadService iwad Holder Service
+     * @param Service nwService Node Webkit Service
+     * @param Service gameService Service to Start Doom Engines or Oblige    
      */
     function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService, $http, iwadService, nwService, gameService) {
         var $PARENT = $scope;
@@ -74,18 +74,17 @@
          *
          * @for appController
          * @method showSettings
-         * @param  Object ev Clickevent
+         * @param  Event ev Clickevent
          */
         $scope.showSettings = function(ev) {
             SettingsDialog(ev);
         };
 
         /**
-         * [reload description]
+         * Reloads the complete Application
          *
          * @for appController
-         * @method reload
-         * @return {[type]} [description]
+         * @method reload         
          */
         $scope.reload = function() {
             window.location.reload();
@@ -131,7 +130,7 @@
          * @for appController
          * @uses $mdOpenMenu
          * @method openMenu
-         * @param  Service $mdOpenMenu SidemenuService
+         * @param  $mdOpenMenu
          * @param  Event ev Clickevent
          */
         $scope.openMenu = function($mdOpenMenu, ev) {
@@ -151,10 +150,11 @@
         };
 
         /**
-         * [showAboutDialog description]
+         * Opens the About Dialog
+         * 
+         * @uses  $mdDialog AngularMaterial Dialog Service
          * @method showAboutDialog
-         * @param  {[type]}        ev [description]
-         * @return {[type]}           [description]
+         * @param  event ev Clickevent
          */
         $scope.showAboutDialog = function(ev) {
 
@@ -166,18 +166,54 @@
                 clickOutsideToClose: true
             });
 
+            /**
+             * AboutDialogController             
+             * @method AboutDialogController
+             * @for showAboutDialog
+             * @param $scope
+             * @param $mdBottomSheet
+             */
             function AboutDialogController($scope, $mdBottomSheet) {
+
+                /**
+                 * @property String version Versionnumber
+                 * @type String
+                 */
                 $scope.version = $PARENT.APPVERSION;
+
+                /**
+                 * Opens Url in Default Browser
+                 * 
+                 * @method openURL
+                 * @uses  nwService
+                 * @for AboutDialogController
+                 * @param String url
+                 */
                 $scope.openURL = function(url) {
                     nwService.getShell().openExternal(url);
                 };
 
+                /**
+                 * Closes About Dialog
+                 *
+                 * @uses $mdDialog
+                 * @method yup
+                 * @for AboutDialogController
+                 */
                 $scope.yup = function() {
                     $mdDialog.cancel();
                 };
             }
         };
 
+        /**
+         * Shows Game Selection Bottomsheet
+         *
+         * @uses $mdBottomSheet
+         * @method showGameSelection
+         * @for appController
+         * @param $event
+         */
         $scope.showGameSelection = function($event) {
 
             $mdBottomSheet.show({
@@ -186,15 +222,42 @@
                 targetEvent: $event
             });
 
+            /**
+             * GameSelectionController
+             * @method GameSelectionController
+             * @for showGameSelection
+             * @param  Scope $scope
+             * @param  $mdBottomSheet
+             * @param  iwadService
+             */
             function GameSelectionController($scope, $mdBottomSheet, iwadService) {
+                /**
+                 * @property {Bool} useoblige Boolean Checkbox for using Oblige or not
+                 */
                 $scope.useoblige = false;
 
                 iwadService.getIWADS($PARENT.config.iwadpath).then(function(iwads) {
+                    /**
+                     * @property {array} iwads available iwads Array                     
+                     * @async
+                     */
                     $scope.iwads = iwads;
                 });
 
+                /**
+                 * @property {Object} config (see Main configuration)
+                 */
                 $scope.config = $PARENT.config;
                 
+                /**
+                 * Starts a game via the clicked index
+                 * 
+                 * @method startGame
+                 * @for GameSelectionController
+                 * @param  $index
+                 * @param  {String}  engine What engine is used
+                 * @param  $event
+                 */
                 $scope.startGame = function($index, engine, $event) {
 
                     if ($scope.useoblige === false) {
@@ -215,6 +278,15 @@
                     }
                 };
 
+                /**
+                 * Starts Oblige Mapbuilder
+                 * 
+                 * @method startGameOblige
+                 * @for GameSelectionController                 
+                 * @param  {Event} ev Clickevent
+                 * @param  $index 
+                 * @param  {String} engine What engine is used
+                 */
                 $scope.startGameOblige = function(ev, $index, engine) {
                     var iwad = $scope.iwads[$index].file;
 
