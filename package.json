@@ -10,6 +10,7 @@
       "grunt-nw-builder": "*",
       "grunt-shell": "*",
       "grunt-curl": "*",
-      "grunt-zip": "*"      
+      "grunt-zip": "*",
+      "grunt-contrib-yuidoc" : "*"
   }
 }

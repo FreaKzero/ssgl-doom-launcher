@@ -1,9 +1,35 @@
-(function() {
+(function() {        
     app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', 'iwadService', 'nwService','gameService', appController]);
 
+    /**
+     * appController     
+     * General App Controller (Menus, Fab)
+     
+     * @module ssgl
+     * @submodule appController
+     * @param  Service $scope         
+     * @param  Service $mdDialog      
+     * @param  Service $mdToast       
+     * @param  Service $mdBottomSheet 
+     * @param  Service $mdSidenav
+     * @param  Service modlistService modlist Holder Service
+     * @param  Service $http
+     * @param  Service iwadService iwad Holder Service
+     * @param  Service nwService Node Webkit Service
+     * @param  Service gameService Service to Start Doom Engines or Oblige    
+     */
     function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService, $http, iwadService, nwService, gameService) {
         var $PARENT = $scope;
         var TOASTDELAY = 1500;
+
+        /**
+         * Update Toast gets fired when appController gets loaded (App init)
+         * And fetches package.json from github
+         *
+         * @for appController
+         * @uses  $http Ajax Service to github Repository
+         * @event update
+         */
 
         $mdToast.show(
             $mdToast.simple()
@@ -37,41 +63,99 @@
         }, function(response) {
             console.log('ERROR: ' + response);
         });
-
+    
         if ($scope.config.freshinstall === true) {
             SettingsDialog(null);
         }
 
 
+        /**
+         * Fires up Settings Dialog
+         *
+         * @for appController
+         * @method showSettings
+         * @param  Object ev Clickevent
+         */
         $scope.showSettings = function(ev) {
             SettingsDialog(ev);
         };
 
+        /**
+         * [reload description]
+         *
+         * @for appController
+         * @method reload
+         * @return {[type]} [description]
+         */
         $scope.reload = function() {
             window.location.reload();
         };
 
+        /**
+         * Opens Wadfolder in Native Explorer/Finder
+         *
+         * @for appController
+         * @uses  nwService
+         * @method openWADFolder         
+         */
         $scope.openWADFolder = function() {
             nwService.getShell().openItem($scope.config.wadpath);
         };
 
+        /**
+         * Opens Oblige
+         * 
+         * @for appController
+         * @uses nwService
+         * @method openOblige         
+         */
         $scope.openOblige = function() {
             nwService.getShell().openItem($scope.config.oblige.binary);
         };
 
+        /**
+         * opens WadSeeker
+         * 
+         * @for appController
+         * @uses  nwService
+         * @method openMultiplayer         
+         */
         $scope.openMultiplayer = function() {
             nwService.getShell().openItem($scope.config.online.client);
         };
 
+        //TODO Wrong
+        /**
+         * Opens AngularMaterial Contextmenu (About, Settings etc.)
+         *
+         * @for appController
+         * @uses $mdOpenMenu
+         * @method openMenu
+         * @param  Service $mdOpenMenu SidemenuService
+         * @param  Event ev Clickevent
+         */
         $scope.openMenu = function($mdOpenMenu, ev) {
             var originatorEv = ev;
             $mdOpenMenu();
         };
 
+        /**
+         * Toggles Sidebar
+         *
+         * @for appController
+         * @uses  $mdSidenav AngularMaterial Sidenav Service
+         * @method toggleSideba
+         */
         $scope.toggleSidebar = function() {
             $mdSidenav('left').toggle();
         };
 
+        /**
+         * [showAboutDialog description]
+         * @method showAboutDialog
+         * @param  {[type]}        ev [description]
+         * @return {[type]}           [description]
+         */
         $scope.showAboutDialog = function(ev) {
 
             $mdDialog.show({
@@ -185,7 +269,7 @@
                 };
             }
         };
-
+        
         function SettingsDialog(ev) {
             $mdDialog.show({
                 controller: DialogController,

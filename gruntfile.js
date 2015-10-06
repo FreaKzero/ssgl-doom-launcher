@@ -40,12 +40,12 @@ module.exports = function(grunt) {
             },
 
             nwdevTux32: {
-              src: 'http://dl.nwjs.io/v0.12.0/nwjs-v0.12.0-linux-ia32.tar.gz',
+                src: 'http://dl.nwjs.io/v0.12.0/nwjs-v0.12.0-linux-ia32.tar.gz',
                 dest: './cache/nwdev.zip'
             },
 
             nwdevTux64: {
-              src: 'http://dl.nwjs.io/v0.12.0/nwjs-v0.12.0-linux-x64.tar.gz',
+                src: 'http://dl.nwjs.io/v0.12.0/nwjs-v0.12.0-linux-x64.tar.gz',
                 dest: './cache/nwdev.zip'
             }
         },
@@ -55,7 +55,21 @@ module.exports = function(grunt) {
                 src: './cache/nwdev.zip',
                 dest: './'
             }
+        },
+
+        yuidoc: {
+            compile: {
+                name: 'Super Shotgun Launcher',
+                version: '<%= pkg.version %>',
+                url: '<%= pkg.homepage %>',
+                options: {
+                    paths: './src/app',
+                    outdir: './docs',
+                    exclude: 'lib'
+                }
+            }
         }
+
     });
 
     // Plugins
@@ -64,7 +78,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-curl');
     grunt.loadNpmTasks('grunt-zip');
-
+    grunt.loadNpmTasks('grunt-contrib-yuidoc');
+    
     grunt.registerTask('build', ['nwjs:win']);
     grunt.registerTask('build-linux', ['nwjs:tux']);
 

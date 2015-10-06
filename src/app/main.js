@@ -1,7 +1,22 @@
+/**
+ * SSGL Launcher
+ *
+ * @class ssgl
+ * @requires ngMaterial, ui.router
+ * @type {[type]}
+ */
 var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
 
-(function() {
-
+(function() {    
+    /**
+     * Config Block for Router
+     *
+     * / => MainMods.html
+     * @method app.config
+     * @for  ssgl
+     * @uses $stateProvider
+     * @uses $urlRouterProvider
+     */
     app.config(function($stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise('home');
@@ -12,6 +27,13 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
         });
     });
 
+    /**
+     * Config Block for Themeing
+     *
+     * @method app.config
+     * @for  ssgl
+     * @uses $mdThemingProvider     
+     */
     app.config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
             .primaryPalette('blue-grey', {
@@ -23,6 +45,16 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
             .accentPalette('deep-orange').dark();
     });
 
+    /**
+     * Run Block
+     * Gets Version from package.json (sync)
+     * Gets Config from config.json (sync)
+     *
+     * @method app.run
+     * @for  ssgl
+     * @uses  $rootScope
+     * @requires nwService     
+     */
     app.run(function($rootScope, nwService) {
         $rootScope.APPVERSION = nwService.readSyncJSON('package.json').version;
         document.title = 'Super Shotgun Launcher v'+$rootScope.APPVERSION;
