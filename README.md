@@ -22,7 +22,7 @@ Taiga: https://tree.taiga.io/project/freakzero-gzdoom-launcher
 Gitter: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/FreaKzero/ssgl-doom-launcher?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge)
 
 ##Howto Build:
-Be sure that bower and npm is installed  
+Be sure that ```bower```, ```grunt-cli``` and ```npm``` is installed  
 Clone this Repository with ```git clone https://github.com/FreaKzero/ssgl-doom-launcher```  
 go into the rootfolder of ssgl-doom-launcher  
 Install all dependencies with ```bower install``` (bower configuration handles npm automatically)  
