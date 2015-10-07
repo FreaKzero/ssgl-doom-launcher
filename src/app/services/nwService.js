@@ -4,13 +4,22 @@
         GUI = require('nw.gui'),
         execFile = require('child_process').execFile,
         recursive = require('recursive-readdir'),
-        request = require('request');
+        os = require('os');
 
     app.factory('nwService', ['$q', nwService]);
 
     function nwService($q) {
         var service = {};
         service.execpath = PATH.dirname(process.execPath);
+        service.pathsep = _getSeperator();
+
+        function _getSeperator() {
+            if ( os.platform() === 'win32') {
+                return '\\';
+            } else {
+                return '/';
+            }
+        }
 
         function _checkRel(path, relative) {
             if (typeof relative === 'undefined') {
@@ -18,25 +27,40 @@
             }
 
             if (relative === true) {
-                path = service.execpath + '\\' + path;
+                path = service.execpath + service.pathsep + path;
             }
-
+            
             return path;
         }
+        
+        service.getName = function(path, cut) {
+            if (typeof cut === 'undefined') { 
+                cut = -5;
+            }
 
-        service.requestDoomWorld = function(search) {
-            request({
-              uri: 'http://www.doomworld.com/idgames/api/api.php?callback=&action=search&out=json&query='+search+'&sort=date&type=filename',
-              method: 'GET',
-              timeout: 10000,
-              followRedirect: true,
-              maxRedirects: 10
-            }, function(error, response, body) {
-              console.log(body);
-            });
-
+            if (os.platform() === 'win32') {
+                return path.replace(/^.*[\\\/]/, '').slice(0, cut);
+            } else {
+                return path.replace(/^.*[/]/, '').slice(0, cut);
+            }
         };
 
+        service.buildPath = function(array, execpath) {
+            if (typeof execpath === 'undefined') { 
+                execpath = false; 
+            }
+
+            if (execpath === true) {
+                path = service.execpath;
+            } else {
+                path = '';
+            }
+
+            path = path + service.pathsep + array.join(service.pathsep);
+
+            return path;
+        };
+        
         service.recursiveDir = function(path, callback) {
             var def = $q.defer();
             recursive(path, function(err, files) {
@@ -48,6 +72,10 @@
             });
 
             return def.promise;
+        };
+
+        service.splitPath = function(path) {
+            return path.split(service.pathsep);
         };
 
         service.getManifest = function() {
@@ -68,7 +96,7 @@
                 if (err) {
                     def.reject(err);
                 } else {
-                    def.resolve(newpath.replace(/^.*[\\\/]/, ''));
+                    def.resolve(service.getName(newpath));
                 }
             });
             return def.promise;
@@ -81,7 +109,7 @@
                 if (err) {
                     def.reject(err);
                 } else {
-                    def.resolve(path.replace(/^.*[\\\/]/, ''));
+                    def.resolve(service.getName(path));
                 }
             });
             return def.promise;
@@ -159,7 +187,7 @@
                 if (err) {
                     def.reject(err);
                 } else {
-                    def.resolve(path.replace(/^.*[\\\/]/, ''));
+                    def.resolve(service.getName(path));
                 }
             });
 

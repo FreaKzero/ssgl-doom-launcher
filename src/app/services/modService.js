@@ -3,8 +3,8 @@
 
     function modService($q, nwService) {
         var service = {};
-
         service.mods = [];
+
         service.getMods = function(wadpath) {
             var defer = $q.defer();
 
@@ -19,7 +19,7 @@
                     allowed = ['PK3', 'WAD'];
 
                 for (var i = 0; i < len; i++) {
-                    var struc = files[i].split('\\'),
+                    var struc = nwService.splitPath(files[i]),
                         dirname = struc[struc.length - 2],
                         ext = struc[struc.length - 1].slice(-3).toUpperCase(),
                         name = struc[struc.length - 1].slice(0, -4);

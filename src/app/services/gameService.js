@@ -16,7 +16,11 @@
             }
 
             var child,
-                savedir = $rootScope.config.savepaths[opt.engine] + '\\' +modselectedService.getListname();
+                savedir = nwService.buildPath([
+                    $rootScope.config.savepaths[opt.engine], 
+                    modselectedService.getListname()
+                ]);
+                
                 useEngine = $rootScope.config.engines[opt.engine];
 
             var wads = modselectedService.getPaths();
