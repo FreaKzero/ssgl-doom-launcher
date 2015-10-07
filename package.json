@@ -1,6 +1,6 @@
 {
   "name": "SSGL",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "",
   "homepage": "https://github.com/FreaKzero/ssgl-doom-launcher",
   "releaseDownload": "https://github.com/FreaKzero/ssgl-doom-launcher/releases",
@@ -11,6 +11,6 @@
       "grunt-shell": "*",
       "grunt-curl": "*",
       "grunt-zip": "*",
-      "grunt-contrib-yuidoc" : "*"
+      "grunt-contrib-yuidoc" : "*
   }
 }

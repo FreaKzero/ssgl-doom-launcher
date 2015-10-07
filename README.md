@@ -26,13 +26,13 @@ Be sure that bower and npm is installed
 Clone this Repository with ```git clone https://github.com/FreaKzero/ssgl-doom-launcher```  
 go into the rootfolder of ssgl-doom-launcher  
 Install all dependencies with ```bower install``` (bower configuration handles npm automatically)  
-```grunt build``` for building 32 and 64 bit Windows Binaries (will be generated into ./build folder)  
+```grunt build-win``` for building 32 and 64 bit Windows Binaries (will be generated into ./build folder)  
 ```grunt build-linux``` for building 32 and 64 bit Linux Binaries (will be generated into ./build folder) *Disclaimer* Im right now not able to test Linux Builds.
 
 ##Development Environment  
 After you've done ```bower install```, you can build your development environment with:
 
-```grunt build-devenv``` for Windows 64Bit  
+```grunt build-devenv-win``` for Windows 64Bit  
 ```grunt build-devenv-linux32``` for Linux 32Bit  
 ```grunt build-devenv-linux64``` for Linux 64Bit  
 

@@ -4,10 +4,16 @@ module.exports = function(grunt) {
 
         shell: {
             npmInstall: {
-                command: 'cd src & npm install'
+                command: 'cd src && npm install'
             },
             devInstall: {
                 command: 'rename nwjs-v0.12.0-win-x64 nw && copy cfg\\package.json nw\\package.json && cd nw & npm install'
+            },
+			devInstallTux32: {			
+                command: 'tar -xzvf cache/nwdev.tar.gz && mv nwjs-v0.12.0-linux-ia32 nw && cp cfg/package.json nw/package.json && cd nw && npm install'
+            },
+			devInstallTux64: {
+                command: 'tar -xzvf cache/nwdev.tar.gz && mv nwjs-v0.12.0-linux-x64 nw && cp cfg/package.json nw/package.json && cd nw && npm install'
             }
         },
 
@@ -41,12 +47,12 @@ module.exports = function(grunt) {
 
             nwdevTux32: {
                 src: 'http://dl.nwjs.io/v0.12.0/nwjs-v0.12.0-linux-ia32.tar.gz',
-                dest: './cache/nwdev.zip'
+                dest: './cache/nwdev.tar.gz'
             },
 
             nwdevTux64: {
                 src: 'http://dl.nwjs.io/v0.12.0/nwjs-v0.12.0-linux-x64.tar.gz',
-                dest: './cache/nwdev.zip'
+                dest: './cache/nwdev.tar.gz'
             }
         },
 
@@ -56,7 +62,7 @@ module.exports = function(grunt) {
                 dest: './'
             }
         },
-
+		
         yuidoc: {
             compile: {
                 name: 'Super Shotgun Launcher',
@@ -80,13 +86,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-zip');
     grunt.loadNpmTasks('grunt-contrib-yuidoc');
     
-    grunt.registerTask('build', ['nwjs:win']);
+    grunt.registerTask('build-win', ['nwjs:win']);
     grunt.registerTask('build-linux', ['nwjs:tux']);
 
     grunt.registerTask('init', ['shell:npmInstall']);
 
-    grunt.registerTask('build-devenv', ['curl:win64', 'unzip', 'shell:devInstall']);
-    grunt.registerTask('build-devenv-linux32', ['curl:nwdevTux32', 'unzip', 'shell:devInstall']);
-    grunt.registerTask('build-devenv-linux64', ['curl:nwdevTux64', 'unzip', 'shell:devInstall']);
+    grunt.registerTask('build-devenv-win', ['curl:win64', 'unzip', 'shell:devInstall']);
+    grunt.registerTask('build-devenv-linux32', ['curl:nwdevTux32', 'shell:devInstallTux32']);
+    grunt.registerTask('build-devenv-linux64', ['curl:nwdevTux64', 'shell:devInstallTux64']);
 
 };
