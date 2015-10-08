@@ -21,6 +21,7 @@
             }
         }
 
+
         function _checkRel(path, relative) {
             if (typeof relative === 'undefined') {
                 relative = false;
@@ -33,6 +34,9 @@
             return path;
         }
         
+        service.getPlatform = function() {
+            return os.platform();
+        }
         service.getName = function(path, cut) {
             if (typeof cut === 'undefined') { 
                 cut = -5;

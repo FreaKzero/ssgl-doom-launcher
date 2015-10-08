@@ -74,21 +74,22 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                     zdoom: "",
                     gzdoom: "",
                     zandronum: "",
-                    skulltag: ""
+                    skulltag: "",
+                    doomsday: "",
                 },
 
                 savepaths: {
                     zdoom: "",
                     gzdoom: "",
                     zandronum: "",
-                    skulltag: ""
+                    skulltag: "",
+                    doomsday: ""
                 },
 
                 oblige: {
                     binary: "",
                     configs: "",
                     mappath: ""
-
                 },
 
                 active: {
@@ -96,7 +97,8 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                     zandronum: false,
                     oblige: false,
                     zdoom: false,
-                    skulltag: false
+                    skulltag: false,
+                    doomsday: false
                 },
 
                 online: {

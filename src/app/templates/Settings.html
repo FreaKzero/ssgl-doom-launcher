@@ -35,6 +35,12 @@
         </div>
 
         <div flex>
+        <md-checkbox ng-model="config.active.doomsday" aria-label="Doomsday">
+          <p style="color:white;">Doomsday</p>      
+        </md-checkbox>
+        </div>
+
+        <div flex>
         <md-checkbox ng-model="config.active.oblige" aria-label="Oblige">
           <p style="color:white;">Oblige</p>      
         </md-checkbox>
@@ -52,6 +58,7 @@
       <file-choose label="Online Client (DOOMSEEKER):" ng-model="config.online.client"></file-choose>
     </div>
 
+  
     <div ng-show="config.active.gzdoom">
       <file-choose label="gzDoom Path:"  ng-model="config.engines.gzdoom"></file-choose>
       <dir-choose label="gzDoom Savegames:" ng-model="config.savepaths.gzdoom"></dir-choose>
@@ -72,6 +79,10 @@
       <dir-choose label="Skulltag Savegames:" ng-model="config.savepaths.skulltag"></dir-choose>
     </div>
 
+    <div ng-show="config.active.doomsday">
+      <file-choose label="Doomsday Path:"  ng-model="config.engines.doomsday"></file-choose>
+      <dir-choose label="Doomsday Savegames:" ng-model="config.savepaths.doomsday"></dir-choose>
+    </div>
 
     <dir-choose label="WAD Path:" ng-model="config.wadpath"></dir-choose>
 
