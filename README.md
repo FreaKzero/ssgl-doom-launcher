@@ -40,3 +40,4 @@ It will make a new folder in your root named ./nw (Version 0.12.0 of NodeWebkit 
 
 ##Building Docs  
 ```grunt yuidoc``` generates Code documentation into ./docs (its in .gitignore)  
+*Not all Documented yet*  

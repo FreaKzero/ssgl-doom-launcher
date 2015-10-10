@@ -7,16 +7,16 @@
      
      * @module ssgl
      * @submodule appController
-     * @param Service $scope         
-     * @param Service $mdDialog      
-     * @param Service $mdToast       
-     * @param Service $mdBottomSheet 
-     * @param Service $mdSidenav
-     * @param Service modlistService modlist Holder Service
-     * @param Service $http
-     * @param Service iwadService iwad Holder Service
-     * @param Service nwService Node Webkit Service
-     * @param Service gameService Service to Start Doom Engines or Oblige    
+     * @param {Service} $scope         
+     * @param {Service} $mdDialog      
+     * @param {Service} $mdToast       
+     * @param {Service} $mdBottomSheet 
+     * @param {Service} $mdSidenav
+     * @param {Service} modlistService modlist Holder Service
+     * @param {Service} $http
+     * @param {Service} iwadService iwad Holder Service
+     * @param {Service} nwService Node Webkit Service
+     * @param {Service} gameService Service to Start Doom Engines or Oblige    
      */
     function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService, $http, iwadService, nwService, gameService) {
         var $PARENT = $scope;
