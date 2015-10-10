@@ -143,7 +143,7 @@
          *
          * @for appController
          * @uses  $mdSidenav AngularMaterial Sidenav Service
-         * @method toggleSideba
+         * @method toggleSidebar
          */
         $scope.toggleSidebar = function() {
             $mdSidenav('left').toggle();
@@ -176,7 +176,7 @@
             function AboutDialogController($scope, $mdBottomSheet) {
 
                 /**
-                 * @property String version Versionnumber
+                 * @property {String} version Versionnumber
                  * @type String
                  */
                 $scope.version = $PARENT.APPVERSION;
@@ -232,20 +232,24 @@
              */
             function GameSelectionController($scope, $mdBottomSheet, iwadService) {
                 /**
-                 * @property {Bool} useoblige Boolean Checkbox for using Oblige or not
-                 */
+                 * @property useoblige
+                 * @type Boolean
+                 * @default false
+                 */                
                 $scope.useoblige = false;
 
                 iwadService.getIWADS($PARENT.config.iwadpath).then(function(iwads) {
                     /**
-                     * @property {array} iwads available iwads Array                     
+                     * @property iwads
+                     * @type {Array}
                      * @async
                      */
                     $scope.iwads = iwads;
                 });
 
                 /**
-                 * @property {Object} config (see Main configuration)
+                 * @property config
+                 * @type Object
                  */
                 $scope.config = $PARENT.config;
                 
@@ -282,7 +286,7 @@
                  * Starts Oblige Mapbuilder
                  * 
                  * @method startGameOblige
-                 * @for GameSelectionController                 
+                 * @for appController                 
                  * @param  {Event} ev Clickevent
                  * @param  $index 
                  * @param  {String} engine What engine is used
@@ -300,6 +304,15 @@
                         clickOutsideToClose: false
                     });
 
+                    /**
+                     * Dialog for Oblige Configs
+                     * 
+                     * @method ConfigDialogController
+                     * @for startGameOblige
+                     * @param $scope
+                     * @param $mdDialog
+                     * @param nwService
+                     */
                     function ConfigDialogController($scope, $mdDialog, nwService) {                        
                         nwService.getDir($PARENT.config.oblige.configs).then(function(files) {
                             $scope.mapconfigs = files.map(function(cfg) {
@@ -314,6 +327,13 @@
                             }
                         });
 
+                        /**
+                         * Starts Oblige as Childprocess
+                         * 
+                         * @method start
+                         * @for ConfigDialogController
+                         * @param  $index
+                         */
                         $scope.start = function($index) {
                             gameService.startOblige({
                                 iwad: iwad,
@@ -322,6 +342,12 @@
                             });
                         };
 
+                        /**
+                         * Continue last built Oblige map - start Doom as childprocess
+                         * 
+                         * @method continue
+                         * @for ConfigDialogController                         
+                         */
                         $scope.continue = function() {
                             gameService.startDoom({
                                 iwad: iwad,
@@ -333,6 +359,12 @@
                             $mdDialog.cancel();
                         };
 
+                        /**
+                         * Close Dialog
+                         * 
+                         * @method cancel
+                         * @for ConfigDialogController
+                         */
                         $scope.cancel = function() {
                             $mdDialog.hide();
                         };
@@ -340,7 +372,14 @@
                 };
             }
         };
-        
+
+        /**
+         * Settings Dialog
+         * 
+         * @method SettingsDialog
+         * @for appController
+         * @param  {Event} ev Clickevent
+         */
         function SettingsDialog(ev) {
             $mdDialog.show({
                 controller: DialogController,
@@ -350,17 +389,46 @@
                 clickOutsideToClose: true
             });
 
+            /**
+             * Dialog Controller
+             * 
+             * @method DialogController
+             * @for SettingsDialog
+             * @param  {[type]}         $scope    [description]
+             * @param  {[type]}         $mdDialog [description]
+             */
             function DialogController($scope, $mdDialog) {
                 modlistService.getLists().then(function(list) {
+                    /**
+                     * @property
+                     * @type {array}
+                     * @async
+                     */
                     $scope.modlist = list;
                 });
 
+                /**
+                 * @property config
+                 * @type {Object}
+                 */
                 $scope.config = $PARENT.config;
 
+                /**
+                 * Close Dialog
+                 * 
+                 * @method cancel
+                 * @for DialogController
+                 */
                 $scope.cancel = function() {
                     $mdDialog.cancel();
                 };
 
+                /**
+                 * Save Settings, fire Toast and Refresh
+                 * 
+                 * @method save
+                 * @for DialogController                 
+                 */
                 $scope.save = function() {
                     $scope.config.freshinstall = false;
 

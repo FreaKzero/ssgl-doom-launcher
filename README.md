@@ -37,3 +37,6 @@ After you've done ```bower install```, you can build your development environmen
 ```grunt build-devenv-linux64``` for Linux 64Bit  
 
 It will make a new folder in your root named ./nw (Version 0.12.0 of NodeWebkit will be fetched via curl(), that can take a while) - with all dependencies and configs installed for development use (so you dont have to build everytime).
+
+##Building Docs  
+```grunt yuidoc``` generates Code documentation into ./docs (its in .gitignore)  
