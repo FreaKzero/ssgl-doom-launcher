@@ -17,7 +17,18 @@
      */
     function nwService($q) {
         var service = {};
+        /**
+         * BASEDIR
+         * @property execpath
+         * @type {String}
+         */
         service.execpath = PATH.dirname(process.execPath);
+
+        /**
+         * Operating System Directory seperator (/ or \\)
+         * @property {pathsep}
+         * @type {String}
+         */
         service.pathsep = _getSeperator();
 
         /**
