@@ -3,8 +3,24 @@
     var execFile = require('child_process').execFile;
     app.factory('gameService', ['$q', '$rootScope', '$mdDialog', 'modselectedService', 'nwService', gameService]);
 
+    /**
+     * Service for Starting Engines/Oblige
+     * 
+     * @method gameService
+     * @module ssgl
+     * @submodule gameService
+     */
     function gameService($q, $rootScope, $mdDialog, modselectedService, nwService) {
 
+        /**
+         * Builds Params for Engines
+         *
+         * @method _paramBuilder
+         * @for gameService
+         * @param  {Object}  iwad,config,engine,map
+         * @return {String} Parameters for Engines
+         * @private
+         */
         function _paramBuilder(opt) {
             var os = nwService.getPlatform();
 
@@ -30,6 +46,13 @@
 
         var service = {};
 
+        /**
+         * Starts given Engine as childprocess
+         * 
+         * @method startDoom
+         * @for gameService
+         * @param  {Object}  iwad,config,engine,map
+         */
         service.startDoom = function(opt) {
             if (typeof opt.map === 'undefined' || opt.map === null) {
                 opt.map = false;
@@ -57,6 +80,14 @@
             });
         };
 
+        /**
+         * Starts Oblige Mapbuilder as childprocess in the background
+         * When Oblige is finished - startDoom with the map parameter
+         * 
+         * @method startOblige
+         * @for gameService
+         * @param  {Object} iwad, config, engine
+         */
         service.startOblige = function(opt) {
 
             $mdDialog.show({
