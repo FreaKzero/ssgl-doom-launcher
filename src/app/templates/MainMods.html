@@ -54,7 +54,9 @@ $('.slimscroll-mods').slimScroll({
           <span flex></span>
                     <md-button class="md-accent" ng-click="saveSelected($event)"><i class="mdi mdi-content-save"></i> Save</md-button>
 
+                    <div ng-show="selected.length > 0 || usedList !== 'Untitled'">
                     <md-button class="md-accent" ng-click="newSelected()"><i class="mdi mdi-playlist-plus"></i> New</md-button>
+                    </div>
                 </div>
             </md-toolbar>
 
