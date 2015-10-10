@@ -6,14 +6,7 @@
       * 
       * @method modController
       * @module ssgl
-      * @submodule modController
-      * @param  {Service} $scope            
-      * @param  {Service} modService        
-      * @param  {Service} modlistService    
-      * @param  {Service} $mdDialog         
-      * @param  {Service} nwService         
-      * @param  {Service} modselectedService
-      * @param  {Service} $mdToast         
+      * @submodule modController      
       */
      function modController($scope, modService, modlistService, $mdDialog, nwService, modselectedService, $mdToast) {
          var self = this;

@@ -7,11 +7,6 @@
      * @method modlistController     
      * @module ssgl
      * @submodule modlistController
-     * @param  {Service} $scope        
-     * @param  {Service} modlistService
-     * @param  {Service} $rootScope    
-     * @param  {Service} $mdDialog     
-     * @param  {Service} $mdToast
      */
     function modlistController($scope, modlistService, $rootScope, $mdDialog, $mdToast) {
 
