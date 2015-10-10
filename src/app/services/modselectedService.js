@@ -1,7 +1,7 @@
 (function() {
     app.factory('modselectedService', ['$q', modselectedService]);
     /**
-     * Service for Starting Engines/Oblige
+     * Service for selected Wads/Mods
      *
      * @method modselectedService
      * @module ssgl
