@@ -1,248 +1,225 @@
  (function() {
+     app.controller('modController', ['$scope', 'modService', 'modlistService', '$mdDialog', 'nwService', 'modselectedService', '$mdToast', modController]);
 
-    var execFile = require('child_process').execFile;       
-    app.controller('modController', ['$scope', 'modService', 'modlistService', '$mdDialog', 'nwService','modselectedService', '$mdToast', modController]);
+     /**
+      * Controller for the Mod splitview
+      * 
+      * @method modController
+      * @module ssgl
+      * @submodule modController      
+      */
+     function modController($scope, modService, modlistService, $mdDialog, nwService, modselectedService, $mdToast) {
+         var self = this;
+         var $parent = $scope;
+         /**
+          * Name of used List
+          * @property usedList
+          * @type {String}
+          */
+         $scope.usedList = 'Untitled';
+         /**
+          * selected mods
+          * @property selected
+          * @type {Array}
+          */
+         $scope.selected = [];
+         
+         modService.getMods($scope.config.wadpath).then(function(mods) {
+             /**
+              * @property mods
+              * @type {Array}
+              * @async
+              */
+             $scope.mods = mods;
 
-    function modController($scope, modService, modlistService, $mdDialog, nwService, modselectedService, $mdToast) {
-        var self = this;
-        var $parent = $scope;
+             if ($scope.config.initList !== 'false') {
+                 try {
+                     var startListJSON = JSON.parse($scope.config.initList);
+                     var startList = nwService.readSyncJSON(startListJSON.path);
 
-        $scope.usedList = false;
-    
-        modselectedService.getSelected().then(function(selected) {
-            $scope.selected = selected;
-        });
+                     $scope.$broadcast('USELIST', startList, startListJSON.name);
+                 } catch (e) {
+                     console.log(e);
+                 }
+             }
 
-        modService.getMods($scope.config.wadpath).then(function(mods) {
-            $scope.mods = mods;
-            
-            if ($scope.config.initList !== false) {
-                try {
-                    var startListJSON = JSON.parse($scope.config.initList);
-                    var startList = nwService.readSyncJSON(startListJSON.path);
+         });
 
-                   $scope.$broadcast('USELIST', startList, startListJSON.name);
-                } catch (e) {
-                    console.log(e);
-                }
-            }
-            
-        });
-        
-        $scope.$on('USELIST', function(ev, wads, name) {
-            $scope.selected = wads;
-            $scope.usedList = name;
+         //TODO: docs...
+         //TODO: make 1 Object
+         $scope.$watch('usedList', function(nv, ov) {
+            modselectedService.sync(nv, $scope.usedList);
+         });
 
-            $scope.mods.filter(function(item) {
-                item.checked = false;
-            });
+         $scope.$watchCollection('selected', function(nv, ov) {
+            modselectedService.sync(nv, $scope.usedList);
+         });
 
-            _.each(wads, function(item) {
-                var index = _.findIndex($scope.mods, {
-                    path: item.path
-                });
-                $scope.mods[index].checked = true;
-            });
-        });
+         $scope.$on('USELIST', function(ev, wads, name) {
+             $scope.selected = wads;
+             $scope.usedList = name;
 
-        $scope.newSelected = function() {
-            $scope.mods.filter(function(item) {
-                item.checked = false;
-            });
+             $scope.mods.filter(function(item) {
+                 item.checked = false;
+             });
 
-            $scope.selected = [];
-            $scope.usedList = false;
-        };
+             _.each(wads, function(item) {
+                 var index = _.findIndex($scope.mods, {
+                     path: item.path
+                 });
+                 $scope.mods[index].checked = true;
+             });
+         });
 
-        $scope.saveSelected = function(ev) {
-            $mdDialog.show({
-                controller: saveSelectedController,
-                templateUrl: 'app/templates/AddListPrompt.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose: false
-            });
+         /**
+          * Start a new List (Reset)
+          * 
+          * @method newSelected
+          * @for modController
+          */
+         $scope.newSelected = function() {
+             $scope.mods.filter(function(item) {
+                 item.checked = false;
+             });
 
-            function saveSelectedController($scope, $mdDialog, modlistService) {
-                $scope.title = 'Save List';
+             $scope.selected = [];
+             $scope.usedList = 'Untitled';
+         };
 
-                if ($parent.usedList !== false) {
-                    $scope.listname = $parent.usedList;
-                }
+         /**
+          * Opens a Prompt for modlist saving
+          * 
+          * @method saveSelected
+          * @for modController
+          * @param  {Event} ev
+          */
+         $scope.saveSelected = function(ev) {
+             $mdDialog.show({
+                 controller: saveSelectedController,
+                 templateUrl: 'app/templates/AddListPrompt.html',
+                 parent: angular.element(document.body),
+                 targetEvent: ev,
+                 clickOutsideToClose: false
+             });
 
-                $scope.double = [];
+             /**
+              * saveSelectedController
+              * 
+              * @method saveSelectedController
+              * @for saveSelected
+              * @param  $scope        
+              * @param  $mdDialog     
+              * @param  modlistService
+              */
+             function saveSelectedController($scope, $mdDialog, modlistService) {
+                 /**
+                  * Title for Dialog
+                  * 
+                  * @property title                  
+                  * @type {String}
+                  */
+                 $scope.title = 'Save List';
 
-                $scope.cancel = function() {
-                    $mdDialog.cancel();
-                };
+                 if ($parent.usedList !== 'Untitled') {
+                     $scope.listname = $parent.usedList;
+                 }
 
-                $scope.checkdoubles = function() {};
+                 /**
+                  * @property double
+                  * @type {Array}
+                  */
+                 $scope.double = [];
 
-                $scope.submitForm = function() {
-                    modlistService.saveSelected($scope.listname, $parent.selected).then(function(listname) {
-                        $mdToast.show(
-                            $mdToast.simple()
-                            .content('Saved List to '+listname).position('bottom').hideDelay(1500)
-                        );
-                    }, function(error) {
-                        $mdToast.show(
-                            $mdToast.simple()
-                            .content(error.message).position('bottom').hideDelay(1500)
-                        );
-                    });
+                 /**
+                  * Closes Dialog
+                  * 
+                  * @method cancel
+                  * @for saveSelectedController
+                  */
+                 $scope.cancel = function() {
+                     $mdDialog.cancel();
+                 };
 
-                    
+                 /**
+                  * check for doubles - here empty because we donnt need it 
+                  * 
+                  * @method checkdoubles
+                  * @for saveSelectedController
+                  */
+                 $scope.checkdoubles = function() {};
 
-                    $parent.usedList = $scope.listname;
-                    $mdDialog.cancel();
-                };
-            }
-        };
+                 /**
+                  * Saves the List
+                  * @method submitForm
+                  * @for saveSelectedController
+                  * @uses modlistService 
+                  */
+                 $scope.submitForm = function() {
+                     modlistService.saveSelected($scope.listname, $parent.selected).then(function(listname) {
+                         $mdToast.show(
+                             $mdToast.simple()
+                             .content('Saved List to ' + listname).position('bottom').hideDelay(1500)
+                         );
+                     }, function(error) {
+                         $mdToast.show(
+                             $mdToast.simple()
+                             .content(error.message).position('bottom').hideDelay(1500)
+                         );
+                     });
 
-        $scope.moveUp = function($index) {
-            if ($index > 0) {
-                _.move($scope.selected, $index, $index - 1);
-            }
-        };
 
-        $scope.moveDown = function($index) {
-            if ($scope.selected.length - 1 !== $index) {
-                _.move($scope.selected, $index, $index + 1);
-            }
-        };
 
-        $scope.checked = function(mod) {
-            if (mod.checked === false) {
-                mod.checked = true;
-                $scope.selected.push(mod);
+                     $parent.usedList = $scope.listname;
+                     $mdDialog.cancel();
+                 };
+             }
+         };
 
-            } else {
-                mod.checked = false;
-                $scope.selected = _($scope.selected).filter(function(item) {
-                    return item.path !== mod.path;
-                });
-            }
-        };
-     
-        $scope.$on('STARTOBLIGE', function(ev, iwad, config, engine, log) {
-            $mdDialog.show({
-                templateUrl: 'app/templates/ObligeLoading.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose: false
-            });
+         /**
+          * Moves selected Mod up in List (Loadorder)
+          * 
+          * @method moveUp
+          * @for modController
+          * @param $index Clicked item
+          */
+         $scope.moveUp = function($index) {
+             if ($index > 0) {
+                 _.move($scope.selected, $index, $index - 1);
+             }
+         };
 
-            var child;
-            var params = ['--batch', $scope.config.oblige.mappath];
-            var endparam = params.concat(['--load'], config);
-            
-            child = execFile($scope.config.oblige.binary, endparam, function(error, stdout, stderr) {
-                if (log === true) {
-                    nwService.writeTxt(stdout, 'obligelog.txt').then(function() {
-                        nwService.getShell().openItem('obligelog.txt');                        
-                    });
-                }
+         /**
+          * Moves selected Mod down in List (Loadorder)
+          * 
+          * @method moveDown
+          * @for modController
+          * @param $index Clicked item
+          */         
+         $scope.moveDown = function($index) {
+             if ($scope.selected.length - 1 !== $index) {
+                 _.move($scope.selected, $index, $index + 1);
+             }
+         };
 
-                if (error) {
-                    $mdDialog.hide();
-                    alert(error.signal);
-                    return false;
-                }
-            });
+         //TODO: Refactor Name
+         /**
+          * Selects the Mod
+          * 
+          * @method checked
+          * @for modController
+          * @param {Object} mod
+          */
+         $scope.checked = function(mod) {
+             if (mod.checked === false) {
+                 mod.checked = true;
+                 $scope.selected.push(mod);
 
-            child.on('exit', function(code) {
-                $mdDialog.hide();
-                setTimeout(function() {
-                     $scope.$broadcast('STARTGZDOOM', iwad, $scope.config.oblige.mappath, engine);
-                 }, 1500);               
-            });
-        });
-
-        $scope.$on('STARTGZDOOM', function(ev, iwad, map, engine, dialog) {
-            if (typeof map === 'undefined') {
-                map = false;
-            }
-
-            if (typeof dialog === 'undefined') {
-                dialog = false;
-            }
-
-            var child;
-            var SAVEDIR;
-            var useEngine = "";
-
-            switch (engine.toLowerCase()) {
-                case "gzdoom":
-                    useEngine = $scope.config.engines.gzdoom;
-
-                    if ($scope.usedList !== false) {
-                        SAVEDIR = $scope.config.savepaths.gzdoom + $scope.usedList;
-                    } else {
-                        SAVEDIR = $scope.config.savepaths.gzdoom + 'default';
-                    }
-
-                    break;
-
-                case "zandronum":
-                    useEngine = $scope.config.engines.zandronum;
-
-                    if ($scope.usedList !== false) {
-                        SAVEDIR = $scope.config.savepaths.zandronum + $scope.usedList;
-                    } else {
-                        SAVEDIR = $scope.config.savepaths.zandronum + 'default';
-                    }
-                    break;
-
-                case "zdoom":
-                    useEngine = $scope.config.engines.zdoom;
-
-                    if ($scope.usedList !== false) {
-                        SAVEDIR = $scope.config.savepaths.zdoom + $scope.usedList;
-                    } else {
-                        SAVEDIR = $scope.config.savepaths.zdoom + 'default';
-                    }
-
-                    break;
-
-                 case "skulltag":
-                    useEngine = $scope.config.engines.skulltag;
-
-                    if ($scope.usedList !== false) {
-                        SAVEDIR = $scope.config.savepaths.skulltag + $scope.usedList;
-                    } else {
-                        SAVEDIR = $scope.config.savepaths.skulltag + 'default';
-                    }
-
-                    break;
-
-            }
-           
-            var params = ['-iwad', $scope.config.iwadpath + iwad, '-savedir', SAVEDIR];
-            var wads = $scope.selected.map(function(item) {
-                return item.path;
-            });
-
-            if (map !== false) {
-                wads.push(map);
-            }
-
-            if (dialog !== false) {
-                dialog.hide();
-            }
-
-            params = params.concat(['-file'], wads);
-            child = execFile(useEngine, params,
-
-                function(error, stdout, stderr) {
-                    if (error) {
-                        console.log(error.stack);
-                        console.log('Error code: ' + error.code + ' ' + error.signal);
-                    }
-                });
-
-            child.on('exit', function(code) {
-                console.log('EXIT: ' + code);
-            });
-        });
-    }
-})();
+             } else {
+                 mod.checked = false;
+                 $scope.selected = _($scope.selected).filter(function(item) {
+                     return item.path !== mod.path;
+                 });
+             }
+         };
+     }
+ })();

@@ -9,7 +9,6 @@
         "resizable": true
     },
     "devDependencies": {
-      "recursive-readdir": "*",
-      "request": "*"
+      "recursive-readdir": "*"      
     }
 }

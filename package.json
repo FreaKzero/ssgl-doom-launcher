@@ -1,15 +1,17 @@
 {
   "name": "SSGL",
   "version": "0.0.4",
-  "description": "",
+  "description": "WAD Loader / Gamelauncher with Oblige mapbuild Integration for zdoom, gzDoom, Skulltag and Zandronum written in AngularMaterial on NWJS",
   "homepage": "https://github.com/FreaKzero/ssgl-doom-launcher",
   "releaseDownload": "https://github.com/FreaKzero/ssgl-doom-launcher/releases",
+  "license": "MIT",
   
   "devDependencies": {
       "grunt": "*",
       "grunt-nw-builder": "*",
       "grunt-shell": "*",
       "grunt-curl": "*",
-      "grunt-zip": "*"      
+      "grunt-zip": "*",
+      "grunt-contrib-yuidoc" : "*"
   }
 }

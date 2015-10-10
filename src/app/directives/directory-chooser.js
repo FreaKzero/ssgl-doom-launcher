@@ -27,7 +27,7 @@
                 z.addEventListener("change", function(evt) {
 
                     if (this.value !== "") {
-                        var newPath = this.value + '\\';
+                        var newPath = this.value + nwService.pathsep;
 
                         $scope.$apply(function() {
                             $scope.ngModel = newPath;

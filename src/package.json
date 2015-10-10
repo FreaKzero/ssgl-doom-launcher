@@ -8,10 +8,9 @@
         "width": 1000,
         "height": 650,
         "resizable": false,
-        "title" : "Super Shotgun Launcher"
+        "title" : "Super Shotgun Launcher (loading...)"
     },
      "devDependencies": {
-      "recursive-readdir": "*",
-      "request": "*"
+      "recursive-readdir": "*"      
   	}
 }

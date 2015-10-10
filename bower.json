@@ -1,27 +1,23 @@
 {
-  "name": "angular-material-starter",
-  "description": "A starter project for AngularJS Material",
+  "name": "SSGL",
+  "description": "WAD Loader / Gamelauncher with Oblige mapbuild Integration for zdoom, gzDoom, Skulltag and Zandronum written in AngularMaterial on NWJS",
   "version": "0.0.2",
-  "homepage": "https://github.com/angular/material-start",
+  "homepage": "https://github.com/FreaKzero/ssgl-doom-launcher",  
   "license": "MIT",
   "private": true,
   
   "dependencies": {
-    "angular": "*",
-    "angular-animate": "*",
-    "angular-aria": "*",
-    "angular-material": "*",
-    "angular-ui-router": "*",
-    "underscore": "*",
-    "mdi": "*",
-    "jquery": "*",
+    "angular": "~1.4.6",
+    "angular-animate": "~1.4.6",
+    "angular-aria": "~1.4.6",
+    "angular-material": "~0.11.0",
+    "angular-ui-router": "~0.2.15",
+    "underscore": "~1.8.3",
+    "mdi": "~1.2.65",
+    "jquery": "~2.1.4",
     "jquery-slimscroll": "*"    
   },
-
-  "devDependencies": {
-    "angular-material": "*"
-  },
-
+  
   "ignore": [
     "**/.*",
     "*.gzip",

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
     <head>
-        <title>Super Shotgun Launcher</title>
+        <title>Super Shotgun Launcher (loading...)</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
@@ -20,9 +20,9 @@
             <h1 style="margin-left: 10px;">Super Shotgun Launcher</h1>
         </div>
 
-        <md-button ng-show="config.active.oblige" aria-label="Open Oblige" style="min-width: 50px;margin:0;" ng-click="openOblige()"><i class="mdi mdi-map" style="font-size: 35px; margin-top: 8px;"></i></md-button>
+        <md-button ng-show="config.active.oblige" aria-label="Open Oblige" style="min-width: 50px;margin:0;" ng-click="openOblige()"><i class="mdi mdi-map" style="font-size: 35px; margin-top: 8px;"><md-tooltip>Open Oblige</md-tooltip></i></md-button>
 
-        <md-button ng-show="config.online.client !== ''" aria-label="Open Multiplayer Client" style="min-width: 50px;margin:0;" ng-click="openMultiplayer()"><i class="mdi mdi-server-network" style="font-size: 35px; margin-top: 8px;"></i></md-button>
+        <md-button ng-show="config.online.client !== ''" aria-label="Open Multiplayer Client" style="min-width: 50px;margin:0;" ng-click="openMultiplayer()"><i class="mdi mdi-server-network" style="font-size: 35px; margin-top: 8px;"><md-tooltip>Opem Doomseeker</md-tooltip></i></md-button>
         
         <md-menu>
           <md-button aria-label="Open Menu" class="md-icon-button" style="padding:0;margin:0 0 0 0;" ng-click="openMenu($mdOpenMenu, $event)">
@@ -104,6 +104,7 @@
         <script src="app/controllers/modlistController.js"></script>        
         <script src="app/controllers/modController.js"></script>
 
+        <script src="app/services/gameService.js"></script>        
         <script src="app/services/modselectedService.js"></script>
         <script src="app/services/modlistService.js"></script>
         <script src="app/services/modService.js"></script>

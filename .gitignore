@@ -7,3 +7,4 @@ Thumbs.db
 src/app/lib
 cache/*
 npm-debug.log
+docs/*

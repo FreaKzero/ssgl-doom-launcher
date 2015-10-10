@@ -1,22 +1,13 @@
 <script type="text/javascript">
 $(document).ready(function() {
-$('.slimscroll-l').slimScroll({
-        position: 'right',
-        height: '525px',
-        railVisible: true,
-        alwaysVisible: true,
-        color: '#78909c',
-        wheelStep: 7
-    });
-
-    $('.slimscroll-r').slimScroll({
-        position: 'right',
-        height: '525px',
-        railVisible: true,
-        alwaysVisible: true,
-        color: '#78909c',
-        wheelStep: 7
-    });
+$('.slimscroll-mods').slimScroll({
+    position: 'right',
+    height: '525px',
+    railVisible: true,
+    alwaysVisible: true,
+    color: '#78909c',
+    wheelStep: 7
+});
 });
 </script>
 <div layout="row" ng-controller="modController">
@@ -33,7 +24,7 @@ $('.slimscroll-l').slimScroll({
                 </div>
             </md-toolbar>
 
-                <md-content layout-padding class="slimscroll-l">
+                <md-content layout-padding class="slimscroll-mods">
                 
                 <md-list>
 
@@ -59,15 +50,17 @@ $('.slimscroll-l').slimScroll({
             <md-toolbar class="md-hue-2 menu-animation" ng-show="selected.length > 0 || usedList">
                 <div class="md-toolbar-tools">
 
-          <p>{{usedList || 'Untitled'}}</p>
+          <p>{{usedList}}</p>
           <span flex></span>
                     <md-button class="md-accent" ng-click="saveSelected($event)"><i class="mdi mdi-content-save"></i> Save</md-button>
 
+                    <div ng-show="selected.length > 0 || usedList !== 'Untitled'">
                     <md-button class="md-accent" ng-click="newSelected()"><i class="mdi mdi-playlist-plus"></i> New</md-button>
+                    </div>
                 </div>
             </md-toolbar>
 
-                <md-content layout-padding class="slimscroll-r">
+                <md-content layout-padding class="slimscroll-mods">
                 <md-list>
                 <md-list-item class="md-2-line repeat-animation" ng-repeat="mod in selected track by mod.path">
                 <div class="md-list-item-text">
