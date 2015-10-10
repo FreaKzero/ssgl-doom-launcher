@@ -6,7 +6,7 @@
      * 
      * @method modlistController     
      * @module ssgl
-     * @submodule modController
+     * @submodule modlistController
      * @param  {Service} $scope        
      * @param  {Service} modlistService
      * @param  {Service} $rootScope    
