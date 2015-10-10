@@ -51,9 +51,9 @@
              }
 
          });
-         
-         //TODO Document...
-         //TODO make 1 Object
+
+         //TODO: docs...
+         //TODO: make 1 Object
          $scope.$watch('usedList', function(nv, ov) {
             modselectedService.sync(nv, $scope.usedList);
          });
