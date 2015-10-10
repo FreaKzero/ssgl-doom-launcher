@@ -1,10 +1,34 @@
 (function() {
     app.factory('modService', ['$q', 'nwService', modService]);
 
+    /**
+     * Service to Fetch Mod WADS from FileSystem
+     * 
+     * @method modService
+     * @module ssgl
+     * @submodule modService
+     * @uses nwService
+     */
+
     function modService($q, nwService) {
         var service = {};
+        /**
+         * The Wads/Mods
+         * 
+         * @property mods
+         * @type {Array}
+         */
         service.mods = [];
 
+        /**
+         * Fetch PK3 and WADs from Directory async
+         *
+         * @async
+         * @method getMods
+         * @for modService
+         * @param  {String} wadpath
+         * @return {Promise}
+         */
         service.getMods = function(wadpath) {
             var defer = $q.defer();
 
