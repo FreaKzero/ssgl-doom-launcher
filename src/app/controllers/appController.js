@@ -300,8 +300,7 @@
                         clickOutsideToClose: false
                     });
 
-                    function ConfigDialogController($scope, $mdDialog, nwService) {
-
+                    function ConfigDialogController($scope, $mdDialog, nwService) {                        
                         nwService.getDir($PARENT.config.oblige.configs).then(function(files) {
                             $scope.mapconfigs = files.map(function(cfg) {
                                 return {
@@ -311,7 +310,7 @@
                             });
 
                             if ($scope.mapconfigs.length > 0) {
-                                $scope.selected = $scope.mapconfigs[0].path;
+                                $scope.selectedconfig = $scope.mapconfigs[0].path;
                             }
                         });
 
