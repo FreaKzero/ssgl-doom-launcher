@@ -6,12 +6,12 @@
          var $parent = $scope;
 
          $scope.usedList = 'Untitled';
-         $scope.selected = modselectedService.selected;
+         $scope.selected = [];
          
          modService.getMods($scope.config.wadpath).then(function(mods) {
              $scope.mods = mods;
 
-             if ($scope.config.initList !== false) {
+             if ($scope.config.initList !== 'false') {
                  try {
                      var startListJSON = JSON.parse($scope.config.initList);
                      var startList = nwService.readSyncJSON(startListJSON.path);

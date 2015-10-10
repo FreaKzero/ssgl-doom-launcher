@@ -15,7 +15,7 @@
             link: function($scope, elem, att, ngModel) {
 
                 if (typeof $scope.ngModel !== 'undefined' && $scope.ngModel !== '') {
-                    $scope.wdir = $scope.ngModel.substring(0, $scope.ngModel.lastIndexOf('\\'));
+                    $scope.wdir = $scope.ngModel.substring(0, $scope.ngModel.lastIndexOf(nwService.pathsep));
                 } else {
                     $scope.wdir = nwService.execpath;
                 }

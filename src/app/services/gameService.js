@@ -1,14 +1,16 @@
 (function() {
 
     var execFile = require('child_process').execFile;
-    app.factory('gameService', ['$q','$rootScope', '$mdDialog', 'modselectedService', 'nwService', gameService]);
+    app.factory('gameService', ['$q', '$rootScope', '$mdDialog', 'modselectedService', 'nwService', gameService]);
 
-    function _paramBuilder(opt) {
-        var os = nwService.getPlatform();
+    function gameService($q, $rootScope, $mdDialog, modselectedService, nwService) {
 
-        var savedir = nwService.buildPath([
-                    $rootScope.config.savepaths[opt.engine], 
-                    modselectedService.getListname()
+        function _paramBuilder(opt) {
+            var os = nwService.getPlatform();
+
+            var savedir = nwService.buildPath([
+                $rootScope.config.savepaths[opt.engine],
+                modselectedService.getListname()
             ]);
 
             var wads = modselectedService.getPaths();
@@ -17,31 +19,15 @@
                 wads.push(opt.map);
             }
 
+            var params = ['-iwad', $rootScope.config.iwadpath + opt.iwad, '-savedir', savedir];
+
             if (wads.length > 0) {
                 params = params.concat(['-file'], wads);
             }
 
-        if (os === 'win32') {
-                    
-            var params = ['-iwad', $rootScope.config.iwadpath + opt.iwad, '-savedir', savedir];
-
-            return params;
-
-        } else {            
-            /*
-            doomsday -game jdoom -file /home/freakzero/iwads/DOOM2.wad /home/freakzero/wads/demonsteele/DemonSteele-v0.8.pk3
-             */
-            var params = ['-game jdoom','-file', $rootScope.config.iwadpath + opt.iwad];   
-            
-            if (wads.length > 0) {
-                params = params.concat(wads);
-            }
-
             return params;
         }
-    };
 
-    function gameService($q, $rootScope, $mdDialog, modselectedService, nwService) {
         var service = {};
 
         service.startDoom = function(opt) {
@@ -53,18 +39,18 @@
                 opt.dialog = false;
             }
 
-            var child,                
+            var child,
                 useEngine = $rootScope.config.engines[opt.engine];
-            
+
             var params = _paramBuilder(opt);
-                        
+
             child = execFile(useEngine, params, function(error, stdout, stderr) {
-                    //TODO better...
-                    if (error) {
-                        console.log(error.stack);
-                        console.log('Error code: ' + error.code + ' ' + error.signal);
-                    }
-                });
+                //TODO better...
+                if (error) {
+                    console.log(error.stack);
+                    console.log('Error code: ' + error.code + ' ' + error.signal);
+                }
+            });
 
             child.on('exit', function(code) {
                 console.log('EXIT: ' + code);
