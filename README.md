@@ -2,6 +2,7 @@
 WAD Loader / Gamelauncher with Oblige mapbuild Integration for zdoom, gzDoom, Skulltag and Zandronum written in AngularMaterial on NWJS. 
 
 ![Demo](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/readme.gif)
+![Demo](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/readme-2.gif)
 
 ##Just gimme the Binary Release:
 [32 and 64bit Windows Releases](https://github.com/FreaKzero/ssgl-doom-launcher/releases)

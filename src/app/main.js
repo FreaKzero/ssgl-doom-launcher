@@ -19,9 +19,9 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
      */
     app.config(function($stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.otherwise('home');
+        $urlRouterProvider.otherwise('/');
 
-        $stateProvider.state('home', {
+        $stateProvider.state('/', {
             url: '/',
             templateUrl: 'app/templates/MainMods.html'
         });
