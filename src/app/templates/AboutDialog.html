@@ -1,44 +1,41 @@
-<md-dialog style="width:70%;">  
-  <md-toolbar>
-    <div class="md-toolbar-tools"><h2>About Super Shotgun Launcher</h2></div>
-  </md-toolbar>
+<md-dialog style="width:70%;">
+<md-toolbar>
+<div class="md-toolbar-tools"><h2>About Super Shotgun Launcher</h2></div>
+</md-toolbar>
+<md-dialog-content style="max-width:800px;max-height:830px;">
+<div layout="row">
+  <div flex="55">
+    <b>Version:</b> {{version}}
+    <br /><br />
+    <strong>Used Technologies:</strong><br /> Angular Material, NWJS, underscore<br /><br />
 
-  <md-dialog-content style="max-width:800px;max-height:830px;">  
-    <div layout="row">   
-    	<div flex="55">    
-	    	<b>Version:</b> {{version}} 
-	    	<br /> 
-	    	<b>Used Technologies:</b> Angular Material, NWJS, underscore
+      <strong>Big thanks to:</strong><br />
+      <span class="browserlink" ng-click="openURL('https://github.com/Serasar')"><i class="mdi mdi-github-circle"></i> Serasar</span> & <span class="browserlink" ng-click="openURL('https://github.com/axed')"><i class="mdi mdi-github-circle"></i> axed</span> for Linux/Beta testing.<br /><br />
 
-        <div style="margin-top: 142px;">
-        <strong>Big thanks to:</strong>
-        <span class="browserlink" ng-click="openURL('https://github.com/Serasar')"><i class="mdi mdi-github-circle"></i> Serasar</span>, <span class="browserlink" ng-click="openURL('https://github.com/axed')"><i class="mdi mdi-github-circle"></i> axed</span><br />
-        for Linux/Beta testing.<br />
-	    	<span>(c) 2015 FreaKzero, Licensed under MIT License.</span>
-        </div>
-	    </div>	    
-    	
-    	<div flex="45" class="customAboutContainer">
-	    <div style="text-align:center;">
-    	<br />
-    		<img src="app/assets/freakzero.jpg" />  
-    		<br /><br />
-    	</div>
-    		<div style="font-size: 14px;">
-    		<span class="browserlink"><i class="mdi mdi-web"></i> &nbsp;&nbsp;<a target="_blank" ng-click="openURL('http://www.freakzero.com')">http://www.freakzero.com</a></span><br />
+      <div style="margin-top: 65px;">
+        <span>2015 FreaKzero, Licensed under MIT License.</span>
+    </div>
 
-    		<span class="browserlink"><i class="mdi mdi-google-plus"></i> &nbsp;&nbsp;<a target="_blank" ng-click="openURL('https://plus.google.com/+FreaKzero/')">https://plus.google.com/+FreaKzero/</a></span> <br />
+    
 
-    		<span class="browserlink"><i class="mdi mdi-twitter"></i> &nbsp;&nbsp;<a target="_blank" ng-click="openURL('https://twitter.com/freakzerodotcom')">https://twitter.com/freakzerodotcom</a></span>  <br />
-
-    		<span class="browserlink"><i class="mdi mdi-github-circle"></i> &nbsp;&nbsp;<a target="_blank" ng-click="openURL('https://github.com/FreaKzero')">https://github.com/FreaKzero</a></span>
-    		</div>
-    	</div>
-    	</div>
-  </md-dialog-content>
-
-  <div class="md-actions" layout="row">	
-    <md-button class="md-accent" ng-click="yup()">Yup</md-button>
-  </div>  
+  </div>
+  
+  <div flex="45" class="customAboutContainer">
+    <div style="text-align:center;">
+      <br />
+      <img src="app/assets/freakzero.jpg" />
+      <br /><br />
+    </div>
+    <div style="font-size: 14px;">
+      <span class="browserlink"><i class="mdi mdi-web"></i> &nbsp;&nbsp;<a target="_blank" ng-click="openURL('http://www.freakzero.com')">http://www.freakzero.com</a></span><br />
+      <span class="browserlink"><i class="mdi mdi-google-plus"></i> &nbsp;&nbsp;<a target="_blank" ng-click="openURL('https://plus.google.com/+FreaKzero/')">https://plus.google.com/+FreaKzero/</a></span> <br />
+      <span class="browserlink"><i class="mdi mdi-twitter"></i> &nbsp;&nbsp;<a target="_blank" ng-click="openURL('https://twitter.com/freakzerodotcom')">https://twitter.com/freakzerodotcom</a></span>  <br />
+      <span class="browserlink"><i class="mdi mdi-github-circle"></i> &nbsp;&nbsp;<a target="_blank" ng-click="openURL('https://github.com/FreaKzero')">https://github.com/FreaKzero</a></span>
+    </div>
+  </div>
+</div>
+</md-dialog-content>
+<div class="md-actions" layout="row">
+  <md-button class="md-accent" ng-click="yup()">Yup</md-button>
+</div>
 </md-dialog>
-
