@@ -1,11 +1,11 @@
 # Super Shotgun Launcher  
-WAD Loader / Gamelauncher with Oblige mapbuild Integration for zdoom, gzDoom, Skulltag and Zandronum written in AngularMaterial on NWJS. 
+Doom Frontend with Oblige mapbuild integration for zdoom, gzDoom, Skulltag and Zandronum written in AngularMaterial on NWJS for Windows and Linux.  
+
+##Just gimme the Binary Releases:
+[32 and 64bit Windows/Linux Releases](https://github.com/FreaKzero/ssgl-doom-launcher/releases)
 
 ![Demo](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/readme.gif)
 ![Demo2](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/readme-2.gif)
-
-##Just gimme the Binary Release:
-[32 and 64bit Windows Releases](https://github.com/FreaKzero/ssgl-doom-launcher/releases)
 
 ##Features:  
 - Painfree modern UI
@@ -45,5 +45,5 @@ It will make a new folder in your root named ./nw (Version 0.12.0 of NodeWebkit 
 
     
 ![Thx4BetaTest](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/beta.jpg)  
-[Serasar](https://github.com/Serasar) 
+[Serasar](https://github.com/Serasar)  
 [axed](https://github.com/axed)  
