@@ -98,7 +98,7 @@
          * @param  {String}   loglevel
          */
         service.initLogger = function(loglevel) {
-            if (loglevel === false) {
+            if (loglevel === false || loglevel == 'false') {
                 service.log = new Log('debug');
             } else {
                 service.log = new Log($rootScope.config.loglevel, FS.createWriteStream(service.execpath + service.pathsep + 'ssgl.log'));    

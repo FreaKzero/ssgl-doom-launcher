@@ -1,100 +1,102 @@
 <md-dialog style="width:100%;max-width:950px;max-height:500px;">
-  <form style="overflow:hidden;">
-  <md-toolbar>
-    <div class="md-toolbar-tools">
-      <h2>Settings</h2>
-      <span flex></span>      
-    </div>
-  </md-toolbar>
-  <md-dialog-content style="padding:25px;">
-    <div>
-      
-      <div layout="row">
-      <div flex>
-    <md-checkbox ng-model="config.active.gzdoom" aria-label="GZDoom">
-      <p style="color:white;">GZDoom</p>      
-    </md-checkbox>
-
-      </div>
-      <div flex>
-      <md-checkbox ng-model="config.active.zandronum" aria-label="Zandronum">
-      <p style="color:white;">Zandronum</p>      
-    </md-checkbox>
-        </div>
-
-        <div flex>
-        <md-checkbox ng-model="config.active.zdoom" aria-label="Oblige">
-          <p style="color:white;">zDoom</p>      
-        </md-checkbox>
-        </div>
-
-        <div flex>
-        <md-checkbox ng-model="config.active.skulltag" aria-label="Skulltag">
-          <p style="color:white;">Skulltag</p>      
-        </md-checkbox>
-        </div>
-
-        <div flex>
-        <md-checkbox ng-model="config.active.oblige" aria-label="Oblige">
-          <p style="color:white;">Oblige</p>      
-        </md-checkbox>
-        </div>   
-        </div>
-    
-       <md-checkbox ng-model="config.savepaths.active" aria-label="SSGL manages Savegames (saves/engine/listname)">
-          <p style="color:white;">SSGL manages Savegames <em>(engine/listname/savegame)</em></p>      
-        </md-checkbox>
-
-    <label style="color: #b2b2b2;font-size: 12px;font-weight:bold;">Select list for Startup</label>
-        <md-select style="margin-top: -3px;padding:0;" ng-model="config.initList" placeholder="Select List" ng-disabled="modlist.length === 0">
-          <md-option value="{{false}}">Deactivate</md-option>
-          <md-option ng-repeat="list in modlist" value="{{list}}">{{list.name}}</md-option>
-        </md-select>
-
-    <div ng-show="config.active.zandronum === true || config.active.skulltag === true">
-      <file-choose label="Online Client (DOOMSEEKER):" ng-model="config.online.client"></file-choose>
-    </div>
-
-    <div ng-show="config.active.gzdoom">
-      <file-choose label="gzDoom Path:"  ng-model="config.engines.gzdoom"></file-choose>
-      <dir-choose label="gzDoom Savegames:" ng-model="config.savepaths.gzdoom" ng-show="config.savepaths.active"></dir-choose>
-    </div>
-    
-    <div ng-show="config.active.zdoom">
-      <file-choose label="zDoom Path:" ng-model="config.engines.zdoom"></file-choose>
-      <dir-choose label="zDoom Savegames:" ng-model="config.savepaths.zdoom" ng-show="config.savepaths.active"></dir-choose>
-    </div>
-
-    <div ng-show="config.active.zandronum">
-      <file-choose label="Zandronum Path:" ng-model="config.engines.zandronum"></file-choose>
-      <dir-choose label="Zandronum Savegames:" ng-model="config.savepaths.zandronum" ng-show="config.savepaths.active"></dir-choose>
-    </div>
-
-    <div ng-show="config.active.skulltag">
-      <file-choose label="Skulltag Path:"  ng-model="config.engines.skulltag"></file-choose>
-      <dir-choose label="Skulltag Savegames:" ng-model="config.savepaths.skulltag" ng-show="config.savepaths.active"></dir-choose>
-    </div>
-
-    <dir-choose label="WAD Path:" ng-model="config.wadpath"></dir-choose>
-
-    <dir-choose label="iWAD Path:" ng-model="config.iwadpath"></dir-choose>
-    
-    <div ng-show="config.active.oblige">
-      <file-choose label="Oblige Path:" ng-model="config.oblige.binary"></file-choose>
-      <dir-choose label="Oblige MapConfig Path:" ng-model="config.oblige.configs"></dir-choose>
-      <file-choose label="Oblige Random Map Path:" ng-model="config.oblige.mappath"></file-choose>
-    </div>
-       
-    </div>
-  </md-dialog-content>
-  <div class="md-actions" layout="row">    
-    <span flex></span>
-    <md-button ng-click="cancel()">
-     Cancel
-    </md-button>
-    <md-button class="md-accent" ng-click="save()" style="margin-right:20px;">
-      Save
-    </md-button>
-  </div>
-  </form>  
+<form style="overflow:hidden;">
+	<md-toolbar>
+	<div class="md-toolbar-tools">
+		<h2>Settings</h2>
+		<span flex></span>
+	</div>
+	</md-toolbar>
+	<md-dialog-content style="padding:25px;">
+	<div>
+		
+		<div layout="row">
+			<div flex>
+				<md-checkbox ng-model="config.active.gzdoom" aria-label="GZDoom">
+				<p style="color:white;">GZDoom</p>
+				</md-checkbox>
+			</div>
+			<div flex>
+				<md-checkbox ng-model="config.active.zandronum" aria-label="Zandronum">
+				<p style="color:white;">Zandronum</p>
+				</md-checkbox>
+			</div>
+			<div flex>
+				<md-checkbox ng-model="config.active.zdoom" aria-label="Oblige">
+				<p style="color:white;">zDoom</p>
+				</md-checkbox>
+			</div>
+			<div flex>
+				<md-checkbox ng-model="config.active.skulltag" aria-label="Skulltag">
+				<p style="color:white;">Skulltag</p>
+				</md-checkbox>
+			</div>
+			<div flex>
+				<md-checkbox ng-model="config.active.oblige" aria-label="Oblige">
+				<p style="color:white;">Oblige</p>
+				</md-checkbox>
+			</div>
+		</div>
+			
+		<div layout="row">
+			<div flex>
+				<label style="color: #b2b2b2;font-size: 12px;font-weight:bold;">Select list for Startup</label>
+				<md-select style="margin-top: -3px;padding:0;" ng-model="config.initList" placeholder="Select List" ng-disabled="modlist.length === 0">
+				<md-option value="false">Deactivate</md-option>
+				<md-option ng-repeat="list in modlist" value="{{list}}">{{list.name}}</md-option>
+				</md-select>
+			</div>
+			<div flex>
+			<label style="color: #b2b2b2;font-size: 12px;font-weight:bold;">Loglevel</label>
+				<md-select style="margin-top: -3px;padding:0;" ng-model="config.loglevel" placeholder="Loglevel">
+				<md-option value="false">Deactivate</md-option>
+				<md-option ng-repeat="level in loglevels" value="{{level}}">{{level}}</md-option>
+				</md-select>
+			</div>
+		</div>
+		
+		<md-checkbox ng-model="config.savepaths.active" aria-label="SSGL manages Savegames (saves/engine/listname)">
+		<p style="color:white;">SSGL manages Savegames <em>(engine/listname/savegame)</em></p>
+		</md-checkbox>
+		
+		<div ng-show="config.active.zandronum === true || config.active.skulltag === true">
+			<file-choose label="Online Client (DOOMSEEKER):" ng-model="config.online.client"></file-choose>
+		</div>
+		<div ng-show="config.active.gzdoom">
+			<file-choose label="gzDoom Path:"  ng-model="config.engines.gzdoom"></file-choose>
+			<dir-choose label="gzDoom Savegames:" ng-model="config.savepaths.gzdoom" ng-show="config.savepaths.active"></dir-choose>
+		</div>
+		
+		<div ng-show="config.active.zdoom">
+			<file-choose label="zDoom Path:" ng-model="config.engines.zdoom"></file-choose>
+			<dir-choose label="zDoom Savegames:" ng-model="config.savepaths.zdoom" ng-show="config.savepaths.active"></dir-choose>
+		</div>
+		<div ng-show="config.active.zandronum">
+			<file-choose label="Zandronum Path:" ng-model="config.engines.zandronum"></file-choose>
+			<dir-choose label="Zandronum Savegames:" ng-model="config.savepaths.zandronum" ng-show="config.savepaths.active"></dir-choose>
+		</div>
+		<div ng-show="config.active.skulltag">
+			<file-choose label="Skulltag Path:"  ng-model="config.engines.skulltag"></file-choose>
+			<dir-choose label="Skulltag Savegames:" ng-model="config.savepaths.skulltag" ng-show="config.savepaths.active"></dir-choose>
+		</div>
+		<dir-choose label="WAD Path:" ng-model="config.wadpath"></dir-choose>
+		<dir-choose label="iWAD Path:" ng-model="config.iwadpath"></dir-choose>
+		
+		<div ng-show="config.active.oblige">
+			<file-choose label="Oblige Path:" ng-model="config.oblige.binary"></file-choose>
+			<dir-choose label="Oblige MapConfig Path:" ng-model="config.oblige.configs"></dir-choose>
+			<file-choose label="Oblige Random Map Path:" ng-model="config.oblige.mappath"></file-choose>
+		</div>
+		
+	</div>
+	</md-dialog-content>
+	<div class="md-actions" layout="row">
+		<span flex></span>
+		<md-button ng-click="cancel()">
+		Cancel
+		</md-button>
+		<md-button class="md-accent" ng-click="save()" style="margin-right:20px;">
+		Save
+		</md-button>
+	</div>
+</form>
 </md-dialog>

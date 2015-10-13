@@ -66,30 +66,30 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
         nwService.mkDir(nwService.buildPath(['lists'], true), true);
 
         try {
-            $rootScope.config = nwService.readSyncJSON(nwService.buildPath(['config.json']), true);
+            $rootScope.config = nwService.readSyncJSON(nwService.buildPath(['config.json']), true);            
             nwService.initLogger($rootScope.config.loglevel);
         } catch (e) {
 
             $rootScope.config = {
                 engines: {
-                    zdoom: "",
-                    gzdoom: "",
-                    zandronum: "",
-                    skulltag: ""
+                    zdoom: '',
+                    gzdoom: '',
+                    zandronum: '',
+                    skulltag: ''
                 },
 
                 savepaths: {
                     active: false,
-                    zdoom: "",
-                    gzdoom: "",
-                    zandronum: "",
-                    skulltag: ""                    
+                    zdoom: '',
+                    gzdoom: '',
+                    zandronum: '',
+                    skulltag: ''                    
                 },
 
                 oblige: {
-                    binary: "",
-                    configs: "",
-                    mappath: ""
+                    binary: '',
+                    configs: '',
+                    mappath: ''
                 },
 
                 active: {
@@ -101,16 +101,18 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                 },
 
                 online: {
-                    client: ""                  
+                    client: ''                  
                 },
 
-                iwadpath: "",
-                wadpath: "",
+                iwadpath: '',
+                wadpath: '',
 
-                loglevel: 'debug',
-                initList: false,
+                loglevel: 'false',
+                initList: 'false',
                 freshinstall: true
             };
+
+            nwService.initLogger(false);
         }
     });
 })();

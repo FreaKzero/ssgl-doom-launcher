@@ -397,6 +397,8 @@
                     $scope.modlist = list;
                 });
 
+                $scope.loglevels = ['CRITICAL', 'ERROR', 'WARNING', 'NOTICE', 'INFO', 'DEBUG'];
+
                 /**
                  * @property config
                  * @type {Object}
