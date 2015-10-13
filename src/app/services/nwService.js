@@ -3,19 +3,19 @@
         FS = require('fs'),
         GUI = require('nw.gui'),
         recursive = require('recursive-readdir'),
-        os = require('os');
+        os = require('os'),
+        Log = require('log');
 
-    app.factory('nwService', ['$q', nwService]);
-
+    app.factory('nwService', ['$q', '$rootScope', nwService]);
     /**
      * NodeWebkit related Service (Path, Fs, GUI, recursive, os)
-     * 
+     *
      * @method nwService
      * @module ssgl
      * @submodule nwService
      * @param  {Object}  $q Async
      */
-    function nwService($q) {
+    function nwService($q, $rootScope) {
         var service = {};
         /**
          * BASEDIR
@@ -32,15 +32,24 @@
         service.pathsep = _getSeperator();
 
         /**
+         * Logger Object
+         *
+         * @property log
+         * @type {Object}
+         *
+         */
+        service.log = {};
+
+        /**
          * Gives back the directory seperator for active OS
-         * 
+         *
          * @method _getSeperator
          * @for nwService
          * @return {String} Os specific directory seperator
-         * @private         
+         * @private
          */
         function _getSeperator() {
-            if ( os.platform() === 'win32') {
+            if (os.platform() === 'win32') {
                 return '\\';
             } else {
                 return '/';
@@ -50,13 +59,13 @@
         //TODO better methodname
         /**
          * Gives back Fullpath of BASEDIR
-         * 
+         *
          * @method _checkRel
          * @for nwService
          * @param  {String} path given path
          * @param  {Boolean} relative When true give absolute path from BASEDIR back
          * @return {String} gives back absolute path when path is relative
-         * @private        
+         * @private
          */
         function _checkRel(path, relative) {
             if (typeof relative === 'undefined') {
@@ -66,19 +75,34 @@
             if (relative === true) {
                 path = service.execpath + service.pathsep + path;
             }
-            
+
             return path;
         }
-        
+
         /**
-         * Gives back the Platform 
-         * 
+         * Gives back the Platform
+         *
          * @method getPlatform
          * @for nwService
          * @return {String} Plattform (win32, linux etc)
          */
         service.getPlatform = function() {
             return os.platform();
+        };
+
+        /**
+         * initializes the logger
+         * 
+         * @method initLogger
+         * @for nwService
+         * @param  {String}   loglevel
+         */
+        service.initLogger = function(loglevel) {
+            if (loglevel === false) {
+                service.log = new Log('debug');
+            } else {
+                service.log = new Log($rootScope.config.loglevel, FS.createWriteStream(service.execpath + service.pathsep + 'ssgl.log'));    
+            } 
         };
 
         /**
@@ -90,7 +114,7 @@
          * @return {String} filename
          */
         service.getName = function(path, cut) {
-            if (typeof cut === 'undefined') { 
+            if (typeof cut === 'undefined') {
                 cut = -5;
             }
 
@@ -103,7 +127,7 @@
 
         /**
          * Builds Path for active OS
-         * 
+         *
          * @method buildPath
          * @for nwService
          * @param  {Array}  array Array with paths to join
@@ -111,8 +135,8 @@
          * @return {String} Merged Path
          */
         service.buildPath = function(array, execpath) {
-            if (typeof execpath === 'undefined') { 
-                execpath = false; 
+            if (typeof execpath === 'undefined') {
+                execpath = false;
             }
 
             if (execpath === true) {
@@ -125,13 +149,13 @@
 
             return path;
         };
-        
+
         /**
          * Goes through a Directory recursively via callback method
-         * 
+         *
          * @method recursiveDir
          * @for nwService
-         * @param  {String}     path    
+         * @param  {String}     path
          * @param  {Function}   callback Callback what todo when walk through the directory
          * @async
          * @return {Promise} Promise
@@ -153,7 +177,7 @@
          * gives back path as array
          * @method splitPath
          * @for nwService
-         * @param  {String}  path 
+         * @param  {String}  path
          * @return {Array} Array with Pathsegments
          */
         service.splitPath = function(path) {
@@ -162,7 +186,7 @@
 
         /**
          * Gives back JSON Package Manifest
-         * 
+         *
          * @method getManifest
          * @for nwService
          * @return {Object} Package Manifest as Object
@@ -185,7 +209,7 @@
 
         /**
          * Gives back Directoryname
-         * 
+         *
          * @method getDirname
          * @for nwService
          * @param  {String} filepath
@@ -197,7 +221,7 @@
 
         /**
          * Async Rename
-         * 
+         *
          * @method rename
          * @for nwService
          * @param  {String} oldpath
@@ -239,7 +263,7 @@
         };
         /**
          * Read a "flat" Directory async
-         * 
+         *
          * @method getDir
          * @for nwService
          * @param  {String} path
@@ -264,10 +288,10 @@
 
         /**
          * Get NWJS Shell Object
-         * 
+         *
          * @method getShell
          * @for nwService
-         * @return {Object} 
+         * @return {Object}
          */
         service.getShell = function() {
             return GUI.Shell;
@@ -299,7 +323,11 @@
          */
         service.readSyncJSON = function(path, relative) {
             path = _checkRel(path, relative);
-            return JSON.parse(FS.readFileSync(path, "utf8"));
+            try {
+                return JSON.parse(FS.readFileSync(path, "utf8"));
+            } catch (e) {
+                return {};
+            }
         };
 
         /**
@@ -334,7 +362,7 @@
          * @for nwService
          * @async
          * @param  {String} content
-         * @param  {String} path 
+         * @param  {String} path
          * @param  {Boolean} relative When true use BASEDIR
          * @return {Promise}
          */
@@ -355,12 +383,12 @@
 
         /**
          * Writes Object to JSON File async
-         * 
+         *
          * @method writeJSON
          * @async
          * @for nwService
-         * @param  {Object} givenObject 
-         * @param  {String} path 
+         * @param  {Object} givenObject
+         * @param  {String} path
          * @param  {Boolean} relative When true use BASEDIR
          * @return {Promise}
          */

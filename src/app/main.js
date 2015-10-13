@@ -67,6 +67,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
 
         try {
             $rootScope.config = nwService.readSyncJSON(nwService.buildPath(['config.json']), true);
+            nwService.initLogger($rootScope.config.loglevel);
         } catch (e) {
 
             $rootScope.config = {
@@ -106,6 +107,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                 iwadpath: "",
                 wadpath: "",
 
+                loglevel: 'debug',
                 initList: false,
                 freshinstall: true
             };

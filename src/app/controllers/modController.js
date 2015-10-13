@@ -3,10 +3,10 @@
 
      /**
       * Controller for the Mod splitview
-      * 
+      *
       * @method modController
       * @module ssgl
-      * @submodule modController      
+      * @submodule modController
       */
      function modController($scope, modService, modlistService, $mdDialog, nwService, modselectedService, $mdToast) {
          var self = this;
@@ -23,7 +23,7 @@
           * @type {Array}
           */
          $scope.selected = [];
-         
+
          modService.getMods($scope.config.wadpath).then(function(mods) {
              /**
               * @property mods
@@ -37,9 +37,12 @@
                      var startListJSON = JSON.parse($scope.config.initList);
                      var startList = nwService.readSyncJSON(startListJSON.path);
 
-                     $scope.$broadcast('USELIST', startList, startListJSON.name);
+                     if (!_.isEmpty(startList)) {
+                         $scope.$broadcast('USELIST', startList, startListJSON.name);
+                     }
+
                  } catch (e) {
-                     console.log(e);
+                     nwService.log.error("error parsing initList: " + $scope.config.initList);
                  }
              }
 
@@ -48,11 +51,11 @@
          //TODO: docs...
          //TODO: make 1 Object
          $scope.$watch('usedList', function(nv, ov) {
-            modselectedService.sync(nv, $scope.usedList);
+             modselectedService.sync(nv, $scope.usedList);
          });
 
          $scope.$watchCollection('selected', function(nv, ov) {
-            modselectedService.sync(nv, $scope.usedList);
+             modselectedService.sync(nv, $scope.usedList);
          });
 
          $scope.$on('USELIST', function(ev, wads, name) {
@@ -67,13 +70,14 @@
                  var index = _.findIndex($scope.mods, {
                      path: item.path
                  });
+                
                  $scope.mods[index].checked = true;
              });
          });
 
          /**
           * Start a new List (Reset)
-          * 
+          *
           * @method newSelected
           * @for modController
           */
@@ -88,7 +92,7 @@
 
          /**
           * Opens a Prompt for modlist saving
-          * 
+          *
           * @method saveSelected
           * @for modController
           * @param  {Event} ev
@@ -104,18 +108,18 @@
 
              /**
               * saveSelectedController
-              * 
+              *
               * @method saveSelectedController
               * @for saveSelected
-              * @param  $scope        
-              * @param  $mdDialog     
+              * @param  $scope
+              * @param  $mdDialog
               * @param  modlistService
               */
              function saveSelectedController($scope, $mdDialog, modlistService) {
                  /**
                   * Title for Dialog
-                  * 
-                  * @property title                  
+                  *
+                  * @property title
                   * @type {String}
                   */
                  $scope.title = 'Save List';
@@ -132,7 +136,7 @@
 
                  /**
                   * Closes Dialog
-                  * 
+                  *
                   * @method cancel
                   * @for saveSelectedController
                   */
@@ -141,8 +145,8 @@
                  };
 
                  /**
-                  * check for doubles - here empty because we donnt need it 
-                  * 
+                  * check for doubles - here empty because we donnt need it
+                  *
                   * @method checkdoubles
                   * @for saveSelectedController
                   */
@@ -152,7 +156,7 @@
                   * Saves the List
                   * @method submitForm
                   * @for saveSelectedController
-                  * @uses modlistService 
+                  * @uses modlistService
                   */
                  $scope.submitForm = function() {
                      modlistService.saveSelected($scope.listname, $parent.selected).then(function(listname) {
@@ -167,8 +171,6 @@
                          );
                      });
 
-
-
                      $parent.usedList = $scope.listname;
                      $mdDialog.cancel();
                  };
@@ -177,7 +179,7 @@
 
          /**
           * Moves selected Mod up in List (Loadorder)
-          * 
+          *
           * @method moveUp
           * @for modController
           * @param $index Clicked item
@@ -190,11 +192,11 @@
 
          /**
           * Moves selected Mod down in List (Loadorder)
-          * 
+          *
           * @method moveDown
           * @for modController
           * @param $index Clicked item
-          */         
+          */
          $scope.moveDown = function($index) {
              if ($scope.selected.length - 1 !== $index) {
                  _.move($scope.selected, $index, $index + 1);
@@ -204,7 +206,7 @@
          //TODO: Refactor Name
          /**
           * Selects the Mod
-          * 
+          *
           * @method checked
           * @for modController
           * @param {Object} mod
