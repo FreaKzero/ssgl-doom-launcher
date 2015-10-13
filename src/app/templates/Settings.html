@@ -41,6 +41,9 @@
         </div>   
         </div>
     
+       <md-checkbox ng-model="config.savepaths.active" aria-label="SSGL manages Savegames (saves/engine/listname)">
+          <p style="color:white;">SSGL manages Savegames <em>(engine/listname/savegame)</em></p>      
+        </md-checkbox>
 
     <label style="color: #b2b2b2;font-size: 12px;font-weight:bold;">Select list for Startup</label>
         <md-select style="margin-top: -3px;padding:0;" ng-model="config.initList" placeholder="Select List" ng-disabled="modlist.length === 0">
@@ -52,25 +55,24 @@
       <file-choose label="Online Client (DOOMSEEKER):" ng-model="config.online.client"></file-choose>
     </div>
 
-  
     <div ng-show="config.active.gzdoom">
       <file-choose label="gzDoom Path:"  ng-model="config.engines.gzdoom"></file-choose>
-      <dir-choose label="gzDoom Savegames:" ng-model="config.savepaths.gzdoom"></dir-choose>
+      <dir-choose label="gzDoom Savegames:" ng-model="config.savepaths.gzdoom" ng-show="config.savepaths.active"></dir-choose>
     </div>
     
     <div ng-show="config.active.zdoom">
       <file-choose label="zDoom Path:" ng-model="config.engines.zdoom"></file-choose>
-      <dir-choose label="zDoom Savegames:" ng-model="config.savepaths.zdoom"></dir-choose>
+      <dir-choose label="zDoom Savegames:" ng-model="config.savepaths.zdoom" ng-show="config.savepaths.active"></dir-choose>
     </div>
 
     <div ng-show="config.active.zandronum">
       <file-choose label="Zandronum Path:" ng-model="config.engines.zandronum"></file-choose>
-      <dir-choose label="Zandronum Savegames:" ng-model="config.savepaths.zandronum"></dir-choose>
+      <dir-choose label="Zandronum Savegames:" ng-model="config.savepaths.zandronum" ng-show="config.savepaths.active"></dir-choose>
     </div>
 
     <div ng-show="config.active.skulltag">
       <file-choose label="Skulltag Path:"  ng-model="config.engines.skulltag"></file-choose>
-      <dir-choose label="Skulltag Savegames:" ng-model="config.savepaths.skulltag"></dir-choose>
+      <dir-choose label="Skulltag Savegames:" ng-model="config.savepaths.skulltag" ng-show="config.savepaths.active"></dir-choose>
     </div>
 
     <dir-choose label="WAD Path:" ng-model="config.wadpath"></dir-choose>

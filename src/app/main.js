@@ -78,6 +78,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                 },
 
                 savepaths: {
+                    active: false,
                     zdoom: "",
                     gzdoom: "",
                     zandronum: "",
