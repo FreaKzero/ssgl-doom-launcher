@@ -145,11 +145,11 @@
         }
 
         .gameholder:hover ~ .gameholder-txt {
-            color: #78909c;
+            color: #ff5722;
         }
 
         .gameholder:hover {
-            box-shadow: 0px 0px 0px 3px #ff5722;
+            box-shadow: 0px 0px 0px 3px #78909c
         }
 
         md-bottom-sheet.md-grid {
@@ -169,15 +169,19 @@
          md-bottom-sheet.md-grid md-list-item {
             padding: 5px;
         }
-
-        .md-tab {
-            max-width: 100% !important;
-        }
-
+       
         md-bottom-sheet md-list-item:hover {
             background-color: transparent;
         }
-            
+        
+        md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {
+            color: white;
+        }
+
+        md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {
+            color: #ff5722;
+        }
+
         md-bottom-sheet.md-grid md-list-item {
             max-width: 10%;
         }

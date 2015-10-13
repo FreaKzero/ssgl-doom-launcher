@@ -66,7 +66,8 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
         nwService.mkDir(nwService.buildPath(['lists'], true), true);
 
         try {
-            $rootScope.config = nwService.readSyncJSON(nwService.buildPath(['config.json']), true);            
+            $rootScope.config = nwService.readSyncJSON(nwService.buildPath(['config.json']), true);
+            if (typeof $)
             nwService.initLogger($rootScope.config.loglevel);
         } catch (e) {
 
