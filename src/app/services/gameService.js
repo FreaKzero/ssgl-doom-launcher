@@ -23,22 +23,20 @@
          */
         function _paramBuilder(opt) {
             var os = nwService.getPlatform();
-
-            var savedir = nwService.buildPath([
-                $rootScope.config.savepaths[opt.engine],
-                modselectedService.getListname()
-            ]);
-
             var wads = modselectedService.getPaths();
 
             if (opt.map !== false) {
                 wads.push(opt.map);
             }
 
-            var params = ['-iwad', $rootScope.config.iwadpath + opt.iwad, '-savedir', savedir];
+            var params = ['-iwad', $rootScope.config.iwadpath + opt.iwad];
 
             if (wads.length > 0) {
                 params = params.concat(['-file'], wads);
+            }
+
+            if ($rootScope.config.savepaths.active === true) {
+                params = params.concat(['-savedir'], $rootScope.config.savepaths[opt.engine] + modselectedService.getListname());   
             }
 
             return params;
