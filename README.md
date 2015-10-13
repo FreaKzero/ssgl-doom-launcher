@@ -2,7 +2,6 @@
 WAD Loader / Gamelauncher with Oblige mapbuild Integration for zdoom, gzDoom, Skulltag and Zandronum written in AngularMaterial on NWJS. 
 
 ![Demo](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/readme.gif)
-![Demo](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/readme-2.gif)
 
 ##Just gimme the Binary Release:
 [32 and 64bit Windows Releases](https://github.com/FreaKzero/ssgl-doom-launcher/releases)
@@ -42,3 +41,6 @@ It will make a new folder in your root named ./nw (Version 0.12.0 of NodeWebkit 
 ##Building Docs  
 ```grunt yuidoc``` generates Code documentation into ./docs (its in .gitignore)  
 *Not all Documented yet*  
+  
+![Thx4BetaTest](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/beta.jpg)  
+[Serasar Github](https://github.com/Serasar)
