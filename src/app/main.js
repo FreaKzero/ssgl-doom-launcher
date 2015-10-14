@@ -7,7 +7,7 @@
  */
 var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
 
-(function() {    
+(function() {
     /**
      * Config Block for Router
      *
@@ -32,7 +32,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
      *
      * @method app.config
      * @for  ssgl
-     * @uses $mdThemingProvider     
+     * @uses $mdThemingProvider
      */
     app.config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
@@ -53,7 +53,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
      * @method app.run
      * @for  ssgl
      * @uses  $rootScope
-     * @requires nwService     
+     * @requires nwService
      */
     app.run(function($rootScope, nwService) {
 
@@ -62,13 +62,12 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
          * @type {String}
          */
         $rootScope.APPVERSION = nwService.readSyncJSON('package.json').version;
-        document.title = 'Super Shotgun Launcher v'+$rootScope.APPVERSION;
+        document.title = 'Super Shotgun Launcher v' + $rootScope.APPVERSION;
         nwService.mkDir(nwService.buildPath(['lists'], true), true);
 
-        try {
-            $rootScope.config = nwService.readSyncJSON(nwService.buildPath(['config.json']), true);
-        } catch (e) {
+        $rootScope.config = nwService.readSyncJSON(nwService.buildPath(['config.json']), true);
 
+        if (_.isEmpty($rootScope.config)) {
             $rootScope.config = {
                 engines: {
                     zdoom: '',
@@ -82,7 +81,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                     zdoom: '',
                     gzdoom: '',
                     zandronum: '',
-                    skulltag: ''                    
+                    skulltag: ''
                 },
 
                 oblige: {
@@ -96,16 +95,16 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                     zandronum: false,
                     oblige: false,
                     zdoom: false,
-                    skulltag: false                    
+                    skulltag: false
                 },
 
                 online: {
-                    client: ''                  
+                    client: ''
                 },
 
                 iwadpath: '',
                 wadpath: '',
-                            
+
                 initList: false,
                 freshinstall: true
             };

@@ -23,7 +23,7 @@
           * @type {Array}
           */
          $scope.selected = [];
-
+         
          modService.getMods($scope.config.wadpath).then(function(mods) {
              /**
               * @property mods
@@ -51,7 +51,6 @@
 
                  }
              }
-
          });
 
          //TODO: docs...

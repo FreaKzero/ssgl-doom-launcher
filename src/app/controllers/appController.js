@@ -24,11 +24,10 @@
             $mdToast.simple()
             .content('Checking for Updates...').position('bottom').hideDelay(TOASTDELAY)
         );
-
+        
         $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
         then(function(response) {
             if ($scope.APPVERSION !== '0.0.0' && response.data.version !== $scope.APPVERSION) {
-
                 $mdDialog.show({
                     controller: function($scope) {
                         $scope.downloadversion = response.data.version;
@@ -52,12 +51,11 @@
         }, function(response) {
             console.log('ERROR: ' + response);
         });
-    
+        
         if ($scope.config.freshinstall === true) {
             SettingsDialog(null);
         }
-
-
+        
         /**
          * Fires up Settings Dialog
          *

@@ -31,7 +31,7 @@
          */
         service.getMods = function(wadpath) {
             var defer = $q.defer();
-
+            
             nwService.recursiveDir(wadpath, function(files) {
                 if (typeof files === 'undefined') {
                     return [];
