@@ -41,7 +41,9 @@
                          $scope.$broadcast('USELIST', startList, startListJSON.name);
                      }
 
-                 } catch (e) {}
+                 } catch (e) {
+                   // TODOdelete property in settings
+                 }
              }
 
          });
