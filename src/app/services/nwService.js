@@ -5,7 +5,7 @@
         recursive = require('recursive-readdir'),
         os = require('os');        
 
-    app.factory('nwService', ['$q', '$rootScope', nwService]);
+    app.factory('nwService', ['$q', '$rootScope', '$mdDialog', nwService]);
     /**
      * NodeWebkit related Service (Path, Fs, GUI, recursive, os)
      *
@@ -14,7 +14,7 @@
      * @submodule nwService
      * @param  {Object}  $q Async
      */
-    function nwService($q, $rootScope) {
+    function nwService($q, $rootScope, $mdDialog) {
         var service = {};
         /**
          * BASEDIR
@@ -68,6 +68,25 @@
 
             return path;
         }
+
+
+        service.panic = function(title, message, log) {
+            $mdDialog.show({
+                templateUrl: 'app/templates/PanicDialog.html',
+                parent: angular.element(document.body),
+                targetEvent: null,
+
+                controller: function($scope) {
+                    $scope.title = title;
+                    $scope.message = message;
+                    $scope.log = log;
+
+                    $scope.cancel = function() {
+                        $mdDialog.cancel();
+                    };
+                }
+            });
+        };
 
         /**
          * Gives back the Platform

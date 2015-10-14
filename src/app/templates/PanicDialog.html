@@ -1,0 +1,24 @@
+<md-dialog style="width:100%;max-width:750px;max-height:450px;">  
+  <md-toolbar>
+    <div class="md-toolbar-tools" style="background-color: #ff5722;">
+      <h2>Panic - {{title}}</h2>
+      <span flex></span>      
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <div style="color: white; padding: 15px;">
+      <p>{{message}}</p>
+      <textarea style="width: 100%; height: 250px; background-color:black;color: white;font-family: monospace;font-size: 14px;">{{log}}</textarea>
+      <br />      
+    </div>
+  </md-dialog-content>  
+
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button ng-click="cancel()">
+    OK
+    </md-button>
+  </div>
+
+</md-dialog>
+

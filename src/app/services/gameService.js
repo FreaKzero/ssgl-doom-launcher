@@ -65,17 +65,16 @@
 
             var params = _paramBuilder(opt);
 
-            child = execFile(useEngine, params, function(error, stdout, stderr) {
-                //TODO better...
-                if (error) {
-                    console.log(error.stack);
-                    console.log('Error code: ' + error.code + ' ' + error.signal);
-                }
-            });
+            try {
+                execFile(useEngine, params, function(error, stdout, stderr) {
+                    if (error) {
+                        nwService.panic('Enginestarter', 'Doomstarter encountered a Problem', error.stack);
+                    }
+                });
 
-            child.on('exit', function(code) {
-                console.log('EXIT: ' + code);
-            });
+            } catch(e) {
+                nwService.panic('Enginestarter', 'No Engine to start given', e);
+            }
         };
 
         /**
@@ -99,12 +98,13 @@
             var params = ['--batch', $rootScope.config.oblige.mappath, '--load', opt.config];
 
             child = execFile($rootScope.config.oblige.binary, params, function(error, stdout, stderr) {
-                //TODO better...
                 if (error) {
-                    alert(error.signal);
-                    return false;
+                    nwService.panic(
+                        'Obligestarter', 
+                        'Oblige builder encountered a Problem',
+                        'Given Params: '+ params.join(' ') + ' \n\n ' + error.stack + '\n\n' + stderr
+                    );
                 }
-
             });
 
             child.on('exit', function(code) {

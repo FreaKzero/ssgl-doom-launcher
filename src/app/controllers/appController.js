@@ -19,8 +19,7 @@
          * @for appController
          * @uses  $http Ajax Service to github Repository
          * @event update
-         */
-
+         */         
         $mdToast.show(
             $mdToast.simple()
             .content('Checking for Updates...').position('bottom').hideDelay(TOASTDELAY)
