@@ -32,17 +32,16 @@
               */
              $scope.mods = mods;
 
-             if ($scope.config.initList !== 'false') {
-                 try {
-                     var startListJSON = JSON.parse($scope.config.initList);
-                     var startList = nwService.readSyncJSON(startListJSON.path);
+             if ($scope.config.initList !== false) {
+                 var startListJSON = JSON.parse($scope.config.initList);
+                 var startList = nwService.readSyncJSON(startListJSON.path);
 
-                     if (!_.isEmpty(startList)) {
-                         $scope.$broadcast('USELIST', startList, startListJSON.name);
-                     }
-
-                 } catch (e) {
-                   // TODOdelete property in settings
+                 if (!_.isEmpty(startList)) {
+                     $scope.$broadcast('USELIST', startList, startListJSON.name);
+                 } else {
+                     // cant parse... lets reset that
+                     $scope.config.initList = false;
+                     nwService.writeJSON($scope.config, 'config.json', true);
                  }
              }
 
@@ -70,7 +69,7 @@
                  var index = _.findIndex($scope.mods, {
                      path: item.path
                  });
-                
+
                  $scope.mods[index].checked = true;
              });
          });

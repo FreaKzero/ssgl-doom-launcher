@@ -106,7 +106,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                 iwadpath: '',
                 wadpath: '',
                             
-                initList: 'false',
+                initList: false,
                 freshinstall: true
             };
         }
