@@ -42,6 +42,13 @@
                      // cant parse... lets reset that
                      $scope.config.initList = false;
                      nwService.writeJSON($scope.config, 'config.json', true);
+
+                     $mdToast.show(
+                         $mdToast.simple()
+                         .content('initList ' + startListJSON.name + ' not found, resetted in config')
+                         .position('bottom').hideDelay(2500)
+                     );
+
                  }
              }
 
