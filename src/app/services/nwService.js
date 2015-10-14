@@ -189,7 +189,6 @@
             return GUI.App.manifest;
         };
 
-        //TODO Bug ?
         /**
          * Gives back Absolute BASEPATH
          * @method getAbsolute

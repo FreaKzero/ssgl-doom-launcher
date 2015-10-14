@@ -112,7 +112,6 @@
             nwService.getShell().openItem($scope.config.online.client);
         };
 
-        //TODO Wrong
         /**
          * Opens AngularMaterial Contextmenu (About, Settings etc.)
          *
@@ -254,7 +253,6 @@
                 $scope.startGame = function($index, engine, $event) {
 
                     if ($scope.useoblige === false) {
-                        //TODO: usedlist
                         gameService.startDoom({
                             iwad: $scope.iwads[$index].file,
                             map: false, 
@@ -265,9 +263,7 @@
                         $mdBottomSheet.hide();
 
                     } else {
-
                         $scope.startGameOblige($event, $index, engine);
-
                     }
                 };
 
