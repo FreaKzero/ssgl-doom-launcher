@@ -69,7 +69,15 @@
             return path;
         }
 
-
+        /**
+         * Panic Dialog - for critical errors
+         * 
+         * @method panic
+         * @for nwService
+         * @param  {String} title
+         * @param  {String} message
+         * @param  {String} log
+         */
         service.panic = function(title, message, log) {
             $mdDialog.show({
                 templateUrl: 'app/templates/PanicDialog.html',
@@ -83,6 +91,12 @@
 
                     $scope.cancel = function() {
                         $mdDialog.cancel();
+                    };
+
+                    $scope.savelog = function() {
+                        service.writeTxt($scope.message + '\n\n' + $scope.log, 'paniclog.txt', true).then(function() {
+                            service.getShell().openItem(service.execpath + service.pathsep +'paniclog.txt');
+                        });
                     };
                 }
             });

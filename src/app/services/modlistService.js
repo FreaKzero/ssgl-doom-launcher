@@ -20,7 +20,7 @@
          * @type {String}
          */
         var listDir = nwService.buildPath(['lists']);
-
+        
         /**
          * Reame a List async
          * 
