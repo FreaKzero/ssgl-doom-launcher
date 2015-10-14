@@ -41,9 +41,7 @@
                          $scope.$broadcast('USELIST', startList, startListJSON.name);
                      }
 
-                 } catch (e) {
-                     nwService.log.error("error parsing initList: " + $scope.config.initList);
-                 }
+                 } catch (e) {}
              }
 
          });

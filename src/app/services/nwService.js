@@ -3,8 +3,7 @@
         FS = require('fs'),
         GUI = require('nw.gui'),
         recursive = require('recursive-readdir'),
-        os = require('os'),
-        Log = require('log');
+        os = require('os');        
 
     app.factory('nwService', ['$q', '$rootScope', nwService]);
     /**
@@ -30,16 +29,7 @@
          * @type {String}
          */
         service.pathsep = _getSeperator();
-
-        /**
-         * Logger Object
-         *
-         * @property log
-         * @type {Object}
-         *
-         */
-        service.log = {};
-
+        
         /**
          * Gives back the directory seperator for active OS
          *
@@ -89,22 +79,7 @@
         service.getPlatform = function() {
             return os.platform();
         };
-
-        /**
-         * initializes the logger
-         * 
-         * @method initLogger
-         * @for nwService
-         * @param  {String}   loglevel
-         */
-        service.initLogger = function(loglevel) {
-            if (loglevel === false || loglevel == 'false') {
-                service.log = new Log('debug');
-            } else {
-                service.log = new Log($rootScope.config.loglevel, FS.createWriteStream(service.execpath + service.pathsep + 'ssgl.log'));    
-            } 
-        };
-
+        
         /**
          * Gives back only Filename back of an file, can also trim extensions
          * @method getName

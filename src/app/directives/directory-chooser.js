@@ -10,7 +10,7 @@
                 wdir: '='
             },
 
-            template: '<div><md-input-container><label>{{label}}</label><input class="fileInput" type="text" ng-click="openDialog()" ng-model="ngModel"></md-input-container><input type="file" nwworkingdir="{{wdir}}" class="fileDialog" style="display:none" nwdirectory /></div>',
+            template: '<div layout="row"><div flex="90"><md-input-container><label>{{label}}</label><input class="fileInput" type="text" ng-model="ngModel"></md-input-container></div><div flex="10"><md-button class="fileBtn" ng-click="openDialog()">Folder <i class="mdi mdi-folder"></i></md-button><input type="file" nwworkingdir="{{wdir}}" class="fileDialog" style="display:none" nwdirectory /></div></div>',
             link: function($scope, elem, att, ngModel) {
 
                 if (typeof $scope.ngModel !== 'undefined' && $scope.ngModel !== '') {
@@ -24,9 +24,17 @@
                 var z = elem[0].querySelector('.fileDialog');
                 var x = elem[0].querySelector('.fileInput');
 
-                z.addEventListener("change", function(evt) {
+                x.addEventListener('blur', function(evt) {
+                    if (x.value.slice(-1) !== nwService.pathsep) {                        
+                        $scope.$apply(function() {
+                            x.value += nwService.pathsep;
+                            $scope.ngModel = x.value;
+                        });                                            
+                    }
+                });
 
-                    if (this.value !== "") {
+                z.addEventListener('change', function(evt) {
+                    if (this.value !== '') {
                         var newPath = this.value + nwService.pathsep;
 
                         $scope.$apply(function() {

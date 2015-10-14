@@ -36,28 +36,23 @@
 				</md-checkbox>
 			</div>
 		</div>
-			
+						
 		<div layout="row">
 			<div flex>
-				<label style="color: #b2b2b2;font-size: 12px;font-weight:bold;">Select list for Startup</label>
+				<md-checkbox ng-model="config.savepaths.active" aria-label="SSGL manages Savegames (saves/engine/listname)">
+		<p style="color:white;">SSGL manages Savegames <br/></p>
+		</md-checkbox>
+
+			</div>
+			<div flex>		
+			<label style="color: #b2b2b2;font-size: 12px;font-weight:bold;">Select list for Startup</label>
 				<md-select style="margin-top: -3px;padding:0;" ng-model="config.initList" placeholder="Select List" ng-disabled="modlist.length === 0">
 				<md-option value="false">Deactivate</md-option>
 				<md-option ng-repeat="list in modlist" value="{{list}}">{{list.name}}</md-option>
 				</md-select>
 			</div>
-			<div flex>
-			<label style="color: #b2b2b2;font-size: 12px;font-weight:bold;">Loglevel</label>
-				<md-select style="margin-top: -3px;padding:0;" ng-model="config.loglevel" placeholder="Loglevel">
-				<md-option value="false">Deactivate</md-option>
-				<md-option ng-repeat="level in loglevels" value="{{level}}">{{level}}</md-option>
-				</md-select>
-			</div>
 		</div>
-		
-		<md-checkbox ng-model="config.savepaths.active" aria-label="SSGL manages Savegames (saves/engine/listname)">
-		<p style="color:white;">SSGL manages Savegames <em>(engine/listname/savegame)</em></p>
-		</md-checkbox>
-		
+					
 		<div ng-show="config.active.zandronum === true || config.active.skulltag === true">
 			<file-choose label="Online Client (DOOMSEEKER):" ng-model="config.online.client"></file-choose>
 		</div>

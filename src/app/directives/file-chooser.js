@@ -10,7 +10,7 @@
                 wdir: '='
             },
 
-            template: '<div><md-input-container><label>{{label}}</label><input class="fileInput" type="text" ng-click="openDialog()" ng-model="ngModel"></md-input-container><input class="fileDialog" nwworkingdir="{{wdir}}" type="file" style="display:none;"></div>',
+            template: '<div layout="row"><div flex="90"><md-input-container><label>{{label}}</label><input class="fileInput" type="text" ng-model="ngModel"></md-input-container></div><div flex="10"><md-button class="fileBtn" ng-click="openDialog()">Binary <i class="mdi mdi-open-in-app"></i></md-button><input class="fileDialog" nwworkingdir="{{wdir}}" type="file" style="display:none;"></div></div>',
 
             link: function($scope, elem, att, ngModel) {
 
@@ -33,11 +33,9 @@
                         $scope.$apply(function() {
                             $scope.ngModel = newPath;
                         });
-
                     }
 
                 }, false);
-
 
                 $scope.openDialog = function() {
                     z.click();
