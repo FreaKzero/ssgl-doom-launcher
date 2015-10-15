@@ -64,6 +64,11 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
         $rootScope.APPVERSION = nwService.readSyncJSON('package.json').version;
         document.title = 'Super Shotgun Launcher v' + $rootScope.APPVERSION;
         nwService.mkDir(nwService.buildPath(['lists'], true), true);
+        var args = nwService.getArgs();
+
+        if (args[0] === '-d' || args[0] === '--devtools') {
+            nwService.devTools();
+        }
 
         $rootScope.config = nwService.readSyncJSON(nwService.buildPath(['config.json']), true);
 

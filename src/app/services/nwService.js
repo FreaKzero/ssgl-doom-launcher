@@ -304,6 +304,16 @@
             return GUI.Shell;
         };
 
+        //TODO docs
+        service.getArgs = function() {
+            return GUI.App.argv;
+        };
+
+        //TODO docs
+        service.devTools = function() {
+            GUI.Window.get().showDevTools();
+        };
+
         /**
          * Make Directory
          * @method mkDir
