@@ -19,8 +19,14 @@
 	   },
 
 	   {
-	   	"name": "build launcher",
-		"shell_cmd": "grunt build"
+	   	"name": "Build Windows",
+		"shell_cmd": "grunt build-win"
+	   },
+
+	   {
+	   	"name": "Build Linux",
+		"shell_cmd": "grunt build-linux"
 	   }
+
     ]
 }
