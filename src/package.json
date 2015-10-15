@@ -11,7 +11,6 @@
         "title" : "Super Shotgun Launcher (loading...)"
     },
      "devDependencies": {
-      "recursive-readdir": "*",
-      "log": "*"     
+      "recursive-readdir": "*"    
   	}
 }
