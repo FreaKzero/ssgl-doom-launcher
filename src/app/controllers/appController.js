@@ -312,6 +312,11 @@
                         inp.addEventListener('change', function(evt) {
                             if (this.value !== "") {
                                 nwService.copyFile($PARENT.config.oblige.mappath, this.value);
+
+                                $mdToast.show(
+                                    $mdToast.simple()
+                                    .content('Saved Map to: '+ this.value).position('bottom').hideDelay(TOASTDELAY)
+                                );
                             }
                         }, false);
 
