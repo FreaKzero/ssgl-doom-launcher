@@ -1,7 +1,7 @@
 (function() {
     app.factory('modlistService', ['$q', '$rootScope', 'nwService', modlistService]);
 
-    //TODO refactor with actual listarray
+    //TODO: refactor with actual listarray
         
      /**
      * CRUD for Modlists (sidebar)

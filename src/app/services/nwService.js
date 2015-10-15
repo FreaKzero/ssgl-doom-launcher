@@ -46,7 +46,7 @@
             }
         }
 
-        //TODO better methodname
+        //TODO: better methodname
         /**
          * Gives back Fullpath of BASEDIR
          *
@@ -304,12 +304,12 @@
             return GUI.Shell;
         };
 
-        //TODO docs
+        //TODO: docs
         service.getArgs = function() {
             return GUI.App.argv;
         };
 
-        //TODO docs
+        //TODO: docs
         service.devTools = function() {
             GUI.Window.get().showDevTools();
         };
