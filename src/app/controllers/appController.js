@@ -88,6 +88,11 @@
             nwService.getShell().openItem($scope.config.wadpath);
         };
 
+        //TODO: doc
+        $scope.openDevTools = function() {
+            nwService.devTools();
+        };
+
         /**
          * Opens Oblige
          * 

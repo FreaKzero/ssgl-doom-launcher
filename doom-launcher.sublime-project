@@ -12,8 +12,8 @@
     [
        {
        	"name": "Start NW",
-	    "cmd": ["nw/nw.exe", "--enable-logging", "${project_path:${file_path}}"],
-	    "working_dir": "${project_path:${file_path}}",
+	    "shell_cmd": "nw -d",
+	    "working_dir": "${project_path}",
 	    "path": "./nw",
 	    "shell": true
 	   },

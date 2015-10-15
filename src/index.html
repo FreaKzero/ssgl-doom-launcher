@@ -30,7 +30,7 @@
           </md-button>
 
           <md-menu-content width="6">
-            
+                        
             <md-menu-item>
             <md-button ng-click="openWADFolder()">Open WAD Folder</md-button>
             </md-menu-item>
@@ -47,6 +47,10 @@
                 <md-button>About</md-button>
             </md-menu-item>
 
+            <md-menu-item ng-show="DEVELOPER">
+            <md-button ng-click="openDevTools()"><i class="mdi mdi-code-not-equal-variant"></i> Open DevTools</md-button>
+            </md-menu-item>
+            
           </md-menu-content>
 
         </md-menu>

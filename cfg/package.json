@@ -1,14 +1,16 @@
 {
-    "name": "ssgl-dev",
+    "name": "SSGL",
     "version": "0.0.0",
     "main": "../src/index.html",
     "window": {
-        "toolbar": true,
+        "toolbar": false,
         "width": 1000,
-        "height": 550,
-        "resizable": true
+        "height": 650,
+        "resizable": false,
+        "title" : "Super Shotgun Launcher (loading...)"
     },
-    "devDependencies": {
-      "recursive-readdir": "*"      
+     "devDependencies": {
+      "recursive-readdir": "*"    
     }
 }
+

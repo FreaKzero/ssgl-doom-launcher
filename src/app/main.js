@@ -67,7 +67,9 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
         var args = nwService.getArgs();
 
         if (args[0] === '-d' || args[0] === '--devtools') {
-            nwService.devTools();
+            $rootScope.DEVELOPER = true;
+        } else {
+            $rootScope.DEVELOPER = false;
         }
 
         $rootScope.config = nwService.readSyncJSON(nwService.buildPath(['config.json']), true);
