@@ -88,6 +88,10 @@
             nwService.getShell().openItem($scope.config.wadpath);
         };
 
+        $scope.openConfigFile = function() {
+            nwService.getShell().openItem(nwService.buildPath(['config.json'], true));
+        };
+
         //TODO: doc
         $scope.openDevTools = function() {
             nwService.devTools();

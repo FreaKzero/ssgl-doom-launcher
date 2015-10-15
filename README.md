@@ -12,7 +12,7 @@ Doom Frontend with Oblige mapbuild integration for zdoom, gzDoom, Skulltag and Z
 - Easy Filtering through your WADs (directory-names and wad-names)
 - Loadorder sorting for chosen WADs
 - Creating/Saving wadlists for faster access
-- Automatic using/creating Savefolders based on the name on used wadlist
+- Using/Creating Savefolders based on the name on used wadlist
 - [zDoom](http://zdoom.org), [gzDoom](https://github.com/coelckers/gzdoom), [Skulltag](http://www.skulltag.com/) and [Zandronum](https://zandronum.com/) Support
 - [Oblige](http://oblige.sourceforge.net/) "Build and Play" via Configfiles (Also able to resume last built map)
 - Fast access to your favourite DoomSeeker Client and Oblige Frontend

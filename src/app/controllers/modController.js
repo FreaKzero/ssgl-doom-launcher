@@ -17,6 +17,7 @@
           * @type {String}
           */
          $scope.usedList = 'Untitled';
+         
          /**
           * selected mods
           * @property selected
@@ -48,7 +49,6 @@
                          .content('initList ' + startListJSON.name + ' not found, resetted in config')
                          .position('bottom').hideDelay(2500)
                      );
-
                  }
              }
          });
