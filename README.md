@@ -39,6 +39,8 @@ After you've done ```bower install```, you can build your development environmen
 
 It will make a new folder in your root named ./nw (Version 0.12.0 of NodeWebkit will be fetched via curl(), that can take a while) - with all dependencies and configs installed for development use (so you dont have to build everytime).
 
+When you dont use Sublime Text (see projectfile - buildsystems) use the commandline argument --devtools (-d) to get an "Open Devtools" Icon in the Toolbar.  
+
 ##Building Docs  
 ```grunt yuidoc``` generates Code documentation into ./docs (its in .gitignore)  
 *Not all Documented yet*  

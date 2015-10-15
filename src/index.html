@@ -20,8 +20,10 @@
             <h1 style="margin-left: 10px;">Super Shotgun Launcher</h1>
         </div>
 
+        <md-button ng-show="DEVELOPER" aria-label="Open DevTools" style="min-width: 50px;margin:0;" ng-click="openDevTools()"><i class="mdi mdi-code-not-equal-variant" style="font-size: 35px; margin-top: 8px;"><md-tooltip>Open DevTools</md-tooltip></i></md-button>
+        
         <md-button ng-show="config.active.oblige" aria-label="Open Oblige" style="min-width: 50px;margin:0;" ng-click="openOblige()"><i class="mdi mdi-map" style="font-size: 35px; margin-top: 8px;"><md-tooltip>Open Oblige</md-tooltip></i></md-button>
-
+        
         <md-button ng-show="config.online.client !== ''" aria-label="Open Multiplayer Client" style="min-width: 50px;margin:0;" ng-click="openMultiplayer()"><i class="mdi mdi-server-network" style="font-size: 35px; margin-top: 8px;"><md-tooltip>Opem Doomseeker</md-tooltip></i></md-button>
         
         <md-menu>
@@ -46,11 +48,7 @@
             <md-menu-item ng-click="showAboutDialog($event)">
                 <md-button>About</md-button>
             </md-menu-item>
-
-            <md-menu-item ng-show="DEVELOPER">
-            <md-button ng-click="openDevTools()"><i class="mdi mdi-code-not-equal-variant"></i> Open DevTools</md-button>
-            </md-menu-item>
-            
+                    
           </md-menu-content>
 
         </md-menu>
