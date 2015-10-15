@@ -1,5 +1,5 @@
-(function() {        
-    app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', 'iwadService', 'nwService','gameService', appController]);
+(function() {
+    app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', 'iwadService', 'nwService', 'gameService', appController]);
 
     /**
      * appController     
@@ -19,12 +19,12 @@
          * @for appController
          * @uses  $http Ajax Service to github Repository
          * @event update
-         */         
+         */
         $mdToast.show(
             $mdToast.simple()
             .content('Checking for Updates...').position('bottom').hideDelay(TOASTDELAY)
         );
-        
+
         $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
         then(function(response) {
             if ($scope.APPVERSION !== '0.0.0' && response.data.version !== $scope.APPVERSION) {
@@ -51,11 +51,11 @@
         }, function(response) {
             console.log('ERROR: ' + response);
         });
-        
+
         if ($scope.config.freshinstall === true) {
             SettingsDialog(null);
         }
-        
+
         /**
          * Fires up Settings Dialog
          *
@@ -71,7 +71,7 @@
          * Reloads the complete Application
          *
          * @for appController
-         * @method reload         
+         * @method reload
          */
         $scope.reload = function() {
             window.location.reload();
@@ -82,7 +82,7 @@
          *
          * @for appController
          * @uses  nwService
-         * @method openWADFolder         
+         * @method openWADFolder
          */
         $scope.openWADFolder = function() {
             nwService.getShell().openItem($scope.config.wadpath);
@@ -99,10 +99,10 @@
 
         /**
          * Opens Oblige
-         * 
+         *
          * @for appController
          * @uses nwService
-         * @method openOblige         
+         * @method openOblige
          */
         $scope.openOblige = function() {
             nwService.getShell().openItem($scope.config.oblige.binary);
@@ -110,10 +110,10 @@
 
         /**
          * opens WadSeeker
-         * 
+         *
          * @for appController
          * @uses  nwService
-         * @method openMultiplayer         
+         * @method openMultiplayer
          */
         $scope.openMultiplayer = function() {
             nwService.getShell().openItem($scope.config.online.client);
@@ -146,7 +146,7 @@
 
         /**
          * Opens the About Dialog
-         * 
+         *
          * @uses  $mdDialog AngularMaterial Dialog Service
          * @method showAboutDialog
          * @param  event ev Clickevent
@@ -162,7 +162,7 @@
             });
 
             /**
-             * AboutDialogController             
+             * AboutDialogController
              * @method AboutDialogController
              * @for showAboutDialog
              * @param $scope
@@ -178,7 +178,7 @@
 
                 /**
                  * Opens Url in Default Browser
-                 * 
+                 *
                  * @method openURL
                  * @uses  nwService
                  * @for AboutDialogController
@@ -230,7 +230,7 @@
                  * @property useoblige
                  * @type Boolean
                  * @default false
-                 */                
+                 */
                 $scope.useoblige = false;
 
                 iwadService.getIWADS($PARENT.config.iwadpath).then(function(iwads) {
@@ -247,10 +247,10 @@
                  * @type Object
                  */
                 $scope.config = $PARENT.config;
-                
+
                 /**
                  * Starts a game via the clicked index
-                 * 
+                 *
                  * @method startGame
                  * @for GameSelectionController
                  * @param  $index
@@ -262,8 +262,8 @@
                     if ($scope.useoblige === false) {
                         gameService.startDoom({
                             iwad: $scope.iwads[$index].file,
-                            map: false, 
-                            engine: engine, 
+                            map: false,
+                            engine: engine,
                             dialog: null
                         });
 
@@ -276,11 +276,11 @@
 
                 /**
                  * Starts Oblige Mapbuilder
-                 * 
+                 *
                  * @method startGameOblige
-                 * @for appController                 
+                 * @for appController
                  * @param  {Event} ev Clickevent
-                 * @param  $index 
+                 * @param  $index
                  * @param  {String} engine What engine is used
                  */
                 $scope.startGameOblige = function(ev, $index, engine) {
@@ -293,19 +293,41 @@
                         templateUrl: 'app/templates/SelectConfig.html',
                         parent: angular.element(document.body),
                         targetEvent: ev,
+                        onComplete: bindFileDialog,
                         clickOutsideToClose: false
                     });
 
+
+                    function bindFileDialog(scope, element, options) {
+
+                        var inp = element[0].querySelector('.fileDialog');
+                        var btn = element[0].querySelector('#keep');
+
+                        btn.addEventListener('click', function(evt) {
+                            inp.click();
+                        });
+
+                        inp.addEventListener('change', function(evt) {
+                            if (this.value !== "") {
+                                nwService.copyFile($rootScope.config.oblige.mappath, this.value);
+                            }
+                        }, false);
+
+                    }
+
                     /**
                      * Dialog for Oblige Configs
-                     * 
+                     *
                      * @method ConfigDialogController
                      * @for startGameOblige
                      * @param $scope
                      * @param $mdDialog
                      * @param nwService
                      */
-                    function ConfigDialogController($scope, $mdDialog, nwService) {                        
+                    function ConfigDialogController($scope, $mdDialog, nwService) {
+
+                        $scope.execpath = nwService.execpath;
+
                         nwService.getDir($PARENT.config.oblige.configs).then(function(files) {
                             $scope.mapconfigs = files.map(function(cfg) {
                                 return {
@@ -321,7 +343,7 @@
 
                         /**
                          * Starts Oblige as Childprocess
-                         * 
+                         *
                          * @method start
                          * @for ConfigDialogController
                          * @param  $index
@@ -333,12 +355,12 @@
                                 engine: engine
                             });
                         };
-
+                        
                         /**
                          * Continue last built Oblige map - start Doom as childprocess
-                         * 
+                         *
                          * @method continue
-                         * @for ConfigDialogController                         
+                         * @for ConfigDialogController
                          */
                         $scope.continue = function() {
                             gameService.startDoom({
@@ -353,7 +375,7 @@
 
                         /**
                          * Close Dialog
-                         * 
+                         *
                          * @method cancel
                          * @for ConfigDialogController
                          */
@@ -367,7 +389,7 @@
 
         /**
          * Settings Dialog
-         * 
+         *
          * @method SettingsDialog
          * @for appController
          * @param  {Event} ev Clickevent
@@ -383,7 +405,7 @@
 
             /**
              * Dialog Controller
-             * 
+             *
              * @method DialogController
              * @for SettingsDialog
              * @param  {[type]}         $scope    [description]
@@ -398,7 +420,7 @@
                      */
                     $scope.modlist = list;
                 });
-                
+
                 /**
                  * @property config
                  * @type {Object}
@@ -407,7 +429,7 @@
 
                 /**
                  * Close Dialog
-                 * 
+                 *
                  * @method cancel
                  * @for DialogController
                  */
@@ -417,13 +439,13 @@
 
                 /**
                  * Save Settings, fire Toast and Refresh
-                 * 
+                 *
                  * @method save
-                 * @for DialogController                 
+                 * @for DialogController
                  */
                 $scope.save = function() {
                     $scope.config.freshinstall = false;
-                    
+
                     nwService.writeJSON($scope.config, 'config.json', true).then(function() {
                         $mdToast.show(
                             $mdToast.simple().content('Saved Settings - Reloading...').position('bottom').hideDelay(TOASTDELAY)

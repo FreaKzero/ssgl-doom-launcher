@@ -11,20 +11,28 @@
   <md-select ng-model="selectedconfig" placeholder="Select Config">
   <md-option ng-repeat="conf in mapconfigs" value="{{conf.path}}">{{conf.name}}</md-option>
   </md-select>
-  
+
+  <input class="fileDialog" nwworkingdir="{{execpath}}" type="file" style="display:none;" nwsaveas="obligebuild.wad">
   <br /><br />
   
 </div>
 </md-dialog-content>
-<div class="md-actions" layout="row">  
-  <span flex></span>
-  
+<div class="md-actions" layout="row">    
   <md-button ng-click="cancel()">
   Cancel
   </md-button>
-  <md-button ng-click="continue()">
-  Continue Last
+
+
+<span flex></span>
+
+  <md-button id="keep">
+  Keep Last Map
   </md-button>
+
+  <md-button ng-click="continue()">
+  Continue Last Map
+  </md-button>
+
   <md-button class="md-accent" ng-click="start()" style="margin-right:20px;">
   Build & Start
   </md-button>

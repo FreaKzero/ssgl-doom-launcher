@@ -314,6 +314,11 @@
             GUI.Window.get().showDevTools();
         };
 
+        //TODO: docs
+        service.copyFile = function(source, target) {
+            FS.createReadStream(source).pipe(FS.createWriteStream(target));
+        };
+
         /**
          * Make Directory
          * @method mkDir
