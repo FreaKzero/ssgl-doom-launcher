@@ -298,10 +298,12 @@
                     });
 
 
-                    function bindFileDialog(scope, element, options) {
+                    function bindFileDialog($scope, element, options) {
 
                         var inp = element[0].querySelector('.fileDialog');
                         var btn = element[0].querySelector('#keep');
+                        $scope.wadpath = $PARENT.config.wadpath + nwService.pathsep + 'obligebuild.WAD';
+                        
 
                         btn.addEventListener('click', function(evt) {
                             inp.click();
@@ -309,7 +311,7 @@
 
                         inp.addEventListener('change', function(evt) {
                             if (this.value !== "") {
-                                nwService.copyFile($rootScope.config.oblige.mappath, this.value);
+                                nwService.copyFile($PARENT.config.oblige.mappath, this.value);
                             }
                         }, false);
 
@@ -325,9 +327,7 @@
                      * @param nwService
                      */
                     function ConfigDialogController($scope, $mdDialog, nwService) {
-
-                        $scope.execpath = nwService.execpath;
-
+                        
                         nwService.getDir($PARENT.config.oblige.configs).then(function(files) {
                             $scope.mapconfigs = files.map(function(cfg) {
                                 return {

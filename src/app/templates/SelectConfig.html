@@ -12,7 +12,7 @@
   <md-option ng-repeat="conf in mapconfigs" value="{{conf.path}}">{{conf.name}}</md-option>
   </md-select>
 
-  <input class="fileDialog" nwworkingdir="{{execpath}}" type="file" style="display:none;" nwsaveas="obligebuild.wad">
+  <input class="fileDialog" type="file" style="display:none;" nwsaveas="{{wadpath}}">
   <br /><br />
   
 </div>
