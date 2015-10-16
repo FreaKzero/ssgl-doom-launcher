@@ -3,7 +3,7 @@
         FS = require('fs'),
         GUI = require('nw.gui'),
         recursive = require('recursive-readdir'),
-        os = require('os');        
+        os = require('os');
 
     app.factory('nwService', ['$q', '$rootScope', '$mdDialog', nwService]);
     /**
@@ -29,7 +29,7 @@
          * @type {String}
          */
         service.pathsep = _getSeperator();
-        
+
         /**
          * Gives back the directory seperator for active OS
          *
@@ -71,7 +71,7 @@
 
         /**
          * Panic Dialog - for critical errors
-         * 
+         *
          * @method panic
          * @for nwService
          * @param  {String} title
@@ -95,7 +95,7 @@
 
                     $scope.savelog = function() {
                         service.writeTxt($scope.message + '\n\n' + $scope.log, 'paniclog.txt', true).then(function() {
-                            service.getShell().openItem(service.execpath + service.pathsep +'paniclog.txt');
+                            service.getShell().openItem(service.execpath + service.pathsep + 'paniclog.txt');
                         });
                     };
                 }
@@ -112,7 +112,7 @@
         service.getPlatform = function() {
             return os.platform();
         };
-        
+
         /**
          * Gives back only Filename back of an file, can also trim extensions
          * @method getName
@@ -310,10 +310,10 @@
         };
 
         //TODO: docs
-        service.devTools = function() {
+        service.openDevTools = function() {
             GUI.Window.get().showDevTools();
         };
-
+      
         //TODO: docs
         service.copyFile = function(source, target) {
             FS.createReadStream(source).pipe(FS.createWriteStream(target));

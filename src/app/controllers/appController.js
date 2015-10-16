@@ -94,7 +94,7 @@
 
         //TODO: doc
         $scope.openDevTools = function() {
-            nwService.devTools();
+            nwService.openDevTools();
         };
 
         /**

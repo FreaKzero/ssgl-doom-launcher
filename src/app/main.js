@@ -68,6 +68,16 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
 
         if (args[0] === '-d' || args[0] === '--devtools') {
             $rootScope.DEVELOPER = true;
+
+            // Bind F12 for opening DevTools
+            $(document).on('keydown', function(e) {
+                var tag = e.target.tagName.toLowerCase();
+                
+                if ( e.which === 123 && tag != 'input' && tag != 'textarea') {
+                    nwService.openDevTools();
+                }
+            });
+
         } else {
             $rootScope.DEVELOPER = false;
         }
