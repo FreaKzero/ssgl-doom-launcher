@@ -135,8 +135,8 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                     client: ''
                 },
 
-                special: {
-                    doom64exSound: '',
+                misc: {
+                    doom64exsound: '' 
                 },
 
                 iwadpath: '',

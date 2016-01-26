@@ -19,7 +19,7 @@
          * @private
          * @type {Array}
          */
-        var covers = ['doom', 'doom2', 'freedm', 'freedoom1', 'freedoom2', 'hacx', 'heretic', 'heretic1', 'hexdd', 'hexen', 'plutonia', 'strife0', 'strife1', 'tnt'];
+        var covers = ['doom', 'doom2', 'doom64', 'freedm', 'freedoom1', 'freedoom2', 'hacx', 'heretic', 'heretic1', 'hexdd', 'hexen', 'plutonia', 'strife0', 'strife1', 'tnt'];
         /**
          * When no cover is found use this Image
          * 

@@ -46,8 +46,6 @@
                 params = params.concat(['-savedir'], $rootScope.config.savepaths[opt.engine] + modselectedService.getListname());   
             }
 
-            console.log(params);
-            
             return params;
         }
 
