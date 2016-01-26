@@ -19,7 +19,7 @@ Doom Frontend with Oblige mapbuild integration for zdoom, gzDoom, Skulltag, Doom
 - Automatic Update Notifier
 
 ##Retro Reskin Version  
-[scar54](https://github.com/scar45) made an own fork with an "retro-reskin" [here](https://github.com/scar45/ssgl-doom-launcher)
+[scar45](https://github.com/scar45) made an own fork with an "retro-reskin" [here](https://github.com/scar45/ssgl-doom-launcher)
 
 ##If you want to Help/Contribute  
 Taiga: https://tree.taiga.io/project/freakzero-gzdoom-launcher  
