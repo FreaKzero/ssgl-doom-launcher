@@ -1,5 +1,5 @@
 # Super Shotgun Launcher  
-Doom Frontend with Oblige mapbuild integration for zdoom, gzDoom, Skulltag and Zandronum written in AngularMaterial on NWJS for Windows and Linux.  
+Doom Frontend with Oblige mapbuild integration for zdoom, gzDoom, Skulltag, Doom64EX and Zandronum written in AngularMaterial on NWJS for Windows and Linux.  
 
 ##Just gimme the Binary Releases:
 [32 and 64bit Windows/Linux Releases](https://github.com/FreaKzero/ssgl-doom-launcher/releases)
@@ -13,10 +13,13 @@ Doom Frontend with Oblige mapbuild integration for zdoom, gzDoom, Skulltag and Z
 - Loadorder sorting for chosen WADs
 - Creating/Saving wadlists for faster access
 - Using/Creating Savefolders based on the name on used wadlist
-- [zDoom](http://zdoom.org), [gzDoom](https://github.com/coelckers/gzdoom), [Skulltag](http://www.skulltag.com/) and [Zandronum](https://zandronum.com/) Support
+- [zDoom](http://zdoom.org), [gzDoom](https://github.com/coelckers/gzdoom), [Skulltag](http://www.skulltag.com/), [Doom64EX](https://doom64ex.wordpress.com) and [Zandronum](https://zandronum.com/) Support
 - [Oblige](http://oblige.sourceforge.net/) "Build and Play" via Configfiles (Also able to resume last built map)
 - Fast access to your favourite DoomSeeker Client and Oblige Frontend
 - Automatic Update Notifier
+
+##Retro Reskin Version  
+[scar54](https://github.com/scar45) made an own fork with an "retro-reskin" [here](https://github.com/scar45/ssgl-doom-launcher)
 
 ##If you want to Help/Contribute  
 Taiga: https://tree.taiga.io/project/freakzero-gzdoom-launcher  
@@ -39,12 +42,11 @@ After you've done ```bower install```, you can build your development environmen
 
 It will make a new folder in your root named ./nw (Version 0.12.0 of NodeWebkit will be fetched via curl(), that can take a while) - with all dependencies and configs installed for development use (so you dont have to build everytime).
 
-When you dont use Sublime Text (see projectfile - buildsystems) use the commandline argument ```--devtools``` or ```-d``` to get an "Open Devtools" Icon in the Toolbar.  
+When you dont use Sublime Text (see projectfile - buildsystems) use the commandline argument ```--devtools``` or ```-d``` to get an "Open Devtools" Icon in the Toolbar. In Development mode you can press F5 to reload the App.  
 
 ##Building Docs  
 ```grunt yuidoc``` generates Code documentation into ./docs (its in .gitignore)  
 *Not all Documented yet*  
-
     
 ![Thx4BetaTest](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/beta.jpg)  
 [Serasar](https://github.com/Serasar)  
