@@ -10,7 +10,7 @@
                 wdir: '='
             },
 
-            template: '<div layout="row"><div flex="90"><md-input-container><label>{{label}}</label><input class="fileInput" type="text" ng-model="ngModel"></md-input-container></div><div flex="10"><md-button class="fileBtn" ng-click="openDialog()"><i class="mdi mdi-open-in-app"></i> Binary</md-button><input class="fileDialog" nwworkingdir="{{wdir}}" type="file" style="display:none;"></div></div>',
+            template: '<div layout="row"><div flex="90"><md-input-container><label>{{label}}</label><input class="fileInput" type="text" ng-model="ngModel"></md-input-container></div><div flex="10"><md-button class="fileBtn" ng-click="openDialog()"><i class="mdi mdi-open-in-app"></i> File</md-button><input class="fileDialog" nwworkingdir="{{wdir}}" type="file" style="display:none;"></div></div>',
 
             link: function($scope, elem, att, ngModel) {
 

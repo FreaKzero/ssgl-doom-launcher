@@ -78,7 +78,6 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
 
                         case 122:
                             nwService.getShell().openItem(nwService.buildPath(['config.json'], true));
-
                             break;
 
                         case 123:
@@ -134,6 +133,10 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
 
                 online: {
                     client: ''
+                },
+
+                special: {
+                    doom64exSound: '',
                 },
 
                 iwadpath: '',

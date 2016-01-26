@@ -13,7 +13,9 @@
     function gameService($q, $rootScope, $mdDialog, modselectedService, nwService) {
 
         /**
-         * Builds Params for Engines
+         * Builds Params for different Engines
+         *
+         * TODO: investigate if setvars is also practical for other instances
          *
          * @method _paramBuilder
          * @for gameService
@@ -31,6 +33,11 @@
 
             var params = ['-iwad', $rootScope.config.iwadpath + opt.iwad];
 
+            // For Doom64EX you need an extra soundfile
+            if (opt.engine === 'doom64ex') {
+                params = params.concat(['-setvars'], ["s_soundfont", $rootScope.config.misc.doom64exsound]);
+            }
+
             if (wads.length > 0) {
                 params = params.concat(['-file'], wads);
             }
@@ -39,6 +46,8 @@
                 params = params.concat(['-savedir'], $rootScope.config.savepaths[opt.engine] + modselectedService.getListname());   
             }
 
+            console.log(params);
+            
             return params;
         }
 

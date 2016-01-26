@@ -58,24 +58,23 @@
 				</md-select>
 			</div>
 		</div>
+		
+		<dir-choose label="WAD Path:" ng-model="config.wadpath"></dir-choose>
+		<dir-choose label="iWAD Path:" ng-model="config.iwadpath"></dir-choose>
 					
 		<div ng-show="config.active.zandronum === true || config.active.skulltag === true">
 			<file-choose label="Online Client (DOOMSEEKER):" ng-model="config.online.client"></file-choose>
 		</div>
+
 		<div ng-show="config.active.gzdoom">
 			<file-choose label="gzDoom Path:"  ng-model="config.engines.gzdoom"></file-choose>
 			<dir-choose label="gzDoom Savegames:" ng-model="config.savepaths.gzdoom" ng-show="config.savepaths.active"></dir-choose>
 		</div>
 		
-		<div ng-show="config.active.doom64ex">
-			<file-choose label="Doom64EX Path:" ng-model="config.engines.doom64ex"></file-choose>
-			<dir-choose label="Doom64EX Savegames:" ng-model="config.savepaths.doom64ex" ng-show="config.savepaths.active"></dir-choose>
-		</div>
-
-		<div ng-show="config.active.zandronum">
-			<file-choose label="Zandronum Path:" ng-model="config.engines.zandronum"></file-choose>
-			<dir-choose label="Zandronum Savegames:" ng-model="config.savepaths.zandronum" ng-show="config.savepaths.active"></dir-choose>
-		</div>
+		<div ng-show="config.active.zdoom">
+			<file-choose label="zDoom Path:" ng-model="config.engines.zdoom"></file-choose>
+			<dir-choose label="zDoom Savegames:" ng-model="config.savepaths.zdoom" ng-show="config.savepaths.active"></dir-choose>
+		</div>		
 
 		<div ng-show="config.active.zandronum">
 			<file-choose label="Zandronum Path:" ng-model="config.engines.zandronum"></file-choose>
@@ -85,9 +84,13 @@
 			<file-choose label="Skulltag Path:"  ng-model="config.engines.skulltag"></file-choose>
 			<dir-choose label="Skulltag Savegames:" ng-model="config.savepaths.skulltag" ng-show="config.savepaths.active"></dir-choose>
 		</div>
-		<dir-choose label="WAD Path:" ng-model="config.wadpath"></dir-choose>
-		<dir-choose label="iWAD Path:" ng-model="config.iwadpath"></dir-choose>
-		
+
+		<div ng-show="config.active.doom64ex">
+			<file-choose label="Doom64EX Path:" ng-model="config.engines.doom64ex"></file-choose>
+			<file-choose label="Doom64EX SoundFont File:" ng-model="config.misc.doom64exsound"></file-choose>
+			<dir-choose label="Doom64EX Savegames:" ng-model="config.savepaths.doom64ex" ng-show="config.savepaths.active"></dir-choose>
+		</div>
+			
 		<div ng-show="config.active.oblige">
 			<file-choose label="Oblige Path:" ng-model="config.oblige.binary"></file-choose>
 			<dir-choose label="Oblige MapConfig Path:" ng-model="config.oblige.configs"></dir-choose>
