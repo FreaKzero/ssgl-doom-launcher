@@ -4,7 +4,7 @@
 		{
 			"follow_symlinks": true,
 			"path": "src",
-			"folder_exclude_patterns" : ["lib"]
+			"folder_exclude_patterns" : ["lib", "node_modules"]
 		}
 	],
 	

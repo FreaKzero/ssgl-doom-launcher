@@ -72,17 +72,21 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
             // Bind F11 for configfile and F12 for opening DevTools
             $(document).on('keydown', function(e) {
                 var tag = e.target.tagName.toLowerCase();
-                
-                if (tag !== 'input' && tag !== 'textarea') {
-                    switch(e.which) {
 
-                        case 122: 
+                if (tag !== 'input' && tag !== 'textarea') {
+                    switch (e.which) {
+
+                        case 122:
                             nwService.getShell().openItem(nwService.buildPath(['config.json'], true));
-                            
-                        break;
+
+                            break;
 
                         case 123:
                             nwService.openDevTools();
+                        break;                        
+
+                        case 116:
+                            location.reload();
                         break;
                     }
                 }
