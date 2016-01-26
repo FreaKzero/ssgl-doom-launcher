@@ -35,6 +35,12 @@
 				<p style="color:white;">Oblige</p>
 				</md-checkbox>
 			</div>
+			<div flex>
+				<md-checkbox ng-model="config.active.doom64ex" aria-label="Doom64EX">
+				<p style="color:white;">Doom64EX</p>
+				</md-checkbox>
+			</div>
+
 		</div>
 						
 		<div layout="row">
@@ -61,10 +67,16 @@
 			<dir-choose label="gzDoom Savegames:" ng-model="config.savepaths.gzdoom" ng-show="config.savepaths.active"></dir-choose>
 		</div>
 		
-		<div ng-show="config.active.zdoom">
-			<file-choose label="zDoom Path:" ng-model="config.engines.zdoom"></file-choose>
-			<dir-choose label="zDoom Savegames:" ng-model="config.savepaths.zdoom" ng-show="config.savepaths.active"></dir-choose>
+		<div ng-show="config.active.doom64ex">
+			<file-choose label="Doom64EX Path:" ng-model="config.engines.doom64ex"></file-choose>
+			<dir-choose label="Doom64EX Savegames:" ng-model="config.savepaths.doom64ex" ng-show="config.savepaths.active"></dir-choose>
 		</div>
+
+		<div ng-show="config.active.zandronum">
+			<file-choose label="Zandronum Path:" ng-model="config.engines.zandronum"></file-choose>
+			<dir-choose label="Zandronum Savegames:" ng-model="config.savepaths.zandronum" ng-show="config.savepaths.active"></dir-choose>
+		</div>
+
 		<div ng-show="config.active.zandronum">
 			<file-choose label="Zandronum Path:" ng-model="config.engines.zandronum"></file-choose>
 			<dir-choose label="Zandronum Savegames:" ng-model="config.savepaths.zandronum" ng-show="config.savepaths.active"></dir-choose>

@@ -100,7 +100,8 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                     zdoom: '',
                     gzdoom: '',
                     zandronum: '',
-                    skulltag: ''
+                    skulltag: '',
+                    doom64ex: ''
                 },
 
                 savepaths: {
@@ -108,7 +109,8 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                     zdoom: '',
                     gzdoom: '',
                     zandronum: '',
-                    skulltag: ''
+                    skulltag: '',
+                    doom64ex: ''
                 },
 
                 oblige: {
@@ -122,7 +124,8 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                     zandronum: false,
                     oblige: false,
                     zdoom: false,
-                    skulltag: false
+                    skulltag: false,
+                    doom64ex: false
                 },
 
                 online: {
