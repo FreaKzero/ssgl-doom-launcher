@@ -46,7 +46,6 @@
             }
         }
 
-        //TODO: better methodname
         /**
          * Gives back Fullpath of BASEDIR
          *
@@ -304,7 +303,13 @@
             return GUI.Shell;
         };
 
-        //TODO: docs
+        /**
+         * Is NWJS started with a particular Argument
+         * @method hasArg
+         * @for nwService
+         * @param  {String}  arg asked Argument
+         * @return {Boolean} True when started with Argument    
+         */
         service.hasArg = function(arg) {
             var len = GUI.App.argv.length;
 
@@ -317,12 +322,25 @@
             return false;
         };
         
-        //TODO: docs
+        /**
+         * Opens Devtools
+         * 
+         * @method openDevTools
+         * @for nwService
+         */
         service.openDevTools = function() {
             GUI.Window.get().showDevTools();
         };
-      
-        //TODO: docs
+        
+        //TODO: Error Handling 
+        /**
+         * Copies a particular sourcefile to target
+         * 
+         * @method copyFile
+         * @for nwService
+         * @param  {String} source
+         * @param  {String} target
+         */
         service.copyFile = function(source, target) {
             FS.createReadStream(source).pipe(FS.createWriteStream(target));
         };
@@ -342,7 +360,6 @@
             });
         };
 
-        // todo: try catch
         /**
          * Read JSON Sync
          * @method readSyncJSON
