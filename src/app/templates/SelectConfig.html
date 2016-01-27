@@ -7,10 +7,30 @@
 </md-toolbar>
 <md-dialog-content style="padding: 25px;">
 
-<div layout="row">
-  <md-select ng-model="selectedconfig" placeholder="Select Config">
+<!-- 
+<md-input-container>
+  <label>State</label>
+  <md-select ng-model="someModel">
+    <md-option ng-value="opt" ng-repeat="opt in neighborhoods2">{{ opt }}</md-option>
+  </md-select>
+</md-input-container>
+
+
+  <label style="color: #b2b2b2;font-size: 12px;font-weight:bold;">Select Config</label>
+  <md-select ng-model="selectedconfig">
   <md-option ng-repeat="conf in mapconfigs" value="{{conf.path}}">{{conf.name}}</md-option>
   </md-select>
+
+-->
+
+<div layout="row">
+
+<md-input-container>
+  <label>Select Config</label>
+  <md-select ng-model="selectedconfig">
+    <md-option ng-repeat="conf in mapconfigs" value="{{conf.path}}">{{conf.name}}</md-option>
+  </md-select>
+</md-input-container>
 
   <input class="fileDialog" type="file" style="display:none;" nwsaveas="{{wadpath}}">
   <br /><br />

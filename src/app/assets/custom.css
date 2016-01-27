@@ -24,6 +24,11 @@
             user-select: none; 
         }
 
+        /* Dropdown whitefocus fix */
+        md-option:focus {            
+            background-color: transparent !important;
+        }
+
         .filtericon {
             color: #677e89;
             font-size: 25px !important;
