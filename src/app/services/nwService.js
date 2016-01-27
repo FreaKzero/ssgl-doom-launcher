@@ -279,7 +279,7 @@
          * @return {Promise}
          */
         service.getDir = function(path, relative) {
-            var def = $q.defer();
+            var def = $q.defer(); 
             path = _checkRel(path, relative);
 
             FS.readdir(path, function(err, fileArr) {
@@ -305,10 +305,18 @@
         };
 
         //TODO: docs
-        service.getArgs = function() {
-            return GUI.App.argv;
-        };
+        service.hasArg = function(arg) {
+            var len = GUI.App.argv.length;
 
+            for (var i = 0;i<len;i++) {
+                if (GUI.App.argv[i] === arg) {
+                    return true;
+                }
+            }
+
+            return false;
+        };
+        
         //TODO: docs
         service.openDevTools = function() {
             GUI.Window.get().showDevTools();

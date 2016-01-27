@@ -12,7 +12,7 @@
     [
        {
        	"name": "Start NW",
-	    "shell_cmd": "nw -d",
+	    "shell_cmd": "nw -d -r",
 	    "working_dir": "${project_path}",
 	    "path": "./nw",
 	    "shell": true

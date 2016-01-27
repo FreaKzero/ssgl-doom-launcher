@@ -53,7 +53,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
      * @method app.run
      * @for  ssgl
      * @uses  $rootScope
-     * @requires nwService
+     * @requires nwService 
      */
     app.run(function($rootScope, nwService) {
 
@@ -64,9 +64,30 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
         $rootScope.APPVERSION = nwService.readSyncJSON('package.json').version;
         document.title = 'Super Shotgun Launcher v' + $rootScope.APPVERSION;
         nwService.mkDir(nwService.buildPath(['lists'], true), true);
-        var args = nwService.getArgs();
+        
+        if (nwService.hasArg('-r') || nwService.hasArg('--livereload')) {
+            try {
+                var Gaze = require('gaze').Gaze;
+                var gaze = new Gaze('../src/**/*');
 
-        if (args[0] === '-d' || args[0] === '--devtools') {
+                gaze.on('all', function(event, filepath) {
+                    if (filepath && filepath.split('.').pop() === 'css') {
+                        var styles = document.querySelectorAll('link[rel=stylesheet]');
+                        for (var i = 0; i < styles.length; i++) {      
+                            var restyled = styles[i].getAttribute('href') + '?v='+Math.random(0,10000);
+                            styles[i].setAttribute('href', restyled);
+                        };
+                    } else {
+                        if (location) 
+                        location.reload();
+                    }                
+                });
+            } catch(e) { 
+             console.log('Livereload cant be used on an built App');
+            }
+        }
+
+        if (nwService.hasArg('-d') || nwService.hasArg('--devtools')) {
             $rootScope.DEVELOPER = true;
 
             // Bind F11 for configfile and F12 for opening DevTools
@@ -87,8 +108,8 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                         case 116:
                             location.reload();
                         break;
-                    }
-                }
+                    }      
+                } 
             });
 
         } else {
