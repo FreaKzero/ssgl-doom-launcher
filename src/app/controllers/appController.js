@@ -332,7 +332,12 @@
                      * @param nwService
                      */
                     function ConfigDialogController($scope, $mdDialog, nwService) {
-                        
+                        $scope.engine = engine;
+                        $scope.iwad = iwad;
+                        nwService.getModifiedDate($PARENT.config.oblige.mappath).then(function(date) {
+                            $scope.lastBuilt = date;
+                        });                  
+
                         nwService.getDir($PARENT.config.oblige.configs).then(function(files) {
                             $scope.mapconfigs = files.map(function(cfg) {
                                 return {

@@ -132,6 +132,34 @@
             }
         };
 
+        //TODO: doc
+        //TODO: Error handling
+        service.getModifiedDate = function(file) {
+            var def = $q.defer();
+
+            if (!FS.lstatSync(path).isFile()) {
+                def.resolve(null);            
+            }
+
+            FS.stat(file, function(err, data) {
+                
+                if (err) {
+                    console.log(err);
+                    def.resolve(null);
+                }
+
+                if (typeof data.mtime === 'undefined') {
+                    def.resolve(data.ctime);
+                } else {
+                    def.resolve(data.mtime);
+                }
+            });
+
+            return def.promise;
+        };
+
+        //fs.stat(path, [callback])
+
         /**
          * Builds Path for active OS
          *
@@ -278,7 +306,7 @@
          * @return {Promise}
          */
         service.getDir = function(path, relative) {
-            var def = $q.defer(); 
+            var def = $q.defer();
             path = _checkRel(path, relative);
 
             FS.readdir(path, function(err, fileArr) {
@@ -308,7 +336,7 @@
          * @method hasArg
          * @for nwService
          * @param  {String}  arg asked Argument
-         * @return {Boolean} True when started with Argument    
+         * @return {Boolean} True when started with Argument
          */
         service.hasArg = function(arg) {
             var len = GUI.App.argv.length;
@@ -321,21 +349,21 @@
 
             return false;
         };
-        
+
         /**
          * Opens Devtools
-         * 
+         *
          * @method openDevTools
          * @for nwService
          */
         service.openDevTools = function() {
             GUI.Window.get().showDevTools();
         };
-        
-        //TODO: Error Handling 
+
+        //TODO: Error Handling
         /**
          * Copies a particular sourcefile to target
-         * 
+         *
          * @method copyFile
          * @for nwService
          * @param  {String} source

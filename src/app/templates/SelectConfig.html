@@ -1,60 +1,48 @@
 <md-dialog style="width:65%;">
-<md-toolbar>
-<div class="md-toolbar-tools">
-  <h2>Select Oblige Config</h2>
-  <span flex></span>
-</div>
-</md-toolbar>
-<md-dialog-content style="padding: 25px;">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Select Oblige Config</h2>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+    <input class="fileDialog" type="file" style="display:none;" nwsaveas="{{wadpath}}">
+    <md-tabs md-selected="selectedTab">
+        <md-tab label="Build">
+            <br />
+            <md-dialog-content>
+                <div layout="row">
+                    <div flex="5"></div>
+                    <div flex="90">
 
-<!-- 
-<md-input-container>
-  <label>State</label>
-  <md-select ng-model="someModel">
-    <md-option ng-value="opt" ng-repeat="opt in neighborhoods2">{{ opt }}</md-option>
-  </md-select>
-</md-input-container>
+                    <div style="font-size: 12px">
+                      <p>Selected Engine: {{engine}} <br />
+                         Selected iWad: {{iwad}}<br/>
+                        <span ng-show="lastBuilt">
+                          Last Maptbuilt: {{lastBuilt | date:'medium'}}
+                        </span>
+                      </p>
+                    </div>
 
+                        <md-input-container>
+                            <label>Select Oblige Mapbuild Config</label>
+                            <md-select ng-model="selectedconfig">
+                                <md-option ng-repeat="conf in mapconfigs" value="{{conf.path}}">{{conf.name}}</md-option>
+                            </md-select>
+                        </md-input-container>
 
-  <label style="color: #b2b2b2;font-size: 12px;font-weight:bold;">Select Config</label>
-  <md-select ng-model="selectedconfig">
-  <md-option ng-repeat="conf in mapconfigs" value="{{conf.path}}">{{conf.name}}</md-option>
-  </md-select>
+                    </div>
+                    <div flex="5"></div>
+                </div>
+            </md-dialog-content>
+        </md-tab>
+        <md-tab label="Continue" ng-disabled="!lastBuilt"></md-tab>
+    </md-tabs>
+    <div class="md-actions">
+        <md-button ng-click="cancel()">Cancel</md-button>
+        <span flex></span>
 
--->
-
-<div layout="row">
-
-<md-input-container>
-  <label>Select Config</label>
-  <md-select ng-model="selectedconfig">
-    <md-option ng-repeat="conf in mapconfigs" value="{{conf.path}}">{{conf.name}}</md-option>
-  </md-select>
-</md-input-container>
-
-  <input class="fileDialog" type="file" style="display:none;" nwsaveas="{{wadpath}}">
-  <br /><br />
-  
-</div>
-</md-dialog-content>
-<div class="md-actions" layout="row">    
-  <md-button ng-click="cancel()">
-  Cancel
-  </md-button>
-
-
-<span flex></span>
-
-  <md-button id="keep">
-  Keep Last Map
-  </md-button>
-
-  <md-button ng-click="continue()">
-  Continue Last Map
-  </md-button>
-
-  <md-button class="md-accent" ng-click="start()" style="margin-right:20px;">
-  Build & Start
-  </md-button>
-</div>
+        <md-button id="keep" ng-show="lastBuilt">Save current Map</md-button>
+        <md-button ng-show="selectedTab === 1" ng-click="continue()">Continue Last Map</md-button>
+        <md-button ng-show="selectedTab === 0" class="md-accent" ng-click="start()" style="margin-right:20px;">Build & Start</md-button>
+    </div>
 </md-dialog>
