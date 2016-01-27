@@ -53,7 +53,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
      * @method app.run
      * @for  ssgl
      * @uses  $rootScope
-     * @requires nwService 
+     * @requires nwService
      */
     app.run(function($rootScope, nwService) {
 
@@ -64,7 +64,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
         $rootScope.APPVERSION = nwService.readSyncJSON('package.json').version;
         document.title = 'Super Shotgun Launcher v' + $rootScope.APPVERSION;
         nwService.mkDir(nwService.buildPath(['lists'], true), true);
-        
+
         if (nwService.hasArg('-r') || nwService.hasArg('--livereload')) {
             try {
                 var Gaze = require('gaze').Gaze;
@@ -73,17 +73,16 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                 gaze.on('all', function(event, filepath) {
                     if (filepath && filepath.split('.').pop() === 'css') {
                         var styles = document.querySelectorAll('link[rel=stylesheet]');
-                        for (var i = 0; i < styles.length; i++) {      
-                            var restyled = styles[i].getAttribute('href') + '?v='+Math.random(0,10000);
+                        for (var i = 0; i < styles.length; i++) {
+                            var restyled = styles[i].getAttribute('href') + '?v=' + Math.random(0, 10000);
                             styles[i].setAttribute('href', restyled);
                         };
                     } else {
-                        if (location) 
-                        location.reload();
-                    }                
+                        window.location.reload();
+                    }
                 });
-            } catch(e) { 
-             console.log('Livereload cant be used on an built App');
+            } catch (e) {
+                console.log('Livereload cant be used on an built App');
             }
         }
 
@@ -103,13 +102,13 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
 
                         case 123:
                             nwService.openDevTools();
-                        break;                        
+                            break;
 
                         case 116:
                             location.reload();
-                        break;
-                    }      
-                } 
+                            break;
+                    }
+                }
             });
 
         } else {
@@ -157,7 +156,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                 },
 
                 misc: {
-                    doom64exsound: '' 
+                    doom64exsound: ''
                 },
 
                 iwadpath: '',
