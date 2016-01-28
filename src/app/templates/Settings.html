@@ -44,12 +44,6 @@
 		</div>
 						
 		<div layout="row">
-			<div flex>
-				<md-checkbox ng-model="config.savepaths.active" aria-label="SSGL manages Savegames (saves/engine/listname)">
-		<p style="color:white;">SSGL manages Savegames <br/></p>
-		</md-checkbox>
-
-			</div>
 			<div flex>		
 
 			<md-input-container>
@@ -72,27 +66,27 @@
 
 		<div ng-show="config.active.gzdoom">
 			<file-choose label="gzDoom Path:"  ng-model="config.engines.gzdoom"></file-choose>
-			<dir-choose label="gzDoom Savegames:" ng-model="config.savepaths.gzdoom" ng-show="config.savepaths.active"></dir-choose>
+			<dir-choose label="gzDoom Savegames:" ng-model="config.savepaths.gzdoom"></dir-choose>
 		</div>
 		
 		<div ng-show="config.active.zdoom">
 			<file-choose label="zDoom Path:" ng-model="config.engines.zdoom"></file-choose>
-			<dir-choose label="zDoom Savegames:" ng-model="config.savepaths.zdoom" ng-show="config.savepaths.active"></dir-choose>
+			<dir-choose label="zDoom Savegames:" ng-model="config.savepaths.zdoom"></dir-choose>
 		</div>		
 
 		<div ng-show="config.active.zandronum">
 			<file-choose label="Zandronum Path:" ng-model="config.engines.zandronum"></file-choose>
-			<dir-choose label="Zandronum Savegames:" ng-model="config.savepaths.zandronum" ng-show="config.savepaths.active"></dir-choose>
+			<dir-choose label="Zandronum Savegames:" ng-model="config.savepaths.zandronum"></dir-choose>
 		</div>
 		<div ng-show="config.active.skulltag">
 			<file-choose label="Skulltag Path:"  ng-model="config.engines.skulltag"></file-choose>
-			<dir-choose label="Skulltag Savegames:" ng-model="config.savepaths.skulltag" ng-show="config.savepaths.active"></dir-choose>
+			<dir-choose label="Skulltag Savegames:" ng-model="config.savepaths.skulltag"></dir-choose>
 		</div>
 
 		<div ng-show="config.active.doom64ex">
 			<file-choose label="Doom64EX Path:" ng-model="config.engines.doom64ex"></file-choose>
 			<file-choose label="Doom64EX SoundFont File:" ng-model="config.misc.doom64exsound"></file-choose>
-			<dir-choose label="Doom64EX Savegames:" ng-model="config.savepaths.doom64ex" ng-show="config.savepaths.active"></dir-choose>
+			<dir-choose label="Doom64EX Savegames:" ng-model="config.savepaths.doom64ex"></dir-choose>
 		</div>
 			
 		<div ng-show="config.active.oblige">

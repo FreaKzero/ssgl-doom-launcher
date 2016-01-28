@@ -38,14 +38,18 @@
                 params = params.concat(['-setvars'], ["s_soundfont", $rootScope.config.misc.doom64exsound]);
             }
 
+            
+
+            if (opt.save !== false) {
+                params = params.concat(['-loadgame'], opt.save);
+            }
+
             if (wads.length > 0) {
                 params = params.concat(['-file'], wads);
             }
 
-            if ($rootScope.config.savepaths.active === true) {
-                params = params.concat(['-savedir'], $rootScope.config.savepaths[opt.engine] + modselectedService.getListname());   
-            }
-
+            params = params.concat(['-savedir'], $rootScope.config.savepaths[opt.engine] + modselectedService.getListname());            
+            console.log(params);
             return params;
         }
 
@@ -56,7 +60,7 @@
          * 
          * @method startDoom
          * @for gameService
-         * @param  {Object}  iwad,config,engine,map
+         * @param  {Object}  iwad,config,engine,map,save
          */
         service.startDoom = function(opt) {
             if (typeof opt.map === 'undefined' || opt.map === null) {
@@ -90,7 +94,7 @@
          * 
          * @method startOblige
          * @for gameService
-         * @param  {Object} iwad, config, engine
+         * @param  {Object} iwad, config, engine,save
          */
         service.startOblige = function(opt) {
 

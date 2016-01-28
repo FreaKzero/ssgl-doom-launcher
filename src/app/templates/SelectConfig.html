@@ -18,7 +18,7 @@
                       <p>Selected Engine: {{engine}} <br />
                          Selected iWad: {{iwad}}<br/>
                         <span ng-show="lastBuilt">
-                          Last Maptbuilt: {{lastBuilt | date:'medium'}}
+                          Last Mapbuild: {{lastBuilt | date:'medium'}}
                         </span>
                       </p>
                     </div>
@@ -26,7 +26,7 @@
                         <md-input-container>
                             <label>Select Oblige Mapbuild Config</label>
                             <md-select ng-model="selectedconfig">
-                                <md-option ng-repeat="conf in mapconfigs" value="{{conf.path}}">{{conf.name}}</md-option>
+                                <md-option ng-repeat="conf in mapconfigs track by $index" value="{{conf.path}}">{{conf.name}}</md-option>
                             </md-select>
                         </md-input-container>
 
@@ -35,14 +35,44 @@
                 </div>
             </md-dialog-content>
         </md-tab>
-        <md-tab label="Continue" ng-disabled="!lastBuilt"></md-tab>
+        <md-tab label="Continue" ng-disabled="!lastBuilt">
+        <br />
+            <md-dialog-content>
+                <div layout="row">
+                    <div flex="5"></div>
+                    <div flex="90">
+                    <div style="font-size: 12px">
+                      <p>Selected Engine: {{engine}} <br />
+                         Selected iWad: {{iwad}}<br/>
+                        <span ng-show="lastBuilt">
+                          Last Mapbuild: {{lastBuilt | date:'medium'}}
+                        </span>
+                      </p>
+                    </div>
+                        <md-input-container ng-show="savegames.length > 0">
+                            <label>Select Savegame</label>
+                            <md-select ng-model="selectedsave">
+                            <md-option value="false">Dont load Savegame</md-option>
+                                <md-option ng-repeat="save in savegames track by $index" value="{{save.path}}">
+                                    {{save.date |date:'dd/MM HH:mm'}} - {{save.name}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+
+                    </div>
+                    <div flex="5"></div>
+                </div>
+            </md-dialog-content>
+        </md-tab>
     </md-tabs>
     <div class="md-actions">
         <md-button ng-click="cancel()">Cancel</md-button>
         <span flex></span>
+            
+        <md-button ng-show="selectedTab === 1" ng-click="openSaveDir()">Open Savefolder</md-button>
+        <md-button id="keep" ng-show="lastBuilt">Save current Map</md-button> 
+        <md-button ng-show="selectedTab === 1" class="md-accent" ng-click="continue()">Continue Last Map</md-button>
+        <md-button ng-show="selectedTab === 0" class="md-accent" ng-click="start()">Build & Start</md-button>
 
-        <md-button id="keep" ng-show="lastBuilt">Save current Map</md-button>
-        <md-button ng-show="selectedTab === 1" ng-click="continue()">Continue Last Map</md-button>
-        <md-button ng-show="selectedTab === 0" class="md-accent" ng-click="start()" style="margin-right:20px;">Build & Start</md-button>
     </div>
 </md-dialog>

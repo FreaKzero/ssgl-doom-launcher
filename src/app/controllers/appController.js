@@ -1,5 +1,5 @@
 (function() {
-    app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', 'iwadService', 'nwService', 'gameService', appController]);
+    app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', 'iwadService', 'nwService', 'gameService', 'modselectedService', appController]);
 
     /**
      * appController     
@@ -8,7 +8,7 @@
      * @module ssgl
      * @submodule appController
      */
-    function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService, $http, iwadService, nwService, gameService) {
+    function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService, $http, iwadService, nwService, gameService, modselectedService) {
         var $PARENT = $scope;
         var TOASTDELAY = 1500;
 
@@ -25,33 +25,34 @@
             .content('Checking for Updates...').position('bottom').hideDelay(TOASTDELAY)
         );
 
-        $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
-        then(function(response) {
-            if ($scope.APPVERSION !== '0.0.0' && response.data.version !== $scope.APPVERSION) {
-                $mdDialog.show({
-                    controller: function($scope) {
-                        $scope.downloadversion = response.data.version;
+        if ($scope.APPVERSION !== '0.0.0') {
+            $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
+            then(function(response) {
+                if (response.data.version !== $scope.APPVERSION) {
+                    $mdDialog.show({
+                        controller: function($scope) {
+                            $scope.downloadversion = response.data.version;
 
-                        $scope.download = function(url) {
-                            var release = 'https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v' + response.data.version;
-                            nwService.getShell().openExternal(release);
-                        };
+                            $scope.download = function(url) {
+                                var release = 'https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v' + response.data.version;
+                                nwService.getShell().openExternal(release);
+                            };
 
-                        $scope.close = function() {
-                            $mdDialog.cancel();
-                        };
-                    },
+                            $scope.close = function() {
+                                $mdDialog.cancel();
+                            };
+                        },
 
-                    templateUrl: 'app/templates/Update.html',
-                    parent: angular.element(document.body),
-                    clickOutsideToClose: true
-                });
-            }
+                        templateUrl: 'app/templates/Update.html',
+                        parent: angular.element(document.body),
+                        clickOutsideToClose: true
+                    });
+                }
 
-        }, function(response) {
-            console.log('ERROR: ' + response);
-        });
-
+            }, function(response) {
+                console.log('ERROR: ' + response);
+            });
+        }
         if ($scope.config.freshinstall === true) {
             SettingsDialog(null);
         }
@@ -264,7 +265,8 @@
                             iwad: $scope.iwads[$index].file,
                             map: false,
                             engine: engine,
-                            dialog: null
+                            dialog: null,
+                            save: false
                         });
 
                         $mdBottomSheet.hide();
@@ -332,8 +334,16 @@
                      * @param nwService
                      */
                     function ConfigDialogController($scope, $mdDialog, nwService) {
+                        var saveDir = $PARENT.config.savepaths[engine] + modselectedService.getListname();
                         $scope.engine = engine;
                         $scope.iwad = iwad;
+                        $scope.selectedsave = false;
+
+                        nwService.getDirWithDate(saveDir).then(function(data) {
+                            console.log(data);
+                            $scope.savegames = data;
+                        });
+
                         nwService.getModifiedDate($PARENT.config.oblige.mappath).then(function(date) {
                             $scope.lastBuilt = date;
                         });                  
@@ -351,6 +361,12 @@
                             }
                         });
 
+
+                        //TODO: docs
+                        $scope.openSaveDir = function() {
+                            nwService.getShell().openExternal(saveDir);
+                        };
+                        
                         /**
                          * Starts Oblige as Childprocess
                          *
@@ -362,7 +378,8 @@
                             gameService.startOblige({
                                 iwad: iwad,
                                 config: $scope.selectedconfig,
-                                engine: engine
+                                engine: engine,
+                                save: false
                             });
                         };
                         
@@ -377,7 +394,8 @@
                                 iwad: iwad,
                                 config: $scope.selectedconfig,
                                 engine: engine,
-                                map: $PARENT.config.oblige.mappath
+                                map: $PARENT.config.oblige.mappath,
+                                save: $scope.selectedsave
                             });
 
                             $mdDialog.cancel();

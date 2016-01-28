@@ -137,7 +137,7 @@
         service.getModifiedDate = function(file) {
             var def = $q.defer();
 
-            if (!FS.lstatSync(path).isFile()) {
+            if (!FS.lstatSync(file).isFile()) {
                 def.resolve(null);            
             }
 
@@ -174,15 +174,11 @@
                 execpath = false;
             }
 
-            if (execpath === true) {
-                path = service.execpath;
+            if (execpath === true) {                
+                return service.execpath + service.pathsep + array.join(service.pathsep);
             } else {
-                path = '';
+                return array.join(service.pathsep);
             }
-
-            path = path + service.pathsep + array.join(service.pathsep);
-
-            return path;
         };
 
         /**
@@ -295,6 +291,40 @@
             });
             return def.promise;
         };
+        
+        //TODO: doc
+        //TODO: error handling
+        service.getDirWithDate = function(path, relative) {
+            var def = $q.defer();            
+            path = _checkRel(path, relative);
+            var files = [];            
+
+            FS.readdir(path, function(err, fileArr) {
+                if (err) {                    
+                    def.resolve([]);
+                } else {
+                    for(var i = fileArr.length; i--;) {
+                        var full = service.buildPath([path, fileArr[i]], false);                        
+                        var stat = FS.statSync(full);
+
+                            if (err) {
+                                console.log(err);
+                            }
+
+                            files.push({
+                                name: fileArr[i],
+                                path: full,
+                                date: stat.mtime
+                            });
+                    }
+
+                    def.resolve(files);
+                }
+            });
+
+            return def.promise;
+        };
+             
         /**
          * Read a "flat" Directory async
          *
