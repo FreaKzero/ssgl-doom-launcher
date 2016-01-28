@@ -340,7 +340,6 @@
                         $scope.selectedsave = false;
 
                         nwService.getDirWithDate(saveDir).then(function(data) {
-                            console.log(data);
                             $scope.savegames = data;
                         });
 
@@ -366,7 +365,7 @@
                         $scope.openSaveDir = function() {
                             nwService.getShell().openExternal(saveDir);
                         };
-                        
+
                         /**
                          * Starts Oblige as Childprocess
                          *

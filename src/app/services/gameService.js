@@ -48,8 +48,7 @@
                 params = params.concat(['-file'], wads);
             }
 
-            params = params.concat(['-savedir'], $rootScope.config.savepaths[opt.engine] + modselectedService.getListname());            
-            console.log(params);
+            params = params.concat(['-savedir'], $rootScope.config.savepaths[opt.engine] + modselectedService.getListname());
             return params;
         }
 
