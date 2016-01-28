@@ -225,7 +225,7 @@
         service.getManifest = function() {
             return GUI.App.manifest;
         };
-
+        
         /**
          * Gives back Absolute BASEPATH
          * @method getAbsolute
@@ -233,8 +233,8 @@
          * @param  {String} to append on execpath
          * @return {String} path with BASEDIR
          */
-        service.getAbsolute = function(string) {
-            return service.execpath + string;
+        service.getAbsolute = function(string) {            
+            return service.execpath + service.pathsep + string;
         };
 
         /**
@@ -291,9 +291,19 @@
             });
             return def.promise;
         };
-        
-        //TODO: doc
-        //TODO: error handling
+
+        //TODO: error handling        
+        /**
+         * Returns Object with Filenames, absolute filepaths and last modified dates
+         * 
+         * @method getDirWithDate
+         * @for nwService
+         * @async
+         * @param  {String} path
+         * @param  {Boolean} When true use BASEDIR
+         
+         * @return {Promise} obj with name, path, date
+         */
         service.getDirWithDate = function(path, relative) {
             var def = $q.defer();            
             path = _checkRel(path, relative);
@@ -426,11 +436,12 @@
          * @param  {[type]}     relative When true use BASEDIR
          * @return {Object} Object parsed from JSON
          */
-        service.readSyncJSON = function(path, relative) {
+        service.readSyncJSON = function(path, relative) {            
             path = _checkRel(path, relative);
             try {
                 return JSON.parse(FS.readFileSync(path, "utf8"));
             } catch (e) {
+                console.log(e)
                 return {};
             }
         };
