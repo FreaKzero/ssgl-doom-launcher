@@ -2,9 +2,9 @@
     app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', 'iwadService', 'nwService', 'gameService', 'modselectedService', appController]);
 
     /**
-     * appController     
+     * appController
      * General App Controller (Menus, Fab)
-     
+
      * @module ssgl
      * @submodule appController
      */
@@ -305,7 +305,7 @@
                         var inp = element[0].querySelector('.fileDialog');
                         var btn = element[0].querySelector('#keep');
                         $scope.wadpath = $PARENT.config.wadpath + nwService.pathsep + 'obligebuild.WAD';
-                        
+
 
                         btn.addEventListener('click', function(evt) {
                             inp.click();
@@ -341,11 +341,12 @@
 
                         nwService.getDirWithDate(saveDir).then(function(data) {
                             $scope.savegames = data;
+                            $scope.selectedsave = $scope.savegames[0].path;
                         });
 
                         nwService.getModifiedDate($PARENT.config.oblige.mappath).then(function(date) {
                             $scope.lastBuilt = date;
-                        });                  
+                        });
 
                         nwService.getDir($PARENT.config.oblige.configs).then(function(files) {
                             $scope.mapconfigs = files.map(function(cfg) {
@@ -381,7 +382,7 @@
                                 save: false
                             });
                         };
-                        
+
                         /**
                          * Continue last built Oblige map - start Doom as childprocess
                          *

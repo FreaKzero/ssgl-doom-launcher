@@ -138,11 +138,11 @@
             var def = $q.defer();
 
             if (!FS.lstatSync(file).isFile()) {
-                def.resolve(null);            
+                def.resolve(null);
             }
 
             FS.stat(file, function(err, data) {
-                
+
                 if (err) {
                     console.log(err);
                     def.resolve(null);
@@ -174,7 +174,7 @@
                 execpath = false;
             }
 
-            if (execpath === true) {                
+            if (execpath === true) {
                 return service.execpath + service.pathsep + array.join(service.pathsep);
             } else {
                 return array.join(service.pathsep);
@@ -225,7 +225,7 @@
         service.getManifest = function() {
             return GUI.App.manifest;
         };
-        
+
         /**
          * Gives back Absolute BASEPATH
          * @method getAbsolute
@@ -233,7 +233,7 @@
          * @param  {String} to append on execpath
          * @return {String} path with BASEDIR
          */
-        service.getAbsolute = function(string) {            
+        service.getAbsolute = function(string) {
             return service.execpath + service.pathsep + string;
         };
 
@@ -292,29 +292,29 @@
             return def.promise;
         };
 
-        //TODO: error handling        
+        //TODO: error handling
         /**
          * Returns Object with Filenames, absolute filepaths and last modified dates
-         * 
+         *
          * @method getDirWithDate
          * @for nwService
          * @async
          * @param  {String} path
          * @param  {Boolean} When true use BASEDIR
-         
+
          * @return {Promise} obj with name, path, date
          */
         service.getDirWithDate = function(path, relative) {
-            var def = $q.defer();            
+            var def = $q.defer();
             path = _checkRel(path, relative);
-            var files = [];            
+            var files = [];
 
             FS.readdir(path, function(err, fileArr) {
-                if (err) {                    
+                if (err) {
                     def.resolve([]);
                 } else {
                     for(var i = fileArr.length; i--;) {
-                        var full = service.buildPath([path, fileArr[i]], false);                        
+                        var full = service.buildPath([path, fileArr[i]], false);
                         var stat = FS.statSync(full);
 
                             if (err) {
@@ -334,7 +334,7 @@
 
             return def.promise;
         };
-             
+
         /**
          * Read a "flat" Directory async
          *
@@ -436,7 +436,7 @@
          * @param  {[type]}     relative When true use BASEDIR
          * @return {Object} Object parsed from JSON
          */
-        service.readSyncJSON = function(path, relative) {            
+        service.readSyncJSON = function(path, relative) {
             path = _checkRel(path, relative);
             try {
                 return JSON.parse(FS.readFileSync(path, "utf8"));
