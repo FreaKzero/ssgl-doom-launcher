@@ -11,11 +11,11 @@ module.exports = function(grunt) {
                 command: 'rename nwjs-v0.12.0-win-x64 nw && copy cfg\\package.json nw\\package.json && cd nw & npm install'
             },
             
-			devInstallTux32: {			
+            devInstallTux32: {          
                 command: 'tar -xzvf cache/nwdev.tar.gz && mv nwjs-v0.12.0-linux-ia32 nw && cp cfg/package.json nw/package.json && cd nw && npm install'
             },
             
-			devInstallTux64: {
+            devInstallTux64: {
                 command: 'tar -xzvf cache/nwdev.tar.gz && mv nwjs-v0.12.0-linux-x64 nw && cp cfg/package.json nw/package.json && cd nw && npm install'
             },
 
@@ -29,6 +29,10 @@ module.exports = function(grunt) {
 
             gitTag: {
                 command: 'git tag v<%= pkg.version %>'
+            },
+
+            gitEnd: {
+                command: 'echo "SSGL Version v<%= pkg.version %> Built and Released !!! DONT FORGET TO PUSH !!!"'
             }
         },
 
@@ -77,7 +81,7 @@ module.exports = function(grunt) {
                 dest: './'
             }
         },
-		
+        
         yuidoc: {
             compile: {
                 name: 'Super Shotgun Launcher',
@@ -114,7 +118,8 @@ module.exports = function(grunt) {
         'nwjs:win', 
         'nwjs:tux', 
         'shell:gitCommit', 
-        'shell:gitTag'
+        'shell:gitTag',
+        'shell:gitEnd'
     ]);    
 
 };
