@@ -6,18 +6,21 @@ module.exports = function(grunt) {
             npmInstall: {
                 command: 'cd src && npm install'
             },
+            
             devInstall: {
                 command: 'rename nwjs-v0.12.0-win-x64 nw && copy cfg\\package.json nw\\package.json && cd nw & npm install'
             },
+            
 			devInstallTux32: {			
                 command: 'tar -xzvf cache/nwdev.tar.gz && mv nwjs-v0.12.0-linux-ia32 nw && cp cfg/package.json nw/package.json && cd nw && npm install'
             },
+            
 			devInstallTux64: {
                 command: 'tar -xzvf cache/nwdev.tar.gz && mv nwjs-v0.12.0-linux-x64 nw && cp cfg/package.json nw/package.json && cd nw && npm install'
             },
 
             askPackage: {
-                command: 'cls && echo "Did you update your package.json and are on the Master Branch ?" && pause'
+                command: 'echo "Did you update your package.json and are on the Master Branch ?" && pause'
             },
 
             gitCommit: {
