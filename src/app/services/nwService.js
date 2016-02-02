@@ -292,6 +292,21 @@
             return def.promise;
         };
 
+
+        //TODO: doc
+        //TODO: error handling
+        //TODO: file extension filter
+        service.wipeDir = function(path) {
+            path = _checkRel(path, false);
+            
+            FS.readdir(path, function(err, fileArr) {
+                for(var i = fileArr.length; i--;) {
+                    var full = service.buildPath([path, fileArr[i]], false);
+                    FS.unlinkSync(full);
+                }
+            });
+        };
+
         //TODO: error handling
         /**
          * Returns Object with Filenames, absolute filepaths and last modified dates

@@ -338,6 +338,7 @@
                         $scope.engine = engine;
                         $scope.iwad = iwad;
                         $scope.selectedsave = false;
+                        $scope.deletesavegames = false;
 
                         nwService.getDirWithDate(saveDir).then(function(data) {
                             $scope.savegames = data;
@@ -361,7 +362,6 @@
                             }
                         });
 
-
                         //TODO: docs
                         $scope.openSaveDir = function() {
                             nwService.getShell().openExternal(saveDir);
@@ -375,6 +375,10 @@
                          * @param  $index
                          */
                         $scope.start = function($index) {
+                            if ($scope.deletesavegames) {
+                                nwService.wipeDir(saveDir);
+                            }
+
                             gameService.startOblige({
                                 iwad: iwad,
                                 config: $scope.selectedconfig,

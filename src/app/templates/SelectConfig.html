@@ -6,7 +6,7 @@
         </div>
     </md-toolbar>
     <input class="fileDialog" type="file" style="display:none;" nwsaveas="{{wadpath}}">
-    <md-tabs md-selected="selectedTab">
+    <md-tabs md-selected="selectedTab" md-dynamic-height>
         <md-tab label="Build">
             <br />
             <md-dialog-content>
@@ -29,6 +29,13 @@
                                 <md-option ng-repeat="conf in mapconfigs track by $index" value="{{conf.path}}">{{conf.name}}</md-option>
                             </md-select>
                         </md-input-container>
+
+                        <md-input-container ng-show="savegames.length > 0">
+                            <md-checkbox ng-model="deletesavegames" aria-label="Delete Savegames">
+                                <p style="color:white;">Delete Savegames</p>
+                            </md-checkbox>
+                        </md-input-container>
+
 
                     </div>
                     <div flex="5"></div>
