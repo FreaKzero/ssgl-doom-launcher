@@ -45,7 +45,7 @@ It will make a new folder in your root named ./nw (Version 0.12.0 of NodeWebkit 
 
 When you dont use Sublime Text (see projectfile - buildsystems) use the commandline argument ```--devtools``` or ```-d``` to get an "Open Devtools" Icon in the Toolbar. In Development mode you can press F5 to reload the App.  
 
-On Development Environment only you can use the flags ```--lifereload``` or ```-r``` for livereloading on HTML/CSS/JS changes in the src Folder.
+On Development Environment only you can use the flags ```--livereload``` or ```-r``` for livereloading on HTML/CSS/JS changes in the src Folder.
 
 ##Building Docs  
 ```grunt yuidoc``` generates Code documentation into ./docs (its in .gitignore)  
