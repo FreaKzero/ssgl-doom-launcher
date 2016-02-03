@@ -4,8 +4,9 @@ Doom Frontend with Oblige mapbuild integration for zdoom, gzDoom, Skulltag, Doom
 ##Just gimme the Binary Releases:
 [32 and 64bit Windows/Linux Releases](https://github.com/FreaKzero/ssgl-doom-launcher/releases)
 
-![Demo](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/readme.gif)
-![Demo2](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/readme-2.gif)
+![Demo](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/ssgl1.gif)
+![Demo2](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/ssgl2.gif)
+![Demo3](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/ssgl3.gif)
 
 ##Features:  
 - Painfree modern UI
@@ -52,4 +53,4 @@ On Development Environment only you can use the flags ```--lifereload``` or ```-
     
 ![Thx4BetaTest](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/beta.jpg)  
 [Serasar](https://github.com/Serasar)  
-[axed](https://github.com/axed)  
+[axed](https://github.com/axed)
