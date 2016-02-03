@@ -12,6 +12,7 @@
       "grunt-shell": "*",
       "grunt-curl": "*",
       "grunt-zip": "*",
-      "grunt-contrib-yuidoc" : "*"
+      "grunt-contrib-yuidoc" : "*",
+      "grunt-contrib-compress": "*"
   }
 }

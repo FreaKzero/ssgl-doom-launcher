@@ -33,7 +33,7 @@ module.exports = function(grunt) {
 
             gitEnd: {
                 command: 'echo "SSGL Version v<%= pkg.version %> Built and Released !!! DONT FORGET TO PUSH !!!"'
-            }
+            }        
         },
 
         nwjs: {
@@ -82,6 +82,54 @@ module.exports = function(grunt) {
             }
         },
         
+        compress: {
+            tux32: {
+                options: {
+                    archive: './build/RELEASE/linux32.tar.gz',
+                    mode: 'tgz'
+                },                
+                files: [{
+                        src: ['**/*'],
+                        expand: true,
+                        cwd: './build/SSGL/linux32/'
+                    }]
+            },
+
+            tux64: {
+                options: {
+                    archive: './build/RELEASE/linux64.tar.gz',
+                    mode: 'tgz'
+                },                
+                files: [{
+                        src: ['**/*'],
+                        expand: true,
+                        cwd: './build/SSGL/linux64/'
+                    }]
+            },
+
+            win32: {
+                options: {
+                    archive: './build/RELEASE/win32.zip'
+                },                
+                files: [{
+                        src: ['**/*'],
+                        expand: true,
+                        cwd: './build/SSGL/win32/'
+                    }]
+            },
+
+            win64: {
+                options: {
+                    archive: './build/RELEASE/win64.zip'
+                },                
+                files: [{
+                        src: ['**/*'],
+                        expand: true,
+                        cwd: './build/SSGL/win64/'
+                    }]
+            }    
+        },
+
         yuidoc: {
             compile: {
                 name: 'Super Shotgun Launcher',
@@ -104,7 +152,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-curl');
     grunt.loadNpmTasks('grunt-zip');
     grunt.loadNpmTasks('grunt-contrib-yuidoc');
-    
+    grunt.loadNpmTasks('grunt-contrib-compress');
+
     grunt.registerTask('build-win', ['nwjs:win']);
     grunt.registerTask('build-linux', ['nwjs:tux']);
     grunt.registerTask('init', ['shell:npmInstall']);
@@ -117,8 +166,9 @@ module.exports = function(grunt) {
         'shell:askPackage', 
         'nwjs:win', 
         'nwjs:tux', 
+        'compress',
         'shell:gitCommit', 
-        'shell:gitTag',
+        'shell:gitTag',        
         'shell:gitEnd'
     ]);    
 
