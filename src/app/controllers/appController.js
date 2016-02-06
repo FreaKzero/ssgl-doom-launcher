@@ -362,6 +362,10 @@
                             }
                         });
 
+                        $scope.openOblige = function() {
+                            $PARENT.openOblige();
+                        };
+
                         //TODO: docs
                         $scope.openSaveDir = function() {
                             nwService.getShell().openExternal(saveDir);
