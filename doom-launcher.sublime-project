@@ -10,7 +10,7 @@
 		"shell_cmd": "start https://tree.taiga.io/project/freakzero-gzdoom-launcher/kanban"
 	}, {
 		"name": "Open GitHub",
-		"shell_cmd": "start https://github.com/FreaKzero/ssgl-doom-launcher"
+		"shell_cmd": "start https://github.com/FreaKzero/ssgl-doom-launcher/commits/dev"
 	}, {
 		"name": "Start NW",
 		"shell_cmd": "nw -d -r",
