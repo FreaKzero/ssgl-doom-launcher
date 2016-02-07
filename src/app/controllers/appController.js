@@ -18,8 +18,7 @@
         var TOASTDELAY = 1500;
 
         /**
-         * Update Toast gets fired when appController gets loaded (App init)
-         * And fetches package.json from github
+         * Automatic Update process on startup, user can choose to deny further dialogs
          *
          * @for appController
          * @uses  $http Ajax Service to github Repository
@@ -64,6 +63,12 @@
             SettingsDialog(null);
         }
 
+        /**
+         * Forces Update lookup, Updatedialog or no Update available feedback dialog is showing
+         * 
+         * @method forceUpdate
+         * @for appController
+         */
         $scope.forceUpdate = function() {
             $http.get(UPDATE.json).
             then(function(response) {
@@ -141,6 +146,12 @@
             nwService.getShell().openItem($scope.config.wadpath);
         };
 
+        /**
+         * Opens Configfile in external Editor
+         * 
+         * @method openConfigFile
+         * @for appController
+         */
         $scope.openConfigFile = function() {
             nwService.getShell().openItem(nwService.buildPath(['config.json'], true));
         };
@@ -419,6 +430,13 @@
                             }
                         });
 
+                        /**
+                         * Opens Oblige
+                         * 
+                         * @see appController.openOblige
+                         * @method openOblige
+                         * @for startGameOblige
+                         */
                         $scope.openOblige = function() {
                             $PARENT.openOblige();
                         };
