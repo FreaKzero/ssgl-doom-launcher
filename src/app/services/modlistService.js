@@ -62,7 +62,10 @@
          * @return {Promise}  
          */
         service.saveSelected = function(listObj) {
-            return nwService.writeJSON(listObj.list, nwService.buildPath(['lists', listObj.name + '.json'], true));
+            return nwService.writeJSON(
+                listObj.list,
+                nwService.buildPath(['lists', listObj.name + '.json'], true)
+            );
         };
 
         /**

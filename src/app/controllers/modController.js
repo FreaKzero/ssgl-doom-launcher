@@ -66,10 +66,10 @@
                 }
             }
         });
-        
+
         //#TODO: doc
         $scope.$on('modselectedService.useList', function() {
-            $scope.selected = modselectedService.get();            
+            $scope.selected = modselectedService.get();
 
             $scope.mods.filter(function(item) {
                 item.checked = false;
@@ -162,11 +162,10 @@
                  * @for saveSelectedController
                  * @uses modlistService
                  */
-                
+
                 //#TODO New saved list wont get viewed
                 $scope.submitForm = function() {
                     $parent.selected.name = $scope.listname;
-
                     modlistService.saveSelected($parent.selected).then(function(listname) {
                         $mdToast.show(
                             $mdToast.simple()
