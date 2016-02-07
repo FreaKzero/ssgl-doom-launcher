@@ -89,7 +89,7 @@
          * @return {Array} Paths
          */
         service.getPaths = function() {
-            return selected.map(function(item) {
+            return list.list.map(function(item) {
                 return item.path;
             });
         };
@@ -117,7 +117,7 @@
         
         //#TODO refactor methods who implement this
         service.getListname = function() {
-            return listname;
+            return list.name;
         };
 
         return service;
