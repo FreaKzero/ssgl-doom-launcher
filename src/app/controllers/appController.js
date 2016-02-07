@@ -25,13 +25,19 @@
             .content('Checking for Updates...').position('bottom').hideDelay(TOASTDELAY)
         );
 
-        if ($scope.APPVERSION !== '0.0.0') {
+        if ($scope.APPVERSION !== '0.0.1') {
             $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
             then(function(response) {
-                if (response.data.version !== $scope.APPVERSION) {
+                if (response.data.version !== $scope.APPVERSION && response.data.version !== $scope.config.dontShowUpdate) {
                     $mdDialog.show({
                         controller: function($scope) {
                             $scope.downloadversion = response.data.version;
+
+                            $scope.dontShow = function() {
+                                $PARENT.config.dontShowUpdate = response.data.version;
+                                nwService.writeJSON($PARENT.config, 'config.json', true);
+                                $mdDialog.cancel();
+                            };
 
                             $scope.download = function(url) {
                                 var release = 'https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v' + response.data.version;
@@ -56,6 +62,41 @@
         if ($scope.config.freshinstall === true) {
             SettingsDialog(null);
         }
+
+        $scope.forceUpdate = function() {
+            $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
+            then(function(response) {
+                if (response.data.version !== $scope.APPVERSION) {
+                    $mdDialog.show({
+                        controller: function($scope) {
+                            $scope.downloadversion = response.data.version;
+
+                            $scope.dontShow = function() {
+                                $PARENT.config.dontShowUpdate = response.data.version;
+                                nwService.writeJSON($PARENT.config, 'config.json', true);
+                                $mdDialog.cancel();
+                            };
+
+                            $scope.download = function(url) {
+                                var release = 'https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v' + response.data.version;
+                                nwService.getShell().openExternal(release);
+                            };
+
+                            $scope.close = function() {
+                                $mdDialog.cancel();
+                            };
+                        },
+
+                        templateUrl: 'app/templates/Update.html',
+                        parent: angular.element(document.body),
+                        clickOutsideToClose: true
+                    });
+                }
+
+            }, function(response) {
+                console.log('ERROR: ' + response);
+            });
+        };
 
         /**
          * Fires up Settings Dialog

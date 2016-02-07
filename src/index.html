@@ -35,7 +35,6 @@
           </md-button>
 
           <md-menu-content width="6">
-                        
             <md-menu-item>
             <md-button ng-click="openWADFolder()">Open WAD Folder</md-button>
             </md-menu-item>
@@ -46,6 +45,10 @@
             
             <md-menu-item>
                 <md-button ng-click="reload()">Restart App</md-button>
+            </md-menu-item>
+
+            <md-menu-item>
+                <md-button ng-click="forceUpdate()">Check for Updates</md-button>
             </md-menu-item>
 
             <md-menu-item ng-click="showAboutDialog($event)">
