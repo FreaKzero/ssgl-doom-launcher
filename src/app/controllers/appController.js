@@ -1,7 +1,11 @@
 (function() {
     app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', 'iwadService', 'nwService', 'gameService', 'modselectedService', appController]);
 
-    //#TODO: extract the updaterepo URLS since we have now 2 update routines
+    var UPDATE = {
+        json: 'https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json',
+        download: 'https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v'
+    };
+
     /**
      * appController
      * General App Controller (Menus, Fab)
@@ -22,7 +26,7 @@
          * @event update
          */
         if ($scope.APPVERSION !== '0.0.0') {
-            $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
+            $http.get(UPDATE.json).
             then(function(response) {
                 if (response.data.version !== $scope.APPVERSION && response.data.version !== $scope.config.dontShowUpdate) {
                     $mdDialog.show({
@@ -37,7 +41,7 @@
                             };
 
                             $scope.download = function(url) {
-                                var release = 'https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v' + response.data.version;
+                                var release = UPDATE.download + response.data.version;
                                 nwService.getShell().openExternal(release);
                             };
 
@@ -61,7 +65,7 @@
         }
 
         $scope.forceUpdate = function() {
-            $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
+            $http.get(UPDATE.json).
             then(function(response) {
                 if (response.data.version !== $scope.APPVERSION) {
                     $mdDialog.show({
@@ -73,7 +77,7 @@
                             };
 
                             $scope.download = function(url) {
-                                var release = 'https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v' + response.data.version;
+                                var release = UPDATE.download + response.data.version;
                                 nwService.getShell().openExternal(release);
                             };
 
@@ -141,7 +145,12 @@
             nwService.getShell().openItem(nwService.buildPath(['config.json'], true));
         };
 
-        //TODO: doc
+        /**
+         * Opens Devtools
+         * 
+         * @method openDevTools
+         * @for appController
+         */
         $scope.openDevTools = function() {
             nwService.openDevTools();
         };
@@ -414,7 +423,12 @@
                             $PARENT.openOblige();
                         };
 
-                        //TODO: docs
+                        /**
+                         * Opens Savegame folder in external Explorer
+                         * 
+                         * @method openSaveDir
+                         * @for appController
+                         */
                         $scope.openSaveDir = function() {
                             nwService.getShell().openExternal(saveDir);
                         };
