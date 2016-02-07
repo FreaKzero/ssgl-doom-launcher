@@ -21,11 +21,6 @@
          * @uses  $http Ajax Service to github Repository
          * @event update
          */
-        $mdToast.show(
-            $mdToast.simple()
-            .content('Checking for Updates...').position('bottom').hideDelay(TOASTDELAY)
-        );
-
         if ($scope.APPVERSION !== '0.0.0') {
             $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
             then(function(response) {
