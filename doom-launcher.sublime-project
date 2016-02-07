@@ -3,13 +3,17 @@
 	[
 		{
 			"follow_symlinks": true,
-			"path": "src",
-			"folder_exclude_patterns" : ["lib", "node_modules"]
+			"path": "/",
+			"folder_exclude_patterns" : ["lib", "node_modules", "nw", "docs", "cache", "cfg"]
 		}
 	],
 	
 	"build_systems":
     [
+    	{
+    		"name": "Open Taiga",
+    		"shell_cmd": "start https://tree.taiga.io/project/freakzero-gzdoom-launcher/kanban"
+		},
        {
        	"name": "Start NW",
 	    "shell_cmd": "nw -d -r",
