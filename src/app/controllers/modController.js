@@ -1,6 +1,28 @@
 (function() {
     app.controller('modController', ['$scope', 'modService', 'modlistService', '$mdDialog', 'nwService', 'modselectedService', '$mdToast', modController]);
 
+    /*
+    ========================================================
+    *                    Refactor Notes                    *
+    ========================================================
+    - Refactor Property names:
+      $scope.usedList 
+      $scope.selected
+    
+    - To Object:
+      $scope.selected.list and $scope.selected.name [NOPE]
+      $scope.selected.list and $scope.selected.name
+    
+    - Necessary changes:
+      Templates
+      modselectedService
+      modlistService
+
+    Remove Collectionwatcher and hang sync methods on moveup movedown and checked
+    Rename checked
+        
+     */
+    
     /**
      * Controller for the Mod splitview
      *
@@ -9,21 +31,12 @@
      * @submodule modController
      */
     function modController($scope, modService, modlistService, $mdDialog, nwService, modselectedService, $mdToast) {
-        var self = this;
         var $parent = $scope;
-        /**
-         * Name of used List
-         * @property usedList
-         * @type {String}
-         */
-        $scope.usedList = 'Untitled';
 
-        /**
-         * selected mods
-         * @property selected
-         * @type {Array}
-         */
-        $scope.selected = [];
+        //#TODO: Throw into modselectedService
+        $scope.selected = {};
+        $scope.selected.list = [];
+        $scope.selected.name = 'Untitled';
 
         modService.getMods($scope.config.wadpath).then(function(mods) {
             /**
@@ -33,6 +46,7 @@
              */
             $scope.mods = mods;
 
+            // #TODO Refactor in selectedlist
             if ($scope.config.initList !== false) {
                 var startListJSON = JSON.parse($scope.config.initList);
                 var startList = nwService.readSyncJSON(startListJSON.path);
@@ -53,16 +67,7 @@
             }
         });
         
-        //#TODO:Refactor
-        //Fires always twice obviously - and its too complex
-        $scope.$watch('usedList', function(nv, ov) {
-            modselectedService.sync($scope.selected, $scope.usedList);
-        });
-
-        $scope.$watchCollection('selected', function(nv, ov) {
-            modselectedService.sync(nv, $scope.usedList);
-        });
-
+        //#WAT why use Event ?
         $scope.$on('USELIST', function(ev, wads, name) {
             $scope.selected = wads;
             $scope.usedList = name;
@@ -91,8 +96,8 @@
                 item.checked = false;
             });
 
-            $scope.selected = [];
-            $scope.usedList = 'Untitled';
+            $scope.selected.list = [];
+            $scope.selected.name = 'Untitled';
         };
 
         /**
@@ -129,8 +134,9 @@
                  */
                 $scope.title = 'Save List';
 
+                //#WAT: investigate...
                 if ($parent.usedList !== 'Untitled') {
-                    $scope.listname = $parent.usedList;
+                    $scope.selectedname = $parent.selected.name;
                 }
 
                 /**
@@ -164,7 +170,7 @@
                  * @uses modlistService
                  */
                 $scope.submitForm = function() {
-                    modlistService.saveSelected($scope.listname, $parent.selected).then(function(listname) {
+                    modlistService.saveSelected($scope.selected).then(function(listname) {
                         $mdToast.show(
                             $mdToast.simple()
                             .content('Saved List to ' + listname).position('bottom').hideDelay(1500)
@@ -176,12 +182,14 @@
                         );
                     });
 
-                    $parent.usedList = $scope.listname;
+                    //#WAT use listname from callback ?
+                    $parent.selected.name = $scope.selectedname;
                     $mdDialog.cancel();
                 };
             }
         };
 
+        //#WAT why sync ?
         /**
          * Moves selected Mod up in List (Loadorder)
          *
@@ -191,10 +199,12 @@
          */
         $scope.moveUp = function($index) {
             if ($index > 0) {
-                _.move($scope.selected, $index, $index - 1);
+                _.move($scope.selected.list, $index, $index - 1);
+                modselectedService.sync($scope.selected);
             }
         };
 
+        //#WAT why sync ?
         /**
          * Moves selected Mod down in List (Loadorder)
          *
@@ -203,30 +213,30 @@
          * @param $index Clicked item
          */
         $scope.moveDown = function($index) {
-            if ($scope.selected.length - 1 !== $index) {
-                _.move($scope.selected, $index, $index + 1);
+            if ($scope.selected.list.length - 1 !== $index) {
+                _.move($scope.selected.list, $index, $index + 1);
+                modselectedService.sync($scope.selected);
             }
         };
 
-        //TODO:: Refactor Name
         /**
-         * Selects the Mod
+         * Adds Wad into loadlist
          *
          * @method checked
          * @for modController
          * @param {Object} mod
          */
-        $scope.checked = function(mod) {
+        $scope.selectWad = function(mod) {
             if (mod.checked === false) {
                 mod.checked = true;
-                $scope.selected.push(mod);
-
+                $scope.selected.list.push(mod);
             } else {
                 mod.checked = false;
-                $scope.selected = _($scope.selected).filter(function(item) {
+                $scope.selected.list = _($scope.selected.list).filter(function(item) {
                     return item.path !== mod.path;
                 });
             }
+            modselectedService.sync($scope.selected);
         };
     }
 })();

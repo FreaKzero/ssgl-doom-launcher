@@ -29,7 +29,7 @@ $(document).ready(function() {
                 
                 <md-list>
 
-                <md-list-item class="md-2-line repeat-animation init-animation" ng-repeat="mod in filtered = (mods | filter:searchterm) track by mod.path" ng-click="checked(mod)">
+                <md-list-item class="md-2-line repeat-animation init-animation" ng-repeat="mod in filtered = (mods | filter:searchterm) track by mod.path" ng-click="selectWad(mod)">
                 <div class="md-list-item-text">
                     <h3>{{ mod.name }}</h3>
                     <p>{{ mod.dir }}</p>
@@ -48,14 +48,14 @@ $(document).ready(function() {
             </div>
             <div flex>
 
-            <md-toolbar class="md-hue-2 menu-animation" ng-show="selected.length > 0 || usedList">
+            <md-toolbar class="md-hue-2 menu-animation" ng-show="selected.list.length > 0 || usedList">
                 <div class="md-toolbar-tools">
 
           <p>{{usedList}}</p>
           <span flex></span>
-                    <md-button ng-show="selected.length > 0" class="md-accent" ng-click="saveSelected($event)"><i class="mdi mdi-content-save"></i> Save</md-button>
+                    <md-button ng-show="selected.list.length > 0" class="md-accent" ng-click="saveSelected($event)"><i class="mdi mdi-content-save"></i> Save</md-button>
 
-                    <div ng-show="selected.length > 0 || usedList !== 'Untitled'">
+                    <div ng-show="selected.list.length > 0 || usedList !== 'Untitled'">
                     <md-button class="md-accent" ng-click="newSelected()"><i class="mdi mdi-playlist-plus"></i> New</md-button>
                     </div>
                 </div>
@@ -63,7 +63,7 @@ $(document).ready(function() {
 
                 <md-content layout-padding class="slimscroll-mods">
                 <md-list>
-                <md-list-item class="md-2-line repeat-animation" ng-repeat="mod in selected track by mod.path">
+                <md-list-item class="md-2-line repeat-animation" ng-repeat="mod in selected.list track by mod.path">
                 <div class="md-list-item-text">
                     <h3>{{ mod.name }}</h3>
                     <p>{{ mod.dir }}</p>

@@ -57,18 +57,17 @@
          * 
          * @method saveSelected
          * @for modlistService
-         * @param  {String} Name of list
-         * @param  {Array} List of Wads
+         * @param  {Object} listObj {name: '', list: ''}
          * @async
          * @return {Promise}  
          */
-        service.saveSelected = function(name, list) {
-
+        service.saveSelected = function(listObj) {
+            //#WAT: why event ?
             setTimeout(function() {
                 $rootScope.$broadcast('MODIFIEDLISTS');
             }, 1500);
             
-            return nwService.writeJSON(list, nwService.buildPath(['lists', name + '.json'], true));
+            return nwService.writeJSON(listObj.list, nwService.buildPath(['lists', listObj.name + '.json'], true));
         };
 
         /**

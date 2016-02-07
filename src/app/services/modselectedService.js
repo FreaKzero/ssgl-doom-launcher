@@ -15,17 +15,10 @@
      * @type {Array}
      * @private
      */
-    selected = [];
-
-    /**
-     * Name of List
-     * @type {String}
-     * @private
-     * @property listname
-     * @default  Untitled
-     */
-    listname = 'Untitled';
-
+    list = {};
+    list.name = 'Untitled';
+    list.list = [];
+    
     function modselectedService($q) {
         var service = {};
 
@@ -34,12 +27,11 @@
          * 
          * @method sync
          * @for modselectedService
-         * @param  {Array} data
-         * @param  {String} name
+         * @param  {Object} listObj {name: '', list: []}
          */
-        service.sync = function(data, name) {
-            selected = data;
-            listname = name;
+        //#WHY try to remove
+        service.sync = function(listObj) {
+            list = listObj;
         };
 
         /**
