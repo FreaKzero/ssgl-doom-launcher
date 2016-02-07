@@ -25,13 +25,14 @@
             .content('Checking for Updates...').position('bottom').hideDelay(TOASTDELAY)
         );
 
-        if ($scope.APPVERSION !== '0.0.1') {
+        if ($scope.APPVERSION !== '0.0.0') {
             $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
             then(function(response) {
                 if (response.data.version !== $scope.APPVERSION && response.data.version !== $scope.config.dontShowUpdate) {
                     $mdDialog.show({
                         controller: function($scope) {
                             $scope.downloadversion = response.data.version;
+                            $scope.showDeny = true;
 
                             $scope.dontShow = function() {
                                 $PARENT.config.dontShowUpdate = response.data.version;
@@ -70,11 +71,9 @@
                     $mdDialog.show({
                         controller: function($scope) {
                             $scope.downloadversion = response.data.version;
+                            $scope.showDeny = false;
 
                             $scope.dontShow = function() {
-                                $PARENT.config.dontShowUpdate = response.data.version;
-                                nwService.writeJSON($PARENT.config, 'config.json', true);
-                                $mdDialog.cancel();
                             };
 
                             $scope.download = function(url) {

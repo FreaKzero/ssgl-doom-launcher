@@ -11,7 +11,7 @@
       <strong>Version {{downloadversion}}</strong> is available for Download here: <br /><br />
       <div style="text-align:center;">
         
-        <md-button class="md-raised" style="background-color: #505050;"><i class="mdi mdi-bell-off"></i> &nbsp;&nbsp;<a target="_blank" ng-click="dontShow()">Dont show again</a></md-button>
+        <md-button ng-show="showDeny" class="md-raised" style="background-color: #505050;"><i class="mdi mdi-bell-off"></i> &nbsp;&nbsp;<a target="_blank" ng-click="dontShow()">Dont show again</a></md-button>
 
         <md-button class="md-raised md-accent"><i class="mdi mdi-briefcase-download"></i> &nbsp;&nbsp;<a target="_blank" ng-click="download()">Download</a></md-button>
       </div>
