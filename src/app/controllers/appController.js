@@ -68,7 +68,7 @@
         $scope.forceUpdate = function() {
             $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
             then(function(response) {
-                if (response.data.version === $scope.APPVERSION) {
+                if (response.data.version !== $scope.APPVERSION) {
                     $mdDialog.show({
                         controller: function($scope) {
                             $scope.downloadversion = response.data.version;
