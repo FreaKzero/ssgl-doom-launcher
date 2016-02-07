@@ -1,232 +1,232 @@
- (function() {
-     app.controller('modController', ['$scope', 'modService', 'modlistService', '$mdDialog', 'nwService', 'modselectedService', '$mdToast', modController]);
+(function() {
+    app.controller('modController', ['$scope', 'modService', 'modlistService', '$mdDialog', 'nwService', 'modselectedService', '$mdToast', modController]);
 
-     /**
-      * Controller for the Mod splitview
-      *
-      * @method modController
-      * @module ssgl
-      * @submodule modController
-      */
-     function modController($scope, modService, modlistService, $mdDialog, nwService, modselectedService, $mdToast) {
-         var self = this;
-         var $parent = $scope;
-         /**
-          * Name of used List
-          * @property usedList
-          * @type {String}
-          */
-         $scope.usedList = 'Untitled';
-         
-         /**
-          * selected mods
-          * @property selected
-          * @type {Array}
-          */
-         $scope.selected = [];
-         
-         modService.getMods($scope.config.wadpath).then(function(mods) {
-             /**
-              * @property mods
-              * @type {Array}
-              * @async
-              */
-             $scope.mods = mods;
+    /**
+     * Controller for the Mod splitview
+     *
+     * @method modController
+     * @module ssgl
+     * @submodule modController
+     */
+    function modController($scope, modService, modlistService, $mdDialog, nwService, modselectedService, $mdToast) {
+        var self = this;
+        var $parent = $scope;
+        /**
+         * Name of used List
+         * @property usedList
+         * @type {String}
+         */
+        $scope.usedList = 'Untitled';
 
-             if ($scope.config.initList !== false) {
-                 var startListJSON = JSON.parse($scope.config.initList);
-                 var startList = nwService.readSyncJSON(startListJSON.path);
+        /**
+         * selected mods
+         * @property selected
+         * @type {Array}
+         */
+        $scope.selected = [];
 
-                 if (!_.isEmpty(startList)) {
-                     $scope.$broadcast('USELIST', startList, startListJSON.name);
-                 } else {
-                     // cant parse... lets reset that
-                     $scope.config.initList = false;
-                     nwService.writeJSON($scope.config, 'config.json', true);
+        modService.getMods($scope.config.wadpath).then(function(mods) {
+            /**
+             * @property mods
+             * @type {Array}
+             * @async
+             */
+            $scope.mods = mods;
 
-                     $mdToast.show(
-                         $mdToast.simple()
-                         .content('initList ' + startListJSON.name + ' not found, resetted in config')
-                         .position('bottom').hideDelay(2500)
-                     );
-                 }
-             }
-         });
+            if ($scope.config.initList !== false) {
+                var startListJSON = JSON.parse($scope.config.initList);
+                var startList = nwService.readSyncJSON(startListJSON.path);
 
-         //TODO:: docs...
-         //TODO:: make 1 Object
-         $scope.$watch('usedList', function(nv, ov) {
-             modselectedService.sync(nv, $scope.usedList);
-         });
+                if (!_.isEmpty(startList)) {
+                    $scope.$broadcast('USELIST', startList, startListJSON.name);
+                } else {
+                    // cant parse... lets reset that
+                    $scope.config.initList = false;
+                    nwService.writeJSON($scope.config, 'config.json', true);
 
-         $scope.$watchCollection('selected', function(nv, ov) {
-             modselectedService.sync(nv, $scope.usedList);
-         });
+                    $mdToast.show(
+                        $mdToast.simple()
+                        .content('initList ' + startListJSON.name + ' not found, resetted in config')
+                        .position('bottom').hideDelay(2500)
+                    );
+                }
+            }
+        });
+        
+        //#TODO:Refactor
+        //Fires always twice obviously - and its too complex
+        $scope.$watch('usedList', function(nv, ov) {
+            modselectedService.sync($scope.selected, $scope.usedList);
+        });
 
-         $scope.$on('USELIST', function(ev, wads, name) {
-             $scope.selected = wads;
-             $scope.usedList = name;
+        $scope.$watchCollection('selected', function(nv, ov) {
+            modselectedService.sync(nv, $scope.usedList);
+        });
 
-             $scope.mods.filter(function(item) {
-                 item.checked = false;
-             });
+        $scope.$on('USELIST', function(ev, wads, name) {
+            $scope.selected = wads;
+            $scope.usedList = name;
 
-             _.each(wads, function(item) {
-                 var index = _.findIndex($scope.mods, {
-                     path: item.path
-                 });
+            $scope.mods.filter(function(item) {
+                item.checked = false;
+            });
 
-                 $scope.mods[index].checked = true;
-             });
-         });
+            _.each(wads, function(item) {
+                var index = _.findIndex($scope.mods, {
+                    path: item.path
+                });
 
-         /**
-          * Start a new List (Reset)
-          *
-          * @method newSelected
-          * @for modController
-          */
-         $scope.newSelected = function() {
-             $scope.mods.filter(function(item) {
-                 item.checked = false;
-             });
+                $scope.mods[index].checked = true;
+            });
+        });
 
-             $scope.selected = [];
-             $scope.usedList = 'Untitled';
-         };
+        /**
+         * Start a new List (Reset)
+         *
+         * @method newSelected
+         * @for modController
+         */
+        $scope.newSelected = function() {
+            $scope.mods.filter(function(item) {
+                item.checked = false;
+            });
 
-         /**
-          * Opens a Prompt for modlist saving
-          *
-          * @method saveSelected
-          * @for modController
-          * @param  {Event} ev
-          */
-         $scope.saveSelected = function(ev) {
-             $mdDialog.show({
-                 controller: saveSelectedController,
-                 templateUrl: 'app/templates/AddListPrompt.html',
-                 parent: angular.element(document.body),
-                 targetEvent: ev,
-                 clickOutsideToClose: false
-             });
+            $scope.selected = [];
+            $scope.usedList = 'Untitled';
+        };
 
-             /**
-              * saveSelectedController
-              *
-              * @method saveSelectedController
-              * @for saveSelected
-              * @param  $scope
-              * @param  $mdDialog
-              * @param  modlistService
-              */
-             function saveSelectedController($scope, $mdDialog, modlistService) {
-                 /**
-                  * Title for Dialog
-                  *
-                  * @property title
-                  * @type {String}
-                  */
-                 $scope.title = 'Save List';
+        /**
+         * Opens a Prompt for modlist saving
+         *
+         * @method saveSelected
+         * @for modController
+         * @param  {Event} ev
+         */
+        $scope.saveSelected = function(ev) {
+            $mdDialog.show({
+                controller: saveSelectedController,
+                templateUrl: 'app/templates/AddListPrompt.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: false
+            });
 
-                 if ($parent.usedList !== 'Untitled') {
-                     $scope.listname = $parent.usedList;
-                 }
+            /**
+             * saveSelectedController
+             *
+             * @method saveSelectedController
+             * @for saveSelected
+             * @param  $scope
+             * @param  $mdDialog
+             * @param  modlistService
+             */
+            function saveSelectedController($scope, $mdDialog, modlistService) {
+                /**
+                 * Title for Dialog
+                 *
+                 * @property title
+                 * @type {String}
+                 */
+                $scope.title = 'Save List';
 
-                 /**
-                  * @property double
-                  * @type {Array}
-                  */
-                 $scope.double = [];
+                if ($parent.usedList !== 'Untitled') {
+                    $scope.listname = $parent.usedList;
+                }
 
-                 /**
-                  * Closes Dialog
-                  *
-                  * @method cancel
-                  * @for saveSelectedController
-                  */
-                 $scope.cancel = function() {
-                     $mdDialog.cancel();
-                 };
+                /**
+                 * @property double
+                 * @type {Array}
+                 */
+                $scope.double = [];
 
-                 /**
-                  * check for doubles - here empty because we donnt need it
-                  *
-                  * @method checkdoubles
-                  * @for saveSelectedController
-                  */
-                 $scope.checkdoubles = function() {};
+                /**
+                 * Closes Dialog
+                 *
+                 * @method cancel
+                 * @for saveSelectedController
+                 */
+                $scope.cancel = function() {
+                    $mdDialog.cancel();
+                };
 
-                 /**
-                  * Saves the List
-                  * @method submitForm
-                  * @for saveSelectedController
-                  * @uses modlistService
-                  */
-                 $scope.submitForm = function() {
-                     modlistService.saveSelected($scope.listname, $parent.selected).then(function(listname) {
-                         $mdToast.show(
-                             $mdToast.simple()
-                             .content('Saved List to ' + listname).position('bottom').hideDelay(1500)
-                         );
-                     }, function(error) {
-                         $mdToast.show(
-                             $mdToast.simple()
-                             .content(error.message).position('bottom').hideDelay(1500)
-                         );
-                     });
+                /**
+                 * check for doubles - here empty because we donnt need it
+                 *
+                 * @method checkdoubles
+                 * @for saveSelectedController
+                 */
+                $scope.checkdoubles = function() {};
 
-                     $parent.usedList = $scope.listname;
-                     $mdDialog.cancel();
-                 };
-             }
-         };
+                /**
+                 * Saves the List
+                 * @method submitForm
+                 * @for saveSelectedController
+                 * @uses modlistService
+                 */
+                $scope.submitForm = function() {
+                    modlistService.saveSelected($scope.listname, $parent.selected).then(function(listname) {
+                        $mdToast.show(
+                            $mdToast.simple()
+                            .content('Saved List to ' + listname).position('bottom').hideDelay(1500)
+                        );
+                    }, function(error) {
+                        $mdToast.show(
+                            $mdToast.simple()
+                            .content(error.message).position('bottom').hideDelay(1500)
+                        );
+                    });
 
-         /**
-          * Moves selected Mod up in List (Loadorder)
-          *
-          * @method moveUp
-          * @for modController
-          * @param $index Clicked item
-          */
-         $scope.moveUp = function($index) {
-             if ($index > 0) {
-                 _.move($scope.selected, $index, $index - 1);
-             }
-         };
+                    $parent.usedList = $scope.listname;
+                    $mdDialog.cancel();
+                };
+            }
+        };
 
-         /**
-          * Moves selected Mod down in List (Loadorder)
-          *
-          * @method moveDown
-          * @for modController
-          * @param $index Clicked item
-          */
-         $scope.moveDown = function($index) {
-             if ($scope.selected.length - 1 !== $index) {
-                 _.move($scope.selected, $index, $index + 1);
-             }
-         };
+        /**
+         * Moves selected Mod up in List (Loadorder)
+         *
+         * @method moveUp
+         * @for modController
+         * @param $index Clicked item
+         */
+        $scope.moveUp = function($index) {
+            if ($index > 0) {
+                _.move($scope.selected, $index, $index - 1);
+            }
+        };
 
-         //TODO:: Refactor Name
-         /**
-          * Selects the Mod
-          *
-          * @method checked
-          * @for modController
-          * @param {Object} mod
-          */
-         $scope.checked = function(mod) {
-             if (mod.checked === false) {
-                 mod.checked = true;
-                 $scope.selected.push(mod);
+        /**
+         * Moves selected Mod down in List (Loadorder)
+         *
+         * @method moveDown
+         * @for modController
+         * @param $index Clicked item
+         */
+        $scope.moveDown = function($index) {
+            if ($scope.selected.length - 1 !== $index) {
+                _.move($scope.selected, $index, $index + 1);
+            }
+        };
 
-             } else {
-                 mod.checked = false;
-                 $scope.selected = _($scope.selected).filter(function(item) {
-                     return item.path !== mod.path;
-                 });
-             }
-         };
-     }
- })();
+        //TODO:: Refactor Name
+        /**
+         * Selects the Mod
+         *
+         * @method checked
+         * @for modController
+         * @param {Object} mod
+         */
+        $scope.checked = function(mod) {
+            if (mod.checked === false) {
+                mod.checked = true;
+                $scope.selected.push(mod);
+
+            } else {
+                mod.checked = false;
+                $scope.selected = _($scope.selected).filter(function(item) {
+                    return item.path !== mod.path;
+                });
+            }
+        };
+    }
+})();
