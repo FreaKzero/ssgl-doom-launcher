@@ -21,8 +21,9 @@
     x Remove Collectionwatcher and hang sync methods on moveup movedown and checked
     x Rename checked
     x Refactor USELIST event 
-    
+
     Refactor/Replace MODIFIEDLISTS event
+    Refactor modselectedService getListname / change implements
      */
 
     /**
@@ -77,7 +78,7 @@
                 item.checked = false;
             });
 
-            _.each(wads, function(item) {
+            _.each($scope.selected.list, function(item) {
                 var index = _.findIndex($scope.mods, {
                     path: item.path
                 });
@@ -171,7 +172,9 @@
                  * @uses modlistService
                  */
                 $scope.submitForm = function() {
-                    modlistService.saveSelected($scope.selected).then(function(listname) {
+                    $parent.selected.name = $scope.selectedname;
+
+                    modlistService.saveSelected($parent.selected).then(function(listname) {
                         $mdToast.show(
                             $mdToast.simple()
                             .content('Saved List to ' + listname).position('bottom').hideDelay(1500)
@@ -182,9 +185,7 @@
                             .content(error.message).position('bottom').hideDelay(1500)
                         );
                     });
-
-                    //#WAT use listname from callback ?
-                    $parent.selected.name = $scope.selectedname;
+                    
                     $mdDialog.cancel();
                 };
             }

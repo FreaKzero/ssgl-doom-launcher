@@ -62,11 +62,6 @@
          * @return {Promise}  
          */
         service.saveSelected = function(listObj) {
-            //#WAT: why event ?
-            setTimeout(function() {
-                $rootScope.$broadcast('MODIFIEDLISTS');
-            }, 1500);
-            
             return nwService.writeJSON(listObj.list, nwService.buildPath(['lists', listObj.name + '.json'], true));
         };
 

@@ -20,14 +20,7 @@
         });
 
         $parent = $scope;
-
-        //TODO:: Refactor with $apply ...
-        $scope.$on('MODIFIEDLISTS', function() {
-            modlistService.getLists().then(function(list) {
-                $scope.modlist = list;
-            });
-        });
-
+        
         /**
          * Fires up rename Dialog
          * @method rename
