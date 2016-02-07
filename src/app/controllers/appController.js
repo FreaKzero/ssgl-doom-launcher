@@ -435,7 +435,7 @@
                          * 
                          * @see appController.openOblige
                          * @method openOblige
-                         * @for startGameOblige
+                         * @for ConfigDialogController
                          */
                         $scope.openOblige = function() {
                             $PARENT.openOblige();
@@ -445,7 +445,7 @@
                          * Opens Savegame folder in external Explorer
                          * 
                          * @method openSaveDir
-                         * @for appController
+                         * @for ConfigDialogController
                          */
                         $scope.openSaveDir = function() {
                             nwService.getShell().openExternal(saveDir);
