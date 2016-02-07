@@ -1,5 +1,5 @@
 (function() {
-    app.controller('modlistController', ['$scope', 'modlistService', '$rootScope', '$mdDialog', '$mdToast', modlistController]);
+    app.controller('modlistController', ['$scope', 'modlistService', '$rootScope', '$mdDialog', '$mdToast', 'modselectedService', modlistController]);
 
     /**
      * Controller for the Sidebar Modlist
@@ -8,7 +8,7 @@
      * @module ssgl
      * @submodule modlistController
      */
-    function modlistController($scope, modlistService, $rootScope, $mdDialog, $mdToast) {
+    function modlistController($scope, modlistService, $rootScope, $mdDialog, $mdToast, modselectedService) {
 
         modlistService.getLists().then(function(list) {
             /**
@@ -172,7 +172,8 @@
         //#TODO: use modselectedService
         
         $scope.selectList = function($index) {
-            $rootScope.$broadcast('USELIST', $scope.modlist[$index].wads, $scope.modlist[$index].name);
+            modselectedService.selectList($scope.modlist[$index]);            
+            //$rootScope.$broadcast('USELIST', $scope.modlist[$index].wads, $scope.modlist[$index].name);
         };
     }
 })();

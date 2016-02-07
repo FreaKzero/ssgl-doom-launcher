@@ -10,17 +10,19 @@
       $scope.selected
 
     - To Object:
-      $scope.selected.list and $scope.selected.name [NOPE]
-      $scope.selected.list and $scope.selected.name
+      x $scope.selected.list and $scope.selected.name [NOPE]
+      x $scope.selected.list and $scope.selected.name
 
     - Necessary changes:
-      Templates
-      modselectedService
+      x Templates
+      x modselectedService
       modlistService
 
-    Remove Collectionwatcher and hang sync methods on moveup movedown and checked
-    Rename checked
-
+    x Remove Collectionwatcher and hang sync methods on moveup movedown and checked
+    x Rename checked
+    x Refactor USELIST event 
+    
+    Refactor/Replace MODIFIEDLISTS event
      */
 
     /**
@@ -66,11 +68,10 @@
                 }
             }
         });
-
-        //#WAT why use Event ?
-        $scope.$on('USELIST', function(ev, wads, name) {
-            $scope.selected = wads;
-            $scope.usedList = name;
+        
+        //#TODO: doc
+        $scope.$on('modselectedService.useList', function() {
+            $scope.selected = modselectedService.get();            
 
             $scope.mods.filter(function(item) {
                 item.checked = false;
@@ -197,7 +198,7 @@
          * @param $index Clicked item
          */
         $scope.moveUp = function($index) {
-           modselectedService.moveUp($index);
+            modselectedService.moveUp($index);
         };
 
         /**

@@ -1,5 +1,5 @@
 (function() {
-    app.factory('modselectedService', ['$q', modselectedService]);
+    app.factory('modselectedService', ['$q', '$rootScope', modselectedService]);
     /**
      * Service for selected Wads/Mods
      *
@@ -15,13 +15,26 @@
      * @type {Array}
      * @private
      */
+    
+    //#TODO rename list to wads ?
+    //#WAT wads better name ?
+    
     list = {};
     list.name = 'Untitled';
     list.list = [];
     
-    function modselectedService($q) {
+    function modselectedService($q, $rootScope) {
         var service = {};
         
+        // #TODO doc
+        service.selectList = function(listObj) {
+            list.list = listObj.wads;
+            list.name = listObj.name;
+
+            $rootScope.$broadcast('modselectedService.useList');
+        };
+
+        // #TODO doc
         service.select = function(mod) {
             if (mod.checked === false) {
                 mod.checked = true;
@@ -82,7 +95,7 @@
          * @return {Array}
          */
         service.get = function() {
-            return selected;
+            return list;
         };
 
         /**
@@ -91,6 +104,8 @@
          * @for modselectedService
          * @return {String} listname
          */
+        
+        //#TODO refactor methods who implement this
         service.getListname = function() {
             return listname;
         };
