@@ -1,6 +1,7 @@
 (function() {
     app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', 'iwadService', 'nwService', 'gameService', 'modselectedService', appController]);
 
+    //#TODO: extract the updaterepo URLS since we have now 2 update routines
     /**
      * appController
      * General App Controller (Menus, Fab)
@@ -67,7 +68,7 @@
         $scope.forceUpdate = function() {
             $http.get('https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json').
             then(function(response) {
-                if (response.data.version !== $scope.APPVERSION) {
+                if (response.data.version === $scope.APPVERSION) {
                     $mdDialog.show({
                         controller: function($scope) {
                             $scope.downloadversion = response.data.version;
@@ -87,6 +88,18 @@
                         },
 
                         templateUrl: 'app/templates/Update.html',
+                        parent: angular.element(document.body),
+                        clickOutsideToClose: true
+                    });
+                } else {
+                    $mdDialog.show({
+                        controller: function($scope) {
+                            $scope.close = function() {
+                                $mdDialog.cancel();
+                            };
+                        },
+
+                        templateUrl: 'app/templates/noUpdateAvailable.html',
                         parent: angular.element(document.body),
                         clickOutsideToClose: true
                     });
