@@ -51,7 +51,7 @@ $(document).ready(function() {
             <md-toolbar class="md-hue-2 menu-animation" ng-show="selected.list.length > 0 || usedList">
                 <div class="md-toolbar-tools">
 
-          <p>{{usedList}}</p>
+          <p>{{selected.name}}</p>
           <span flex></span>
                     <md-button ng-show="selected.list.length > 0" class="md-accent" ng-click="saveSelected($event)"><i class="mdi mdi-content-save"></i> Save</md-button>
 

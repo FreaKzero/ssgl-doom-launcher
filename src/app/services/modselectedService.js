@@ -75,6 +75,12 @@
             list = listObj;
         };
 
+        service.reset = function() {
+            list.name = 'Untitled';
+            list.list = [];
+
+            return list;
+        }
         /**
          * Returns Array with only Paths
          * 
@@ -96,6 +102,10 @@
          */
         service.get = function() {
             return list;
+        };
+
+        service.setListname = function(name) {
+            list.name = name;
         };
 
         /**

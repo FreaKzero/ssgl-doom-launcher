@@ -36,10 +36,7 @@
     function modController($scope, modService, modlistService, $mdDialog, nwService, modselectedService, $mdToast) {
         var $parent = $scope;
 
-        //#TODO: Throw into modselectedService
-        $scope.selected = {};
-        $scope.selected.list = [];
-        $scope.selected.name = 'Untitled';
+        $scope.selected = modselectedService.reset();
 
         modService.getMods($scope.config.wadpath).then(function(mods) {
             /**
@@ -98,8 +95,7 @@
                 item.checked = false;
             });
 
-            $scope.selected.list = [];
-            $scope.selected.name = 'Untitled';
+            $scope.selected = modselectedService.reset();
         };
 
         /**
@@ -136,11 +132,6 @@
                  */
                 $scope.title = 'Save List';
 
-                //#WAT: investigate...
-                if ($parent.usedList !== 'Untitled') {
-                    $scope.selectedname = $parent.selected.name;
-                }
-
                 /**
                  * @property double
                  * @type {Array}
@@ -171,8 +162,10 @@
                  * @for saveSelectedController
                  * @uses modlistService
                  */
+                
+                //#TODO New saved list wont get viewed
                 $scope.submitForm = function() {
-                    $parent.selected.name = $scope.selectedname;
+                    $parent.selected.name = $scope.listname;
 
                     modlistService.saveSelected($parent.selected).then(function(listname) {
                         $mdToast.show(
@@ -185,7 +178,7 @@
                             .content(error.message).position('bottom').hideDelay(1500)
                         );
                     });
-                    
+
                     $mdDialog.cancel();
                 };
             }
