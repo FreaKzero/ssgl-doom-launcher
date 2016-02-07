@@ -21,6 +21,34 @@
     
     function modselectedService($q) {
         var service = {};
+        
+        service.select = function(mod) {
+            if (mod.checked === false) {
+                mod.checked = true;
+                list.list.push(mod);
+            } else {
+                mod.checked = false;
+                list.list = _(list.list).filter(function(item) {
+                    return item.path !== mod.path;
+                });
+            }
+
+            return list.list;
+        };
+
+        //#TODO: doc
+        service.moveDown = function(index) {
+            if (list.list.length - 1 !== index) {
+                _.move(list.list, index, index + 1);
+            }
+        };
+
+        //#TODO: doc
+        service.moveUp = function(index) {
+             if (index > 0) {
+                _.move(list.list, index, index - 1);
+            }
+        };
 
         /**
          * Syncs Method

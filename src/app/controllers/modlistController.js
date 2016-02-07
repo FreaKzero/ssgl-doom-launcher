@@ -169,6 +169,8 @@
          * @for modlistController
          * @param  $index
          */
+        //#TODO: use modselectedService
+        
         $scope.selectList = function($index) {
             $rootScope.$broadcast('USELIST', $scope.modlist[$index].wads, $scope.modlist[$index].name);
         };

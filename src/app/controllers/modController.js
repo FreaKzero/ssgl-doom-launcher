@@ -6,13 +6,13 @@
     *                    Refactor Notes                    *
     ========================================================
     - Refactor Property names:
-      $scope.usedList 
+      $scope.usedList
       $scope.selected
-    
+
     - To Object:
       $scope.selected.list and $scope.selected.name [NOPE]
       $scope.selected.list and $scope.selected.name
-    
+
     - Necessary changes:
       Templates
       modselectedService
@@ -20,9 +20,9 @@
 
     Remove Collectionwatcher and hang sync methods on moveup movedown and checked
     Rename checked
-        
+
      */
-    
+
     /**
      * Controller for the Mod splitview
      *
@@ -66,7 +66,7 @@
                 }
             }
         });
-        
+
         //#WAT why use Event ?
         $scope.$on('USELIST', function(ev, wads, name) {
             $scope.selected = wads;
@@ -189,7 +189,6 @@
             }
         };
 
-        //#WAT why sync ?
         /**
          * Moves selected Mod up in List (Loadorder)
          *
@@ -198,13 +197,9 @@
          * @param $index Clicked item
          */
         $scope.moveUp = function($index) {
-            if ($index > 0) {
-                _.move($scope.selected.list, $index, $index - 1);
-                modselectedService.sync($scope.selected);
-            }
+           modselectedService.moveUp($index);
         };
 
-        //#WAT why sync ?
         /**
          * Moves selected Mod down in List (Loadorder)
          *
@@ -213,10 +208,7 @@
          * @param $index Clicked item
          */
         $scope.moveDown = function($index) {
-            if ($scope.selected.list.length - 1 !== $index) {
-                _.move($scope.selected.list, $index, $index + 1);
-                modselectedService.sync($scope.selected);
-            }
+            modselectedService.moveDown($index);
         };
 
         /**
@@ -227,16 +219,7 @@
          * @param {Object} mod
          */
         $scope.selectWad = function(mod) {
-            if (mod.checked === false) {
-                mod.checked = true;
-                $scope.selected.list.push(mod);
-            } else {
-                mod.checked = false;
-                $scope.selected.list = _($scope.selected.list).filter(function(item) {
-                    return item.path !== mod.path;
-                });
-            }
-            modselectedService.sync($scope.selected);
+            $scope.selected.list = modselectedService.select(mod);
         };
     }
 })();
