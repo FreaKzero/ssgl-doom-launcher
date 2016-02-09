@@ -257,3 +257,7 @@
 .menu-animation.ng-hide {
     transform: translateY(-80px);
 }
+
+md-list.md-default-theme, md-list md-list-item button.md-button:not([disabled]):hover {
+  background-color: transparent;
+}
