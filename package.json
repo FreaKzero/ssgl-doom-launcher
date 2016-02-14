@@ -1,6 +1,6 @@
 {
   "name": "SSGL",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Doom Frontend with Oblige mapbuild integration for zdoom, gzDoom, Skulltag and Zandronum written in AngularMaterial on NWJS for Windows and Linux.",
   "homepage": "https://github.com/FreaKzero/ssgl-doom-launcher",
   "releaseDownload": "https://github.com/FreaKzero/ssgl-doom-launcher/releases",
