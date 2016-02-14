@@ -14,16 +14,21 @@
       <input ng-model="listname" required ng-pattern="/^[a-zA-Z0-9_-]*$/" ng-change="checkdoubles()" id="inputListname">
     </md-input-container>
 
-    <div ng-if="double.length > 0" style="color:rgb(244,67,54);">
-    <span>File "{{listname}}.json" already exists, please choose another name</span>
+    <div ng-if="cantSave.length > 0" style="color:rgb(244,67,54);">
+      <span>File "{{listname}}.json" already exists, please choose another name</span>
     </div>    
+
+    <div ng-if="overwrite.length > 0" style="color:rgb(244,67,54);">
+      <span>File "{{listname}}.json" already exists, you are about to overwrite the list.</span>
+    </div>    
+
 
     </div>
   </md-dialog-content>
   <div class="md-actions" layout="row">    
     <span flex></span>          
     <md-button type="button" ng-click="cancel()">Cancel</md-button>
-    <button type="submit" class="md-button md-accent" ng-disabled="namelistform.$invalid">Save</button>  
+    <button type="submit" class="md-button md-accent" ng-disabled="namelistform.$invalid || cantSave.length > 0">Save</button>  
     </div>
     </form>  
   

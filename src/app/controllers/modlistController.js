@@ -58,7 +58,7 @@
                  * @property double
                  * @type {Array}
                  */
-                $scope.double = [];
+                $scope.cantSave = [];
 
                 /**
                  * Title of Dialog
@@ -75,7 +75,7 @@
                  * @for renameListController                 
                  */
                 $scope.checkdoubles = function() {
-                    $scope.double = $parent.modlist.filter(function(list) {
+                    $scope.cantSave = $parent.modlist.filter(function(list) {
                         return $scope.listname === list.name;
                     });
                 };

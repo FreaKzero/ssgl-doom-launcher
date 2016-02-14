@@ -23,7 +23,7 @@
     x Refactor USELIST event 
 
     Refactor/Replace MODIFIEDLISTS event
-    Refactor modselectedService getListname / change implements
+    x Refactor modselectedService getListname / change implements
      */
 
     /**
@@ -136,12 +136,11 @@
                     $scope.listname = $parent.selected.name;
                 }
 
-                //#TODO: warn overwriting
                 /**
                  * @property double
                  * @type {Array}
                  */
-                $scope.double = [];
+                $scope.overwrite = [];
 
                 /**
                  * Closes Dialog
@@ -159,7 +158,11 @@
                  * @method checkdoubles
                  * @for saveSelectedController
                  */
-                $scope.checkdoubles = function() {};
+                $scope.checkdoubles = function() {
+                    $scope.overwrite = modlistService.lists.filter(function(list) {
+                        return $scope.listname === list.name;
+                    });
+                };
 
                 /**
                  * Saves the List
