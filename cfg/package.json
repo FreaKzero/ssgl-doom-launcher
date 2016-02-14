@@ -1,7 +1,7 @@
 {
     "name": "SSGL",
     "version": "0.0.0",
-    "main": "../src/index.html",
+    "main": "../src/dev.html",
     "window": {
         "toolbar": false,
         "width": 1000,
