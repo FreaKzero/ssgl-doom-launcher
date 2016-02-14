@@ -1,6 +1,6 @@
 {
     "name": "SSGL",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "main": "index.html",
     "window": {
         "icon": "app/assets/ssgl.png",
