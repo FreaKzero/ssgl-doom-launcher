@@ -20,8 +20,7 @@
              * @async
              */
             $scope.mods = mods;
-
-            // #TODO Refactor in selectedlist
+            
             if ($scope.config.initList !== false) {
 
                 try {

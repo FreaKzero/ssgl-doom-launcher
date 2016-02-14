@@ -15,10 +15,7 @@
      * @type {Array}
      * @private
      */
-    
-    //#TODO rename list to wads ?
-    //#WAT wads better name ?
-    
+        
     var list = {};
     list.name = 'Untitled';
     list.list = [];
@@ -62,19 +59,7 @@
                 _.move(list.list, index, index - 1);
             }
         };
-
-        /**
-         * Syncs Method
-         * 
-         * @method sync
-         * @for modselectedService
-         * @param  {Object} listObj {name: '', list: []}
-         */
-        //#WHY try to remove
-        service.sync = function(listObj) {
-            list = listObj;
-        };
-
+        
         service.reset = function() {
             list.name = 'Untitled';
             list.list = [];
@@ -114,9 +99,7 @@
          * @method getListname
          * @for modselectedService
          * @return {String} listname
-         */
-        
-        //#TODO refactor methods who implement this
+         */        
         service.getListname = function() {
             return list.name;
         };
