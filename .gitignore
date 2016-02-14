@@ -8,3 +8,4 @@ src/app/lib
 cache/*
 npm-debug.log
 docs/*
+src/app/templates.js
