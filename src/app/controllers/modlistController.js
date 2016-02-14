@@ -87,7 +87,7 @@
                  * @param valid                 
                  */
                 $scope.submitForm = function(valid) {
-                    if (valid && $scope.double.length === 0) {
+                    if (valid && $scope.cantSave.length === 0) {
                         item.name = $scope.listname;
 
                         modlistService.rename(item).then(function(renamed) {

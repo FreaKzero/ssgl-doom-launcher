@@ -139,21 +139,23 @@
                  * @uses modlistService
                  */
             
-                $scope.submitForm = function() {
-                    $parent.selected.name = $scope.listname;
-                    modlistService.saveSelected($parent.selected).then(function(listname) {
-                        $mdToast.show(
-                            $mdToast.simple()
-                            .content('Saved List to ' + listname).position('bottom').hideDelay(1500)
-                        );
-                    }, function(error) {
-                        $mdToast.show(
-                            $mdToast.simple()
-                            .content(error.message).position('bottom').hideDelay(1500)
-                        );
-                    });
+                $scope.submitForm = function(valid) {
+                    if (valid) {
+                        $parent.selected.name = $scope.listname;
+                        modlistService.saveSelected($parent.selected).then(function(listname) {
+                            $mdToast.show(
+                                $mdToast.simple()
+                                .content('Saved List to ' + listname).position('bottom').hideDelay(1500)
+                            );
+                        }, function(error) {
+                            $mdToast.show(
+                                $mdToast.simple()
+                                .content(error.message).position('bottom').hideDelay(1500)
+                            );
+                        });
 
-                    $mdDialog.cancel();
+                        $mdDialog.cancel();
+                    }
                 };
             }
         };
