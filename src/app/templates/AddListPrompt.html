@@ -11,7 +11,7 @@
 
      <md-input-container>
       <label>Name of your List</label>
-      <input ng-model="listname" required ng-pattern="/^[a-zA-Z0-9_-]*$/" ng-change="checkdoubles()">
+      <input ng-model="listname" required ng-pattern="/^[a-zA-Z0-9_-]*$/" ng-change="checkdoubles()" id="inputListname">
     </md-input-container>
 
     <div ng-if="double.length > 0" style="color:rgb(244,67,54);">

@@ -132,6 +132,11 @@
                  */
                 $scope.title = 'Save List';
 
+                if ($parent.selected.name !== 'Untitled') {
+                    $scope.listname = $parent.selected.name;
+                }
+
+                //#TODO: warn overwriting
                 /**
                  * @property double
                  * @type {Array}

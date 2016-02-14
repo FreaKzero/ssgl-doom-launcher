@@ -21,6 +21,7 @@
          */
         var listDir = nwService.buildPath(['lists']);
         
+        service.lists = [];
         /**
          * Reame a List async
          * 
@@ -61,7 +62,13 @@
          * @async
          * @return {Promise}  
          */
-        service.saveSelected = function(listObj) {
+        service.saveSelected = function(listObj) {            
+            service.lists.push({
+                name: listObj.name,
+                path: nwService.getAbsolute(nwService.buildPath(['lists', listObj.name + '.json'])),
+                wads: listObj.list
+            });            
+            
             return nwService.writeJSON(
                 listObj.list,
                 nwService.buildPath(['lists', listObj.name + '.json'], true)
@@ -81,8 +88,7 @@
 
             nwService.getDir(listDir, true).then(function(items) {
                 
-                var lists = items.map(function(item) {
-
+                service.lists = items.map(function(item) {
                     return {
                         name: nwService.getName(item),
                         path: nwService.getAbsolute(nwService.buildPath(['lists', item])),
@@ -90,7 +96,7 @@
                     };
                 });
 
-                def.resolve(lists);
+                def.resolve(service.lists);
 
             });
 
