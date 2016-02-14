@@ -57,44 +57,71 @@
 			</div>
 		</div>
 		
-		<dir-choose label="WAD Path:" ng-model="config.wadpath"></dir-choose>
-		<dir-choose label="iWAD Path:" ng-model="config.iwadpath"></dir-choose>
-					
-		<div ng-show="config.active.zandronum === true || config.active.skulltag === true">
-			<file-choose label="Online Client (DOOMSEEKER):" ng-model="config.online.client"></file-choose>
-		</div>
+		<fieldset>
+		<legend>WAD/iWAD Paths</legend>
+			<dir-choose label="WAD Path:" ng-model="config.wadpath"></dir-choose>
+			<dir-choose label="iWAD Path:" ng-model="config.iwadpath"></dir-choose>		
+		</fieldset>
 
-		<div ng-show="config.active.gzdoom">
+		<fieldset ng-show="config.active.zandronum === true || config.active.skulltag === true">
+		<legend>Tools</legend>
+			<file-choose label="Online Client (DOOMSEEKER):" ng-model="config.online.client"></file-choose>		
+		</fieldset>
+
+		<fieldset ng-show="config.active.gzdoom">
+		<legend>gzDoom</legend>
+
+		<div>
 			<file-choose label="gzDoom Path:"  ng-model="config.engines.gzdoom"></file-choose>
 			<dir-choose label="gzDoom Savegames:" ng-model="config.savepaths.gzdoom"></dir-choose>
 		</div>
+		</fieldset>
+
 		
-		<div ng-show="config.active.zdoom">
+		<fieldset ng-show="config.active.zdoom">
+		<legend>zDoom</legend>
+		<div>
 			<file-choose label="zDoom Path:" ng-model="config.engines.zdoom"></file-choose>
 			<dir-choose label="zDoom Savegames:" ng-model="config.savepaths.zdoom"></dir-choose>
 		</div>		
+		</fieldset>
 
-		<div ng-show="config.active.zandronum">
+		<fieldset ng-show="config.active.zandronum">
+		<legend>Zandronum</legend>
+
+		<div>
 			<file-choose label="Zandronum Path:" ng-model="config.engines.zandronum"></file-choose>
 			<dir-choose label="Zandronum Savegames:" ng-model="config.savepaths.zandronum"></dir-choose>
 		</div>
-		<div ng-show="config.active.skulltag">
+		</fieldset>
+
+		<fieldset ng-show="config.active.skulltag">
+		<legend>Skulltag</legend>
+		<div>
 			<file-choose label="Skulltag Path:"  ng-model="config.engines.skulltag"></file-choose>
 			<dir-choose label="Skulltag Savegames:" ng-model="config.savepaths.skulltag"></dir-choose>
 		</div>
+		</fieldset>
 
-		<div ng-show="config.active.doom64ex">
+		<fieldset ng-show="config.active.doom64ex">
+		<legend>Doom 64EX</legend>
+
+		<div>
 			<file-choose label="Doom64EX Path:" ng-model="config.engines.doom64ex"></file-choose>
 			<file-choose label="Doom64EX SoundFont File:" ng-model="config.misc.doom64exsound"></file-choose>
 			<dir-choose label="Doom64EX Savegames:" ng-model="config.savepaths.doom64ex"></dir-choose>
 		</div>
-			
-		<div ng-show="config.active.oblige">
+		</fieldset>
+
+		<fieldset ng-show="config.active.oblige">
+		<legend>Oblige</legend>			
+		<div>
 			<file-choose label="Oblige Path:" ng-model="config.oblige.binary"></file-choose>
 			<dir-choose label="Oblige MapConfig Path:" ng-model="config.oblige.configs"></dir-choose>
 			<file-choose label="Oblige Random Map Path:" ng-model="config.oblige.mappath"></file-choose>
 		</div>
-		
+		</fieldset>
+
 	</div>
 	</md-dialog-content>
 	<div class="md-actions" layout="row">

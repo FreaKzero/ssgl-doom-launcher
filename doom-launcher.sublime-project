@@ -2,7 +2,7 @@
 	"folders": [{
 		"follow_symlinks": true,
 		"path": "/",
-		"folder_exclude_patterns" : ["lib", "node_modules", "nw", "docs", "cache", "cfg"]
+		"folder_exclude_patterns" : ["lib", "node_modules", "nw", "docs", "cache", "cfg", "build"]
 	}],
 
 	"build_systems": [{

@@ -261,3 +261,18 @@
 md-list.md-default-theme, md-list md-list-item button.md-button:not([disabled]):hover {
   background-color: transparent;
 }
+
+fieldset {
+    border-radius: 5px;
+    border: none;
+    background-color: #292929;
+    box-shadow: 3px 3px 6px 0px rgba(0,0,0,0.3);
+    margin-bottom: 25px;
+    padding: 15px;
+}
+
+legend {
+    color: #78909c;
+    font-weight:bold;
+    font-size: 16px;
+}
