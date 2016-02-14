@@ -15,7 +15,7 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        
+
         srcpkg: grunt.file.readJSON('src/package.json'),
 
         shell: {
@@ -56,8 +56,8 @@ module.exports = function(grunt) {
             }
         },
 
-        open : {
-            newRelease : {
+        open: {
+            newRelease: {
                 path: 'https://github.com/FreaKzero/ssgl-doom-launcher/releases/new',
             },
 
@@ -119,10 +119,10 @@ module.exports = function(grunt) {
                     mode: 'tgz'
                 },
                 files: [{
-                        src: ['**/*'],
-                        expand: true,
-                        cwd: './build/SSGL/linux32/'
-                    }]
+                    src: ['**/*'],
+                    expand: true,
+                    cwd: './build/SSGL/linux32/'
+                }]
             },
 
             tux64: {
@@ -131,10 +131,10 @@ module.exports = function(grunt) {
                     mode: 'tgz'
                 },
                 files: [{
-                        src: ['**/*'],
-                        expand: true,
-                        cwd: './build/SSGL/linux64/'
-                    }]
+                    src: ['**/*'],
+                    expand: true,
+                    cwd: './build/SSGL/linux64/'
+                }]
             },
 
             win32: {
@@ -142,10 +142,10 @@ module.exports = function(grunt) {
                     archive: './build/RELEASE/win32.zip'
                 },
                 files: [{
-                        src: ['**/*'],
-                        expand: true,
-                        cwd: './build/SSGL/win32/'
-                    }]
+                    src: ['**/*'],
+                    expand: true,
+                    cwd: './build/SSGL/win32/'
+                }]
             },
 
             win64: {
@@ -153,11 +153,68 @@ module.exports = function(grunt) {
                     archive: './build/RELEASE/win64.zip'
                 },
                 files: [{
-                        src: ['**/*'],
-                        expand: true,
-                        cwd: './build/SSGL/win64/'
-                    }]
+                    src: ['**/*'],
+                    expand: true,
+                    cwd: './build/SSGL/win64/'
+                }]
             }
+        },
+
+        concat: {
+            options: {
+                separator: '\n\n',
+                stripBanners: true,
+            },
+            
+            dist: {
+                src: ['src/app/_mixins.js',
+                      'src/app/main.js',                       
+                      'src/app/templates.js',
+                      'src/app/controllers/*.js',
+                      'src/app/directives/*.js',
+                      'src/app/services/**.js'
+                ],
+                dest: 'build/pre/app.js',
+            }
+        },
+
+        uglify: {
+            options: {
+                mangle: false
+            },
+
+            build: {
+                files: {
+                    'build/pre/app.js': ['build/pre/app.js']
+                }
+            }
+        },
+
+        ngtemplates: {
+            app: {
+                cwd: 'src/',
+                src: 'app/templates/*.html',
+                dest: 'src/app/templates.js',
+                options: {
+                    htmlmin: {
+                        collapseWhitespace: true,
+                        collapseBooleanAttributes: true
+                    },
+
+                    bootstrap: function(module, script) {
+                        return "app.run(['$templateCache', function($templateCache) {" + "\n" + script + '}]);';
+                    }
+                }
+            }
+        },
+        
+        copy: {
+            main: {
+                src: ['index.html', 'node_modules/**', 'app/assets/**', 'app/font/**', 'app/lib/**'],
+                cwd: 'src/',
+                dest: 'build/pre',
+                expand: true
+            }    
         },
 
         yuidoc: {
@@ -184,6 +241,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-yuidoc');
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-open');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-angular-templates');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+
+    grunt.registerTask('build-js', ['ngtemplates', 'concat', 'uglify', 'copy']);
 
     grunt.registerTask('build-win', ['nwjs:win']);
     grunt.registerTask('build-linux', ['nwjs:tux']);

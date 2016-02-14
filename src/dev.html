@@ -11,16 +11,6 @@
         <link rel="stylesheet" href="app/assets/custom.css"/>
         <script type="text/javascript" src="app/lib/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="app/lib/jquery-slimscroll/jquery.slimscroll.js"></script>
-        
-        <script src="app/lib/underscore/underscore.js"></script>
-        <script src="app/_mixins.js"></script>
-        <script src="app/lib/angular/angular.js"></script>
-        <script src="app/lib/angular-animate/angular-animate.js"></script>
-        <script src="app/lib/angular-aria/angular-aria.js"></script>
-        <script src="app/lib/angular-ui-router/release/angular-ui-router.min.js"></script>        
-        <script type="text/javascript" src="app/lib/angular-material/angular-material.js"></script>
-        <script src="app.js"></script>
-        
         <link href="app/lib/mdi/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
         
     </head>
@@ -95,7 +85,15 @@
         </md-sidenav>
 
         
-        <div ui-view></div>    
+        <div ui-view></div>
+
+        <script src="app/lib/underscore/underscore.js"></script>
+        <script src="app/_mixins.js"></script>
+        <script src="app/lib/angular/angular.js"></script>
+        <script src="app/lib/angular-animate/angular-animate.js"></script>
+        <script src="app/lib/angular-aria/angular-aria.js"></script>
+        <script src="app/lib/angular-ui-router/release/angular-ui-router.min.js"></script>        
+        <script type="text/javascript" src="app/lib/angular-material/angular-material.js"></script>
         <script type="text/javascript">
 
             $(document).ready(function() {
@@ -106,5 +104,22 @@
 
             });
         </script>
+
+        <script src="app/main.js"></script>
+        <script src="app/services/nwService.js"></script>
+        
+        <script src="app/controllers/appController.js"></script>
+        <script src="app/controllers/modlistController.js"></script>        
+        <script src="app/controllers/modController.js"></script>
+
+        <script src="app/services/gameService.js"></script>        
+        <script src="app/services/modselectedService.js"></script>
+        <script src="app/services/modlistService.js"></script>
+        <script src="app/services/modService.js"></script>
+        <script src="app/services/iwadService.js"></script>
+
+        <script src="app/directives/directory-chooser.js"></script>
+        <script src="app/directives/file-chooser.js"></script>
+
     </body>
 </html>

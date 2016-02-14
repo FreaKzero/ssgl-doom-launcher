@@ -8,6 +8,10 @@
   
   "devDependencies": {
       "grunt": "*",
+      "grunt-contrib-concat": "^0.5.1",
+      "grunt-contrib-uglify": "^0.11.0",
+      "grunt-angular-templates": "^0.5.7",      
+      "grunt-contrib-copy": "^v0.8.0",
       "grunt-nw-builder": "*",
       "grunt-shell": "*",
       "grunt-curl": "*",
