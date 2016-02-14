@@ -52,7 +52,7 @@ module.exports = function(grunt) {
             },
 
             purgeBuilds: {
-                command: 'rm -rf build/SSGL && rm -rf build/RELEASE'
+                command: 'rm -rf build/SSGL && rm -rf build/RELEASE && rm -rf build/pre'
             }
         },
 
@@ -74,7 +74,7 @@ module.exports = function(grunt) {
                     version: 'v0.12.0',
                     winIco: './icons/ssgl1.ico'
                 },
-                src: ['./src/**/**', '!./src/app/lib/package.json', '!./src/config.*']
+                src: ['./build/pre/**']
             },
 
             tux: {
@@ -83,7 +83,7 @@ module.exports = function(grunt) {
                     buildDir: './build',
                     version: 'v0.12.0'
                 },
-                src: ['./src/**/**', '!./src/app/lib/package.json', '!./src/config.*']
+                src: ['./build/pre']
             }
         },
 
@@ -248,8 +248,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build-js', ['ngtemplates', 'concat', 'uglify', 'copy']);
 
-    grunt.registerTask('build-win', ['nwjs:win']);
-    grunt.registerTask('build-linux', ['nwjs:tux']);
+    grunt.registerTask('build-win', ['build-js', 'nwjs:win']);
+    grunt.registerTask('build-linux', ['build-js', 'nwjs:tux']);
     grunt.registerTask('init', ['shell:npmInstall']);
 
     grunt.registerTask('build-devenv-win', ['curl:win64', 'unzip', 'shell:devInstall']);
@@ -259,6 +259,7 @@ module.exports = function(grunt) {
     grunt.registerTask('release', [
         'shell:askPackage',
         'shell:purgeBuilds',
+        'build-js',
         'nwjs',
         'compress',
         'shell:gitCommit',
