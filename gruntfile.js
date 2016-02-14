@@ -74,7 +74,7 @@ module.exports = function(grunt) {
                     version: 'v0.12.0',
                     winIco: './icons/ssgl1.ico'
                 },
-                src: ['./build/pre/**']
+                src: ['./build/pre/**/**']
             },
 
             tux: {
@@ -83,7 +83,7 @@ module.exports = function(grunt) {
                     buildDir: './build',
                     version: 'v0.12.0'
                 },
-                src: ['./build/pre/**']
+                src: ['./build/pre/**/**']
             }
         },
 
@@ -210,7 +210,7 @@ module.exports = function(grunt) {
         
         copy: {
             main: {
-                src: ['index.html', 'node_modules/**', 'app/assets/**', 'app/font/**', 'app/lib/**'],
+                src: ['index.html', 'package.json', 'node_modules/**', 'app/assets/**', 'app/font/**', 'app/lib/**'],
                 cwd: 'src/',
                 dest: 'build/pre',
                 expand: true
