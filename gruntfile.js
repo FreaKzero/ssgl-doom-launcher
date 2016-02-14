@@ -83,7 +83,7 @@ module.exports = function(grunt) {
                     buildDir: './build',
                     version: 'v0.12.0'
                 },
-                src: ['./build/pre']
+                src: ['./build/pre/**']
             }
         },
 
