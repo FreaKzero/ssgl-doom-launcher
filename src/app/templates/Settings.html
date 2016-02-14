@@ -9,6 +9,9 @@
 	<md-dialog-content style="padding:25px;">
 	<div>
 		
+
+		<fieldset>
+		<legend>Main Settings</legend>
 		<div layout="row">
 			<div flex>
 				<md-checkbox ng-model="config.active.gzdoom" aria-label="GZDoom">
@@ -42,7 +45,7 @@
 			</div>
 
 		</div>
-						
+
 		<div layout="row">
 			<div flex>		
 
@@ -55,14 +58,13 @@
 			</md-input-container>
 						
 			</div>
-		</div>
-		
-		<fieldset>
-		<legend>WAD/iWAD Paths</legend>
-			<dir-choose label="WAD Path:" ng-model="config.wadpath"></dir-choose>
-			<dir-choose label="iWAD Path:" ng-model="config.iwadpath"></dir-choose>		
-		</fieldset>
 
+		</div>
+
+		<dir-choose label="WAD Path:" ng-model="config.wadpath"></dir-choose>
+			<dir-choose label="iWAD Path:" ng-model="config.iwadpath"></dir-choose>		
+
+		</fieldset>
 		<fieldset ng-show="config.active.zandronum === true || config.active.skulltag === true">
 		<legend>Tools</legend>
 			<file-choose label="Online Client (DOOMSEEKER):" ng-model="config.online.client"></file-choose>		
