@@ -1,13 +1,29 @@
 <script type="text/javascript">
-$(document).ready(function() {
+var fixHeight = function() {
+    var mainHeight = $("body").height();
+    var ToolbarHeight = $("md-toolbar.layout-row").height();
+    var subToolbarHeight = $("md-toolbar.md-hue-2").height();
+    $('.slimScrollDiv, .slimScrollDiv > md-content').css('height', mainHeight - (ToolbarHeight + subToolbarHeight));
+    console.log("Fixed height to: ", mainHeight);
+}
+
+var setupScrollies = function() {
     $('.slimscroll-mods').slimScroll({
         position: 'right',
-        height: '525px',
+        height: 'auto',
         railVisible: true,
         alwaysVisible: true,
         color: '#78909c',
         wheelStep: 7
     });
+}
+
+$(document).ready(function(){
+    $.when(setupScrollies()).then(fixHeight);
+});
+
+$(window).on('resize', function(){
+    $.when(setupScrollies()).then(fixHeight);
 });
 </script>
 
