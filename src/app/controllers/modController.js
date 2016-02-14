@@ -1,31 +1,6 @@
 (function() {
     app.controller('modController', ['$scope', 'modService', 'modlistService', '$mdDialog', 'nwService', 'modselectedService', '$mdToast', modController]);
 
-    /*
-    ========================================================
-    *                    Refactor Notes                    *
-    ========================================================
-    - Refactor Property names:
-      $scope.usedList
-      $scope.selected
-
-    - To Object:
-      x $scope.selected.list and $scope.selected.name [NOPE]
-      x $scope.selected.list and $scope.selected.name
-
-    - Necessary changes:
-      x Templates
-      x modselectedService
-      modlistService
-
-    x Remove Collectionwatcher and hang sync methods on moveup movedown and checked
-    x Rename checked
-    x Refactor USELIST event 
-
-    Refactor/Replace MODIFIEDLISTS event
-    x Refactor modselectedService getListname / change implements
-     */
-
     /**
      * Controller for the Mod splitview
      *
@@ -48,22 +23,16 @@
 
             // #TODO Refactor in selectedlist
             if ($scope.config.initList !== false) {
-                var startListJSON = JSON.parse($scope.config.initList);
-                var startList = nwService.readSyncJSON(startListJSON.path);
 
-                if (!_.isEmpty(startList)) {
-                    $scope.$broadcast('USELIST', startList, startListJSON.name);
-                } else {
-                    // cant parse... lets reset that
+                try {
+                    var startListJSON = JSON.parse($scope.config.initList);
+                    if (!_.isEmpty(startListJSON)) {
+                        modselectedService.selectList(startListJSON);
+                    }
+                } catch(e) {
                     $scope.config.initList = false;
                     nwService.writeJSON($scope.config, 'config.json', true);
-
-                    $mdToast.show(
-                        $mdToast.simple()
-                        .content('initList ' + startListJSON.name + ' not found, resetted in config')
-                        .position('bottom').hideDelay(2500)
-                    );
-                }
+                }                
             }
         });
 
@@ -170,8 +139,7 @@
                  * @for saveSelectedController
                  * @uses modlistService
                  */
-
-                //#TODO New saved list wont get viewed
+            
                 $scope.submitForm = function() {
                     $parent.selected.name = $scope.listname;
                     modlistService.saveSelected($parent.selected).then(function(listname) {

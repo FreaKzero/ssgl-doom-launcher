@@ -19,7 +19,7 @@
     //#TODO rename list to wads ?
     //#WAT wads better name ?
     
-    list = {};
+    var list = {};
     list.name = 'Untitled';
     list.list = [];
     
@@ -27,7 +27,7 @@
         var service = {};
         
         // #TODO doc
-        service.selectList = function(listObj) {
+        service.selectList = function(listObj) {            
             list.list = listObj.wads;
             list.name = listObj.name;
 
@@ -80,7 +80,8 @@
             list.list = [];
 
             return list;
-        }
+        };
+        
         /**
          * Returns Array with only Paths
          * 

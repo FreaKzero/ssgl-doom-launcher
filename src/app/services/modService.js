@@ -1,20 +1,20 @@
 (function() {
-    app.factory('modService', ['$q', 'nwService', modService]);
+    app.factory('modService', ['$q', '$rootScope', 'nwService', modService]);
 
     /**
      * Service to Fetch Mod WADS from FileSystem
-     * 
+     *
      * @method modService
      * @module ssgl
      * @submodule modService
      * @uses nwService
      */
 
-    function modService($q, nwService) {
+    function modService($q, $rootScope, nwService) {
         var service = {};
         /**
          * The Wads/Mods
-         * 
+         *
          * @property mods
          * @type {Array}
          */
@@ -31,13 +31,13 @@
          */
         service.getMods = function(wadpath) {
             var defer = $q.defer();
-            
+
             nwService.recursiveDir(wadpath, function(files) {
                 if (typeof files === 'undefined') {
                     return [];
                 }
 
-                var wad;
+                var wad,
                     len = files.length,
                     index = [],
                     allowed = ['PK3', 'WAD'];
@@ -65,7 +65,7 @@
 
             return defer.promise;
         };
-        
+
         return service;
     }
 })();
