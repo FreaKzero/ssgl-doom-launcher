@@ -56,7 +56,8 @@
                         name: name,
                         dir: dirname,
                         checked: false,
-                        path: files[i]
+                        path: files[i],
+                        type: ext
                     });
                 }
 

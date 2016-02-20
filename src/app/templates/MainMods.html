@@ -46,6 +46,8 @@ $(window).on('resize', function(){
                 <md-list>
 
                 <md-list-item class="md-2-line repeat-animation init-animation" ng-repeat="mod in filtered = (mods | filter:searchterm) track by mod.path" ng-click="selectWad(mod)">
+                
+                <div class="md-avatar {{mod.type}} searchable" ng-click="test($event, mod)"><div class="test">{{mod.type}}</div></div>
                 <div class="md-list-item-text">
                     <h3>{{ mod.name }}</h3>
                     <p>{{ mod.dir }}</p>
@@ -69,10 +71,9 @@ $(window).on('resize', function(){
 
           <p>{{selected.name}}</p>
           <span flex></span>
-                    <md-button ng-show="selected.list.length > 0" class="md-accent" ng-click="saveSelected($event)"><i class="mdi mdi-content-save"></i> Save</md-button>
-
+                    <md-button ng-show="selected.list.length > 0" class="md-accent md-icon-button" ng-click="saveSelected($event)"><i class="mdi mdi-content-save"></i></md-button>
                     <div ng-show="selected.list.length > 0 || usedList !== 'Untitled'">
-                    <md-button class="md-accent" ng-click="newSelected()"><i class="mdi mdi-playlist-plus"></i> New</md-button>
+                    <md-button class="md-accent md-icon-button" ng-click="newSelected()"><i class="mdi mdi-playlist-plus"></i></md-button>
                     </div>
                 </div>
             </md-toolbar>
@@ -80,6 +81,7 @@ $(window).on('resize', function(){
                 <md-content layout-padding class="slimscroll-mods">
                 <md-list>
                 <md-list-item class="md-2-line repeat-animation" ng-repeat="mod in selected.list track by mod.path">
+                <div class="md-avatar {{mod.type}}"><div class="test second">{{mod.type}}</div></div>
                 <div class="md-list-item-text">
                     <h3>{{ mod.name }}</h3>
                     <p>{{ mod.dir }}</p>
@@ -91,6 +93,28 @@ $(window).on('resize', function(){
 
                 </md-list-item>
                 </md-list>
+                </md-content>
+            </div>
+
+            <div flex=20>
+            <md-toolbar class="md-hue-2 menu-animation">
+            <div class="md-toolbar-tools">{{screenshotsTitle}}</div>        
+            </md-toolbar>
+                <md-content layout-padding class="slimscroll-mods">
+
+                    <div class="screenshot" ng-repeat="item in screenshots">
+                        <div class="screenlabel">{{item.name}}</div>
+                        <img ng-src="{{item.pic}}" width="100%">                        
+                    </div>                
+                    
+                    <div class="screenshot-nof" ng-show="screenshots.length < 1">
+                    <h2>Sorry</h2>
+                    Cant find any Screenshots
+                    </div>
+
+                    <div layout="row" layout-sm="column" layout-align="space-around">
+                            <md-progress-circular class="md-accent" md-mode="indeterminate" ng-show="lookupLoad"></md-progress-circular>
+                    </div> 
                 </md-content>
             </div>
         </div>

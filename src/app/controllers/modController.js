@@ -1,5 +1,5 @@
 (function() {
-    app.controller('modController', ['$scope', 'modService', 'modlistService', '$mdDialog', 'nwService', 'modselectedService', '$mdToast', modController]);
+    app.controller('modController', ['$scope', 'modService', 'modlistService', '$mdDialog', 'nwService', 'modselectedService', '$mdToast', 'gameLookupService', modController]);
 
     /**
      * Controller for the Mod splitview
@@ -8,10 +8,13 @@
      * @module ssgl
      * @submodule modController
      */
-    function modController($scope, modService, modlistService, $mdDialog, nwService, modselectedService, $mdToast) {
+    function modController($scope, modService, modlistService, $mdDialog, nwService, modselectedService, $mdToast, gameLookupService) {
         var $parent = $scope;
 
         $scope.selected = modselectedService.reset();
+        $scope.screenshots = [];
+        $scope.screenshotsTitle = '';
+        $scope.lookupLoad = false;
 
         modService.getMods($scope.config.wadpath).then(function(mods) {
             /**
@@ -66,6 +69,28 @@
             $scope.selected = modselectedService.reset();
         };
 
+        $scope.test = function($event, mod) {
+            $scope.lookupLoad = true;
+            $scope.screenshots = [];
+            $scope.screenshotsTitle = mod.name;
+
+            setTimeout(function() {
+                gameLookupService.lookup(mod.path).then(function(data) {
+                    $scope.lookupLoad = false;                
+                    console.log(data)
+                    for (var index in data.screenshots) {
+                        $scope.screenshots.push({
+                            pic: data.screenshots[index],
+                            name: index
+                        });
+                    }                
+                });
+            },600);
+            
+            $event.preventDefault();
+            event.stopImmediatePropagation() 
+
+        }
         /**
          * Opens a Prompt for modlist saving
          *
