@@ -71,8 +71,8 @@ $(window).on('resize', function(){
 
           <p>{{selected.name}}</p>
           <span flex></span>
-                    <i class="mdi mdi-content-save" ng-click="saveSelected($event)" ng-show="selected.list.length > 0" style="cursor:pointer;"></i>&nbsp;&nbsp;
-                    <i class="mdi mdi-playlist-plus" ng-click="newSelected()" ng-show="selected.list.length > 0 || usedList !== 'Untitled'" style="cursor:pointer;"></i>
+                    <i class="mdi mdi-content-save" ng-click="saveSelected($event)" ng-show="selected.list.length > 0" style="cursor:pointer;"><md-tooltip>Save List</md-tooltip></i>&nbsp;&nbsp;
+                    <i class="mdi mdi-playlist-plus" ng-click="newSelected()" ng-show="selected.list.length > 0 || usedList !== 'Untitled'" style="cursor:pointer;"><md-tooltip>New List</md-tooltip></i>
                 </div>
             </md-toolbar>
 
