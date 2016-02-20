@@ -26,15 +26,25 @@ $(window).on('resize', function(){
     $.when(setupScrollies()).then(fixHeight);
 });
 </script>
+<!-- 
+item in filtered = (list | property:'customfield_10841.value': cFilter.targetGroup.value | property:'customfield_10850.value': cFilter.product.value | property:'version': cFilter.version.value || undefined)  track by $index"
 
+-->
     <div layout="row" ng-controller="modController">
             <div flex>
 
                 <md-toolbar class="md-hue-2">
                 <div class="md-toolbar-tools">
-                <i class="mdi mdi-magnify filtericon"></i>
+                <md-input-container style="margin-top: 18px;width:120px;">
+                    <md-select ng-model="typefilter">
+                        <md-option value="" selected>All</md-option>
+                        <md-option>WAD</md-option>
+                        <md-option>PK3</md-option>
+                    </md-select>
+                </md-input-container>
+                &nbsp;&nbsp;&nbsp;
                 <md-input-container style="width: 100%;font-size: 14px;">
-                    <label class="filterlabel" style="color: white;font-weight: normal;opacity:0;">Filter</label>
+                    <label class="filterlabel" placeholder="filter" style="color: white;font-weight: normal;opacity:0;">Filter</label>
                     <input ng-model="searchterm">
                 </md-input-container>
           
@@ -44,8 +54,7 @@ $(window).on('resize', function(){
                 <md-content layout-padding class="slimscroll-mods">
                 
                 <md-list>
-
-                <md-list-item class="md-2-line repeat-animation init-animation" ng-repeat="mod in filtered = (mods | filter:searchterm) track by mod.path" ng-click="selectWad(mod)">
+                <md-list-item class="md-2-line repeat-animation init-animation" ng-repeat="mod in filtered = (mods | filter:searchterm | filter:{type:typefilter}) track by mod.path" ng-click="selectWad(mod)">
                 
                 <div class="md-avatar {{mod.type}} searchable" ng-click="test($event, mod)"><div class="test">{{mod.type}}</div></div>
                 <div class="md-list-item-text">
