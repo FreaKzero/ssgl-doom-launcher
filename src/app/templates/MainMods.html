@@ -27,7 +27,7 @@ $(window).on('resize', function(){
 });
 </script>
 
-<div layout="row" ng-controller="modController">
+    <div layout="row" ng-controller="modController">
             <div flex>
 
                 <md-toolbar class="md-hue-2">
@@ -107,17 +107,22 @@ $(window).on('resize', function(){
                         <img ng-src="{{item.pic}}" width="100%">                        
                     </div>                
                     
-                    <div class="screenshot-nof" ng-show="screenshots.length < 1">
+                    <div class="screenshot-nof" ng-show="screenshots.length === 0 && lookupLoad === false">
                     <h2>Sorry</h2>
                     Cant find any Screenshots
                     </div>
-
+                    
+                <div ng-show="lookupLoad" class="screenshot-nof">
+                    <h2>Searching</h2>
+                    Searching on WADArchive for Screenshots
+<br />
                     <div layout="row" layout-sm="column" layout-align="space-around">
-                            <md-progress-circular class="md-accent" md-mode="indeterminate" ng-show="lookupLoad"></md-progress-circular>
-                    </div> 
+                            <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+                    </div>                     
+                    </div>
                 </md-content>
-            </div>
-        </div>
+                </div>
+            </div>        
 
             <md-button aria-label="play" class="md-fab special-fab" style="position: absolute; right: 25px; bottom: 15px; z-index:3;" ng-click="showGameSelection()" ng-show="config.active.gzdoom || config.active.zandronum || config.active.zdoom || config.active.doom64ex">
                 <i class="mdi mdi-play"></i>
