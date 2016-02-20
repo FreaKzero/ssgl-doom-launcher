@@ -96,7 +96,7 @@ $(window).on('resize', function(){
                 </md-content>
             </div>
 
-            <div flex=20>
+            <div flex=20 ng-hide="screenshots === null">
             <md-toolbar class="md-hue-2 menu-animation">
             <div class="md-toolbar-tools">{{screenshotsTitle}}</div>        
             </md-toolbar>
@@ -107,15 +107,16 @@ $(window).on('resize', function(){
                         <img ng-src="{{item.pic}}" width="100%">                        
                     </div>                
                     
-                    <div class="screenshot-nof" ng-show="screenshots.length === 0 && lookupLoad === false">
+                    <div class="screenshot-nof" ng-show="screenshots !== null && screenshots.length === 0 && lookupLoad === false">
                     <h2>Sorry</h2>
                     Cant find any Screenshots
+                    <md-button class="md-accent" ng-click="screenshots = null">Hide Sidepanel</md-button>
                     </div>
                     
                 <div ng-show="lookupLoad" class="screenshot-nof">
                     <h2>Searching</h2>
-                    Searching on WADArchive for Screenshots
-<br />
+                    <p>Searching on WADArchive for Screenshots</p>                    
+<br />  
                     <div layout="row" layout-sm="column" layout-align="space-around">
                             <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
                     </div>                     

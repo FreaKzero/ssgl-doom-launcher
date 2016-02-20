@@ -12,7 +12,7 @@
         var $parent = $scope;
 
         $scope.selected = modselectedService.reset();
-        $scope.screenshots = [];
+        $scope.screenshots = null;
         $scope.screenshotsTitle = '';
         $scope.lookupLoad = false;
 
