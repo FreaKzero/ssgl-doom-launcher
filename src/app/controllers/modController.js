@@ -74,16 +74,23 @@
             $scope.screenshots = [];
             $scope.screenshotsTitle = mod.name;
 
+            /*
+            gameLookupService.loopupLocal(mod.path).then(function(data) {
+                console.log(data)
+            })
+            */
+            
+
             setTimeout(function() {
-                gameLookupService.lookup(mod.path).then(function(data) {
-                    $scope.lookupLoad = false;                
-                    console.log(data)
-                    for (var index in data.screenshots) {
-                        $scope.screenshots.push({
-                            pic: data.screenshots[index],
-                            name: index
+                gameLookupService.lookupWadArchive(mod.path).then(function(data) {
+                    if (data.length > 0) {
+                        $scope.screenshots = data;    
+                    } else {
+                        gameLookupService.lookupLocal(mod.path).then(function(data) {
+                            $scope.screenshots = data;
                         });
-                    }                
+                    }
+                    $scope.lookupLoad = false;                    
                 });
             },600);
             

@@ -165,6 +165,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
 
                 iwadpath: '',
                 wadpath: '',
+                screenshotpath:'',
 
                 dontShowUpdate: '0.0.0',
                 initList: false,
