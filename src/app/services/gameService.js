@@ -51,7 +51,8 @@
                 }
             }
 
-            if (opt.save !== 'false') {
+            console.log(opt.save)
+            if (opt.save !== 'false' && opt.save !== false) {
                 params = params.concat(['-loadgame'], opt.save);
             }
 

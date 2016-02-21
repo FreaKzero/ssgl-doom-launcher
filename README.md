@@ -1,5 +1,5 @@
 # Super Shotgun Launcher  
-Doom Frontend with Oblige mapbuild integration for zdoom, gzDoom, Skulltag, Doom64EX and Zandronum written in AngularMaterial on NWJS for Windows and Linux.  
+Doom Frontend with Oblige mapbuild integration for zdoom, gzDoom, Zandronum, Doom64EX and DoomRPG written in AngularMaterial on NWJS for Windows and Linux.  
 
 ##Just gimme the Binary Releases:
 [32 and 64bit Windows/Linux Releases](https://github.com/FreaKzero/ssgl-doom-launcher/releases)
@@ -10,14 +10,15 @@ Doom Frontend with Oblige mapbuild integration for zdoom, gzDoom, Skulltag, Doom
 
 ##Features:  
 - Painfree modern UI
-- Easy Filtering through your WADs (directory-names and wad-names)
+- Easy Filtering through your WADs (directory-namesm, wad-names, file extensions)
 - Loadorder sorting for chosen WADs
 - Creating/Saving wadlists for faster access
 - Using/Creating Savefolders based on the name on used wadlist
-- [zDoom](http://zdoom.org), [gzDoom](https://github.com/coelckers/gzdoom), [Skulltag](http://www.skulltag.com/), [Doom64EX](https://doom64ex.wordpress.com) and [Zandronum](https://zandronum.com/) Support
+- [zDoom](http://zdoom.org), [gzDoom](https://github.com/coelckers/gzdoom), [DoomRPG](https://github.com/Kyle873/DoomRPG), [Doom64EX](https://doom64ex.wordpress.com) and [Zandronum](https://zandronum.com/) Support
 - [Oblige](http://oblige.sourceforge.net/) "Build and Play" via Configfiles (Also able to resume last built map)
 - Fast access to your favourite DoomSeeker Client and Oblige Frontend
 - Automatic Update Notifier
+- Screenshot Lookup for your WADs and PK3s via [WadArchive](http://www.wad-archive.com) or local directory
 
 ##Retro Reskin Version  
 [scar45](https://github.com/scar45) made an own fork with an "retro-reskin" [here](https://github.com/scar45/ssgl-doom-launcher)
