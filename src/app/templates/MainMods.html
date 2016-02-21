@@ -83,7 +83,7 @@ $(window).on('resize', function(){
                 <md-content layout-padding class="slimscroll-mods">
                 <md-list>
                 <md-list-item class="md-2-line repeat-animation" ng-repeat="mod in selected.list track by mod.path">
-                <div class="md-avatar {{mod.type}}"><div class="modtype second">{{mod.type}}</div></div>
+                <div class="md-avatar {{mod.type}}"><div class="modtype second searchable" ng-click="lookupScreenshots($event, mod)">{{mod.type}}</div></div>
                 <div class="md-list-item-text">
                     <h3>{{ mod.name }}</h3>
                     <p>{{ mod.dir }}</p>

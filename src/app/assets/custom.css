@@ -279,14 +279,11 @@ legend {
 
 .md-avatar {    
     box-shadow: 0px 0px 0px 3px #555;    
-}
-
-.md-avatar.searchable {
     transition: box-shadow 0.25s ease-in;
     cursor: help;
 }
 
-.md-avatar.searchable:hover {
+.md-avatar:hover {
     box-shadow: 0px 0px 0px 3px #78909c
 }
 
