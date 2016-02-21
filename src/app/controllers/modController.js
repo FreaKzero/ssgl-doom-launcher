@@ -69,17 +69,20 @@
             $scope.selected = modselectedService.reset();
         };
 
+        $scope.openScreenshots = function(name) {
+            var path = $scope.config.screenshotpath + name;
+            nwService.mkDir(path);
+            
+            setTimeout(function() {
+                nwService.getShell().openItem(path);
+            },1500);
+            
+        };
+
         $scope.test = function($event, mod) {
             $scope.lookupLoad = true;
             $scope.screenshots = [];
             $scope.screenshotsTitle = mod.name;
-
-            /*
-            gameLookupService.loopupLocal(mod.path).then(function(data) {
-                console.log(data)
-            })
-            */
-            
 
             setTimeout(function() {
                 gameLookupService.lookupWadArchive(mod.path).then(function(data) {

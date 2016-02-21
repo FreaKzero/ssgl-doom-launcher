@@ -99,9 +99,13 @@ $(window).on('resize', function(){
                 </md-content>
             </div>
 
-            <div flex=20 ng-hide="screenshots === null">
+            <div flex=30 ng-hide="screenshots === null">
             <md-toolbar class="md-hue-2 menu-animation">
-            <div class="md-toolbar-tools">{{screenshotsTitle}}</div>        
+            <div class="md-toolbar-tools">
+            {{screenshotsTitle}}
+            <span flex></span>
+            <i class="mdi mdi-close" ng-click="screenshots = null" style="cursor:pointer;"> <md-tooltip>Hide Panel</md-tooltip> </i>
+            </div>                            
             </md-toolbar>
                 <md-content layout-padding class="slimscroll-mods">
 
@@ -112,13 +116,14 @@ $(window).on('resize', function(){
                     
                     <div class="screenshot-nof" ng-show="screenshots !== null && screenshots.length === 0 && lookupLoad === false">
                     <h2>Sorry</h2>
-                    Cant find any Screenshots
-                    <md-button class="md-accent" ng-click="screenshots = null">Hide Sidepanel</md-button>
+                    <p>Cant find any Screenshots</p>
+                    <md-button class="md-accent" ng-click="openScreenshots(screenshotsTitle)">Provide Screenshots</md-button>
+                    
                     </div>
                     
                 <div ng-show="lookupLoad" class="screenshot-nof">
                     <h2>Searching</h2>
-                    <p>Searching on WADArchive for Screenshots</p>                    
+                    <p>Searching for Screenshots</p>
 <br />  
                     <div layout="row" layout-sm="column" layout-align="space-around">
                             <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
