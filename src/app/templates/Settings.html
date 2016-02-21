@@ -36,7 +36,7 @@
 
 		<div flex>
 			<md-checkbox ng-model="config.active.gzdoom" aria-label="GZDoom">
-			<p style="color:white;">GZDoom</p>
+			<p style="color:white;">gzDoom</p>
 			</md-checkbox>
 		</div>
 
@@ -89,13 +89,33 @@
 		</div>
 
 		<fieldset class="settings-fieldset" ng-show="config.active.doomrpg">
-		<legend>DoomRPG Settings</legend>
+		<legend>DoomRPG Settings</legend>		
 		<div>
-			<file-choose label="DoomRPG SourcePort (Latest GZDoom recommended):"  ng-model="config.engines.doomrpg"></file-choose>
+			<p>Please Download and use the latest Version of gzDoom for this <span class="browserlink" target="_blank" ng-click="gzDoomDownload()">Get lastest Version of gzDoom</a></p><br />
+			<file-choose label="DoomRPG SourcePort:"  ng-model="config.engines.doomrpg"></file-choose>
 			<dir-choose label="DoomRPG SourcePort Savegames:" ng-model="config.savepaths.doomrpg"></dir-choose>
 			<dir-choose label="DoomRPG Vanilla Folder:" ng-model="config.misc.doomrpg.vanilla"></dir-choose>
 			<dir-choose label="DoomRPG Extras Folder:" ng-model="config.misc.doomrpg.extras"></dir-choose>
 			<dir-choose label="DoomRPG Brightmaps Folder:" ng-model="config.misc.doomrpg.brightmaps"></dir-choose>
+		</div>
+		</fieldset>
+
+		<div flex>
+			<md-checkbox ng-model="config.active.doomrpgrl" aria-label="DoomRPG">
+			<p style="color:white;">DoomRPG DoomRL Arsenal</p>
+			</md-checkbox>
+		</div>
+
+		<fieldset class="settings-fieldset" ng-show="config.active.doomrpgrl">
+		<legend>DoomRPG DoomRL Arsenal</legend>
+		<div>
+			<file-choose label="DoomRPG RLArsenal HUD WAD:"  ng-model="config.misc.doomrpg.rlhudwad"></file-choose>
+			<br />
+			<dir-choose label="DoomRPG RLArsenal Folder:" ng-model="config.misc.doomrpg.rlarsenalpath"></dir-choose>	
+			<file-choose label="DoomRPG RLArsenal WAD:"  ng-model="config.misc.doomrpg.rlarsenalwad"></file-choose>
+			
+			<dir-choose label="DoomRPG RLMonsters Folder:" ng-model="config.misc.doomrpg.rlmonsterspath"></dir-choose>
+			<file-choose label="DoomRPG RLMonsters WAD:"  ng-model="config.misc.doomrpg.rlmonsterswad"></file-choose>
 		</div>
 		</fieldset>
 

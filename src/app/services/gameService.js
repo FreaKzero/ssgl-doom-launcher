@@ -38,20 +38,46 @@
                 params = params.concat(['-setvars'], ["s_soundfont", $rootScope.config.misc.doom64exsound]);
             }
 
+
+            /*
+            C:\games\Doom\gzdoom.exe -file 
+            "DoomRL Arsenal.wad"
+            "DoomRL HUD.wad" 
+            "DoomRL Monsters.wad" 
+            DoomRPG\DoomRPG 
+            DoomRPG\DoomRPG-RLArsenal 
+            DoomRPG\DoomRPG-RLMonsters
+
+             */
             // Remove the last / of the Path (will get automatically added in the directive of the view)
             if (opt.engine === 'doomrpg') {
-                wads.unshift($rootScope.config.misc.doomrpg.vanilla.slice(0, -1));
+                rpgwads = [];
+                
 
-                if ($rootScope.config.misc.doomrpg.extras !== '') {
-                    wads.unshift($rootScope.config.misc.doomrpg.extras.slice(0, -1));
+                if ($rootScope.config.active.doomrpgrl) {
+                    rpgwads.push($rootScope.config.misc.doomrpg.rlarsenalwad);
+                    rpgwads.push($rootScope.config.misc.doomrpg.rlhudwad);
+                    rpgwads.push($rootScope.config.misc.doomrpg.rlmonsterswad);
+                    rpgwads.push($rootScope.config.misc.doomrpg.vanilla.slice(0, -1));
+                    rpgwads.push($rootScope.config.misc.doomrpg.rlarsenalpath.slice(0, -1));
+                    rpgwads.push($rootScope.config.misc.doomrpg.rlmonsterspath.slice(0, -1));
+
+                } else {
+                    rpgwads.push($rootScope.config.misc.doomrpg.vanilla.slice(0, -1));
+
+                    if ($rootScope.config.misc.doomrpg.extras !== '') {
+                        rpgwads.push($rootScope.config.misc.doomrpg.extras.slice(0, -1));
+                    }
+
+                    if ($rootScope.config.misc.doomrpg.extras !== '') {
+                        rpgwads.push($rootScope.config.misc.doomrpg.brightmaps.slice(0, -1));
+                    }    
                 }
 
-                if ($rootScope.config.misc.doomrpg.extras !== '') {
-                    wads.unshift($rootScope.config.misc.doomrpg.brightmaps.slice(0, -1));
-                }
+                rpgwads.concat(wads);
+                wads = rpgwads;
             }
 
-            console.log(opt.save)
             if (opt.save !== 'false' && opt.save !== false) {
                 params = params.concat(['-loadgame'], opt.save);
             }

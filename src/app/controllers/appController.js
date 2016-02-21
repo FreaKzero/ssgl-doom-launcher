@@ -546,6 +546,9 @@
                  */
                 $scope.config = $PARENT.config;
 
+                $scope.gzDoomDownload = function() {
+                    nwService.getShell().openExternal('http://devbuilds.drdteam.org/gzdoom/');
+                }
                 /**
                  * Close Dialog
                  *
