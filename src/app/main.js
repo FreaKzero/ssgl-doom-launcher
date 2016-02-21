@@ -156,7 +156,11 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
 
                 misc: {
                     doom64exsound: '',
-                    doomrpgdir: ''
+                    doomrpg: {
+                        vanilla: '',
+                        extras: '',
+                        brightmaps: ''
+                    }
                 },
 
                 iwadpath: '',

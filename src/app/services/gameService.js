@@ -38,8 +38,17 @@
                 params = params.concat(['-setvars'], ["s_soundfont", $rootScope.config.misc.doom64exsound]);
             }
 
+            // Remove the last / of the Path (will get automatically added in the directive of the view)
             if (opt.engine === 'doomrpg') {
-                wads.push($rootScope.config.misc.doomrpgdir.slice(0, -1));
+                wads.unshift($rootScope.config.misc.doomrpg.vanilla.slice(0, -1));
+
+                if ($rootScope.config.misc.doomrpg.extras !== '') {
+                    wads.unshift($rootScope.config.misc.doomrpg.extras.slice(0, -1));
+                }
+
+                if ($rootScope.config.misc.doomrpg.extras !== '') {
+                    wads.unshift($rootScope.config.misc.doomrpg.brightmaps.slice(0, -1));
+                }
             }
 
             if (opt.save !== false) {

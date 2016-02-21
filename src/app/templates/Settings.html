@@ -103,9 +103,11 @@
 		<fieldset ng-show="config.active.doomrpg">
 		<legend>DoomRPG</legend>
 		<div>
-			<file-choose label="DoomRPG SourcePort Path:"  ng-model="config.engines.doomrpg"></file-choose>
+			<file-choose label="DoomRPG SourcePort (Latest GZDoom recommended):"  ng-model="config.engines.doomrpg"></file-choose>
 			<dir-choose label="DoomRPG SourcePort Savegames:" ng-model="config.savepaths.doomrpg"></dir-choose>
-			<dir-choose label="DoomRPG Folder:" ng-model="config.misc.doomrpgdir"></dir-choose>
+			<dir-choose label="DoomRPG Vanilla Folder:" ng-model="config.misc.doomrpg.vanilla"></dir-choose>
+			<dir-choose label="DoomRPG Extras Folder:" ng-model="config.misc.doomrpg.extras"></dir-choose>
+			<dir-choose label="DoomRPG Brightmaps Folder:" ng-model="config.misc.doomrpg.brightmaps"></dir-choose>
 		</div>
 		</fieldset>
 
