@@ -13,42 +13,6 @@
 		<fieldset>
 		<legend>Main Settings</legend>
 		<div layout="row">
-			<div flex>
-				<md-checkbox ng-model="config.active.gzdoom" aria-label="GZDoom">
-				<p style="color:white;">GZDoom</p>
-				</md-checkbox>
-			</div>
-			<div flex>
-				<md-checkbox ng-model="config.active.zandronum" aria-label="Zandronum">
-				<p style="color:white;">Zandronum</p>
-				</md-checkbox>
-			</div>
-			<div flex>
-				<md-checkbox ng-model="config.active.zdoom" aria-label="Oblige">
-				<p style="color:white;">zDoom</p>
-				</md-checkbox>
-			</div>			
-			<div flex>
-				<md-checkbox ng-model="config.active.oblige" aria-label="Oblige">
-				<p style="color:white;">Oblige</p>
-				</md-checkbox>
-			</div>
-
-			<div flex>
-				<md-checkbox ng-model="config.active.doomrpg" aria-label="DoomRPG">
-				<p style="color:white;">DoomRPG</p>
-				</md-checkbox>
-			</div>
-
-			<div flex>
-				<md-checkbox ng-model="config.active.doom64ex" aria-label="Doom64EX">
-				<p style="color:white;">Doom64EX</p>
-				</md-checkbox>
-			</div>
-
-		</div>
-
-		<div layout="row">
 			<div flex>		
 
 			<md-input-container>
@@ -69,32 +33,43 @@
 		<dir-choose label="Screenshot Path:" ng-model="config.screenshotpath"></dir-choose>
 
 		</fieldset>
-		<!-- TODO make own -->
-		<fieldset ng-show="config.active.zandronum === true">
-		<legend>Tools</legend>
-			<file-choose label="Online Client (DOOMSEEKER):" ng-model="config.online.client"></file-choose>		
-		</fieldset>
 
-		<fieldset ng-show="config.active.gzdoom">
-		<legend>gzDoom</legend>
+		<div flex>
+			<md-checkbox ng-model="config.active.gzdoom" aria-label="GZDoom">
+			<p style="color:white;">GZDoom</p>
+			</md-checkbox>
+		</div>
 
+		<fieldset class="settings-fieldset" ng-show="config.active.gzdoom">
+		<legend>gzDoom Settings</legend>
 		<div>
 			<file-choose label="gzDoom Path:"  ng-model="config.engines.gzdoom"></file-choose>
 			<dir-choose label="gzDoom Savegames:" ng-model="config.savepaths.gzdoom"></dir-choose>
 		</div>
 		</fieldset>
 
-		
-		<fieldset ng-show="config.active.zdoom">
-		<legend>zDoom</legend>
+		<div flex>
+			<md-checkbox ng-model="config.active.zdoom" aria-label="Oblige">
+			<p style="color:white;">zDoom</p>
+			</md-checkbox>
+		</div>	
+
+		<fieldset class="settings-fieldset" ng-show="config.active.zdoom">
+		<legend>zDoom Settings</legend>
 		<div>
 			<file-choose label="zDoom Path:" ng-model="config.engines.zdoom"></file-choose>
 			<dir-choose label="zDoom Savegames:" ng-model="config.savepaths.zdoom"></dir-choose>
 		</div>		
 		</fieldset>
 
-		<fieldset ng-show="config.active.zandronum">
-		<legend>Zandronum</legend>
+		<div flex>
+			<md-checkbox ng-model="config.active.zandronum" aria-label="Zandronum">
+			<p style="color:white;">Zandronum</p>
+			</md-checkbox>
+		</div>
+
+		<fieldset class="settings-fieldset" ng-show="config.active.zandronum">
+		<legend>Zandronum Settings</legend>
 
 		<div>
 			<file-choose label="Zandronum Path:" ng-model="config.engines.zandronum"></file-choose>
@@ -102,8 +77,19 @@
 		</div>
 		</fieldset>
 
-		<fieldset ng-show="config.active.doomrpg">
-		<legend>DoomRPG</legend>
+		<fieldset class="settings-fieldset" ng-show="config.active.zandronum === true">
+		<legend> Zandronum Tool Settings</legend>
+			<file-choose label="Online Client (DOOMSEEKER):" ng-model="config.online.client"></file-choose>		
+		</fieldset>
+
+		<div flex>
+			<md-checkbox ng-model="config.active.doomrpg" aria-label="DoomRPG">
+			<p style="color:white;">DoomRPG</p>
+			</md-checkbox>
+		</div>
+
+		<fieldset class="settings-fieldset" ng-show="config.active.doomrpg">
+		<legend>DoomRPG Settings</legend>
 		<div>
 			<file-choose label="DoomRPG SourcePort (Latest GZDoom recommended):"  ng-model="config.engines.doomrpg"></file-choose>
 			<dir-choose label="DoomRPG SourcePort Savegames:" ng-model="config.savepaths.doomrpg"></dir-choose>
@@ -113,8 +99,14 @@
 		</div>
 		</fieldset>
 
-		<fieldset ng-show="config.active.doom64ex">
-		<legend>Doom 64EX</legend>
+		<div flex>
+			<md-checkbox ng-model="config.active.doom64ex" aria-label="Doom64EX">
+			<p style="color:white;">Doom64EX</p>
+			</md-checkbox>
+		</div>
+
+		<fieldset class="settings-fieldset" ng-show="config.active.doom64ex">
+		<legend>Doom 64EX Settings</legend>
 
 		<div>
 			<file-choose label="Doom64EX Path:" ng-model="config.engines.doom64ex"></file-choose>
@@ -123,12 +115,18 @@
 		</div>
 		</fieldset>
 
-		<fieldset ng-show="config.active.oblige">
-		<legend>Oblige</legend>			
+		<div flex>
+			<md-checkbox ng-model="config.active.oblige" aria-label="Oblige">
+			<p style="color:white;">Oblige</p>
+			</md-checkbox>
+		</div>
+
+		<fieldset class="settings-fieldset" ng-show="config.active.oblige">
+		<legend>Oblige Settings</legend>			
 		<div>
 			<file-choose label="Oblige Path:" ng-model="config.oblige.binary"></file-choose>
 			<dir-choose label="Oblige MapConfig Path:" ng-model="config.oblige.configs"></dir-choose>
-			<file-choose label="Oblige Random Map Path:" ng-model="config.oblige.mappath"></file-choose>
+			<file-choose label="Oblige Random Map File:" ng-model="config.oblige.mappath"></file-choose>
 		</div>
 		</fieldset>
 

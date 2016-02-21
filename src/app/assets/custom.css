@@ -297,7 +297,7 @@ legend {
 
 .md-avatar > .modtype {
     display:block;
-    margin-top: 2px;
+    margin-top: 2px; 
     text-align:center;
     font-size: 13px;
 }
@@ -325,4 +325,15 @@ legend {
 .screenshot-nof {
     margin-top: 50px;
     text-align:center;
+}
+
+.settings-fieldset {
+    transition: all 0.35s ease-in-out;  
+    opacity: 1;
+    overflow: hidden;
+    
+}
+.settings-fieldset.ng-hide {
+    transform: translateY(-100px);    
+    opacity: 0;
 }
