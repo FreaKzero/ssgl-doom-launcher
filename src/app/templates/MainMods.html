@@ -26,10 +26,6 @@ $(window).on('resize', function(){
     $.when(setupScrollies()).then(fixHeight);
 });
 </script>
-<!-- 
-item in filtered = (list | property:'customfield_10841.value': cFilter.targetGroup.value | property:'customfield_10850.value': cFilter.product.value | property:'version': cFilter.version.value || undefined)  track by $index"
-
--->
     <div layout="row" ng-controller="modController">
             <div flex>
 
@@ -44,7 +40,7 @@ item in filtered = (list | property:'customfield_10841.value': cFilter.targetGro
                 </md-input-container>
                 &nbsp;&nbsp;&nbsp;
                 <md-input-container style="width: 100%;font-size: 14px;">
-                    <label class="filterlabel" placeholder="filter" style="color: white;font-weight: normal;opacity:0;">Filter</label>
+                    <label class="filterlabel" style="color: white;font-weight: normal;opacity:0;">Filter</label>
                     <input ng-model="searchterm">
                 </md-input-container>
           
