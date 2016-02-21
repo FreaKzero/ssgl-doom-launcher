@@ -79,7 +79,7 @@
             
         };
 
-        $scope.test = function($event, mod) {
+        $scope.lookupScreenshots = function($event, mod) {
             $scope.lookupLoad = true;
             $scope.screenshots = [];
             $scope.screenshotsTitle = mod.name;

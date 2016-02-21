@@ -298,14 +298,14 @@ legend {
     background-color: #547a5f;
 }
 
-.md-avatar > .test {
+.md-avatar > .modtype {
     display:block;
     margin-top: 2px;
     text-align:center;
     font-size: 13px;
 }
 
-.md-avatar > .test.second {
+.md-avatar > .modtype.second {
     display:block;
     margin-top: 11px;
     text-align:center;
