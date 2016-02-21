@@ -123,7 +123,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                     zdoom: '',
                     gzdoom: '',
                     zandronum: '',
-                    skulltag: '',
+                    doomrpg: '',
                     doom64ex: ''
                 },
 
@@ -131,7 +131,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                     zdoom: '',
                     gzdoom: '',
                     zandronum: '',
-                    skulltag: '',
+                    doomrpg: '',
                     doom64ex: ''
                 },
 
@@ -146,7 +146,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                     zandronum: false,
                     oblige: false,
                     zdoom: false,
-                    skulltag: false,
+                    doomrpg: false,
                     doom64ex: false
                 },
 
@@ -155,7 +155,8 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                 },
 
                 misc: {
-                    doom64exsound: ''
+                    doom64exsound: '',
+                    doomrpgdir: ''
                 },
 
                 iwadpath: '',

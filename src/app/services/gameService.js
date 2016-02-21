@@ -5,7 +5,7 @@
 
     /**
      * Service for Starting Engines/Oblige
-     * 
+     *
      * @method gameService
      * @module ssgl
      * @submodule gameService
@@ -38,7 +38,9 @@
                 params = params.concat(['-setvars'], ["s_soundfont", $rootScope.config.misc.doom64exsound]);
             }
 
-            
+            if (opt.engine === 'doomrpg') {
+                wads.push($rootScope.config.misc.doomrpgdir.slice(0, -1));
+            }
 
             if (opt.save !== false) {
                 params = params.concat(['-loadgame'], opt.save);
@@ -49,6 +51,7 @@
             }
 
             params = params.concat(['-savedir'], $rootScope.config.savepaths[opt.engine] + modselectedService.getListname());
+            console.log(params)
             return params;
         }
 
@@ -56,7 +59,7 @@
 
         /**
          * Starts given Engine as childprocess
-         * 
+         *
          * @method startDoom
          * @for gameService
          * @param  {Object}  iwad,config,engine,map,save
@@ -90,7 +93,7 @@
         /**
          * Starts Oblige Mapbuilder as childprocess in the background
          * When Oblige is finished - startDoom with the map parameter
-         * 
+         *
          * @method startOblige
          * @for gameService
          * @param  {Object} iwad, config, engine,save
@@ -110,7 +113,7 @@
             child = execFile($rootScope.config.oblige.binary, params, function(error, stdout, stderr) {
                 if (error) {
                     nwService.panic(
-                        'Obligestarter', 
+                        'Obligestarter',
                         'Oblige builder encountered a Problem',
                         'Given Params: '+ params.join(' ') + ' \n\n ' + error.stack + '\n\n' + stderr
                     );

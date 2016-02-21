@@ -27,17 +27,19 @@
 				<md-checkbox ng-model="config.active.zdoom" aria-label="Oblige">
 				<p style="color:white;">zDoom</p>
 				</md-checkbox>
-			</div>
-			<div flex>
-				<md-checkbox ng-model="config.active.skulltag" aria-label="Skulltag">
-				<p style="color:white;">Skulltag</p>
-				</md-checkbox>
-			</div>
+			</div>			
 			<div flex>
 				<md-checkbox ng-model="config.active.oblige" aria-label="Oblige">
 				<p style="color:white;">Oblige</p>
 				</md-checkbox>
 			</div>
+
+			<div flex>
+				<md-checkbox ng-model="config.active.doomrpg" aria-label="DoomRPG">
+				<p style="color:white;">DoomRPG</p>
+				</md-checkbox>
+			</div>
+
 			<div flex>
 				<md-checkbox ng-model="config.active.doom64ex" aria-label="Doom64EX">
 				<p style="color:white;">Doom64EX</p>
@@ -65,7 +67,8 @@
 			<dir-choose label="iWAD Path:" ng-model="config.iwadpath"></dir-choose>		
 
 		</fieldset>
-		<fieldset ng-show="config.active.zandronum === true || config.active.skulltag === true">
+		<!-- TODO make own -->
+		<fieldset ng-show="config.active.zandronum === true">
 		<legend>Tools</legend>
 			<file-choose label="Online Client (DOOMSEEKER):" ng-model="config.online.client"></file-choose>		
 		</fieldset>
@@ -97,11 +100,12 @@
 		</div>
 		</fieldset>
 
-		<fieldset ng-show="config.active.skulltag">
-		<legend>Skulltag</legend>
+		<fieldset ng-show="config.active.doomrpg">
+		<legend>DoomRPG</legend>
 		<div>
-			<file-choose label="Skulltag Path:"  ng-model="config.engines.skulltag"></file-choose>
-			<dir-choose label="Skulltag Savegames:" ng-model="config.savepaths.skulltag"></dir-choose>
+			<file-choose label="DoomRPG SourcePort Path:"  ng-model="config.engines.doomrpg"></file-choose>
+			<dir-choose label="DoomRPG SourcePort Savegames:" ng-model="config.savepaths.doomrpg"></dir-choose>
+			<dir-choose label="DoomRPG Folder:" ng-model="config.misc.doomrpgdir"></dir-choose>
 		</div>
 		</fieldset>
 
