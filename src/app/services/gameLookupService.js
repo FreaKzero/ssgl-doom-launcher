@@ -8,23 +8,20 @@
         var service = {};
 
         //#TODO doc
-        service.lookupLocal = function(path) {
-            var file = path.replace(/^.*[\\\/]/, ''),
-                name = file.split('.')[0],
+        service.lookupLocal = function(mod) {
                 screens = [],
                 def = $q.defer();
 
             nwService.getDir($rootScope.config.screenshotpath).then(function(dirs) {
-                if (dirs.indexOf(name) > -1) {
-                    nwService.getDir($rootScope.config.screenshotpath + name).then(function(filenames) {
+                if (dirs.indexOf(mod.name) > -1) {
+                    nwService.getDir($rootScope.config.screenshotpath + mod.name).then(function(filenames) {
 
                         screens = filenames.map(function(item) {
                             return {
-                                pic: $rootScope.config.screenshotpath + name + '\\' + item,
+                                pic: nwService.buildPath([$rootScope.config.screenshotpath, mod.name , item], false),
                                 name: item.split('.')[0]
                             };
                         });
-
                         def.resolve(screens);
                     });
 

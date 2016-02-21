@@ -89,7 +89,7 @@
                     if (data.length > 0) {
                         $scope.screenshots = data;    
                     } else {
-                        gameLookupService.lookupLocal(mod.path).then(function(data) {
+                        gameLookupService.lookupLocal(mod).then(function(data) {
                             $scope.screenshots = data;
                         });
                     }
