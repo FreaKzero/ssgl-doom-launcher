@@ -72,10 +72,8 @@
                     if ($rootScope.config.misc.doomrpg.extras !== '') {
                         rpgwads.push($rootScope.config.misc.doomrpg.brightmaps.slice(0, -1));
                     }    
-                }
-
-                rpgwads.concat(wads);
-                wads = rpgwads;
+                }                
+                wads = rpgwads.concat(wads);
             }
 
             if (opt.save !== 'false' && opt.save !== false) {
@@ -87,7 +85,6 @@
             }
 
             params = params.concat(['-savedir'], $rootScope.config.savepaths[opt.engine] + modselectedService.getListname());
-            console.log(params)
             return params;
         }
 
