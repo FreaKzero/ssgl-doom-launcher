@@ -337,3 +337,7 @@ legend {
     transform: translateY(-100px);    
     opacity: 0;
 }
+
+.md-tab.md-disabled {
+    display:none;
+}
