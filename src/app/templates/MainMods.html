@@ -4,7 +4,6 @@ var fixHeight = function() {
     var ToolbarHeight = $("md-toolbar.layout-row").height();
     var subToolbarHeight = $("md-toolbar.md-hue-2").height();
     $('.slimScrollDiv, .slimScrollDiv > md-content').css('height', mainHeight - (ToolbarHeight + subToolbarHeight));
-    console.log("Fixed height to: ", mainHeight);
 }
 
 var setupScrollies = function() {
@@ -32,7 +31,7 @@ $(window).on('resize', function(){
                 <md-toolbar class="md-hue-2">
                 <div class="md-toolbar-tools">
                 <md-input-container style="margin-top: 18px;width:120px;">
-                    <md-select ng-model="typefilter">
+                    <md-select ng-model="typefilter" aria-label="Mod Type Filter">
                         <md-option value="" selected>All</md-option>
                         <md-option>WAD</md-option>
                         <md-option>PK3</md-option>
