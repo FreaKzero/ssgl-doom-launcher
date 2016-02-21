@@ -75,7 +75,7 @@
             
             setTimeout(function() {
                 nwService.getShell().openItem(path);
-            },1500);
+            },800);
             
         };
 

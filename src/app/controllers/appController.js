@@ -146,6 +146,9 @@
             nwService.getShell().openItem($scope.config.wadpath);
         };
 
+        $scope.openScreenshotFolder = function() {
+            nwService.getShell().openItem($scope.config.screenshotpath);  
+        }
         /**
          * Opens Configfile in external Editor
          * 
