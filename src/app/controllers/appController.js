@@ -544,7 +544,7 @@
                  * @property config
                  * @type {Object}
                  */
-                $scope.config = $PARENT.config;
+                $scope.config = angular.copy($PARENT.config);
 
                 $scope.gzDoomDownload = function() {
                     nwService.getShell().openExternal('http://devbuilds.drdteam.org/gzdoom/');
