@@ -3,7 +3,8 @@
         FS = require('fs'),
         GUI = require('nw.gui'),
         recursive = require('recursive-readdir'),
-        os = require('os');
+        os = require('os'),
+        chokidar = require('chokidar');
 
     app.factory('nwService', ['$q', '$rootScope', '$mdDialog', nwService]);
     /**
@@ -68,6 +69,11 @@
             return path;
         }
 
+        service.startWatcher = function(path, callback) {
+            chokidar.watch(path, {ignored: /[\/\\]\./}).on('all', function(event, path) {
+                callback(path, event);
+            });
+        };
         /**
          * Panic Dialog - for critical errors
          *

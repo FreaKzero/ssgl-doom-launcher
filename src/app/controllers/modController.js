@@ -16,28 +16,13 @@
         $scope.screenshotsTitle = '';
         $scope.lookupLoad = false;
 
-        modService.getMods($scope.config.wadpath).then(function(mods) {
-            /**
-             * @property mods
-             * @type {Array}
-             * @async
-             */
-            $scope.mods = mods;
-            
-            if ($scope.config.initList !== false) {
-
-                try {
-                    var startListJSON = JSON.parse($scope.config.initList);
-                    if (!_.isEmpty(startListJSON)) {
-                        modselectedService.selectList(startListJSON);
-                    }
-                } catch(e) {
-                    $scope.config.initList = false;
-                    nwService.writeJSON($scope.config, 'config.json', true);
-                }                
-            }
+        
+        $scope.$on('modService.watcher', function() {
+            $scope.mods = modService.mods;
+            $scope.$apply();
         });
-
+        
+        
         //#TODO: doc
         $scope.$on('modselectedService.useList', function() {
             $scope.selected = modselectedService.get();

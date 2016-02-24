@@ -65,27 +65,6 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
         document.title = 'Super Shotgun Launcher v' + $rootScope.APPVERSION;
         nwService.mkDir(nwService.buildPath(['lists'], true), true);
 
-        if (nwService.hasArg('-r') || nwService.hasArg('--livereload')) {
-            try {
-                var Gaze = require('gaze').Gaze;
-                var gaze = new Gaze('../src/**/*');
-
-                gaze.on('all', function(event, filepath) {
-                    if (filepath && filepath.split('.').pop() === 'css') {
-                        var styles = document.querySelectorAll('link[rel=stylesheet]');
-                        for (var i = 0; i < styles.length; i++) {
-                            var restyled = styles[i].getAttribute('href') + '?v=' + Math.random(0, 10000);
-                            styles[i].setAttribute('href', restyled);
-                        };
-                    } else {
-                        window.location.reload();
-                    }
-                });
-            } catch (e) {
-                console.log('Livereload cant be used on an built App');
-            }
-        }
-
         if (nwService.hasArg('-d') || nwService.hasArg('--devtools')) {
             $rootScope.DEVELOPER = true;
 
