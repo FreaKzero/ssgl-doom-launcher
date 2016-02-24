@@ -137,7 +137,8 @@
                 templateUrl: 'app/templates/ObligeLoading.html',
                 parent: angular.element(document.body),
                 targetEvent: null,
-                clickOutsideToClose: false
+                clickOutsideToClose: false,
+                escapeToClose: false
             });
 
             opt.map = $rootScope.config.oblige.mappath;
