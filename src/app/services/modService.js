@@ -40,7 +40,7 @@
                             type: ext
                         });
                     }
-                
+
                 $rootScope.$broadcast('modService.watcher');
             }
 
@@ -48,7 +48,6 @@
                 var z = _.findIndex(service.mods, function(item) { return item.path == file });
                 if (z > -1) {
                     service.mods.splice(index,1);
-                    service.mods.sort();
                 }
 
                 $rootScope.$broadcast('modService.watcher');
