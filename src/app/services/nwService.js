@@ -1,14 +1,13 @@
 (function() {
     var PATH = require('path'),
         FS = require('fs'),
-        GUI = require('nw.gui'),
-        recursive = require('recursive-readdir'),
+        GUI = require('nw.gui'),        
         os = require('os'),
         chokidar = require('chokidar');
 
     app.factory('nwService', ['$q', '$rootScope', '$mdDialog', nwService]);
     /**
-     * NodeWebkit related Service (Path, Fs, GUI, recursive, os)
+     * NodeWebkit related Service
      *
      * @method nwService
      * @module ssgl
@@ -17,6 +16,9 @@
      */
     function nwService($q, $rootScope, $mdDialog) {
         var service = {};
+
+        //#TODO: doc
+        service.watcher = null;
         /**
          * BASEDIR
          * @property execpath
@@ -68,12 +70,19 @@
 
             return path;
         }
-
+        
+        //#TODO: doc
         service.startWatcher = function(path, callback) {
-            chokidar.watch(path, {ignored: /[\/\\]\./}).on('all', function(event, path) {
+            service.watcher = chokidar.watch(path, {ignored: /[\/\\]\./}).on('all', function(event, path) {
                 callback(path, event);
             });
         };
+
+        //#TODO: doc
+        service.getWatcher = function() {
+            return service.watcher;
+        };
+
         /**
          * Panic Dialog - for critical errors
          *
@@ -186,30 +195,7 @@
                 return array.join(service.pathsep);
             }
         };
-
-        /**
-         * Goes through a Directory recursively via callback method
-         *
-         * @method recursiveDir
-         * @for nwService
-         * @param  {String}     path
-         * @param  {Function}   callback Callback what todo when walk through the directory
-         * @async
-         * @return {Promise} Promise
-         */
-        service.recursiveDir = function(path, callback) {
-            var def = $q.defer();
-            recursive(path, function(err, files) {
-                if (err) {
-                    def.reject(err);
-                } else {
-                    def.resolve(callback(files));
-                }
-            });
-
-            return def.promise;
-        };
-
+      
         /**
          * gives back path as array
          * @method splitPath

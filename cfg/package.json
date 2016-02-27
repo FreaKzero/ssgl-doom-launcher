@@ -10,8 +10,8 @@
         "title" : "Super Shotgun Launcher (DEV)"
     },
      "devDependencies": {
-      "recursive-readdir": "*",
-      "gaze" : "*"
+      "chokidar": "*",
+      "md5-file": "*"
     }
 }
 

@@ -11,6 +11,7 @@
         "title" : "Super Shotgun Launcher (loading...)"
     },
      "devDependencies": {
-      "recursive-readdir": "*"    
+      "chokidar": "*",
+      "md5-file": "*"   
   	}
 }

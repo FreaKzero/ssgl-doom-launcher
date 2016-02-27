@@ -567,7 +567,8 @@
                  */
                 $scope.save = function() {
                     $scope.config.freshinstall = false;
-
+                    nwService.getWatcher().close();
+                    
                     nwService.writeJSON($scope.config, 'config.json', true).then(function() {
                         $mdToast.show(
                             $mdToast.simple().content('Saved Settings - Reloading...').position('bottom').hideDelay(TOASTDELAY)
@@ -578,7 +579,7 @@
                         );
                     });
 
-                    setTimeout(function() {
+                    setTimeout(function() {                        
                         window.location.reload();
                     }, TOASTDELAY + 500);
 
