@@ -49,7 +49,7 @@ $(window).on('resize', function(){
                 <md-content layout-padding class="slimscroll-mods">
                 
                 <md-list>
-                <md-list-item class="md-2-line repeat-animation init-animation" ng-repeat="mod in filtered = (mods | filter:searchterm | filter:{type:typefilter}) track by mod.path" ng-click="selectWad(mod)">
+                <md-list-item class="md-2-line repeat-animation init-animation" ng-repeat="mod in filtered = (mods | filter:searchterm | filter:{type:typefilter}) track by $index" ng-click="selectWad(mod)">
                 
                 <div class="md-avatar {{mod.type}} searchable" ng-click="lookupScreenshots($event, mod)"><div class="modtype">{{mod.type}}</div></div>
                 <div class="md-list-item-text">
@@ -82,7 +82,7 @@ $(window).on('resize', function(){
 
                 <md-content layout-padding class="slimscroll-mods">
                 <md-list>
-                <md-list-item class="md-2-line repeat-animation" ng-repeat="mod in selected.list track by mod.path">
+                <md-list-item class="md-2-line repeat-animation" ng-repeat="mod in selected.list track by $index">
                 <div class="md-avatar {{mod.type}}"><div class="modtype second searchable" ng-click="lookupScreenshots($event, mod)">{{mod.type}}</div></div>
                 <div class="md-list-item-text">
                     <h3>{{ mod.name }}</h3>
@@ -98,8 +98,8 @@ $(window).on('resize', function(){
                 </md-content>
             </div>
 
-            <div flex=30 ng-hide="screenshots === null">
-            <md-toolbar class="md-hue-2 menu-animation">
+            <div flex=30 ng-hide="screenshots === null" class="menu-animation">
+            <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
             {{screenshotsTitle}}
             <span flex></span>

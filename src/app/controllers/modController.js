@@ -16,7 +16,7 @@
         $scope.screenshotsTitle = '';
         $scope.lookupLoad = false;
 
-        
+        //#TODO: doc
         $scope.$on('modService.watcher', function() {
             $scope.mods = modService.mods;
             $scope.$apply();
