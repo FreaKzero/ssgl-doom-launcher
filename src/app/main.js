@@ -65,6 +65,26 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
         document.title = 'Super Shotgun Launcher v' + $rootScope.APPVERSION;
         nwService.mkDir(nwService.buildPath(['lists'], true), true);
 
+        if (nwService.hasArg('-r') || nwService.hasArg('--livereload')) {
+            try {
+
+                nwService.livereload(function(file, event) {
+                    if (file && file.split('.').pop() === 'css') {
+                        var styles = document.querySelectorAll('link[rel=stylesheet]');
+                        for (var i = 0; i < styles.length; i++) {
+                            var restyled = styles[i].getAttribute('href') + '?v=' + Math.random(0, 10000);
+                            styles[i].setAttribute('href', restyled);
+                        };
+                    } else {
+                        console.log(event)
+                    }
+                });
+                                    
+            } catch (e) {
+                console.log('Something went wrong');
+            }
+        }
+
         if (nwService.hasArg('-d') || nwService.hasArg('--devtools')) {
             $rootScope.DEVELOPER = true;
 

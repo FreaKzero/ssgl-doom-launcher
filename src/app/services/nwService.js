@@ -19,6 +19,7 @@
 
         //#TODO: doc
         service.watcher = null;
+
         /**
          * BASEDIR
          * @property execpath
@@ -71,6 +72,14 @@
             return path;
         }
         
+        service.livereload = function(callback) {
+            chokidar.watch('../src/**/*', {ignored: /[\/\\]\./}).on('all', function(event, path) {
+                if (event === 'change') {
+                    callback(path);
+                }
+            });
+        };
+
         //#TODO: doc
         service.startWatcher = function(path, callback) {
             service.watcher = chokidar.watch(path, {ignored: /[\/\\]\./}).on('all', function(event, path) {
