@@ -1,5 +1,5 @@
 (function() {
-    app.controller('modController', ['$scope', 'modService', 'modlistService', '$mdDialog', 'nwService', 'modselectedService', '$mdToast', 'gameLookupService', modController]);
+    app.controller('modController', ['$scope', '$window', 'modService', 'modlistService', '$mdDialog', 'nwService', 'modselectedService', '$mdToast', 'gameLookupService', modController]);
 
     /**
      * Controller for the Mod splitview
@@ -8,13 +8,24 @@
      * @module ssgl
      * @submodule modController
      */
-    function modController($scope, modService, modlistService, $mdDialog, nwService, modselectedService, $mdToast, gameLookupService) {
+    function modController($scope, $window, modService, modlistService, $mdDialog, nwService, modselectedService, $mdToast, gameLookupService) {
         var $parent = $scope;
 
         $scope.selected = modselectedService.reset();
         $scope.screenshots = null;
         $scope.screenshotsTitle = '';
-        $scope.lookupLoad = false;
+        $scope.lookupLoad = false; 
+
+        angular.element($window).on('keydown', function(e) {
+            if (e.which === 70 && e.ctrlKey === true) {                
+                document.getElementById('filterinput').focus();
+                e.stopImmediatePropagation();
+                e.preventDefault();
+                e.stopPropagation();   
+                return false;
+            }
+        }); 
+
 
         //#TODO: doc
         $scope.$on('modService.watcher', function() {
