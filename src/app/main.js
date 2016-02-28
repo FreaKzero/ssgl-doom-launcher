@@ -76,7 +76,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                             styles[i].setAttribute('href', restyled);
                         };
                     } else {
-                        console.log(event)
+                        window.location.reload();
                     }
                 });
                                     

@@ -261,6 +261,23 @@ md-list.md-default-theme, md-list md-list-item button.md-button:not([disabled]):
   background-color: transparent;
 }
 
+.settings-cb-wrapper {
+    border-radius: 5px;
+    border: none;
+    background-color: #292929;
+    box-shadow: 3px 3px 6px 0px rgba(0,0,0,0.3);
+    margin-bottom: 25px;
+    padding: 0 20px 0 10px;
+}
+
+.settings-cb .md-label {
+    width: 100%;
+}
+
+.settings-cb-label {
+    float:right
+}
+
 fieldset {
     border-radius: 5px;
     border: none;
@@ -330,8 +347,8 @@ legend {
     transition: all 0.35s ease-in-out;  
     opacity: 1;
     overflow: hidden;
-    
 }
+
 .settings-fieldset.ng-hide {
     transform: translateY(-100px);    
     opacity: 0;
