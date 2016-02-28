@@ -72,7 +72,6 @@
             setTimeout(function() {
                 nwService.getShell().openItem(path);
             },800);
-            
         };
 
         $scope.lookupScreenshots = function($event, mod) {
@@ -91,7 +90,7 @@
                     }
                     $scope.lookupLoad = false;                    
                 });
-            },600);
+            },400);
             
             $event.preventDefault();
             event.stopImmediatePropagation() 

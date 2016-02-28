@@ -53,7 +53,7 @@
             if (opt.engine === 'doomrpg') {
                 rpgwads = [];
                 
-
+                //#TODO: refactor
                 if ($rootScope.config.active.doomrpgrl) {
                     rpgwads.push($rootScope.config.misc.doomrpg.rlarsenalwad);
                     rpgwads.push($rootScope.config.misc.doomrpg.rlhudwad);
