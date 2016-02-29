@@ -37,30 +37,18 @@
             if (opt.engine === 'doom64ex') {
                 params = params.concat(['-setvars'], ["s_soundfont", $rootScope.config.misc.doom64exsound]);
             }
-
-
-            /*
-            C:\games\Doom\gzdoom.exe -file 
-            "DoomRL Arsenal.wad"
-            "DoomRL HUD.wad" 
-            "DoomRL Monsters.wad" 
-            DoomRPG\DoomRPG 
-            DoomRPG\DoomRPG-RLArsenal 
-            DoomRPG\DoomRPG-RLMonsters
-
-             */
-            // Remove the last / of the Path (will get automatically added in the directive of the view)
+            
             if (opt.engine === 'doomrpg') {
                 rpgwads = [];
-                
-                //#TODO: refactor
+
+
                 if ($rootScope.config.active.doomrpgrl) {
-                    rpgwads.push($rootScope.config.misc.doomrpg.rlarsenalwad);
-                    rpgwads.push($rootScope.config.misc.doomrpg.rlhudwad);
-                    rpgwads.push($rootScope.config.misc.doomrpg.rlmonsterswad);
-                    rpgwads.push($rootScope.config.misc.doomrpg.vanilla.slice(0, -1));
-                    rpgwads.push($rootScope.config.misc.doomrpg.rlarsenalpath.slice(0, -1));
-                    rpgwads.push($rootScope.config.misc.doomrpg.rlmonsterspath.slice(0, -1));
+                    rpgwads.push($rootScope.config.misc.doomrpg.rlarsenalwad,
+                    $rootScope.config.misc.doomrpg.rlhudwad,
+                    $rootScope.config.misc.doomrpg.rlmonsterswad,
+                    $rootScope.config.misc.doomrpg.vanilla.slice(0, -1),
+                    $rootScope.config.misc.doomrpg.rlarsenalpath.slice(0, -1),
+                    $rootScope.config.misc.doomrpg.rlmonsterspath.slice(0, -1));
 
                 } else {
                     rpgwads.push($rootScope.config.misc.doomrpg.vanilla.slice(0, -1));
@@ -71,8 +59,8 @@
 
                     if ($rootScope.config.misc.doomrpg.extras !== '') {
                         rpgwads.push($rootScope.config.misc.doomrpg.brightmaps.slice(0, -1));
-                    }    
-                }                
+                    }
+                }
                 wads = rpgwads.concat(wads);
             }
 

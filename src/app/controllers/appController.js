@@ -547,7 +547,7 @@
                 $scope.config = angular.copy($PARENT.config);
 
                 $scope.gzDoomDownload = function() {
-                    nwService.getShell().openExternal('http://devbuilds.drdteam.org/gzdoom/');
+                    nwService.getShell().openExternal('http://forum.drdteam.org/viewtopic.php?f=23&t=6791');
                 }
                 /**
                  * Close Dialog
