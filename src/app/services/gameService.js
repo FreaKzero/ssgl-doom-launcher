@@ -46,9 +46,10 @@
                     rpgwads.push($rootScope.config.misc.doomrpg.rlarsenalwad);
 
                     if ($rootScope.config.active.doomrpgrlmonsters)
-                        rpgwads.push($rootScope.config.misc.doomrpg.rlhudwad);
-
-                    rpgwads.push($rootScope.config.misc.doomrpg.rlmonsterswad); 
+                        rpgwads.push($rootScope.config.misc.doomrpg.rlmonsterswad);                     
+                    
+                    rpgwads.push($rootScope.config.misc.doomrpg.rlhudwad);
+                    
                     rpgwads.push($rootScope.config.misc.doomrpg.vanilla.slice(0, -1));
                     rpgwads.push($rootScope.config.misc.doomrpg.rlarsenalpath.slice(0, -1));
 
