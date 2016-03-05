@@ -101,24 +101,36 @@
 		</div>
 		</fieldset>
 
-		<div class="settings-cb-wrapper">
+		<div class="settings-cb-wrapper" ng-show="config.active.doomrpg">
 			<md-checkbox ng-model="config.active.doomrpgrl" aria-label="DoomRPG DoomRL Arsenal" class="settings-cb">
-<p class="settings-cb-label">DoomRPG DoomRL Arsenal</p>
+				<p class="settings-cb-label">DoomRPG DoomRL Arsenal</p>
 			</md-checkbox>			
 		</div>
 		
 		<fieldset class="settings-fieldset" ng-show="config.active.doomrpgrl">
-		<legend>DoomRPG DoomRL Arsenal</legend>
-		<div>
-			<file-choose label="DoomRPG RLArsenal HUD WAD:"  ng-model="config.misc.doomrpg.rlhudwad"></file-choose>
-			<br />
-			<dir-choose label="DoomRPG RLArsenal Folder:" ng-model="config.misc.doomrpg.rlarsenalpath"></dir-choose>	
-			<file-choose label="DoomRPG RLArsenal WAD:"  ng-model="config.misc.doomrpg.rlarsenalwad"></file-choose>
-			
-			<dir-choose label="DoomRPG RLMonsters Folder:" ng-model="config.misc.doomrpg.rlmonsterspath"></dir-choose>
-			<file-choose label="DoomRPG RLMonsters WAD:"  ng-model="config.misc.doomrpg.rlmonsterswad"></file-choose>
-		</div>
+			<legend>DoomRPG DoomRL Arsenal</legend>
+			<div>
+				<file-choose label="DoomRPG RLArsenal HUD WAD:"  ng-model="config.misc.doomrpg.rlhudwad"></file-choose>
+				<br />
+				<dir-choose label="DoomRPG RLArsenal Folder:" ng-model="config.misc.doomrpg.rlarsenalpath"></dir-choose>	
+				<file-choose label="DoomRPG RLArsenal WAD:"  ng-model="config.misc.doomrpg.rlarsenalwad"></file-choose>
+			</div>
 		</fieldset>
+
+		<div class="settings-cb-wrapper" ng-show="config.active.doomrpgrl">
+			<md-checkbox ng-model="config.active.doomrpgrlmonsters" aria-label="DoomRPG DoomRL Arsenal" class="settings-cb">
+				<p class="settings-cb-label">DoomRPG DoomRL Arsenal Monsters</p>
+			</md-checkbox>			
+		</div>
+
+		<fieldset class="settings-fieldset" ng-show="config.active.doomrpgrlmonsters">
+			<legend>DoomRPG DoomRL Arsenal Monsters</legend>
+			<div>
+				<dir-choose label="DoomRPG RLMonsters Folder:" ng-model="config.misc.doomrpg.rlmonsterspath"></dir-choose>
+				<file-choose label="DoomRPG RLMonsters WAD:"  ng-model="config.misc.doomrpg.rlmonsterswad"></file-choose>
+			</div>
+		</fieldset>
+
 
 
 		<div class="settings-cb-wrapper">

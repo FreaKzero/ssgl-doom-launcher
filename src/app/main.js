@@ -148,6 +148,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                     zdoom: false,
                     doomrpg: false,
                     doomrpgrl: false,
+                    doomrpgrlmonsters: false,
                     doom64ex: false
                 },
 

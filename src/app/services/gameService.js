@@ -43,13 +43,18 @@
 
 
                 if ($rootScope.config.active.doomrpgrl) {
-                    rpgwads.push($rootScope.config.misc.doomrpg.rlarsenalwad,
-                    $rootScope.config.misc.doomrpg.rlhudwad,
-                    $rootScope.config.misc.doomrpg.rlmonsterswad,
-                    $rootScope.config.misc.doomrpg.vanilla.slice(0, -1),
-                    $rootScope.config.misc.doomrpg.rlarsenalpath.slice(0, -1),
-                    $rootScope.config.misc.doomrpg.rlmonsterspath.slice(0, -1));
+                    rpgwads.push($rootScope.config.misc.doomrpg.rlarsenalwad);
 
+                    if ($rootScope.config.active.doomrpgrlmonsters)
+                        rpgwads.push($rootScope.config.misc.doomrpg.rlhudwad);
+
+                    rpgwads.push($rootScope.config.misc.doomrpg.rlmonsterswad); 
+                    rpgwads.push($rootScope.config.misc.doomrpg.vanilla.slice(0, -1));
+                    rpgwads.push($rootScope.config.misc.doomrpg.rlarsenalpath.slice(0, -1));
+
+                    if ($rootScope.config.active.doomrpgrlmonsters)
+                        rpgwads.push($rootScope.config.misc.doomrpg.rlmonsterspath.slice(0, -1));
+                    
                 } else {
                     rpgwads.push($rootScope.config.misc.doomrpg.vanilla.slice(0, -1));
 

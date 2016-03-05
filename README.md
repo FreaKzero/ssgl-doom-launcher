@@ -55,3 +55,4 @@ On Development Environment only you can use the flags ```--livereload``` or ```-
 ![Thx4BetaTest](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/beta.jpg)  
 [Serasar](https://github.com/Serasar)  
 [axed](https://github.com/axed)
+[scar45](https://github.com/scar45)
