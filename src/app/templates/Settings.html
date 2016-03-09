@@ -17,7 +17,7 @@
 				<md-input-container>
 					<label>Favourite Engine</label>
 	  				<md-select ng-model="config.misc.preselectedengine" placeholder="Favourite Engine" ng-disabled="modlist.length === 0">	
-					<md-option ng-repeat="(key,val) in config.engines" value="{{key}}">{{key}}</md-option>
+					<md-option ng-repeat="(key,val) in config.engines" ng-show="config.active[key] === true" value="{{key}}">{{key}}</md-option>
 					</md-select>
 				</md-input-container>
 			</div>
