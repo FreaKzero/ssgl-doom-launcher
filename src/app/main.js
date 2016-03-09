@@ -157,6 +157,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                 },
 
                 misc: {
+                    preselectedengine: '',
                     doom64exsound: '',
                     doomrpg: {
                         vanilla: '',

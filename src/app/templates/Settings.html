@@ -14,16 +14,24 @@
 		<legend>Main Settings</legend>
 		<div layout="row">
 			<div flex>		
-
-			<md-input-container>
-				<label>Select list for Startup</label>
-  				<md-select ng-model="config.initList" placeholder="Select List" ng-disabled="modlist.length === 0">
-				<md-option value="false">Deactivate</md-option>
-				<md-option ng-repeat="list in modlist" value="{{list}}">{{list.name}}</md-option>
-				</md-select>
-			</md-input-container>
-						
+				<md-input-container>
+					<label>Favourite Engine</label>
+	  				<md-select ng-model="config.misc.preselectedengine" placeholder="Favourite Engine" ng-disabled="modlist.length === 0">	
+					<md-option ng-repeat="(key,val) in config.engines" value="{{key}}">{{key}}</md-option>
+					</md-select>
+				</md-input-container>
 			</div>
+
+			<div flex>		
+				<md-input-container>
+					<label>Select list for Startup</label>
+	  				<md-select ng-model="config.initList" placeholder="Select List" ng-disabled="modlist.length === 0">
+					<md-option value="false">Deactivate</md-option>
+					<md-option ng-repeat="list in modlist" value="{{list}}">{{list.name}}</md-option>
+					</md-select>
+				</md-input-container>
+			</div>
+
 
 		</div>
 
