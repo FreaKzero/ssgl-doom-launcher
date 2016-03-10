@@ -263,8 +263,6 @@ module.exports = function(grunt) {
         'nwjs',
         'compress',
         'shell:gitCommit',
-        'shell:gitTag',
-        'shell:gitPush',
         'open:editPackage',
         'open:newRelease'
     ]);
