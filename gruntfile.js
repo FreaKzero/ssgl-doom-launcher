@@ -12,7 +12,8 @@
 |                                                                                     |
 [=====================================================================================]
 */
-module.exports = function(grunt) {
+
+module.exports = function(grunt) {“¡“
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -24,7 +25,7 @@ module.exports = function(grunt) {
             },
 
             devInstall: {
-                command: 'rename nwjs-v0.12.0-win-x64 nw && copy cfg\\package.json nw\\package.json && cd nw & npm install'
+                command: 'mv nwjs-v0.12.0-win-x64 nw && copy cfg\\package.json nw\\package.json && cd nw & npm install'
             },
 
             devInstallTux32: {
@@ -88,6 +89,12 @@ module.exports = function(grunt) {
         },
 
         curl: {
+
+            mac64: {
+                src: 'http://dl.nwjs.io/v0.12.0/nwjs-v0.12.0-osx-x64.zip',
+                dest: './cache/nwdev.zip'
+
+            },
 
             win64: {
                 src: 'http://dl.nwjs.io/v0.12.0/nwjs-v0.12.0-win-x64.zip',
@@ -253,6 +260,8 @@ module.exports = function(grunt) {
     grunt.registerTask('init', ['shell:npmInstall']);
 
     grunt.registerTask('build-devenv-win', ['curl:win64', 'unzip', 'shell:devInstall']);
+    grunt.registerTask('build-devenv-mac', ['curl:mac64', 'unzip', 'shell:devInstall']);
+
     grunt.registerTask('build-devenv-linux32', ['curl:nwdevTux32', 'shell:devInstallTux32']);
     grunt.registerTask('build-devenv-linux64', ['curl:nwdevTux64', 'shell:devInstallTux64']);
 

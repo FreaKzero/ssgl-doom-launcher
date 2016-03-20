@@ -9,3 +9,4 @@ cache/*
 npm-debug.log
 docs/*
 src/app/templates.js
+.DS_Store

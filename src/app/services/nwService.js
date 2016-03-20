@@ -1,7 +1,7 @@
 (function() {
     var PATH = require('path'),
         FS = require('fs'),
-        GUI = require('nw.gui'),        
+        GUI = require('nw.gui'),
         os = require('os'),
         chokidar = require('chokidar');
 
@@ -71,18 +71,21 @@
 
             return path;
         }
-        
+
         service.livereload = function(callback) {
-            chokidar.watch('../src/**/*', {ignored: /[\/\\]\./}).on('all', function(event, path) {
+            chokidar.watch('../src/**/*', {
+                ignored: /[\/\\]\./
+            }).on('all', function(event, path) {
                 if (event === 'change') {
                     callback(path);
                 }
             });
         };
 
-        //#TODO: doc
         service.startWatcher = function(path, callback) {
-            service.watcher = chokidar.watch(path, {ignored: /[\/\\]\./}).on('all', function(event, path) {
+            service.watcher = chokidar.watch(path, {
+                ignored: /[\/\\]\./
+            }).on('all', function(event, path) {
                 callback(path, event);
             });
         };
@@ -204,7 +207,7 @@
                 return array.join(service.pathsep);
             }
         };
-      
+
         /**
          * gives back path as array
          * @method splitPath
@@ -299,9 +302,9 @@
         //TODO: file extension filter
         service.wipeDir = function(path) {
             path = _checkRel(path, false);
-            
+
             FS.readdir(path, function(err, fileArr) {
-                for(var i = fileArr.length; i--;) {
+                for (var i = fileArr.length; i--;) {
                     var full = service.buildPath([path, fileArr[i]], false);
                     FS.unlinkSync(full);
                 }
@@ -317,7 +320,7 @@
          * @async
          * @param  {String} path
          * @param  {Boolean} When true use BASEDIR
-
+         
          * @return {Promise} obj with name, path, date
          */
         service.getDirWithDate = function(path, relative) {
@@ -329,19 +332,19 @@
                 if (err) {
                     def.resolve([]);
                 } else {
-                    for(var i = fileArr.length; i--;) {
+                    for (var i = fileArr.length; i--;) {
                         var full = service.buildPath([path, fileArr[i]], false);
                         var stat = FS.statSync(full);
 
-                            if (err) {
-                                console.log(err);
-                            }
+                        if (err) {
+                            console.log(err);
+                        }
 
-                            files.push({
-                                name: fileArr[i],
-                                path: full,
-                                date: stat.mtime
-                            });
+                        files.push({
+                            name: fileArr[i],
+                            path: full,
+                            date: stat.mtime
+                        });
                     }
 
                     def.resolve(files);
@@ -352,7 +355,7 @@
         };
 
         /**
-         * Read a "flat" Directory async
+         * Read a "flat" Directory async without dotfiles
          *
          * @method getDir
          * @for nwService
@@ -369,6 +372,11 @@
                 if (err) {
                     def.reject(err);
                 } else {
+                    fileArr = fileArr.filter(function(item) {
+                        if (item.slice((item.lastIndexOf(".") - 1 >>> 0) + 2) !== '')
+                            return item;
+                    });
+
                     def.resolve(fileArr);
                 }
             });
@@ -397,7 +405,7 @@
         service.hasArg = function(arg) {
             var len = GUI.App.argv.length;
 
-            for (var i = 0;i<len;i++) {
+            for (var i = 0; i < len; i++) {
                 if (GUI.App.argv[i] === arg) {
                     return true;
                 }

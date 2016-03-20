@@ -1,27 +1,51 @@
 {
-	"folders": [{
-		"follow_symlinks": true,
-		"path": "/",
-		"folder_exclude_patterns" : ["lib", "node_modules", "nw", "docs", "cache", "cfg", "build"]
-	}],
-
-	"build_systems": [{
-		"name": "Open Taiga",
-		"shell_cmd": "start https://tree.taiga.io/project/freakzero-gzdoom-launcher/kanban"
-	}, {
-		"name": "Open GitHub",
-		"shell_cmd": "start https://github.com/FreaKzero/ssgl-doom-launcher/commits/dev"
-	}, {
-		"name": "Start NW",
-		"shell_cmd": "nw -d -r",
-		"working_dir": "${project_path}",
-		"path": "./nw",
-		"shell": true
-	}, {
-		"name": "Build Windows",
-		"shell_cmd": "grunt build-win"
-	}, {
-		"name": "Build Linux",
-		"shell_cmd": "grunt build-linux"
-	}]
+	"build_systems":
+	[
+		{
+			"name": "Open Taiga",
+			"shell_cmd": "start https://tree.taiga.io/project/freakzero-gzdoom-launcher/kanban"
+		},
+		{
+			"name": "Open GitHub",
+			"shell_cmd": "start https://github.com/FreaKzero/ssgl-doom-launcher/commits/dev"
+		},
+		{
+			"name": "Start NW (mac)",
+			"path": ".",
+			"shell": true,
+			"shell_cmd": "open -n ./nw/nwjs.app --args -d -r",
+			"working_dir": "${project_path}"
+		},
+		{
+			"name": "Start NW",
+			"path": "./nw",
+			"shell": true,
+			"shell_cmd": "nw -d -r",
+			"working_dir": "${project_path}"
+		},
+		{
+			"name": "Build Windows",
+			"shell_cmd": "grunt build-win"
+		},
+		{
+			"name": "Build Linux",
+			"shell_cmd": "grunt build-linux"
+		}
+	],
+	"folders":
+	[
+		{
+			"folder_exclude_patterns":
+			[
+				"lib",
+				"node_modules",
+				"nw",
+				"docs",
+				"cache",
+				"cfg",
+				"build"
+			],
+			"path": "./"
+		}
+	]
 }
