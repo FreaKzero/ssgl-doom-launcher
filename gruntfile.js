@@ -68,7 +68,7 @@ module.exports = function(grunt) {
         },
 
         nwjs: {
-            win: {
+            win: { 
                 options: {
                     platforms: ['win'],
                     buildDir: './build',
