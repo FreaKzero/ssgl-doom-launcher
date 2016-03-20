@@ -13,7 +13,7 @@
 [=====================================================================================]
 */
 
-module.exports = function(grunt) {“¡“
+module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -83,6 +83,16 @@ module.exports = function(grunt) {“¡“
                     platforms: ['linux'],
                     buildDir: './build',
                     version: 'v0.12.0'
+                },
+                src: ['./build/pre/**/**']
+            },
+
+            mac: {
+                options: {
+                    platforms: ['osx64'],
+                    buildDir: './build',
+                    version: 'v0.12.0',
+                    macIcns: './icons/ssgl.icns'
                 },
                 src: ['./build/pre/**/**']
             }
@@ -257,6 +267,8 @@ module.exports = function(grunt) {“¡“
 
     grunt.registerTask('build-win', ['build-js', 'nwjs:win']);
     grunt.registerTask('build-linux', ['build-js', 'nwjs:tux']);
+    grunt.registerTask('build-mac', ['build-js', 'nwjs:mac']);
+
     grunt.registerTask('init', ['shell:npmInstall']);
 
     grunt.registerTask('build-devenv-win', ['curl:win64', 'unzip', 'shell:devInstall']);

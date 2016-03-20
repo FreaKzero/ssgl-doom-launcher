@@ -17,54 +17,30 @@ app.run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('app/templates/MainMods.html',
-    "<script type=\"text/javascript\">var fixHeight = function() {\r" +
+    "<script type=\"text/javascript\">var fixHeight = function() {\n" +
+    "    var mainHeight = $(\"body\").height();\n" +
+    "    var ToolbarHeight = $(\"md-toolbar.layout-row\").height();\n" +
+    "    var subToolbarHeight = $(\"md-toolbar.md-hue-2\").height();\n" +
+    "    $('.slimScrollDiv, .slimScrollDiv > md-content').css('height', mainHeight - (ToolbarHeight + subToolbarHeight));\n" +
+    "}\n" +
     "\n" +
-    "    var mainHeight = $(\"body\").height();\r" +
+    "var setupScrollies = function() {\n" +
+    "    $('.slimscroll-mods').slimScroll({\n" +
+    "        position: 'right',\n" +
+    "        height: 'auto',\n" +
+    "        railVisible: true,\n" +
+    "        alwaysVisible: true,\n" +
+    "        color: '#78909c',\n" +
+    "        wheelStep: 7\n" +
+    "    });\n" +
+    "}\n" +
     "\n" +
-    "    var ToolbarHeight = $(\"md-toolbar.layout-row\").height();\r" +
+    "$(document).ready(function(){\n" +
+    "    $.when(setupScrollies()).then(fixHeight);\n" +
+    "});\n" +
     "\n" +
-    "    var subToolbarHeight = $(\"md-toolbar.md-hue-2\").height();\r" +
-    "\n" +
-    "    $('.slimScrollDiv, .slimScrollDiv > md-content').css('height', mainHeight - (ToolbarHeight + subToolbarHeight));\r" +
-    "\n" +
-    "}\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "var setupScrollies = function() {\r" +
-    "\n" +
-    "    $('.slimscroll-mods').slimScroll({\r" +
-    "\n" +
-    "        position: 'right',\r" +
-    "\n" +
-    "        height: 'auto',\r" +
-    "\n" +
-    "        railVisible: true,\r" +
-    "\n" +
-    "        alwaysVisible: true,\r" +
-    "\n" +
-    "        color: '#78909c',\r" +
-    "\n" +
-    "        wheelStep: 7\r" +
-    "\n" +
-    "    });\r" +
-    "\n" +
-    "}\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "$(document).ready(function(){\r" +
-    "\n" +
-    "    $.when(setupScrollies()).then(fixHeight);\r" +
-    "\n" +
-    "});\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "$(window).on('resize', function(){\r" +
-    "\n" +
-    "    $.when(setupScrollies()).then(fixHeight);\r" +
-    "\n" +
+    "$(window).on('resize', function(){\n" +
+    "    $.when(setupScrollies()).then(fixHeight);\n" +
     "});</script><div layout=\"row\" ng-controller=\"modController\"><div flex><md-toolbar class=\"md-hue-2\"><div class=\"md-toolbar-tools\"><md-input-container style=\"margin-top: 18px;width:120px\"><md-select ng-model=\"typefilter\" aria-label=\"Mod Type Filter\"><md-option value=\"\" selected>All</md-option><md-option>WAD</md-option><md-option>PK3</md-option></md-select></md-input-container>&nbsp;&nbsp;&nbsp;<md-input-container style=\"width: 100%;font-size: 14px\"><label class=\"filterlabel\" style=\"color: white;font-weight: normal;opacity:0\">Filter</label><input ng-model=\"searchterm\" id=\"filterinput\"></md-input-container></div></md-toolbar><md-content layout-padding class=\"slimscroll-mods\"><md-list><md-list-item class=\"md-2-line repeat-animation init-animation\" ng-repeat=\"mod in filtered = (mods | filter:searchterm | filter:{type:typefilter}) track by $index\" ng-click=\"selectWad(mod)\"><div class=\"md-avatar {{mod.type}} searchable\" ng-click=\"lookupScreenshots($event, mod)\"><div class=\"modtype\">{{mod.type}}</div></div><div class=\"md-list-item-text\"><h3>{{ mod.name }}</h3><p>{{ mod.dir }}</p></div><i class=\"mdi mdi-checkbox-marked-circle-outline custom-check\" style=\"font-size: 25px;color: #ff5722\" ng-show=\"mod.checked\"></i></md-list-item></md-list><div ng-hide=\"filtered.length > 0\" style=\"text-align:center\"><img src=\"app/assets/nof.png\"><p>Sorry, No Mods Found</p></div></md-content></div><div flex><md-toolbar class=\"md-hue-2 menu-animation\" ng-show=\"selected.list.length > 0 || usedList\"><div class=\"md-toolbar-tools\"><p>{{selected.name}}</p><span flex></span> <i class=\"mdi mdi-content-save\" ng-click=\"saveSelected($event)\" ng-show=\"selected.list.length > 0\" style=\"cursor:pointer\"><md-tooltip>Save List</md-tooltip></i>&nbsp;&nbsp; <i class=\"mdi mdi-playlist-plus\" ng-click=\"newSelected()\" ng-show=\"selected.list.length > 0 || usedList !== 'Untitled'\" style=\"cursor:pointer\"><md-tooltip>New List</md-tooltip></i></div></md-toolbar><md-content layout-padding class=\"slimscroll-mods\"><md-list><md-list-item class=\"md-2-line repeat-animation\" ng-repeat=\"mod in selected.list track by $index\"><div class=\"md-avatar {{mod.type}}\"><div class=\"modtype second searchable\" ng-click=\"lookupScreenshots($event, mod)\">{{mod.type}}</div></div><div class=\"md-list-item-text\"><h3>{{ mod.name }}</h3><p>{{ mod.dir }}</p></div><div class=\"md-secondary\"><p ng-click=\"moveUp($index)\"><i class=\"mdi mdi-chevron-up btn-sort\"></i></p><p ng-click=\"moveDown($index)\"><i class=\"mdi mdi-chevron-down btn-sort\"></i></p></div></md-list-item></md-list></md-content></div><div flex=\"30\" ng-hide=\"screenshots === null\" class=\"menu-animation\"><md-toolbar class=\"md-hue-2\"><div class=\"md-toolbar-tools\">{{screenshotsTitle}} <span flex></span> <i class=\"mdi mdi-close\" ng-click=\"screenshots = null\" style=\"cursor:pointer\"><md-tooltip>Hide Panel</md-tooltip></i></div></md-toolbar><md-content layout-padding class=\"slimscroll-mods\"><div class=\"screenshot\" ng-repeat=\"item in screenshots\"><div class=\"screenlabel\">{{item.name}}</div><img ng-src=\"{{item.pic}}\" width=\"100%\"></div><div class=\"screenshot-nof\" ng-show=\"screenshots !== null && screenshots.length === 0 && lookupLoad === false\"><h2>Sorry</h2><p>Cant find any Screenshots</p><md-button class=\"md-accent\" ng-click=\"openScreenshots(screenshotsTitle)\">Provide Screenshots</md-button></div><div ng-show=\"lookupLoad\" class=\"screenshot-nof\"><h2>Searching</h2><p>Searching for Screenshots</p><br><div layout=\"row\" layout-sm=\"column\" layout-align=\"space-around\"><md-progress-circular class=\"md-accent\" md-mode=\"indeterminate\"></md-progress-circular></div></div></md-content></div></div><md-button aria-label=\"play\" class=\"md-fab special-fab\" style=\"position: absolute; right: 25px; bottom: 15px; z-index:3\" ng-click=\"showGameSelection()\" ng-show=\"config.active.gzdoom || config.active.zandronum || config.active.zdoom || config.active.doom64ex\"><i class=\"mdi mdi-play\"></i></md-button>"
   );
 
