@@ -546,6 +546,15 @@
                  */
                 $scope.config = angular.copy($PARENT.config);
 
+                //TODO: docs
+                $scope.doomrpgCheckbox = function(value) {
+                    if (value === false) {
+                        $scope.config.active.doomrpgrl = false;
+                        $scope.config.active.doomrpgrlmonsters = false;
+                    }
+                };
+
+                //TODO: docs
                 $scope.gzDoomDownload = function() {
                     nwService.getShell().openExternal('http://forum.drdteam.org/viewtopic.php?f=23&t=6791');
                 }
