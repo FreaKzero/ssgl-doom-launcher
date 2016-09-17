@@ -311,6 +311,10 @@ legend {
     background-color: #547a5f;
 }
 
+.md-avatar.DEH, .md-avatar.BEX {
+    background-color: #975637;
+}
+
 .md-avatar > .modtype {
     display:block;
     margin-top: 2px; 

@@ -119,16 +119,16 @@
 
             var params = _paramBuilder(opt);
 
-            try {
-                execFile(useEngine, params, function(error, stdout, stderr) {
-                    if (error) {
-                        nwService.panic('Enginestarter', 'Doomstarter encountered a Problem', error.stack);
-                    }
-                });
+            // try {
+            //     execFile(useEngine, params, function(error, stdout, stderr) {
+            //         if (error) {
+            //             nwService.panic('Enginestarter', 'Doomstarter encountered a Problem', error.stack);
+            //         }
+            //     });
 
-            } catch(e) {
-                nwService.panic('Enginestarter', 'No Engine to start given', e);
-            }
+            // } catch(e) {
+            //     nwService.panic('Enginestarter', 'No Engine to start given', e);
+            // }
         };
 
         /**
