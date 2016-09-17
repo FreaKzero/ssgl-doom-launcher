@@ -13,6 +13,45 @@
     function gameService($q, $rootScope, $mdDialog, modselectedService, nwService) {
 
         /**
+         * Ensures loadorder for Doom RPG wads
+         * 
+         * @method _prepareDoomRPG
+         * @param  {array} array of doom wads
+         * @return {array} array with doomrpg wads (right loadorder) mixed with user defined wads
+         */
+        function _prepareDoomRPG(wads) {
+            var rpgwads = [];
+
+            if ($rootScope.config.active.doomrpgrl) {
+                rpgwads.push($rootScope.config.misc.doomrpg.rlarsenalwad);
+
+                if ($rootScope.config.active.doomrpgrlmonsters)
+                    rpgwads.push($rootScope.config.misc.doomrpg.rlmonsterswad);                     
+                
+                rpgwads.push($rootScope.config.misc.doomrpg.rlhudwad);
+                
+                rpgwads.push($rootScope.config.misc.doomrpg.vanilla.slice(0, -1));
+                rpgwads.push($rootScope.config.misc.doomrpg.rlarsenalpath.slice(0, -1));
+
+                if ($rootScope.config.active.doomrpgrlmonsters)
+                    rpgwads.push($rootScope.config.misc.doomrpg.rlmonsterspath.slice(0, -1));
+                
+            } else {
+                rpgwads.push($rootScope.config.misc.doomrpg.vanilla.slice(0, -1));
+
+                if ($rootScope.config.misc.doomrpg.extras !== '') {
+                    rpgwads.push($rootScope.config.misc.doomrpg.extras.slice(0, -1));
+                }
+
+                if ($rootScope.config.misc.doomrpg.extras !== '') {
+                    rpgwads.push($rootScope.config.misc.doomrpg.brightmaps.slice(0, -1));
+                }
+            }
+
+            return rpgwads.concat(wads);
+        }
+
+        /**
          * Builds Params for different Engines
          *
          * TODO: investigate if setvars is also practical for other instances
@@ -39,35 +78,7 @@
             }
             
             if (opt.engine === 'doomrpg') {
-                rpgwads = [];
-
-
-                if ($rootScope.config.active.doomrpgrl) {
-                    rpgwads.push($rootScope.config.misc.doomrpg.rlarsenalwad);
-
-                    if ($rootScope.config.active.doomrpgrlmonsters)
-                        rpgwads.push($rootScope.config.misc.doomrpg.rlmonsterswad);                     
-                    
-                    rpgwads.push($rootScope.config.misc.doomrpg.rlhudwad);
-                    
-                    rpgwads.push($rootScope.config.misc.doomrpg.vanilla.slice(0, -1));
-                    rpgwads.push($rootScope.config.misc.doomrpg.rlarsenalpath.slice(0, -1));
-
-                    if ($rootScope.config.active.doomrpgrlmonsters)
-                        rpgwads.push($rootScope.config.misc.doomrpg.rlmonsterspath.slice(0, -1));
-                    
-                } else {
-                    rpgwads.push($rootScope.config.misc.doomrpg.vanilla.slice(0, -1));
-
-                    if ($rootScope.config.misc.doomrpg.extras !== '') {
-                        rpgwads.push($rootScope.config.misc.doomrpg.extras.slice(0, -1));
-                    }
-
-                    if ($rootScope.config.misc.doomrpg.extras !== '') {
-                        rpgwads.push($rootScope.config.misc.doomrpg.brightmaps.slice(0, -1));
-                    }
-                }
-                wads = rpgwads.concat(wads);
+                wads = _prepareDoomRPG(wads);
             }
 
             if (opt.save !== 'false' && opt.save !== false) {
