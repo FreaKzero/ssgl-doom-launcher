@@ -16,8 +16,8 @@
          * Ensures loadorder for Doom RPG wads
          * 
          * @method _prepareDoomRPG
-         * @param  {array} array of doom wads
-         * @return {array} array with doomrpg wads (right loadorder) mixed with user defined wads
+         * @param  {array} array of user doom wads
+         * @return {array} array with doomrpg wads (right loadorder) mixed with user wads
          */
         function _prepareDoomRPG(wads) {
             var rpgwads = [];
@@ -63,7 +63,6 @@
          * @private
          */
         function _paramBuilder(opt) {
-            var os = nwService.getPlatform();
             var wads = modselectedService.getPaths();
 
             if (opt.map !== false) {
@@ -89,7 +88,11 @@
                 params = params.concat(['-file'], wads);
             }
 
+            var test = ['/Users/FreaKzero/doom/batman/batman.deh'];
+            params = params.concat(['-deh', test]);
+
             params = params.concat(['-savedir'], $rootScope.config.savepaths[opt.engine] + modselectedService.getListname());
+            console.log(params);
             return params;
         }
 
