@@ -67,18 +67,29 @@
             return list;
         };
         
-        /**
-         * Returns Array with only Paths
-         * 
-         * @method getPaths
-         * @for modselectedService
-         * @return {Array} Paths
-         */
-        service.getPaths = function() {
-            return list.list.map(function(item) {
+        //#TODO doc
+        service.getPathsDEH = function() {
+            return list.list.filter(function(item) {
+                return item.type === 'DEH' || item.type === 'BEX'
+            }).map(function(item) {
                 return item.path;
             });
-        };
+        }
+
+        service.getPaths = function() {
+            var allowed = ['WAD', 'PK3'];
+            return list.list.filter(function(item) {
+                return item.type === 'WAD' || item.type === 'PK3'
+            }).map(function(item) {
+                return item.path;
+            });
+        }
+
+        // service.getPaths = function() {
+        //     return list.list.map(function(item) {
+        //         return item.path;
+        //     });
+        // };
 
         /**
          * Returns all selected Wads/Mods

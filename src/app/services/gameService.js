@@ -64,6 +64,7 @@
          */
         function _paramBuilder(opt) {
             var wads = modselectedService.getPaths();
+            var dehs = modselectedService.getPathsDEH();
 
             if (opt.map !== false) {
                 wads.push(opt.map);
@@ -87,12 +88,13 @@
             if (wads.length > 0) {
                 params = params.concat(['-file'], wads);
             }
-
-            var test = ['/Users/FreaKzero/doom/batman/batman.deh'];
-            params = params.concat(['-deh', test]);
+            
+            if (dehs.length > 0) {
+                params = params.concat(['-deh'], dehs);
+            }
 
             params = params.concat(['-savedir'], $rootScope.config.savepaths[opt.engine] + modselectedService.getListname());
-            console.log(params);
+            
             return params;
         }
 
@@ -119,16 +121,16 @@
 
             var params = _paramBuilder(opt);
 
-            // try {
-            //     execFile(useEngine, params, function(error, stdout, stderr) {
-            //         if (error) {
-            //             nwService.panic('Enginestarter', 'Doomstarter encountered a Problem', error.stack);
-            //         }
-            //     });
+            try {
+                execFile(useEngine, params, function(error, stdout, stderr) {
+                    if (error) {
+                        nwService.panic('Enginestarter', 'Doomstarter encountered a Problem', error.stack);
+                    }
+                });
 
-            // } catch(e) {
-            //     nwService.panic('Enginestarter', 'No Engine to start given', e);
-            // }
+            } catch(e) {
+                nwService.panic('Enginestarter', 'No Engine to start given', e);
+            }
         };
 
         /**
