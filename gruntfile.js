@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 
         shell: {
             npmInstall: {
-                command: 'cd src && npm install'
+                command: 'bower install && cd src && npm install'
             },
 
             devInstall: {
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
             },
 
             devInstallMac64: {
-                command: 'tar -xzvf cache/nwdev.tar.gz && mv nwjs-v0.12.0-osx-x64 nw && cp cfg/package.json nw/package.json && cd nw && npm install'
+                command: 'mv nwjs-v0.12.0-osx-x64 nw && cp cfg/package.json nw/package.json && cd nw && npm install'
             },
 
             devInstallTux32: {
