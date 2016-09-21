@@ -127,7 +127,6 @@
                         nwService.panic('Enginestarter', 'Doomstarter encountered a Problem', error.stack);
                     }
                 });
-
             } catch(e) {
                 nwService.panic('Enginestarter', 'No Engine to start given', e);
             }
