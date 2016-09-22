@@ -63,8 +63,8 @@
          * @private
          */
         function _paramBuilder(opt) {
-            var wads = modselectedService.getPaths();
-            var dehs = modselectedService.getPathsDEH();
+            var wads = modselectedService.getPathsFILE(),
+                dehs = modselectedService.getPathsDEH();
 
             if (opt.map !== false) {
                 wads.push(opt.map);

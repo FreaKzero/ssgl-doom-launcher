@@ -76,7 +76,7 @@
             });
         }
 
-        service.getPaths = function() {
+        service.getPathsFILE = function() {
             var allowed = ['WAD', 'PK3'];
             return list.list.filter(function(item) {
                 return item.type === 'WAD' || item.type === 'PK3'
