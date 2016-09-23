@@ -40,6 +40,10 @@ module.exports = function(grunt) {
                 command: 'tar -xzvf cache/nwdev.tar.gz && mv nwjs-v0.12.0-linux-x64 nw && cp cfg/package.json nw/package.json && cd nw && npm install'
             },
 
+            osxUnzip: {
+                command: 'unzip ./cache/nwdev.zip'
+            },
+
             askPackage: {
                 command: 'echo "Did you update your src/package.json (v<%= srcpkg.version %>) and are on the Master Branch ?" && pause'
             },
@@ -278,7 +282,7 @@ module.exports = function(grunt) {
     grunt.registerTask('init', ['shell:npmInstall']);
 
     grunt.registerTask('build-devenv-win', ['curl:win64', 'unzip', 'shell:devInstall']);
-    grunt.registerTask('build-devenv-mac', ['curl:mac64', 'unzip', 'shell:devInstallMac64']);
+    grunt.registerTask('build-devenv-mac', ['curl:mac64', 'shell:osxUnzip', 'shell:devInstallMac64']);
 
     grunt.registerTask('build-devenv-linux32', ['curl:nwdevTux32', 'shell:devInstallTux32']);
     grunt.registerTask('build-devenv-linux64', ['curl:nwdevTux64', 'shell:devInstallTux64']);

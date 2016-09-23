@@ -15,7 +15,7 @@
     "underscore": "1.8.3",
     "mdi": "1.2.65",
     "jquery": "2.1.4",
-    "jquery-slimscroll": "*"    
+    "jquery-slimscroll": "git://github.com/FreaKzero/jQuery-slimScroll.git"    
   },
   
   "ignore": [
