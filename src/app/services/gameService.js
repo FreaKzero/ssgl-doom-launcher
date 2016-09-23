@@ -19,6 +19,8 @@
          * @param  {array} array of user doom wads
          * @return {array} array with doomrpg wads (right loadorder) mixed with user wads
          */
+        
+        //TODO document the statements
         function _prepareDoomRPG(wads) {
             var rpgwads = [];
 

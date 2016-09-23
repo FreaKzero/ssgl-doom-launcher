@@ -84,13 +84,7 @@
                 return item.path;
             });
         }
-
-        // service.getPaths = function() {
-        //     return list.list.map(function(item) {
-        //         return item.path;
-        //     });
-        // };
-
+        
         /**
          * Returns all selected Wads/Mods
          * @method get
