@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 
         shell: {
             npmInstall: {
-                command: 'bower install && cd src && npm install'
+                command: 'cd src && npm install'
             },
 
             devInstall: {
