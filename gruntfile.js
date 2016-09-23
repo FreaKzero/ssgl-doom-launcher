@@ -44,24 +44,12 @@ module.exports = function(grunt) {
                 command: 'unzip ./cache/nwdev.zip'
             },
 
-            askPackage: {
-                command: 'echo "Did you update your src/package.json (v<%= srcpkg.version %>) and are on the Master Branch ?" && pause'
-            },
-
             gitCommit: {
                 command: 'git commit -a -m "Release Version <%= srcpkg.version %>"'
             },
 
-            gitTag: {
-                command: 'git tag v<%= srcpkg.version %>'
-            },
-
-            gitPush: {
-                command: 'echo "Press a Key for pushing to github" && pause && git push'
-            },
-
             purgeBuilds: {
-                command: 'rm -rf build/SSGL && rm -rf build/RELEASE && rm -rf build/pre'
+                command: 'rm -rf build/*'
             }
         },
 
@@ -80,7 +68,7 @@ module.exports = function(grunt) {
                 options: {
                     platforms: ['win'],
                     buildDir: './build',
-                    version: 'v0.12.0',
+                    version: '0.12.0',
                     winIco: './icons/ssgl1.ico'
                 },
                 src: ['./build/pre/**/**']
@@ -90,7 +78,7 @@ module.exports = function(grunt) {
                 options: {
                     platforms: ['linux'],
                     buildDir: './build',
-                    version: 'v0.12.0'
+                    version: '0.12.0'
                 },
                 src: ['./build/pre/**/**']
             },
@@ -99,7 +87,7 @@ module.exports = function(grunt) {
                 options: {
                     platforms: ['osx64'],
                     buildDir: './build',
-                    version: 'v0.12.0',
+                    version: '0.12.0',
                     macIcns: './icons/ssgl.icns'
                 },
                 src: ['./build/pre/**/**']
@@ -161,7 +149,15 @@ module.exports = function(grunt) {
                 }]
             },
             mac64: {
-
+                options: {
+                    archive: './build/RELEASE/macos64.tar.gz',
+                    mode: 'tgz'
+                },
+                files: [{
+                    src: ['**/*'],
+                    expand: true,
+                    cwd: './build/SSGL/linux64/'
+                }]
             },
             
             win32: {
@@ -288,14 +284,12 @@ module.exports = function(grunt) {
     grunt.registerTask('build-devenv-linux64', ['curl:nwdevTux64', 'shell:devInstallTux64']);
 
     grunt.registerTask('release', [
-        'shell:askPackage',
         'shell:purgeBuilds',
         'build-js',
         'nwjs',
         'compress',
-        'shell:gitCommit',
-        'open:editPackage',
-        'open:newRelease'
+        'gitCommit',
+        'open'
     ]);
 
 };
