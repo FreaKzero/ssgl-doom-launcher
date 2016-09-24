@@ -288,8 +288,7 @@ module.exports = function(grunt) {
         'build-js',
         'nwjs',
         'compress',
-        'gitCommit',
-        'open'
+        'gitCommit'
     ]);
 
 };
