@@ -14,12 +14,12 @@
 
         /**
          * Ensures loadorder for Doom RPG wads
-         * 
+         *
          * @method _prepareDoomRPG
          * @param  {array} array of user doom wads
          * @return {array} array with doomrpg wads (right loadorder) mixed with user wads
          */
-        
+
         //TODO document the statements
         function _prepareDoomRPG(wads) {
             var rpgwads = [];
@@ -28,16 +28,16 @@
                 rpgwads.push($rootScope.config.misc.doomrpg.rlarsenalwad);
 
                 if ($rootScope.config.active.doomrpgrlmonsters)
-                    rpgwads.push($rootScope.config.misc.doomrpg.rlmonsterswad);                     
-                
+                    rpgwads.push($rootScope.config.misc.doomrpg.rlmonsterswad);
+
                 rpgwads.push($rootScope.config.misc.doomrpg.rlhudwad);
-                
+
                 rpgwads.push($rootScope.config.misc.doomrpg.vanilla.slice(0, -1));
                 rpgwads.push($rootScope.config.misc.doomrpg.rlarsenalpath.slice(0, -1));
 
                 if ($rootScope.config.active.doomrpgrlmonsters)
                     rpgwads.push($rootScope.config.misc.doomrpg.rlmonsterspath.slice(0, -1));
-                
+
             } else {
                 rpgwads.push($rootScope.config.misc.doomrpg.vanilla.slice(0, -1));
 
@@ -73,12 +73,12 @@
             }
 
             var params = ['-iwad', $rootScope.config.iwadpath + opt.iwad];
-            
+
             // For Doom64EX you need an extra soundfile
             if (opt.engine === 'doom64ex') {
                 params = params.concat(['-setvars'], ["s_soundfont", $rootScope.config.misc.doom64exsound]);
             }
-            
+
             if (opt.engine === 'doomrpg') {
                 wads = _prepareDoomRPG(wads);
             }
@@ -90,13 +90,13 @@
             if (wads.length > 0) {
                 params = params.concat(['-file'], wads);
             }
-            
+
             if (dehs.length > 0) {
                 params = params.concat(['-deh'], dehs);
             }
 
             params = params.concat(['-savedir'], $rootScope.config.savepaths[opt.engine] + modselectedService.getListname());
-            
+
             return params;
         }
 
@@ -121,11 +121,8 @@
             var child,
                 useEngine = $rootScope.config.engines[opt.engine];
 
-
-            var params = _paramBuilder(opt);
-            
             try {
-                execFile(useEngine, params, function(error, stdout, stderr) {
+                var child = execFile(useEngine, _paramBuilder(opt), function(error, stdout, stderr) {
                     if (error) {
                         nwService.panic('Enginestarter', 'Doomstarter encountered a Problem', error.stack);
                     }

@@ -11,7 +11,7 @@
         "title" : "Super Shotgun Launcher (loading...)"
     },
      "devDependencies": {
-      "chokidar": "*",
-      "md5-file": "*"   
+      "chokidar": "1.4.3",
+      "md5-file": "2.0.4"   
   	}
 }

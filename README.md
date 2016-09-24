@@ -21,6 +21,14 @@ Doom Frontend with Oblige mapbuild integration for zdoom, gzDoom, Zandronum, Doo
 - Fast access to your favourite DoomSeeker Client and Oblige Frontend
 - Automatic Update Notifier
 - Screenshot Lookup for your WADs and PK3s via [WadArchive](http://www.wad-archive.com) or local directory
+- Easy configuration for [DoomRPG](https://github.com/Kyle873/DoomRPG)
+
+##Supported/Tested Sourceports
+- zDoom (http://zdoom.org/)
+- gzDoom (http://gzdoom.drdteam.org/)
+- DoomRetro (http://www.doomretro.com/)
+- Zandronum (https://zandronum.com/)
+- Doom64EX (https://doom64ex.wordpress.com/)
 
 ##Retro Reskin Version  
 [scar45](https://github.com/scar45) made an own fork with an "retro-reskin" [here](https://github.com/scar45/ssgl-doom-launcher)
@@ -74,4 +82,4 @@ Enable Live Reloading on HTML/CSS/JS changes in the /src folder
 [Serasar](https://github.com/Serasar)  
 [axed](https://github.com/axed)  
 [scar45](https://github.com/scar45)  
-The [DooMWorld](www.doomworld.com/) Community
+The [DooMWorld](http://www.doomworld.com/) Community

@@ -35,7 +35,7 @@
 
         //#TODO doc
         service.lookupWadArchive = function(path) {
-            var md5 = md5File(path);
+            var md5 = md5File.sync(path);
             var def = $q.defer();
             var screens = [];
 
