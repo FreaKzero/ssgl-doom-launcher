@@ -84,12 +84,43 @@
 					<file-choose label="Online Client (DOOMSEEKER):" ng-model="config.online.client"></file-choose>
 				</fieldset>
 
+				<!-- -->
+				<div class="settings-cb-wrapper">
+					<md-checkbox ng-model="config.active.doomretro" aria-label="Doom Retro" class="settings-cb">
+						<p class="settings-cb-label">Doom Retro</p>
+					</md-checkbox>
+				</div>
+
+				<fieldset class="settings-fieldset" ng-show="config.active.doomretro">
+					<legend>Doom Retro Settings</legend>
+					<div>
+						<file-choose label="Doom Retro Path:"  ng-model="config.engines.doomretro"></file-choose>
+						<dir-choose label="Doom Retro Savegames:" ng-model="config.savepaths.doomretro"></dir-choose>
+					</div>
+				</fieldset>
+				<!-- -->
+
+				<!-- -->
+				<div class="settings-cb-wrapper">
+					<md-checkbox ng-model="config.active.prboomp" aria-label="PrBoom+" class="settings-cb">
+						<p class="settings-cb-label">PrBoom+</p>
+					</md-checkbox>
+				</div>
+
+				<fieldset class="settings-fieldset" ng-show="config.active.prboomp">
+					<legend>PrBoom+ Settings</legend>
+					<div>
+						<file-choose label="PrBoom+ Path:"  ng-model="config.engines.prboomp"></file-choose>
+						<dir-choose label="PrBoom+ Savegames:" ng-model="config.savepaths.prboomp"></dir-choose>
+					</div>
+				</fieldset>
+				<!-- -->
+				
 					<div class="settings-cb-wrapper">
 						<md-checkbox ng-model="config.active.doomrpg" aria-label="DoomRPG" class="settings-cb" ng-change="doomrpgCheckbox(config.active.doomrpg)">
 							<p class="settings-cb-label">DoomRPG</p>
 						</md-checkbox>
 					</div>
-
 				<fieldset class="settings-fieldset" ng-show="config.active.doomrpg">
 					<legend>DoomRPG Settings</legend>
 					<div>

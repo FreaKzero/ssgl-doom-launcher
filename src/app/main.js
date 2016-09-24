@@ -125,6 +125,8 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                 engines: {
                     zdoom: '',
                     gzdoom: '',
+                    doomretro: '',
+                    prboomp: '',
                     zandronum: '',
                     doomrpg: '',
                     doomrpgrl: '',
@@ -134,6 +136,8 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
                 savepaths: {
                     zdoom: '',
                     gzdoom: '',
+                    doomretro: '',
+                    prboomp: '',
                     zandronum: '',
                     doomrpg: '',
                     doom64ex: ''
@@ -147,6 +151,8 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
 
                 active: {
                     gzdoom: false,
+                    doomretro: false,
+                    prboomp: false,
                     zandronum: false,
                     oblige: false,
                     zdoom: false,
