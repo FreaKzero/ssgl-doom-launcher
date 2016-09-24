@@ -286,7 +286,7 @@ module.exports = function(grunt) {
         'shell:purgeBuilds',
         'build-js',
         'nwjs:mac',
-        'compress:mac'
+        'compress:mac64'
     ]);
 
     grunt.registerTask('release', [
