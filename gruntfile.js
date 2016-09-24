@@ -272,12 +272,12 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build-win', ['build-js', 'nwjs:win']);
     grunt.registerTask('build-linux', ['build-js', 'nwjs:tux']);
-    grunt.registerTask('build-mac', ['build-js', 'nwjs:mac']);
+    grunt.registerTask('build-osx', ['build-js', 'nwjs:mac']);
 
     grunt.registerTask('init', ['shell:npmInstall']);
 
     grunt.registerTask('build-devenv-win', ['curl:win64', 'unzip', 'shell:devInstall']);
-    grunt.registerTask('build-devenv-mac', ['curl:mac64', 'shell:osxUnzip', 'shell:devInstallMac64']);
+    grunt.registerTask('build-devenv-osx', ['curl:mac64', 'shell:osxUnzip', 'shell:devInstallMac64']);
 
     grunt.registerTask('build-devenv-linux32', ['curl:nwdevTux32', 'shell:devInstallTux32']);
     grunt.registerTask('build-devenv-linux64', ['curl:nwdevTux64', 'shell:devInstallTux64']);
