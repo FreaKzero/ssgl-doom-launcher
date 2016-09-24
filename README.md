@@ -73,4 +73,5 @@ Enable Live Reloading on HTML/CSS/JS changes in the /src folder
 ![Thx4BetaTest](https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/readme/beta.jpg)  
 [Serasar](https://github.com/Serasar)  
 [axed](https://github.com/axed)  
-[scar45](https://github.com/scar45)
+[scar45](https://github.com/scar45)  
+The [DooMWorld](www.doomworld.com/) Community
