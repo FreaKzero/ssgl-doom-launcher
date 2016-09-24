@@ -185,6 +185,15 @@
             return def.promise;
         };
 
+        //#TODO doc
+        service.registerMenu = function() {
+            var mb = new GUI.Menu({type: 'menubar'});
+            mb.createMacBuiltin('SSGL', {
+                hideEdit: false,
+            });
+            GUI.Window.get().menu = mb;
+        }
+
         //fs.stat(path, [callback])
 
         /**
