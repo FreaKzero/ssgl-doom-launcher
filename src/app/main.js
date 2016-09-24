@@ -64,7 +64,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
         $rootScope.APPVERSION = nwService.readSyncJSON('package.json').version;
         document.title = 'Super Shotgun Launcher v' + $rootScope.APPVERSION;
         nwService.mkDir(nwService.buildPath(['lists'], true), true);
-        nwService.registerMenu();
+        
 
         if (nwService.hasArg('-r') || nwService.hasArg('--livereload')) {
             try {
