@@ -252,7 +252,6 @@ module.exports = function(grunt) {
                 }
             }
         }
-
     });
 
     // Plugins
@@ -283,11 +282,22 @@ module.exports = function(grunt) {
     grunt.registerTask('build-devenv-linux32', ['curl:nwdevTux32', 'shell:devInstallTux32']);
     grunt.registerTask('build-devenv-linux64', ['curl:nwdevTux64', 'shell:devInstallTux64']);
 
+    grunt.registerTask('releaseMac', [
+        'shell:purgeBuilds',
+        'build-js',
+        'nwjs:mac',
+        'compress:mac'
+    ]);
+
     grunt.registerTask('release', [
         'shell:purgeBuilds',
         'build-js',
-        'nwjs',
-        'compress',
+        'nwjs:win',
+        'nwjs:tux',
+        'compress:tux32',
+        'compress:tux64',
+        'compress:win32',
+        'compress:win64',
         'gitCommit'
     ]);
 
