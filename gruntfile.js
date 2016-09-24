@@ -156,7 +156,7 @@ module.exports = function(grunt) {
                 files: [{
                     src: ['**/*'],
                     expand: true,
-                    cwd: './build/SSGL/linux64/'
+                    cwd: './build/SSGL/osx64/'
                 }]
             },
             
