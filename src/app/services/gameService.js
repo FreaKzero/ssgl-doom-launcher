@@ -19,6 +19,8 @@
          * @param  {array} array of user doom wads
          * @return {array} array with doomrpg wads (right loadorder) mixed with user wads
          */
+        
+        //TODO document the statements
         function _prepareDoomRPG(wads) {
             var rpgwads = [];
 
@@ -63,7 +65,8 @@
          * @private
          */
         function _paramBuilder(opt) {
-            var wads = modselectedService.getPaths();
+            var wads = modselectedService.getPathsFILE(),
+                dehs = modselectedService.getPathsDEH();
 
             if (opt.map !== false) {
                 wads.push(opt.map);
@@ -87,12 +90,13 @@
             if (wads.length > 0) {
                 params = params.concat(['-file'], wads);
             }
-
-            var test = ['/Users/FreaKzero/doom/batman/batman.deh'];
-            params = params.concat(['-deh', test]);
+            
+            if (dehs.length > 0) {
+                params = params.concat(['-deh'], dehs);
+            }
 
             params = params.concat(['-savedir'], $rootScope.config.savepaths[opt.engine] + modselectedService.getListname());
-            console.log(params);
+            
             return params;
         }
 
@@ -125,7 +129,6 @@
                         nwService.panic('Enginestarter', 'Doomstarter encountered a Problem', error.stack);
                     }
                 });
-
             } catch(e) {
                 nwService.panic('Enginestarter', 'No Engine to start given', e);
             }

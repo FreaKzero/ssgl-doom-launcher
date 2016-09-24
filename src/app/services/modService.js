@@ -24,7 +24,7 @@
             if (event === 'add') {
                 var wad,
                     index = [],
-                    allowed = ['PK3', 'WAD'];
+                    allowed = ['PK3', 'WAD', 'DEH', 'BEX'];
 
                 var struc = nwService.splitPath(file),
                     dirname = struc[struc.length - 2],
