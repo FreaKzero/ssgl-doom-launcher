@@ -10,14 +10,14 @@ Doom Frontend with Oblige mapbuild integration for zdoom, gzDoom, Zandronum, Doo
 
 ##Features:  
 - Painfree modern UI
-- Support for WAD, PK3, BEX and DEH Loading
-- Easy Filtering through your WADs (directory-names, mod-names, file extensions)
-- Loadorder sorting for chosen WADs
-- Creating/Saving wadlists for faster access
+- Support for WAD, PK3, BEX and DEH
+- Easy Filtering through your Files (directory-names, mod-names, file extensions)
+- Loadorder sorting for chosen Files
+- Creating/Saving Modlists for faster access
 - Using/Creating Savefolders based on the name on used wadlist
 - [zDoom](http://zdoom.org), [gzDoom](https://github.com/coelckers/gzdoom), [DoomRPG](https://github.com/Kyle873/DoomRPG), [Doom64EX](https://doom64ex.wordpress.com) and [Zandronum](https://zandronum.com/) Support
-- SSGL automatically manages your savefolders via Engine and WAD Selection
-- [Oblige](http://oblige.sourceforge.net/) "Build and Play" via Configfiles (Also able to resume last built map)
+- SSGL automatically manages your savefolders via engine and Modlist Selection
+- [Oblige](http://oblige.sourceforge.net/) "Build and Play" via configfiles (Also able to resume last built map)
 - Fast access to your favourite DoomSeeker Client and Oblige Frontend
 - Automatic Update Notifier
 - Screenshot Lookup for your WADs and PK3s via [WadArchive](http://www.wad-archive.com) or local directory
@@ -41,7 +41,6 @@ After you've done ```bower install```, you can build your development environmen
 ```grunt build-devenv-win``` for Windows 64Bit  
 ```grunt build-devenv-osx``` for OSX 64Bit  
 ```grunt build-devenv-linux32``` for Linux 32Bit  
-```grunt build-devenv-linux64``` for Linux 64Bit  
 ```grunt build-devenv-linux64``` for Linux 64Bit  
 
 It will make a new folder in your root named ./nw (Version 0.12.0 of NodeWebkit will be fetched via curl(), that can take a while) - with all dependencies and configs installed for development use (so you dont have to build everytime).
