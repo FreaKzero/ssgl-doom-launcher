@@ -297,8 +297,7 @@ module.exports = function(grunt) {
         'compress:tux32',
         'compress:tux64',
         'compress:win32',
-        'compress:win64',
-        'gitCommit'
+        'compress:win64'
     ]);
 
 };
