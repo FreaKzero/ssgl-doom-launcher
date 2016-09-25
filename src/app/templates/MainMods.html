@@ -135,6 +135,6 @@ $(window).on('resize', function(){
                 </div>
             </div>        
 
-            <md-button aria-label="play" class="md-fab special-fab" style="position: absolute; right: 25px; bottom: 15px; z-index:3;" ng-click="showGameSelection()" ng-show="config.active.gzdoom || config.active.zandronum || config.active.zdoom || config.active.doom64ex">
+            <md-button aria-label="play" class="md-fab special-fab" style="position: absolute; right: 25px; bottom: 15px; z-index:3;" ng-click="showGameSelection()" ng-show="hasEngine()">
                 <i class="mdi mdi-play"></i>
             </md-button>

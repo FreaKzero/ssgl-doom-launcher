@@ -15,7 +15,6 @@ Doom Frontend with Oblige mapbuild integration for zdoom, gzDoom, Zandronum, Doo
 - Loadorder sorting for chosen Files
 - Creating/Saving Modlists for faster access
 - Using/Creating Savefolders based on the name on used wadlist
-- [zDoom](http://zdoom.org), [gzDoom](https://github.com/coelckers/gzdoom), [DoomRPG](https://github.com/Kyle873/DoomRPG), [Doom64EX](https://doom64ex.wordpress.com) and [Zandronum](https://zandronum.com/) Support
 - SSGL automatically manages your savefolders via engine and Modlist Selection
 - [Oblige](http://oblige.sourceforge.net/) "Build and Play" via configfiles (Also able to resume last built map)
 - Fast access to your favourite DoomSeeker Client and Oblige Frontend

@@ -216,6 +216,13 @@
             $mdSidenav('left').toggle();
         };
 
+        //#TODO doc
+        $scope.hasEngine = function() {
+            return $scope.config.active.gzdoom || $scope.config.active.zandronum || 
+                    $scope.config.active.zdoom || $scope.config.active.doom64ex ||
+                    $scope.config.active.prboomp || $scope.config.active.doomretro;
+        }
+
         /**
          * Opens the About Dialog
          *
