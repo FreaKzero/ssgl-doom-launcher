@@ -1,5 +1,5 @@
 (function() {
-    var md5File = require('md5-file');
+    
     var http = require('http');
 
     app.factory('gameLookupService', ['$q', 'nwService', '$rootScope', gameLookupService]);
@@ -35,15 +35,25 @@
 
         //#TODO doc
         service.lookupWadArchive = function(path) {
-            var md5 = md5File.sync(path);
+            var md5 = nwService.md5File(path);
             var def = $q.defer();
             var screens = [];
 
+            
             http.get({
                 host: 'www.wad-archive.com',
                 path: '/api/latest/' + md5,
             }, function(response) {
+                
                 var body = '';
+
+                if (response.statusCode !== 200) {
+                    def.reject();
+                }
+
+                response.on('error', function(e) {
+                    def.reject(e);
+                });
 
                 response.on('data', function(d) {
                     body += d;
@@ -60,8 +70,6 @@
 
                     def.resolve(screens);
                 });
-            }).on('error', function(e) {
-                def.reject(e);
             });
 
             return def.promise;

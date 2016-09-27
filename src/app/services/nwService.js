@@ -3,7 +3,8 @@
         FS = require('fs'),
         GUI = require('nw.gui'),
         os = require('os'),
-        chokidar = require('chokidar');
+        chokidar = require('chokidar'),
+        md5File = require('md5-file');
 
     app.factory('nwService', ['$q', '$rootScope', '$mdDialog', nwService]);
     /**
@@ -93,6 +94,11 @@
         //#TODO: doc
         service.getWatcher = function() {
             return service.watcher;
+        };
+        
+        //#TODO Strange behaviour between prod and dev environment ?
+        service.md5File = function(str) {
+            return md5File.sync ? md5File.sync(str) : md5File(str);
         };
 
         /**
