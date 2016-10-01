@@ -3,8 +3,8 @@
 
     /**
      * Controller for the Sidebar Modlist
-     * 
-     * @method modlistController     
+     *
+     * @method modlistController
      * @module ssgl
      * @submodule modlistController
      */
@@ -20,12 +20,12 @@
         });
 
         $parent = $scope;
-        
+
         /**
          * Fires up rename Dialog
          * @method rename
          * @for modlistController
-         * @param ev    
+         * @param ev
          * @param $index
          */
         $scope.rename = function(ev, $index) {
@@ -41,11 +41,11 @@
 
             /**
              * renameListController
-             * 
+             *
              * @method renameListController
              * @for modlistController
-             * @param $scope        
-             * @param $mdDialog     
+             * @param $scope
+             * @param $mdDialog
              * @param modlistService
              */
             function renameListController($scope, $mdDialog, modlistService) {
@@ -62,7 +62,7 @@
 
                 /**
                  * Title of Dialog
-                 * 
+                 *
                  * @property title
                  * @type {String}
                  */
@@ -70,9 +70,9 @@
 
                 /**
                  * Checks for existing list names
-                 * 
+                 *
                  * @method checkdoubles
-                 * @for renameListController                 
+                 * @for renameListController
                  */
                 $scope.checkdoubles = function() {
                     $scope.cantSave = $parent.modlist.filter(function(list) {
@@ -84,7 +84,7 @@
                  * Renames the List
                  * @method submitForm
                  * @for renameListController
-                 * @param valid                 
+                 * @param valid
                  */
                 $scope.submitForm = function(valid) {
                     if (valid && $scope.cantSave.length === 0) {
@@ -108,7 +108,7 @@
 
                 /**
                  * Closes Dialog
-                 * 
+                 *
                  * @method cancel
                  * @for renameListController
                  */
@@ -120,10 +120,10 @@
 
         /**
          * Fire up Delete confirm Dialog
-         * 
+         *
          * @method delete
          * @for modlistController
-         * @param ev    
+         * @param ev
          * @param $index
          */
         $scope.delete = function(ev, $index) {
@@ -135,7 +135,7 @@
                 .targetEvent(ev);
 
             $mdDialog.show(confirm).then(function() {
-                
+
                 modlistService.remove($scope.modlist[$index]).then(function(listname) {
                     $mdToast.show(
                         $mdToast.simple()
@@ -156,15 +156,16 @@
         };
 
         /**
-         * select a List 
-         * 
+         * select a List
+         *
          * @method selectList
          * @for modlistController
          * @param  $index
          */
         $scope.selectList = function($index) {
-            modselectedService.selectList($scope.modlist[$index]);            
-            //$rootScope.$broadcast('USELIST', $scope.modlist[$index].wads, $scope.modlist[$index].name);
+            modselectedService.selectList(
+                angular.copy($scope.modlist[$index])
+            );
         };
     }
 })();
