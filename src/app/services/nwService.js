@@ -4,7 +4,8 @@
         GUI = require('nw.gui'),
         os = require('os'),
         chokidar = require('chokidar'),
-        md5File = require('md5-file');
+        md5File = require('md5-file'),
+        Window = GUI.Window.get();
 
     app.factory('nwService', ['$q', '$rootScope', '$mdDialog', nwService]);
     /**
@@ -71,6 +72,11 @@
             }
 
             return path;
+        }
+
+        service.test = function(num) {
+            console.log(Window.zoomLevel);
+            Window.zoomLevel = num;
         }
 
         service.livereload = function(callback) {
