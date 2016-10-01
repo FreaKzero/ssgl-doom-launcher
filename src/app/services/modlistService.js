@@ -1,34 +1,34 @@
 (function() {
     app.factory('modlistService', ['$q', '$rootScope', 'nwService', modlistService]);
 
-        
+
      /**
      * CRUD for Modlists (sidebar)
-     * 
+     *
      * @method modlistService
      * @module ssgl
-     * @submodule modlistService    
+     * @submodule modlistService
      */
     function modlistService($q, $rootScope, nwService) {
         var service = {};
         /**
          * Directory where the Lists are
-         * 
+         *
          * @property listDir
          * @private
          * @type {String}
          */
         var listDir = nwService.buildPath(['lists']);
-        
+
         service.lists = [];
         /**
          * Reame a List async
-         * 
+         *
          * @method rename
          * @async
          * @for modlistService
          * @param  {Object} item
-         * @return {Promise} 
+         * @return {Promise}
          */
         service.rename = function(item) {
             var oldPath = item.path;
@@ -41,7 +41,7 @@
 
         /**
          * Removes Item async
-         * 
+         *
          * @method remove
          * @async
          * @for modlistService
@@ -54,20 +54,30 @@
 
         /**
          * Saves selected lists into JSON File async
-         * 
+         *
          * @method saveSelected
          * @for modlistService
          * @param  {Object} listObj {name: '', list: ''}
          * @async
-         * @return {Promise}  
+         * @return {Promise}
          */
-        service.saveSelected = function(listObj) {            
-            service.lists.push({
-                name: listObj.name,
-                path: nwService.getAbsolute(nwService.buildPath(['lists', listObj.name + '.json'])),
-                wads: listObj.list
-            });            
-            
+        service.saveSelected = function(listObj) {
+            var existingIndex = _.findIndex(service.lists, function(item) {
+             return listObj.name === item.name
+            });
+
+            if (existingIndex > -1) {
+                service.lists[existingIndex].name = listObj.name;
+                service.lists[existingIndex].path = nwService.getAbsolute(nwService.buildPath(['lists', listObj.name + '.json']))
+                service.lists[existingIndex].wads = listObj.list;
+            } else {
+                service.lists.push({
+                    name: listObj.name,
+                    path: nwService.getAbsolute(nwService.buildPath(['lists', listObj.name + '.json'])),
+                    wads: listObj.list
+                });
+            }
+
             return nwService.writeJSON(
                 listObj.list,
                 nwService.buildPath(['lists', listObj.name + '.json'], true)
@@ -76,7 +86,7 @@
 
         /**
          * Fetching Lists from Directory async
-         * 
+         *
          * @method getLists
          * @for modlistService
          * @async
@@ -86,7 +96,7 @@
             var def = $q.defer();
 
             nwService.getDir(listDir, true).then(function(items) {
-                
+
                 service.lists = items.map(function(item) {
                     return {
                         name: nwService.getName(item),
