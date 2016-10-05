@@ -1,7 +1,7 @@
 (function() {
-    app.factory('zoomService', ['nwService', zoomService]);
+    app.factory('zoomService', ['nwService', 'hotkeys', zoomService]);
 
-    function zoomService(nwService) {
+    function zoomService(nwService, hotkeys) {
         var service = {};
         var Window = nwService.getWindow();
 
@@ -11,13 +11,32 @@
             STEP: 0.5
         };
 
+        hotkeys.add({
+            combo: 'n',
+            description: 'This one goes to 11',
+            callback: function() {
+                service.zoomIn();
+            }
+        });
+
+        hotkeys.add({
+            combo: 'm',
+            description: 'This one goes to 11',
+            callback: function() {
+                service.zoomOut();
+            }
+        });
+
+
         service.zoomIn = function() {
-            if (Window.zoomLevel <= C.MAXZOOM {
+            console.log('zin');
+            if (Window.zoomLevel <= C.MAXZOOM) {
                 Window.zoomLevel += C.STEP;
             }
         };
 
         service.zoomOut = function() {
+            console.log('zout');
             if (Window.zoomLevel <= C.MINZOOM) {
                 Window.zoomLevel -= C.STEP;
             }
