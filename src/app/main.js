@@ -5,7 +5,7 @@
  * @requires ngMaterial, ui.router
  * @type {[type]}
  */
-var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
+var app = angular.module('ssgl', ['ngMaterial', 'ui.router', 'cfp.hotkeys']);
 
 (function() {
     /**

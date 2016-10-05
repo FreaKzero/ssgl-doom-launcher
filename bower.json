@@ -2,10 +2,9 @@
   "name": "SSGL",
   "description": "Doom Frontend with Oblige mapbuild integration for zdoom, gzDoom, Skulltag and Zandronum written in AngularMaterial on NWJS for Windows and Linux.",
   "version": "0.0.2",
-  "homepage": "https://github.com/FreaKzero/ssgl-doom-launcher",  
+  "homepage": "https://github.com/FreaKzero/ssgl-doom-launcher",
   "license": "MIT",
   "private": true,
-  
   "dependencies": {
     "angular": "1.4.6",
     "angular-animate": "1.4.6",
@@ -15,17 +14,17 @@
     "underscore": "1.8.3",
     "mdi": "1.2.65",
     "jquery": "2.1.4",
-    "jquery-slimscroll": "git://github.com/FreaKzero/jQuery-slimScroll.git"    
+    "jquery-slimscroll": "git://github.com/FreaKzero/jQuery-slimScroll.git",
+    "angular-hotkeys": "chieffancypants/angular-hotkeys#^1.7.0"
   },
-  
   "ignore": [
     "**/.*",
     "*.gzip",
     "*.map",
-    "*.md",  
+    "*.md",
     "node_modules",
     "bower_components",
-    "test",      
+    "test",
     "node_modules",
     "bower_components",
     "test",
