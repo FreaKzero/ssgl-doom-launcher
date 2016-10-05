@@ -66,7 +66,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router']);
         document.title = 'Super Shotgun Launcher v' + $rootScope.APPVERSION;
         nwService.mkDir(nwService.buildPath(['lists'], true), true);
         nwService.openDevTools();
-        nwService.test(1);
+        nwService.test(0);
         if (process.platform === "darwin") {
             nwService.registerMenu();
         }

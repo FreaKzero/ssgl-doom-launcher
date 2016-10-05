@@ -405,6 +405,11 @@
             return def.promise;
         };
 
+        //#TODO Docs
+        service.getWindow = function() {
+            return Window;
+        };
+
         /**
          * Get NWJS Shell Object
          *
