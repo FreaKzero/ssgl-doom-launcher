@@ -12,43 +12,25 @@
         };
 
         hotkeys.add({
-            combo: 'n',
-            description: 'This one goes to 11',
+            combo: 'ctrl+=',
+            description: 'Zoom In',
             callback: function() {
-                service.zoomIn();
+                if (Window.zoomLevel <= C.MAXZOOM) {
+                    Window.zoomLevel += C.STEP;
+                }
             }
         });
 
         hotkeys.add({
-            combo: 'm',
-            description: 'This one goes to 11',
+            combo: 'ctrl+-',
+            description: 'Zoom Out',
             callback: function() {
-                service.zoomOut();
+                if (Window.zoomLevel >= C.MINZOOM) {
+                    Window.zoomLevel -= C.STEP;
+                }
             }
         });
 
-
-        service.zoomIn = function() {
-            console.log('zin');
-            if (Window.zoomLevel <= C.MAXZOOM) {
-                Window.zoomLevel += C.STEP;
-            }
-        };
-
-        service.zoomOut = function() {
-            console.log('zout');
-            if (Window.zoomLevel <= C.MINZOOM) {
-                Window.zoomLevel -= C.STEP;
-            }
-        };
-
-        service.reset = function() {
-            Window.zoomLevel = 0;
-        }
-
-        service.getLevel = function() {
-            return Window.zoomLevel;
-        }
         return service;
     }
 })();
