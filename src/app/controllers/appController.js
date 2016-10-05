@@ -1,5 +1,5 @@
 (function() {
-    app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', 'iwadService', 'nwService', 'gameService', 'modselectedService', 'hotkeys', appController]);
+    app.controller('appController', ['$scope', '$mdDialog', '$mdToast', '$mdBottomSheet', '$mdSidenav', 'modlistService', '$http', 'iwadService', 'nwService', 'gameService', 'modselectedService', appController]);
 
     var UPDATE = {
         json: 'https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json',
@@ -13,17 +13,9 @@
      * @module ssgl
      * @submodule appController
      */
-    function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService, $http, iwadService, nwService, gameService, modselectedService, hotkeys) {
+    function appController($scope, $mdDialog, $mdToast, $mdBottomSheet, $mdSidenav, modlistService, $http, iwadService, nwService, gameService, modselectedService) {
         var $PARENT = $scope;
         var TOASTDELAY = 1500;
-
-         hotkeys.add({
-         combo: 'w',
-         description: 'This one goes to 11',
-         callback: function() {
-            alert("test")
-         }
-         });
 
         /**
          * Automatic Update process on startup, user can choose to deny further dialogs

@@ -93,29 +93,6 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router', 'cfp.hotkeys']);
 
         if (nwService.hasArg('-d') || nwService.hasArg('--devtools')) {
             $rootScope.DEVELOPER = true;
-
-            // Bind F11 for configfile and F12 for opening DevTools
-            $(document).on('keydown', function(e) {
-                var tag = e.target.tagName.toLowerCase();
-
-                if (tag !== 'input' && tag !== 'textarea') {
-                    switch (e.which) {
-
-                        case 122:
-                            nwService.getShell().openItem(nwService.buildPath(['config.json'], true));
-                            break;
-
-                        case 123:
-                            nwService.openDevTools();
-                            break;
-
-                        case 116:
-                            location.reload();
-                            break;
-                    }
-                }
-            });
-
         } else {
             $rootScope.DEVELOPER = false;
         }
