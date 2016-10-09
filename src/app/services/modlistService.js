@@ -1,8 +1,6 @@
 (function() {
     app.factory('modlistService', ['$q', '$rootScope', 'nwService', modlistService]);
 
-    var path = require('path');
-
      /**
      * CRUD for Modlists (sidebar)
      *
@@ -33,7 +31,7 @@
          */
         service.rename = function(item) {
             var oldPath = item.path;
-            var newPath = path.join(listDir, item.name + '.json');
+            var newPath = nwService.buildPath([listDir, item.name + '.json']);
 
             item.path = newPath;
 
@@ -67,7 +65,7 @@
              return listObj.name === item.name
             });
 
-            var file = path.join(listDir, listObj.name + '.json');
+            var file = nwService.buildPath([listDir, listObj.name + '.json']);
 
             if (existingIndex > -1) {
                 service.lists[existingIndex].name = listObj.name;
@@ -100,7 +98,7 @@
             
             nwService.getDir(listDir).then(function(items) {
                 service.lists = items.map(function(item) {
-                    var file = path.join(listDir, item);
+                    var file = nwService.buildPath([listDir, item]);
 
                     return {
                         name: nwService.getName(item),
