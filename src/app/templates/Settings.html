@@ -9,10 +9,17 @@
 		<md-dialog-content style="padding:25px;">
 			<div>
 			<fieldset>
-				<legend>Import/Export</legend>
-				
-				<file-choose label="Import Config" ng-change="dosomething()"></file-choose>
-				<dir-choose label="Screenshot Path:" ng-model="config.screenshotpath"></dir-choose>
+				<legend>Config Settings</legend>
+					<div layout="row">
+						<div flex>
+							<md-button class="md-accent" style="width: 100%" ng-click="openConfig()">
+							<i class="mdi mdi-arrow-up-bold-hexagon-outline"></i>
+							Goto Config</md-button>
+						</div>
+						<div flex>
+							<import-choose label="Import Config" ng-model="importConfig"></import-choose>
+						</div>
+					</div>			
 			</fieldset>
 
 				<fieldset>

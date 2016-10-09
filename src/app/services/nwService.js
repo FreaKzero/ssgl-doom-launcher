@@ -515,7 +515,12 @@
                 if (err) {
                     def.reject(err);
                 } else {
-                    def.resolve(data);
+                    try {
+                        var data = JSON.parse(data);
+                        def.resolve(data);
+                    } catch(err) {
+                        def.reject(err);
+                    }
                 }
             });
 

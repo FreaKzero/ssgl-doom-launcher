@@ -148,15 +148,6 @@
 
         $scope.openScreenshotFolder = function() {
             nwService.getShell().openItem($scope.config.screenshotpath);  
-        }
-        /**
-         * Opens Configfile in external Editor
-         * 
-         * @method openConfigFile
-         * @for appController
-         */
-        $scope.openConfigFile = function() {
-            nwService.getShell().openItem(nwService.buildPath(['config.json'], true));
         };
 
         /**
@@ -553,6 +544,10 @@
                  */
                 $scope.config = angular.copy($PARENT.config);
 
+                $scope.openConfig = function() {
+                    nwService.getShell().showItemInFolder(nwService.buildPath(['config.json'], true));
+                }
+                
                 //TODO: docs
                 $scope.doomrpgCheckbox = function(value) {
                     if (value === false) {

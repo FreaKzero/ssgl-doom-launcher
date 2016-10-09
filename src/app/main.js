@@ -159,7 +159,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router', 'cfp.hotkeys']);
                         rlhudwad: ''
                     }
                 },
-
+                modlistpath: '',
                 iwadpath: '',
                 wadpath: '',
                 screenshotpath:'',

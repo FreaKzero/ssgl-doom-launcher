@@ -12,7 +12,6 @@
         <link rel="stylesheet" href="app/assets/custom.shortcuts.css" />
         <script type="text/javascript" src="app/lib/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="app/lib/jquery-slimscroll/jquery.slimscroll.js"></script>
-        <script type="text/javascript" src="app/lib/angular-hotkeys/build/hotkeys.min.js"></script>
         
         <link href="app/lib/mdi/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
         
@@ -23,8 +22,6 @@
             <md-button aria-label="Open Modlists" style="min-width: 50px;margin:0 0 0 -10px;;" ng-click="toggleSidebar()"><i class="mdi mdi-menu" style="font-size: 35px; margin-top: 8px;"></i></md-button>
             <h1 style="margin-left: 10px;">Super Shotgun Launcher</h1>
         </div>
-
-        <md-button ng-show="DEVELOPER" aria-label="Open Config File" style="min-width: 50px;margin:0;" ng-click="openConfigFile()"><i class="mdi mdi-file-xml" style="font-size: 35px; margin-top: 8px;"><md-tooltip>Open Config File (F11)</md-tooltip></i></md-button>
 
         <md-button ng-show="DEVELOPER" aria-label="Open DevTools" style="min-width: 50px;margin:0;" ng-click="openDevTools()"><i class="mdi mdi-code-not-equal-variant" style="font-size: 35px; margin-top: 8px;"><md-tooltip>Open DevTools (F12)</md-tooltip></i></md-button>
         
@@ -38,11 +35,6 @@
           </md-button>
 
           <md-menu-content width="6">
-
-            <md-menu-item>
-                <md-button ng-click="openConfigFile()">Open Configfile</md-button>
-            </md-menu-item>
-
             <md-menu-item>
                 <md-button ng-click="openWADFolder()">Open WAD Folder</md-button>
             </md-menu-item>
@@ -133,6 +125,7 @@
 
         <script src="app/directives/directory-chooser.js"></script>
         <script src="app/directives/file-chooser.js"></script>
+        <script src="app/directives/import-chooser.js"></script>
 
     </body>
 </html>
