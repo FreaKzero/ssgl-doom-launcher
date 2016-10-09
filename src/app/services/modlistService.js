@@ -1,6 +1,7 @@
 (function() {
     app.factory('modlistService', ['$q', '$rootScope', 'nwService', modlistService]);
 
+    var path = require('path');
 
      /**
      * CRUD for Modlists (sidebar)
@@ -18,7 +19,7 @@
          * @private
          * @type {String}
          */
-        var listDir = nwService.buildPath(['lists']);
+        var listDir = $rootScope.config.modlistpath; 
 
         service.lists = [];
         /**
@@ -32,7 +33,7 @@
          */
         service.rename = function(item) {
             var oldPath = item.path;
-            var newPath = nwService.buildPath([listDir, item.name + '.json'], true);
+            var newPath = path.join(listDir, item.name + '.json');
 
             item.path = newPath;
 
@@ -66,21 +67,23 @@
              return listObj.name === item.name
             });
 
+            var file = path.join(listDir, listObj.name + '.json');
+
             if (existingIndex > -1) {
                 service.lists[existingIndex].name = listObj.name;
-                service.lists[existingIndex].path = nwService.getAbsolute(nwService.buildPath(['lists', listObj.name + '.json']))
+                service.lists[existingIndex].path = file;
                 service.lists[existingIndex].wads = listObj.list;
             } else {
                 service.lists.push({
                     name: listObj.name,
-                    path: nwService.getAbsolute(nwService.buildPath(['lists', listObj.name + '.json'])),
+                    path: file,
                     wads: listObj.list
                 });
             }
 
             return nwService.writeJSON(
                 listObj.list,
-                nwService.buildPath(['lists', listObj.name + '.json'], true)
+                file
             );
         };
 
@@ -94,14 +97,15 @@
          */
         service.getLists = function() {
             var def = $q.defer();
-
-            nwService.getDir(listDir, true).then(function(items) {
-
+            
+            nwService.getDir(listDir, false).then(function(items) {
                 service.lists = items.map(function(item) {
+                    var file = path.join(listDir, item);
+                    
                     return {
                         name: nwService.getName(item),
-                        path: nwService.getAbsolute(nwService.buildPath(['lists', item])),
-                        wads: nwService.readSyncJSON(nwService.buildPath(['lists', item], true))
+                        path: file,
+                        wads: nwService.readSyncJSON(file)
                     };
                 });
 
