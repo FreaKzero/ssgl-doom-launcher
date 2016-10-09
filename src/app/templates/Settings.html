@@ -8,6 +8,13 @@
 	</md-toolbar>
 		<md-dialog-content style="padding:25px;">
 			<div>
+			<fieldset>
+				<legend>Import/Export</legend>
+				
+				<file-choose label="Import Config" ng-change="dosomething()"></file-choose>
+				<dir-choose label="Screenshot Path:" ng-model="config.screenshotpath"></dir-choose>
+			</fieldset>
+
 				<fieldset>
 					<legend>Main Settings</legend>
 					<div layout="row">
@@ -30,10 +37,9 @@
 							</md-input-container>
 						</div>
 					</div>
-
 					<dir-choose label="WAD Path:" ng-model="config.wadpath"></dir-choose>
 					<dir-choose label="iWAD Path:" ng-model="config.iwadpath"></dir-choose>
-
+					<dir-choose label="Modlist Path:" ng-model="config.mostlistpath"></dir-choose>
 					<dir-choose label="Screenshot Path:" ng-model="config.screenshotpath"></dir-choose>
 				</fieldset>
 
