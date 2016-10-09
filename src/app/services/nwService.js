@@ -101,7 +101,7 @@
         service.getWatcher = function() {
             return service.watcher;
         };
-        
+
         //#TODO Strange behaviour between prod and dev environment ?
         service.md5File = function(str) {
             return md5File.sync ? md5File.sync(str) : md5File(str);
@@ -218,15 +218,11 @@
          * @return {String} Merged Path
          */
         service.buildPath = function(array, execpath) {
-            if (typeof execpath === 'undefined') {
-                execpath = false;
+            if (execpath) {
+                array = array.unshift(service.execpath);
             }
 
-            if (execpath === true) {
-                return service.execpath + service.pathsep + array.join(service.pathsep);
-            } else {
-                return array.join(service.pathsep);
-            }
+            return PATH.join.apply(this, array);
         };
 
         /**
@@ -341,7 +337,7 @@
          * @async
          * @param  {String} path
          * @param  {Boolean} When true use BASEDIR
-         
+
          * @return {Promise} obj with name, path, date
          */
         service.getDirWithDate = function(path) {
