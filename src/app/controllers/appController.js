@@ -522,7 +522,7 @@
          */
         function SettingsDialog(ev) {
             $mdDialog.show({
-                controller: DialogController,
+                controller: SettingsDialogController,
                 templateUrl: 'app/templates/Settings.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
@@ -537,7 +537,7 @@
              * @param  {[type]}         $scope    [description]
              * @param  {[type]}         $mdDialog [description]
              */
-            function DialogController($scope, $mdDialog) {
+            function SettingsDialogController($scope, $mdDialog) {
                 modlistService.getLists().then(function(list) {
                     /**
                      * @property
@@ -569,7 +569,7 @@
                  * Close Dialog
                  *
                  * @method cancel
-                 * @for DialogController
+                 * @for SettingsDialogController
                  */
                 $scope.cancel = function() {
                     $mdDialog.cancel();
@@ -579,7 +579,7 @@
                  * Save Settings, fire Toast and Refresh
                  *
                  * @method save
-                 * @for DialogController
+                 * @for SettingsDialogController
                  */
                 $scope.save = function() {
                     $scope.config.freshinstall = false;
