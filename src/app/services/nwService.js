@@ -221,7 +221,7 @@
             if (execpath) {
                 array.unshift(service.execpath);
             }
-            console.log(array);
+            
             return PATH.join.apply(this, array);
         };
 

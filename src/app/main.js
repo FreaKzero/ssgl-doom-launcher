@@ -56,8 +56,6 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router', 'cfp.hotkeys']);
      * @requires nwService
      */
     app.run(function($rootScope, nwService, zoomService) {
-
-
         /**
          * @property {String} APPVERSION Versionnumber
          * @type {String}
