@@ -344,9 +344,8 @@
          
          * @return {Promise} obj with name, path, date
          */
-        service.getDirWithDate = function(path, relative) {
+        service.getDirWithDate = function(path) {
             var def = $q.defer();
-            path = _checkRel(path, relative);
             var files = [];
 
             FS.readdir(path, function(err, fileArr) {
@@ -385,10 +384,8 @@
          * @async
          * @return {Promise}
          */
-        service.getDir = function(path, relative) {
+        service.getDir = function(path) {
             var def = $q.defer();
-            path = _checkRel(path, relative);
-
             FS.readdir(path, function(err, fileArr) {
                 if (err) {
                     def.reject(err);

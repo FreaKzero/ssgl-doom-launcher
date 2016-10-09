@@ -98,10 +98,10 @@
         service.getLists = function() {
             var def = $q.defer();
             
-            nwService.getDir(listDir, false).then(function(items) {
+            nwService.getDir(listDir).then(function(items) {
                 service.lists = items.map(function(item) {
                     var file = path.join(listDir, item);
-                    
+
                     return {
                         name: nwService.getName(item),
                         path: file,
