@@ -219,9 +219,9 @@
          */
         service.buildPath = function(array, execpath) {
             if (execpath) {
-                array = array.unshift(service.execpath);
+                array.unshift(service.execpath);
             }
-
+            console.log(array);
             return PATH.join.apply(this, array);
         };
 
