@@ -4,8 +4,7 @@
   function configService(nwService, DEFAULTCONFIG) {
     var service = {};
 
-    // service.config = nwService.readSyncJSON(nwService.buildPath(['configs.json']), true);
-    console.log(DEFAULTCONFIG);
+    service.config = _.extend(DEFAULTCONFIG, nwService.readSyncJSON(nwService.buildPath(['config.json']), true));
 
     service.getConfig = function() {
       return DEFAULTCONFIG;
