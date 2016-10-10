@@ -17,15 +17,15 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router', 'cfp.hotkeys']);
      * @uses $stateProvider
      * @uses $urlRouterProvider
      */
-    app.config(function($stateProvider, $urlRouterProvider) {
+  app.config(function($stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/');
 
-        $stateProvider.state('/', {
-            url: '/',
-            templateUrl: 'app/templates/MainMods.html'
-        });
+    $stateProvider.state('/', {
+      url: '/',
+      templateUrl: 'app/templates/MainMods.html'
     });
+  });
 
     /**
      * Config Block for Themeing
@@ -34,16 +34,16 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router', 'cfp.hotkeys']);
      * @for  ssgl
      * @uses $mdThemingProvider
      */
-    app.config(function($mdThemingProvider) {
-        $mdThemingProvider.theme('default')
+  app.config(function($mdThemingProvider) {
+    $mdThemingProvider.theme('default')
             .primaryPalette('blue-grey', {
-                'default': '400',
-                'hue-1': '100',
-                'hue-2': '600',
-                'hue-3': 'A100'
+              'default': '400',
+              'hue-1': '100',
+              'hue-2': '600',
+              'hue-3': 'A100'
             })
             .accentPalette('deep-orange').dark();
-    });
+  });
 
     /**
      * Run Block
@@ -55,115 +55,115 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router', 'cfp.hotkeys']);
      * @uses  $rootScope
      * @requires nwService
      */
-    app.run(function($rootScope, nwService, zoomService) {
+  app.run(function($rootScope, nwService, configService) {
         /**
          * @property {String} APPVERSION Versionnumber
          * @type {String}
          */
-        $rootScope.APPVERSION = nwService.readSyncJSON('package.json').version;
-        document.title = 'Super Shotgun Launcher v' + $rootScope.APPVERSION;
+    $rootScope.APPVERSION = nwService.readSyncJSON('package.json').version;
+    document.title = 'Super Shotgun Launcher v' + $rootScope.APPVERSION;
         
-        if (process.platform === "darwin") {
-            nwService.registerMenu();
-        }
+    if (process.platform === 'darwin') {
+      nwService.registerMenu();
+    }
 
-        if (nwService.hasArg('-r') || nwService.hasArg('--livereload')) {
-            try {
+    if (nwService.hasArg('-r') || nwService.hasArg('--livereload')) {
+      try {
 
-                nwService.livereload(function(file, event) {
-                    if (file && file.split('.').pop() === 'css') {
-                        var styles = document.querySelectorAll('link[rel=stylesheet]');
-                        for (var i = 0; i < styles.length; i++) {
-                            var restyled = styles[i].getAttribute('href') + '?v=' + Math.random(0, 10000);
-                            styles[i].setAttribute('href', restyled);
-                        }
-                    } else {
-                        window.location.reload();
-                    }
-                });
-                                    
-            } catch (e) {
-                console.log('Something went wrong');
+        nwService.livereload(function(file) {
+          if (file && file.split('.').pop() === 'css') {
+            var styles = document.querySelectorAll('link[rel=stylesheet]');
+            for (var i = 0; i < styles.length; i++) {
+              var restyled = styles[i].getAttribute('href') + '?v=' + Math.random(0, 10000);
+              styles[i].setAttribute('href', restyled);
             }
-        }
+          } else {
+            window.location.reload();
+          }
+        });
+                                    
+      } catch (e) {
+        console.log('Something went wrong');
+      }
+    }
 
-        if (nwService.hasArg('-d') || nwService.hasArg('--devtools')) {
-            $rootScope.DEVELOPER = true;
-        } else {
-            $rootScope.DEVELOPER = false;
-        }
+    if (nwService.hasArg('-d') || nwService.hasArg('--devtools')) {
+      $rootScope.DEVELOPER = true;
+    } else {
+      $rootScope.DEVELOPER = false;
+    }
 
-        $rootScope.config = nwService.readSyncJSON(nwService.buildPath(['config.json']), true);
+    $rootScope.config = nwService.readSyncJSON(nwService.buildPath(['config.json']), true);
 
-        if (_.isEmpty($rootScope.config)) {
-            $rootScope.config = {
-                engines: {
-                    zdoom: '',
-                    gzdoom: '',
-                    doomretro: '',
-                    prboomp: '',
-                    zandronum: '',
-                    doomrpg: '',
-                    doomrpgrl: '',
-                    doom64ex: ''
-                },
+    if (_.isEmpty($rootScope.config)) {
+      $rootScope.config = {
+        engines: {
+          zdoom: '',
+          gzdoom: '',
+          doomretro: '',
+          prboomp: '',
+          zandronum: '',
+          doomrpg: '',
+          doomrpgrl: '',
+          doom64ex: ''
+        },
 
-                savepaths: {
-                    zdoom: '',
-                    gzdoom: '',
-                    doomretro: '',
-                    prboomp: '',
-                    zandronum: '',
-                    doomrpg: '',
-                    doom64ex: ''
-                },
+        savepaths: {
+          zdoom: '',
+          gzdoom: '',
+          doomretro: '',
+          prboomp: '',
+          zandronum: '',
+          doomrpg: '',
+          doom64ex: ''
+        },
 
-                oblige: {
-                    binary: '',
-                    configs: '',
-                    mappath: ''
-                },
+        oblige: {
+          binary: '',
+          configs: '',
+          mappath: ''
+        },
 
-                active: {
-                    gzdoom: false,
-                    doomretro: false,
-                    prboomp: false,
-                    zandronum: false,
-                    oblige: false,
-                    zdoom: false,
-                    doomrpg: false,
-                    doomrpgrl: false,
-                    doomrpgrlmonsters: false,
-                    doom64ex: false
-                },
+        active: {
+          gzdoom: false,
+          doomretro: false,
+          prboomp: false,
+          zandronum: false,
+          oblige: false,
+          zdoom: false,
+          doomrpg: false,
+          doomrpgrl: false,
+          doomrpgrlmonsters: false,
+          doom64ex: false
+        },
 
-                online: {
-                    client: ''
-                },
+        online: {
+          client: ''
+        },
 
-                misc: {
-                    preselectedengine: '',
-                    doom64exsound: '',
-                    doomrpg: {
-                        vanilla: '',
-                        extras: '',
-                        brightmaps: '',
-                        rlarsenalpath: '',
-                        rlmonsterspath: '',
-                        rlarsenalwad: '',
-                        rlmonsterswad: '',
-                        rlhudwad: ''
-                    }
-                },
-                modlistpath: '',
-                iwadpath: '',
-                wadpath: '',
-                screenshotpath:'',
+        misc: {
+          preselectedengine: '',
+          doom64exsound: '',
+          doomrpg: {
+            vanilla: '',
+            extras: '',
+            brightmaps: '',
+            rlarsenalpath: '',
+            rlmonsterspath: '',
+            rlarsenalwad: '',
+            rlmonsterswad: '',
+            rlhudwad: ''
+          }
+        },
+        modlistpath: '',
+        iwadpath: '',
+        wadpath: '',
+        screenshotpath:'',
 
-                dontShowUpdate: '0.0.0',
-                initList: false,
-                freshinstall: true
-            };
-        }
-    });
+        dontShowUpdate: '0.0.0',
+        initList: false,
+        freshinstall: true
+      };
+    }
+  });
 })();
