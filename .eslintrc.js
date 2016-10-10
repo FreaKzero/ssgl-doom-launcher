@@ -6,7 +6,8 @@ module.exports = {
 
     "globals": {
         "app": true,
-        "angular": true
+        "angular": true,
+        "_": true
     },
 
     "extends": "eslint:recommended",
