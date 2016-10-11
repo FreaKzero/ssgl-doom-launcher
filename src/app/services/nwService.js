@@ -1,13 +1,13 @@
 (function() {
-    var PATH = require('path'),
-        FS = require('fs'),
-        GUI = require('nw.gui'),
-        os = require('os'),
-        chokidar = require('chokidar'),
-        md5File = require('md5-file'),
-        Window = GUI.Window.get();
+  var PATH = require('path'),
+    FS = require('fs'),
+    GUI = require('nw.gui'),
+    os = require('os'),
+    chokidar = require('chokidar'),
+    md5File = require('md5-file'),
+    Window = GUI.Window.get();
 
-    app.factory('nwService', ['$q', '$rootScope', '$mdDialog', nwService]);
+  app.factory('nwService', ['$q', '$rootScope', '$mdDialog', nwService]);
     /**
      * NodeWebkit related Service
      *
@@ -16,25 +16,25 @@
      * @submodule nwService
      * @param  {Object}  $q Async
      */
-    function nwService($q, $rootScope, $mdDialog) {
-        var service = {};
+  function nwService($q, $rootScope, $mdDialog) {
+    var service = {};
 
         //#TODO: doc
-        service.watcher = null;
+    service.watcher = null;
 
         /**
          * BASEDIR
          * @property execpath
          * @type {String}
          */
-        service.execpath = PATH.dirname(process.execPath);
+    service.execpath = PATH.dirname(process.execPath);
 
         /**
          * Operating System Directory seperator (/ or \\)
          * @property {pathsep}
          * @type {String}
          */
-        service.pathsep = _getSeperator();
+    service.pathsep = _getSeperator();
 
         /**
          * Gives back the directory seperator for active OS
@@ -44,13 +44,13 @@
          * @return {String} Os specific directory seperator
          * @private
          */
-        function _getSeperator() {
-            if (os.platform() === 'win32') {
-                return '\\';
-            } else {
-                return '/';
-            }
-        }
+    function _getSeperator() {
+      if (os.platform() === 'win32') {
+        return '\\';
+      } else {
+        return '/';
+      }
+    }
 
         /**
          * Gives back Fullpath of BASEDIR
@@ -62,50 +62,45 @@
          * @return {String} gives back absolute path when path is relative
          * @private
          */
-        function _checkRel(path, relative) {
-            if (typeof relative === 'undefined') {
-                relative = false;
-            }
+    function _checkRel(path, relative) {
+      if (typeof relative === 'undefined') {
+        relative = false;
+      }
 
-            if (relative === true) {
-                path = service.execpath + service.pathsep + path;
-            }
+      if (relative === true) {
+        path = service.execpath + service.pathsep + path;
+      }
 
-            return path;
+      return path;
+    }
+
+    service.livereload = function(callback) {
+      chokidar.watch('../src/**/*', {
+        ignored: /[\/\\]\./
+      }).on('all', function(event, path) {
+        if (event === 'change') {
+          callback(path);
         }
+      });
+    };
 
-        service.test = function(num) {
-            console.log(Window.zoomLevel);
-            Window.zoomLevel = num;
-        }
-
-        service.livereload = function(callback) {
-            chokidar.watch('../src/**/*', {
-                ignored: /[\/\\]\./
-            }).on('all', function(event, path) {
-                if (event === 'change') {
-                    callback(path);
-                }
-            });
-        };
-
-        service.startWatcher = function(path, callback) {
-            service.watcher = chokidar.watch(path, {
-                ignored: /[\/\\]\./
-            }).on('all', function(event, path) {
-                callback(path, event);
-            });
-        };
+    service.startWatcher = function(path, callback) {
+      service.watcher = chokidar.watch(path, {
+        ignored: /[\/\\]\./
+      }).on('all', function(event, path) {
+        callback(path, event);
+      });
+    };
 
         //#TODO: doc
-        service.getWatcher = function() {
-            return service.watcher;
-        };
+    service.getWatcher = function() {
+      return service.watcher;
+    };
 
         //#TODO Strange behaviour between prod and dev environment ?
-        service.md5File = function(str) {
-            return md5File.sync ? md5File.sync(str) : md5File(str);
-        };
+    service.md5File = function(str) {
+      return md5File.sync ? md5File.sync(str) : md5File(str);
+    };
 
         /**
          * Panic Dialog - for critical errors
@@ -116,29 +111,29 @@
          * @param  {String} message
          * @param  {String} log
          */
-        service.panic = function(title, message, log) {
-            $mdDialog.show({
-                templateUrl: 'app/templates/PanicDialog.html',
-                parent: angular.element(document.body),
-                targetEvent: null,
+    service.panic = function(title, message, log) {
+      $mdDialog.show({
+        templateUrl: 'app/templates/PanicDialog.html',
+        parent: angular.element(document.body),
+        targetEvent: null,
 
-                controller: function($scope) {
-                    $scope.title = title;
-                    $scope.message = message;
-                    $scope.log = log;
+        controller: function($scope) {
+          $scope.title = title;
+          $scope.message = message;
+          $scope.log = log;
 
-                    $scope.cancel = function() {
-                        $mdDialog.cancel();
-                    };
+          $scope.cancel = function() {
+            $mdDialog.cancel();
+          };
 
-                    $scope.savelog = function() {
-                        service.writeTxt($scope.message + '\n\n' + $scope.log, 'paniclog.txt', true).then(function() {
-                            service.getShell().openItem(service.execpath + service.pathsep + 'paniclog.txt');
-                        });
-                    };
-                }
+          $scope.savelog = function() {
+            service.writeTxt($scope.message + '\n\n' + $scope.log, 'paniclog.txt', true).then(function() {
+              service.getShell().openItem(service.execpath + service.pathsep + 'paniclog.txt');
             });
-        };
+          };
+        }
+      });
+    };
 
         /**
          * Gives back the Platform
@@ -147,9 +142,9 @@
          * @for nwService
          * @return {String} Plattform (win32, linux etc)
          */
-        service.getPlatform = function() {
-            return os.platform();
-        };
+    service.getPlatform = function() {
+      return os.platform();
+    };
 
         /**
          * Gives back only Filename back of an file, can also trim extensions
@@ -159,52 +154,52 @@
          * @param  {cut} cut  default 5 (.json)
          * @return {String} filename
          */
-        service.getName = function(path, cut) {
-            if (typeof cut === 'undefined') {
-                cut = -5;
-            }
+    service.getName = function(path, cut) {
+      if (typeof cut === 'undefined') {
+        cut = -5;
+      }
 
-            if (os.platform() === 'win32') {
-                return path.replace(/^.*[\\\/]/, '').slice(0, cut);
-            } else {
-                return path.replace(/^.*[/]/, '').slice(0, cut);
-            }
-        };
+      if (os.platform() === 'win32') {
+        return path.replace(/^.*[\\\/]/, '').slice(0, cut);
+      } else {
+        return path.replace(/^.*[/]/, '').slice(0, cut);
+      }
+    };
 
         //TODO: doc
         //TODO: Error handling
-        service.getModifiedDate = function(file) {
-            var def = $q.defer();
+    service.getModifiedDate = function(file) {
+      var def = $q.defer();
 
-            if (!FS.lstatSync(file).isFile()) {
-                def.resolve(null);
-            }
+      if (!FS.lstatSync(file).isFile()) {
+        def.resolve(null);
+      }
 
-            FS.stat(file, function(err, data) {
+      FS.stat(file, function(err, data) {
 
-                if (err) {
-                    console.log(err);
-                    def.resolve(null);
-                }
+        if (err) {
+          console.log(err);
+          def.resolve(null);
+        }
 
-                if (typeof data.mtime === 'undefined') {
-                    def.resolve(data.ctime);
-                } else {
-                    def.resolve(data.mtime);
-                }
-            });
+        if (typeof data.mtime === 'undefined') {
+          def.resolve(data.ctime);
+        } else {
+          def.resolve(data.mtime);
+        }
+      });
 
-            return def.promise;
-        };
+      return def.promise;
+    };
 
         //#TODO doc
-        service.registerMenu = function() {
-            var mb = new GUI.Menu({type: 'menubar'});
-            mb.createMacBuiltin('SSGL', {
-                hideEdit: false,
-            });
-            GUI.Window.get().menu = mb;
-        }
+    service.registerMenu = function() {
+      var mb = new GUI.Menu({type: 'menubar'});
+      mb.createMacBuiltin('SSGL', {
+        hideEdit: false,
+      });
+      GUI.Window.get().menu = mb;
+    };
 
         //fs.stat(path, [callback])
 
@@ -217,13 +212,13 @@
          * @param  {Boolean}  execpath When true - merge all given Paths into execpath
          * @return {String} Merged Path
          */
-        service.buildPath = function(array, execpath) {
-            if (execpath) {
-                array.unshift(service.execpath);
-            }
+    service.buildPath = function(array, execpath) {
+      if (execpath) {
+        array.unshift(service.execpath);
+      }
             
-            return PATH.join.apply(this, array);
-        };
+      return PATH.join.apply(this, array);
+    };
 
         /**
          * gives back path as array
@@ -232,9 +227,9 @@
          * @param  {String}  path
          * @return {Array} Array with Pathsegments
          */
-        service.splitPath = function(path) {
-            return path.split(service.pathsep);
-        };
+    service.splitPath = function(path) {
+      return path.split(service.pathsep);
+    };
 
         /**
          * Gives back JSON Package Manifest
@@ -243,9 +238,9 @@
          * @for nwService
          * @return {Object} Package Manifest as Object
          */
-        service.getManifest = function() {
-            return GUI.App.manifest;
-        };
+    service.getManifest = function() {
+      return GUI.App.manifest;
+    };
 
         /**
          * Gives back Absolute BASEPATH
@@ -254,9 +249,9 @@
          * @param  {String} to append on execpath
          * @return {String} path with BASEDIR
          */
-        service.getAbsolute = function(string) {
-            return service.execpath + service.pathsep + string;
-        };
+    service.getAbsolute = function(string) {
+      return service.execpath + service.pathsep + string;
+    };
 
         /**
          * Gives back Directoryname
@@ -266,9 +261,9 @@
          * @param  {String} filepath
          * @return {String} Directorypath of Filepath
          */
-        service.getDirname = function(file) {
-            return PATH.dirname(file);
-        };
+    service.getDirname = function(file) {
+      return PATH.dirname(file);
+    };
 
         /**
          * Async Rename
@@ -280,17 +275,17 @@
          * @async
          * @return {Promise}
          */
-        service.rename = function(oldpath, newpath) {
-            var def = $q.defer();
-            FS.rename(oldpath, newpath, function(err) {
-                if (err) {
-                    def.reject(err);
-                } else {
-                    def.resolve(service.getName(newpath));
-                }
-            });
-            return def.promise;
-        };
+    service.rename = function(oldpath, newpath) {
+      var def = $q.defer();
+      FS.rename(oldpath, newpath, function(err) {
+        if (err) {
+          def.reject(err);
+        } else {
+          def.resolve(service.getName(newpath));
+        }
+      });
+      return def.promise;
+    };
 
         /**
          * Async Delete
@@ -300,33 +295,33 @@
          * @async
          * @return {Promise}
          */
-        service.remove = function(path) {
-            var def = $q.defer();
+    service.remove = function(path) {
+      var def = $q.defer();
 
-            FS.unlink(path, function(err) {
-                if (err) {
-                    def.reject(err);
-                } else {
-                    def.resolve(service.getName(path));
-                }
-            });
-            return def.promise;
-        };
+      FS.unlink(path, function(err) {
+        if (err) {
+          def.reject(err);
+        } else {
+          def.resolve(service.getName(path));
+        }
+      });
+      return def.promise;
+    };
 
 
         //TODO: doc
         //TODO: error handling
         //TODO: file extension filter
-        service.wipeDir = function(path) {
-            path = _checkRel(path, false);
+    service.wipeDir = function(path) {
+      path = _checkRel(path, false);
 
-            FS.readdir(path, function(err, fileArr) {
-                for (var i = fileArr.length; i--;) {
-                    var full = service.buildPath([path, fileArr[i]], false);
-                    FS.unlinkSync(full);
-                }
-            });
-        };
+      FS.readdir(path, function(err, fileArr) {
+        for (var i = fileArr.length; i--;) {
+          var full = service.buildPath([path, fileArr[i]], false);
+          FS.unlinkSync(full);
+        }
+      });
+    };
 
         //TODO: error handling
         /**
@@ -340,35 +335,35 @@
 
          * @return {Promise} obj with name, path, date
          */
-        service.getDirWithDate = function(path) {
-            var def = $q.defer();
-            var files = [];
+    service.getDirWithDate = function(path) {
+      var def = $q.defer();
+      var files = [];
 
-            FS.readdir(path, function(err, fileArr) {
-                if (err) {
-                    def.resolve([]);
-                } else {
-                    for (var i = fileArr.length; i--;) {
-                        var full = service.buildPath([path, fileArr[i]], false);
-                        var stat = FS.statSync(full);
+      FS.readdir(path, function(err, fileArr) {
+        if (err) {
+          def.resolve([]);
+        } else {
+          for (var i = fileArr.length; i--;) {
+            var full = service.buildPath([path, fileArr[i]], false);
+            var stat = FS.statSync(full);
 
-                        if (err) {
-                            console.log(err);
-                        }
+            if (err) {
+              console.log(err);
+            }
 
-                        files.push({
-                            name: fileArr[i],
-                            path: full,
-                            date: stat.mtime
-                        });
-                    }
-
-                    def.resolve(files);
-                }
+            files.push({
+              name: fileArr[i],
+              path: full,
+              date: stat.mtime
             });
+          }
 
-            return def.promise;
-        };
+          def.resolve(files);
+        }
+      });
+
+      return def.promise;
+    };
 
         /**
          * Read a "flat" Directory async without dotfiles
@@ -380,28 +375,28 @@
          * @async
          * @return {Promise}
          */
-        service.getDir = function(path) {
-            var def = $q.defer();
-            FS.readdir(path, function(err, fileArr) {
-                if (err) {
-                    def.reject(err);
-                } else {
-                    fileArr = fileArr.filter(function(item) {
-                        if (item.slice((item.lastIndexOf(".") - 1 >>> 0) + 2) !== '')
-                            return item;
-                    });
+    service.getDir = function(path) {
+      var def = $q.defer();
+      FS.readdir(path, function(err, fileArr) {
+        if (err) {
+          def.reject(err);
+        } else {
+          fileArr = fileArr.filter(function(item) {
+            if (item.slice((item.lastIndexOf('.') - 1 >>> 0) + 2) !== '')
+              return item;
+          });
 
-                    def.resolve(fileArr);
-                }
-            });
+          def.resolve(fileArr);
+        }
+      });
 
-            return def.promise;
-        };
+      return def.promise;
+    };
 
         //#TODO Docs
-        service.getWindow = function() {
-            return Window;
-        };
+    service.getWindow = function() {
+      return Window;
+    };
 
         /**
          * Get NWJS Shell Object
@@ -410,9 +405,9 @@
          * @for nwService
          * @return {Object}
          */
-        service.getShell = function() {
-            return GUI.Shell;
-        };
+    service.getShell = function() {
+      return GUI.Shell;
+    };
 
         /**
          * Is NWJS started with a particular Argument
@@ -421,17 +416,17 @@
          * @param  {String}  arg asked Argument
          * @return {Boolean} True when started with Argument
          */
-        service.hasArg = function(arg) {
-            var len = GUI.App.argv.length;
+    service.hasArg = function(arg) {
+      var len = GUI.App.argv.length;
 
-            for (var i = 0; i < len; i++) {
-                if (GUI.App.argv[i] === arg) {
-                    return true;
-                }
-            }
+      for (var i = 0; i < len; i++) {
+        if (GUI.App.argv[i] === arg) {
+          return true;
+        }
+      }
 
-            return false;
-        };
+      return false;
+    };
 
         /**
          * Opens Devtools
@@ -439,9 +434,9 @@
          * @method openDevTools
          * @for nwService
          */
-        service.openDevTools = function() {
-            GUI.Window.get().showDevTools();
-        };
+    service.openDevTools = function() {
+      GUI.Window.get().showDevTools();
+    };
 
         //TODO: Error Handling
         /**
@@ -452,9 +447,9 @@
          * @param  {String} source
          * @param  {String} target
          */
-        service.copyFile = function(source, target) {
-            FS.createReadStream(source).pipe(FS.createWriteStream(target));
-        };
+    service.copyFile = function(source, target) {
+      FS.createReadStream(source).pipe(FS.createWriteStream(target));
+    };
 
         /**
          * Make Directory
@@ -463,13 +458,13 @@
          * @param  {String} path
          * @param  {Boolean} relative When true use BASEDIR
          */
-        service.mkDir = function(path, relative) {
-            FS.exists(path, function(exists) {
-                if (!exists) {
-                    FS.mkdirSync(path);
-                }
-            });
-        };
+    service.mkDir = function(path) {
+      FS.exists(path, function(exists) {
+        if (!exists) {
+          FS.mkdirSync(path);
+        }
+      });
+    };
 
         /**
          * Read JSON Sync
@@ -479,15 +474,15 @@
          * @param  {[type]}     relative When true use BASEDIR
          * @return {Object} Object parsed from JSON
          */
-        service.readSyncJSON = function(path, relative) {
-            path = _checkRel(path, relative);
-            try {
-                return JSON.parse(FS.readFileSync(path, "utf8"));
-            } catch (e) {
-                console.log(e)
-                return {};
-            }
-        };
+    service.readSyncJSON = function(path, relative) {
+      path = _checkRel(path, relative);
+      try {
+        return JSON.parse(FS.readFileSync(path, 'utf8'));
+      } catch (e) {
+        console.log(e);
+        return {};
+      }
+    };
 
         /**
          * Read JSON Async
@@ -498,27 +493,26 @@
          * @param  {String} enc  encoding, default utf8
          * @return {Promise}
          */
-        service.readJSON = function(path, enc) {
-            var def = $q.defer();
-            if (typeof enc === 'undefined') {
-                enc = 'utf8';
-            }
+    service.readJSON = function(path, enc) {
+      var def = $q.defer();
+      if (typeof enc === 'undefined') {
+        enc = 'utf8';
+      }
 
-            FS.readFile(path, enc, function(err, data) {
-                if (err) {
-                    def.reject(err);
-                } else {
-                    try {
-                        var data = JSON.parse(data);
-                        def.resolve(data);
-                    } catch(err) {
-                        def.reject(err);
-                    }
-                }
-            });
+      FS.readFile(path, enc, function(err, data) {
+        if (err) {
+          def.reject(err);
+        } else {
+          try {
+            def.resolve(JSON.parse(data));
+          } catch(err) {
+            def.reject(err);
+          }
+        }
+      });
 
-            return def.promise;
-        };
+      return def.promise;
+    };
 
         /**
          * Write Text into file async
@@ -530,20 +524,20 @@
          * @param  {Boolean} relative When true use BASEDIR
          * @return {Promise}
          */
-        service.writeTxt = function(content, path, relative) {
-            var def = $q.defer();
-            path = _checkRel(path, relative);
+    service.writeTxt = function(content, path, relative) {
+      var def = $q.defer();
+      path = _checkRel(path, relative);
 
-            FS.writeFile(path, content, function(err) {
-                if (err) {
-                    def.reject(err);
-                } else {
-                    def.resolve();
-                }
-            });
+      FS.writeFile(path, content, function(err) {
+        if (err) {
+          def.reject(err);
+        } else {
+          def.resolve();
+        }
+      });
 
-            return def.promise;
-        };
+      return def.promise;
+    };
 
         /**
          * Writes Object to JSON File async
@@ -556,22 +550,22 @@
          * @param  {Boolean} relative When true use BASEDIR
          * @return {Promise}
          */
-        service.writeJSON = function(givenObject, path, relative) {
-            var def = $q.defer();
-            path = _checkRel(path, relative);
+    service.writeJSON = function(givenObject, path, relative) {
+      var def = $q.defer();
+      path = _checkRel(path, relative);
 
-            FS.writeFile(path, JSON.stringify(givenObject, null, 4), function(err) {
-                if (err) {
-                    def.reject(err);
-                } else {
-                    def.resolve(service.getName(path));
-                }
-            });
+      FS.writeFile(path, JSON.stringify(givenObject, null, 4), function(err) {
+        if (err) {
+          def.reject(err);
+        } else {
+          def.resolve(service.getName(path));
+        }
+      });
 
-            return def.promise;
-        };
+      return def.promise;
+    };
 
-        return service;
-    }
+    return service;
+  }
 
 })();
