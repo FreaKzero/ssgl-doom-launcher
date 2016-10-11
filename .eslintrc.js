@@ -12,6 +12,10 @@ module.exports = {
 
     "extends": "eslint:recommended",
     "rules": {
+
+        "no-console": [
+            "error", { allow: ["log", "warn", "error"] }
+        ], 
         "indent": [
             "error",
             2
