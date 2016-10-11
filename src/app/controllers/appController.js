@@ -1,17 +1,18 @@
 (function() {
-  app.controller('appController', ['$scope',
-   '$mdDialog',
-   '$mdToast',
-   '$mdBottomSheet',
-   '$mdSidenav',
-   'modlistService',
-   '$http',
-   'iwadService',
-   'nwService',
-   'gameService',
-   'modselectedService',
-   'configService',
-   appController]);
+  app.controller('appController', [
+    '$scope',
+    '$mdDialog',
+    '$mdToast',
+    '$mdBottomSheet',
+    '$mdSidenav',
+    'modlistService',
+    '$http',
+    'iwadService',
+    'nwService',
+    'gameService',
+    'modselectedService',
+    'configService',
+    appController]);
 
   var UPDATE = {
     json: 'https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json',
@@ -62,7 +63,7 @@
                       $mdDialog.cancel();
                     };
 
-                    $scope.download = function(url) {
+                    $scope.download = function() {
                       var release = UPDATE.download + response.data.version;
                       nwService.getShell().openExternal(release);
                     };
@@ -104,7 +105,7 @@
                     $scope.dontShow = function() {
                     };
 
-                    $scope.download = function(url) {
+                    $scope.download = function() {
                       var release = UPDATE.download + response.data.version;
                       nwService.getShell().openExternal(release);
                     };
@@ -261,7 +262,7 @@
      * @param $scope
      * @param $mdBottomSheet
      */
-      function AboutDialogController($scope, $mdBottomSheet) {
+      function AboutDialogController($scope) {
 
       /**
        * @property {String} version Versionnumber
@@ -482,7 +483,7 @@
            * @for ConfigDialogController
            * @param  $index
            */
-            $scope.start = function($index) {
+            $scope.start = function() {
               if ($scope.deletesavegames) {
                 nwService.wipeDir(saveDir);
               }
