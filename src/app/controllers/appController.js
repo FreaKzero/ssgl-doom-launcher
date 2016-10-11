@@ -216,6 +216,7 @@
    * @param  Event ev Clickevent
    */
     $scope.openMenu = function($mdOpenMenu, ev) {
+      //ESLint Error => Dont touch this
       var originatorEv = ev;
       $mdOpenMenu();
     };
@@ -393,18 +394,18 @@
           });
 
 
-          function bindFileDialog($scope, element, options) {
+          function bindFileDialog($scope, element) {
 
             var inp = element[0].querySelector('.fileDialog');
             var btn = element[0].querySelector('#keep');
             $scope.wadpath = $PARENT.config.wadpath + nwService.pathsep + 'obligebuild.WAD';
 
 
-            btn.addEventListener('click', function(evt) {
+            btn.addEventListener('click', function() {
               inp.click();
             });
 
-            inp.addEventListener('change', function(evt) {
+            inp.addEventListener('change', function() {
               if (this.value !== '') {
                 nwService.copyFile($PARENT.config.oblige.mappath, this.value);
 
