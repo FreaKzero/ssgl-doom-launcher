@@ -121,7 +121,7 @@
       var useEngine = $rootScope.config.engines[opt.engine];
 
       try {
-        execFile(useEngine, _paramBuilder(opt), function(error, stdout) {
+        execFile(useEngine, _paramBuilder(opt), function(error) {
           if (error) {
             nwService.panic('Enginestarter', 'Doomstarter encountered a Problem', error.stack);
           }
