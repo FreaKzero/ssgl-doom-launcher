@@ -15,11 +15,6 @@
     'updateService',
     appController]);
 
-  var UPDATE = {
-    json: 'https://raw.githubusercontent.com/FreaKzero/ssgl-doom-launcher/master/package.json',
-    download: 'https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v'
-  };
-
   /**
    * appController
    * General App Controller (Menus, Fab)
