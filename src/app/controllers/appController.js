@@ -48,7 +48,7 @@
       SettingsDialog(null);
     }
 
-    updateService.checkUpdate();
+    updateService.autoUpdate();
   /**
    * Forces Update lookup, Updatedialog or no Update available feedback dialog is showing
    * 
@@ -56,48 +56,7 @@
    * @for appController
    */
     $scope.forceUpdate = function() {
-      $http.get(UPDATE.json).
-            then(function(response) {
-              if (response.data.version !== $scope.APPVERSION) {
-                $mdDialog.show({
-                  controller: function($scope) {
-                    $scope.downloadversion = response.data.version;
-                    $scope.showDeny = false;
-
-                    $scope.dontShow = function() {
-                    };
-
-                    $scope.download = function() {
-                      var release = UPDATE.download + response.data.version;
-                      nwService.getShell().openExternal(release);
-                    };
-
-                    $scope.close = function() {
-                      $mdDialog.cancel();
-                    };
-                  },
-
-                  templateUrl: 'app/templates/Update.html',
-                  parent: angular.element(document.body),
-                  clickOutsideToClose: true
-                });
-              } else {
-                $mdDialog.show({
-                  controller: function($scope) {
-                    $scope.close = function() {
-                      $mdDialog.cancel();
-                    };
-                  },
-
-                  templateUrl: 'app/templates/noUpdateAvailable.html',
-                  parent: angular.element(document.body),
-                  clickOutsideToClose: true
-                });
-              }
-
-            }, function(response) {
-              console.log('ERROR: ' + response);
-            });
+      updateService.forceUpdate();
     };
 
   /**
