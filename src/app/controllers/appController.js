@@ -12,6 +12,7 @@
     'gameService',
     'modselectedService',
     'configService',
+    'updateService',
     appController]);
 
   var UPDATE = {
@@ -38,55 +39,16 @@
    nwService,
    gameService,
    modselectedService,
-   configService) {
-    var $PARENT = $scope;
+   configService,
+   updateService) {
 
-  /**
-   * Automatic Update process on startup, user can choose to deny further dialogs
-   *
-   * @for appController
-   * @uses  $http Ajax Service to github Repository
-   * @event update
-   */
-    if ($scope.APPVERSION !== '0.0.0') {
-      $http.get(UPDATE.json).
-            then(function(response) {
-              if (response.data.version !== $scope.APPVERSION && response.data.version !== $scope.config.dontShowUpdate) {
-                $mdDialog.show({
-                  controller: function($scope) {
-                    $scope.downloadversion = response.data.version;
-                    $scope.showDeny = true;
-
-                    $scope.dontShow = function() {
-                      $PARENT.config.dontShowUpdate = response.data.version;
-                      nwService.writeJSON($PARENT.config, 'config.json', true);
-                      $mdDialog.cancel();
-                    };
-
-                    $scope.download = function() {
-                      var release = UPDATE.download + response.data.version;
-                      nwService.getShell().openExternal(release);
-                    };
-
-                    $scope.close = function() {
-                      $mdDialog.cancel();
-                    };
-                  },
-
-                  templateUrl: 'app/templates/Update.html',
-                  parent: angular.element(document.body),
-                  clickOutsideToClose: true
-                });
-              }
-
-            }, function(response) {
-              console.log('ERROR: ' + response);
-            });
-    }
+    var $PARENT = $scope;  
+    
     if ($scope.config.freshinstall === true) {
       SettingsDialog(null);
     }
 
+    updateService.checkUpdate();
   /**
    * Forces Update lookup, Updatedialog or no Update available feedback dialog is showing
    * 

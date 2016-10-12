@@ -7,16 +7,23 @@
     </div>
   </md-toolbar>
   <md-dialog-content style="padding:25px;">
-    <div>
-      <strong>Version {{downloadversion}}</strong> is available for Download here: <br /><br />
-      <div style="text-align:center;">
+    <div layout="row" layout-sm="column">
+      <div flex=66>
+        <strong>{{data.name}}</strong> is available for Download here: <br /><br />
+          <h3 style="margin-bottom: 0;">New in this Version</h3>
+          <div style="white-space: pre;" ng-bind="data.body"></div>
+          <br />
         
-        <md-button ng-show="showDeny" class="md-raised" style="background-color: #505050;"><i class="mdi mdi-bell-off"></i> &nbsp;&nbsp;<a target="_blank" ng-click="dontShow()">Dont show again</a></md-button>
-
-        <md-button class="md-raised md-accent"><i class="mdi mdi-briefcase-download"></i> &nbsp;&nbsp;<a target="_blank" ng-click="download()">Download</a></md-button>
+          <md-button ng-show="showDeny" class="md-raised" style="background-color: #505050;"><i class="mdi mdi-bell-off"></i> &nbsp;&nbsp;<a target="_blank" ng-click="dontShow()">Dont show again</a></md-button>
       </div>
-      
-      
+      <div flex=33>
+        <md-button 
+          style="width: 100%"
+          class="md-raised md-accent"
+          ng-repeat="asset in data.assets">
+            <a target="_blank" ng-click="download(asset.browser_download_url)">{{asset.name}} ({{round(asset.size / (1024 *1024))}} MB)</a>
+          </md-button>
+      </div>
     </div>
   </md-dialog-content>
   <div class="md-actions" layout="row">    
