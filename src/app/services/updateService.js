@@ -1,7 +1,7 @@
 (function() {
-  app.factory('updateService', ['$rootScope', '$http', '$mdDialog', 'nwService', updateService]);
+  app.factory('updateService', ['$rootScope', '$http', '$mdDialog', '$mdToast', 'nwService', updateService]);
 
-  function updateService($rootScope, $http, $mdDialog, nwService) {
+  function updateService($rootScope, $http, $mdDialog, $mdToast, nwService) {
     var service = {};   
     var GITHUB = 'https://api.github.com/repos/FreaKzero/ssgl-doom-launcher/releases';
 
@@ -73,6 +73,11 @@
     };
 
     service.autoUpdate = function() {
+
+      $mdToast.show(
+        $mdToast.simple().content('Checking for Updates ...').position('bottom').hideDelay(2000)
+      );
+
       $http.get(GITHUB).then(function(res) {
         var data = res.data[0];
         if (service.updateAvailable(data) && $rootScope.config.dontShowUpdate !== data.tag_name) {
