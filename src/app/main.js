@@ -62,8 +62,6 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router', 'cfp.hotkeys']);
          */
     $rootScope.APPVERSION = nwService.readSyncJSON('package.json').version;
     document.title = 'Super Shotgun Launcher v' + $rootScope.APPVERSION;
-    
-    nwService.openDevTools();
             
     if (process.platform === 'darwin') {
       nwService.registerMenu();

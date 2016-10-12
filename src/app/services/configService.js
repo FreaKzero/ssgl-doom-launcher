@@ -3,8 +3,7 @@
 
   function configService(nwService, DEFAULTCONFIG, $mdToast) {
     var service = {};
-
-    service.config = _.extend(DEFAULTCONFIG, nwService.readSyncJSON(nwService.buildPath(['config.json']), true));
+    service.config = angular.merge({}, DEFAULTCONFIG, nwService.readSyncJSON(nwService.buildPath(['config.json']), true));
 
     service.importConfig = function(obj) {
       service.saveConfig(
@@ -32,7 +31,7 @@
     };
 
     service.getConfig = function() {
-      return DEFAULTCONFIG;
+      return service.config;
     };        
         
     return service;
