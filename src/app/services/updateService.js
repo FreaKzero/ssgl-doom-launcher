@@ -58,9 +58,8 @@
         if (service.updateAvailable(res.data[0])) {
           service.updateDialog(res.data[0], false);
         } else {
-          service.genericDialog(
-            'No update available',
-            'You are using already the newest Version'
+          $mdToast.show(
+            $mdToast.simple().content('No update available').position('bottom').hideDelay(2000)
           );
         }
         
