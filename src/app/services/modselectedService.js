@@ -84,12 +84,12 @@
       });
     };
         
-        /**
-         * Returns all selected Wads/Mods
-         * @method get
-         * @for modselectedService
-         * @return {Array}
-         */
+    /**
+     * Returns all selected Wads/Mods
+     * @method get
+     * @for modselectedService
+     * @return {Array}
+     */
     service.get = function() {
       return list;
     };

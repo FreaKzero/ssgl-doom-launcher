@@ -80,9 +80,9 @@
       }
 
       return nwService.writeJSON(
-                listObj.list,
-                file
-            );
+          listObj.list,
+          file
+      );
     };
 
         /**
