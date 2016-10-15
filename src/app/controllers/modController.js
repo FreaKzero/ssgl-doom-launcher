@@ -26,14 +26,12 @@
       }
     }); 
 
-
     //#TODO: doc
     $scope.$on('modService.watcher', function() {
       $scope.mods = modService.mods;
       $scope.$apply();
     });
-        
-        
+                
     //#TODO: doc
     $scope.$on('modselectedService.useList', function() {
       $scope.selected = modselectedService.get();
