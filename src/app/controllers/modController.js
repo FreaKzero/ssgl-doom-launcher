@@ -27,14 +27,14 @@
     }); 
 
 
-        //#TODO: doc
+    //#TODO: doc
     $scope.$on('modService.watcher', function() {
       $scope.mods = modService.mods;
       $scope.$apply();
     });
         
         
-        //#TODO: doc
+    //#TODO: doc
     $scope.$on('modselectedService.useList', function() {
       $scope.selected = modselectedService.get();
 
@@ -51,12 +51,12 @@
       });
     });
 
-        /**
-         * Start a new List (Reset)
-         *
-         * @method newSelected
-         * @for modController
-         */
+    /**
+     * Start a new List (Reset)
+     *
+     * @method newSelected
+     * @for modController
+     */
     $scope.newSelected = function() {
       $scope.mods.filter(function(item) {
         item.checked = false;
@@ -96,13 +96,13 @@
       event.stopImmediatePropagation(); 
 
     };
-        /**
-         * Opens a Prompt for modlist saving
-         *
-         * @method saveSelected
-         * @for modController
-         * @param  {Event} ev
-         */
+      /**
+       * Opens a Prompt for modlist saving
+       *
+       * @method saveSelected
+       * @for modController
+       * @param  {Event} ev
+       */
     $scope.saveSelected = function(ev) {
       $mdDialog.show({
         controller: saveSelectedController,
@@ -112,78 +112,75 @@
         clickOutsideToClose: false
       });
 
-            /**
-             * saveSelectedController
-             *
-             * @method saveSelectedController
-             * @for saveSelected
-             * @param  $scope
-             * @param  $mdDialog
-             * @param  modlistService
-             */
+      /**
+       * saveSelectedController
+       *
+       * @method saveSelectedController
+       * @for saveSelected
+       * @param  $scope
+       * @param  $mdDialog
+       * @param  modlistService
+       */
       function saveSelectedController($scope, $mdDialog, modlistService) {
-                /**
-                 * Title for Dialog
-                 *
-                 * @property title
-                 * @type {String}
-                 */
+      /**
+       * Title for Dialog
+       *
+       * @property title
+       * @type {String}
+       */
         $scope.title = 'Save List';
 
         if ($parent.selected.name !== 'Untitled') {
           $scope.listname = $parent.selected.name;
         }
 
-                /**
-                 * @property double
-                 * @type {Array}
-                 */
+      /**
+       * @property double
+       * @type {Array}
+       */
         $scope.overwrite = [];
 
-                /**
-                 * Closes Dialog
-                 *
-                 * @method cancel
-                 * @for saveSelectedController
-                 */
+      /**
+       * Closes Dialog
+       *
+       * @method cancel
+       * @for saveSelectedController
+       */
         $scope.cancel = function() {
           $mdDialog.cancel();
         };
 
-                /**
-                 * check for doubles - here empty because we donnt need it
-                 *
-                 * @method checkdoubles
-                 * @for saveSelectedController
-                 */
+      /**
+       * 
+       * @method checkdoubles
+       * @for saveSelectedController
+       */
         $scope.checkdoubles = function() {
           $scope.overwrite = modlistService.lists.filter(function(list) {
             return $scope.listname === list.name;
           });
         };
 
-                /**
-                 * Saves the List
-                 * @method submitForm
-                 * @for saveSelectedController
-                 * @uses modlistService
-                 */
-            
+        /**
+         * Saves the List
+         * @method submitForm
+         * @for saveSelectedController
+         * @uses modlistService
+         */
         $scope.submitForm = function(valid) {
           if (valid) {
             $parent.selected.name = $scope.listname;
-            modlistService.saveSelected($parent.selected).then(function(listname) {
+            modlistService.saveSelected(angular.copy($parent.selected)).then(function(listname) {
               $mdToast.show(
-                                $mdToast.simple()
-                                .content('Saved List to ' + listname).position('bottom').hideDelay(1500)
-                            );
+                $mdToast.simple()
+                .content('Saved List to ' + listname).position('bottom').hideDelay(1500)
+              );
             }, function(error) {
               $mdToast.show(
-                                $mdToast.simple()
-                                .content(error.message).position('bottom').hideDelay(1500)
-                            );
+                $mdToast.simple()
+                .content(error.message).position('bottom').hideDelay(1500)
+              );
             });
-
             $mdDialog.cancel();
           }
         };
