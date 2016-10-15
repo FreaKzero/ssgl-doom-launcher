@@ -11,23 +11,23 @@
   function modlistController($scope, modlistService, $rootScope, $mdDialog, $mdToast, modselectedService) {
 
     modlistService.getLists().then(function(list) {
-            /**
-             * @property modlist
-             * @type {Array}
-             * @async
-             */
+    /**
+     * @property modlist
+     * @type {Array}
+     * @async
+     */
       $scope.modlist = list;
     });
 
     var $parent = $scope;
 
-        /**
-         * Fires up rename Dialog
-         * @method rename
-         * @for modlistController
-         * @param ev
-         * @param $index
-         */
+  /**
+   * Fires up rename Dialog
+   * @method rename
+   * @for modlistController
+   * @param ev
+   * @param $index
+   */
     $scope.rename = function(ev, $index) {
       var item = $scope.modlist[$index];
 
@@ -39,93 +39,93 @@
         clickOutsideToClose: false
       });
 
-            /**
-             * renameListController
-             *
-             * @method renameListController
-             * @for modlistController
-             * @param $scope
-             * @param $mdDialog
-             * @param modlistService
-             */
+      /**
+       * renameListController
+       *
+       * @method renameListController
+       * @for modlistController
+       * @param $scope
+       * @param $mdDialog
+       * @param modlistService
+       */
       function renameListController($scope, $mdDialog, modlistService) {
-                /**
-                 * @property listname
-                 * @type {String}
-                 */
+        /**
+         * @property listname
+         * @type {String}
+         */
         $scope.listname = item.name;
-                /**
-                 * @property double
-                 * @type {Array}
-                 */
+        /**
+         * @property double
+         * @type {Array}
+         */
         $scope.cantSave = [];
 
-                /**
-                 * Title of Dialog
-                 *
-                 * @property title
-                 * @type {String}
-                 */
+        /**
+         * Title of Dialog
+         *
+         * @property title
+         * @type {String}
+         */
         $scope.title = 'Rename List';
 
-                /**
-                 * Checks for existing list names
-                 *
-                 * @method checkdoubles
-                 * @for renameListController
-                 */
+        /**
+         * Checks for existing list names
+         *
+         * @method checkdoubles
+         * @for renameListController
+         */
         $scope.checkdoubles = function() {
           $scope.cantSave = $parent.modlist.filter(function(list) {
             return $scope.listname === list.name;
           });
         };
 
-                /**
-                 * Renames the List
-                 * @method submitForm
-                 * @for renameListController
-                 * @param valid
-                 */
+        /**
+         * Renames the List
+         * @method submitForm
+         * @for renameListController
+         * @param valid
+         */
         $scope.submitForm = function(valid) {
           if (valid && $scope.cantSave.length === 0) {
             item.name = $scope.listname;
 
             modlistService.rename(item).then(function(renamed) {
               $mdToast.show(
-                                $mdToast.simple()
-                                .content('List renamed to ' + renamed).position('bottom').hideDelay(1500)
-                            );
+                $mdToast.simple()
+                .content('List renamed to ' + renamed).position('bottom').hideDelay(1500)
+              );
             }, function(error) {
               $mdToast.show(
-                                $mdToast.simple()
-                                .content(error.message).position('bottom').hideDelay(1500)
-                            );
+                $mdToast.simple()
+                .content(error.message).position('bottom').hideDelay(1500)
+              );
             });
 
             $mdDialog.cancel();
           }
         };
 
-                /**
-                 * Closes Dialog
-                 *
-                 * @method cancel
-                 * @for renameListController
-                 */
+        /**
+         * Closes Dialog
+         *
+         * @method cancel
+         * @for renameListController
+         */
         $scope.cancel = function() {
           $mdDialog.cancel();
         };
       }
     };
 
-        /**
-         * Fire up Delete confirm Dialog
-         *
-         * @method delete
-         * @for modlistController
-         * @param ev
-         * @param $index
-         */
+    /**
+     * Fire up Delete confirm Dialog
+     *
+     * @method delete
+     * @for modlistController
+     * @param ev
+     * @param $index
+     */
     $scope.delete = function(ev, $index) {
       var confirm = $mdDialog.confirm()
                 .title('Really Delete ?')
@@ -138,14 +138,14 @@
 
         modlistService.remove($scope.modlist[$index]).then(function(listname) {
           $mdToast.show(
-                        $mdToast.simple()
-                        .content('List ' + listname + ' removed').position('bottom').hideDelay(1500)
-                    );
+            $mdToast.simple()
+            .content('List ' + listname + ' removed').position('bottom').hideDelay(1500)
+          );
         }, function(error) {
           $mdToast.show(
-                        $mdToast.simple()
-                        .content(error.message).position('bottom').hideDelay(1500)
-                    );
+              $mdToast.simple()
+              .content(error.message).position('bottom').hideDelay(1500)
+          );
         });
 
         $scope.modlist.splice($index, 1);
@@ -155,17 +155,17 @@
 
     };
 
-        /**
-         * select a List
-         *
-         * @method selectList
-         * @for modlistController
-         * @param  $index
-         */
+    /**
+     * select a List
+     *
+     * @method selectList
+     * @for modlistController
+     * @param  $index
+     */
     $scope.selectList = function($index) {
       modselectedService.selectList(
-                angular.copy($scope.modlist[$index])
-            );
+        angular.copy($scope.modlist[$index])
+      );
     };
   }
 })();
