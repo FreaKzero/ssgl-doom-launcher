@@ -29,7 +29,7 @@
         );
       });
     };
-
+    
     service.getConfig = function() {
       return service.config;
     };        
