@@ -38,8 +38,6 @@
             type: ext
           });
         }
-
-        $rootScope.$broadcast('modService.watcher');
       }
 
       if (event === 'unlink') {
@@ -53,8 +51,6 @@
         if (z.length > 0) {
           service.mods.splice(z[0].index, 1);
         }
-
-        $rootScope.$broadcast('modService.watcher');
       }
     });
 
