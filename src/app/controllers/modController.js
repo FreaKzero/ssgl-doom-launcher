@@ -15,6 +15,7 @@
     $scope.screenshots = null;
     $scope.screenshotsTitle = '';
     $scope.lookupLoad = false;
+    $scope.mods = modService.mods;
 
     angular.element($window).on('keydown', function(e) {
       if (e.which === 70 && e.ctrlKey === true) {
@@ -24,12 +25,6 @@
         e.stopPropagation();
         return false;
       }
-    });
-
-    //#TODO: doc
-    $scope.$on('modService.watcher', function() {
-      $scope.mods = modService.mods;
-      $scope.$apply();
     });
 
     //#TODO: doc

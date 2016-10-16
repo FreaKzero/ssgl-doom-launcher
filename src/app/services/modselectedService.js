@@ -23,7 +23,7 @@
   function modselectedService($q, $rootScope) {
     var service = {};
 
-        // #TODO doc
+    // #TODO doc
     service.selectList = function(listObj) {
       list.list = listObj.wads;
       list.name = listObj.name;
@@ -31,7 +31,7 @@
       $rootScope.$broadcast('modselectedService.useList');
     };
 
-        // #TODO doc
+    // #TODO doc
     service.select = function(mod) {
       if (mod.checked === false) {
         mod.checked = true;
