@@ -1,23 +1,23 @@
 (function() {
   app.factory('modService', ['$q', '$rootScope', 'nwService', modService]);
 
-    /**
-     * Service to Fetch Mod WADS from FileSystem
-     *
-     * @method modService
-     * @module ssgl
-     * @submodule modService
-     * @uses nwService
-     */
+  /**
+   * Service to Fetch Mod WADS from FileSystem
+   *
+   * @method modService
+   * @module ssgl
+   * @submodule modService
+   * @uses nwService
+   */
 
   function modService($q, $rootScope, nwService) {
     var service = {};
-        /**
-         * The Wads/Mods
-         *
-         * @property mods
-         * @type {Array}
-         */
+    /**
+     * The Wads/Mods
+     *
+     * @property mods
+     * @type {Array}
+     */
     service.mods = [];
 
     nwService.startWatcher($rootScope.config.wadpath, function(file, event) {
