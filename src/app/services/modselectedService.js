@@ -91,7 +91,7 @@
      * @return {Array}
      */
     service.get = function() {
-      return list.list;
+      return list;
     };
 
     service.setListname = function(name) {

@@ -27,6 +27,24 @@
       }
     });
 
+    $scope.$on('watcher.finishedInit', function() {
+      if ($scope.config.initList) {
+        $scope.selected = modselectedService.get();
+        var list = JSON.parse($scope.config.initList);
+
+        $scope.selected.list = list.wads;
+        $scope.selected.name = list.name;
+
+        _.each($scope.selected.list, function(item) {
+          var index = _.findIndex($scope.mods, {
+            path: item.path
+          });
+
+          $scope.mods[index].checked = true;
+        });
+      }
+    });
+
     //#TODO: doc
     $scope.$on('modselectedService.useList', function() {
       $scope.selected = modselectedService.get();

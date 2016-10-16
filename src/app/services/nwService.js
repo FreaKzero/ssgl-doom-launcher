@@ -87,6 +87,8 @@
     service.startWatcher = function(path, callback) {
       service.watcher = chokidar.watch(path, {
         ignored: /[\/\\]\./
+      }).on('ready', function(event, d) {
+        $rootScope.$broadcast('watcher.finishedInit');
       }).on('all', function(event, path) {
         callback(path, event);
       });
