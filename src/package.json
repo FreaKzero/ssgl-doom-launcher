@@ -12,6 +12,6 @@
     },
      "devDependencies": {
       "chokidar": "1.4.3",
-      "md5-file": "2.0.4"   
+      "md5-file": "2.0.4"
   	}
 }
