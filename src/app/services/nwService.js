@@ -216,7 +216,7 @@
       if (execpath) {
         array.unshift(service.execpath);
       }
-            
+
       return PATH.join.apply(this, array);
     };
 

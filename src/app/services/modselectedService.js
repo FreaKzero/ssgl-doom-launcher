@@ -15,16 +15,16 @@
      * @type {Array}
      * @private
      */
-        
+
   var list = {};
   list.name = 'Untitled';
   list.list = [];
-    
+
   function modselectedService($q, $rootScope) {
     var service = {};
-        
+
         // #TODO doc
-    service.selectList = function(listObj) {            
+    service.selectList = function(listObj) {
       list.list = listObj.wads;
       list.name = listObj.name;
 
@@ -59,14 +59,14 @@
         _.move(list.list, index, index - 1);
       }
     };
-        
+
     service.reset = function() {
       list.name = 'Untitled';
       list.list = [];
 
       return list;
     };
-        
+
         //#TODO doc
     service.getPathsDEH = function() {
       return list.list.filter(function(item) {
@@ -83,7 +83,7 @@
         return item.path;
       });
     };
-        
+
     /**
      * Returns all selected Wads/Mods
      * @method get
@@ -103,7 +103,7 @@
          * @method getListname
          * @for modselectedService
          * @return {String} listname
-         */        
+         */
     service.getListname = function() {
       return list.name;
     };

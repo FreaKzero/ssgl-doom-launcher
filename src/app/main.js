@@ -56,13 +56,13 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router', 'cfp.hotkeys']);
      * @requires nwService
      */
   app.run(function($rootScope, nwService, configService) {
-        /**
-         * @property {String} APPVERSION Versionnumber
-         * @type {String}
-         */
+    /**
+     * @property {String} APPVERSION Versionnumber
+     * @type {String}
+     */
     $rootScope.APPVERSION = nwService.readSyncJSON('package.json').version;
     document.title = 'Super Shotgun Launcher v' + $rootScope.APPVERSION;
-            
+
     if (process.platform === 'darwin') {
       nwService.registerMenu();
     }
@@ -81,7 +81,7 @@ var app = angular.module('ssgl', ['ngMaterial', 'ui.router', 'cfp.hotkeys']);
             window.location.reload();
           }
         });
-                                    
+
       } catch (e) {
         console.log('Something went wrong');
       }
