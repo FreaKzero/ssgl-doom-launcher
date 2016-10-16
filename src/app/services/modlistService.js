@@ -17,7 +17,7 @@
      * @private
      * @type {String}
      */
-    var listDir = $rootScope.config.modlistpath; 
+    var listDir = $rootScope.config.modlistpath;
 
     service.lists = [];
     /**
@@ -95,7 +95,7 @@
    */
     service.getLists = function() {
       var def = $q.defer();
-            
+
       nwService.getDir(listDir).then(function(items) {
         service.lists = items.map(function(item) {
           var file = nwService.buildPath([listDir, item]);
