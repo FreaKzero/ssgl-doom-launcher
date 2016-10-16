@@ -37,16 +37,17 @@
    configService,
    updateService) {
 
-    var $PARENT = $scope;  
-    
+    var $PARENT = $scope;
+
     if ($scope.config.freshinstall === true) {
       SettingsDialog(null);
     }
 
     updateService.autoUpdate();
+
   /**
    * Forces Update lookup, Updatedialog or no Update available feedback dialog is showing
-   * 
+   *
    * @method forceUpdate
    * @for appController
    */
@@ -87,12 +88,12 @@
     };
 
     $scope.openScreenshotFolder = function() {
-      nwService.getShell().openItem($scope.config.screenshotpath);  
+      nwService.getShell().openItem($scope.config.screenshotpath);
     };
 
   /**
    * Opens Devtools
-   * 
+   *
    * @method openDevTools
    * @for appController
    */
@@ -150,7 +151,7 @@
 
         //#TODO doc
     $scope.hasEngine = function() {
-      return $scope.config.active.gzdoom || $scope.config.active.zandronum || 
+      return $scope.config.active.gzdoom || $scope.config.active.zandronum ||
                     $scope.config.active.zdoom || $scope.config.active.doom64ex ||
                     $scope.config.active.prboomp || $scope.config.active.doomretro;
     };
@@ -374,7 +375,7 @@
 
           /**
            * Opens Oblige
-           * 
+           *
            * @see appController.openOblige
            * @method openOblige
            * @for ConfigDialogController
@@ -385,7 +386,7 @@
 
           /**
            * Opens Savegame folder in external Explorer
-           * 
+           *
            * @method openSaveDir
            * @for ConfigDialogController
            */
@@ -488,7 +489,7 @@
         $scope.openConfig = function() {
           nwService.getShell().showItemInFolder(nwService.buildPath(['config.json'], true));
         };
-                
+
         //TODO: docs
         $scope.doomrpgCheckbox = function(value) {
           if (value === false) {
