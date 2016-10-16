@@ -2,7 +2,7 @@
   app.factory('updateService', ['$rootScope', '$http', '$mdDialog', '$mdToast', 'nwService', updateService]);
 
   function updateService($rootScope, $http, $mdDialog, $mdToast, nwService) {
-    var service = {};   
+    var service = {};
     var GITHUB = 'https://api.github.com/repos/FreaKzero/ssgl-doom-launcher/releases';
 
     service.genericDialog = function(title, msg) {
@@ -16,7 +16,7 @@
         .show(ad)
         .finally(function() {
           ad = undefined;
-        });        
+        });
     };
 
     service.updateDialog = function(data, showDeny) {
@@ -62,7 +62,7 @@
             $mdToast.simple().content('No update available').position('bottom').hideDelay(2000)
           );
         }
-        
+
       }, function() {
         service.genericDialog(
           'Error',
