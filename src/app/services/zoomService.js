@@ -11,26 +11,27 @@
       STEP: 0.5
     };
 
-    hotkeys.add({
-      combo: 'ctrl+=',
-      description: 'Zoom In',
-      callback: function() {
-        if (Window.zoomLevel <= C.MAXZOOM) {
-          Window.zoomLevel += C.STEP;
+    service.init = function() {
+      hotkeys.add({
+        combo: 'ctrl+=',
+        description: 'Zoom In',
+        callback: function() {
+          if (Window.zoomLevel <= C.MAXZOOM) {
+            Window.zoomLevel += C.STEP;
+          }
         }
-      }
-    });
+      });
 
-    hotkeys.add({
-      combo: 'ctrl+-',
-      description: 'Zoom Out',
-      callback: function() {
-        if (Window.zoomLevel >= C.MINZOOM) {
-          Window.zoomLevel -= C.STEP;
+      hotkeys.add({
+        combo: 'ctrl+-',
+        description: 'Zoom Out',
+        callback: function() {
+          if (Window.zoomLevel >= C.MINZOOM) {
+            Window.zoomLevel -= C.STEP;
+          }
         }
-      }
-    });
-
+      });
+    }
     return service;
   }
 })();

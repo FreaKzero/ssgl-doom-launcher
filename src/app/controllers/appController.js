@@ -13,6 +13,7 @@
     'modselectedService',
     'configService',
     'updateService',
+    'zoomService',
     appController]);
 
   /**
@@ -35,7 +36,8 @@
    gameService,
    modselectedService,
    configService,
-   updateService) {
+   updateService,
+   zoomService) {
 
     var $PARENT = $scope;
 
@@ -43,6 +45,7 @@
       SettingsDialog(null);
     }
 
+    zoomService.init();
     updateService.autoUpdate();
 
   /**
