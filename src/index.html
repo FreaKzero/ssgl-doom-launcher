@@ -13,18 +13,18 @@
         <link rel="stylesheet" href="app/lib/angular-hotkeys/build/hotkeys.min.css" />
         <script type="text/javascript" src="app/lib/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="app/lib/jquery-slimscroll/jquery.slimscroll.js"></script>
-        
+
         <script src="app/lib/underscore/underscore.js"></script>
         <script src="app/lib/angular/angular.js"></script>
         <script src="app/lib/angular-animate/angular-animate.js"></script>
         <script src="app/lib/angular-aria/angular-aria.js"></script>
-        <script src="app/lib/angular-ui-router/release/angular-ui-router.min.js"></script>        
+        <script src="app/lib/angular-ui-router/release/angular-ui-router.min.js"></script>
         <script type="text/javascript" src="app/lib/angular-material/angular-material.js"></script>
         <script type="text/javascript" src="app/lib/angular-hotkeys/build/hotkeys.min.js"></script>
         <script src="app.js"></script>
-        
+
         <link href="app/lib/mdi/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
-        
+
     </head>
     <body ng-app="ssgl" layout="column" ng-controller="appController" id="app">
         <md-toolbar layout="row">
@@ -34,11 +34,11 @@
         </div>
 
         <md-button ng-show="DEVELOPER" aria-label="Open DevTools" style="min-width: 50px;margin:0;" ng-click="openDevTools()"><i class="mdi mdi-code-not-equal-variant" style="font-size: 35px; margin-top: 8px;"><md-tooltip>Open DevTools (F12)</md-tooltip></i></md-button>
-        
+
         <md-button ng-show="config.active.oblige" aria-label="Open Oblige" style="min-width: 50px;margin:0;" ng-click="openOblige()"><i class="mdi mdi-map" style="font-size: 35px; margin-top: 8px;"><md-tooltip>Open Oblige</md-tooltip></i></md-button>
-        
+
         <md-button ng-show="config.online.client && config.online.client !== ''" aria-label="Open Multiplayer Client" style="min-width: 50px;margin:0;" ng-click="openMultiplayer()"><i class="mdi mdi-server-network" style="font-size: 35px; margin-top: 8px;"><md-tooltip>Open Doomseeker</md-tooltip></i></md-button>
-        
+
         <md-menu>
           <md-button aria-label="Open Menu" class="md-icon-button" style="padding:0;margin:0 0 0 0;" ng-click="openMenu($mdOpenMenu, $event)">
             <i class="mdi mdi-dots-vertical" style="font-size: 35px; margin-top: 8px;"></i>
@@ -52,11 +52,11 @@
             <md-menu-item>
             <md-button ng-click="showSettings($event)">Settings</md-button>
             </md-menu-item>
-            
+
             <md-menu-item>
                 <md-button ng-click="reload()">Restart App</md-button>
             </md-menu-item>
-            
+
             <md-menu-item>
                 <md-button ng-click="forceUpdate()">Check for Updates</md-button>
             </md-menu-item>
@@ -64,7 +64,7 @@
             <md-menu-item ng-click="showAboutDialog($event)">
                 <md-button>About</md-button>
             </md-menu-item>
-                    
+
           </md-menu-content>
 
         </md-menu>
@@ -94,8 +94,8 @@
             </md-content>
         </md-sidenav>
 
-        
-        <div ui-view></div>    
+
+        <div ui-view></div>
         <script type="text/javascript">
 
             $(document).ready(function() {

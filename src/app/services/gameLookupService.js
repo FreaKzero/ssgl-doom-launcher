@@ -1,5 +1,5 @@
 (function() {
-    
+
   var http = require('http');
 
   app.factory('gameLookupService', ['$q', 'nwService', '$rootScope', gameLookupService]);
@@ -39,12 +39,12 @@
       var def = $q.defer();
       var screens = [];
 
-            
+
       http.get({
         host: 'www.wad-archive.com',
         path: '/api/latest/' + md5,
       }, function(response) {
-                
+
         var body = '';
 
         if (response.statusCode !== 200) {
