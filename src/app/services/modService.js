@@ -57,7 +57,7 @@
         $rootScope.$broadcast('modService.watcher');
       }
     });
-      
+
     return service;
   }
 })();

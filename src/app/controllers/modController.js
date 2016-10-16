@@ -22,7 +22,7 @@
         e.stopImmediatePropagation();
         e.preventDefault();
         e.stopPropagation();
-        return false;        
+        return false;
       }
     });
 
