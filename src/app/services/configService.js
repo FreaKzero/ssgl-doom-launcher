@@ -19,7 +19,7 @@
             $mdToast.simple().content('Saved configuration - SSGL restarts ...').position('bottom').hideDelay(toastDelay)
         );
 
-        setTimeout(function() {                        
+        setTimeout(function() {
           window.location.reload();
         }, toastDelay + 500);
 
@@ -29,11 +29,11 @@
         );
       });
     };
-    
+
     service.getConfig = function() {
       return service.config;
-    };        
-        
+    };
+
     return service;
   }
 })();
