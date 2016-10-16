@@ -14,24 +14,24 @@
     $scope.selected = modselectedService.reset();
     $scope.screenshots = null;
     $scope.screenshotsTitle = '';
-    $scope.lookupLoad = false; 
+    $scope.lookupLoad = false;
 
     angular.element($window).on('keydown', function(e) {
-      if (e.which === 70 && e.ctrlKey === true) {                
+      if (e.which === 70 && e.ctrlKey === true) {
         document.getElementById('filterinput').focus();
         e.stopImmediatePropagation();
         e.preventDefault();
-        e.stopPropagation();   
-        return false;
+        e.stopPropagation();
+        return false;        
       }
-    }); 
+    });
 
     //#TODO: doc
     $scope.$on('modService.watcher', function() {
       $scope.mods = modService.mods;
       $scope.$apply();
     });
-                
+
     //#TODO: doc
     $scope.$on('modselectedService.useList', function() {
       $scope.selected = modselectedService.get();
@@ -66,7 +66,7 @@
     $scope.openScreenshots = function(name) {
       var path = $scope.config.screenshotpath + name;
       nwService.mkDir(path);
-            
+
       setTimeout(function() {
         nwService.getShell().openItem(path);
       },800);
@@ -80,18 +80,18 @@
       setTimeout(function() {
         gameLookupService.lookupWadArchive(mod.path).then(function(data) {
           if (data.length > 0) {
-            $scope.screenshots = data;    
+            $scope.screenshots = data;
           } else {
             gameLookupService.lookupLocal(mod).then(function(data) {
               $scope.screenshots = data;
             });
           }
-          $scope.lookupLoad = false;                    
+          $scope.lookupLoad = false;
         });
       },400);
-            
+
       $event.preventDefault();
-      event.stopImmediatePropagation(); 
+      event.stopImmediatePropagation();
 
     };
       /**
@@ -149,7 +149,7 @@
         };
 
       /**
-       * 
+       *
        * @method checkdoubles
        * @for saveSelectedController
        */
