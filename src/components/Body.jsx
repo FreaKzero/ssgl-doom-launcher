@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import background from '#Assets/doom.png';
+import background from '#Asset/doom.png';
 
 export default styled.div`
   background: url(${background});

@@ -31,9 +31,12 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx'],
     alias: {
-      '#Styles': res('src/styles.js'),
-      '#Components': res('src/components/'),
-      '#Assets': res('src/assets/')
+      '#Style': res('src/styles.js'),
+      '#Component': res('src/components/'),
+      '#Asset': res('src/assets/'),
+      '#View': res('src/views/'),
+      '#Util': res('src/utils/'),
+      '#Root': res('src/'),
     }
   },
   output: {

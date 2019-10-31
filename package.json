@@ -6,7 +6,8 @@
   "scripts": {
     "start": "concurrently \"yarn dev:webp\" \"yarn dev:elec\"",
     "dev:webp": "webpack-dev-server --mode development",
-    "dev:elec": "electron ."
+    "dev:elec": "electron .",
+    "lint": "eslint -f=pretty 'src/**/*.js?(x)' --fix"
   },
   "babel": {
     "plugins": [
@@ -44,10 +45,13 @@
     "css-loader": "^3.2.0",
     "error-overlay-webpack-plugin": "^0.4.1",
     "file-loader": "^4.2.0",
+    "i18next": "^19.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-i18next": "^11.0.1",
     "style-loader": "^1.0.0",
-    "styled-components": "^4.4.0"
+    "styled-components": "^4.4.0",
+    "wouter": "^2.3.1"
   }
 }
