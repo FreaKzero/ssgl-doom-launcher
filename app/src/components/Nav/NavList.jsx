@@ -15,7 +15,9 @@ const NavList = styled.ul`
 const Nav = () => {
   return (
     <NavList>
-      {routes.map(route => <NavItem label={route.label} to={route.href} /> )}
+      {routes.map(route => (
+        <NavItem label={route.label} to={route.href} />
+      ))}
     </NavList>
   );
 };

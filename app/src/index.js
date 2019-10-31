@@ -5,10 +5,7 @@ import Body from '#Component/Body';
 import NavList from '#Component/Nav/NavList';
 import Routes from '#Component/Router';
 import './assets/base.css';
-import "./i18n";
-
-const title = 'React with Webpack and Babel';
-const wat = 'deine mudda';
+import './i18n';
 
 const App = () => {
   return (
