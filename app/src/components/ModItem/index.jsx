@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import not from '#Asset/not.png';
-import Icon from './Icon';
 import styles from '#Style';
+import Icon from './Icon';
 
 const ItemStyle = styled.div`
   background: rgba(12, 8, 8, 0.8);
@@ -57,6 +57,7 @@ const ItemStyle = styled.div`
     }
   }
 `;
+
 
 const Item = () => {
   return (

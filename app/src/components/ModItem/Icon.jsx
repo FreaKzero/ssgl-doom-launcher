@@ -27,10 +27,9 @@ const names = {
 };
 
 const Icon = ({ name, ...rest }) => {
-  console.log(names[name]);
   return names[name] ? (
     <IconStyle>
-      <SvgInline {...rest} svg={names[name]} className="fuck" />
+      <SvgInline {...rest} svg={names[name]} />
     </IconStyle>
   ) : null;
 };

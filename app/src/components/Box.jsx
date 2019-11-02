@@ -19,5 +19,3 @@ const Box = styled(({ children, ...rest }) => {
 `;
 
 export default Box;
-
-/* Rectangle 20 */

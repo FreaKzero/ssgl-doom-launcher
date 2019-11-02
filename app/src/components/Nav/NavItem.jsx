@@ -5,13 +5,16 @@ import { Link } from 'wouter';
 const NavItem = styled(({ children, to, active, ...rest }) => {
   return (
     <li {...rest}>
-      <Link href={to}>{children}</Link>
+      <Link className={active ? 'active' : undefined} href={to}>
+        {children}
+      </Link>
     </li>
   );
 })`
   display: table-cell;
   position: relative;
   padding: 15px 0;
+
   a {
     color: #fff;
     text-transform: uppercase;

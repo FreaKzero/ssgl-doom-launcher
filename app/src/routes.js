@@ -3,7 +3,7 @@ import Wads from '#View/Wads';
 const routes = [
   {
     label: 'wads',
-    href: '/wads',
+    href: '/',
     component: Wads
   },
   {
