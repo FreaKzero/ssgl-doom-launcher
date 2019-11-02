@@ -69,9 +69,9 @@ const Item = () => {
         <div className="meta">pk3</div>
       </div>
       <div className="icons">
-        <Icon name="up" width="20" />
-        <Icon name="remove" width="15" />
-        <Icon name="down" width="20" />
+        <Icon name="up" width="16" />
+        <Icon name="remove" width="16" />
+        <Icon name="down" width="16" />
       </div>
     </ItemStyle>
   );
