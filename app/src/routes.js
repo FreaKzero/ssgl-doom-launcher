@@ -1,25 +1,25 @@
 import React from 'react';
-import {T} from '#Util/translation';
+import { T } from '#Util/translation';
+import Box from '#Component/Box';
+
 const Test = () => {
-    return <div><T>save</T></div>
-}
+  return (
+    <div>
+      <Box />
+    </div>
+  );
+};
 
 const Test2 = () => {
-    return <div>Test2!</div>
-}
+  return <div>Test2!</div>;
+};
 
 const routes = [
-    {
-        label: 'test1',
-        href: '/test',
-        component: Test
-    },
-    {
-        label: 'test2',
-        href: '/test2',
-        component: Test2
-    }
-
+  {
+    label: 'WADS',
+    href: '/test',
+    component: Test
+  }
 ];
 
 export default routes;

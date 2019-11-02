@@ -2,17 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'wouter';
-const NavItem = styled(({ label, to, active, ...rest }) => {
+const NavItem = styled(({ children, to, active, ...rest }) => {
   return (
     <li {...rest}>
-      <Link href={to}>{label}</Link>
+      <Link href={to}>{children}</Link>
     </li>
   );
 })`
   display: table-cell;
   position: relative;
   padding: 15px 0;
-
   a {
     color: #fff;
     text-transform: uppercase;
@@ -30,7 +29,7 @@ const NavItem = styled(({ label, to, active, ...rest }) => {
     left: 50%;
     position: absolute;
     background: #fff;
-    transition: all 0.3s ease 0s;
+    transition: all 0.3s ease;
     width: 0;
   }
   a:hover {

@@ -1,8 +1,12 @@
 export default {
   common: {
-    save: 'Speichern',
-    close: 'Schließen'
+    save: 'Save',
+    close: 'Close'
   },
-  nav: {},
-  translation: {}
+  nav: {
+    wads: 'WADS',
+    packages: 'PACKAGES',
+    sourceports: 'SOURCEPORTS',
+    settings: 'SETTINGS'
+  }
 };

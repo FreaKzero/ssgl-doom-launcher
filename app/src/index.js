@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Headline from '#Component/Headline';
 import Body from '#Component/Body';
-import NavList from '#Component/Nav/NavList';
+import Head from '#Component/Head';
 import Routes from '#Component/Router';
 import './assets/base.css';
 import './i18n';
@@ -10,10 +9,8 @@ import './i18n';
 const App = () => {
   return (
     <Body>
-      <Headline>
-        <NavList />
-        <Routes />
-      </Headline>
+      <Head />
+      <Routes />
     </Body>
   );
 };

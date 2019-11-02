@@ -10,6 +10,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
+      },
+      {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
@@ -36,7 +40,7 @@ module.exports = {
       '#Asset': res('src/assets/'),
       '#View': res('src/views/'),
       '#Util': res('src/utils/'),
-      '#Root': res('src/'),
+      '#Root': res('src/')
     }
   },
   output: {
@@ -48,6 +52,7 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   devServer: {
     contentBase: './',
-    hot: true
+    hot: true,
+    historyApiFallback: true
   }
 };
