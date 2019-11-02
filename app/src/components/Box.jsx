@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import ModItem from '#Component/ModItem/index.jsx';
 import style from '#Style';
 
 const Box = styled(({ children, ...rest }) => {
@@ -19,23 +18,6 @@ const Box = styled(({ children, ...rest }) => {
   ${style.scrollbar}
 `;
 
-const Boxes = styled(({ ...rest }) => {
-  return (
-    <div {...rest}>
-      <Box>
-        {new Array(15).fill(1).map(() => (
-          <ModItem />
-        ))}
-      </Box>
-      <Box />
-      <Box />
-    </div>
-  );
-})`
-  display: flex;
-  margin: 20px;
-`;
-
-export default Boxes;
+export default Box;
 
 /* Rectangle 20 */

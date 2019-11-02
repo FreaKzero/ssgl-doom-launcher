@@ -10,8 +10,9 @@ const NavList = styled.ul`
   padding: 0;
   list-style: none;
   display: table;
-  width: 100%;
-  text-align: right;
+  width: 50%;
+  font-size: 20px;
+  padding: 0 35px 0 0;
 `;
 
 const Nav = () => {

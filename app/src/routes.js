@@ -1,24 +1,25 @@
-import React from 'react';
-import { T } from '#Util/translation';
-import Box from '#Component/Box';
-
-const Test = () => {
-  return (
-    <div>
-      <Box />
-    </div>
-  );
-};
-
-const Test2 = () => {
-  return <div>Test2!</div>;
-};
+import Wads from '#View/Wads';
 
 const routes = [
   {
-    label: 'WADS',
-    href: '/test',
-    component: Test
+    label: 'wads',
+    href: '/wads',
+    component: Wads
+  },
+  {
+    label: 'packages',
+    href: '/packages',
+    component: Wads
+  },
+  {
+    label: 'sourceports',
+    href: '/sourceports',
+    component: Wads
+  },
+  {
+    label: 'settings',
+    href: '/settings',
+    component: Wads
   }
 ];
 
