@@ -5,8 +5,8 @@ const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 const res = p => path.resolve(__dirname, p);
 
 module.exports = {
-  entry: './src/index.js',
-
+  entry: './client/index.js',
+  target: 'electron-renderer',
   module: {
     rules: [
       {
@@ -35,12 +35,12 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx'],
     alias: {
-      '#Style': res('src/styles.js'),
-      '#Component': res('src/components/'),
-      '#Asset': res('src/assets/'),
-      '#View': res('src/views/'),
-      '#Util': res('src/utils/'),
-      '#Root': res('src/')
+      '#Style': res('client/styles.js'),
+      '#Component': res('client/components/'),
+      '#Asset': res('client/assets/'),
+      '#View': res('client/views/'),
+      '#Util': res('client/utils/'),
+      '#Root': res('client/')
     }
   },
   output: {

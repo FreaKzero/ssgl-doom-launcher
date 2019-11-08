@@ -1,14 +1,16 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
+
 let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1000,
+    height: 580,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true
     }
   });
 
@@ -30,3 +32,5 @@ app.on('window-all-closed', function() {
 app.on('activate', function() {
   if (mainWindow === null) createWindow();
 });
+
+require('./handlers/test');

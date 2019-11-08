@@ -4,6 +4,18 @@ import not from '#Asset/not.png';
 import styles from '#Style';
 import Icon from './Icon';
 
+const IconContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-content: space-between;
+
+  span {
+    display: block;
+    height: 100%;
+  }
+`;
+
 const ItemStyle = styled.div`
   background: rgba(12, 8, 8, 0.8);
   border-radius: 6px;
@@ -36,7 +48,7 @@ const ItemStyle = styled.div`
     h1 {
       font-size: 18px;
       margin-bottom: 10px;
-      transition: ${styles.transitionLong}
+      transition: ${styles.transitionLong};
     }
 
     .meta {
@@ -45,19 +57,7 @@ const ItemStyle = styled.div`
       margin-bottom: 5px;
     }
   }
-  .icons {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-content: space-between;
-
-    span {
-      display: block;
-      height: 100%;
-    }
-  }
 `;
-
 
 const Item = () => {
   return (
@@ -69,11 +69,11 @@ const Item = () => {
         <div className="meta">some meta inf</div>
         <div className="meta">pk3</div>
       </div>
-      <div className="icons">
+      <IconContainer>
         <Icon name="up" width="16" />
         <Icon name="remove" width="16" />
         <Icon name="down" width="16" />
-      </div>
+      </IconContainer>
     </ItemStyle>
   );
 };
