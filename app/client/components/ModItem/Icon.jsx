@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 const IconStyle = styled.span`
   cursor: pointer;
+  margin-bottom: 5px;
   span:hover {
     svg {
       stroke: #ffa800;
@@ -16,7 +17,7 @@ const IconStyle = styled.span`
   }
   svg {
     stroke: #6f6f6f;
-    transition: all 0.25s ease-in;
+    transition: all 0.25s ease-out;
   }
 `;
 

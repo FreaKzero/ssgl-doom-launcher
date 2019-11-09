@@ -10,18 +10,15 @@ const Wads = styled(({ ...rest }) => {
   const [test, setTest] = React.useState(null);
 
   const onClick = () => {
-    ipcRenderer.invoke('wat', { my: 'data' }).then(data => {
+    ipcRenderer.invoke('modlist', null).then(data => {
+      console.log(data);
       setTest(data);
     });
   };
 
   return (
     <div {...rest}>
-      <Box>
-        {new Array(15).fill(1).map(() => (
-          <ModItem />
-        ))}
-      </Box>
+      <Box>{test ? test.map(item => <ModItem name={item.name} />) : null}</Box>
       <Box></Box>
       <Box>
         <button onClick={onClick}>test</button>

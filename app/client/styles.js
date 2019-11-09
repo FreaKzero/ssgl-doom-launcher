@@ -1,7 +1,7 @@
 const styles = {
   colorActive: '#ffa800',
   colorMeta: '#6f6f6f',
-  transitionLong: 'all 0.3s ease-in',
+  transitionLong: 'all 0.3s ease-out',
   transitionShort: 'all 0.25s ease-in',
   back: 'rgba(12, 8, 8, 0.8)',
   scrollbar: `

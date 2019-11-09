@@ -40,6 +40,7 @@ module.exports = {
       '#Asset': res('client/assets/'),
       '#View': res('client/views/'),
       '#Util': res('client/utils/'),
+      '#State': res('client/state/index.jsx'),
       '#Root': res('client/')
     }
   },

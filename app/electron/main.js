@@ -33,4 +33,4 @@ app.on('activate', function() {
   if (mainWindow === null) createWindow();
 });
 
-require('./handlers/test');
+require('./handlers/modlist');
