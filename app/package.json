@@ -47,6 +47,7 @@
     "error-overlay-webpack-plugin": "^0.4.1",
     "file-loader": "^4.2.0",
     "i18next": "^19.0.0",
+    "klaw": "^3.0.0",
     "klaw-sync": "^6.0.0",
     "nedb": "^1.8.0",
     "prop-types": "^15.7.2",
@@ -57,6 +58,7 @@
     "style-loader": "^1.0.0",
     "styled-components": "^4.4.0",
     "svg-inline-loader": "^0.8.0",
+    "uuid-quick": "^0.1.0",
     "wouter": "^2.3.1"
   }
 }

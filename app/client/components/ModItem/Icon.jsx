@@ -23,8 +23,7 @@ const IconStyle = styled.span`
 
 const names = {
   up,
-  down,
-  remove
+  down
 };
 
 const Icon = ({ name, ...rest }) => {

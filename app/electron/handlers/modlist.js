@@ -1,24 +1,17 @@
 const { ipcMain } = require('electron');
-const klawSync = require('klaw-sync');
+const walk = require('../utils/walk');
+const { isModFile, modItem } = require('../utils/mods');
+const TEST = '/Users/FreaKzero/doom/wads';
 
-ipcMain.handle('modlist', (e, args) => {
-  let paths;
-  try {
-    paths = klawSync('/Users/FreaKzero/doom/wads', { nodir: true }).map(
-      item => {
-        const spl = item.path.split('/');
-        const wat = spl[spl.length - 1].split('.');
-        return {
-          name: wat[0],
-          kind: wat[1],
-          path: item.path,
-          size: item.stats.size,
-          date: item.stats.birthtimeMs
-        };
-      }
-    );
-  } catch (er) {
-    console.error(er);
-  }
-  return paths;
+ipcMain.handle('modlist', async (e, args) => {
+  const paths = await walk(
+    TEST,
+    item => item.stats.isFile() && isModFile(item.path),
+    modItem
+  );
+
+  return {
+    error: null,
+    data: paths
+  };
 });

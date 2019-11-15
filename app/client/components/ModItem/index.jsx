@@ -41,9 +41,10 @@ const ItemStyle = styled.div`
     width: 100%;
 
     h1 {
-      font-size: 15px;
+      font-size: 18px;
       margin-bottom: 5px;
       transition: ${styles.transitionLong};
+      text-transform: uppercase;
     }
 
     .meta {
@@ -54,18 +55,15 @@ const ItemStyle = styled.div`
   }
 `;
 
-const Item = ({ name }) => {
-  const [t, setT] = React.useState(false);
-  const set = () => setT(!t);
-
+const Item = ({ item, onSelect }) => {
   return (
     <ItemStyle>
-      <Check size={60} active={t} onClick={set} />
+      <Check size={60} active={item.active} onClick={onSelect} />
       <div className="divider" />
       <div className="content">
-        <h1>{name}</h1>
+        <h1>{item.name}</h1>
         <div className="meta">some meta inf</div>
-        <div className="meta">pk3</div>
+        <div className="meta">{item.kind}</div>
       </div>
       <IconContainer>
         <Icon name="up" width="16" />

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import background from '#Asset/wall.jpg';
 
 export default styled.div`
-  font-family: 'Michroma', sans-serif;
+  font-family: 'Rajdhani', sans-serif;
   color: white;
   background: url(${background});
   width: 100vw;
