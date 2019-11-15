@@ -9,6 +9,8 @@ export const OptionItem = styled.li`
   cursor: pointer;
   padding: 10px;
   margin: 0;
+  transition: all 0.3s ease-out;
+  background-color: #161416;
 
   &:hover {
     background-color: black;
@@ -25,7 +27,6 @@ export const Options = styled.ul`
   color: white;
   z-index: 999;
   height: 0;
-  background-color: #161416;
   border-radius: 3px;
   max-height: 145px;
   overflow-x: hidden;
