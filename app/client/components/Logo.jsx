@@ -12,7 +12,7 @@ const LogoContainer = styled.div`
 const Logo = () => {
   return (
     <LogoContainer>
-      <SVG height="80" svg={svgLogo} />
+      <SVG height="60" svg={svgLogo} />
     </LogoContainer>
   );
 };

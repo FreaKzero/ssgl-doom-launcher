@@ -13,7 +13,6 @@ const NavItem = styled(({ children, to, active, ...rest }) => {
 })`
   display: table-cell;
   position: relative;
-  padding: 15px 0;
 
   a {
     color: #fff;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import styles from '#Style';
 
 export const OptionItem = styled.li`
   list-style-type: none;
@@ -11,6 +12,7 @@ export const OptionItem = styled.li`
 
   &:hover {
     background-color: black;
+    color: ${styles.colorActive};
   }
 `;
 export const Options = styled.ul`
@@ -38,7 +40,7 @@ export const Options = styled.ul`
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: #ffa800;
+    background-color: ${styles.colorActive};
   }
   .open & {
     height: 145px;
@@ -85,10 +87,10 @@ export const Selected = styled.div`
 export const DropdownStyle = styled.div`
   display: inline-block;
   margin-right: 5px;
+
   .container {
     width: ${p => (p.width ? p.width : '100%')};
   }
-
   .container:hover svg {
     stroke: #ffa800;
     filter: drop-shadow(0px -1px 4px #ff0000) drop-shadow(0px 0px 10px #ff0000);

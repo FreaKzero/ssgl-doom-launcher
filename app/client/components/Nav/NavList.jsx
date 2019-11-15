@@ -8,12 +8,13 @@ import { useTranslation } from '#Util/translation';
 
 // TODO: key
 const NavList = styled.ul`
+  font-family: 'Michroma', sans-serif;
   padding: 0;
   list-style: none;
   display: table;
   width: 50%;
-  font-size: 20px;
-  padding: 0 35px 0 0;
+  font-size: 16px;
+  padding: 20px 15px 0 0;
 `;
 
 const Nav = () => {

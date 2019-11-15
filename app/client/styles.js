@@ -1,3 +1,20 @@
+import { createGlobalStyle } from 'styled-components';
+
+import Michroma from './assets/fonts/Michroma.woff';
+import Rajdhani from './assets/fonts/Rajdhani-Regular.woff';
+
+export const GlobalStyle = createGlobalStyle`
+@font-face {
+  font-family: 'Michroma';
+  src: url('${Michroma}') format('woff');
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  src: url('${Rajdhani}') format('woff');
+}
+`;
+
 const styles = {
   colorActive: '#ffa800',
   colorMeta: '#6f6f6f',
