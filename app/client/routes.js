@@ -1,4 +1,5 @@
 import Wads from '#View/Wads';
+import Settings from '#View/Settings';
 
 const routes = [
   {
@@ -19,7 +20,7 @@ const routes = [
   {
     label: 'settings',
     href: '/settings',
-    component: Wads
+    component: Settings
   }
 ];
 

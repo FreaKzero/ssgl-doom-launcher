@@ -4,10 +4,12 @@ import Box from '#Component/Box';
 import styled from 'styled-components';
 import ModItem from '#Component/ModItem';
 import Dropdown from '#Component/Dropdown';
+import Input from '#Component/Input';
 import { StoreContext } from '#State';
 import { ipcRenderer } from 'electron';
 
 const Wads = styled(({ ...rest }) => {
+  const { gstate, dispatch } = React.useContext(StoreContext);
   const [mods, setMods] = useState([]);
 
   const opts = new Array(30).fill(1).map((d, i) => ({
@@ -16,39 +18,29 @@ const Wads = styled(({ ...rest }) => {
   }));
 
   const onClick = id => e => {
-    setMods(mods.map(i => (i.id === id ? { ...i, active: !i.active } : i)));
+    dispatch({ type: 'select-mod', id });
   };
 
-  useEffect(() => {
-    ipcRenderer.invoke('modlist', null).then(data => {
-      setMods(data.data);
-    });
-  }, [ipcRenderer]);
-
+  const play = () => {
+    ipcRenderer.invoke('play', { selected: gstate.selected });
+  };
   return (
     <div {...rest}>
       <Box>
+        <Input />
         {mods
-          ? mods.map(item => (
-              <ModItem item={item} onSelect={onClick(item.id)} />
+          ? gstate.mods.map(item => (
+              <ModItem key={item.id} item={item} onSelect={onClick(item.id)} />
             ))
           : null}
       </Box>
       <Box>
-        <Dropdown
-          placeholder="Please Choose"
-          onChange={() => true}
-          width="200px"
-          options={opts}
-          value={''}
-        />
-        <Dropdown
-          placeholder="Please Choose"
-          onChange={() => true}
-          width="200px"
-          options={opts}
-          value={''}
-        />
+        {mods
+          ? gstate.selected.map(item => (
+              <ModItem key={item.id} item={item} onSelect={onClick(item.id)} />
+            ))
+          : null}
+        <button onClick={play}>Play</button>
       </Box>
     </div>
   );

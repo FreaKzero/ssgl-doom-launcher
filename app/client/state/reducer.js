@@ -10,7 +10,7 @@ export function reducer(state, action) {
   switch (action.type) {
     case 'load':
       return act({ ...state, mods: action.data });
-    case 'select':
+    case 'select-mod':
       const newItem = state.mods.find(item => action.id === item.id);
       newItem.active = !newItem.active;
 

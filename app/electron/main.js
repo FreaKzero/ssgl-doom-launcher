@@ -34,3 +34,4 @@ app.on('activate', function() {
 });
 
 require('./handlers/modlist');
+require('./handlers/play');
