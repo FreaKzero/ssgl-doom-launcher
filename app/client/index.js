@@ -12,9 +12,9 @@ const App = () => {
   const [gstate, dispatch] = useReducer(reducer, initState);
 
   useEffect(() => {
-    ipcRenderer
-      .invoke('modlist', null)
-      .then(res => dispatch({ type: 'load', data: res.data }));
+    ipcRenderer.invoke('modlist', null).then(res => {
+      dispatch({ type: 'load', data: res.data });
+    });
   }, []);
 
   return (

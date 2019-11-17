@@ -34,7 +34,7 @@ const InputStyle = styled.div`
   }
 `;
 
-const Input = ({ width, rest }) => {
+const Input = ({ width, ...rest }) => {
   return (
     <InputStyle width={width}>
       <input type="text" {...rest} />

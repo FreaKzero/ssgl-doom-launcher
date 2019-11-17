@@ -10,6 +10,7 @@ import { ipcRenderer } from 'electron';
 const Wads = styled(({ ...rest }) => {
   const { gstate, dispatch } = React.useContext(StoreContext);
   const [mods, setMods] = useState([]);
+  const [filter, setFilter] = useState('');
 
   const opts = new Array(30).fill(1).map((d, i) => ({
     label: `label_${i}`,
@@ -24,16 +25,23 @@ const Wads = styled(({ ...rest }) => {
     ipcRenderer.invoke('play', { selected: gstate.selected });
   };
 
+  const onInput = e => setFilter(e.currentTarget.value);
+
   useEffect(() => {
     document.title = 'deine mudda';
   }, []);
 
+  const show =
+    filter.trim() === ''
+      ? gstate.mods
+      : gstate.mods.filter(i => !i.name.search(new RegExp(`${filter}`, 'i')));
+
   return (
     <div {...rest}>
       <Box>
-        <ModFilter />
+        <ModFilter valueInput={filter} onInput={onInput} />
         {mods
-          ? gstate.mods.map(item => (
+          ? show.map(item => (
               <ModItem key={item.id} item={item} onSelect={onClick(item.id)} />
             ))
           : null}

@@ -11,10 +11,10 @@ const ModFilterStyle = styled.div`
     width: 100%;
   }
 `;
-const ModFilter = () => {
+const ModFilter = ({ onInput, valueInput }) => {
   return (
     <ModFilterStyle>
-      <Input width="100%" />
+      <Input width="100%" onChange={onInput} value={valueInput} />
       <Dropdown
         width="100px"
         onChange={() => 1}

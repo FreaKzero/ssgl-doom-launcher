@@ -55,6 +55,13 @@ const ItemStyle = styled.div`
   }
 `;
 
+/*
+<IconContainer>
+        <Icon name="up" width="16" />
+        <Icon name="remove" width="16" />
+        <Icon name="down" width="16" />
+      </IconContainer>
+       */
 const Item = ({ item, onSelect }) => {
   return (
     <ItemStyle>
@@ -65,11 +72,6 @@ const Item = ({ item, onSelect }) => {
         <div className="meta">some meta inf</div>
         <div className="meta">{item.kind}</div>
       </div>
-      <IconContainer>
-        <Icon name="up" width="16" />
-        <Icon name="remove" width="16" />
-        <Icon name="down" width="16" />
-      </IconContainer>
     </ItemStyle>
   );
 };
