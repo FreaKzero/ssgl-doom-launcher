@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const IconStyle = styled.div`
@@ -81,6 +82,12 @@ const Check = ({ active, size, onClick }) => {
       </svg>
     </IconStyle>
   );
+};
+
+Check.propTypes = {
+  active: PropTypes.bool,
+  onClick: PropTypes.func,
+  size: PropTypes.string
 };
 
 export default Check;

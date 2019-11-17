@@ -1,13 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Link, Route } from 'wouter';
+import { Route } from 'wouter';
 import routes from '#Root/routes';
 
 const Routes = () => {
   return (
     <>
       {routes.map(route => (
-        <Route path={route.href} component={route.component} />
+        <Route
+          key={`route_${route.href}`}
+          path={route.href}
+          component={route.component}
+        />
       ))}
     </>
   );

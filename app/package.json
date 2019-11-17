@@ -7,7 +7,7 @@
     "start": "concurrently \"yarn dev:webp\" \"yarn dev:elec\"",
     "dev:webp": "webpack-dev-server --mode development",
     "dev:elec": "electron .",
-    "lint": "eslint -f=pretty 'src/**/*.js?(x)' --fix"
+    "lint": "eslint 'client/**/*.js?(x)' --fix"
   },
   "babel": {
     "plugins": [
@@ -45,6 +45,7 @@
     "electron-reload": "^1.5.0",
     "error-overlay-webpack-plugin": "^0.4.1",
     "file-loader": "^4.2.0",
+    "framer-motion": "^1.6.15",
     "i18next": "^19.0.0",
     "klaw": "^3.0.0",
     "klaw-sync": "^6.0.0",

@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useEffect } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { GlobalStyle } from '#Style';
 import Body from '#Component/Body';

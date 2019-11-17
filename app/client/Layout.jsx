@@ -7,7 +7,7 @@ const Layout = () => {
     <div>
       <NavList />
       <Routes />
-      </div>
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import style from '#Style';
+import PropTypes from 'prop-types';
 import { OptionItem, Options, Selected, DropdownStyle } from './styles';
 import Caret from './Caret';
 
@@ -48,6 +48,14 @@ const Dropdown = ({ options, onChange, width, placeholder }) => {
       </div>
     </DropdownStyle>
   );
+};
+
+Dropdown.propTypes = {
+  className: PropTypes.string,
+  onChange: PropTypes.func,
+  options: PropTypes.array,
+  placeholder: PropTypes.string,
+  width: PropTypes.string
 };
 
 export default Dropdown;

@@ -1,5 +1,5 @@
 import React from 'react';
-import remove from '#Asset/icon/remove.svg';
+import PropTypes from 'prop-types';
 import up from '#Asset/icon/up.svg';
 import down from '#Asset/icon/down.svg';
 import SvgInline from 'react-svg-inline';
@@ -32,6 +32,10 @@ const Icon = ({ name, ...rest }) => {
       <SvgInline {...rest} svg={names[name]} />
     </IconStyle>
   ) : null;
+};
+
+Icon.propTypes = {
+  name: PropTypes.string
 };
 
 export default Icon;

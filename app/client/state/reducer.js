@@ -3,7 +3,8 @@ import { act } from './middlewares';
 
 export const initState = {
   mods: [],
-  selected: []
+  selected: [],
+  sourceports: []
 };
 
 export function reducer(state, action) {

@@ -46,6 +46,8 @@ export const Options = styled.ul`
   .open & {
     height: 145px;
     border-radius: 0 0 3px 3px;
+    border: 1px solid ${styles.colorActive};
+    border-top: none;
   }
 `;
 
@@ -90,8 +92,15 @@ export const DropdownStyle = styled.div`
   margin-right: 5px;
 
   .container {
+    border: 1px solid ${styles.colorMeta};
     width: ${p => (p.width ? p.width : '100%')};
+    transition: all 0.21s ease-out;
+
+    &:hover {
+      border: 1px solid ${styles.colorActive};
+    }
   }
+
   .container:hover svg {
     stroke: #ffa800;
     filter: drop-shadow(0px -1px 4px #ff0000) drop-shadow(0px 0px 10px #ff0000);

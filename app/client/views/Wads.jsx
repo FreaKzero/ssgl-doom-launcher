@@ -3,8 +3,7 @@ import { T } from '#Util/translation';
 import Box from '#Component/Box';
 import styled from 'styled-components';
 import ModItem from '#Component/ModItem';
-import Dropdown from '#Component/Dropdown';
-import Input from '#Component/Input';
+import ModFilter from '#Component/ModFilter';
 import { StoreContext } from '#State';
 import { ipcRenderer } from 'electron';
 
@@ -24,10 +23,15 @@ const Wads = styled(({ ...rest }) => {
   const play = () => {
     ipcRenderer.invoke('play', { selected: gstate.selected });
   };
+
+  useEffect(() => {
+    document.title = 'deine mudda';
+  }, []);
+
   return (
     <div {...rest}>
       <Box>
-        <Input />
+        <ModFilter />
         {mods
           ? gstate.mods.map(item => (
               <ModItem key={item.id} item={item} onSelect={onClick(item.id)} />

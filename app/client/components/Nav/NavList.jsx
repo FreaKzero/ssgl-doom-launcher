@@ -23,7 +23,11 @@ const Nav = () => {
   return (
     <NavList>
       {routes.map(route => (
-        <NavItem active={route.href === location} to={route.href}>
+        <NavItem
+          key={`rote_${route.href}_${route.label}`}
+          active={route.href === location}
+          to={route.href}
+        >
           {t(route.label)}
         </NavItem>
       ))}
