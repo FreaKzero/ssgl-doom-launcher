@@ -10,8 +10,8 @@ const styles = {
   transitionShort: 'all 0.25s ease-in',
   back: 'rgba(12, 8, 8, 0.8)',
   scrollbar: `
-  &::-webkit-scrollbar {
-    width: 12px;
+  &::-webkit-scrollbar { 
+    width: 7px;
     background-color: rgba(12, 8, 8, 0.8);
   }
 
@@ -24,6 +24,12 @@ const styles = {
 };
 
 export const GlobalStyle = createGlobalStyle`
+
+html, body {
+  height: 100vh;
+  width: 100vw;
+}
+
 @font-face {
   font-family: 'Michroma';
   src: url('${Michroma}') format('woff');

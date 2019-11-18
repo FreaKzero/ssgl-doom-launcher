@@ -14,16 +14,23 @@ const ModFilterStyle = styled.div`
 const ModFilter = ({ onInput, valueInput }) => {
   return (
     <ModFilterStyle>
-      <Input width="100%" onChange={onInput} value={valueInput} />
-      <Dropdown
+      <Input
+        width="100%"
+        onChange={onInput}
+        value={valueInput}
+        placeholder="Filter"
+      />
+    </ModFilterStyle>
+  );
+};
+
+/*
+<Dropdown
         width="100px"
         onChange={() => 1}
         options={new Array(100)
           .fill(1)
           .map((i, idx) => ({ label: idx, value: idx }))}
       />
-    </ModFilterStyle>
-  );
-};
-
+      */
 export default ModFilter;

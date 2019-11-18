@@ -1,57 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import { T } from '#Util/translation';
 import Box from '#Component/Box';
 import styled from 'styled-components';
 import ModItem from '#Component/ModItem';
 import ModFilter from '#Component/ModFilter';
 import { StoreContext } from '#State';
 import { ipcRenderer } from 'electron';
+import { AnimatePresence } from 'framer-motion';
+import fuzz from 'fuzzysearch';
 
 const Wads = styled(({ ...rest }) => {
   const { gstate, dispatch } = React.useContext(StoreContext);
-  const [mods, setMods] = useState([]);
   const [filter, setFilter] = useState('');
-
-  const opts = new Array(30).fill(1).map((d, i) => ({
-    label: `label_${i}`,
-    value: i
-  }));
 
   const onClick = id => e => {
     dispatch({ type: 'select-mod', id });
   };
 
-  const play = () => {
-    ipcRenderer.invoke('play', { selected: gstate.selected });
-  };
+  const play = () => ipcRenderer.invoke('play', { selected: gstate.selected });
 
-  const onInput = e => setFilter(e.currentTarget.value);
+  const onInput = e => setFilter(e.currentTarget.value.toLowerCase());
 
   useEffect(() => {
-    document.title = 'deine mudda';
+    document.title = 'SSGL';
   }, []);
 
   const show =
-    filter.trim() === ''
+    filter.trim() === '' && filter.length > 2
       ? gstate.mods
-      : gstate.mods.filter(i => !i.name.search(new RegExp(`${filter}`, 'i')));
+      : gstate.mods.filter(i => fuzz(filter, i.name.toLowerCase()));
 
   return (
     <div {...rest}>
-      <Box>
-        <ModFilter valueInput={filter} onInput={onInput} />
-        {mods
-          ? show.map(item => (
+      <Box fixed={<ModFilter valueInput={filter} onInput={onInput} />}>
+        <ul>
+          <AnimatePresence>
+            {show.map(item => (
               <ModItem key={item.id} item={item} onSelect={onClick(item.id)} />
-            ))
-          : null}
+            ))}
+          </AnimatePresence>
+        </ul>
       </Box>
       <Box>
-        {mods
-          ? gstate.selected.map(item => (
+        <ul>
+          <AnimatePresence>
+            {gstate.selected.map(item => (
               <ModItem key={item.id} item={item} onSelect={onClick(item.id)} />
-            ))
-          : null}
+            ))}
+          </AnimatePresence>
+        </ul>
         <button onClick={play}>Play</button>
       </Box>
     </div>

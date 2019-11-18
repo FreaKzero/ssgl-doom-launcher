@@ -11,7 +11,7 @@ const InputStyle = styled.div`
   margin-right: 5px;
   width: ${p => p.width};
   border: 1px solid ${styles.colorMeta};
-
+  transition: border 0.13s ease-out;
   &:hover {
     border: 1px solid ${styles.colorActive};
   }

@@ -2,20 +2,31 @@ import React from 'react';
 import styled from 'styled-components';
 import style from '#Style';
 
-const Box = styled(({ children, ...rest }) => {
-  return <div {...rest}>{children}</div>;
-})`
+const BoxStyle = styled.div`
   border: 1px solid #6c6c6c;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
   border-radius: 7px;
-  height: 70vh;
+  flex-grow: 1;
   width: 100%;
   padding: 10px;
   margin-right: 10px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-
-  ${style.scrollbar}
+  height: calc(100vh - 140px);
+  .scroll {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: calc(100vh - 195px);
+    ${style.scrollbar}
+  }
 `;
+
+const Box = ({ children, fixed, ...rest }) => {
+  return (
+    <BoxStyle>
+      <div className="fixed">{fixed}</div>
+
+      <div className="scroll">{children}</div>
+    </BoxStyle>
+  );
+};
 
 export default Box;

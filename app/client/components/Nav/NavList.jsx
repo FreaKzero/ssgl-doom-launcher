@@ -8,13 +8,14 @@ import { useTranslation } from '#Util/translation';
 
 // TODO: key
 const NavList = styled.ul`
+  height: 65px;
   font-family: 'Michroma', sans-serif;
   padding: 0;
   list-style: none;
   display: table;
   width: 50%;
   font-size: 16px;
-  padding: 20px 15px 0 0;
+  padding: 15px 15px 0 0;
 `;
 
 const Nav = () => {
