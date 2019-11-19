@@ -99,7 +99,7 @@ const Item = ({ item, onSelect }) => {
         <div className="divider" />
         <div className="content">
           <h1 className={item.active ? 'active' : undefined}>{item.name}</h1>
-          <div className="meta">some meta inf</div>
+          <div className="meta">meta</div>
           <div className="meta">{item.kind}</div>
         </div>
       </ItemStyle>

@@ -36,5 +36,6 @@ app.on('activate', function() {
   if (mainWindow === null) createWindow();
 });
 
-require('./handlers/modlist');
+require('./handlers/init');
+require('./handlers/settings');
 require('./handlers/play');

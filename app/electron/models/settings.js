@@ -1,7 +1,24 @@
-const Datastore = require('nedb');
-const path = require('path');
+const fs = require('fs');
+const { getConfigFile } = require('../utils/common');
 
-const file = path.join(__dirname, 'settings.json');
-const db = new Datastore({ filename: file, autoload: true });
+const file = getConfigFile('settings.json');
 
-const init = () => {};
+const saveSettings = data => {
+  return new Promise((resolve, reject) => {
+    return fs.writeFile(file, JSON.stringify(data, null, 2), err =>
+      err ? reject(err) : resolve(data)
+    );
+  });
+};
+
+const getSettings = () =>
+  new Promise((resolve, reject) => {
+    return fs.readFile(file, 'utf8', (err, data) => {
+      return err ? reject(err) : resolve(JSON.parse(data));
+    });
+  });
+
+module.exports = {
+  getSettings,
+  saveSettings
+};
