@@ -1,7 +1,8 @@
 const Datastore = require('nedb');
 const path = require('path');
+const {app} = require('electron');
 
-const file = path.join(process.cwd(), 'sourceports.json');
+const file = path.join(app.getPath('home'),'ssgl','sourceports.json');
 const db = new Datastore({ filename: file, autoload: true });
 
 const getSourcePort = id => {

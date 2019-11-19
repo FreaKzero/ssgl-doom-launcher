@@ -2,12 +2,39 @@
   "name": "electron-quick-start",
   "version": "1.0.0",
   "description": "A minimal Electron application",
-  "main": "./electron/main.js",
+  "main": "./build/main-bundle.js",
   "scripts": {
-    "start": "concurrently \"yarn dev:webp\" \"yarn dev:elec\"",
-    "dev:webp": "webpack-dev-server --mode development",
-    "dev:elec": "electron .",
-    "lint": "eslint 'client/**/*.js?(x)' --fix"
+    "start": "concurrently \"yarn dev:main\" \"yarn dev:webp\"",
+    "dev:webp": "webpack-dev-server --mode development --config ./configs/wp.renderer.dev.js",
+    "dev:main": "webpack --mode development --config ./configs/wp.main.dev.js",
+    "build:main": "cross-env NODE_ENV=production webpack --config ./configs/wp.main.prod.js",
+    "build:renderer": "cross-env NODE_ENV=production webpack --config ./configs/wp.renderer.prod.js",
+    "build": "rimraf ./build && yarn build:main && yarn build:renderer",
+    "lint": "eslint 'client/**/*.js?(x)' --fix",
+    "package": "rimraf ./dist && yarn build && electron-builder build --publish never"
+  },
+  "build": {
+    "productName": "ssgl",
+    "appId": "ssgl",
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "files": [
+      "index.html",
+      "build/*",
+      "package.json"
+    ]
   },
   "babel": {
     "plugins": [
@@ -32,6 +59,7 @@
     "babel-plugin-styled-components": "^1.10.6",
     "concurrently": "^5.0.0",
     "electron": "^7.0.0",
+    "electron-builder": "^21.2.0",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-prettier": "^3.1.1",
@@ -39,26 +67,29 @@
     "prettier": "^1.18.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.9.0"
-  },
-  "dependencies": {
+    "webpack-dev-server": "^3.9.0",
+    "cross-env": "^6.0.3",
     "electron-reload": "^1.5.0",
     "error-overlay-webpack-plugin": "^0.4.1",
     "file-loader": "^4.2.0",
+    "rimraf": "^3.0.0",
+    "svg-inline-loader": "^0.8.0",
+    "style-loader": "^1.0.0",
+    "webpack-electron-reload": "^1.0.0",
+    "webpack-merge": "^4.2.2"
+  },
+  "dependencies": {
     "framer-motion": "^1.6.15",
     "fuzzysearch": "^1.0.3",
     "i18next": "^19.0.0",
     "klaw": "^3.0.0",
-    "klaw-sync": "^6.0.0",
     "nedb": "^1.8.0",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-i18next": "^11.0.1",
     "react-svg-inline": "^2.1.1",
-    "style-loader": "^1.0.0",
     "styled-components": "^4.4.0",
-    "svg-inline-loader": "^0.8.0",
     "uuid-quick": "^0.1.0",
     "wouter": "^2.3.1"
   }

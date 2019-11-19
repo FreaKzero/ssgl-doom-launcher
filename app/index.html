@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
+    <title>SSGL!</title>
+    
   </head>
   <body>
-    <script src="./renderer.js"></script>
     <div id="app"></div>
-    <script src="./bundle.js"></script>
+    <script>
+      {
+        const scripts = [];
+        scripts.push(
+          process.env.NODE_ENV !== 'production'
+            ? 'http://localhost:8080/renderer-bundle.js'
+            : './renderer-bundle.js'
+        );
+        document.write(
+          scripts
+            .map(script => `<script defer src="${script}"><\/script>`)
+            .join('')
+        );
+      }
+    </script>
   </body>
 </html>
-
-
