@@ -1617,6 +1617,11 @@ builtin-status-codes@^3.0.0:
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
   integrity sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug=
 
+byte-size@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/byte-size/-/byte-size-6.2.0.tgz#39fd52adedbbf7e8c3b3f7dea05e441549375c28"
+  integrity sha512-6EspYUCAPMc7E2rltBgKwhG+Cmk0pDm9zDtF1Awe2dczNUL3YpZ8mTs/dueOTS1hqGWBOatqef4jYMGjln7WmA==
+
 bytes@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.0.0.tgz#d32815404d689699f85a4ea4fa8755dd13a96048"
@@ -5393,7 +5398,7 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@^1.18.2:
+prettier@^1.19.1:
   version "1.19.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.19.1.tgz#f7d7f5ff8a9cd872a7be4ca142095956a60797cb"
   integrity sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==
@@ -6967,6 +6972,11 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
+
+use-debounce@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/use-debounce/-/use-debounce-3.1.0.tgz#05a5c8cd3c2f309699f08961d7c8bbe7f68720bb"
+  integrity sha512-DEf3L/ZKkOSTARk/DHlC6KAAJKwMqpck8Zx06SM2Wr+LfU1TzhO8hZRzB/qbpSQqREYWQes24n1q9doeTMqF4g==
 
 use@^3.1.0:
   version "3.1.1"

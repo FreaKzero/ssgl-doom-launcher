@@ -5,7 +5,6 @@ const { getConfigFile } = require('../utils/common');
 
 const file = getConfigFile('sourceports.json');
 const db = new Datastore({ filename: file, autoload: true });
-console.log(file);
 
 const getSourcePorts = id => {
   return new Promise((resolve, reject) => {

@@ -1,25 +1,23 @@
-const { ipcMain } = require('electron');
-const walk = require('../utils/walk');
-const { isModFile, modItem } = require('../utils/mods');
-const { getSourcePorts } = require('../models/sourceports');
-const { getSettings } = require('../models/settings');
+import { ipcMain } from 'electron';
+import { walkWadDir } from '../utils/mods';
+import { getJSON } from '../utils/json';
+import { getDataFile } from '../utils/common';
 
 ipcMain.handle('init', async (e, args) => {
-  const sourceports = await getSourcePorts();
-  const settings = await getSettings();
-
-  const mods = await walk(
-    settings.modpath,
-    item => item.stats.isFile() && isModFile(item.path),
-    modItem
-  );
-
-  return {
-    error: null,
-    data: {
-      mods,
-      sourceports,
-      settings
-    }
-  };
+  try {
+    const settings = await getJSON('settings');
+    const walkedFiles = await walkWadDir(settings.data.modpath);
+    return {
+      error: null,
+      data: {
+        ...walkedFiles,
+        sourceports: [],
+        settings: settings.data
+      }
+    };
+  } catch (e) {
+    return {
+      error: e.message
+    };
+  }
 });

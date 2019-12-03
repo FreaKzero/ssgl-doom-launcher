@@ -37,5 +37,5 @@ app.on('activate', function() {
 });
 
 require('./handlers/init');
-require('./handlers/settings');
 require('./handlers/play');
+require('./handlers/settings');

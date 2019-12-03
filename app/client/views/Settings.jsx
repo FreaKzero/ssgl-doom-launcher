@@ -9,7 +9,6 @@ const Wads = styled(({ ...rest }) => {
   const [form, setForm] = React.useState({});
   const { gstate, dispatch } = React.useContext(StoreContext);
   const { settings } = gstate;
-  console.log(gstate);
 
   React.useEffect(() => {
     setForm(settings);
@@ -39,8 +38,6 @@ const Wads = styled(({ ...rest }) => {
 
           <label>GZDOOM</label>
           <Input onChange={onInput} name="portpath" value={form.portpath} />
-          <label>iwad</label>
-          <Input onChange={onInput} name="iwad" value={form.iwad} />
 
           <input type="submit" value="sub" />
         </form>

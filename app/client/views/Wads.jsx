@@ -3,35 +3,38 @@ import Box from '#Component/Box';
 import styled from 'styled-components';
 import ModItem from '#Component/ModItem';
 import ModFilter from '#Component/ModFilter';
+import PlayIcon from '#Component/PlayIcon';
 import { StoreContext } from '#State';
 import { ipcRenderer } from 'electron';
 import { AnimatePresence } from 'framer-motion';
 import fuzz from 'fuzzysearch';
+import { useDebouncedCallback } from 'use-debounce';
 
-const Wads = styled(({ ...rest }) => {
+const ViewStyle = styled.div`
+  display: flex;
+  margin: 15px;
+`;
+
+const Wads = () => {
   const { gstate, dispatch } = React.useContext(StoreContext);
-  const [filter, setFilter] = useState('');
+  const [filter, setRawFilter] = useState('');
 
   const onClick = id => e => {
     dispatch({ type: 'select-mod', id });
   };
 
-  const play = () => ipcRenderer.invoke('play', { selected: gstate.selected });
-
-  const onInput = e => setFilter(e.currentTarget.value.toLowerCase());
-
-  useEffect(() => {
-    document.title = 'SSGL';
-  }, []);
+  const [onInput] = useDebouncedCallback(val => {
+    setRawFilter(val.toLowerCase());
+  }, 250);
 
   const show =
-    filter.trim() === '' && filter.length > 2
+    filter.trim() === ''
       ? gstate.mods
       : gstate.mods.filter(i => fuzz(filter, i.name.toLowerCase()));
 
   return (
-    <div {...rest}>
-      <Box fixed={<ModFilter valueInput={filter} onInput={onInput} />}>
+    <ViewStyle>
+      <Box fixed={<ModFilter onInput={e => onInput(e.target.value)} />}>
         <ul>
           <AnimatePresence>
             {show.map(item => (
@@ -48,13 +51,10 @@ const Wads = styled(({ ...rest }) => {
             ))}
           </AnimatePresence>
         </ul>
-        <button onClick={play}>Play</button>
       </Box>
-    </div>
+      <PlayIcon active="adsf" />
+    </ViewStyle>
   );
-})`
-  display: flex;
-  margin: 15px;
-`;
+};
 
 export default Wads;
