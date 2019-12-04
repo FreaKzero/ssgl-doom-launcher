@@ -1,16 +1,18 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { GlobalStyle } from '#Style';
 import Body from '#Component/Body';
 import Head from '#Component/Head';
 import Routes from '#Component/Router';
+import PlayOverlay from '#Component/PlayOverlay';
+import PlayIcon from '#Component/PlayIcon';
 import { initState, reducer, StoreContext } from '#State';
 import { ipcRenderer } from 'electron';
 import './i18n';
 
 const App = () => {
   const [gstate, dispatch] = useReducer(reducer, initState);
-
+  const [test, setTest] = useState(false);
   useEffect(() => {
     ipcRenderer.invoke('init', null).then(res => {
       dispatch({ type: 'init', data: res.data });
@@ -23,6 +25,11 @@ const App = () => {
       <Body>
         <Head />
         <Routes />
+        <PlayIcon
+          active={gstate.selected.length}
+          onClick={() => setTest(true)}
+        />
+        <PlayOverlay active={test} setActive={setTest} />
       </Body>
     </StoreContext.Provider>
   );

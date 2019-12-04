@@ -1,8 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { StoreContext } from '#State';
-import { ipcRenderer } from 'electron';
 import styles from '#Style';
 
 const PlayIconStyle = styled.div`
@@ -67,8 +64,7 @@ const PlayIconStyle = styled.div`
   }
 `;
 
-const PlayIcon = () => {
-  const { gstate, dispatch } = React.useContext(StoreContext);
+const PlayIcon = ({ active, onClick }) => {
   return (
     <PlayIconStyle>
       <svg
@@ -77,10 +73,8 @@ const PlayIcon = () => {
         viewBox="0 0 347 347"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className={gstate.selected.length ? 'active' : undefined}
-        onClick={() =>
-          ipcRenderer.invoke('play', { selected: gstate.selected })
-        }
+        className={active ? 'active' : undefined}
+        onClick={onClick}
       >
         <circle r="130" cx="174" cy="174" fill="black" className="backdrop" />
         <g className="ring-outer">

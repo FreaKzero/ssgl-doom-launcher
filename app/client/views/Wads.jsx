@@ -3,9 +3,7 @@ import Box from '#Component/Box';
 import styled from 'styled-components';
 import ModItem from '#Component/ModItem';
 import ModFilter from '#Component/ModFilter';
-import PlayIcon from '#Component/PlayIcon';
 import { StoreContext } from '#State';
-import { ipcRenderer } from 'electron';
 import { AnimatePresence } from 'framer-motion';
 import fuzz from 'fuzzysearch';
 import { useDebouncedCallback } from 'use-debounce';
@@ -52,7 +50,6 @@ const Wads = () => {
           </AnimatePresence>
         </ul>
       </Box>
-      <PlayIcon active="adsf" />
     </ViewStyle>
   );
 };
