@@ -17,11 +17,12 @@ const PlayIconStyle = styled.div`
   }
 
   .ring-outer {
-    stroke: #5f100f;
+    stroke: ${styles.colorActive};
     transform-origin: center center;
     transform: scale(0.1);
     transition: all 0.35s cubic-bezier(0.45, -0.79, 0, 1.77);
     opacity: 0;
+    stroke-width: 9;
   }
 
   .active .ring-outer {
@@ -41,7 +42,7 @@ const PlayIconStyle = styled.div`
     opacity: 1;
     stroke-width: 15;
     stroke: #5f100f;
-    r: 105;
+    r: 95;
   }
 
   .backdrop {
@@ -78,27 +79,11 @@ const PlayIcon = ({ active, onClick }) => {
       >
         <circle r="130" cx="174" cy="174" fill="black" className="backdrop" />
         <g className="ring-outer">
-          <path
-            d="M183.5 43.5H164L174 11L183.5 43.5Z"
-            stroke="#FFA800"
-            strokeWidth="6"
-          />
-          <path
-            d="M183.5 304H164L174 336.5L183.5 304Z"
-            stroke="#FFA800"
-            strokeWidth="6"
-          />
-          <path
-            d="M43.5 164L43.5 183.5L11 173.5L43.5 164Z"
-            stroke="#FFA800"
-            strokeWidth="6"
-          />
-          <path
-            d="M304 164L304 183.5L336.5 173.5L304 164Z"
-            stroke="#FFA800"
-            strokeWidth="6"
-          />
-          <circle cx="174" cy="174" r="129" stroke="#FFA800" strokeWidth="6" />
+          <path d="M183.5 43.5H164L174 11L183.5 43.5Z" />
+          <path d="M183.5 304H164L174 336.5L183.5 304Z" />
+          <path d="M43.5 164L43.5 183.5L11 173.5L43.5 164Z" />
+          <path d="M304 164L304 183.5L336.5 173.5L304 164Z" />
+          <circle cx="174" cy="174" r="129" />
         </g>
         <circle className="ring-inner" cx="174" cy="174" r="129" />
 
