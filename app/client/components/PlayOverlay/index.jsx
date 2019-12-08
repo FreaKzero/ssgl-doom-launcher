@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { StoreContext } from '#State';
 import { ipcRenderer } from 'electron';
-import IWad from './IWad';
+import IWad from '#Component/IWad';
 
 const BackdropMotion = ({ active, children, ...rest }) => {
   const variants = {
@@ -79,14 +79,19 @@ const PlayOverlay = ({ active, setActive }) => {
     setActive(false);
   };
 
-  console.log(JSON.stringify(gstate.iwads, null, 2));
   return gstate.iwads ? (
     <>
       <BackDrop onClick={() => setActive(false)} active={active} />
       <Modal active={active}>
-        {gstate.iwads.map(item => {
-          return <IWad name={item.name} />;
-        })}
+        <IWad.List>
+          {gstate.iwads.map(item => (
+            <IWad.Item
+              name={item.name}
+              key={item.id}
+              onClick={onPlay(item.path)}
+            />
+          ))}
+        </IWad.List>
       </Modal>
     </>
   ) : null;

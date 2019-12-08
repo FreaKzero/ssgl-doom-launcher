@@ -7,17 +7,27 @@ const PlayIconStyle = styled.div`
   right: 30px;
   bottom: 20px;
   cursor: pointer;
+  pointer-events: none;
+
+  .active {
+    pointer-events: auto;
+  }
 
   &:hover .active .play {
     stroke: ${styles.colorActive};
   }
 
   &:hover .active .ring-outer {
-    transform: rotate(135deg);
+    transform: rotate(45deg);
+    stroke: ${styles.colorActive};
+  }
+
+  &:hover .active .ring-inner {
+    r: 90;
+    opacity: 1;
   }
 
   .ring-outer {
-    stroke: ${styles.colorActive};
     transform-origin: center center;
     transform: scale(0.1);
     transition: all 0.35s cubic-bezier(0.45, -0.79, 0, 1.77);
@@ -26,8 +36,9 @@ const PlayIconStyle = styled.div`
   }
 
   .active .ring-outer {
-    transform: scale(1) rotate(45deg);
+    transform: scale(1);
     opacity: 1;
+    stroke: #5f100f;
   }
 
   .ring-inner {
@@ -42,7 +53,8 @@ const PlayIconStyle = styled.div`
     opacity: 1;
     stroke-width: 15;
     stroke: #5f100f;
-    r: 95;
+    r: 60;
+    opacity: 0;
   }
 
   .backdrop {
@@ -67,7 +79,7 @@ const PlayIconStyle = styled.div`
 
 const PlayIcon = ({ active, onClick }) => {
   return (
-    <PlayIconStyle>
+    <PlayIconStyle active={active}>
       <svg
         width="70"
         height="70"

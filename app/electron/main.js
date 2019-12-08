@@ -2,21 +2,26 @@
 const path = require('path');
 const { app, BrowserWindow } = require('electron');
 
+const whenProd = (whenProd, notProd) =>
+  process.env.NODE_ENV === 'production' ? whenProd : notProd;
+
 let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1000,
     height: 580,
+
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      webSecurity: whenProd(true, false)
     }
   });
 
-  const url =
-    process.env.NODE_ENV !== 'production'
-      ? 'http://localhost:8080'
-      : `file://${path.join(__dirname, '../index.html')}`;
+  const url = whenProd(
+    `file://${path.join(__dirname, '../index.html')}`,
+    'http://localhost:8080'
+  );
 
   mainWindow.loadURL(url);
 

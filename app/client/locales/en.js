@@ -1,7 +1,8 @@
 export default {
   common: {
     save: 'Save',
-    close: 'Close'
+    close: 'Close',
+    loading: 'Loading'
   },
   nav: {
     wads: 'WADS',

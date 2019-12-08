@@ -3,47 +3,54 @@ import styled from 'styled-components';
 import styles from '#Style';
 import getCover from '../../assets/covers';
 
-const importAll = r => r.keys().map(r);
-const images = importAll(require.context('../../assets/covers/', true));
+const ListItemStyle = styled.li`
+  margin-right: 10px;
+  text-align: center;
+`;
 
-const IWadStyle = styled.div`
+const ItemStyle = styled.div`
   cursor: pointer;
 
-  &:hover .active .play {
+  &:hover .ring-outer {
+    transform: rotate(45deg);
     stroke: ${styles.colorActive};
   }
 
-  &:hover .active .ring-outer {
-    transform: rotate(135deg);
+  &:hover .backdrop-overlay,
+  &:hover .play {
+    transform: scale(1);
   }
 
   .ring-outer {
-    stroke: ${styles.colorActive};
-
+    transform-origin: center center;
+    transition: all 0.35s cubic-bezier(0.45, -0.79, 0, 1.77);
+    stroke: #5f100f;
     stroke-width: 9;
   }
 
   .backdrop {
     stroke-width: 10;
-    stroke: red;
-    filter: url(#grayscale);
   }
 
-  .backdrop:hover {
-    filter: none;
+  .backdrop-overlay {
+    transform-origin: center center;
+    opacity: 0.5;
+    transform: scale(0);
+    transition: all 0.15s ease-in;
   }
 
   .play {
-    opacity: 0;
-    stroke: ${styles.colorMeta};
-    transition: ${styles.transitionShort};
+    stroke: ${styles.colorActive};
+    transform-origin: center center;
+    transform: scale(0);
+    transition: all 0.35s cubic-bezier(0.45, -0.79, 0, 1.77);
   }
 `;
 
-const IWad = ({ name, onClick }) => {
+const Item = ({ name, onClick }) => {
   return (
-    <div style={{ float: 'left', textAlign: 'center' }}>
-      <IWadStyle>
+    <ListItemStyle>
+      <ItemStyle>
         <svg
           width="80"
           height="80"
@@ -81,6 +88,21 @@ const IWad = ({ name, onClick }) => {
             className="backdrop"
             fill={`url(#backdrop_${name})`}
           />
+
+          <circle
+            r="130"
+            cx="174"
+            cy="174"
+            className="backdrop-overlay"
+            fill="black"
+          />
+          <path
+            d="M145.126 133.015L221.765 171.686C223.605 172.614 223.595 175.244 221.749 176.158L145.11 214.126C143.448 214.949 141.5 213.74 141.5 211.886V135.247C141.5 133.384 143.463 132.176 145.126 133.015Z"
+            strokeWidth="15"
+            className="play"
+            stroke="red"
+          />
+
           <g className="ring-outer">
             <path d="M183.5 43.5H164L174 11L183.5 43.5Z" />
             <path d="M183.5 304H164L174 336.5L183.5 304Z" />
@@ -89,10 +111,10 @@ const IWad = ({ name, onClick }) => {
             <circle cx="174" cy="174" r="129" />
           </g>
         </svg>
-      </IWadStyle>
+      </ItemStyle>
       {name}
-    </div>
+    </ListItemStyle>
   );
 };
 
-export default IWad;
+export default Item;

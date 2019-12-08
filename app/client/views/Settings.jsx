@@ -3,7 +3,7 @@ import Box from '#Component/Box';
 import Input from '#Component/Input';
 import styled from 'styled-components';
 import { StoreContext } from '#State';
-import { ipcRenderer } from 'electron';
+import { ipcRenderer, remote } from 'electron';
 
 const Wads = styled(({ ...rest }) => {
   const [form, setForm] = React.useState({});
@@ -29,9 +29,15 @@ const Wads = styled(({ ...rest }) => {
     });
   };
 
+  const doTest = () => {s
+    remote.dialog.showOpenDialog().then(res => {
+      console.log(res.filePaths[0]);
+    });
+  };
   return (
     <div {...rest}>
       <Box>
+        <button onClick={doTest}>Test it ! </button>
         <form onSubmit={onSubmit}>
           <label>Wads</label>
           <Input onChange={onInput} name="modpath" value={form.modpath} />

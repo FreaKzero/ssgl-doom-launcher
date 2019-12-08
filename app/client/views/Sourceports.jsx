@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Box from '#Component/Box';
 import styled from 'styled-components';
 import { StoreContext } from '#State';
-import { ipcRenderer } from 'electron';
+import { remote, ipcRenderer } from 'electron';
 import Input from '#Component/Input';
 import fuzz from 'fuzzysearch';
 
