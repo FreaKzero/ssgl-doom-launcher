@@ -75,6 +75,7 @@ const PlayOverlay = ({ active, setActive }) => {
   const { gstate, dispatch } = React.useContext(StoreContext);
 
   const onPlay = iwad => () => {
+    console.log(gstate.selected);
     ipcRenderer.invoke('play', { selected: gstate.selected, iwad: iwad });
     setActive(false);
   };

@@ -8,6 +8,7 @@ import { AnimatePresence } from 'framer-motion';
 import fuzz from 'fuzzysearch';
 import { useDebouncedCallback } from 'use-debounce';
 import setTitle from '#Util/setTitle';
+import { motion } from 'framer-motion';
 
 const ViewStyle = styled.div`
   display: flex;
@@ -20,9 +21,12 @@ const Wads = () => {
   const [filter, setRawFilter] = useState('');
 
   const onClick = id => e => {
-    dispatch({ type: 'select-mod', id });
+    dispatch({ type: 'mod/select', id });
   };
 
+  const onSort = (index, direction) => e => {
+    dispatch({ type: 'mod/move', direction, index });
+  };
   const [onInput] = useDebouncedCallback(val => {
     setRawFilter(val.toLowerCase());
   }, 250);
@@ -38,7 +42,11 @@ const Wads = () => {
         <ul>
           <AnimatePresence>
             {show.map(item => (
-              <ModItem key={item.id} item={item} onSelect={onClick(item.id)} />
+              <ModItem
+                key={`mod_${item.id}`}
+                item={item}
+                onSelect={onClick(item.id)}
+              />
             ))}
           </AnimatePresence>
         </ul>
@@ -46,8 +54,15 @@ const Wads = () => {
       <Box>
         <ul>
           <AnimatePresence>
-            {gstate.selected.map(item => (
-              <ModItem key={item.id} item={item} onSelect={onClick(item.id)} />
+            {gstate.selected.map((item, itemindex) => (
+              <ModItem
+                key={`selected_${item.id}`}
+                item={item}
+                onSelect={onClick(item.id)}
+                onUp={onSort(itemindex, 'up')}
+                onDown={onSort(itemindex, 'down')}
+                selected
+              />
             ))}
           </AnimatePresence>
         </ul>

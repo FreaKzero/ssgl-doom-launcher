@@ -1,6 +1,12 @@
 /* eslint-disable no-case-declarations */
 import { act } from './middlewares';
 
+export const move = (data, from, to) => {
+  const array = data.slice();
+  array.splice(to < 0 ? array.length + to : to, 0, array.splice(from, 1)[0]);
+  return array;
+};
+
 export const initState = {
   mods: [],
   selected: [],
@@ -17,7 +23,16 @@ export function reducer(state, action) {
         ...state,
         settings: action.data
       });
-    case 'select-mod':
+    case 'mod/move':
+      const to =
+        action.direction === 'up' ? action.index - 1 : action.index + 1;
+
+      return act({
+        ...state,
+        selected: move(state.selected, action.index, to)
+      });
+
+    case 'mod/select':
       const newItem = state.mods.find(item => action.id === item.id);
       newItem.active = !newItem.active;
 

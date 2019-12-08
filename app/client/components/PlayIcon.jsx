@@ -61,6 +61,8 @@ const PlayIconStyle = styled.div`
     transform-origin: center center;
     transform: scale(0);
     transition: all 0.2s cubic-bezier(0.45, -0.79, 0, 1.77);
+    fill: black;
+    opacity: 0.3;
   }
 
   .active .backdrop {
@@ -89,7 +91,7 @@ const PlayIcon = ({ active, onClick }) => {
         className={active ? 'active' : undefined}
         onClick={onClick}
       >
-        <circle r="130" cx="174" cy="174" fill="black" className="backdrop" />
+        <circle r="130" cx="174" cy="174" className="backdrop" />
         <g className="ring-outer">
           <path d="M183.5 43.5H164L174 11L183.5 43.5Z" />
           <path d="M183.5 304H164L174 336.5L183.5 304Z" />

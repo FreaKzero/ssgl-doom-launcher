@@ -5,10 +5,9 @@ import down from '#Asset/icon/down.svg';
 import SvgInline from 'react-svg-inline';
 import styled from 'styled-components';
 
-const IconStyle = styled.span`
+const IconStyle = styled.div`
   cursor: pointer;
-  margin-bottom: 5px;
-  span:hover {
+  div:hover {
     svg {
       stroke: #ffa800;
       filter: drop-shadow(0px -1px 4px #ff0000)
@@ -29,7 +28,7 @@ const names = {
 const Icon = ({ name, ...rest }) => {
   return names[name] ? (
     <IconStyle>
-      <SvgInline {...rest} svg={names[name]} />
+      <SvgInline {...rest} svg={names[name]} component="div" />
     </IconStyle>
   ) : null;
 };
