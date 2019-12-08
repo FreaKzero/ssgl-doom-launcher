@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Box from '#Component/Box';
 import styled from 'styled-components';
 import { StoreContext } from '#State';
-import { remote, ipcRenderer } from 'electron';
 import Input from '#Component/Input';
-import fuzz from 'fuzzysearch';
+import setTitle from '#Util/setTitle';
 
 const SourcePorts = styled(({ ...rest }) => {
+  setTitle('sourceports');
   const { gstate, dispatch } = React.useContext(StoreContext);
   const [sp, setSp] = useState({ name: '', path: '' });
   return (

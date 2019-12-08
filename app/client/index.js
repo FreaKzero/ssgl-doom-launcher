@@ -14,7 +14,7 @@ import './i18n';
 
 const App = () => {
   const [gstate, dispatch] = useReducer(reducer, initState);
-  const [test, setTest] = useState(false);
+  const [poActive, setPoActive] = useState(false);
   const [load, setLoad] = useState(true);
 
   useEffect(() => {
@@ -36,9 +36,9 @@ const App = () => {
           <Routes />
           <PlayIcon
             active={gstate.selected.length}
-            onClick={() => setTest(true)}
+            onClick={() => setPoActive(true)}
           />
-          <PlayOverlay active={test} setActive={setTest} />
+          <PlayOverlay active={poActive} setActive={setPoActive} />
         </Body>
       )}
     </StoreContext.Provider>

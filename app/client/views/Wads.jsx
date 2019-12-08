@@ -7,6 +7,7 @@ import { StoreContext } from '#State';
 import { AnimatePresence } from 'framer-motion';
 import fuzz from 'fuzzysearch';
 import { useDebouncedCallback } from 'use-debounce';
+import setTitle from '#Util/setTitle';
 
 const ViewStyle = styled.div`
   display: flex;
@@ -14,6 +15,7 @@ const ViewStyle = styled.div`
 `;
 
 const Wads = () => {
+  setTitle('wads');
   const { gstate, dispatch } = React.useContext(StoreContext);
   const [filter, setRawFilter] = useState('');
 

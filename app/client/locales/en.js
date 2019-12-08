@@ -5,9 +5,10 @@ export default {
     loading: 'Loading'
   },
   nav: {
-    wads: 'WADS',
-    packages: 'PACKAGES',
-    sourceports: 'SOURCEPORTS',
-    settings: 'SETTINGS'
+    appname: 'Super Shotgun Launcher',
+    wads: 'Wads',
+    packages: 'Packages',
+    sourceports: 'Sourceports',
+    settings: 'Settings'
   }
 };

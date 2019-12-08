@@ -4,8 +4,10 @@ import Input from '#Component/Input';
 import styled from 'styled-components';
 import { StoreContext } from '#State';
 import { ipcRenderer, remote } from 'electron';
+import setTitle from '#Util/setTitle';
 
 const Wads = styled(({ ...rest }) => {
+  setTitle('settings');
   const [form, setForm] = React.useState({});
   const { gstate, dispatch } = React.useContext(StoreContext);
   const { settings } = gstate;
@@ -29,7 +31,8 @@ const Wads = styled(({ ...rest }) => {
     });
   };
 
-  const doTest = () => {s
+  const doTest = () => {
+    s;
     remote.dialog.showOpenDialog().then(res => {
       console.log(res.filePaths[0]);
     });
