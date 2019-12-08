@@ -1,11 +1,15 @@
-# Super Shotgun Launcher (V1 is Abandoned and will be Rewritten)
+# Super Shotgun Launcher (Doom Frontend/WAD Launcher)
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/setup-v2/SOON.png" width="400"></a></p>
 
-## Explanation about the Abandonment of the Project
+Currently gets rewritten in React and Electron because of abandonment/EOL of Angular 1.5 and NWjs.
 
-Originally ive written this only for me because i wasnt satisfied with the Experience of other launchers, as also a "learning Project" for NWJS Crossplatform Development and Angular 1.4 - both technologies which are by now abandoned and not maintained anymore in favor of Angular 2 and Electron. 
+My own Goals for this Rewrite: 
+- Get as close as the original with the UI design
+- Nicer and Simpler Codebase/Building as the old one
+- "Own" Component/UI with animations (styled-components and Framer Motion)
+- Better handling of Sourceports, user should be able to configure the Sourceport and parameters as he want
+- "Fresh" Visual Design and possibility to change Wallpapers
+- Nicer "Modlist" selection which is now called "Packages"
+- In the long run: Controller Support
 
-Tried since then many times to update the "current codebase" to fix the issues which were reported but most of them were dependency and old dusty javascript tooling related, for me alone not able to solve.
-
-So - i have some time on my hands again as also want to learn some new things and decided to revamp this project with all new shiny technologies and my current skillset 4 years later to make the Project more maintainable and future focused.
-
-The old codebase is still available in the `v1` Branch here.
+If you want to see the current Status of the Project: https://github.com/FreaKzero/ssgl-doom-launcher/issues/46
