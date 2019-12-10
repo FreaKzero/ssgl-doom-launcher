@@ -3,7 +3,7 @@ import path from 'path';
 import uuid from 'uuid-quick';
 import byteSize from 'byte-size';
 import klaw from 'klaw';
-import { AVAILABLE_IWADS } from '../constants';
+import { AVAILABLE_IWADS, MOD_EXTENSIONS } from '../constants';
 
 const walkWadDir = dir => {
   const mods = [];
@@ -51,14 +51,13 @@ const IWADItem = item => {
 };
 
 const isModFile = item => {
-  const ALLOWED = ['PK3', 'WAD', 'DEH'];
   const EXT = path
     .parse(item)
     .ext.toUpperCase()
     .trim()
     .substr(1);
 
-  return ALLOWED.indexOf(EXT) > -1;
+  return MOD_EXTENSIONS.indexOf(EXT) > -1;
 };
 
 const modItem = item => {

@@ -9,14 +9,15 @@ export const OptionItem = styled.li`
   cursor: pointer;
   padding: 10px;
   margin: 0;
-  transition: all 0.3s ease-out;
-  background-color: #161416;
+  transition: ${styles.transition.out};
+  background-color: ${styles.color.backdrop};
 
   &:hover {
     background-color: black;
-    color: ${styles.colorActive};
+    color: ${styles.color.active};
   }
 `;
+
 export const Options = styled.ul`
   position: absolute;
   width: ${p => (p.width ? `calc(${p.width})` : `calc(100% - 16px)`)};
@@ -27,39 +28,31 @@ export const Options = styled.ul`
   color: white;
   z-index: 999;
   height: 0;
-  border-radius: 3px;
+  border-radius: ${styles.border.radius};
   max-height: 145px;
   overflow-x: hidden;
   overflow-y: scroll;
   transition: height 0.13s ease-out;
 
-  &::-webkit-scrollbar {
-    width: 10px;
-    background-color: rgba(12, 8, 8, 0.8);
-  }
+  ${styles.scrollbar}
 
-  &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: ${styles.colorActive};
-  }
   .open & {
     height: 145px;
-    border-radius: 0 0 3px 3px;
-    border: 1px solid ${styles.colorActive};
+    border-radius: 0 0 ${styles.border.radius} ${styles.border.radius};
+    border: 1px solid ${styles.border.active};
     border-top: none;
   }
 `;
 
 export const Selected = styled.div`
-  background-color: #161416;
+  background-color: ${styles.color.backdrop};
   display: inline-block;
   padding: 10px;
-  border-radius: 3px;
+  border-radius: ${styles.border.radius};
   display: flex;
 
   .open & {
-    border-radius: 3px 3px 0 0;
+    border-radius: ${styles.border.radius} ${styles.border.radius} 0 0;
   }
 
   .open & input {
@@ -92,17 +85,17 @@ export const DropdownStyle = styled.div`
   margin-right: 5px;
 
   .container {
-    border: 1px solid ${styles.colorMeta};
+    border: 1px solid ${styles.border.idle};
     width: ${p => (p.width ? p.width : '100%')};
-    transition: all 0.21s ease-out;
+    transition: ${styles.transition.out};
 
     &:hover {
-      border: 1px solid ${styles.colorActive};
+      border: 1px solid ${styles.border.active};
     }
   }
 
   .container:hover svg {
-    stroke: #ffa800;
+    stroke: ${styles.color.active};
     filter: drop-shadow(0px -1px 4px #ff0000) drop-shadow(0px 0px 10px #ff0000);
   }
 

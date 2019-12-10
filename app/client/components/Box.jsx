@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import style from '#Style';
+import styles from '#Style';
 
 const BoxStyle = styled.div`
-  border: 1px solid #6c6c6c;
+  border: 1px solid ${styles.border.idle};
   backdrop-filter: blur(5px);
   border-radius: 7px;
   flex-grow: 1;
@@ -15,7 +15,7 @@ const BoxStyle = styled.div`
     overflow-y: scroll;
     overflow-x: hidden;
     height: calc(100vh - 195px);
-    ${style.scrollbar}
+    ${styles.scrollbar}
   }
 `;
 

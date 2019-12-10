@@ -1,26 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import styles from '#Style';
 import { Link } from 'wouter';
-const NavItem = styled(({ children, to, active, ...rest }) => {
-  return (
-    <li {...rest}>
-      <Link className={active ? 'active' : undefined} href={to}>
-        {children}
-      </Link>
-    </li>
-  );
-})`
+
+const NavItemStyle = styled.li`
   display: table-cell;
   position: relative;
 
   a {
-    color: #fff;
+    color: ${styles.color.idle};
     text-transform: uppercase;
     text-decoration: none;
     display: inline-block;
     padding: 15px 20px;
     position: relative;
-    transition: all 0.3s ease;
+    transition: ${styles.transition.short};
   }
   a:after {
     bottom: 0;
@@ -29,24 +23,30 @@ const NavItem = styled(({ children, to, active, ...rest }) => {
     height: 5px;
     left: 50%;
     position: absolute;
-    background: #fff;
-    transition: all 0.3s ease;
+    background: ${styles.color.idle};
+    transition: ${styles.transition.short};
     width: 0;
   }
-  a:hover {
-    color: #ffa800;
+  a:hover,
+  a.active {
+    color: ${styles.color.active};
     text-shadow: 0 -1px 4px #ff0000, 0 0px 15px #ff0000;
   }
   a:hover:after {
-    background-color: #ffa800;
+    background-color: ${styles.color.active};
     box-shadow: 0 -1px 4px #ff0000, 0 0px 15px #ff0000;
     width: 100%;
     left: 0;
   }
-
-  a.active {
-    color: #ffa800;
-    text-shadow: 0 -1px 4px #ff0000, 0 0px 15px #ff0000;
-  }
 `;
+
+const NavItem = ({ children, to, active }) => {
+  return (
+    <NavItemStyle>
+      <Link className={active ? 'active' : undefined} href={to}>
+        {children}
+      </Link>
+    </NavItemStyle>
+  );
+};
 export default NavItem;

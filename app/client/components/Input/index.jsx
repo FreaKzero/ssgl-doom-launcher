@@ -10,13 +10,13 @@ const Label = styled.label`
 `;
 
 const InputStyle = styled.div`
-  background-color: #161416;
+  background-color: ${styles.color.backdrop};
   display: inline-block;
-  border-radius: 3px;
+  border-radius: ${styles.border.radius};
   display: flex;
   margin-right: 5px;
-  border: 1px solid ${styles.colorMeta};
-  transition: border 0.13s ease-out;
+  border: 1px solid ${styles.border.idle};
+  transition: ${styles.transition.out};
   width: ${p => {
     if (p.fluid) {
       return `100%`;
@@ -27,17 +27,17 @@ const InputStyle = styled.div`
     }
   }};
   &:hover {
-    border: 1px solid ${styles.colorActive};
+    border: 1px solid ${styles.border.active};
   }
 
   &:focus-within {
-    border: 1px solid ${styles.colorActive};
+    border: 1px solid ${styles.border.active};
   }
 
   & input {
     padding: 10px;
     font-family: 'Rajdhani', sans-serif;
-    color: white;
+    color: ${styles.color.idle}
     width: ${p => {
       if (p.fluid) {
         return `100%`;

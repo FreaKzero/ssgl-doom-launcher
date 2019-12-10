@@ -1,22 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import styles from '#Style';
 
 const IconStyle = styled.div`
   cursor: pointer;
   &:hover .ring-inner {
-    stroke: #ffa800;
+    stroke: ${styles.svg.yellow};
   }
   .ring-outer {
-    stroke: #5f100f;
-    transition: all 0.2s cubic-bezier(0.45, -0.79, 0, 1.77);
+    stroke: ${styles.svg.red};
+    transition: ${styles.transition.bounce};
     transform-origin: center center;
     transform: scale(0.7);
     stroke-width: 20;
   }
   .ring-inner {
     stroke-width: 30;
-    stroke: #5f100f;
+    stroke: ${styles.svg.red};
     r: 15;
     transition: all 0.2s ease-out;
   }
@@ -29,14 +30,14 @@ const IconStyle = styled.div`
   }
 
   .active .ring-outer {
-    stroke: #ffa800;
+    stroke: ${styles.svg.yellow};
     transform: rotate(45deg) scale(1);
     stroke-width: 12;
   }
 
   .active .ring-inner {
     stroke-width: 20;
-    stroke: #5f100f;
+    stroke: ${styles.svg.red};
     r: 80;
   }
 

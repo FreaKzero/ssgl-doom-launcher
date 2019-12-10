@@ -14,12 +14,12 @@ const PlayIconStyle = styled.div`
   }
 
   &:hover .active .play {
-    stroke: ${styles.colorActive};
+    stroke: ${styles.svg.yellow};
   }
 
   &:hover .active .ring-outer {
     transform: rotate(45deg);
-    stroke: ${styles.colorActive};
+    stroke: ${styles.svg.yellow};
   }
 
   &:hover .active .ring-inner {
@@ -38,13 +38,13 @@ const PlayIconStyle = styled.div`
   .active .ring-outer {
     transform: scale(1);
     opacity: 1;
-    stroke: #5f100f;
+    stroke: ${styles.svg.red};
   }
 
   .ring-inner {
     stroke-width: 0;
     opacity: 0;
-    stroke: #ffa800;
+    stroke: ${styles.svg.yellow};
     r: 15;
     transition: all 0.2s ease-out;
   }
@@ -52,7 +52,7 @@ const PlayIconStyle = styled.div`
   .active .ring-inner {
     opacity: 1;
     stroke-width: 15;
-    stroke: #5f100f;
+    stroke: ${styles.svg.red};
     r: 60;
     opacity: 0;
   }
@@ -70,11 +70,14 @@ const PlayIconStyle = styled.div`
   }
 
   .play {
+    transform-origin: center center;
     opacity: 0;
-    stroke: ${styles.colorMeta};
-    transition: ${styles.transitionShort};
+    stroke: ${styles.svg.grey};
+    transform: scale(0);
+    transition: all 0.35s cubic-bezier(0.45, -0.79, 0, 1.77);
   }
   .active .play {
+    transform: scale(1);
     opacity: 1;
   }
 `;

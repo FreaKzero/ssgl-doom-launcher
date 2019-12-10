@@ -4,19 +4,22 @@ import up from '#Asset/icon/up.svg';
 import down from '#Asset/icon/down.svg';
 import SvgInline from 'react-svg-inline';
 import styled from 'styled-components';
+import styles from '#Style';
 
+// TODO: color / refactor
 const IconStyle = styled.div`
   cursor: pointer;
+
   div:hover {
     svg {
-      stroke: #ffa800;
+      stroke: ${styles.border.active};
       filter: drop-shadow(0px -1px 4px #ff0000)
         drop-shadow(0px 0px 10px #ff0000) drop-shadow(0px 0px 15px #ff0000);
     }
   }
   svg {
-    stroke: #6f6f6f;
-    transition: all 0.25s ease-out;
+    stroke: ${styles.border.idle};
+    transition: ${styles.transition.out};
   }
 `;
 

@@ -8,12 +8,12 @@ const ListItemStyle = styled.li`
   text-align: center;
 `;
 
-const ItemStyle = styled.div`
+const IconStyle = styled.div`
   cursor: pointer;
 
   &:hover .ring-outer {
     transform: rotate(45deg);
-    stroke: ${styles.colorActive};
+    stroke: ${styles.svg.yellow};
   }
 
   &:hover .backdrop-overlay,
@@ -24,7 +24,7 @@ const ItemStyle = styled.div`
   .ring-outer {
     transform-origin: center center;
     transition: all 0.35s cubic-bezier(0.45, -0.79, 0, 1.77);
-    stroke: #5f100f;
+    stroke: ${styles.svg.red};
     stroke-width: 9;
   }
 
@@ -36,11 +36,11 @@ const ItemStyle = styled.div`
     transform-origin: center center;
     opacity: 0.5;
     transform: scale(0);
-    transition: all 0.15s ease-in;
+    transition: ${styles.transition.short};
   }
 
   .play {
-    stroke: ${styles.colorActive};
+    stroke: ${styles.svg.yellow};
     transform-origin: center center;
     transform: scale(0);
     transition: all 0.35s cubic-bezier(0.45, -0.79, 0, 1.77);
@@ -50,7 +50,7 @@ const ItemStyle = styled.div`
 const Item = ({ name, onClick }) => {
   return (
     <ListItemStyle>
-      <ItemStyle>
+      <IconStyle>
         <svg
           width="80"
           height="80"
@@ -111,7 +111,7 @@ const Item = ({ name, onClick }) => {
             <circle cx="174" cy="174" r="129" />
           </g>
         </svg>
-      </ItemStyle>
+      </IconStyle>
       {name}
     </ListItemStyle>
   );

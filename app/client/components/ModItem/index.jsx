@@ -15,19 +15,19 @@ const IconContainer = styled.div`
 
 const ItemStyle = styled.div`
   background: rgba(12, 8, 8, 0.8);
-  border-radius: 6px;
+  border-radius: ${styles.border.radius};
   padding: 10px;
   height: 60px;
   display: flex;
-  border: 1px solid ${styles.colorMeta};
-  transition: ${styles.transitionLong};
+  border: 1px solid ${styles.border.idle};
+  transition: ${styles.transition.out};
   margin-bottom: 5px;
 
   &:hover {
-    border: 1px solid ${styles.colorActive};
+    border: 1px solid ${styles.border.active};
   }
   &:hover h1 {
-    color: ${styles.colorActive};
+    color: ${styles.color.active};
   }
   .divider {
     width: 5px;
@@ -39,16 +39,16 @@ const ItemStyle = styled.div`
     h1 {
       font-size: 18px;
       margin-bottom: 5px;
-      transition: ${styles.transitionLong};
+      transition: ${styles.transition.out};
       text-transform: uppercase;
 
       &.active {
-        color: ${styles.colorActive};
+        color: ${styles.color.active};
       }
     }
 
     .meta {
-      color: ${styles.colorMeta};
+      color: ${styles.color.idle};
       font-size: 13px;
       margin-bottom: 5px;
     }

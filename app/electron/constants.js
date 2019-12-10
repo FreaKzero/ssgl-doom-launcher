@@ -1,3 +1,5 @@
+const MOD_EXTENSIONS = ['PK3', 'WAD', 'DEH', 'ZIP', 'RAR'];
+
 const AVAILABLE_IWADS = [
   'chex',
   'chex2',
@@ -18,4 +20,4 @@ const AVAILABLE_IWADS = [
   'tnt'
 ];
 
-export { AVAILABLE_IWADS };
+export { AVAILABLE_IWADS, MOD_EXTENSIONS };
