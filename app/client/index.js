@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
+import './i18n';
 import { GlobalStyle } from '#Style';
 import Body from '#Component/Body';
 import Head from '#Component/Head';
@@ -10,14 +11,13 @@ import MainLoader from '#Component/MainLoader';
 import { initState, reducer, StoreContext } from '#State';
 import { ipcRenderer } from 'electron';
 
-import './i18n';
-
 const App = () => {
   const [gstate, dispatch] = useReducer(reducer, initState);
   const [poActive, setPoActive] = useState(false);
   const [load, setLoad] = useState(true);
 
   useEffect(() => {
+    console.log('WHY!');
     ipcRenderer.invoke('init', null).then(res => {
       dispatch({ type: 'init', data: res.data });
       setTimeout(() => setLoad(false), 1000);

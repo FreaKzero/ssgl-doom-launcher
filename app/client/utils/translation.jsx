@@ -5,4 +5,5 @@ const T = ({ children, ns = ['common'], values }) => {
   return t(children, values);
 };
 
-export { T, useTranslation };
+export { useTranslation };
+export default T;
