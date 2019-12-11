@@ -65,7 +65,7 @@ export const Selected = styled.div`
   }
 
   & input {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: ${styles.font.content};
     width: 100%;
     color: transparent;
     text-shadow: 0 0 0 white;

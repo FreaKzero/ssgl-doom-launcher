@@ -17,7 +17,7 @@ const ItemStyle = styled.div`
   background: rgba(12, 8, 8, 0.8);
   border-radius: ${styles.border.radius};
   padding: 10px;
-  height: 60px;
+  height: 50px;
   display: flex;
   border: 1px solid ${styles.border.idle};
   transition: ${styles.transition.out};
@@ -68,7 +68,8 @@ const Item = ({ item, onSelect, onUp, onDown, selected = false }) => {
       }}
     >
       <ItemStyle>
-        <Check size="60" active={item.active} onClick={onSelect} />
+        <Check size="50" active={item.active} onClick={onSelect} />
+        <div className="divider" />
         <div className="content">
           <h1 className={item.active ? 'active' : undefined}>{item.name}</h1>
           <div className="meta">
@@ -77,8 +78,8 @@ const Item = ({ item, onSelect, onUp, onDown, selected = false }) => {
         </div>
         {selected ? (
           <IconContainer>
-            <Icon name="up" width="16" onClick={onUp} />
-            <Icon name="down" width="16" onClick={onDown} />
+            <Icon name="up" width="13" onClick={onUp} />
+            <Icon name="down" width="13" onClick={onDown} />
           </IconContainer>
         ) : (
           false

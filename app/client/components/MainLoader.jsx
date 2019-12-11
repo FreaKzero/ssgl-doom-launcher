@@ -5,7 +5,7 @@ import Logo from './Logo';
 import { useTranslation } from '#Util/translation';
 
 const MainLoaderStyle = styled.div`
-  font-family: 'Rajdhani', sans-serif;
+  font-family: ${styles.font.head};
   text-align: center;
   text-transform: uppercase;
   background-color: black;

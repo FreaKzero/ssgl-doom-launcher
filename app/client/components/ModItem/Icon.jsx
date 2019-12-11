@@ -13,8 +13,8 @@ const IconStyle = styled.div`
   div:hover {
     svg {
       stroke: ${styles.border.active};
-      filter: drop-shadow(0px -1px 4px #ff0000)
-        drop-shadow(0px 0px 10px #ff0000) drop-shadow(0px 0px 15px #ff0000);
+      filter: drop-shadow(0px 0px 10px #ff0000)
+        drop-shadow(0px 0px 15px #ff0000);
     }
   }
   svg {

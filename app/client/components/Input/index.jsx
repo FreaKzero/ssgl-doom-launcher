@@ -36,7 +36,7 @@ const InputStyle = styled.div`
 
   & input {
     padding: 10px;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: ${styles.font.content};
     color: ${styles.color.idle}
     width: ${p => {
       if (p.fluid) {

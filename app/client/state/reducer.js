@@ -47,7 +47,7 @@ export function reducer(state, action) {
       const selected =
         found > -1
           ? removeIndex(state.selected, found)
-          : [newItem, ...state.selected];
+          : [...state.selected, newItem];
 
       return act({
         ...state,

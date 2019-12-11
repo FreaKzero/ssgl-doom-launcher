@@ -2,8 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 
 const styles = {
   font: {
-    content: "font-family: 'Michroma', sans-serif;",
-    head: "font-family: 'Rajdhani', sans-serif;"
+    head: "'Michroma', sans-serif",
+    content: "'Rajdhani', sans-serif"
   },
   svg: {
     red: '#5f100f',

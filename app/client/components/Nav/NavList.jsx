@@ -5,11 +5,12 @@ import { useLocation } from 'wouter';
 import NavItem from './NavItem';
 import routes from '#Root/routes';
 import { useTranslation } from '#Util/translation';
+import styles from '#Style';
 
 // TODO: key
 const NavList = styled.ul`
   height: 65px;
-  font-family: 'Michroma', sans-serif;
+  font-family: ${styles.font.head};
   padding: 0;
   list-style: none;
   display: table;
