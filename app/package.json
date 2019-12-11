@@ -72,7 +72,7 @@
     "html-webpack-plugin": "^4.0.0-beta.11",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
-    "style-loader": "^1.0.0",
+    "style-loader": "^1.0.1",
     "svg-inline-loader": "^0.8.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
@@ -82,6 +82,7 @@
   },
   "dependencies": {
     "byte-size": "^6.2.0",
+    "css-loader": "^3.3.0",
     "framer-motion": "^1.6.18",
     "fuzzysearch": "^1.0.3",
     "i18next": "^19.0.0",
@@ -92,7 +93,7 @@
     "react-dom": "^16.11.0",
     "react-i18next": "^11.0.1",
     "react-svg-inline": "^2.1.1",
-    "styled-components": "^4.4.0",
+    "styled-components": "^4.4.1",
     "use-debounce": "^3.1.0",
     "uuid-quick": "^0.1.0",
     "wouter": "^2.3.1"

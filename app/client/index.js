@@ -10,6 +10,7 @@ import PlayIcon from '#Component/PlayIcon';
 import MainLoader from '#Component/MainLoader';
 import { initState, reducer, StoreContext } from '#State';
 import { ipcRenderer } from 'electron';
+import './global.css';
 
 const App = () => {
   const [gstate, dispatch] = useReducer(reducer, initState);
@@ -33,8 +34,6 @@ const App = () => {
 
   return (
     <StoreContext.Provider value={{ gstate, dispatch }}>
-      <GlobalStyle />
-
       {load ? (
         <MainLoader />
       ) : (
