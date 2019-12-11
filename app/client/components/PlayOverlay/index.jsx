@@ -79,22 +79,23 @@ const PlayOverlay = ({ active, setActive }) => {
     setActive(false);
   };
 
-  return gstate.iwads ? (
+  return (
     <>
       <BackDrop onClick={() => setActive(false)} active={active} />
       <Modal active={active}>
         <IWad.List>
-          {gstate.iwads.map(item => (
-            <IWad.Item
-              name={item.name}
-              key={item.id}
-              onClick={onPlay(item.path)}
-            />
-          ))}
+          {gstate.iwads.length &&
+            gstate.iwads.map(item => (
+              <IWad.Item
+                name={item.name}
+                key={item.id}
+                onClick={onPlay(item.path)}
+              />
+            ))}
         </IWad.List>
       </Modal>
     </>
-  ) : null;
+  );
 };
 
 export default PlayOverlay;

@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 const merge = require('webpack-merge');
 const base = require('./wp.renderer.base');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge.smart(base, {
   mode: 'development',
@@ -18,13 +19,11 @@ module.exports = merge.smart(base, {
       multiStep: true
     }),
     new webpack.NamedModulesPlugin(),
-    new ErrorOverlayPlugin(),
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development'
-    })
+    new ErrorOverlayPlugin()
   ],
   devtool: 'cheap-module-source-map',
   devServer: {
+    port: 1666,
     contentBase: './',
     hot: true,
     historyApiFallback: true

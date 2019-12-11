@@ -17,11 +17,18 @@ const App = () => {
   const [load, setLoad] = useState(true);
 
   useEffect(() => {
-    console.log('WHY!');
-    ipcRenderer.invoke('init', null).then(res => {
-      dispatch({ type: 'init', data: res.data });
-      setTimeout(() => setLoad(false), 1000);
-    });
+    ipcRenderer
+      .invoke('init', null)
+      .then(res => {
+        if (res.data) {
+          dispatch({ type: 'init', data: res.data });
+        }
+        setTimeout(() => setLoad(false), 1000);
+      })
+      .catch(e => {
+        console.log('catched');
+        console.log('error ?!' + e);
+      });
   }, []);
 
   return (
@@ -47,4 +54,6 @@ const App = () => {
 
 ReactDOM.render(<App />, document.getElementById('app'));
 
-module.hot.accept();
+if (module && module.hot) {
+  module.hot.accept();
+}

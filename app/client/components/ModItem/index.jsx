@@ -56,9 +56,6 @@ const ItemStyle = styled.div`
 `;
 
 const Item = ({ item, onSelect, onUp, onDown, selected = false }) => {
-  const spring = {
-    type: 'tween'
-  };
   return (
     <motion.li
       initial={{ opacity: 0 }}
@@ -66,14 +63,14 @@ const Item = ({ item, onSelect, onUp, onDown, selected = false }) => {
         opacity: 1
       }}
       exit={{ opacity: 0 }}
-      layoutTransition={spring}
+      layoutTransition={{
+        type: 'tween'
+      }}
     >
       <ItemStyle>
-        <Check size={60} active={item.active} onClick={onSelect} />
-        <div className="divider" />
+        <Check size="60" active={item.active} onClick={onSelect} />
         <div className="content">
           <h1 className={item.active ? 'active' : undefined}>{item.name}</h1>
-          <div className="meta"></div>
           <div className="meta">
             {item.kind} {item.size}
           </div>

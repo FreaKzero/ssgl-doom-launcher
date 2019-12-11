@@ -3,7 +3,7 @@ const path = require('path');
 const { app, BrowserWindow } = require('electron');
 
 const whenProd = (whenProd, notProd) =>
-  process.env.NODE_ENV === 'production' ? whenProd : notProd;
+  app.name.toLowerCase() === 'electron' ? notProd : whenProd;
 
 let mainWindow;
 
@@ -19,8 +19,8 @@ function createWindow() {
   });
 
   const url = whenProd(
-    `file://${path.join(__dirname, '../index.html')}`,
-    'http://localhost:8080'
+    `file://${path.join(__dirname, '../production.html')}`,
+    'http://localhost:1666'
   );
 
   mainWindow.loadURL(url);

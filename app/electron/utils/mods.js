@@ -6,6 +6,10 @@ import klaw from 'klaw';
 import { AVAILABLE_IWADS, MOD_EXTENSIONS } from '../constants';
 
 const walkWadDir = dir => {
+  if (!dir || dir.trim() === '') {
+    throw new Error('No Path given');
+  }
+
   const mods = [];
   const iwads = [];
   const filter = item => {

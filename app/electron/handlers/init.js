@@ -17,6 +17,7 @@ ipcMain.handle('init', async (e, args) => {
     };
   } catch (e) {
     return {
+      data: null,
       error: e.message
     };
   }

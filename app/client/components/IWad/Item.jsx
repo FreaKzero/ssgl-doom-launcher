@@ -10,7 +10,6 @@ const ListItemStyle = styled.li`
 
 const IconStyle = styled.div`
   cursor: pointer;
-
   &:hover .ring-outer {
     transform: rotate(45deg);
     stroke: ${styles.svg.yellow};

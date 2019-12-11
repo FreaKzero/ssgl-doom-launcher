@@ -19,7 +19,7 @@ const BoxStyle = styled.div`
   }
 `;
 
-const Box = ({ children, fixed, ...rest }) => {
+const Box = ({ children, fixed }) => {
   return (
     <BoxStyle>
       <div className="fixed">{fixed}</div>

@@ -7,7 +7,13 @@ export const move = (data, from, to) => {
   return array;
 };
 
+export const removeIndex = (arr, index) => [
+  ...arr.slice(0, index),
+  ...arr.slice(index + 1)
+];
+
 export const initState = {
+  iwads: [],
   mods: [],
   selected: [],
   sourceports: [],
@@ -38,15 +44,14 @@ export function reducer(state, action) {
 
       const found = state.selected.findIndex(item => action.id === item.id);
 
-      if (found > -1) {
-        state.selected.splice(found, 1);
-      } else {
-        state.selected.push(newItem);
-      }
+      const selected =
+        found > -1
+          ? removeIndex(state.selected, found)
+          : [newItem, ...state.selected];
 
       return act({
         ...state,
-        selected: state.selected,
+        selected,
         mods: state.mods.map(item => (item.id === action.id ? newItem : item))
       });
 

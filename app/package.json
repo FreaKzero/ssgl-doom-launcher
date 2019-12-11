@@ -7,15 +7,16 @@
     "start": "concurrently \"yarn dev:main\" \"yarn dev:webp\"",
     "dev:webp": "webpack-dev-server --mode development --config ./configs/wp.renderer.dev.js",
     "dev:main": "webpack --mode development --config ./configs/wp.main.dev.js",
-    "build:main": "cross-env NODE_ENV=production webpack --config ./configs/wp.main.prod.js",
-    "build:renderer": "cross-env NODE_ENV=production webpack --config ./configs/wp.renderer.prod.js",
-    "build": "rimraf ./build && yarn build:main && yarn build:renderer",
+    "build:main": "webpack --mode production --config ./configs/wp.main.prod.js",
+    "build:renderer": "webpack --mode production --config ./configs/wp.renderer.prod.js",
+    "build": "yarn build:main && yarn build:renderer",
     "lint": "eslint 'client/**/*.js?(x)' --fix",
-    "package": "rimraf ./dist && yarn build && electron-builder build --publish never"
+    "clean": "rimraf ./dist && rimraf ./build",
+    "package": "yarn clean && yarn build && electron-builder build --publish never"
   },
   "build": {
-    "productName": "ssgl",
-    "appId": "ssgl",
+    "productName": "SSGL",
+    "appId": "SSGL",
     "dmg": {
       "contents": [
         {
@@ -31,8 +32,8 @@
       ]
     },
     "files": [
-      "index.html",
-      "build/*",
+      "production.html",
+      "build/**/*.*",
       "package.json"
     ]
   },
@@ -68,6 +69,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
     "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^4.0.0-beta.11",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
     "style-loader": "^1.0.0",
@@ -80,7 +82,7 @@
   },
   "dependencies": {
     "byte-size": "^6.2.0",
-    "framer-motion": "^1.6.15",
+    "framer-motion": "^1.6.18",
     "fuzzysearch": "^1.0.3",
     "i18next": "^19.0.0",
     "klaw": "^3.0.0",
