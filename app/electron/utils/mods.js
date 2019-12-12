@@ -68,6 +68,7 @@ const modItem = item => {
   const sz = byteSize(item.stats.size);
   return {
     id: uuid(),
+    lastdir: path.basename(path.dirname(item.path)).toLowerCase(),
     name: path.parse(item.path).name.replace(/_/g, ' '),
     kind: getExt(item.path),
     path: item.path,

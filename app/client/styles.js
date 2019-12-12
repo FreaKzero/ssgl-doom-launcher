@@ -1,5 +1,3 @@
-import { createGlobalStyle } from 'styled-components';
-
 const styles = {
   font: {
     head: "'Michroma', sans-serif",
@@ -27,7 +25,7 @@ const styles = {
   border: {
     radius: '4px',
     active: '#ffa800',
-    idle: '#6f6f6f',
+    idle: '#262626',
     red: '#5f100f'
   },
   back: 'rgba(12, 8, 8, 0.8)',

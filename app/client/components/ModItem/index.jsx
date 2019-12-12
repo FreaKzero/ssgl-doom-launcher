@@ -6,6 +6,30 @@ import Icon from './Icon';
 import Check from './Check';
 import { motion } from 'framer-motion';
 
+const Divider = styled.div`
+  width: 5px;
+`;
+const Content = styled.div`
+  width: 100%;
+
+  h1 {
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    transition: ${styles.transition.out};
+    text-transform: uppercase;
+    &.active {
+      color: ${styles.color.active};
+    }
+  }
+`;
+
+const Meta = styled.div`
+  color: #858585;
+  font-size: 14px;
+  margin-bottom: 5px;
+`;
+
 const IconContainer = styled.div`
   text-align: center;
   display: flex;
@@ -22,36 +46,12 @@ const ItemStyle = styled.div`
   border: 1px solid ${styles.border.idle};
   transition: ${styles.transition.out};
   margin-bottom: 5px;
-
+  user-select: none;
   &:hover {
     border: 1px solid ${styles.border.active};
   }
   &:hover h1 {
     color: ${styles.color.active};
-  }
-  .divider {
-    width: 5px;
-  }
-
-  .content {
-    width: 100%;
-
-    h1 {
-      font-size: 18px;
-      margin-bottom: 5px;
-      transition: ${styles.transition.out};
-      text-transform: uppercase;
-
-      &.active {
-        color: ${styles.color.active};
-      }
-    }
-
-    .meta {
-      color: ${styles.color.idle};
-      font-size: 13px;
-      margin-bottom: 5px;
-    }
   }
 `;
 
@@ -60,7 +60,8 @@ const Item = ({ item, onSelect, onUp, onDown, selected = false }) => {
     <motion.li
       initial={{ opacity: 0 }}
       animate={{
-        opacity: 1
+        opacity: 1,
+        scale: 1
       }}
       exit={{ opacity: 0 }}
       layoutTransition={{
@@ -69,13 +70,13 @@ const Item = ({ item, onSelect, onUp, onDown, selected = false }) => {
     >
       <ItemStyle>
         <Check size="50" active={item.active} onClick={onSelect} />
-        <div className="divider" />
-        <div className="content">
+        <Divider />
+        <Content>
           <h1 className={item.active ? 'active' : undefined}>{item.name}</h1>
-          <div className="meta">
-            {item.kind} {item.size}
-          </div>
-        </div>
+          <Meta>
+            {item.lastdir} / {item.kind} / {item.size}
+          </Meta>
+        </Content>
         {selected ? (
           <IconContainer>
             <Icon name="up" width="13" onClick={onUp} />

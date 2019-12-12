@@ -11,11 +11,16 @@ const BoxStyle = styled.div`
   padding: 10px;
   margin-right: 10px;
   height: calc(100vh - 140px);
+
   .scroll {
     overflow-y: scroll;
     overflow-x: hidden;
     height: calc(100vh - 195px);
     ${styles.scrollbar}
+  }
+
+  .content {
+    margin-right: 5px;
   }
 `;
 
@@ -24,7 +29,9 @@ const Box = ({ children, fixed }) => {
     <BoxStyle>
       <div className="fixed">{fixed}</div>
 
-      <div className="scroll">{children}</div>
+      <div className="scroll">
+        <div className="content">{children}</div>
+      </div>
     </BoxStyle>
   );
 };

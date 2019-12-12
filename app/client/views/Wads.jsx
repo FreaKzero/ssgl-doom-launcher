@@ -31,28 +31,26 @@ const Wads = () => {
     setRawFilter(val.toLowerCase());
   }, 250);
 
+  const show =
+    filter.trim() !== ''
+      ? gstate.mods.length &&
+        gstate.mods.filter(i =>
+          fuzz(filter, `${i.name.toLowerCase()} ${i.lastdir}`)
+        )
+      : gstate.mods.length && gstate.mods;
+
   return (
     <ViewStyle>
       <Box fixed={<ModFilter onInput={e => onInput(e.target.value)} />}>
         <ul>
           <AnimatePresence>
-            {filter.trim() !== ''
-              ? gstate.mods
-                  .filter(i => fuzz(filter, i.name.toLowerCase()))
-                  .map(item => (
-                    <ModItem
-                      key={`mod_${item.id}`}
-                      item={item}
-                      onSelect={onClick(item.id)}
-                    />
-                  ))
-              : gstate.mods.map(item => (
-                  <ModItem
-                    key={`mod_${item.id}`}
-                    item={item}
-                    onSelect={onClick(item.id)}
-                  />
-                ))}
+            {show.map(item => (
+              <ModItem
+                key={`mod_${item.id}`}
+                item={item}
+                onSelect={onClick(item.id)}
+              />
+            ))}
           </AnimatePresence>
         </ul>
       </Box>
