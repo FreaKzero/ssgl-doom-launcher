@@ -1,11 +1,10 @@
 import React from 'react';
-import Box from '#Component/Box';
-import Input from '#Component/Input';
-import SelectFile from '#Component/SelectFile';
-import Button from '#Component/Button';
 import styled from 'styled-components';
-import { StoreContext } from '#State';
 import { ipcRenderer, remote } from 'electron';
+import Box from '#Component/Box';
+import SelectFile from '#Component/Form/SelectFile';
+import Button from '#Component/Form/Button';
+import { StoreContext } from '#State';
 import setTitle from '#Util/setTitle';
 
 const Wads = styled(({ ...rest }) => {
@@ -69,6 +68,7 @@ const Wads = styled(({ ...rest }) => {
             label="portpath"
             value={form.portpath}
           />
+
           <Button type="submit">Submit</Button>
         </form>
       </Box>

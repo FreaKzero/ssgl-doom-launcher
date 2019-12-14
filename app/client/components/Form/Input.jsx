@@ -2,14 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import styles from '#Style';
+import Label from './Label';
 
-const Label = styled.label`
-  display: block;
-  margin: 5px 0 5px 0;
-  text-transform: uppercase;
+export const InputStyle = styled.input`
+  padding: 7px 7px 7px 10px;
+  font-family: ${styles.font.content};
+  color: ${styles.color.idle};
+  width: 100%;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  background-image: none;
+  box-shadow: none;
+  outline: none;
+  margin: 0;
 `;
 
-const InputStyle = styled.div`
+export const InputContainerStyle = styled.div`
   background-color: ${styles.color.backdrop};
   display: inline-block;
   border-radius: ${styles.border.radius};
@@ -33,29 +42,15 @@ const InputStyle = styled.div`
   &:focus-within {
     border: 1px solid ${styles.border.active};
   }
-
-  & input {
-    padding: 7px 7px 7px 10px;
-    font-family: ${styles.font.content};
-    color: ${styles.color.idle};
-    width: 100%;
-    font-size: 16px;
-    background-color: transparent;
-    border: none;
-    background-image: none;
-    box-shadow: none;
-    outline: none;
-    margin: 0;
-  }
 `;
 
 const Input = ({ width = '250px', label, fluid = false, ...rest }) => {
   return (
     <>
       {label ? <Label>{label}</Label> : null}
-      <InputStyle width={width} fluid={fluid}>
-        <input type="text" {...rest} />
-      </InputStyle>
+      <InputContainerStyle width={width} fluid={fluid}>
+        <InputStyle type="text" {...rest} />
+      </InputContainerStyle>
     </>
   );
 };

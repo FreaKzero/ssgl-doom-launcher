@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import styles from '#Style';
 
-export const StyledButton = styled.button`
+export const ButtonStyle = styled.button`
   background: linear-gradient(180deg, #3f464c 0%, #1d2025 100%);
   border: 1px solid #1d2226;
   box-sizing: border-box;
@@ -31,9 +31,9 @@ const Button = ({
   ...rest
 }) => {
   return (
-    <StyledButton type={type} onClick={onClick} {...rest}>
+    <ButtonStyle type={type} onClick={onClick} {...rest}>
       {children}
-    </StyledButton>
+    </ButtonStyle>
   );
 };
 

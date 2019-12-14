@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Dropdown from '#Component/Dropdown';
-import Input from '#Component/Input';
+import Input from '#Component/Form/Input';
 
 const ModFilterStyle = styled.div`
   margin-bottom: 5px;
