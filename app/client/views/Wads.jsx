@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import Box from '#Component/Box';
-import styled from 'styled-components';
 import ModItem from '#Component/ModItem';
 import ModFilter from '#Component/ModFilter';
 import PlayOverlay from '#Component/PlayOverlay';
@@ -30,6 +29,10 @@ const Wads = () => {
     setRawFilter(val.toLowerCase());
   }, 250);
 
+  const onRefresh = () => {
+    alert('WOOOO');
+  };
+
   const show =
     filter.trim() !== ''
       ? gstate.mods.length &&
@@ -42,7 +45,14 @@ const Wads = () => {
     <>
       <Flex.Grid>
         <Flex.Col>
-          <Box fixed={<ModFilter onInput={(e, { value }) => onInput(value)} />}>
+          <Box
+            fixed={
+              <ModFilter
+                onInput={(e, { value }) => onInput(value)}
+                onRefresh={onRefresh}
+              />
+            }
+          >
             <ul>
               <AnimatePresence>
                 {show &&

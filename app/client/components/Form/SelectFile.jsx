@@ -7,7 +7,7 @@ import { ButtonStyle } from './Button';
 import { InputContainerStyle, InputStyle } from './Input';
 
 const SelectButton = styled(ButtonStyle)`
-  min-width: none;
+  min-width: 100px;
   border-radius: 4px 0 0 4px;
   padding: 0;
   &:hover {

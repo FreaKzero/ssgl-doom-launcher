@@ -1,7 +1,6 @@
 import { ipcMain } from 'electron';
 import { walkWadDir } from '../utils/mods';
 import { getJSON } from '../utils/json';
-import { getDataFile } from '../utils/common';
 
 ipcMain.handle('init', async (e, args) => {
   try {

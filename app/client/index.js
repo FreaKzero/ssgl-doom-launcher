@@ -5,8 +5,6 @@ import { GlobalStyle } from '#Style';
 import Body from '#Component/Body';
 import Head from '#Component/Head';
 import Routes from '#Component/Router';
-import ErrorMessage from '#Component/ErrorMessage';
-
 import MainLoader from '#Component/MainLoader';
 import { initState, reducer, StoreContext } from '#State';
 import { ipcRenderer } from 'electron';
