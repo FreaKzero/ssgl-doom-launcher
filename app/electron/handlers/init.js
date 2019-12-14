@@ -6,19 +6,26 @@ import { getDataFile } from '../utils/common';
 ipcMain.handle('init', async (e, args) => {
   try {
     const settings = await getJSON('settings');
-    const walkedFiles = await walkWadDir(settings.data.modpath);
-    return {
-      error: null,
-      data: {
-        ...walkedFiles,
-        sourceports: [],
-        settings: settings.data
-      }
-    };
+    try {
+      const walkedFiles = await walkWadDir(settings.data.modpath);
+      return {
+        error: null,
+        data: {
+          ...walkedFiles,
+          sourceports: [],
+          settings: settings.data
+        }
+      };
+    } catch (e) {
+      return {
+        data: null,
+        error: e.message
+      };
+    }
   } catch (e) {
     return {
       data: null,
-      error: e.message
+      error: 'Cant load Settings'
     };
   }
 });

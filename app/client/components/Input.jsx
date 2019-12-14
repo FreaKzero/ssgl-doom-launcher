@@ -35,19 +35,11 @@ const InputStyle = styled.div`
   }
 
   & input {
-    padding: 10px;
+    padding: 7px 7px 7px 10px;
     font-family: ${styles.font.content};
-    color: ${styles.color.idle}
-    width: ${p => {
-      if (p.fluid) {
-        return `100%`;
-      }
-
-      if (p.width) {
-        return p.width;
-      }
-    }};
-    font-size: 14px;
+    color: ${styles.color.idle};
+    width: 100%;
+    font-size: 16px;
     background-color: transparent;
     border: none;
     background-image: none;

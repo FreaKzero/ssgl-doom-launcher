@@ -7,7 +7,7 @@ import { AVAILABLE_IWADS, MOD_EXTENSIONS } from '../constants';
 
 const walkWadDir = dir => {
   if (!dir || dir.trim() === '') {
-    throw new Error('No Path given');
+    throw new Error('WAD Directory is not set');
   }
 
   const mods = [];

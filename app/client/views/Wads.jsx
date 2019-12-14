@@ -44,13 +44,14 @@ const Wads = () => {
       <Box fixed={<ModFilter onInput={e => onInput(e.target.value)} />}>
         <ul>
           <AnimatePresence>
-            {show.map(item => (
-              <ModItem
-                key={`mod_${item.id}`}
-                item={item}
-                onSelect={onClick(item.id)}
-              />
-            ))}
+            {show &&
+              show.map(item => (
+                <ModItem
+                  key={`mod_${item.id}`}
+                  item={item}
+                  onSelect={onClick(item.id)}
+                />
+              ))}
           </AnimatePresence>
         </ul>
       </Box>

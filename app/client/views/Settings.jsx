@@ -1,6 +1,8 @@
 import React from 'react';
 import Box from '#Component/Box';
 import Input from '#Component/Input';
+import SelectFile from '#Component/SelectFile';
+import Button from '#Component/Button';
 import styled from 'styled-components';
 import { StoreContext } from '#State';
 import { ipcRenderer, remote } from 'electron';
@@ -16,6 +18,12 @@ const Wads = styled(({ ...rest }) => {
     setForm(settings);
   }, []);
 
+  const onFile = ({ name, file }) =>
+    setForm({
+      ...form,
+      [name]: file
+    });
+
   const onInput = e => {
     const { name, value } = e.currentTarget;
     setForm({
@@ -24,31 +32,44 @@ const Wads = styled(({ ...rest }) => {
     });
   };
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
+    // TODO: error handling
     e.preventDefault();
-    ipcRenderer.invoke('settings/save', form).then(res => {
-      dispatch({ type: 'settings/save', data: res.data });
-    });
+    const res = await ipcRenderer.invoke('settings/save', form);
+    // TODO: data.data ?! fix this
+    dispatch({ type: 'settings/save', data: res.data.data });
+    setForm(res.data.data);
+
+    const newState = await ipcRenderer.invoke('init', null);
+    dispatch({ type: 'init', data: newState.data });
   };
 
-  const doTest = () => {
-    s;
-    remote.dialog.showOpenDialog().then(res => {
-      console.log(res.filePaths[0]);
-    });
-  };
   return (
     <div {...rest}>
       <Box>
-        <button onClick={doTest}>Test it ! </button>
         <form onSubmit={onSubmit}>
-          <label>Wads</label>
-          <Input onChange={onInput} name="modpath" value={form.modpath} />
+          <SelectFile
+            name="background"
+            onFile={onFile}
+            label="background"
+            value={form.background}
+          />
 
-          <label>GZDOOM</label>
-          <Input onChange={onInput} name="portpath" value={form.portpath} />
+          <SelectFile
+            name="modpath"
+            onFile={onFile}
+            label="wads"
+            value={form.modpath}
+            directory
+          />
 
-          <input type="submit" value="sub" />
+          <SelectFile
+            name="portpath"
+            onFile={onFile}
+            label="portpath"
+            value={form.portpath}
+          />
+          <Button type="submit">Submit</Button>
         </form>
       </Box>
     </div>

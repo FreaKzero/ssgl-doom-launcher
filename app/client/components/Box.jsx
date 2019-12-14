@@ -5,6 +5,7 @@ import styles from '#Style';
 const BoxStyle = styled.div`
   border: 1px solid ${styles.border.idle};
   backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 7px;
   flex-grow: 1;
   width: 100%;
