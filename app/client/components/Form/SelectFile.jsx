@@ -27,7 +27,7 @@ const SelectFile = ({
 }) => {
   const [file, setFile] = useState('');
 
-  React.useEffect(() => setFile(value));
+  React.useEffect(() => (value ? setFile(value) : setFile('')));
 
   const onSelect = () => {
     if (!file || file.trim() === '') {

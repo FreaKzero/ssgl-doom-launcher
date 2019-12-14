@@ -52,6 +52,7 @@ const Wads = styled(({ ...rest }) => {
             onFile={onFile}
             label="background"
             value={form.background}
+            fluid
           />
 
           <SelectFile
@@ -60,6 +61,7 @@ const Wads = styled(({ ...rest }) => {
             label="wads"
             value={form.modpath}
             directory
+            fluid
           />
 
           <SelectFile
@@ -67,6 +69,7 @@ const Wads = styled(({ ...rest }) => {
             onFile={onFile}
             label="portpath"
             value={form.portpath}
+            fluid
           />
 
           <Button type="submit">Submit</Button>

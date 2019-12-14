@@ -4,9 +4,10 @@ import styled from 'styled-components';
 
 const Label = styled.label`
   display: block;
-  margin: 5px 0 5px 0;
+  margin: 0 0 3px 3px;
   text-transform: uppercase;
+  color: white;
+  font-size: 14px;
 `;
 
 export default Label;
-

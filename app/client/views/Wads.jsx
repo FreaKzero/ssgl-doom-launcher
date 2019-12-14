@@ -3,6 +3,8 @@ import Box from '#Component/Box';
 import styled from 'styled-components';
 import ModItem from '#Component/ModItem';
 import ModFilter from '#Component/ModFilter';
+import PlayOverlay from '#Component/PlayOverlay';
+import PlayIcon from '#Component/PlayIcon';
 import { StoreContext } from '#State';
 import { AnimatePresence } from 'framer-motion';
 import fuzz from 'fuzzysearch';
@@ -18,6 +20,7 @@ const Wads = () => {
   setTitle('wads');
   const { gstate, dispatch } = useContext(StoreContext);
   const [filter, setRawFilter] = useState('');
+  const [poActive, setPoActive] = useState(false);
 
   const onClick = id => e => {
     dispatch({ type: 'mod/select', id });
@@ -41,7 +44,7 @@ const Wads = () => {
 
   return (
     <ViewStyle>
-      <Box fixed={<ModFilter onInput={e => onInput(e.target.value)} />}>
+      <Box fixed={<ModFilter onInput={(e, { value }) => onInput(value)} />}>
         <ul>
           <AnimatePresence>
             {show &&
@@ -72,6 +75,11 @@ const Wads = () => {
           </AnimatePresence>
         </ul>
       </Box>
+      <PlayIcon
+        active={gstate.selected.length}
+        onClick={() => setPoActive(true)}
+      />
+      <PlayOverlay active={poActive} setActive={setPoActive} />
     </ViewStyle>
   );
 };
