@@ -7,9 +7,11 @@ import Button from '#Component/Form/Button';
 import { StoreContext } from '#State';
 import setTitle from '#Util/setTitle';
 import Flex from '../components/Flex';
+import { useTranslation } from '#Util/translation';
 
 const Settings = () => {
   setTitle('settings');
+  const { t } = useTranslation('settings');
   const [form, setForm] = React.useState({});
   const { gstate, dispatch } = React.useContext(StoreContext);
   const { settings } = gstate;
@@ -52,7 +54,7 @@ const Settings = () => {
             <SelectFile
               name="background"
               onFile={onFile}
-              label="background"
+              label={t('wallpaper')}
               value={form.background}
               fluid
             />
@@ -61,7 +63,7 @@ const Settings = () => {
             <SelectFile
               name="modpath"
               onFile={onFile}
-              label="wads"
+              label={t('waddir')}
               value={form.modpath}
               directory
               fluid
@@ -77,7 +79,7 @@ const Settings = () => {
           fluid
         />
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit">{t('save')}</Button>
       </form>
     </Box>
   );

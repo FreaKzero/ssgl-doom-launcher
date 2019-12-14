@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { remote } from 'electron';
 import Label from './Label';
 import { ButtonStyle } from './Button';
 import { InputContainerStyle, InputStyle } from './Input';
+import { useTranslation } from '#Util/translation';
 
 const SelectButton = styled(ButtonStyle)`
   min-width: 100px;
@@ -26,8 +27,8 @@ const SelectFile = ({
   ...rest
 }) => {
   const [file, setFile] = useState('');
-
-  React.useEffect(() => (value ? setFile(value) : setFile('')));
+  const { t } = useTranslation('atoms');
+  useEffect(() => (value ? setFile(value) : setFile('')));
 
   const onSelect = () => {
     if (!file || file.trim() === '') {
@@ -50,7 +51,7 @@ const SelectFile = ({
       {label ? <Label>{label}</Label> : null}
       <InputContainerStyle width={width} fluid={fluid}>
         <SelectButton type="button" onClick={onSelect}>
-          {file ? 'Reset' : 'Select'}
+          {file ? t('reset') : directory ? t('selectDir') : t('selectFile')}
         </SelectButton>
         <InputStyle name={name} readOnly type="text" value={file} {...rest} />
       </InputContainerStyle>
