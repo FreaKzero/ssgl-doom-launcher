@@ -8,9 +8,8 @@ const BoxStyle = styled.div`
   background: rgba(0, 0, 0, 0.3);
   border-radius: 7px;
   flex-grow: 1;
-  width: 100%;
+
   padding: 10px;
-  margin-right: 10px;
   height: calc(100vh - 140px);
 
   .scroll {

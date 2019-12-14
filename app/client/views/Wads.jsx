@@ -5,16 +5,12 @@ import ModItem from '#Component/ModItem';
 import ModFilter from '#Component/ModFilter';
 import PlayOverlay from '#Component/PlayOverlay';
 import PlayIcon from '#Component/PlayIcon';
+import Flex from '#Component/Flex';
 import { StoreContext } from '#State';
 import { AnimatePresence } from 'framer-motion';
 import fuzz from 'fuzzysearch';
 import { useDebouncedCallback } from 'use-debounce';
 import setTitle from '#Util/setTitle';
-
-const ViewStyle = styled.div`
-  display: flex;
-  margin: 15px;
-`;
 
 const Wads = () => {
   setTitle('wads');
@@ -43,44 +39,50 @@ const Wads = () => {
       : gstate.mods.length && gstate.mods;
 
   return (
-    <ViewStyle>
-      <Box fixed={<ModFilter onInput={(e, { value }) => onInput(value)} />}>
-        <ul>
-          <AnimatePresence>
-            {show &&
-              show.map(item => (
-                <ModItem
-                  key={`mod_${item.id}`}
-                  item={item}
-                  onSelect={onClick(item.id)}
-                />
-              ))}
-          </AnimatePresence>
-        </ul>
-      </Box>
-      <Box>
-        <ul>
-          <AnimatePresence>
-            {gstate.selected.length &&
-              gstate.selected.map((item, itemindex) => (
-                <ModItem
-                  key={`selected_${item.id}`}
-                  item={item}
-                  onSelect={onClick(item.id)}
-                  onUp={onSort(itemindex, 'up')}
-                  onDown={onSort(itemindex, 'down')}
-                  selected
-                />
-              ))}
-          </AnimatePresence>
-        </ul>
-      </Box>
+    <>
+      <Flex.Grid>
+        <Flex.Col>
+          <Box fixed={<ModFilter onInput={(e, { value }) => onInput(value)} />}>
+            <ul>
+              <AnimatePresence>
+                {show &&
+                  show.map(item => (
+                    <ModItem
+                      key={`mod_${item.id}`}
+                      item={item}
+                      onSelect={onClick(item.id)}
+                    />
+                  ))}
+              </AnimatePresence>
+            </ul>
+          </Box>
+        </Flex.Col>
+        <Flex.Col>
+          <Box>
+            <ul>
+              <AnimatePresence>
+                {gstate.selected.length &&
+                  gstate.selected.map((item, itemindex) => (
+                    <ModItem
+                      key={`selected_${item.id}`}
+                      item={item}
+                      onSelect={onClick(item.id)}
+                      onUp={onSort(itemindex, 'up')}
+                      onDown={onSort(itemindex, 'down')}
+                      selected
+                    />
+                  ))}
+              </AnimatePresence>
+            </ul>
+          </Box>
+        </Flex.Col>
+      </Flex.Grid>
       <PlayIcon
         active={gstate.selected.length}
         onClick={() => setPoActive(true)}
       />
       <PlayOverlay active={poActive} setActive={setPoActive} />
-    </ViewStyle>
+    </>
   );
 };
 

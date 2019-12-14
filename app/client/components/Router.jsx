@@ -1,10 +1,15 @@
 import React from 'react';
 import { Route } from 'wouter';
+import styled from 'styled-components';
 import routes from '#Root/routes';
+
+const ViewStyle = styled.div`
+  margin: 15px;
+`;
 
 const Routes = () => {
   return (
-    <>
+    <ViewStyle>
       {routes.map(route => (
         <Route
           key={`route_${route.href}`}
@@ -12,7 +17,7 @@ const Routes = () => {
           component={route.component}
         />
       ))}
-    </>
+    </ViewStyle>
   );
 };
 

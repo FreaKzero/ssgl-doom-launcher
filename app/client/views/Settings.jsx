@@ -6,8 +6,9 @@ import SelectFile from '#Component/Form/SelectFile';
 import Button from '#Component/Form/Button';
 import { StoreContext } from '#State';
 import setTitle from '#Util/setTitle';
+import Flex from '../components/Flex';
 
-const Wads = styled(({ ...rest }) => {
+const Settings = () => {
   setTitle('settings');
   const [form, setForm] = React.useState({});
   const { gstate, dispatch } = React.useContext(StoreContext);
@@ -44,42 +45,42 @@ const Wads = styled(({ ...rest }) => {
   };
 
   return (
-    <div {...rest}>
-      <Box>
-        <form onSubmit={onSubmit}>
-          <SelectFile
-            name="background"
-            onFile={onFile}
-            label="background"
-            value={form.background}
-            fluid
-          />
+    <Box>
+      <form onSubmit={onSubmit}>
+        <Flex.Grid>
+          <Flex.Col width="50%">
+            <SelectFile
+              name="background"
+              onFile={onFile}
+              label="background"
+              value={form.background}
+              fluid
+            />
+          </Flex.Col>
+          <Flex.Col width="50%">
+            <SelectFile
+              name="modpath"
+              onFile={onFile}
+              label="wads"
+              value={form.modpath}
+              directory
+              fluid
+            />
+          </Flex.Col>
+        </Flex.Grid>
 
-          <SelectFile
-            name="modpath"
-            onFile={onFile}
-            label="wads"
-            value={form.modpath}
-            directory
-            fluid
-          />
+        <SelectFile
+          name="portpath"
+          onFile={onFile}
+          label="Sourceport"
+          value={form.portpath}
+          fluid
+        />
 
-          <SelectFile
-            name="portpath"
-            onFile={onFile}
-            label="portpath"
-            value={form.portpath}
-            fluid
-          />
-
-          <Button type="submit">Submit</Button>
-        </form>
-      </Box>
-    </div>
+        <Button type="submit">Submit</Button>
+      </form>
+    </Box>
   );
-})`
-  display: flex;
-  margin: 15px;
-`;
+};
 
-export default Wads;
+export default Settings;
