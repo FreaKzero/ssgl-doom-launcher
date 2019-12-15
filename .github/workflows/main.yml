@@ -1,0 +1,22 @@
+name: SSGL-CI
+on: [push]
+jobs:
+  lint:
+    name: Audit and Lint
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+      
+    - name: Install
+      run: yarn install
+      working-directory: './app'
+      
+    - name: Audit
+      run: yarn audit
+      working-directory: './app'
+      
+    - name: Lint
+      run: yarn lint
+      working-directory: './app'
+        
