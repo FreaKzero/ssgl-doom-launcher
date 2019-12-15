@@ -38,11 +38,11 @@ const SelectFile = ({
 
       remote.dialog.showOpenDialog(openSettings).then(res => {
         setFile(res.filePaths[0]);
-        onFile({ name: name, file: res.filePaths[0] });
+        onFile({ name: name, value: res.filePaths[0] });
       });
     } else {
       setFile('');
-      onFile({ name: name, file: null });
+      onFile({ name: name, value: null });
     }
   };
 

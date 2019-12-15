@@ -21,7 +21,6 @@ export const InputStyle = styled.input`
 export const InputContainerStyle = styled.div`
   margin-bottom: 15px;
   background-color: ${styles.color.backdrop};
-  display: inline-block;
   border-radius: ${styles.border.radius};
   display: flex;
   margin-right: 5px;

@@ -3,11 +3,23 @@ import styled from 'styled-components';
 import { ipcRenderer, remote } from 'electron';
 import Box from '#Component/Box';
 import SelectFile from '#Component/Form/SelectFile';
+import Dropdown from '#Component/Form/Dropdown';
 import Button from '#Component/Form/Button';
 import { StoreContext } from '#State';
 import setTitle from '#Util/setTitle';
 import Flex from '../components/Flex';
 import { useTranslation } from '#Util/translation';
+
+const opts = [
+  {
+    label: 'English',
+    value: 'en'
+  },
+  {
+    label: 'German',
+    value: 'de'
+  }
+];
 
 const Settings = () => {
   setTitle('settings');
@@ -20,10 +32,10 @@ const Settings = () => {
     setForm(settings);
   }, []);
 
-  const onFile = ({ name, file }) =>
+  const onComponent = ({ name, value }) =>
     setForm({
       ...form,
-      [name]: file
+      [name]: value
     });
 
   const onInput = e => {
@@ -53,7 +65,7 @@ const Settings = () => {
           <Flex.Col width="50%">
             <SelectFile
               name="background"
-              onFile={onFile}
+              onFile={onComponent}
               label={t('wallpaper')}
               value={form.background}
               fluid
@@ -62,7 +74,7 @@ const Settings = () => {
           <Flex.Col width="50%">
             <SelectFile
               name="modpath"
-              onFile={onFile}
+              onFile={onComponent}
               label={t('waddir')}
               value={form.modpath}
               directory
@@ -73,10 +85,16 @@ const Settings = () => {
 
         <SelectFile
           name="portpath"
-          onFile={onFile}
+          onFile={onComponent}
           label="Sourceport"
           value={form.portpath}
           fluid
+        />
+        <Dropdown
+          options={opts}
+          label="Language"
+          value={'de'}
+          onChange={onComponent}
         />
 
         <Button type="submit">{t('save')}</Button>
