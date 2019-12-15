@@ -77,7 +77,7 @@ const Checkbox = ({ label, value, onChange, name, ...rest }) => {
   };
 
   return (
-    <>
+    <div style={{ marginBottom: '15px' }}>
       <CheckboxStyle
         {...rest}
         className={checked === true ? 'active' : undefined}
@@ -87,7 +87,7 @@ const Checkbox = ({ label, value, onChange, name, ...rest }) => {
       </CheckboxStyle>
       <Test>{label}</Test>
       <input type="hidden" name={name} value={checked} />
-    </>
+    </div>
   );
 };
 

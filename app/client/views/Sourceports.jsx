@@ -45,8 +45,8 @@ const SourcePort = ({ item }) => {
 };
 
 const item = {
-  name: 'fuck',
-  path: 'this'
+  name: 'GZDoom',
+  path: '/some/path/to/where'
 };
 
 const Form = ({ item }) => {
@@ -54,9 +54,26 @@ const Form = ({ item }) => {
 
   return (
     <form>
-      <Input name="fuck" label="Sourceport Name" />
-      <SelectFile name="savepath" label="Binary" value="" directory fluid />
-      <Checkbox label="fuck you" name="fu" onChange={e => console.log(e)} />
+      <Flex.Grid>
+        <Flex.Col>
+          <Input name="name" label="Sourceport Name" fluid />
+          <Checkbox
+            label="Savegame Directory Parameter"
+            name="has_savedir"
+            onChange={e => console.log(e)}
+          />
+          <Input name="fuck" placeholder="-save" fluid />
+        </Flex.Col>
+        <Flex.Col>
+          <SelectFile name="binary" label="Binary" value="" directory fluid />
+          <Checkbox
+            label="Screenshot Directory Parameter"
+            name="has_screendir"
+            onChange={e => console.log(e)}
+          />
+          <Input name="fuck" placeholder="-shotdir" fluid />
+        </Flex.Col>
+      </Flex.Grid>
     </form>
   );
 };
