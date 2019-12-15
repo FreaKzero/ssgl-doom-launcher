@@ -107,7 +107,7 @@ const Settings = () => {
           </Flex.Col>
         </Flex.Grid>
 
-        <Button type="submit">{t('save')}</Button>
+        <Button type="submit">{t('settings:save')}</Button>
       </form>
     </Box>
   );

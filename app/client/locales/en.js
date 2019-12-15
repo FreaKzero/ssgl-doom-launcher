@@ -1,8 +1,8 @@
 export default {
   atoms: {
     reset: 'Reset',
-    selectFile: 'Select File',
-    selectDir: 'Select Dir'
+    selectFile: 'File',
+    selectDir: 'Directory'
   },
   wads: {
     filter: 'Filter'

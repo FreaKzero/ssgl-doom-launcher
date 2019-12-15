@@ -50,10 +50,12 @@ const Option = styled.li`
   width: 100%;
   padding: 7px 0 7px 10px;
   cursor: pointer;
+  transition: ${styles.transition.out};
 
   &:hover {
     background-color: #1d2025;
     color: ${styles.color.active};
+    padding: 7px 0 7px 20px;
   }
 `;
 
