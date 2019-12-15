@@ -7,7 +7,12 @@ import { ButtonStyle } from './Button';
 import { InputContainerStyle, InputStyle } from './Input';
 import { useTranslation } from '#Util/translation';
 
+const Input = styled(InputStyle)`
+  cursor: default;
+`;
+
 const SelectButton = styled(ButtonStyle)`
+  user-select: none;
   min-width: 100px;
   border-radius: 4px 0 0 4px;
   padding: 0;
@@ -52,7 +57,7 @@ const SelectFile = ({
         <SelectButton type="button" onClick={onSelect}>
           {file ? t('reset') : directory ? t('selectDir') : t('selectFile')}
         </SelectButton>
-        <InputStyle name={name} readOnly type="text" value={file} {...rest} />
+        <Input name={name} readOnly type="text" value={file} {...rest} />
       </InputContainerStyle>
     </>
   );

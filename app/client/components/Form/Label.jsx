@@ -8,6 +8,7 @@ const Label = styled.label`
   text-transform: uppercase;
   color: white;
   font-size: 14px;
+  user-select: none;
 `;
 
 export default Label;
