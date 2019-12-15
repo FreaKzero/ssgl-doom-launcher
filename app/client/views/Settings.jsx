@@ -1,6 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-import { ipcRenderer, remote } from 'electron';
+import { ipcRenderer } from 'electron';
 import Box from '#Component/Box';
 import SelectFile from '#Component/Form/SelectFile';
 import Dropdown from '#Component/Form/Dropdown';
@@ -9,34 +8,27 @@ import { StoreContext } from '#State';
 import setTitle from '#Util/setTitle';
 import Flex from '../components/Flex';
 import { useTranslation } from '#Util/translation';
-
-const opts = [
-  {
-    label: 'English',
-    value: 'en'
-  },
-  {
-    label: 'German',
-    value: 'de'
-  }
-];
+import i18n from '../i18n';
+import { AVAILABLE_LOCALES } from '../locales';
 
 const Settings = () => {
   setTitle('settings');
-  const { t } = useTranslation('settings');
-  const [form, setForm] = React.useState({});
+  const { t } = useTranslation(['settings', 'common']);
   const { gstate, dispatch } = React.useContext(StoreContext);
   const { settings } = gstate;
+  const [form, setForm] = React.useState(settings);
 
-  React.useEffect(() => {
-    setForm(settings);
-  }, []);
-
-  const onComponent = ({ name, value }) =>
+  const onComponent = ({ name, value }) => {
     setForm({
       ...form,
-      [name]: value
+      [name]: value ? value : ''
     });
+
+    switch (name) {
+      case 'language':
+        return i18n.changeLanguage(value);
+    }
+  };
 
   const onInput = e => {
     const { name, value } = e.currentTarget;
@@ -51,6 +43,7 @@ const Settings = () => {
     e.preventDefault();
     const res = await ipcRenderer.invoke('settings/save', form);
     // TODO: data.data ?! fix this
+    console.log(form);
     dispatch({ type: 'settings/save', data: res.data.data });
     setForm(res.data.data);
 
@@ -66,36 +59,53 @@ const Settings = () => {
             <SelectFile
               name="background"
               onFile={onComponent}
-              label={t('wallpaper')}
+              label={t('settings:wallpaper')}
               value={form.background}
               fluid
+            />
+            <SelectFile
+              name="screenpath"
+              onFile={onComponent}
+              label={t('settings:screenpath')}
+              value={form.screenpath}
+              directory
+              fluid
+            />
+            <Dropdown
+              name="language"
+              options={AVAILABLE_LOCALES}
+              label={t('common:language')}
+              value={form.language}
+              onChange={onComponent}
             />
           </Flex.Col>
           <Flex.Col width="50%">
             <SelectFile
               name="modpath"
               onFile={onComponent}
-              label={t('waddir')}
+              label={t('settings:waddir')}
               value={form.modpath}
               directory
               fluid
             />
+            <SelectFile
+              name="savepath"
+              onFile={onComponent}
+              label={t('settings:savepath')}
+              value={form.savepath}
+              directory
+              fluid
+            />
+
+            <SelectFile
+              name="portpath"
+              onFile={onComponent}
+              label="Sourceport"
+              value={form.portpath}
+              fluid
+            />
           </Flex.Col>
         </Flex.Grid>
-
-        <SelectFile
-          name="portpath"
-          onFile={onComponent}
-          label="Sourceport"
-          value={form.portpath}
-          fluid
-        />
-        <Dropdown
-          options={opts}
-          label="Language"
-          value={'de'}
-          onChange={onComponent}
-        />
 
         <Button type="submit">{t('save')}</Button>
       </form>

@@ -17,7 +17,9 @@ export const initState = {
   mods: [],
   selected: [],
   sourceports: [],
-  settings: {}
+  settings: {
+    language: 'en'
+  }
 };
 
 export function reducer(state, action) {

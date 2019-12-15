@@ -8,18 +8,21 @@ export default {
     filter: 'Filter'
   },
   settings: {
+    savepath: 'Speicher Verzeichnis',
+    screenpath: 'Screenshot Verzeichnis',
     waddir: 'Wad Verzeichnis',
     wallpaper: 'Hintergrundbild',
     save: 'Einstellungen Speichern'
   },
   common: {
-    loading: 'Laden'
+    loading: 'Laden',
+    language: 'Sprache'
   },
   nav: {
     appname: 'Super Shotgun Launcher',
-    wads: 'Wads',
+    wads: 'Mods',
     packages: 'Pakete',
-    sourceports: 'Sourceports',
+    sourceports: 'Programme',
     settings: 'Einstellungen'
   }
 };

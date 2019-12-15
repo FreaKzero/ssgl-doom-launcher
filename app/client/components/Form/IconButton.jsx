@@ -24,15 +24,12 @@ const IconButtonStyle = styled(ButtonStyle)`
   }
 `;
 
-const IconButton = ({ svg, ...rest }) => {
-  console.log(svg);
-  return (
-    <>
-      <IconButtonStyle {...rest}>
-        <SvgInline svg={svg} />
-      </IconButtonStyle>
-    </>
-  );
-};
+const IconButton = ({ svg, ...rest }) => (
+  <>
+    <IconButtonStyle {...rest}>
+      <SvgInline svg={svg} />
+    </IconButtonStyle>
+  </>
+);
 
 export default IconButton;

@@ -64,6 +64,7 @@ const Dropdown = ({
   placeholder,
   label,
   value,
+  name,
   ...rest
 }) => {
   const selectRef = useRef(null);

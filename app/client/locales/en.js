@@ -8,12 +8,15 @@ export default {
     filter: 'Filter'
   },
   settings: {
+    savepath: 'Savegame Directory',
+    screenpath: 'Screenshot Directory',
     waddir: 'WAD Directory',
     wallpaper: 'Wallpaper Image',
     save: 'Save Settings'
   },
   common: {
-    loading: 'Loading'
+    loading: 'Loading',
+    language: 'Language'
   },
   nav: {
     appname: 'Super Shotgun Launcher',

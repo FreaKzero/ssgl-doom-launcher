@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import './i18n';
+import i18n from './i18n';
 import { GlobalStyle } from '#Style';
 import Body from '#Component/Body';
 import Head from '#Component/Head';
@@ -21,6 +21,7 @@ const App = () => {
       const res = await ipcRenderer.invoke('init', null);
       if (!res.error) {
         dispatch({ type: 'init', data: res.data });
+        i18n.changeLanguage(res.data.settings.language || 'en');
         setTimeout(() => setLoad(false), 1);
       } else {
         setLocation('/settings');
