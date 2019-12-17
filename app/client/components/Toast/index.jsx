@@ -8,7 +8,7 @@ import ToastContext from './ToastContext';
 
 let currentTimeout;
 
-const DEFAULT_TOAST_DURATION = 3000;
+const DEFAULT_TOAST_DURATION = 4000;
 
 const scopeStyle = scope => {
   switch (scope) {
@@ -33,8 +33,8 @@ const scopeStyle = scope => {
 
 const ToastPortalStyle = styled.div`
   position: absolute;
-  top: 5px;
-  left: 5px;
+  top: 15px;
+  left: 15px;
   pointer-events: none;
 `;
 
@@ -88,7 +88,6 @@ const ToastMotion = ({ toast }) => {
 
 const ToastContainer = ({ children }) => {
   const [toasts, setToasts] = React.useState([]);
-  const [queue, setQueue] = React.useState([]);
 
   const addToast = (title, scope = 'info', text) => {
     setToasts([{ title, scope, text }, ...toasts]);

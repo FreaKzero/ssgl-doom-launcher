@@ -3,6 +3,7 @@ import { ipcRenderer } from 'electron';
 import Box from '#Component/Box';
 import SelectFile from '#Component/Form/SelectFile';
 import Dropdown from '#Component/Form/Dropdown';
+import SubmitArea from '#Component/Form/SubmitArea';
 import Button from '#Component/Form/Button';
 import { StoreContext } from '#State';
 import setTitle from '#Util/setTitle';
@@ -18,6 +19,7 @@ const Settings = () => {
   const { gstate, dispatch } = React.useContext(StoreContext);
   const { settings } = gstate;
   const [form, setForm] = React.useState(settings);
+  const [save, setSave] = React.useState(false);
   const [toast] = useToast();
 
   const onComponent = ({ name, value }) => {
@@ -41,6 +43,7 @@ const Settings = () => {
   };
 
   const onSubmit = async e => {
+    setSave(true);
     // TODO: error handling
     e.preventDefault();
     const res = await ipcRenderer.invoke('settings/save', form);
@@ -52,6 +55,7 @@ const Settings = () => {
     const newState = await ipcRenderer.invoke('init', null);
     dispatch({ type: 'init', data: newState.data });
     toast('Settings Saved', 'ok');
+    setSave(false);
   };
 
   return (
@@ -110,7 +114,11 @@ const Settings = () => {
           </Flex.Col>
         </Flex.Grid>
 
-        <Button type="submit">{t('settings:save')}</Button>
+        <SubmitArea>
+          <Button type="submit" load={save}>
+            Save Sourceport
+          </Button>
+        </SubmitArea>
       </form>
     </Box>
   );

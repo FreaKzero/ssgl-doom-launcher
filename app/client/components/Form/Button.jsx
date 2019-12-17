@@ -2,9 +2,32 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import styles from '#Style';
+import spinner from '#Asset/icon/spinner.svg';
+import Svg from 'react-svg-inline';
+
+const SpinnerStyle = styled.div`
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  svg {
+    fill: ${styles.color.active};
+    margin-bottom: -2px;
+    animation: spin 0.7s infinite;
+    filter: drop-shadow(0px -1px 4px #ff0000) drop-shadow(0px 0px 10px #ff0000);
+  }
+`;
 
 export const ButtonStyle = styled.button`
-  background: linear-gradient(180deg, #3f464c 0%, #1d2025 100%);
+  background: ${p =>
+    p.disabled
+      ? '#1d2025'
+      : 'linear-gradient(180deg, #3f464c 0%, #1d2025 100%);'};
   border: 1px solid #1d2226;
   box-sizing: border-box;
   border-radius: 4px;
@@ -17,7 +40,6 @@ export const ButtonStyle = styled.button`
   color: #808080;
   text-shadow: -1px -1px 5px #1d2226;
   margin-right: 10px;
-
   &:hover {
     border: ${p =>
       p.border
@@ -32,15 +54,30 @@ export const ButtonStyle = styled.button`
 `;
 
 const Button = ({
-  width = '250px',
+  width = '170px',
   type = 'button',
   onClick,
   children,
+  load = false,
+  disabled = false,
   ...rest
 }) => {
   return (
-    <ButtonStyle type={type} onClick={onClick} {...rest}>
-      {children}
+    <ButtonStyle
+      {...rest}
+      type={type}
+      onClick={onClick}
+      load={load}
+      width={width}
+      disabled={load || disabled}
+    >
+      {load ? (
+        <SpinnerStyle>
+          <Svg component="div" svg={spinner} height="15" />
+        </SpinnerStyle>
+      ) : (
+        [children]
+      )}
     </ButtonStyle>
   );
 };
