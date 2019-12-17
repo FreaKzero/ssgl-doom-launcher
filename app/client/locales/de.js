@@ -7,6 +7,10 @@ export default {
   wads: {
     filter: 'Filter'
   },
+  sourceports: {
+    delete: 'Sourceport Löschen',
+    save: 'Sourceport Speichern'
+  },
   settings: {
     savepath: 'Speicher Verzeichnis',
     screenpath: 'Screenshot Verzeichnis',

@@ -4,12 +4,12 @@ import styled from 'styled-components';
 import styles from '#Style';
 import Label from './Label';
 
-const Test = styled(Label)`
+const LabelStyle = styled(Label)`
   display: inline-block;
   margin-left: 10px;
 `;
 
-const CheckboxStyle = styled.div`
+const CheckboxStyle = styled.button`
   display: inline-block;
   background: linear-gradient(180deg, #3f464c 0%, #1d2025 100%);
   border: 1px solid #1d2226;
@@ -24,7 +24,7 @@ const CheckboxStyle = styled.div`
   min-width: 0;
   height: 25px;
   width: 24px;
-  padding: 5px 2px 5px 1px;
+  padding: 2px 2px 5px 1px;
 
   &:hover {
     border: 1px solid ${styles.border.active};
@@ -69,23 +69,26 @@ const Checked = () => (
   </svg>
 );
 const Checkbox = ({ label, value, onChange, name, ...rest }) => {
-  const [checked, setChecked] = React.useState(value || false);
+  const [checked, setChecked] = React.useState(false);
+
+  React.useEffect(() => setChecked(value), [value]);
 
   const onChangeWrap = () => {
-    onChange({ name, checked });
     setChecked(!checked);
+    onChange({ name, value: !checked });
   };
 
   return (
     <div style={{ marginBottom: '15px' }}>
       <CheckboxStyle
+        type="button"
         {...rest}
         className={checked === true ? 'active' : undefined}
         onClick={onChangeWrap}
       >
         <Checked />
       </CheckboxStyle>
-      <Test>{label}</Test>
+      <LabelStyle htmlFor={name}>{label}</LabelStyle>
       <input type="hidden" name={name} value={checked} />
     </div>
   );

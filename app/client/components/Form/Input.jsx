@@ -16,6 +16,9 @@ export const InputStyle = styled.input`
   box-shadow: none;
   outline: none;
   margin: 0;
+  &::placeholder {
+    user-select: none;
+  }
 `;
 
 export const InputContainerStyle = styled.div`

@@ -9,6 +9,8 @@ import MainLoader from '#Component/MainLoader';
 import { initState, reducer, StoreContext } from '#State';
 import { ipcRenderer } from 'electron';
 import { useLocation } from 'wouter';
+import ToastContainer from './components/Toast';
+
 import './global.css';
 
 const App = () => {
@@ -32,16 +34,18 @@ const App = () => {
   }, []);
 
   return (
-    <StoreContext.Provider value={{ gstate, dispatch }}>
-      {load ? (
-        <MainLoader />
-      ) : (
-        <Body background={gstate.settings.background}>
-          <Head />
-          <Routes />
-        </Body>
-      )}
-    </StoreContext.Provider>
+    <ToastContainer>
+      <StoreContext.Provider value={{ gstate, dispatch }}>
+        {load ? (
+          <MainLoader />
+        ) : (
+          <Body background={gstate.settings.background}>
+            <Head />
+            <Routes />
+          </Body>
+        )}
+      </StoreContext.Provider>
+    </ToastContainer>
   );
 };
 

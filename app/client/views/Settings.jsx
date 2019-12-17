@@ -8,6 +8,7 @@ import { StoreContext } from '#State';
 import setTitle from '#Util/setTitle';
 import Flex from '../components/Flex';
 import { useTranslation } from '#Util/translation';
+import useToast from '../utils/useToast';
 import i18n from '../i18n';
 import { AVAILABLE_LOCALES } from '../locales';
 
@@ -17,6 +18,7 @@ const Settings = () => {
   const { gstate, dispatch } = React.useContext(StoreContext);
   const { settings } = gstate;
   const [form, setForm] = React.useState(settings);
+  const [toast] = useToast();
 
   const onComponent = ({ name, value }) => {
     setForm({
@@ -49,6 +51,7 @@ const Settings = () => {
 
     const newState = await ipcRenderer.invoke('init', null);
     dispatch({ type: 'init', data: newState.data });
+    toast('Settings Saved', 'ok');
   };
 
   return (

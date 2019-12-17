@@ -31,9 +31,10 @@ const SelectFile = ({
   directory,
   ...rest
 }) => {
-  const [file, setFile] = useState(value ? value : '');
+  const [file, setFile] = useState('');
   const { t } = useTranslation('atoms');
 
+  useEffect(() => setFile(value), [value]);
   const onSelect = () => {
     if (!file || file.trim() === '') {
       const openSettings = directory
