@@ -9,7 +9,12 @@ export default {
   },
   sourceports: {
     delete: 'Delete Sourceport',
-    save: 'Save Sourceport'
+    save: 'Save Sourceport',
+    binary: 'Sourceport Path',
+    name: 'Sourceport Name',
+    savegameparam: 'Uses Savegame Parameter',
+    configparam: 'Uses Config Parameter',
+    screenshot: 'Uses Screenshot Parameter'
   },
   settings: {
     savepath: 'Savegame Directory',
@@ -28,5 +33,6 @@ export default {
     packages: 'Packages',
     sourceports: 'Sourceports',
     settings: 'Settings'
-  }
+  },
+  toasts: {}
 };

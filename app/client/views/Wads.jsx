@@ -10,12 +10,14 @@ import { AnimatePresence } from 'framer-motion';
 import fuzz from 'fuzzysearch';
 import { useDebouncedCallback } from 'use-debounce';
 import setTitle from '#Util/setTitle';
+import useIpc from '#Util/useIpc';
 
 const Wads = () => {
   setTitle('wads');
   const { gstate, dispatch } = useContext(StoreContext);
   const [filter, setRawFilter] = useState('');
   const [poActive, setPoActive] = useState(false);
+  const [fetch, loading] = useIpc();
 
   const onClick = id => e => {
     dispatch({ type: 'mod/select', id });
@@ -29,8 +31,9 @@ const Wads = () => {
     setRawFilter(val.toLowerCase());
   }, 250);
 
-  const onRefresh = () => {
-    alert('WOOOO');
+  const onRefresh = async () => {
+    const data = await fetch('main/init');
+    dispatch({ type: 'main/init', data: data });
   };
 
   const show =
@@ -50,6 +53,7 @@ const Wads = () => {
               <ModFilter
                 onInput={(e, { value }) => onInput(value)}
                 onRefresh={onRefresh}
+                refreshLoad={loading}
               />
             }
           >

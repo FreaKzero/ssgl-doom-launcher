@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { StoreContext } from '#State';
 import { ipcRenderer } from 'electron';
 import IWad from '#Component/IWad';
+import Dropdown from '../Form/Dropdown';
 
 const BackdropMotion = ({ active, children, ...rest }) => {
   const variants = {
@@ -73,9 +74,26 @@ const BackDrop = styled(BackdropMotion)`
 
 const PlayOverlay = ({ active, setActive }) => {
   const { gstate, dispatch } = React.useContext(StoreContext);
+  const [sourceport, setSourceport] = React.useState(
+    gstate.settings.defaultsourceport
+  );
+
+  const options = gstate.sourceports.map(item => ({
+    label: item.name,
+    value: item.id
+  }));
+
+  const onSourceport = ({ value }) => {
+    setSourceport(value);
+  };
 
   const onPlay = iwad => () => {
-    ipcRenderer.invoke('play', { selected: gstate.selected, iwad: iwad });
+    const useSourceport = gstate.sourceports.find(i => i.id === sourceport);
+    ipcRenderer.invoke('sourceports/play', {
+      selected: gstate.selected,
+      iwad: iwad,
+      sourceport: useSourceport
+    });
     setActive(false);
   };
 
@@ -83,6 +101,13 @@ const PlayOverlay = ({ active, setActive }) => {
     <>
       <BackDrop onClick={() => setActive(false)} active={active} />
       <Modal active={active}>
+        <Dropdown
+          name="language"
+          options={options}
+          label={'Sourceport'}
+          onChange={onSourceport}
+          value={sourceport}
+        />
         <IWad.List>
           {gstate.iwads.length &&
             gstate.iwads.map(item => (

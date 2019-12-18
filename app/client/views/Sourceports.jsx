@@ -8,6 +8,7 @@ import { StoreContext } from '#State';
 import Flex from '#Component/Flex';
 import Box from '#Component/Box';
 import setTitle from '#Util/setTitle';
+import useIpc from '#Util/useIpc';
 import Button from '../components/Form/Button';
 import { useTranslation } from '#Util/translation';
 import useToast from '../utils/useToast';
@@ -50,18 +51,24 @@ const SourcePortStyle = styled.li`
     text-transform: uppercase;
   }
 
-  &:hover h1 {
+  &.active {
+    padding-left: 25px;
+  }
+
+  &:hover h1,
+  &.active h1 {
     color: ${styles.color.active};
   }
 
-  &:hover {
+  &:hover,
+  &.active {
     border: 1px solid ${styles.border.active};
   }
 `;
 
-const SourcePort = ({ item, onClick }) => {
+const SourcePort = ({ item, onClick, ...rest }) => {
   return (
-    <SourcePortStyle onClick={onClick}>
+    <SourcePortStyle onClick={onClick} {...rest}>
       <h1>{item.name}</h1>
       <Meta>{item.binary}</Meta>
     </SourcePortStyle>
@@ -75,8 +82,7 @@ const item = {
 
 const Form = ({ item, onSave, onDelete }) => {
   const [form, setForm] = React.useState(item);
-  const [toast] = useToast();
-  const { t } = useTranslation('sourceports');
+  const { t } = useTranslation(['sourceports']);
 
   useEffect(() => {
     setForm(item);
@@ -95,10 +101,25 @@ const Form = ({ item, onSave, onDelete }) => {
       value = '';
     }
 
-    setForm({
-      ...form,
-      [name]: value
-    });
+    if (name === 'binary' && value) {
+      const namevalue = value
+        .split('\\')
+        .pop()
+        .split('/')
+        .pop()
+        .split('.')[0];
+
+      setForm({
+        ...form,
+        [name]: value,
+        name: namevalue
+      });
+    } else {
+      setForm({
+        ...form,
+        [name]: value
+      });
+    }
   };
 
   const onSubmitWrapper = e => {
@@ -108,19 +129,26 @@ const Form = ({ item, onSave, onDelete }) => {
 
   return (
     <form onSubmit={onSubmitWrapper}>
+      <SelectFile
+        onFile={onComponent}
+        value={form.binary}
+        name="binary"
+        label={t('sourceports:binary')}
+        fluid
+      />
+      <Input
+        value={form.name}
+        name="name"
+        label={t('sourceports:name')}
+        fluid
+      />
+
       <Flex.Grid>
         <Flex.Col>
-          <Input
-            value={form.name}
-            name="name"
-            label="Sourceport Name"
-            onChange={onInput}
-            fluid
-          />
           <FormBorder>
             <Checkbox
               value={form.hasSavedir}
-              label="Use Savegame Parameter"
+              label={t('sourceports:savegameparam')}
               name="hasSavedir"
               onChange={onComponent}
             />
@@ -138,7 +166,7 @@ const Form = ({ item, onSave, onDelete }) => {
           <FormBorder>
             <Checkbox
               value={form.hasConfig}
-              label="Use Config Parameter"
+              label={t('sourceports:configparam')}
               name="hasConfig"
               onChange={onComponent}
             />
@@ -154,17 +182,10 @@ const Form = ({ item, onSave, onDelete }) => {
           </FormBorder>
         </Flex.Col>
         <Flex.Col>
-          <SelectFile
-            value={form.binary}
-            name="binary"
-            label="Binary"
-            directory
-            fluid
-          />
           <FormBorder>
             <Checkbox
               value={form.hasScreendir}
-              label="Use Screenshot Parameter"
+              label={t('sourceports:screenshot')}
               name="hasScreendir"
               onChange={onComponent}
             />
@@ -189,7 +210,9 @@ const Form = ({ item, onSave, onDelete }) => {
         >
           {t('delete')}
         </Button>
-        <Button type="submit">Save Sourceport</Button>
+        <Button type="submit" width="200px">
+          {t('sourceports:save')}
+        </Button>
       </SubmitArea>
     </form>
   );
@@ -200,12 +223,15 @@ const SourcePorts = ({ ...rest }) => {
   const { gstate, dispatch } = React.useContext(StoreContext);
   const [selected, setSelected] = React.useState(null);
   const [sourcePorts, setSourcePorts] = React.useState(gstate.sourceports);
+  const [ipc] = useIpc();
+  const [toast] = useToast();
 
   useEffect(() => {
     if (sourcePorts.length > 0) {
       setSelected(sourcePorts[0]);
     }
   }, []);
+
   const createSourceport = () => {
     const item = {
       id: uuid(),
@@ -223,20 +249,36 @@ const SourcePorts = ({ ...rest }) => {
 
   const selectSourceport = item => e => setSelected(item);
 
-  const onDeleteSourcePort = id => e => {
-    setSourcePorts(sourcePorts.filter(item => item.id !== id));
+  const onDeleteSourcePort = id => async e => {
+    const newSourcePorts = sourcePorts.filter(item => item.id !== id);
+
+    try {
+      await ipc('sourceports/save', newSourcePorts);
+      setSourcePorts(newSourcePorts);
+      dispatch({ type: 'sourceports/save', data: newSourcePorts });
+      toast('Deleted Sourceport');
+    } catch (e) {
+      toast('Error ?!', 'danger');
+    }
   };
 
-  const onSaveSourcePort = values => {
+  const onSaveSourcePort = async values => {
     const newSourcePorts = sourcePorts.map(item =>
       item.id === values.id ? values : item
     );
-    setSourcePorts(newSourcePorts);
+    try {
+      await ipc('sourceports/save', newSourcePorts);
+      setSourcePorts(newSourcePorts);
+      dispatch({ type: 'sourceports/save', data: newSourcePorts });
+      toast('Saved Sourceport');
+    } catch (e) {
+      toast('Error ?!', 'danger');
+    }
   };
 
   return (
     <Flex.Grid>
-      <Flex.Col width="400px">
+      <Flex.Col width="450px">
         <Box>
           <Button onClick={createSourceport} fluid>
             Add Sourceport
@@ -244,6 +286,9 @@ const SourcePorts = ({ ...rest }) => {
           <SourcePortListStyle>
             {sourcePorts.map(item => (
               <SourcePort
+                className={
+                  selected && item.id === selected.id ? 'active' : undefined
+                }
                 key={item.id}
                 item={item}
                 onClick={selectSourceport(item)}

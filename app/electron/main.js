@@ -10,7 +10,7 @@ let mainWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1000,
-    height: 580,
+    height: 590,
 
     webPreferences: {
       nodeIntegration: true,
@@ -41,6 +41,6 @@ app.on('activate', function() {
   if (mainWindow === null) createWindow();
 });
 
-require('./handlers/init');
-require('./handlers/play');
+require('./handlers/main');
+require('./handlers/sourceports');
 require('./handlers/settings');

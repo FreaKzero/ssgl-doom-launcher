@@ -24,8 +24,15 @@ export const initState = {
 
 export function reducer(state, action) {
   switch (action.type) {
-    case 'init':
+    case 'main/init':
       return act({ ...state, ...action.data });
+
+    case 'sourceports/save':
+      return act({
+        ...state,
+        sourceports: action.data
+      });
+
     case 'settings/save':
       return act({
         ...state,

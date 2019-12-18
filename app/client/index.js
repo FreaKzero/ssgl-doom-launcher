@@ -1,33 +1,31 @@
-import React, { useReducer, useEffect, useState } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import i18n from './i18n';
-import { GlobalStyle } from '#Style';
 import Body from '#Component/Body';
 import Head from '#Component/Head';
 import Routes from '#Component/Router';
 import MainLoader from '#Component/MainLoader';
+import ToastContainer from '#Component/Toast';
 import { initState, reducer, StoreContext } from '#State';
-import { ipcRenderer } from 'electron';
+import useIpc from '#Util/useIpc';
 import { useLocation } from 'wouter';
-import ToastContainer from './components/Toast';
 
 import './global.css';
 
 const App = () => {
   const [gstate, dispatch] = useReducer(reducer, initState);
-  const [load, setLoad] = useState(true);
   const [location, setLocation] = useLocation();
+  const [fetch, loading] = useIpc({ delayLoad: 1000 });
 
   useEffect(() => {
     async function resolve() {
-      const res = await ipcRenderer.invoke('init', null);
-      if (!res.error) {
-        dispatch({ type: 'init', data: res.data });
-        i18n.changeLanguage(res.data.settings.language || 'en');
-        setTimeout(() => setLoad(false), 1);
-      } else {
+      try {
+        const data = await fetch('main/init');
+        dispatch({ type: 'main/init', data: data });
+        console.log(data);
+        i18n.changeLanguage(data.settings.language || 'en');
+      } catch (e) {
         setLocation('/settings');
-        setLoad(false);
       }
     }
     resolve();
@@ -36,7 +34,7 @@ const App = () => {
   return (
     <ToastContainer>
       <StoreContext.Provider value={{ gstate, dispatch }}>
-        {load ? (
+        {loading ? (
           <MainLoader />
         ) : (
           <Body background={gstate.settings.background}>

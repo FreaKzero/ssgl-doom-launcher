@@ -6,10 +6,12 @@ import Dropdown from '#Component/Form/Dropdown';
 import SubmitArea from '#Component/Form/SubmitArea';
 import Button from '#Component/Form/Button';
 import { StoreContext } from '#State';
-import setTitle from '#Util/setTitle';
-import Flex from '../components/Flex';
+import Flex from '#Component/Flex';
 import { useTranslation } from '#Util/translation';
-import useToast from '../utils/useToast';
+import useToast from '#Util/useToast';
+import useIpc from '#Util/useIpc';
+import setTitle from '#Util/setTitle';
+
 import i18n from '../i18n';
 import { AVAILABLE_LOCALES } from '../locales';
 
@@ -19,8 +21,14 @@ const Settings = () => {
   const { gstate, dispatch } = React.useContext(StoreContext);
   const { settings } = gstate;
   const [form, setForm] = React.useState(settings);
-  const [save, setSave] = React.useState(false);
   const [toast] = useToast();
+  const [saveSettings] = useIpc();
+  const [fetchInit, loadInit] = useIpc();
+
+  const sourceportOptions = gstate.sourceports.map(item => ({
+    label: item.name,
+    value: item.id
+  }));
 
   const onComponent = ({ name, value }) => {
     setForm({
@@ -43,19 +51,14 @@ const Settings = () => {
   };
 
   const onSubmit = async e => {
-    setSave(true);
     // TODO: error handling
     e.preventDefault();
-    const res = await ipcRenderer.invoke('settings/save', form);
-    // TODO: data.data ?! fix this
-    console.log(form);
-    dispatch({ type: 'settings/save', data: res.data.data });
-    setForm(res.data.data);
+    const newSettings = await saveSettings('settings/save', form);
+    dispatch({ type: 'settings/save', data: newSettings });
 
-    const newState = await ipcRenderer.invoke('init', null);
-    dispatch({ type: 'init', data: newState.data });
+    const newState = await fetchInit('main/init', null);
+    dispatch({ type: 'main/init', data: newState });
     toast('Settings Saved', 'ok');
-    setSave(false);
   };
 
   return (
@@ -104,19 +107,19 @@ const Settings = () => {
               fluid
             />
 
-            <SelectFile
-              name="portpath"
-              onFile={onComponent}
-              label="Sourceport"
-              value={form.portpath}
-              fluid
+            <Dropdown
+              name="defaultsourceport"
+              options={sourceportOptions}
+              label="Favourite Sourceport"
+              value={form.defaultsourceport}
+              onChange={onComponent}
             />
           </Flex.Col>
         </Flex.Grid>
 
         <SubmitArea>
-          <Button type="submit" load={save}>
-            Save Sourceport
+          <Button type="submit" load={loadInit} width="200px">
+            {t('settings:save')}
           </Button>
         </SubmitArea>
       </form>

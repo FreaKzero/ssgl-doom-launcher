@@ -16,17 +16,19 @@ const sp = [
   }
 ];
 
-ipcMain.handle('init', async (e, args) => {
+ipcMain.handle('main/init', async (e, args) => {
+  const sourceports = (await getJSON('sourceports')) || [];
+
   try {
     const settings = await getJSON('settings');
     try {
-      const walkedFiles = await walkWadDir(settings.data.modpath);
+      const walkedFiles = await walkWadDir(settings.modpath);
       return {
         error: null,
         data: {
           ...walkedFiles,
-          sourceports: sp,
-          settings: settings.data
+          sourceports: sourceports,
+          settings: settings
         }
       };
     } catch (e) {

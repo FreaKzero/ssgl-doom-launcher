@@ -10,7 +10,7 @@ const ModFilterStyle = styled.div`
   display: flex;
 `;
 
-const ModFilter = ({ onRefresh, onInput, valueInput }) => {
+const ModFilter = ({ onRefresh, onInput, valueInput, refreshLoad }) => {
   const { t } = useTranslation('wads');
   return (
     <ModFilterStyle>
@@ -20,7 +20,7 @@ const ModFilter = ({ onRefresh, onInput, valueInput }) => {
         placeholder={t('filter')}
         fluid
       />
-      <IconButton svg={refreshSvg} onClick={onRefresh} />
+      <IconButton svg={refreshSvg} onClick={onRefresh} load={refreshLoad} />
     </ModFilterStyle>
   );
 };
