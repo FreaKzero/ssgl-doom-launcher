@@ -73,7 +73,9 @@ const Input = ({
 };
 
 Input.propTypes = {
-  rest: PropTypes.any,
+  fluid: PropTypes.bool,
+  label: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
   width: PropTypes.string
 };
 

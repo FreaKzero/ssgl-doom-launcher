@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import styles from '#Style';
-import Input from '#Component/Form/Input';
-import Checkbox from '#Component/Form/Checkbox';
-import SelectFile from '#Component/Form/SelectFile';
 import { StoreContext } from '#State';
-import Flex from '#Component/Flex';
-import Box from '#Component/Box';
-import setTitle from '#Util/setTitle';
-import useIpc from '#Util/useIpc';
-import Button from '../components/Form/Button';
-import { useTranslation } from '#Util/translation';
-import useToast from '../utils/useToast';
-import SubmitArea from '../components/Form/SubmitArea';
+import { Flex, Box } from '#Component';
+import { setTitle, useIpc, useTranslation, useToast } from '#Util';
 import uuid from 'uuid-quick';
+import {
+  Input,
+  Checkbox,
+  SelectFile,
+  Button,
+  SubmitArea
+} from '#Component/Form';
 
 const FormBorder = styled.div`
   background: rgba(255, 255, 255, 0.05);
@@ -75,9 +74,12 @@ const SourcePort = ({ item, onClick, ...rest }) => {
   );
 };
 
-const item = {
-  name: 'GZDoom',
-  path: '/some/path/to/where'
+SourcePort.propTypes = {
+  item: PropTypes.shape({
+    name: PropTypes.string,
+    binary: PropTypes.string
+  }),
+  onClick: PropTypes.func.isRequired
 };
 
 const Form = ({ item, onSave, onDelete }) => {
@@ -218,7 +220,23 @@ const Form = ({ item, onSave, onDelete }) => {
   );
 };
 
-const SourcePorts = ({ ...rest }) => {
+Form.propTypes = {
+  item: PropTypes.shape({
+    binary: PropTypes.string,
+    hasConfig: PropTypes.bool,
+    hasSavedir: PropTypes.bool,
+    hasScreendir: PropTypes.bool,
+    id: PropTypes.string,
+    name: PropTypes.string,
+    paramConfig: PropTypes.string,
+    paramSave: PropTypes.string,
+    paramScreen: PropTypes.string
+  }),
+  onDelete: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired
+};
+
+const SourcePorts = () => {
   setTitle('sourceports');
   const { gstate, dispatch } = React.useContext(StoreContext);
   const [selected, setSelected] = React.useState(null);
@@ -247,9 +265,9 @@ const SourcePorts = ({ ...rest }) => {
     setSourcePorts([...sourcePorts, item]);
   };
 
-  const selectSourceport = item => e => setSelected(item);
+  const selectSourceport = item => () => setSelected(item);
 
-  const onDeleteSourcePort = id => async e => {
+  const onDeleteSourcePort = id => async () => {
     const newSourcePorts = sourcePorts.filter(item => item.id !== id);
 
     try {

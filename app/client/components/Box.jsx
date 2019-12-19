@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import styles from '#Style';
 
@@ -34,6 +35,11 @@ const Box = ({ children, fixed }) => {
       </div>
     </BoxStyle>
   );
+};
+
+Box.propTypes = {
+  children: PropTypes.any,
+  fixed: PropTypes.element
 };
 
 export default Box;

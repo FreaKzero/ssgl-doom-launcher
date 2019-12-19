@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import styles from '#Style';
@@ -92,6 +92,13 @@ const Checkbox = ({ label, value, onChange, name, ...rest }) => {
       <input type="hidden" name={name} value={checked} />
     </div>
   );
+};
+
+Checkbox.propTypes = {
+  label: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  value: PropTypes.bool
 };
 
 export default Checkbox;

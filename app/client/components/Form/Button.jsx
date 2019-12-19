@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import styles from '#Style';
@@ -6,15 +6,6 @@ import spinner from '#Asset/icon/spinner.svg';
 import Svg from 'react-svg-inline';
 
 const SpinnerStyle = styled.div`
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
   svg {
     fill: ${styles.color.active};
     margin-bottom: -2px;
@@ -80,6 +71,15 @@ const Button = ({
       )}
     </ButtonStyle>
   );
+};
+
+Button.propTypes = {
+  children: PropTypes.any,
+  disabled: PropTypes.bool,
+  load: PropTypes.bool,
+  onClick: PropTypes.any,
+  type: PropTypes.string,
+  width: PropTypes.string
 };
 
 export default Button;

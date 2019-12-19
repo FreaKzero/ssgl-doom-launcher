@@ -1,16 +1,18 @@
 import React, { useState, useContext } from 'react';
-import Box from '#Component/Box';
-import ModItem from '#Component/ModItem';
-import ModFilter from '#Component/ModFilter';
-import PlayOverlay from '#Component/PlayOverlay';
-import PlayIcon from '#Component/PlayIcon';
-import Flex from '#Component/Flex';
 import { StoreContext } from '#State';
 import { AnimatePresence } from 'framer-motion';
 import fuzz from 'fuzzysearch';
 import { useDebouncedCallback } from 'use-debounce';
-import setTitle from '#Util/setTitle';
-import useIpc from '#Util/useIpc';
+import { setTitle, useIpc } from '#Util';
+
+import {
+  Box,
+  ModItem,
+  ModFilter,
+  PlayOverlay,
+  PlayIcon,
+  Flex
+} from '#Component';
 
 const Wads = () => {
   setTitle('wads');
@@ -19,11 +21,11 @@ const Wads = () => {
   const [poActive, setPoActive] = useState(false);
   const [fetch, loading] = useIpc();
 
-  const onClick = id => e => {
+  const onClick = id => () => {
     dispatch({ type: 'mod/select', id });
   };
 
-  const onSort = (index, direction) => e => {
+  const onSort = (index, direction) => () => {
     dispatch({ type: 'mod/move', direction, index });
   };
 
@@ -54,6 +56,7 @@ const Wads = () => {
                 onInput={(e, { value }) => onInput(value)}
                 onRefresh={onRefresh}
                 refreshLoad={loading}
+                valueInput={filter}
               />
             }
           >

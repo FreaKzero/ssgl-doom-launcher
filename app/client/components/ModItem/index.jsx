@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import not from '#Asset/not.png';
 import styles from '#Style';
 import Icon from './Icon';
 import Check from './Check';
@@ -88,6 +88,20 @@ const Item = ({ item, onSelect, onUp, onDown, selected = false }) => {
       </ItemStyle>
     </motion.li>
   );
+};
+
+Item.propTypes = {
+  item: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    active: PropTypes.bool.isRequired,
+    lastdir: PropTypes.string.isRequired,
+    kind: PropTypes.string.isRequired,
+    size: PropTypes.string.isRequired
+  }),
+  onDown: PropTypes.func,
+  onUp: PropTypes.func,
+  onSelect: PropTypes.func.isRequired,
+  selected: PropTypes.bool
 };
 
 export default Item;

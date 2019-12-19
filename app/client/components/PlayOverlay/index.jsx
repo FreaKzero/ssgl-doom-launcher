@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { StoreContext } from '#State';
 import { ipcRenderer } from 'electron';
 import IWad from '#Component/IWad';
@@ -30,6 +31,11 @@ const BackdropMotion = ({ active, children, ...rest }) => {
   );
 };
 
+BackdropMotion.propTypes = {
+  active: PropTypes.bool,
+  children: PropTypes.any
+};
+
 const ModalMotion = ({ active, children, ...rest }) => {
   const variants = {
     anim: {
@@ -49,6 +55,11 @@ const ModalMotion = ({ active, children, ...rest }) => {
       {children}
     </motion.div>
   );
+};
+
+ModalMotion.propTypes = {
+  active: PropTypes.bool,
+  children: PropTypes.any
 };
 
 const Modal = styled(ModalMotion)`
@@ -73,7 +84,7 @@ const BackDrop = styled(BackdropMotion)`
 `;
 
 const PlayOverlay = ({ active, setActive }) => {
-  const { gstate, dispatch } = React.useContext(StoreContext);
+  const { gstate } = React.useContext(StoreContext);
   const [sourceport, setSourceport] = React.useState(
     gstate.settings.defaultsourceport
   );
@@ -121,6 +132,11 @@ const PlayOverlay = ({ active, setActive }) => {
       </Modal>
     </>
   );
+};
+
+PlayOverlay.propTypes = {
+  active: PropTypes.bool,
+  setActive: PropTypes.func.isRequired
 };
 
 export default PlayOverlay;

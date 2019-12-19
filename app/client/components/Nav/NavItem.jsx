@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import styles from '#Style';
 import { Link } from 'wouter';
@@ -49,4 +50,11 @@ const NavItem = ({ children, to, active }) => {
     </NavItemStyle>
   );
 };
+
+NavItem.propTypes = {
+  active: PropTypes.bool,
+  children: PropTypes.any,
+  to: PropTypes.string.isRequired
+};
+
 export default NavItem;

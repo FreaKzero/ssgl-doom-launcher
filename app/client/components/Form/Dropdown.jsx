@@ -58,7 +58,7 @@ const Option = styled.li`
     padding: 7px 0 7px 20px;
   }
 `;
-  
+
 const Dropdown = ({
   options,
   onChange,
@@ -67,6 +67,7 @@ const Dropdown = ({
   label,
   value,
   name,
+  fluid,
   ...rest
 }) => {
   const selectRef = useRef(null);
@@ -93,7 +94,7 @@ const Dropdown = ({
     }, 100);
   };
 
-  const onSelect = item => e => {
+  const onSelect = item => () => {
     setCurrent(item);
     onChange({ name, ...item });
   };
@@ -101,13 +102,14 @@ const Dropdown = ({
   return (
     <>
       {label ? <Label>{label}</Label> : null}
-      <Wrapper>
+      <Wrapper width={width} fluid={fluid}>
         <Input
           type="text"
           onBlur={onBlur}
           onFocus={onFocus}
           readOnly
           value={current.label}
+          placeholder={placeholder}
           {...rest}
         />
         <input
@@ -134,6 +136,22 @@ const Dropdown = ({
       </Wrapper>
     </>
   );
+};
+
+Dropdown.propTypes = {
+  label: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      fvalue: PropTypes.any
+    }).isRequired
+  ),
+  placeholder: PropTypes.any,
+  value: PropTypes.any,
+  width: PropTypes.any,
+  fluid: PropTypes.bool
 };
 
 export default Dropdown;

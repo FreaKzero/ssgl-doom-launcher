@@ -15,5 +15,14 @@
     "react/jsx-uses-vars": "error",
     "prettier/prettier": ["error", { "singleQuote": true }],
     "semi": "error"
+  },
+    "settings": {
+      "react": {
+        "version": "16.11"
+      },
+      "linkComponents": [
+        // Components used as alternatives to <a> for linking, eg. <Link to={ url } />
+        {"name": "Link", "linkAttribute": "to"}
+      ]
+    }
   }
-}

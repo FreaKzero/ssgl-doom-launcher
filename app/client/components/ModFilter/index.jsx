@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import styled from 'styled-components';
 import Input from '#Component/Form/Input';
 import IconButton from '#Component/Form/IconButton';
@@ -24,4 +26,12 @@ const ModFilter = ({ onRefresh, onInput, valueInput, refreshLoad }) => {
     </ModFilterStyle>
   );
 };
+
+ModFilter.propTypes = {
+  onInput: PropTypes.func.isRequired,
+  onRefresh: PropTypes.func.isRequired,
+  refreshLoad: PropTypes.bool.isRequired,
+  valueInput: PropTypes.string.isRequired
+};
+
 export default ModFilter;

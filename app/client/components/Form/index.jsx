@@ -5,5 +5,15 @@ import Dropdown from './Dropdown';
 import Input from './Input';
 import Label from './Label';
 import SelectFile from './SelectFile';
+import SubmitArea from './SubmitArea';
 
-export { Button, IconButton, Dropdown, Input, Label, SelectFile };
+export {
+  Button,
+  IconButton,
+  Dropdown,
+  Input,
+  Label,
+  SelectFile,
+  SubmitArea,
+  Checkbox
+};

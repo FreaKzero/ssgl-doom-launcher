@@ -5,10 +5,10 @@ const useIpc = (opt = {}) => {
   const [load, setLoad] = React.useState(false);
 
   const fetch = (route, args = null) => {
+    // eslint-disable-next-line no-async-promise-executor
     return new Promise(async (resolve, reject) => {
       setLoad(true);
       const res = await ipcRenderer.invoke(route, args);
-
       if (opt.delayLoad) {
         setTimeout(() => {
           setLoad(false);
@@ -16,7 +16,6 @@ const useIpc = (opt = {}) => {
       } else {
         setLoad(false);
       }
-
       return res.error ? reject(new Error(res.error)) : resolve(res.data);
     });
   };

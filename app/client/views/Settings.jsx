@@ -1,19 +1,10 @@
 import React from 'react';
-import { ipcRenderer } from 'electron';
-import Box from '#Component/Box';
-import SelectFile from '#Component/Form/SelectFile';
-import Dropdown from '#Component/Form/Dropdown';
-import SubmitArea from '#Component/Form/SubmitArea';
-import Button from '#Component/Form/Button';
 import { StoreContext } from '#State';
-import Flex from '#Component/Flex';
-import { useTranslation } from '#Util/translation';
-import useToast from '#Util/useToast';
-import useIpc from '#Util/useIpc';
-import setTitle from '#Util/setTitle';
-
-import i18n from '../i18n';
+import { setTitle, useToast, useIpc, useTranslation } from '#Util';
+import { SelectFile, Dropdown, SubmitArea, Button } from '#Component/Form';
+import { Flex, Box } from '#Component';
 import { AVAILABLE_LOCALES } from '../locales';
+import i18n from '../i18n';
 
 const Settings = () => {
   setTitle('settings');
@@ -40,14 +31,6 @@ const Settings = () => {
       case 'language':
         return i18n.changeLanguage(value);
     }
-  };
-
-  const onInput = e => {
-    const { name, value } = e.currentTarget;
-    setForm({
-      ...form,
-      [name]: value
-    });
   };
 
   const onSubmit = async e => {

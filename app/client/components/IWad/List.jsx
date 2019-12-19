@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import styles from '#Style';
 
 const ListStyle = styled.ul`
   display: flex;
@@ -9,5 +9,9 @@ const ListStyle = styled.ul`
 `;
 
 const List = ({ children }) => <ListStyle>{children}</ListStyle>;
+
+List.propTypes = {
+  children: PropTypes.any
+};
 
 export default List;

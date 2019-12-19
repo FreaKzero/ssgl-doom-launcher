@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { createPortal } from 'react-dom';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import styles from '#Style';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -86,6 +86,14 @@ const ToastMotion = ({ toast }) => {
   );
 };
 
+ToastMotion.propTypes = {
+  toast: PropTypes.shape({
+    scope: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired
+  })
+};
+
 const ToastContainer = ({ children }) => {
   const [toasts, setToasts] = React.useState([]);
 
@@ -116,6 +124,10 @@ const ToastContainer = ({ children }) => {
       {children}
     </ToastContext.Provider>
   );
+};
+
+ToastContainer.propTypes = {
+  children: PropTypes.any
 };
 
 export default ToastContainer;

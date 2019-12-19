@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import styles from '#Style';
 
@@ -112,6 +113,11 @@ const PlayIcon = ({ active, onClick }) => {
       </svg>
     </PlayIconStyle>
   );
+};
+
+PlayIcon.propTypes = {
+  active: PropTypes.any,
+  onClick: PropTypes.func.isRequired
 };
 
 export default PlayIcon;

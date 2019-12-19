@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import styles from '#Style';
 import getCover from '../../assets/covers';
@@ -114,6 +115,11 @@ const Item = ({ name, onClick }) => {
       {name}
     </ListItemStyle>
   );
+};
+
+Item.propTypes = {
+  name: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 export default Item;

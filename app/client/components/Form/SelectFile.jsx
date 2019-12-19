@@ -65,7 +65,12 @@ const SelectFile = ({
 };
 
 SelectFile.propTypes = {
-  rest: PropTypes.any,
+  directory: PropTypes.bool,
+  fluid: PropTypes.bool,
+  label: PropTypes.string,
+  name: PropTypes.string,
+  onFile: PropTypes.func.isRequired,
+  value: PropTypes.string,
   width: PropTypes.string
 };
 

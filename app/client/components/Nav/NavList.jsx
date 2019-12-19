@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useLocation } from 'wouter';
 import NavItem from './NavItem';
 import routes from '#Root/routes';
-import { useTranslation } from '#Util/translation';
+import { useTranslation } from '#Util';
 import styles from '#Style';
 
 // TODO: key

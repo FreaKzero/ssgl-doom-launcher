@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import styles from '#Style';
@@ -9,15 +9,6 @@ const IconButtonStyle = styled(ButtonStyle)`
   min-width: 0;
   height: 37px;
   width: 37px;
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
 
   &:hover:not(.load) svg {
     filter: drop-shadow(0px -1px 4px #ff0000) drop-shadow(0px 0px 10px #ff0000);
@@ -46,5 +37,10 @@ const IconButton = ({ svg, load, ...rest }) => (
     </IconButtonStyle>
   </>
 );
+
+IconButton.propTypes = {
+  load: PropTypes.bool,
+  svg: PropTypes.any.isRequired
+};
 
 export default IconButton;

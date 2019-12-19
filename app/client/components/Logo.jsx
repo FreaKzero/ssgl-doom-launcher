@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import svgLogo from '#Asset/Logo.svg';
 import SVG from 'react-svg-inline';
 import styled from 'styled-components';
@@ -14,6 +15,10 @@ const Logo = ({ height = '70' }) => {
       <SVG height={height} svg={svgLogo} />
     </LogoContainer>
   );
+};
+
+Logo.propTypes = {
+  height: PropTypes.string
 };
 
 export default Logo;
