@@ -48,6 +48,10 @@ const IconStyle = styled.div`
   &:hover .ring-inner {
     stroke: ${styles.svg.yellow};
   }
+
+  & .active:hover .ring-inner {
+    stroke: ${styles.svg.red};
+  }
 `;
 
 const Check = ({ active, size, onClick }) => {

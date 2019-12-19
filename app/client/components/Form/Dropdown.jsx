@@ -13,14 +13,14 @@ const Wrapper = styled(InputContainerStyle)`
   position: relative;
 
   svg {
-    stroke: grey;
+    stroke: ${styles.button.idle};
     margin: 11px 10px 0 0;
     transition: all 0.21s ease-out;
   }
 
   &:hover svg {
-    stroke: ${styles.color.active};
-    filter: drop-shadow(0 -1px 4px #ff0000) drop-shadow(0 0 10px #ff0000);
+    stroke: ${styles.svg.yellow};
+    filter: ${styles.svg.glow};
   }
 
   &:focus-within svg {
@@ -36,24 +36,24 @@ const Input = styled(InputStyle)`
 `;
 
 const OptionList = styled.ul`
-  position: absolute;
-  top: 35px;
   background-color: ${styles.color.backdrop};
   border-radius: ${styles.border.radius};
   border: 1px solid ${styles.border.active};
+  position: absolute;
+  top: 35px;
   width: 100%;
   overflow: hidden;
 `;
 
 const Option = styled.li`
+  transition: ${styles.transition.out};
   width: 100%;
   padding: 7px 0 7px 10px;
   cursor: pointer;
-  transition: ${styles.transition.out};
 
   &:hover {
-    background-color: #1d2025;
     color: ${styles.color.active};
+    background-color: ${styles.color.back};
     padding: 7px 0 7px 20px;
   }
 `;

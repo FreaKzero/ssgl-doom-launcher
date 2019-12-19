@@ -13,10 +13,10 @@ const Content = styled.div`
   width: 100%;
 
   h1 {
+    transition: ${styles.transition.out};
     font-size: 18px;
     margin-top: 5px;
     margin-bottom: 5px;
-    transition: ${styles.transition.out};
     text-transform: uppercase;
 
     &.active {
@@ -26,7 +26,7 @@ const Content = styled.div`
 `;
 
 const Meta = styled.div`
-  color: #858585;
+  color: ${styles.color.meta};
   font-size: 14px;
   margin-bottom: 5px;
 `;
@@ -39,13 +39,13 @@ const IconContainer = styled.div`
 `;
 
 const ItemStyle = styled.div`
-  background: rgba(12, 8, 8, 0.8);
+  background: ${styles.color.backdrop};
   border-radius: ${styles.border.radius};
+  border: 1px solid ${styles.border.idle};
+  transition: ${styles.transition.out};
   padding: 10px;
   height: 50px;
   display: flex;
-  border: 1px solid ${styles.border.idle};
-  transition: ${styles.transition.out};
   margin-bottom: 5px;
   user-select: none;
 

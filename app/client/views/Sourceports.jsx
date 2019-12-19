@@ -17,7 +17,7 @@ import {
 const FormBorder = styled.div`
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid ${styles.border.idle};
-  border-radius: 4px;
+  border-radius: ${styles.border.radius};
   padding: 10px 10px 0 10px;
   margin-bottom: 15px;
 `;

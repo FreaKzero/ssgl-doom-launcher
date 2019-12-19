@@ -10,35 +10,35 @@ const NavItemStyle = styled.li`
 
   a {
     color: ${styles.color.idle};
+    transition: ${styles.transition.short};
     text-transform: uppercase;
     text-decoration: none;
     display: inline-block;
     padding: 15px 20px;
     position: relative;
-    transition: ${styles.transition.short};
   }
 
   a::after {
+    background: ${styles.color.idle};
+    transition: ${styles.transition.short};
     bottom: 0;
     content: '';
     display: block;
     height: 5px;
     left: 50%;
     position: absolute;
-    background: ${styles.color.idle};
-    transition: ${styles.transition.short};
     width: 0;
   }
 
   a:hover,
   a.active {
     color: ${styles.color.active};
-    text-shadow: 0 -1px 4px #ff0000, 0 0 15px #ff0000;
+    text-shadow: ${styles.font.glow};
   }
 
   a:hover::after {
     background-color: ${styles.color.active};
-    box-shadow: 0 -1px 4px #ff0000, 0 0 15px #ff0000;
+    box-shadow: ${styles.font.glow};
     width: 100%;
     left: 0;
   }

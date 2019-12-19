@@ -13,9 +13,9 @@ const IconStyle = styled.div`
   cursor: pointer;
 
   .ring-outer {
-    transform-origin: center center;
-    transition: all 0.35s cubic-bezier(0.45, -0.79, 0, 1.77);
+    transition: ${styles.transition.bouncelong};
     stroke: ${styles.svg.red};
+    transform-origin: center center;
     stroke-width: 9;
   }
 
@@ -24,22 +24,22 @@ const IconStyle = styled.div`
   }
 
   .backdrop-overlay {
+    transition: ${styles.transition.short};
     transform-origin: center center;
     opacity: 0.5;
     transform: scale(0);
-    transition: ${styles.transition.short};
   }
 
   .play {
+    transition: ${styles.transition.bouncelong};
     stroke: ${styles.svg.yellow};
     transform-origin: center center;
     transform: scale(0);
-    transition: all 0.35s cubic-bezier(0.45, -0.79, 0, 1.77);
   }
 
   &:hover .ring-outer {
-    transform: rotate(45deg);
     stroke: ${styles.svg.yellow};
+    transform: rotate(45deg);
   }
 
   &:hover .backdrop-overlay,

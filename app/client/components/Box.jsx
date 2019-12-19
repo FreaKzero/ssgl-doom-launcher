@@ -5,9 +5,9 @@ import styles from '#Style';
 
 const BoxStyle = styled.div`
   border: 1px solid ${styles.border.idle};
+  border-radius: ${styles.border.radius};
+  background: ${styles.box.backdrop};
   backdrop-filter: blur(5px);
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 7px;
   flex-grow: 1;
   padding: 10px;
   height: calc(100vh - 140px);
@@ -24,6 +24,7 @@ const BoxStyle = styled.div`
   }
 `;
 
+// TODO: define scrollbar...
 const Box = ({ children, fixed }) => {
   return (
     <BoxStyle>

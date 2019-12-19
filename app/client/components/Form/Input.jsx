@@ -5,9 +5,9 @@ import styles from '#Style';
 import Label from './Label';
 
 export const InputStyle = styled.input`
-  padding: 7px 7px 7px 10px;
   font-family: ${styles.font.content};
   color: ${styles.color.idle};
+  padding: 7px 7px 7px 10px;
   width: 100%;
   font-size: 16px;
   background-color: transparent;
@@ -23,13 +23,13 @@ export const InputStyle = styled.input`
 `;
 
 export const InputContainerStyle = styled.div`
-  margin-bottom: 15px;
   background-color: ${styles.color.backdrop};
   border-radius: ${styles.border.radius};
-  display: flex;
-  margin-right: 5px;
   border: 1px solid ${styles.border.idle};
   transition: ${styles.transition.out};
+  margin-bottom: 15px;
+  display: flex;
+  margin-right: 5px;
   width: ${p => {
     if (p.fluid) {
       return `100%`;

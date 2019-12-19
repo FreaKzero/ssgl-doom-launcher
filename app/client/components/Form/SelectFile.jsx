@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import styles from '#Style';
 import { remote } from 'electron';
 import Label from './Label';
 import { ButtonStyle } from './Button';
@@ -14,7 +15,7 @@ const Input = styled(InputStyle)`
 const SelectButton = styled(ButtonStyle)`
   user-select: none;
   min-width: 100px;
-  border-radius: 4px 0 0 4px;
+  border-radius: ${styles.border.radius} 0 0 ${styles.border.radius};
   padding: 0;
 
   &:hover {

@@ -11,21 +11,21 @@ const IconButtonStyle = styled(ButtonStyle)`
   width: 37px;
 
   svg {
+    fill: ${styles.button.idle};
+    transition: ${styles.transition.out};
     margin-left: -1px;
     height: 21px;
-    filter: drop-shadow(-2px -2px 5px #1d2226);
-    fill: #808080;
-    transition: ${styles.transition.out};
+    filter: drop-shadow(-2px -2px 5px #{styles.button.idle});
   }
 
   &.load svg {
-    filter: drop-shadow(0 -1px 4px #ff0000) drop-shadow(0 0 10px #ff0000);
+    filter: ${styles.svg.glow};
     fill: ${styles.color.active};
     animation: spin 0.5s infinite;
   }
 
   &:hover:not(.load) svg {
-    filter: drop-shadow(0 -1px 4px #ff0000) drop-shadow(0 0 10px #ff0000);
+    filter: ${styles.svg.glow};
     fill: ${styles.color.active};
   }
 `;

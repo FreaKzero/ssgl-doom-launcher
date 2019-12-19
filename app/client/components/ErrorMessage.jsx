@@ -7,7 +7,7 @@ const ErrorMessageStyle = styled.div`
   border: 1px solid #f57242;
   backdrop-filter: blur(5px);
   background: rgba(193, 66, 66, 0.2);
-  border-radius: 7px;
+  border-radius: ${styles.border.radius};
   flex-grow: 1;
   width: 80%;
   padding: 15px;

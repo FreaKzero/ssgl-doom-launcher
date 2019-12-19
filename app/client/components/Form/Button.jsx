@@ -8,28 +8,26 @@ import Svg from 'react-svg-inline';
 const SpinnerStyle = styled.div`
   svg {
     fill: ${styles.color.active};
+    filter: ${styles.svg.glow};
     margin-bottom: -2px;
     animation: spin 0.7s infinite;
-    filter: drop-shadow(0 -1px 4px #ff0000) drop-shadow(0 0 10px #ff0000);
   }
 `;
 
 export const ButtonStyle = styled.button`
+  color: ${styles.button.idle};
+  transition: ${styles.transition.out};
+  width: ${p => (p.fluid ? '100%' : p.width ? p.width : 'auto')};
+  border: 1px solid ${styles.border.idle};
   background: ${p =>
-    p.disabled
-      ? '#1d2025'
-      : 'linear-gradient(180deg, #3f464c 0%, #1d2025 100%);'};
-  border: 1px solid #1d2226;
+    p.disabled ? styles.button.disabled : styles.button.back};
+  text-shadow: ${styles.button.shadow};
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: ${styles.border.radius};
   text-transform: uppercase;
   min-width: 100px;
-  width: ${p => (p.fluid ? '100%' : p.width ? p.width : 'auto')};
   padding: 7px;
   cursor: pointer;
-  transition: ${styles.transition.out};
-  color: #808080;
-  text-shadow: -1px -1px 5px #1d2226;
   margin-right: 10px;
 
   &:hover {
@@ -41,7 +39,7 @@ export const ButtonStyle = styled.button`
     text-shadow: ${p =>
       p.glow
         ? `0 0px 5px ${p.glow}, 0 0px 15px ${p.glow};`
-        : `0 0px 5px #ff0000, 0 0px 15px #ff0000;`};
+        : `0 0px 5px ${styles.color.glow}, 0 0px 15px ${styles.color.glow};`};
   }
 `;
 

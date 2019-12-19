@@ -6,6 +6,7 @@ import { StoreContext } from '#State';
 import { ipcRenderer } from 'electron';
 import IWad from '#Component/IWad';
 import Dropdown from '../Form/Dropdown';
+import styles from '#Style';
 
 const BackdropMotion = ({ active, children, ...rest }) => {
   const variants = {
@@ -63,9 +64,9 @@ ModalMotion.propTypes = {
 };
 
 const Modal = styled(ModalMotion)`
+  background: ${styles.color.backdrop};
   backdrop-filter: blur(5px);
   height: 200px;
-  background: rgba(12, 8, 8, 0.9);
   position: absolute;
   left: 0;
   padding: 20px;
@@ -74,7 +75,6 @@ const Modal = styled(ModalMotion)`
 `;
 
 const BackDrop = styled(BackdropMotion)`
-  color: red;
   position: absolute;
   top: 0;
   left: 0;

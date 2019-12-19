@@ -41,7 +41,7 @@ const ToastPortalStyle = styled.div`
 const ToastStyle = styled.div`
   background: linear-gradient(180deg, #3f464c 0%, #1d2025 100%);
   border: 1px solid #1d2226;
-  border-radius: 4px;
+  border-radius: ${styles.border.radius};
   min-width: 250px;
   padding: 15px;
   color: white;

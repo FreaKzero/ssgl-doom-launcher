@@ -11,25 +11,25 @@ const PlayIconStyle = styled.div`
   pointer-events: none;
 
   .ring-outer {
+    transition: ${styles.transition.bouncelong};
     transform-origin: center center;
     transform: scale(0.1);
-    transition: all 0.35s cubic-bezier(0.45, -0.79, 0, 1.77);
     opacity: 0;
     stroke-width: 9;
   }
 
   .ring-inner {
+    transition: ${styles.transition.out};
+    stroke: ${styles.svg.yellow};
     stroke-width: 0;
     opacity: 0;
-    stroke: ${styles.svg.yellow};
     r: 15;
-    transition: all 0.2s ease-out;
   }
 
   .play {
+    stroke: ${styles.svg.grey};
     transform-origin: center center;
     opacity: 0;
-    stroke: ${styles.svg.grey};
     transform: scale(0);
     transition: all 0.35s cubic-bezier(0.45, -0.79, 0, 1.77);
   }
@@ -44,14 +44,14 @@ const PlayIconStyle = styled.div`
   }
 
   .active .ring-outer {
+    stroke: ${styles.svg.red};
     transform: scale(1);
     opacity: 1;
-    stroke: ${styles.svg.red};
   }
 
   .active .ring-inner {
-    stroke-width: 15;
     stroke: ${styles.svg.red};
+    stroke-width: 15;
     r: 60;
     opacity: 0;
   }
@@ -71,9 +71,9 @@ const PlayIconStyle = styled.div`
   }
 
   .backdrop {
+    transition: ${styles.transition.bounce};
     transform-origin: center center;
     transform: scale(0);
-    transition: all 0.2s cubic-bezier(0.45, -0.79, 0, 1.77);
     fill: black;
     opacity: 0.3;
   }

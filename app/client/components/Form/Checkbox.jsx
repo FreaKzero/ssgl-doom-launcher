@@ -10,26 +10,23 @@ const LabelStyle = styled(Label)`
 `;
 
 const CheckboxStyle = styled.button`
-  display: inline-block;
-  background: linear-gradient(180deg, #3f464c 0%, #1d2025 100%);
-  border: 1px solid #1d2226;
-  box-sizing: border-box;
-  border-radius: 4px;
+  background: ${styles.button.back};
+  border: 1px solid ${styles.border.idle};
+  transition: ${styles.transition.out};
+  text-shadow: ${styles.button.shadow};
+  border-radius: ${styles.border.radius};
   text-transform: uppercase;
   cursor: pointer;
-  transition: ${styles.transition.out};
-  color: #808080;
-  text-shadow: -1px -1px 5px #1d2226;
   min-width: 0;
   height: 25px;
   width: 24px;
   padding: 2px 2px 5px 1px;
 
   svg {
-    transform: scale(0);
-    stroke: #808080;
-    width: 20px;
     transition: ${styles.transition.short};
+    stroke: ${styles.button.idle};
+    transform: scale(0);
+    width: 20px;
   }
 
   &.active svg {
@@ -38,11 +35,11 @@ const CheckboxStyle = styled.button`
 
   &:hover {
     border: 1px solid ${styles.border.active};
-    text-shadow: 0 0 5px #ff0000, 0 0 15px #ff0000;
+    text-shadow: ${styles.font.glow};
   }
 
   &:hover svg {
-    filter: drop-shadow(0 -1px 4px #ff0000) drop-shadow(0 0 10px #ff0000);
+    filter: ${styles.svg.glow};
     stroke: ${styles.color.active};
   }
 `;
