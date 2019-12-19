@@ -10,16 +10,16 @@ import styles from '#Style';
 const IconStyle = styled.div`
   cursor: pointer;
 
-  div:hover {
-    svg {
-      stroke: ${styles.border.active};
-      filter: drop-shadow(0px 0px 10px #ff0000)
-        drop-shadow(0px 0px 15px #ff0000);
-    }
-  }
   svg {
     stroke: ${styles.border.idle};
     transition: ${styles.transition.out};
+  }
+
+  div:hover {
+    svg {
+      stroke: ${styles.border.active};
+      filter: drop-shadow(0 0 10px #ff0000) drop-shadow(0 0 15px #ff0000);
+    }
   }
 `;
 

@@ -5,9 +5,7 @@ import styles from '#Style';
 
 const IconStyle = styled.div`
   cursor: pointer;
-  &:hover .ring-inner {
-    stroke: ${styles.svg.yellow};
-  }
+
   .ring-outer {
     stroke: ${styles.svg.red};
     transition: ${styles.transition.bounce};
@@ -15,6 +13,7 @@ const IconStyle = styled.div`
     transform: scale(0.7);
     stroke-width: 20;
   }
+
   .ring-inner {
     stroke-width: 30;
     stroke: ${styles.svg.red};
@@ -44,6 +43,10 @@ const IconStyle = styled.div`
   .active .pent {
     opacity: 1;
     transform: scale(1);
+  }
+
+  &:hover .ring-inner {
+    stroke: ${styles.svg.yellow};
   }
 `;
 

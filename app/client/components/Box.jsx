@@ -9,7 +9,6 @@ const BoxStyle = styled.div`
   background: rgba(0, 0, 0, 0.3);
   border-radius: 7px;
   flex-grow: 1;
-
   padding: 10px;
   height: calc(100vh - 140px);
 

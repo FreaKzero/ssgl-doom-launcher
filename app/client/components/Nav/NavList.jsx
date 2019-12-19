@@ -10,7 +10,6 @@ import styles from '#Style';
 const NavList = styled.ul`
   height: 65px;
   font-family: ${styles.font.head};
-  padding: 0;
   list-style: none;
   display: table;
   width: 50%;

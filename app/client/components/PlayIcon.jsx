@@ -10,8 +10,50 @@ const PlayIconStyle = styled.div`
   cursor: pointer;
   pointer-events: none;
 
+  .ring-outer {
+    transform-origin: center center;
+    transform: scale(0.1);
+    transition: all 0.35s cubic-bezier(0.45, -0.79, 0, 1.77);
+    opacity: 0;
+    stroke-width: 9;
+  }
+
+  .ring-inner {
+    stroke-width: 0;
+    opacity: 0;
+    stroke: ${styles.svg.yellow};
+    r: 15;
+    transition: all 0.2s ease-out;
+  }
+
+  .play {
+    transform-origin: center center;
+    opacity: 0;
+    stroke: ${styles.svg.grey};
+    transform: scale(0);
+    transition: all 0.35s cubic-bezier(0.45, -0.79, 0, 1.77);
+  }
+
   .active {
     pointer-events: auto;
+  }
+
+  .active .play {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .active .ring-outer {
+    transform: scale(1);
+    opacity: 1;
+    stroke: ${styles.svg.red};
+  }
+
+  .active .ring-inner {
+    stroke-width: 15;
+    stroke: ${styles.svg.red};
+    r: 60;
+    opacity: 0;
   }
 
   &:hover .active .play {
@@ -28,36 +70,6 @@ const PlayIconStyle = styled.div`
     opacity: 1;
   }
 
-  .ring-outer {
-    transform-origin: center center;
-    transform: scale(0.1);
-    transition: all 0.35s cubic-bezier(0.45, -0.79, 0, 1.77);
-    opacity: 0;
-    stroke-width: 9;
-  }
-
-  .active .ring-outer {
-    transform: scale(1);
-    opacity: 1;
-    stroke: ${styles.svg.red};
-  }
-
-  .ring-inner {
-    stroke-width: 0;
-    opacity: 0;
-    stroke: ${styles.svg.yellow};
-    r: 15;
-    transition: all 0.2s ease-out;
-  }
-
-  .active .ring-inner {
-    opacity: 1;
-    stroke-width: 15;
-    stroke: ${styles.svg.red};
-    r: 60;
-    opacity: 0;
-  }
-
   .backdrop {
     transform-origin: center center;
     transform: scale(0);
@@ -68,18 +80,6 @@ const PlayIconStyle = styled.div`
 
   .active .backdrop {
     transform: scale(1);
-  }
-
-  .play {
-    transform-origin: center center;
-    opacity: 0;
-    stroke: ${styles.svg.grey};
-    transform: scale(0);
-    transition: all 0.35s cubic-bezier(0.45, -0.79, 0, 1.77);
-  }
-  .active .play {
-    transform: scale(1);
-    opacity: 1;
   }
 `;
 

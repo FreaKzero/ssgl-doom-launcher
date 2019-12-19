@@ -18,6 +18,7 @@ const Content = styled.div`
     margin-bottom: 5px;
     transition: ${styles.transition.out};
     text-transform: uppercase;
+
     &.active {
       color: ${styles.color.active};
     }
@@ -47,9 +48,11 @@ const ItemStyle = styled.div`
   transition: ${styles.transition.out};
   margin-bottom: 5px;
   user-select: none;
+
   &:hover {
     border: 1px solid ${styles.border.active};
   }
+
   &:hover h1 {
     color: ${styles.color.active};
   }

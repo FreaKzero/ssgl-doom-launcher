@@ -18,20 +18,6 @@ const MainLoaderStyle = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  @keyframes breathe {
-    0% {
-      text-shadow: 0 -1px 4px #ff0000, 0 0px 15px #ff0000, 0 0px 30px #ff0000;
-      opacity: 1;
-    }
-    50% {
-      text-shadow: none;
-      opacity: 0.3;
-    }
-    100% {
-      text-shadow: 0 -1px 4px #ff0000, 0 0px 15px #ff0000, 0 0px 30px #ff0000;
-      opacity: 1;
-    }
-  }
 
   h1 {
     color: #ffa800;

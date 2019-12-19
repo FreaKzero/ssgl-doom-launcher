@@ -70,7 +70,7 @@ const Modal = styled(ModalMotion)`
   left: 0;
   padding: 20px;
   width: calc(100vw - 40px);
-  border-top: 0px;
+  border-top: 0;
 `;
 
 const BackDrop = styled(BackdropMotion)`

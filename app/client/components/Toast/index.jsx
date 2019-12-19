@@ -46,10 +46,12 @@ const ToastStyle = styled.div`
   padding: 15px;
   color: white;
   margin-bottom: 5px;
+
   p {
     margin-top: 10px;
     font-family: ${styles.font.content};
   }
+
   h1 {
     font-size: 14px;
     font-family: ${styles.font.head};

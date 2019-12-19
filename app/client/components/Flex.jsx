@@ -6,6 +6,7 @@ const Grid = styled.div`
 
 const Col = styled.div`
   width: ${p => p.width || '100%'};
+
   &:nth-child(odd) {
     margin: 0 5px 0 0;
   }

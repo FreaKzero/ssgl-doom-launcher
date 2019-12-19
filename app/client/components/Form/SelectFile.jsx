@@ -16,6 +16,7 @@ const SelectButton = styled(ButtonStyle)`
   min-width: 100px;
   border-radius: 4px 0 0 4px;
   padding: 0;
+
   &:hover {
     border: none;
   }

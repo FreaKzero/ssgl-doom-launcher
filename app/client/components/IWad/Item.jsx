@@ -11,15 +11,6 @@ const ListItemStyle = styled.li`
 
 const IconStyle = styled.div`
   cursor: pointer;
-  &:hover .ring-outer {
-    transform: rotate(45deg);
-    stroke: ${styles.svg.yellow};
-  }
-
-  &:hover .backdrop-overlay,
-  &:hover .play {
-    transform: scale(1);
-  }
 
   .ring-outer {
     transform-origin: center center;
@@ -44,6 +35,16 @@ const IconStyle = styled.div`
     transform-origin: center center;
     transform: scale(0);
     transition: all 0.35s cubic-bezier(0.45, -0.79, 0, 1.77);
+  }
+
+  &:hover .ring-outer {
+    transform: rotate(45deg);
+    stroke: ${styles.svg.yellow};
+  }
+
+  &:hover .backdrop-overlay,
+  &:hover .play {
+    transform: scale(1);
   }
 `;
 

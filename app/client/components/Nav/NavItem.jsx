@@ -17,7 +17,8 @@ const NavItemStyle = styled.li`
     position: relative;
     transition: ${styles.transition.short};
   }
-  a:after {
+
+  a::after {
     bottom: 0;
     content: '';
     display: block;
@@ -28,14 +29,16 @@ const NavItemStyle = styled.li`
     transition: ${styles.transition.short};
     width: 0;
   }
+
   a:hover,
   a.active {
     color: ${styles.color.active};
-    text-shadow: 0 -1px 4px #ff0000, 0 0px 15px #ff0000;
+    text-shadow: 0 -1px 4px #ff0000, 0 0 15px #ff0000;
   }
-  a:hover:after {
+
+  a:hover::after {
     background-color: ${styles.color.active};
-    box-shadow: 0 -1px 4px #ff0000, 0 0px 15px #ff0000;
+    box-shadow: 0 -1px 4px #ff0000, 0 0 15px #ff0000;
     width: 100%;
     left: 0;
   }

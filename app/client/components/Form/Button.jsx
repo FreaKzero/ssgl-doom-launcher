@@ -10,7 +10,7 @@ const SpinnerStyle = styled.div`
     fill: ${styles.color.active};
     margin-bottom: -2px;
     animation: spin 0.7s infinite;
-    filter: drop-shadow(0px -1px 4px #ff0000) drop-shadow(0px 0px 10px #ff0000);
+    filter: drop-shadow(0 -1px 4px #ff0000) drop-shadow(0 0 10px #ff0000);
   }
 `;
 
@@ -31,6 +31,7 @@ export const ButtonStyle = styled.button`
   color: #808080;
   text-shadow: -1px -1px 5px #1d2226;
   margin-right: 10px;
+
   &:hover {
     border: ${p =>
       p.border

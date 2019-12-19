@@ -16,6 +16,7 @@ export const InputStyle = styled.input`
   box-shadow: none;
   outline: none;
   margin: 0;
+
   &::placeholder {
     user-select: none;
   }
@@ -38,6 +39,7 @@ export const InputContainerStyle = styled.div`
       return p.width;
     }
   }};
+
   &:hover {
     border: 1px solid ${styles.border.active};
   }

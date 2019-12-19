@@ -12,15 +12,15 @@ const Wrapper = styled(InputContainerStyle)`
   flex-wrap: wrap;
   position: relative;
 
-  &:hover svg {
-    stroke: ${styles.color.active};
-    filter: drop-shadow(0px -1px 4px #ff0000) drop-shadow(0px 0px 10px #ff0000);
-  }
-
   svg {
     stroke: grey;
     margin: 11px 10px 0 0;
     transition: all 0.21s ease-out;
+  }
+
+  &:hover svg {
+    stroke: ${styles.color.active};
+    filter: drop-shadow(0 -1px 4px #ff0000) drop-shadow(0 0 10px #ff0000);
   }
 
   &:focus-within svg {
@@ -36,7 +36,6 @@ const Input = styled(InputStyle)`
 `;
 
 const OptionList = styled.ul`
-  width: 100%;
   position: absolute;
   top: 35px;
   background-color: ${styles.color.backdrop};

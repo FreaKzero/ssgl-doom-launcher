@@ -15,7 +15,6 @@ const CheckboxStyle = styled.button`
   border: 1px solid #1d2226;
   box-sizing: border-box;
   border-radius: 4px;
-  color: black;
   text-transform: uppercase;
   cursor: pointer;
   transition: ${styles.transition.out};
@@ -26,23 +25,25 @@ const CheckboxStyle = styled.button`
   width: 24px;
   padding: 2px 2px 5px 1px;
 
-  &:hover {
-    border: 1px solid ${styles.border.active};
-    text-shadow: 0 0px 5px #ff0000, 0 0px 15px #ff0000;
-  }
-
-  &:hover svg {
-    filter: drop-shadow(0px -1px 4px #ff0000) drop-shadow(0px 0px 10px #ff0000);
-    stroke: ${styles.color.active};
-  }
-  &.active svg {
-    transform: scale(1);
-  }
   svg {
     transform: scale(0);
     stroke: #808080;
     width: 20px;
     transition: ${styles.transition.short};
+  }
+
+  &.active svg {
+    transform: scale(1);
+  }
+
+  &:hover {
+    border: 1px solid ${styles.border.active};
+    text-shadow: 0 0 5px #ff0000, 0 0 15px #ff0000;
+  }
+
+  &:hover svg {
+    filter: drop-shadow(0 -1px 4px #ff0000) drop-shadow(0 0 10px #ff0000);
+    stroke: ${styles.color.active};
   }
 `;
 
