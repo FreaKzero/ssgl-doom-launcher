@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import styles from '#Style';
-import getCover from '../../assets/covers';
+import Covers from '../../assets/covers';
 
 const ListItemStyle = styled.li`
   margin-right: 10px;
@@ -68,7 +68,7 @@ const Item = ({ name, onClick }) => {
               height="100%"
             >
               <image
-                xlinkHref={getCover(name)}
+                href={Covers[name.toLowerCase()]}
                 x="0"
                 y="0"
                 width="100%"

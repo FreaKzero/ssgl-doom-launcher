@@ -39,12 +39,8 @@
   },
   "babel": {
     "plugins": [
-      [
-        "babel-plugin-styled-components",
-        {
-          "ssr": false
-        }
-      ]
+      "@babel/plugin-transform-runtime",
+      "babel-plugin-styled-components"
     ],
     "presets": [
       "@babel/preset-env",
@@ -74,18 +70,21 @@
     "prop-types": "^15.7.2",
     "rimraf": "^3.0.0",
     "style-loader": "^1.0.1",
+    "stylelint": "^12.0.0",
+    "stylelint-config-standard": "^19.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.9.0",
     "svg-inline-loader": "^0.8.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.9.0",
     "webpack-electron-reload": "^1.0.0",
-    "webpack-merge": "^4.2.2",
-    "stylelint": "^12.0.0",
-    "stylelint-config-standard": "^19.0.0",
-    "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.9.0"
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/runtime": "^7.7.7",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "byte-size": "^6.2.0",
     "framer-motion": "^1.6.18",
     "fuzzysearch": "^1.0.3",
@@ -98,6 +97,7 @@
     "react-i18next": "^11.0.1",
     "react-svg-inline": "^2.1.1",
     "styled-components": "^4.4.1",
+    "url-loader": "^3.0.0",
     "use-debounce": "^3.1.0",
     "uuid-quick": "^0.1.0",
     "wouter": "^2.3.1"

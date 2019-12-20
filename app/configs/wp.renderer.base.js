@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const res = p => path.resolve(__dirname, p);
-
+// test: /.*covers\/.*\.(png|jpe?g|gif)$/i,
 module.exports = {
   module: {
     rules: [
@@ -15,7 +15,11 @@ module.exports = {
         loader: 'svg-inline-loader'
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /.*covers\/.*\.(png|jpe?g|gif)$/i,
+        loader: 'url-loader'
+      },
+      {
+        test: /^((?!covers).)*\.(png|jpe?g|gif)$/i,
         loader: 'file-loader',
         options: {
           name: '[path][name].[ext]'
