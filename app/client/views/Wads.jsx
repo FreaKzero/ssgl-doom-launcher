@@ -31,7 +31,7 @@ const Wads = () => {
 
   const [onInput] = useDebouncedCallback(val => {
     setRawFilter(val.toLowerCase());
-  }, 250);
+  }, 200);
 
   const onRefresh = async () => {
     const data = await fetch('main/init');
@@ -56,7 +56,6 @@ const Wads = () => {
                 onInput={(e, { value }) => onInput(value)}
                 onRefresh={onRefresh}
                 refreshLoad={loading}
-                valueInput={filter}
               />
             }
           >

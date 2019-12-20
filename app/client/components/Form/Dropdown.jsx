@@ -117,7 +117,7 @@ const Dropdown = ({
           value={current.value}
           ref={selectRef}
         />
-        <SVG height={12} svg={down} />
+        <SVG height={'12px'} svg={down} />
         {open ? (
           <OptionList>
             {options.map((item, key) => {

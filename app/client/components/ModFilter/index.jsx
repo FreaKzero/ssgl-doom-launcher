@@ -31,7 +31,7 @@ ModFilter.propTypes = {
   onInput: PropTypes.func.isRequired,
   onRefresh: PropTypes.func.isRequired,
   refreshLoad: PropTypes.bool.isRequired,
-  valueInput: PropTypes.string.isRequired
+  valueInput: PropTypes.string
 };
 
 export default ModFilter;

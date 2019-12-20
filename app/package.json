@@ -17,24 +17,17 @@
   "build": {
     "productName": "SSGL",
     "appId": "SSGL",
-    "dmg": {
-      "contents": [
-        {
-          "x": 130,
-          "y": 220
-        },
-        {
-          "x": 410,
-          "y": 220,
-          "type": "link",
-          "path": "/Applications"
-        }
-      ]
+    "mac": {
+      "target": "zip"
+    },
+    "win": {
+      "target": "portable"
     },
     "files": [
       "production.html",
       "build/**/*.*",
-      "package.json"
+      "package.json",
+      "icon.png"
     ]
   },
   "babel": {
