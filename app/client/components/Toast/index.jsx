@@ -53,7 +53,7 @@ const ToastStyle = styled.div`
   }
 
   h1 {
-    font-size: 14px;
+    font-size: 16px;
     font-family: ${styles.font.head};
     text-transform: uppercase;
     ${p => scopeStyle(p.scope)}
