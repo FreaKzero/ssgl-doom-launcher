@@ -41,7 +41,7 @@ const Settings = () => {
 
     const newState = await fetchInit('main/init', null);
     dispatch({ type: 'main/init', data: newState });
-    toast('Settings Saved', 'ok');
+    toast('ok', t('common:success'), t('settings:toastSaved'));
   };
 
   return (

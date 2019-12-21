@@ -8,47 +8,47 @@ import ToastContext from './ToastContext';
 
 let currentTimeout;
 
-const DEFAULT_TOAST_DURATION = 4000;
+const DEFAULT_TOAST_DURATION = 3000;
 
 const scopeStyle = scope => {
   switch (scope) {
-    case 'info':
-      return `
-        color: #ffa800;
-        text-shadow: 0 -1px 4px #ff0000, 0 0px 15px #ff0000;
-      `;
     case 'danger':
       return `
         color: #ff2f00;
         text-shadow: 0 -1px 4px #b8342a, 0 0px 15px #b8342a;
         `;
-
-    case 'ok':
+    default:
       return `
-      color: #0dff00;
-      text-shadow: 0 -1px 4px #2ab878, 0 0px 15px #2ab878;
+        color: #ffa800;
+        text-shadow: 0 -1px 4px #ff0000, 0 0px 15px #ff0000;
       `;
   }
 };
 
+const Indicator = styled.div`
+  background-color: ${styles.color.active};
+  box-shadow: ${styles.font.glow};
+  animation: toasttimer ${DEFAULT_TOAST_DURATION}ms;
+`;
+
 const ToastPortalStyle = styled.div`
   position: absolute;
-  top: 15px;
-  left: 15px;
+  top: 5px;
+  left: calc(50% - 200px);
   pointer-events: none;
 `;
 
 const ToastStyle = styled.div`
-  background: linear-gradient(180deg, #3f464c 0%, #1d2025 100%);
+  background: #1d2025;
   border: 1px solid #1d2226;
   border-radius: ${styles.border.radius};
-  min-width: 250px;
+  width: 400px;
   padding: 15px;
   color: white;
   margin-bottom: 5px;
 
   p {
-    margin-top: 10px;
+    margin: 8px 0 8px 0;
     font-family: ${styles.font.content};
   }
 
@@ -63,12 +63,11 @@ const ToastStyle = styled.div`
 const ToastMotion = ({ toast }) => {
   const variants = {
     init: {
-      opacity: 1,
-      left: 0,
-      scale: 1
+      marginTop: -1,
+      opacity: 1
     },
     exit: {
-      scale: 0,
+      marginTop: -100,
       opacity: 0
     }
   };
@@ -83,6 +82,7 @@ const ToastMotion = ({ toast }) => {
       <ToastStyle scope={toast.scope}>
         <h1>{toast.title}</h1>
         {toast.text ? <p>{toast.text}</p> : null}
+        <Indicator />
       </ToastStyle>
     </motion.div>
   );
@@ -99,7 +99,8 @@ ToastMotion.propTypes = {
 const ToastContainer = ({ children }) => {
   const [toasts, setToasts] = React.useState([]);
 
-  const addToast = (title, scope = 'info', text) => {
+  const addToast = (scope, title, text) => {
+    console.log(scope, title, text);
     setToasts([{ title, scope, text }, ...toasts]);
 
     if (currentTimeout) {

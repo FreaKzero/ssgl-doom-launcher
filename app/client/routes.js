@@ -1,6 +1,6 @@
 import Wads from '#View/Wads';
 import Settings from '#View/Settings';
-import Sourceports from '#View/Sourceports';
+import SourcePorts from './views/Souceports';
 
 const routes = [
   {
@@ -11,7 +11,7 @@ const routes = [
   {
     label: 'sourceports',
     href: '/sourceports',
-    component: Sourceports
+    component: SourcePorts
   },
   {
     label: 'settings',

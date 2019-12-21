@@ -105,3 +105,15 @@ button:focus:active {
     opacity: 1;
   }
 }
+
+@keyframes toasttimer {
+  0% {
+    height: 3px;
+    width: 1%;
+  }
+
+  100% {
+    height: 3px;
+    width: 100%;
+  }
+}

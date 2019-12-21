@@ -14,18 +14,22 @@ export default {
     name: 'Sourceport Name',
     savegameparam: 'Uses Savegame Parameter',
     configparam: 'Uses Config Parameter',
-    screenshot: 'Uses Screenshot Parameter'
+    screenshot: 'Uses Screenshot Parameter',
+    toastSaved: 'Successfully saved Sourceport',
+    toastDeleted: 'Deleted Sourceport'
   },
   settings: {
     savepath: 'Savegame Directory',
     screenpath: 'Screenshot Directory',
     waddir: 'WAD Directory',
     wallpaper: 'Wallpaper Image',
-    save: 'Save Settings'
+    save: 'Save Settings',
+    toastSaved: 'Successfully saved Settings'
   },
   common: {
     loading: 'Loading',
-    language: 'Language'
+    language: 'Language',
+    success: 'Success'
   },
   nav: {
     appname: 'Super Shotgun Launcher',
