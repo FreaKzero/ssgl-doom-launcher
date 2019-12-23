@@ -96,7 +96,7 @@ const SourcePorts = () => {
         </Box>
       </Flex.Col>
       <Flex.Col>
-        <Box>
+        <Box noscroll>
           {selected ? (
             <>
               <Form

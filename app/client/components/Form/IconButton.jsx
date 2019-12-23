@@ -8,7 +8,7 @@ import SvgInline from 'react-svg-inline';
 const IconButtonStyle = styled(ButtonStyle)`
   min-width: 0;
   height: 37px;
-  width: 43px;
+  width: 47px;
 
   svg {
     fill: ${styles.button.idle};

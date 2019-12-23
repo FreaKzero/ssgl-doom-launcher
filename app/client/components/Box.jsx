@@ -13,10 +13,10 @@ const BoxStyle = styled.div`
   height: calc(100vh - 140px);
 
   .scroll {
-    overflow-y: scroll;
+    overflow-y: ${p => (p.noscroll ? 'hidden' : 'scroll')};
+    ${p => (p.noscroll ? null : styles.scrollbar)};
+    height: ${p => (p.fixed ? 'calc(100vh - 195px)' : '100%')};
     overflow-x: hidden;
-    height: calc(100vh - 195px);
-    ${styles.scrollbar}
   }
 
   .content {
@@ -25,10 +25,10 @@ const BoxStyle = styled.div`
 `;
 
 // TODO: define scrollbar...
-const Box = ({ children, fixed }) => {
+const Box = ({ children, fixed, noscroll = false }) => {
   return (
-    <BoxStyle>
-      <div className="fixed">{fixed}</div>
+    <BoxStyle noscroll={noscroll} fixed={fixed}>
+      {fixed ? <div className="fixed">{fixed}</div> : null}
 
       <div className="scroll">
         <div className="content">{children}</div>
