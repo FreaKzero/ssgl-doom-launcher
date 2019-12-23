@@ -47,8 +47,7 @@ const SourcePortStyle = styled.li`
     color: ${styles.color.active};
   }
 
-  &:hover,
-  &.active {
+  &:hover {
     border: 1px solid ${styles.border.active};
   }
 `;
