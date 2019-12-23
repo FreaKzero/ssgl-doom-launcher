@@ -5,7 +5,8 @@ export default {
     selectDir: 'Ordner'
   },
   wads: {
-    filter: 'Filter'
+    filter: 'Filter',
+    toastIndex: 'Mod Verzeichnis neu geladen'
   },
   sourceports: {
     delete: 'Sourceport Löschen',
@@ -14,18 +15,22 @@ export default {
     name: 'Name',
     savegameparam: 'Nutzt Speicher Parameter',
     configparam: 'Nutzt Konfiguration Parameter',
-    screenshot: 'Nutzt Screenshot Parameter'
+    screenshot: 'Nutzt Screenshot Parameter',
+    toastSaved: 'Sourceport erfolgreich gespeichert',
+    toastDeleted: 'Sourceport gelöscht'
   },
   settings: {
     savepath: 'Speicher Verzeichnis',
     screenpath: 'Screenshot Verzeichnis',
     waddir: 'Wad Verzeichnis',
     wallpaper: 'Hintergrundbild',
-    save: 'Einstellungen Speichern'
+    save: 'Einstellungen Speichern',
+    toastSaved: 'Einstellungen erfolgreich gespeichert'
   },
   common: {
     loading: 'Laden',
-    language: 'Sprache'
+    language: 'Sprache',
+    success: 'Aktion erfolgreich'
   },
   nav: {
     appname: 'Super Shotgun Launcher',

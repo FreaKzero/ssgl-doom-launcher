@@ -5,7 +5,8 @@ export default {
     selectDir: 'Directory'
   },
   wads: {
-    filter: 'Filter'
+    filter: 'Filter',
+    toastIndex: 'Reindexed Mod Directory'
   },
   sourceports: {
     delete: 'Delete Sourceport',
@@ -37,6 +38,5 @@ export default {
     packages: 'Packages',
     sourceports: 'Sourceports',
     settings: 'Settings'
-  },
-  toasts: {}
+  }
 };
