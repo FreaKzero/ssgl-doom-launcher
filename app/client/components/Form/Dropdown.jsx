@@ -33,6 +33,10 @@ const Input = styled(InputStyle)`
   color: transparent;
   text-shadow: 0 0 0 white;
   cursor: pointer;
+
+  &:hover {
+    text-shadow: 0 0 0 ${styles.color.active};
+  }
 `;
 
 const OptionList = styled.ul`
@@ -48,13 +52,13 @@ const OptionList = styled.ul`
 const Option = styled.li`
   transition: ${styles.transition.out};
   width: 100%;
-  padding: 7px 0 7px 10px;
+  padding: 10px 0 10px 10px;
   cursor: pointer;
 
   &:hover {
     color: ${styles.color.active};
     background-color: ${styles.color.back};
-    padding: 7px 0 7px 20px;
+    padding: 10px 0 10px 20px;
   }
 `;
 

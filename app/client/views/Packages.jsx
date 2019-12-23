@@ -29,24 +29,6 @@ const pack = [
   }
 ];
 
-/*
-const PackageStyle = styled.div`
-  display: inline-block;
-  margin: 0 10px 10px 0;
-  background-color: rgba(12, 8, 8, 0.8);
-  background-image: url(${covers['doom2']});
-  background-size: 80%;
-  background-position: center 20px;
-  background-repeat: no-repeat;
-  border-radius: ${styles.border.radius};
-  padding: 10px;
-  border: 1px solid ${styles.border.idle};
-  transition: ${styles.transition.out};
-  user-select: none;
-  cursor: pointer;
-  width: 140px;
-  height: 190px;
-  */
 const PackageStyle = styled.div`
   display: inline-block;
   margin: 0 10px 10px 0;
@@ -59,7 +41,6 @@ const PackageStyle = styled.div`
   border: 1px solid ${styles.border.idle};
   transition: ${styles.transition.out};
   user-select: none;
-  cursor: pointer;
   width: 160px;
 
   .content {

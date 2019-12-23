@@ -8,7 +8,7 @@ const MainLoaderStyle = styled.div`
   font-family: ${styles.font.head};
   text-align: center;
   text-transform: uppercase;
-  background-color: black;
+  background-color: #1d2025;
   width: 100vw;
   height: 100vh;
 
