@@ -47,34 +47,43 @@ const Wads = () => {
   };
 
   const buildShowList = () => {
-    const show =
-      filter.trim() !== ''
-        ? gstate.mods.length &&
-          gstate.mods.filter(i =>
-            fuzz(filter, `${i.name.toLowerCase()} ${i.lastdir}`)
-          )
-        : gstate.mods;
+    const srt = () => {
+      switch (sort) {
+        case 'asc':
+          return gstate.mods.sort((a, b) => {
+            if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+            if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+            return 0;
+          });
+        case 'desc':
+          return gstate.mods.sort((a, b) => {
+            if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+            if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+            return 0;
+          });
+        case 'new':
+          return gstate.mods.sort((a, b) => b.date - a.date);
+        case 'old':
+          return gstate.mods.sort((a, b) => a.date - b.date);
+        default:
+          return gstate.mods;
+      }
+    };
 
-    switch (sort) {
-      case 'asc':
-        return show.sort((a, b) => {
-          if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-          if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-          return 0;
-        });
-      case 'desc':
-        return show.sort((a, b) => {
-          if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
-          if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
-          return 0;
-        });
-      case 'new':
-        return show.sort((a, b) => b.date - a.date);
-      case 'old':
-        return show.sort((a, b) => a.date - b.date);
-      default:
-        return show;
+    if (gstate.mods.length) {
+      let show = srt();
+      return filter.trim() !== ''
+        ? show
+            .filter(i => fuzz(filter, `${i.name.toLowerCase()} ${i.lastdir}`))
+            .sort((a, b) => {
+              if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+              if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+              return 0;
+            })
+        : show;
     }
+
+    return [];
   };
 
   let show = buildShowList();
