@@ -19,6 +19,7 @@ const Wads = () => {
   const { gstate, dispatch } = useContext(StoreContext);
   const [filter, setRawFilter] = useState('');
   const [poActive, setPoActive] = useState(false);
+  const [sort, setSort] = useState('new');
   const [fetch, loading] = useIpc();
   const { t } = useTranslation(['common', 'wads']);
   const [toast] = useToast();
@@ -41,14 +42,42 @@ const Wads = () => {
     toast('ok', t('common:success'), t('wads:toastIndex'));
   };
 
-  const show =
-    filter.trim() !== ''
-      ? gstate.mods.length &&
-        gstate.mods.filter(i =>
-          fuzz(filter, `${i.name.toLowerCase()} ${i.lastdir}`)
-        )
-      : gstate.mods.length && gstate.mods;
+  const onSortList = ({ value }) => {
+    setSort(value);
+  };
 
+  const buildShowList = () => {
+    const show =
+      filter.trim() !== ''
+        ? gstate.mods.length &&
+          gstate.mods.filter(i =>
+            fuzz(filter, `${i.name.toLowerCase()} ${i.lastdir}`)
+          )
+        : gstate.mods;
+
+    switch (sort) {
+      case 'asc':
+        return show.sort((a, b) => {
+          if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+          if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+          return 0;
+        });
+      case 'desc':
+        return show.sort((a, b) => {
+          if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+          if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+          return 0;
+        });
+      case 'new':
+        return show.sort((a, b) => b.date - a.date);
+      case 'old':
+        return show.sort((a, b) => a.date - b.date);
+      default:
+        return show;
+    }
+  };
+
+  let show = buildShowList();
   return (
     <>
       <Flex.Grid>
@@ -59,6 +88,8 @@ const Wads = () => {
                 onInput={(e, { value }) => onInput(value)}
                 onRefresh={onRefresh}
                 refreshLoad={loading}
+                onSort={onSortList}
+                sortValue={sort}
               />
             }
           >

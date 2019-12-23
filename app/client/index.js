@@ -20,8 +20,8 @@ const App = () => {
       try {
         const data = await fetch('main/init');
         dispatch({ type: 'main/init', data: data });
-        setLocation('/');
         i18n.changeLanguage(data.settings.language || 'en');
+       // setLocation('/packages');
       } catch (e) {
         console.log(e);
         setLocation('/settings');
