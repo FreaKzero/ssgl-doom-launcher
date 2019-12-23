@@ -3,7 +3,7 @@ import { StoreContext } from '#State';
 import { AnimatePresence } from 'framer-motion';
 import fuzz from 'fuzzysearch';
 import { useDebouncedCallback } from 'use-debounce';
-import { setTitle, useIpc } from '#Util';
+import { useTranslation, setTitle, useIpc, useToast } from '#Util';
 
 import {
   Box,
@@ -20,6 +20,8 @@ const Wads = () => {
   const [filter, setRawFilter] = useState('');
   const [poActive, setPoActive] = useState(false);
   const [fetch, loading] = useIpc();
+  const { t } = useTranslation(['common', 'wads']);
+  const [toast] = useToast();
 
   const onClick = id => () => {
     dispatch({ type: 'mod/select', id });
@@ -36,6 +38,7 @@ const Wads = () => {
   const onRefresh = async () => {
     const data = await fetch('main/init');
     dispatch({ type: 'main/init', data: data });
+    toast('ok', t('common:success'), t('wads:toastIndex'));
   };
 
   const show =
