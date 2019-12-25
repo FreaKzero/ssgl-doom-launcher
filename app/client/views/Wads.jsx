@@ -4,11 +4,11 @@ import { AnimatePresence } from 'framer-motion';
 import fuzz from 'fuzzysearch';
 import { useDebouncedCallback } from 'use-debounce';
 import { useTranslation, setTitle, useIpc, useToast } from '#Util';
-import VirtualList from 'react-tiny-virtual-list';
 
 import {
   Box,
   ModItem,
+  ModBox,
   ModFilter,
   PlayOverlay,
   PlayIcon,
@@ -92,7 +92,9 @@ const Wads = () => {
     <>
       <Flex.Grid>
         <Flex.Col>
-          <Box
+          <ModBox
+            data={show}
+            onClick={onClick}
             fixed={
               <ModFilter
                 onInput={(e, { value }) => onInput(value)}
@@ -103,24 +105,7 @@ const Wads = () => {
                 size={show.length}
               />
             }
-          >
-            <ul>
-              <VirtualList
-                width="100%"
-                height={300}
-                itemCount={show.length}
-                itemSize={77}
-                renderItem={({ index, style }) => (
-                  <ModItem
-                    style={style}
-                    key={`mod_${show[index].id}`}
-                    item={show[index]}
-                    onSelect={onClick(show[index].id)}
-                  />
-                )}
-              />
-            </ul>
-          </Box>
+          ></ModBox>
         </Flex.Col>
         <Flex.Col>
           <Box>

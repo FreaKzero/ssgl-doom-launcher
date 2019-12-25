@@ -9,7 +9,8 @@ import Body from './Body';
 import ToastContainer from './Toast';
 import PlayOverlay from './PlayOverlay';
 import ModFilter from './ModFilter';
-import ModItem from './ModItem';
+import ModBox from './Mods/ModBox';
+import ModItem from './Mods/ModItem';
 import iWad from './IWad';
 import Routes from './Router';
 
@@ -25,6 +26,7 @@ export {
   ToastContainer,
   PlayOverlay,
   ModFilter,
+  ModBox,
   ModItem,
   iWad,
   Routes

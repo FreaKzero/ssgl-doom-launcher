@@ -58,7 +58,7 @@ const ItemStyle = styled.div`
   }
 `;
 
-const Item = ({ style, item, onSelect, onUp, onDown, selected = false }) => {
+const ModItem = ({ style, item, onSelect, onUp, onDown, selected = false }) => {
   return (
     <motion.li
       style={style}
@@ -94,7 +94,7 @@ const Item = ({ style, item, onSelect, onUp, onDown, selected = false }) => {
   );
 };
 
-Item.propTypes = {
+ModItem.propTypes = {
   item: PropTypes.shape({
     name: PropTypes.string.isRequired,
     active: PropTypes.bool.isRequired,
@@ -108,4 +108,4 @@ Item.propTypes = {
   selected: PropTypes.bool
 };
 
-export default Item;
+export default ModItem;
