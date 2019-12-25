@@ -22,6 +22,7 @@ const IconButtonStyle = styled(ButtonStyle)`
     filter: ${styles.svg.glow};
     fill: ${styles.color.active};
     animation: spin 0.5s infinite;
+    animation-timing-function: linear;
   }
 
   &:hover:not(.load) svg {
