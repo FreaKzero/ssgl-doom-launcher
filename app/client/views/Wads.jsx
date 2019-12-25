@@ -100,6 +100,7 @@ const Wads = () => {
                 refreshLoad={loading}
                 onSort={onSortList}
                 sortValue={sort}
+                size={show.length}
               />
             }
           >
@@ -108,7 +109,7 @@ const Wads = () => {
                 width="100%"
                 height={300}
                 itemCount={show.length}
-                itemSize={80}
+                itemSize={77}
                 renderItem={({ index, style }) => (
                   <ModItem
                     style={style}

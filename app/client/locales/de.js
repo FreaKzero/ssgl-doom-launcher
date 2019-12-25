@@ -5,7 +5,9 @@ export default {
     selectDir: 'Ordner'
   },
   wads: {
-    filter: 'Filter',
+    oldest: 'Älteste',
+    newest: 'Neueste',
+    filter: 'Filter {{size}} Mods',
     toastIndex: 'Mod Verzeichnis neu geladen'
   },
   sourceports: {

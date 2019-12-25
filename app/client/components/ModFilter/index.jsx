@@ -10,46 +10,47 @@ const ModFilterStyle = styled.div`
   margin-bottom: 5px;
   display: flex;
 `;
-
-const opts = [
-  {
-    label: 'A-Z',
-    value: 'asc'
-  },
-  {
-    label: 'Z-A',
-    value: 'desc'
-  },
-  {
-    label: 'newest',
-    value: 'new'
-  },
-  {
-    label: 'oldest',
-    value: 'old'
-  }
-];
 const ModFilter = ({
   sortValue,
   onSort,
   onRefresh,
   onInput,
   valueInput,
-  refreshLoad
+  refreshLoad,
+  size
 }) => {
   const { t } = useTranslation('wads');
+
+  const opts = [
+    {
+      label: t('newest'),
+      value: 'new'
+    },
+    {
+      label: t('oldest'),
+      value: 'old'
+    },
+    {
+      label: 'A-Z',
+      value: 'asc'
+    },
+    {
+      label: 'Z-A',
+      value: 'desc'
+    }
+  ];
 
   return (
     <ModFilterStyle>
       <Input
         onChange={onInput}
         value={valueInput}
-        placeholder={t('filter')}
+        placeholder={t('filter', { size })}
         fluid
       />
       <Dropdown
         options={opts}
-        width="140px"
+        width="200px"
         onChange={onSort}
         value={sortValue}
       />
