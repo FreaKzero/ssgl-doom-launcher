@@ -58,9 +58,10 @@ const ItemStyle = styled.div`
   }
 `;
 
-const Item = ({ item, onSelect, onUp, onDown, selected = false }) => {
+const Item = ({ style, item, onSelect, onUp, onDown, selected = false }) => {
   return (
     <motion.li
+      style={style}
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1,
