@@ -47,6 +47,7 @@ const OptionList = styled.ul`
   top: 35px;
   width: 100%;
   overflow: hidden;
+  z-index: 999;
 `;
 
 const Option = styled.li`
@@ -59,6 +60,10 @@ const Option = styled.li`
     color: ${styles.color.active};
     background-color: ${styles.color.back};
     padding: 10px 0 10px 20px;
+  }
+
+  &.selected {
+    color: ${styles.color.active};
   }
 `;
 
@@ -129,6 +134,7 @@ const Dropdown = ({
                 <Option
                   key={`${name}_${key}_${item.value}`}
                   onClick={onSelect(item)}
+                  className={value === item.value ? 'selected' : undefined}
                 >
                   {item.label}
                 </Option>
