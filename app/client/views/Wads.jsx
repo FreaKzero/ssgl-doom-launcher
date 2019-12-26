@@ -4,6 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 import fuzz from 'fuzzysearch';
 import { useDebouncedCallback } from 'use-debounce';
 import { useTranslation, setTitle, useIpc, useToast } from '#Util';
+import Modal from '../components/Modal';
 
 import {
   Box,
@@ -14,11 +15,13 @@ import {
   PlayIcon,
   Flex
 } from '#Component';
+import { Button } from '#Component/Form';
 
 const Wads = () => {
   setTitle('wads');
   const { gstate, dispatch } = useContext(StoreContext);
   const [filter, setRawFilter] = useState('');
+  const [test, setTest] = useState(true);
   const [poActive, setPoActive] = useState(false);
   const [sort, setSort] = useState('new');
   const [fetch, loading] = useIpc();
@@ -88,6 +91,7 @@ const Wads = () => {
   };
 
   let show = buildShowList();
+
   return (
     <>
       <Flex.Grid>
@@ -108,7 +112,7 @@ const Wads = () => {
           ></ModBox>
         </Flex.Col>
         <Flex.Col>
-          <Box>
+          <Box fixed={<Button onClick={() => setTest(!test)}>O WAT</Button>}>
             <ul>
               <AnimatePresence>
                 {gstate.selected.length &&
@@ -132,6 +136,7 @@ const Wads = () => {
         onClick={() => setPoActive(true)}
       />
       <PlayOverlay active={poActive} setActive={setPoActive} />
+      <Modal active={test} setActive={() => setTest(!test)} />
     </>
   );
 };

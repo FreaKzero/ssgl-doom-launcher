@@ -32,7 +32,9 @@ export default {
   common: {
     loading: 'Loading',
     language: 'Language',
-    success: 'Success'
+    success: 'Success',
+    cancel: 'Cancel',
+    ok: 'Ok'
   },
   nav: {
     appname: 'Super Shotgun Launcher',

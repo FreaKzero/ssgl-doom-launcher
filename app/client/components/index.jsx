@@ -13,8 +13,10 @@ import ModBox from './Mods/ModBox';
 import ModItem from './Mods/ModItem';
 import iWad from './IWad';
 import Routes from './Router';
+import BackDrop from './Backdrop';
 
 export {
+  BackDrop,
   PlayIcon,
   MainLoader,
   Logo,

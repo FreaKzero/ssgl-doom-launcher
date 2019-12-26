@@ -16,6 +16,7 @@ export const initState = {
   iwads: [],
   mods: [],
   selected: [],
+  packages: [],
   sourceports: [],
   settings: {
     language: 'en'
