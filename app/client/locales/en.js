@@ -8,7 +8,11 @@ export default {
     oldest: 'Oldest first',
     newest: 'Newest first',
     filter: 'Filter {{size}} Mods',
-    toastIndex: 'Reindexed Mod Directory'
+    toastIndex: 'Reindexed Mod Directory',
+    packEdit: 'Edit',
+    packSaveAs: 'Save as',
+    packSave: 'Save',
+    packReset: 'Reset'
   },
   sourceports: {
     delete: 'Delete Sourceport',
@@ -42,5 +46,9 @@ export default {
     packages: 'Packages',
     sourceports: 'Sourceports',
     settings: 'Settings'
+  },
+  packages: {
+    play: 'Play now',
+    delete: 'Delete'
   }
 };

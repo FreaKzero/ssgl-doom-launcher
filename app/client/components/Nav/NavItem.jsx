@@ -19,7 +19,7 @@ const NavItemStyle = styled.li`
   }
 
   a::after {
-    background: ${styles.color.idle};
+    color: ${styles.color.active};
     transition: ${styles.transition.short};
     bottom: 0;
     content: '';

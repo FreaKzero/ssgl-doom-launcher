@@ -17,10 +17,11 @@ const sp = [
 ];
 
 ipcMain.handle('main/init', async (e, args) => {
-  const sourceports = (await getJSON('sourceports')) || [];
-
   try {
     const settings = await getJSON('settings');
+    const sourceports = (await getJSON('sourceports')) || [];
+    const packages = (await getJSON('packages')) || [];
+
     try {
       const walkedFiles = await walkWadDir(settings.modpath);
       return {
@@ -28,7 +29,8 @@ ipcMain.handle('main/init', async (e, args) => {
         data: {
           ...walkedFiles,
           sourceports: sourceports,
-          settings: settings
+          settings: settings,
+          packages: packages
         }
       };
     } catch (e) {

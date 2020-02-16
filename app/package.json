@@ -1,7 +1,7 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "name": "ssgl-doom-launcher",
+  "version": "2.0.0",
+  "description": "...",
   "main": "./build/main-bundle.js",
   "scripts": {
     "start": "concurrently \"yarn dev:main\" \"yarn dev:webp\"",
@@ -15,8 +15,8 @@
     "package": "yarn clean && yarn build && electron-builder build --publish never"
   },
   "build": {
-    "productName": "SSGL",
-    "appId": "SSGL",
+    "productName": "ssgl-doom-launcher",
+    "appId": "ssgl-doom-launcher",
     "mac": {
       "target": "zip"
     },

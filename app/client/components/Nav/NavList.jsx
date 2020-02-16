@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { StoreContext } from '#State';
 import styled from 'styled-components';
 import { useLocation } from 'wouter';
 import NavItem from './NavItem';
@@ -8,6 +9,7 @@ import styles from '#Style';
 
 // TODO: key
 const NavList = styled.ul`
+  user-select: none;
   height: 65px;
   font-family: ${styles.font.head};
   list-style: none;
@@ -18,11 +20,21 @@ const NavList = styled.ul`
 `;
 
 const Nav = () => {
+  const { gstate } = useContext(StoreContext);
   const { t } = useTranslation('nav');
   const [location] = useLocation();
+
+  const r = routes.filter(item => {
+    if (item.label === 'packages' && gstate.packages.length < 1) {
+      return false;
+    }
+
+    return true;
+  });
+
   return (
     <NavList>
-      {routes.map(route => (
+      {r.map(route => (
         <NavItem
           key={`rote_${route.href}_${route.label}`}
           active={route.href === location}

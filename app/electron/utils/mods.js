@@ -41,10 +41,19 @@ const walkWadDir = dir => {
   });
 };
 
+const genIndexedID = item =>
+  `${item.path}${item.size}${item.kind}${item.date}`
+    .replace(/[\W_]+/g, '')
+    .split('')
+    .map((c, i) => {
+      return i % 2 === 0 ? c.toLowerCase() : '';
+    })
+    .join('');
+
 const IWADItem = item => {
   const sz = byteSize(item.stats.size);
   return {
-    id: uuid(),
+    id: genIndexedID(item),
     name: path.parse(item.path).name.replace(/_/g, ' '),
     kind: getExt(item.path),
     path: item.path,
@@ -67,7 +76,7 @@ const isModFile = item => {
 const modItem = item => {
   const sz = byteSize(item.stats.size);
   return {
-    id: uuid(),
+    id: genIndexedID(item),
     lastdir: path.basename(path.dirname(item.path)).toLowerCase(),
     name: path.parse(item.path).name.replace(/_/g, ' '),
     kind: getExt(item.path),

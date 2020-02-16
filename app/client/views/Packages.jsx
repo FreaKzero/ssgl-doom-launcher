@@ -1,53 +1,53 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { StoreContext } from '#State';
 import { Box } from '#Component';
 import { ButtonStyle } from '../components/Form/Button';
-
+import { useTranslation, useIpc, setTitle } from '#Util';
 import styles from '#Style';
 import styled from 'styled-components';
 import covers from '../assets/covers';
 
+const Meta = styled.div`
+  color: ${styles.color.meta};
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-shadow: 2 1px 1px black, 2 -1px -1px black;
+`;
+
 const Button = styled(ButtonStyle)`
+  display: inline;
   min-width: auto;
-  width: 100%;
+  width: 100px;
   padding: 3px 0 3px 0;
   margin-top: 5px;
 `;
 
 const ButtonContainer = styled.div`
-  margin-top: 70%;
+  position: absolute;
+  left: 33px;
+  bottom: 10px;
 `;
-
-const pack = [
-  {
-    id: 'someid',
-    name: 'Trailblazer',
-    wads: ['one', 'two', 'three'],
-    sourceport: 'someid',
-    cover: '',
-    iwad: 'doom2'
-  }
-];
 
 const PackageStyle = styled.div`
   display: inline-block;
+  position: relative;
   margin: 0 10px 10px 0;
   background-color: rgba(12, 8, 8, 0.8);
-  background-image: ${p => `url(${covers[p.cover]});`};
-  background-size: contain;
+  background-image: ${p => `url(${p.cover});`};
+  background-size: 100%;
   background-position: center top;
   background-repeat: no-repeat;
   border-radius: ${styles.border.radius};
   border: 1px solid ${styles.border.idle};
-  transition: ${styles.transition.out};
   user-select: none;
-  width: 160px;
+  width: 280px;
+  height: 180px;
+  transition: ${styles.transition.out};
 
-  .content {
-    width: 140px;
-    height: 190px;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.6);
+  &:hover {
+    background-size: 110%;
+    border: 1px solid ${styles.border.active};
   }
 
   & h1 {
@@ -62,49 +62,74 @@ const PackageStyle = styled.div`
     color: ${styles.color.active};
   }
 
-  &:hover {
-    border: 1px solid ${styles.border.active};
+  .content {
+    width: 260px;
+    height: 160px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-out;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
   }
 `;
 
-const Pack = ({ cover }) => {
+const Pack = ({ pack }) => {
+  setTitle('packages');
+  const [ipc, loading] = useIpc();
+  const { gstate, dispatch } = useContext(StoreContext);
+  const { t } = useTranslation('packages');
+  const onPlay = () => {
+    ipc('sourceports/play', {
+      selected: pack.selected,
+      iwad: pack.iwad,
+      sourceport: pack.sourceport
+    });
+  };
+
+  const onDelete = async () => {
+    const newPackages = gstate.packages.filter(item => item.id !== pack.id);
+    const stuff = await ipc('packages/save', newPackages);
+    dispatch({ type: 'packages/save', data: stuff });
+  };
+
+  const cover = pack.cover.isFile ? pack.cover.use : covers[pack.cover.use];
+
   return (
     <PackageStyle cover={cover}>
       <div className="content">
-        <h1>asdfasdf</h1>
+        <h1>{pack.name}</h1>
+        <Meta>
+          {pack.sourceport.name} - {pack.selected.length} Mods
+        </Meta>
 
         <ButtonContainer>
-          <Button type="submit" width="200px">
-            Use
+          <Button type="submit" onClick={onPlay}>
+            {t('play')}
           </Button>
-          <Button type="submit" width="200px">
-            Play now
+          <Button
+            type="button"
+            border={'#f55945'}
+            glow={'#b8342a'}
+            color={'#ff2f00'}
+            onClick={onDelete}
+          >
+            {t('delete')}
           </Button>
         </ButtonContainer>
       </div>
     </PackageStyle>
   );
 };
+
 const Packages = () => {
+  const { gstate, dispatch } = useContext(StoreContext);
   return (
     <Box>
-      <Pack cover={'heretic'} />
-      <Pack cover={'chex2'} />
-      <Pack cover={'hexdd'} />
-      <Pack cover={'freedoom1'} />
-      <Pack cover={'doom'} />
-      <Pack cover={'freedoom2'} />
-      <Pack cover={'strife0'} />
-      <Pack cover={'chex'} />
-      <Pack cover={'tnt'} />
-      <Pack cover={'hacx'} />
-      <Pack cover={'strife1'} />
-      <Pack cover={'hexen'} />
-      <Pack cover={'doom64'} />
-      <Pack cover={'doom2'} />
-      <Pack cover={'heretic1'} />
-      <Pack cover={'plutonia'} />
-      <Pack cover={'freedm'} />
+      {gstate.packages.map(pack => (
+        <Pack pack={pack} />
+      ))}
     </Box>
   );
 };

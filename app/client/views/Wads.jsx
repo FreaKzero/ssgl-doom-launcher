@@ -4,7 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 import fuzz from 'fuzzysearch';
 import { useDebouncedCallback } from 'use-debounce';
 import { useTranslation, setTitle, useIpc, useToast } from '#Util';
-import Modal from '../components/Modal';
+import PackageArea from '../components/PackageArea';
 
 import {
   Box,
@@ -21,14 +21,13 @@ const Wads = () => {
   setTitle('wads');
   const { gstate, dispatch } = useContext(StoreContext);
   const [filter, setRawFilter] = useState('');
-  const [test, setTest] = useState(true);
   const [poActive, setPoActive] = useState(false);
   const [sort, setSort] = useState('new');
   const [fetch, loading] = useIpc();
   const { t } = useTranslation(['common', 'wads']);
   const [toast] = useToast();
 
-  const onClick = id => () => {
+  const onClick = id => e => {
     dispatch({ type: 'mod/select', id });
   };
 
@@ -112,7 +111,7 @@ const Wads = () => {
           ></ModBox>
         </Flex.Col>
         <Flex.Col>
-          <Box fixed={<Button onClick={() => setTest(!test)}>O WAT</Button>}>
+          <Box fixed={<PackageArea />}>
             <ul>
               <AnimatePresence>
                 {gstate.selected.length &&
@@ -136,7 +135,6 @@ const Wads = () => {
         onClick={() => setPoActive(true)}
       />
       <PlayOverlay active={poActive} setActive={setPoActive} />
-      <Modal active={test} setActive={() => setTest(!test)} />
     </>
   );
 };

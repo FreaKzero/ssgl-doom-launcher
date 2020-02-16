@@ -86,13 +86,13 @@ const Dropdown = ({
   });
 
   useEffect(() => {
-    if (value) {
+    if (value && value.trim() !== '') {
       const selected = options.find(item => item.value === value);
-      if (selected) {
+      if (selected && selected.value !== current.value) {
         setCurrent(selected);
       }
     }
-  }, []);
+  });
 
   const onFocus = () => setOpen(true);
 

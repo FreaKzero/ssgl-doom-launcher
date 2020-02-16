@@ -8,7 +8,7 @@ import ToastContext from './ToastContext';
 
 let currentTimeout;
 
-const DEFAULT_TOAST_DURATION = 3000;
+const DEFAULT_TOAST_DURATION = 2400;
 
 const scopeStyle = scope => {
   switch (scope) {

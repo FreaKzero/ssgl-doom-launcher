@@ -8,7 +8,11 @@ export default {
     oldest: 'Älteste',
     newest: 'Neueste',
     filter: 'Filter {{size}} Mods',
-    toastIndex: 'Mod Verzeichnis neu geladen'
+    toastIndex: 'Mod Verzeichnis neu geladen',
+    packEdit: 'Editieren',
+    packSaveAs: 'Speichern als',
+    packSave: 'Speichern',
+    packReset: 'Reset'
   },
   sourceports: {
     delete: 'Sourceport Löschen',
@@ -42,5 +46,9 @@ export default {
     packages: 'Pakete',
     sourceports: 'Programme',
     settings: 'Einstellungen'
+  },
+  packages: {
+    play: 'Spielen',
+    delete: 'Löschen'
   }
 };

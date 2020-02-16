@@ -16,6 +16,12 @@ export const initState = {
   iwads: [],
   mods: [],
   selected: [],
+  package: {
+    id: null,
+    sourceport: null,
+    iwad: null,
+    cover: null
+  },
   packages: [],
   sourceports: [],
   settings: {
@@ -39,6 +45,43 @@ export function reducer(state, action) {
         ...state,
         settings: action.data
       });
+
+    case 'packages/reset':
+      return act({
+        ...state,
+        package: initState.package,
+        mods: state.mods.map(mod => ({ ...mod, active: false })),
+        selected: []
+      });
+
+    case 'packages/select':
+      const pack = state.packages.find(pack => pack.id === action.id);
+      const mods = state.mods.map(mod => {
+        if (pack.selected.indexOf(mod.id) > -1) {
+          return {
+            ...mod,
+            active: true
+          };
+        } else {
+          return mod;
+        }
+      });
+
+      return act({
+        ...state,
+        mods: mods,
+        selected: pack.selected,
+        package: {
+          ...pack
+        }
+      });
+
+    case 'packages/save':
+      return act({
+        ...state,
+        packages: action.data
+      });
+
     case 'mod/move':
       const to =
         action.direction === 'up' ? action.index - 1 : action.index + 1;
@@ -50,6 +93,11 @@ export function reducer(state, action) {
 
     case 'mod/select':
       const newItem = state.mods.find(item => action.id === item.id);
+
+      if (!newItem) {
+        return act(state);
+      }
+
       newItem.active = !newItem.active;
 
       const found = state.selected.findIndex(item => action.id === item.id);
