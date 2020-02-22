@@ -86,7 +86,7 @@ const Dropdown = ({
   });
 
   useEffect(() => {
-    if (value && value.trim() !== '') {
+    if (value && typeof value === 'string' && value.trim() !== '') {
       const selected = options.find(item => item.value === value);
       if (selected && selected.value !== current.value) {
         setCurrent(selected);

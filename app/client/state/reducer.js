@@ -15,12 +15,13 @@ export const removeIndex = (arr, index) => [
 export const initState = {
   iwads: [],
   mods: [],
-  selected: [],
   package: {
     id: null,
     sourceport: null,
     iwad: null,
-    cover: null
+    cover: null,
+    name: 'unnamed',
+    selected: []
   },
   packages: [],
   sourceports: [],
@@ -50,14 +51,13 @@ export function reducer(state, action) {
       return act({
         ...state,
         package: initState.package,
-        mods: state.mods.map(mod => ({ ...mod, active: false })),
-        selected: []
+        mods: state.mods.map(mod => ({ ...mod, active: false }))
       });
 
     case 'packages/select':
       const pack = state.packages.find(pack => pack.id === action.id);
       const mods = state.mods.map(mod => {
-        if (pack.selected.indexOf(mod.id) > -1) {
+        if (pack.selected.findIndex(item => mod.id === item.id) > -1) {
           return {
             ...mod,
             active: true
@@ -70,9 +70,9 @@ export function reducer(state, action) {
       return act({
         ...state,
         mods: mods,
-        selected: pack.selected,
         package: {
-          ...pack
+          ...pack,
+          selected: pack.selected
         }
       });
 
@@ -88,7 +88,10 @@ export function reducer(state, action) {
 
       return act({
         ...state,
-        selected: move(state.selected, action.index, to)
+        package: {
+          ...state.package,
+          selected: move(state.package.selected, action.index, to)
+        }
       });
 
     case 'mod/select':
@@ -100,16 +103,21 @@ export function reducer(state, action) {
 
       newItem.active = !newItem.active;
 
-      const found = state.selected.findIndex(item => action.id === item.id);
+      const found = state.package.selected.findIndex(
+        item => action.id === item.id
+      );
 
       const selected =
         found > -1
-          ? removeIndex(state.selected, found)
-          : [...state.selected, newItem];
+          ? removeIndex(state.package.selected, found)
+          : [...state.package.selected, newItem];
 
       return act({
         ...state,
-        selected,
+        package: {
+          ...state.package,
+          selected
+        },
         mods: state.mods.map(item => (item.id === action.id ? newItem : item))
       });
 

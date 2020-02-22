@@ -7,6 +7,7 @@ export default {
   wads: {
     oldest: 'Oldest first',
     newest: 'Newest first',
+    active: 'Active first',
     filter: 'Filter {{size}} Mods',
     toastIndex: 'Reindexed Mod Directory',
     packEdit: 'Edit',

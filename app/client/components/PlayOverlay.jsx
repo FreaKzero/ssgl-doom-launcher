@@ -63,11 +63,13 @@ const PlayOverlay = ({ active, setActive }) => {
 
   const onPlay = iwad => () => {
     const useSourceport = gstate.sourceports.find(i => i.id === sourceport);
+
     ipcRenderer.invoke('sourceports/play', {
-      selected: gstate.selected,
-      iwad: iwad,
-      sourceport: useSourceport
+      ...gstate.package,
+      sourceport: useSourceport,
+      iwad
     });
+
     setActive(false);
   };
 
@@ -88,7 +90,7 @@ const PlayOverlay = ({ active, setActive }) => {
               <IWad.Item
                 name={item.name}
                 key={item.id}
-                onClick={onPlay(item.path)}
+                onClick={onPlay(item)}
               />
             ))}
         </IWad.List>

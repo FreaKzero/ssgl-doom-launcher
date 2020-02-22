@@ -27,7 +27,7 @@ const Wads = () => {
   const { t } = useTranslation(['common', 'wads']);
   const [toast] = useToast();
 
-  const onClick = id => e => {
+  const onSelect = id => () => {
     dispatch({ type: 'mod/select', id });
   };
 
@@ -68,6 +68,8 @@ const Wads = () => {
           return gstate.mods.sort((a, b) => b.date - a.date);
         case 'old':
           return gstate.mods.sort((a, b) => a.date - b.date);
+        case 'active':
+          return gstate.mods.sort((a, b) => b.active - a.active);
         default:
           return gstate.mods;
       }
@@ -97,7 +99,7 @@ const Wads = () => {
         <Flex.Col>
           <ModBox
             data={show}
-            onClick={onClick}
+            onClick={onSelect}
             fixed={
               <ModFilter
                 onInput={(e, { value }) => onInput(value)}
@@ -114,12 +116,12 @@ const Wads = () => {
           <Box fixed={<PackageArea />}>
             <ul>
               <AnimatePresence>
-                {gstate.selected.length &&
-                  gstate.selected.map((item, itemindex) => (
+                {gstate.package.selected.length &&
+                  gstate.package.selected.map((item, itemindex) => (
                     <ModItem
                       key={`selected_${item.id}`}
                       item={item}
-                      onSelect={onClick(item.id)}
+                      onSelect={onSelect(item.id)}
                       onUp={onSort(itemindex, 'up')}
                       onDown={onSort(itemindex, 'down')}
                       selected
@@ -131,7 +133,7 @@ const Wads = () => {
         </Flex.Col>
       </Flex.Grid>
       <PlayIcon
-        active={gstate.selected.length}
+        active={gstate.package.selected.length}
         onClick={() => setPoActive(true)}
       />
       <PlayOverlay active={poActive} setActive={setPoActive} />

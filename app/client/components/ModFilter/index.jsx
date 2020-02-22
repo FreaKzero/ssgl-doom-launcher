@@ -31,6 +31,10 @@ const ModFilter = ({
       value: 'old'
     },
     {
+      label: t('active'),
+      value: 'active'
+    },
+    {
       label: 'A-Z',
       value: 'asc'
     },

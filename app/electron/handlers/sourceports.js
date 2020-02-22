@@ -16,7 +16,7 @@ ipcMain.handle('sourceports/save', async (e, data) => {
   }
 });
 
-ipcMain.handle('sourceports/play', async (e, args) => {
-  const { iwad, selected, sourceport } = args;
-  return play(sourceport.binary, selected, iwad);
+ipcMain.handle('sourceports/play', async (e, pack) => {
+  const settings = await getJSON('settings');
+  return play(pack, settings);
 });

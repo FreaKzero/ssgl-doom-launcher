@@ -80,11 +80,10 @@ const Pack = ({ pack }) => {
   const [ipc, loading] = useIpc();
   const { gstate, dispatch } = useContext(StoreContext);
   const { t } = useTranslation('packages');
+
   const onPlay = () => {
     ipc('sourceports/play', {
-      selected: pack.selected,
-      iwad: pack.iwad,
-      sourceport: pack.sourceport
+      ...pack
     });
   };
 

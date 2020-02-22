@@ -10,7 +10,6 @@ import { useTranslation, useIpc } from '#Util';
 // TODO: pack this into reducer...
 const createPackages = (form, state) => {
   const useSourceport = state.sourceports.find(i => i.id === form.sourceport);
-
   const useIwad = state.iwads.find(i => i.path === form.iwad);
 
   const cover =
@@ -27,9 +26,9 @@ const createPackages = (form, state) => {
   const x = {
     id: form.id ? form.id : uuid(),
     name: form.name,
-    iwad: form.iwad,
+    iwad: useIwad,
     sourceport: useSourceport,
-    selected: state.selected,
+    selected: state.package.selected,
     cover: cover
   };
 
@@ -43,7 +42,7 @@ const createPackages = (form, state) => {
 
 const initState = {
   name: '',
-  iwad: '',
+  iwad: {},
   sourceport: '',
   cover: '',
   id: null
@@ -74,8 +73,8 @@ const PackageArea = () => {
     if (form.id !== gstate.package.id) {
       setForm({
         ...gstate.package,
+        iwad: gstate.package.iwad.path,
         sourceport: gstate.package.sourceport.id,
-        iwad: gstate.package.iwad,
         cover: gstate.package.cover.isFile ? gstate.package.cover.use : ''
       });
     }
