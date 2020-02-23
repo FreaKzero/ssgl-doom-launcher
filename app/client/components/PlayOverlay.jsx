@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -48,14 +48,18 @@ const Drawer = styled(DrawerMotion)`
 
 const PlayOverlay = ({ active, setActive }) => {
   const { gstate } = React.useContext(StoreContext);
-  const [sourceport, setSourceport] = React.useState(
-    gstate.settings.defaultsourceport
-  );
+  const [sourceport, setSourceport] = React.useState();
 
   const options = gstate.sourceports.map(item => ({
     label: item.name,
     value: item.id
   }));
+
+  useEffect(() => {
+    gstate.package.sourceport !== null
+      ? setSourceport(gstate.package.sourceport.id)
+      : setSourceport(gstate.settings.defaultsourceport);
+  }, [gstate]);
 
   const onSourceport = ({ value }) => {
     setSourceport(value);
