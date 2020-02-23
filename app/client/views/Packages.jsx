@@ -13,6 +13,7 @@ const Meta = styled.div`
   font-size: 14px;
   margin-bottom: 5px;
   text-shadow: 2 1px 1px black, 2 -1px -1px black;
+  transition: ${styles.transition.out};
 `;
 
 const Button = styled(ButtonStyle)`
@@ -62,11 +63,15 @@ const PackageStyle = styled.div`
     color: ${styles.color.active};
   }
 
+  &:hover div {
+    color: white;
+  }
+
   .content {
     width: 260px;
     height: 160px;
     padding: 10px;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.4);
     transition: all 0.3s ease-out;
 
     &:hover {
