@@ -12,20 +12,28 @@ const Divider = styled.div`
 const Content = styled.div`
   width: 100%;
 
+  p {
+    transition: ${styles.transition.out};
+  }
+
   h1 {
     transition: ${styles.transition.out};
     font-size: 18px;
     margin-top: 5px;
     margin-bottom: 5px;
     text-transform: uppercase;
+  }
 
-    &.active {
-      color: ${styles.color.active};
-    }
+  &.active h1 {
+    color: ${styles.color.active};
+  }
+
+  &.active p {
+    color: #fff;
   }
 `;
 
-const Meta = styled.div`
+const Meta = styled.p`
   color: ${styles.color.meta};
   font-size: 14px;
   margin-bottom: 5px;
@@ -75,8 +83,8 @@ const ModItem = ({ style, item, onSelect, onUp, onDown, selected = false }) => {
       <ItemStyle>
         <Check size="50" active={item.active} onClick={onSelect} />
         <Divider />
-        <Content>
-          <h1 className={item.active ? 'active' : undefined}>{item.name}</h1>
+        <Content className={item.active ? 'active' : undefined}>
+          <h1>{item.name}</h1>
           <Meta>
             {item.lastdir} / {item.kind} / {item.size}
           </Meta>

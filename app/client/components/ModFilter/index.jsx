@@ -7,7 +7,6 @@ import refreshSvg from '../../assets/icon/refresh.svg';
 import { useTranslation } from '#Util/translation';
 
 const ModFilterStyle = styled.div`
-  margin-bottom: 5px;
   display: flex;
 `;
 const ModFilter = ({
