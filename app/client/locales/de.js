@@ -49,6 +49,9 @@ export default {
     settings: 'Einstellungen'
   },
   packages: {
+    titleSave: 'Speichern als: {{name}}',
+    titleEdit: 'Bearbeiten: {{name}}',
+    use: 'Wählen',
     play: 'Spielen',
     delete: 'Löschen'
   }
