@@ -5,6 +5,7 @@ import fuzz from 'fuzzysearch';
 import { useDebouncedCallback } from 'use-debounce';
 import { useTranslation, setTitle, useIpc, useToast } from '#Util';
 import PackageAreaNew from '../components/PackageAreaNew';
+import { remote } from 'electron';
 
 import {
   Box,
@@ -27,13 +28,15 @@ const Wads = () => {
   const { t } = useTranslation(['common', 'wads']);
   const [toast] = useToast();
 
-  const onSelect = id => () => {
+  const onSelect = id => e => {
     dispatch({ type: 'mod/select', id });
   };
 
   const onSort = (index, direction) => () => {
     dispatch({ type: 'mod/move', direction, index });
   };
+
+  const onCircle = path => () => remote.shell.showItemInFolder(path);
 
   const [onInput] = useDebouncedCallback(val => {
     setRawFilter(val.toLowerCase());
@@ -123,6 +126,7 @@ const Wads = () => {
                       item={item}
                       onSelect={onSelect(item.id)}
                       onUp={onSort(itemindex, 'up')}
+                      onCircle={onCircle(item.path)}
                       onDown={onSort(itemindex, 'down')}
                       selected
                     />

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import circle from '#Asset/icon/circle.svg';
 import up from '#Asset/icon/up.svg';
 import down from '#Asset/icon/down.svg';
 import SvgInline from 'react-svg-inline';
@@ -25,7 +26,8 @@ const IconStyle = styled.div`
 
 const names = {
   up,
-  down
+  down,
+  circle
 };
 
 const Icon = ({ name, ...rest }) => {

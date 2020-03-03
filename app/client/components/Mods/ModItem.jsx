@@ -66,7 +66,15 @@ const ItemStyle = styled.div`
   }
 `;
 
-const ModItem = ({ style, item, onSelect, onUp, onDown, selected = false }) => {
+const ModItem = ({
+  style,
+  item,
+  onSelect,
+  onUp,
+  onDown,
+  onCircle = () => null,
+  selected = false
+}) => {
   return (
     <motion.li
       style={style}
@@ -92,6 +100,7 @@ const ModItem = ({ style, item, onSelect, onUp, onDown, selected = false }) => {
         {selected ? (
           <IconContainer>
             <Icon name="up" width="13" onClick={onUp} />
+            <Icon name="circle" width="13" onClick={onCircle} />
             <Icon name="down" width="13" onClick={onDown} />
           </IconContainer>
         ) : (
