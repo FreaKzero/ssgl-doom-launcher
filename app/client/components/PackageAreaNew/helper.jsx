@@ -1,0 +1,41 @@
+import uuid from 'uuid-quick';
+
+export const initState = {
+  name: '',
+  iwad: {},
+  sourceport: '',
+  cover: '',
+  id: null
+};
+
+export const createPackages = (form, state) => {
+  const useSourceport = state.sourceports.find(i => i.id === form.sourceport);
+  const useIwad = state.iwads.find(i => i.path === form.iwad);
+
+  const cover =
+    form.cover && form.cover.trim() !== ''
+      ? {
+          isFile: true,
+          use:
+            form.cover.substring(0, 7) === 'file://'
+              ? form.cover
+              : `file://${form.cover}`
+        }
+      : { isFile: false, use: useIwad.name.toLowerCase() };
+
+  const newPackage = {
+    id: form.id ? form.id : uuid(),
+    name: form.name,
+    iwad: useIwad,
+    sourceport: useSourceport,
+    selected: state.package.selected,
+    cover: cover
+  };
+
+  const newPackages =
+    form.id === null
+      ? [newPackage, ...state.packages]
+      : state.packages.map(item => (item.id === form.id ? newPackage : item));
+
+  return { packages: newPackages, pack: newPackage };
+};

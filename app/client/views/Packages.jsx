@@ -7,6 +7,7 @@ import { useTranslation, useIpc, setTitle } from '#Util';
 import styles from '#Style';
 import styled from 'styled-components';
 import covers from '../assets/covers';
+import { useLocation } from 'wouter';
 
 const Meta = styled.div`
   color: ${styles.color.meta};
@@ -19,14 +20,14 @@ const Meta = styled.div`
 const Button = styled(ButtonStyle)`
   display: inline;
   min-width: auto;
-  width: 100px;
+  width: 80px;
   padding: 3px 0 3px 0;
   margin-top: 5px;
 `;
 
 const ButtonContainer = styled.div`
   position: absolute;
-  left: 33px;
+  left: 10px;
   bottom: 10px;
 `;
 
@@ -85,17 +86,22 @@ const Pack = ({ pack }) => {
   const [ipc, loading] = useIpc();
   const { gstate, dispatch } = useContext(StoreContext);
   const { t } = useTranslation('packages');
-
+  const [location, setLocation] = useLocation();
   const onPlay = () => {
     ipc('sourceports/play', {
       ...pack
     });
   };
 
+  const onUse = () => {
+    dispatch({ type: 'packages/select', id: pack.id });
+    setLocation('/');
+  };
+
   const onDelete = async () => {
     const newPackages = gstate.packages.filter(item => item.id !== pack.id);
-    const stuff = await ipc('packages/save', newPackages);
-    dispatch({ type: 'packages/save', data: stuff });
+    await ipc('packages/save', newPackages);
+    dispatch({ type: 'packages/save', packages: newPackages, package: null });
   };
 
   const cover = pack.cover.isFile ? pack.cover.use : covers[pack.cover.use];
@@ -112,6 +118,10 @@ const Pack = ({ pack }) => {
           <Button type="submit" onClick={onPlay}>
             {t('play')}
           </Button>
+          <Button type="submit" onClick={onUse}>
+            {t('use')}
+          </Button>
+
           <Button
             type="button"
             border={'#f55945'}

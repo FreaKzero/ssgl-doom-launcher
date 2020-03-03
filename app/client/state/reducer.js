@@ -79,7 +79,8 @@ export function reducer(state, action) {
     case 'packages/save':
       return act({
         ...state,
-        packages: action.data
+        packages: action.packages,
+        package: action.package || initState.package
       });
 
     case 'mod/move':

@@ -4,7 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 import fuzz from 'fuzzysearch';
 import { useDebouncedCallback } from 'use-debounce';
 import { useTranslation, setTitle, useIpc, useToast } from '#Util';
-import PackageArea from '../components/PackageArea';
+import PackageAreaNew from '../components/PackageAreaNew';
 
 import {
   Box,
@@ -113,7 +113,7 @@ const Wads = () => {
           ></ModBox>
         </Flex.Col>
         <Flex.Col>
-          <Box fixed={<PackageArea />}>
+          <Box fixed={<PackageAreaNew />}>
             <ul>
               <AnimatePresence>
                 {gstate.package.selected.length &&
