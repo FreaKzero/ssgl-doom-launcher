@@ -80,6 +80,7 @@ const Form = ({ item, onSave, onDelete }) => {
         value={form.name}
         name="name"
         label={t('sourceports:name')}
+        onChange={onInput}
         fluid
       />
 
