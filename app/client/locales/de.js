@@ -24,13 +24,11 @@ export default {
     name: 'Name',
     savegameparam: 'Seperate Speicherdateien nach Paket',
     configparam: 'Seperate Konfiguration nach Paket',
-    screenshot: 'Nutzt Screenshot Parameter',
     toastSaved: 'Sourceport erfolgreich gespeichert',
     toastDeleted: 'Sourceport gelöscht'
   },
   settings: {
     savepath: 'Speicher Verzeichnis',
-    screenpath: 'Screenshot Verzeichnis',
     waddir: 'Wad Verzeichnis',
     wallpaper: 'Hintergrundbild',
     save: 'Einstellungen Speichern',
@@ -54,6 +52,7 @@ export default {
     filter: 'Filter {{size}} Pakete',
     titleSave: 'Speichern als: {{name}}',
     titleEdit: 'Bearbeiten: {{name}}',
+    toastSave: 'Paket gespeichert',
     use: 'Wählen',
     play: 'Spielen',
     delete: 'Löschen'

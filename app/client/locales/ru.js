@@ -24,13 +24,11 @@ export default {
     name: 'Название',
     savegameparam: 'Использует параметр сохранения',
     configparam: 'Использует параметр конфига',
-    screenshot: 'Использует параметр папки скриншотов',
     toastSaved: 'Порт сохранён',
     toastDeleted: 'Порт удалён'
   },
   settings: {
     savepath: 'Папка сохранений',
-    screenpath: 'Папка скриншотов',
     waddir: "Папка WAD'ов",
     wallpaper: 'Обои',
     save: 'Сохранить настройки',
@@ -54,6 +52,7 @@ export default {
     filter: 'Filter {{size}} Packages',
     titleSave: 'Save as: {{name}}',
     titleEdit: 'Edit: {{name}}',
+    toastSave: 'Saved Package',
     use: 'Use',
     play: 'Запустить',
     delete: 'Удалить'

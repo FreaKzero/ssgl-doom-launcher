@@ -102,7 +102,8 @@ const Form = ({ item, onSave, onDelete }) => {
               />
             ) : null}
           </FormBorder>
-
+        </Flex.Col>
+        <Flex.Col>
           <FormBorder>
             <Checkbox
               value={form.hasConfig}
@@ -114,24 +115,6 @@ const Form = ({ item, onSave, onDelete }) => {
               <Input
                 value={form.paramConfig}
                 name="paramConfig"
-                onChange={onInput}
-                fluid
-              />
-            ) : null}
-          </FormBorder>
-        </Flex.Col>
-        <Flex.Col>
-          <FormBorder>
-            <Checkbox
-              value={form.hasScreendir}
-              label={t('sourceports:screenshot')}
-              name="hasScreendir"
-              onChange={onComponent}
-            />
-            {form.hasScreendir ? (
-              <Input
-                value={form.paramScreen}
-                name="paramScreen"
                 onChange={onInput}
                 fluid
               />
@@ -161,7 +144,6 @@ Form.propTypes = {
     binary: PropTypes.string,
     hasConfig: PropTypes.bool,
     hasSavedir: PropTypes.bool,
-    hasScreendir: PropTypes.bool,
     id: PropTypes.string,
     name: PropTypes.string,
     paramConfig: PropTypes.string,

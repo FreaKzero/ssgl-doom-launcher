@@ -9,7 +9,6 @@ const sp = [
     hasConfig: true,
     paramSave: '',
     paramConfig: '',
-    hasScreendir: false,
     paramScreen: '',
     name: 'gzDoom',
     binary: '/Applications/GZDoom.app'

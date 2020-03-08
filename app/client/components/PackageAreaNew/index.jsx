@@ -16,11 +16,12 @@ const PackageAreaStyle = styled.div`
 `;
 
 const PackageAreaNew = () => {
-  const { t } = useTranslation('wads');
+  const { t } = useTranslation(['wads', 'common', 'packages']);
   const { gstate, dispatch } = useContext(StoreContext);
   const [form, setForm] = useState(initState);
   const [modalOpen, setModalOpen] = useState(false);
   const [ipc] = useIpc();
+  const [toast] = useToast();
 
   const opts = gstate.packages.map(item => ({
     label: item.name,
@@ -60,6 +61,7 @@ const PackageAreaNew = () => {
     const { packages, pack } = createPackages(form, gstate);
     await ipc('packages/save', packages);
     dispatch({ type: 'packages/save', packages: packages, package: pack });
+    toast('ok', t('common:success'), t('packages:toastSave'));
   };
 
   return (
@@ -76,13 +78,13 @@ const PackageAreaNew = () => {
       {form.id !== null ? (
         <>
           <Button onClick={() => setModalOpen(true)} fluid>
-            {t('packEdit')}
+            {t('wads:packEdit')}
           </Button>
           <Button onClick={onSaveAs} fluid>
-            {t('packSaveAs')}
+            {t('wads:packSaveAs')}
           </Button>
           <Button onClick={onReset} fluid>
-            {t('packReset')}
+            {t('wads:packReset')}
           </Button>
         </>
       ) : (
@@ -96,7 +98,7 @@ const PackageAreaNew = () => {
             />
           ) : null}
           <Button onClick={() => setModalOpen(true)} fluid>
-            {t('packSaveAs')}
+            {t('wads:packSaveAs')}
           </Button>
         </>
       )}

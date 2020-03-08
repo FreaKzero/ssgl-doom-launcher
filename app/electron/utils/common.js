@@ -56,13 +56,6 @@ const play = (pack, settings) => {
     params = params.concat([sourceport.paramSave, `${BASEDIR}/saves`]);
   }
 
-  if (sourceport.hasScreendir) {
-    params = params.concat([
-      sourceport.paramScreen,
-      `${settings.screenpath}/${name}`
-    ]);
-  }
-
   let COMMAND = ['-iwad', iwad.path, '-file', ...file];
 
   if (params.length > 0) {

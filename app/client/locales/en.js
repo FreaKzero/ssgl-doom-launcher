@@ -24,13 +24,11 @@ export default {
     name: 'Sourceport Name',
     savegameparam: 'Seperate Savegames by Package',
     configparam: 'Seperate Config by Package',
-    screenshot: 'Uses Screenshot Parameter',
     toastSaved: 'Successfully saved Sourceport',
     toastDeleted: 'Deleted Sourceport'
   },
   settings: {
     savepath: 'Savegame Directory',
-    screenpath: 'Screenshot Directory',
     waddir: 'WAD Directory',
     wallpaper: 'Wallpaper Image',
     save: 'Save Settings',
@@ -54,6 +52,7 @@ export default {
     filter: 'Filter {{size}} Packages',
     titleSave: 'Save as: {{name}}',
     titleEdit: 'Edit: {{name}}',
+    toastSave: 'Saved Package',
     use: 'Use',
     play: 'Play now',
     delete: 'Delete'
