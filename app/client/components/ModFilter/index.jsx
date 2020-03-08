@@ -18,19 +18,19 @@ const ModFilter = ({
   refreshLoad,
   size
 }) => {
-  const { t } = useTranslation('wads');
+  const { t } = useTranslation(['wads', 'filters']);
 
   const opts = [
     {
-      label: t('newest'),
+      label: t('filters:newest'),
       value: 'new'
     },
     {
-      label: t('oldest'),
+      label: t('filters:oldest'),
       value: 'old'
     },
     {
-      label: t('active'),
+      label: t('filters:active'),
       value: 'active'
     },
     {
@@ -48,7 +48,7 @@ const ModFilter = ({
       <Input
         onChange={onInput}
         value={valueInput}
-        placeholder={t('filter', { size })}
+        placeholder={t('wads:filter', { size })}
         fluid
       />
       <Dropdown

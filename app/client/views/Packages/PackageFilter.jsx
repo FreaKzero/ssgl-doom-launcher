@@ -9,9 +9,17 @@ const PackageFilterStyle = styled.div`
 `;
 
 const PackageFilter = ({ onInput, onSort, sortValue, size }) => {
-  const { t } = useTranslation('packages');
+  const { t } = useTranslation(['packages', 'filters']);
 
   const opts = [
+    {
+      label: t('filters:newest'),
+      value: 'new'
+    },
+    {
+      label: t('filters:oldest'),
+      value: 'old'
+    },
     {
       label: 'A-Z',
       value: 'asc'
@@ -24,7 +32,11 @@ const PackageFilter = ({ onInput, onSort, sortValue, size }) => {
 
   return (
     <PackageFilterStyle>
-      <Input placeholder={t('filter', { size })} onChange={onInput} fluid />
+      <Input
+        placeholder={t('packages:filter', { size })}
+        onChange={onInput}
+        fluid
+      />
       <Dropdown
         options={opts}
         width="200px"

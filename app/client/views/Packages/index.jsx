@@ -11,7 +11,7 @@ import PackageFilter from './PackageFilter';
 const Packages = () => {
   const { gstate, dispatch } = useContext(StoreContext);
   const [filter, setRawFilter] = useState('');
-  const [sort, setSort] = useState('asc');
+  const [sort, setSort] = useState('new');
 
   const buildShowList = () => {
     const srt = () => {
@@ -28,6 +28,10 @@ const Packages = () => {
             if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
             return 0;
           });
+        case 'new':
+          return gstate.packages.sort((a, b) => b.date - a.date);
+        case 'old':
+          return gstate.packages.sort((a, b) => a.date - b.date);
         default:
           return gstate.packages;
       }

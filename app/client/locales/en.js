@@ -4,10 +4,12 @@ export default {
     selectFile: 'File',
     selectDir: 'Directory'
   },
-  wads: {
+  filters: {
     oldest: 'Oldest first',
     newest: 'Newest first',
-    active: 'Active first',
+    active: 'Active first'
+  },
+  wads: {
     filter: 'Filter {{size}} Mods',
     toastIndex: 'Reindexed Mod Directory',
     packEdit: 'Edit',

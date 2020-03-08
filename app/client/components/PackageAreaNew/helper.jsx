@@ -19,7 +19,7 @@ export const createPackages = (form, state) => {
           use:
             form.cover.substring(0, 7) === 'file://'
               ? form.cover
-              : `file://${form.cover}`
+              : `file://${form.cover}`p
         }
       : { isFile: false, use: useIwad.name.toLowerCase() };
 
@@ -29,7 +29,8 @@ export const createPackages = (form, state) => {
     iwad: useIwad,
     sourceport: useSourceport,
     selected: state.package.selected,
-    cover: cover
+    cover: cover,
+    date: Date.now()
   };
 
   const newPackages =
