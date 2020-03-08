@@ -28,7 +28,7 @@ export default {
     toastDeleted: 'Порт удалён'
   },
   settings: {
-    savepath: 'Папка сохранений',
+    savepath: 'SSGL Data Directory',
     waddir: "Папка WAD'ов",
     wallpaper: 'Обои',
     save: 'Сохранить настройки',

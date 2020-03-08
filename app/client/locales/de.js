@@ -28,7 +28,7 @@ export default {
     toastDeleted: 'Sourceport gelöscht'
   },
   settings: {
-    savepath: 'Speicher Verzeichnis',
+    savepath: 'SSGL Daten Verzeichnis',
     waddir: 'Wad Verzeichnis',
     wallpaper: 'Hintergrundbild',
     save: 'Einstellungen Speichern',

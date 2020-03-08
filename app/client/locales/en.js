@@ -28,7 +28,7 @@ export default {
     toastDeleted: 'Deleted Sourceport'
   },
   settings: {
-    savepath: 'Savegame Directory',
+    savepath: 'SSGL Data Directory',
     waddir: 'WAD Directory',
     wallpaper: 'Wallpaper Image',
     save: 'Save Settings',
