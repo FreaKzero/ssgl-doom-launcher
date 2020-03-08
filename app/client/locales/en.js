@@ -49,6 +49,7 @@ export default {
     settings: 'Settings'
   },
   packages: {
+    filter: 'Filter {{size}} Packages',
     titleSave: 'Save as: {{name}}',
     titleEdit: 'Edit: {{name}}',
     use: 'Use',

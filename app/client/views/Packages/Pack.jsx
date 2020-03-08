@@ -1,13 +1,29 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { StoreContext } from '#State';
-import { Box } from '#Component';
-import { ButtonStyle } from '../components/Form/Button';
+import { ButtonStyle } from '../../components/Form/Button';
 import { useTranslation, useIpc, setTitle } from '#Util';
 import styles from '#Style';
 import styled from 'styled-components';
-import covers from '../assets/covers';
+import covers from '../../assets/covers';
 import { useLocation } from 'wouter';
+import { motion } from 'framer-motion';
+
+const PackageMotion = ({ children, ...rest }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: 1
+      }}
+      exit={{ opacity: 0 }}
+      positionTransition={{ type: 'tween' }}
+      {...rest}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 const Meta = styled.div`
   color: ${styles.color.meta};
@@ -31,7 +47,7 @@ const ButtonContainer = styled.div`
   bottom: 10px;
 `;
 
-const PackageStyle = styled.div`
+const PackageStyle = styled(PackageMotion)`
   display: inline-block;
   position: relative;
   margin: 0 10px 10px 0;
@@ -45,9 +61,9 @@ const PackageStyle = styled.div`
   user-select: none;
   width: 280px;
   height: 180px;
-  transition: ${styles.transition.out};
 
   &:hover {
+    transition: ${styles.transition.out};
     background-size: 110%;
     border: 1px solid ${styles.border.active};
   }
@@ -81,7 +97,7 @@ const PackageStyle = styled.div`
   }
 `;
 
-const Pack = ({ pack }) => {
+const Pack = ({ pack, style }) => {
   setTitle('packages');
   const [ipc, loading] = useIpc();
   const { gstate, dispatch } = useContext(StoreContext);
@@ -137,14 +153,4 @@ const Pack = ({ pack }) => {
   );
 };
 
-const Packages = () => {
-  const { gstate, dispatch } = useContext(StoreContext);
-  return (
-    <Box>
-      {gstate.packages.map(pack => (
-        <Pack pack={pack} />
-      ))}
-    </Box>
-  );
-};
-export default Packages;
+export default Pack;
