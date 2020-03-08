@@ -56,9 +56,13 @@ const PlayOverlay = ({ active, setActive }) => {
   }));
 
   useEffect(() => {
-    gstate.package.sourceport !== null
-      ? setSourceport(gstate.package.sourceport.id)
-      : setSourceport(gstate.settings.defaultsourceport);
+    if (gstate.package.sourceport !== null) {
+      setSourceport(gstate.package.sourceport.id);
+    } else if (gstate.settings.defaultsourceport) {
+      setSourceport(gstate.settings.defaultsourceport);
+    } else if (gstate.sourceports[0]) {
+      setSourceport(gstate.sourceports[0].id);
+    }
   }, [gstate]);
 
   const onSourceport = ({ value }) => {
@@ -67,7 +71,6 @@ const PlayOverlay = ({ active, setActive }) => {
 
   const onPlay = iwad => () => {
     const useSourceport = gstate.sourceports.find(i => i.id === sourceport);
-
     ipcRenderer.invoke('sourceports/play', {
       ...gstate.package,
       sourceport: useSourceport,
