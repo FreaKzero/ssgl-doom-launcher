@@ -99,7 +99,7 @@ const Dropdown = ({
   const onBlur = () => {
     setTimeout(() => {
       setOpen(false);
-    }, 100);
+    }, 250);
   };
 
   const onSelect = item => () => {
