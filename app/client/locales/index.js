@@ -1,5 +1,6 @@
 import en from './en';
 import de from './de';
+import ru from './ru';
 
 export const AVAILABLE_LOCALES = [
   {
@@ -9,10 +10,15 @@ export const AVAILABLE_LOCALES = [
   {
     label: 'Deutsch',
     value: 'de'
+  },
+  {
+    label: 'русский',
+    value: 'ru'
   }
 ];
 
 export default {
   en,
-  de
+  de,
+  ru
 };

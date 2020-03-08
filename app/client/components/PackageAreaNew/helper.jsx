@@ -19,7 +19,7 @@ export const createPackages = (form, state) => {
           use:
             form.cover.substring(0, 7) === 'file://'
               ? form.cover
-              : `file://${form.cover}`p
+              : `file://${form.cover}`
         }
       : { isFile: false, use: useIwad.name.toLowerCase() };
 
