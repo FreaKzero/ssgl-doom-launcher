@@ -20,8 +20,8 @@ export default {
     save: 'Sourceport Speichern',
     binary: 'Programmdatei',
     name: 'Name',
-    savegameparam: 'Nutzt Speicher Parameter',
-    configparam: 'Nutzt Konfiguration Parameter',
+    savegameparam: 'Seperate Speicherdateien nach Paket',
+    configparam: 'Seperate Konfiguration nach Paket',
     screenshot: 'Nutzt Screenshot Parameter',
     toastSaved: 'Sourceport erfolgreich gespeichert',
     toastDeleted: 'Sourceport gelöscht'

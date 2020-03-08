@@ -97,7 +97,6 @@ const Form = ({ item, onSave, onDelete }) => {
               <Input
                 value={form.paramSave}
                 name="paramSave"
-                placeholder="-save"
                 onChange={onInput}
                 fluid
               />
@@ -115,7 +114,6 @@ const Form = ({ item, onSave, onDelete }) => {
               <Input
                 value={form.paramConfig}
                 name="paramConfig"
-                placeholder="-config"
                 onChange={onInput}
                 fluid
               />
@@ -134,7 +132,6 @@ const Form = ({ item, onSave, onDelete }) => {
               <Input
                 value={form.paramScreen}
                 name="paramScreen"
-                placeholder="-shotdir"
                 onChange={onInput}
                 fluid
               />

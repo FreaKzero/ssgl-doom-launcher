@@ -20,8 +20,8 @@ export default {
     save: 'Save Sourceport',
     binary: 'Sourceport Path',
     name: 'Sourceport Name',
-    savegameparam: 'Uses Savegame Parameter',
-    configparam: 'Uses Config Parameter',
+    savegameparam: 'Seperate Savegames by Package',
+    configparam: 'Seperate Config by Package',
     screenshot: 'Uses Screenshot Parameter',
     toastSaved: 'Successfully saved Sourceport',
     toastDeleted: 'Deleted Sourceport'
