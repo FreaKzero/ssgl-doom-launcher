@@ -42,13 +42,13 @@ const walkWadDir = dir => {
 };
 
 const genIndexedID = item =>
-  `${item.path}${item.size}${item.kind}${item.date}`
+  `${item.path}${item.size}${item.kind}`
     .replace(/[\W_]+/g, '')
     .split('')
     .map((c, i) => {
       return i % 2 === 0 ? c.toLowerCase() : '';
     })
-    .join('');
+    .join('') + `${item.stats.birthtimeMs}`;
 
 const IWADItem = item => {
   const sz = byteSize(item.stats.size);
