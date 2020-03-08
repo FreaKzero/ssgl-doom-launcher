@@ -56,13 +56,12 @@ const Settings = () => {
               value={form.background}
               fluid
             />
-            <SelectFile
-              name="screenpath"
-              onFile={onComponent}
-              label={t('settings:screenpath')}
-              value={form.screenpath}
-              directory
-              fluid
+            <Dropdown
+              name="defaultsourceport"
+              options={sourceportOptions}
+              label="Favourite Sourceport"
+              value={form.defaultsourceport}
+              onChange={onComponent}
             />
             <Dropdown
               name="language"
@@ -88,14 +87,6 @@ const Settings = () => {
               value={form.savepath}
               directory
               fluid
-            />
-
-            <Dropdown
-              name="defaultsourceport"
-              options={sourceportOptions}
-              label="Favourite Sourceport"
-              value={form.defaultsourceport}
-              onChange={onComponent}
             />
           </Flex.Col>
         </Flex.Grid>
