@@ -8,6 +8,7 @@ import IWad from './IWad';
 import Dropdown from './Form/Dropdown';
 import BackDrop from './Backdrop';
 import styles from '#Style';
+import { useIpc } from '#Util';
 
 const DrawerMotion = ({ active, children, ...rest }) => {
   const variants = {
@@ -47,8 +48,9 @@ const Drawer = styled(DrawerMotion)`
 `;
 
 const PlayOverlay = ({ active, setActive }) => {
-  const { gstate } = React.useContext(StoreContext);
+  const { gstate, dispatch } = React.useContext(StoreContext);
   const [sourceport, setSourceport] = React.useState();
+  const [ipc] = useIpc();
 
   const options = gstate.sourceports.map(item => ({
     label: item.name,
@@ -69,12 +71,19 @@ const PlayOverlay = ({ active, setActive }) => {
     setSourceport(value);
   };
 
-  const onPlay = iwad => () => {
+  const onPlay = iwad => async () => {
     const useSourceport = gstate.sourceports.find(i => i.id === sourceport);
-    ipcRenderer.invoke('sourceports/play', {
+
+    const newPackages = await ipc('sourceports/play', {
       ...gstate.package,
       sourceport: useSourceport,
       iwad
+    });
+
+    dispatch({
+      type: 'packages/save',
+      packages: newPackages,
+      package: gstate.package
     });
 
     setActive(false);

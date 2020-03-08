@@ -103,10 +103,13 @@ const Pack = ({ pack, style }) => {
   const { gstate, dispatch } = useContext(StoreContext);
   const { t } = useTranslation('packages');
   const [location, setLocation] = useLocation();
-  const onPlay = () => {
-    ipc('sourceports/play', {
+
+  const onPlay = async () => {
+    const newPackages = await ipc('sourceports/play', {
       ...pack
     });
+
+    dispatch({ type: 'packages/save', packages: newPackages, package: pack });
   };
 
   const onUse = () => {
@@ -121,13 +124,18 @@ const Pack = ({ pack, style }) => {
   };
 
   const cover = pack.cover.isFile ? pack.cover.use : covers[pack.cover.use];
-
+  //
   return (
     <PackageStyle cover={cover}>
       <div className="content">
         <h1>{pack.name}</h1>
         <Meta>
           {pack.sourceport.name} - {pack.selected.length} Mods
+        </Meta>
+        <Meta>
+          {pack.lastplayed === 0
+            ? t('never')
+            : t('lastplayed', { value: pack.lastplayed })}
         </Meta>
 
         <ButtonContainer>

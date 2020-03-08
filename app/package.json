@@ -79,6 +79,7 @@
     "@babel/runtime": "^7.7.7",
     "babel-plugin-transform-runtime": "^6.23.0",
     "byte-size": "^6.2.0",
+    "date-fns": "^2.10.0",
     "framer-motion": "^1.6.18",
     "fuzzysearch": "^1.0.3",
     "i18next": "^19.0.0",

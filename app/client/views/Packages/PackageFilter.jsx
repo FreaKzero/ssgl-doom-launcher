@@ -13,6 +13,10 @@ const PackageFilter = ({ onInput, onSort, sortValue, size }) => {
 
   const opts = [
     {
+      label: t('filters:lastplayed'),
+      value: 'last'
+    },
+    {
       label: t('filters:newest'),
       value: 'new'
     },

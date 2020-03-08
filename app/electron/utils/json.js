@@ -19,9 +19,7 @@ const getJSON = path => {
 };
 
 const setJSON = (path, data) => {
-  
   const file = `${getDataFile(path)}.json`;
-  console.log(file);
   return new Promise((resolve, reject) => {
     try {
       const json = JSON.stringify(data, null, 2);

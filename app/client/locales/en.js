@@ -5,6 +5,7 @@ export default {
     selectDir: 'Directory'
   },
   filters: {
+    lastplayed: 'Last played',
     oldest: 'Oldest first',
     newest: 'Newest first',
     active: 'Active first'
@@ -49,6 +50,8 @@ export default {
     settings: 'Settings'
   },
   packages: {
+    lastplayed: 'Last played: {{value, date}}',
+    never: 'Never',
     filter: 'Filter {{size}} Packages',
     titleSave: 'Save as: {{name}}',
     titleEdit: 'Edit: {{name}}',

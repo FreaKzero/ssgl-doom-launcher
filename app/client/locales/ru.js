@@ -49,6 +49,8 @@ export default {
     settings: 'Настройки'
   },
   packages: {
+    lastplayed: 'Last played: {{value, date}}',
+    never: 'Never',
     filter: 'Filter {{size}} Packages',
     titleSave: 'Save as: {{name}}',
     titleEdit: 'Edit: {{name}}',

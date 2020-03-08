@@ -6,11 +6,6 @@ import { existsSync, mkdirSync } from 'fs';
 
 const getDataFile = file => join(app.getPath('userData'), file);
 
-// const spawn = (a, b) => {
-//   console.log(`a => ${a}`);
-//   console.log(`b => ${b}`);
-// };
-
 const createPath = targetDir => {
   const initDir = isAbsolute(targetDir) ? sep : '';
   targetDir.split(sep).reduce((parentDir, childDir) => {
@@ -77,7 +72,7 @@ const play = (pack, settings) => {
   }
 
   return {
-    data: null,
+    data: pack,
     error: null
   };
 };

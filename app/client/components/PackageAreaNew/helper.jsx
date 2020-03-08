@@ -30,7 +30,8 @@ export const createPackages = (form, state) => {
     sourceport: useSourceport,
     selected: state.package.selected,
     cover: cover,
-    date: Date.now()
+    created: Date.now(),
+    lastplayed: 0
   };
 
   const newPackages =
