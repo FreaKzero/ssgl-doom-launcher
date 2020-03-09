@@ -35,6 +35,7 @@ const SourcePorts = () => {
       hasConfig: false,
       paramSave: '-savedir',
       paramConfig: '-config',
+      configFilename: '',
       paramScreen: '',
       name: 'New Sourceport',
       binary: ''
