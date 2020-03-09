@@ -1,11 +1,7 @@
 # Super Shotgun Launcher (Doom Frontend/WAD Launcher)
 <p align="center"><img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/SOON.png" width="400"></p>
 
-# Searching for Russian Translators
-see: https://github.com/FreaKzero/ssgl-doom-launcher/issues/51
-
-# Current Status (Example is UI Only):
-<p align="center"><img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/demo.gif"></p>
+Discord Server: https://discord.gg/MsjZhHF
 
 Currently gets rewritten in React and Electron because of abandonment/EOL of Angular 1.5 and NWjs.
 
