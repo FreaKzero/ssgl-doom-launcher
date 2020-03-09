@@ -2,9 +2,13 @@ import { isAbsolute, resolve, sep, parse, join } from 'path';
 import { app } from 'electron';
 import { spawn } from 'child_process';
 import { hostname, platform } from 'os';
-import { existsSync, mkdirSync } from 'fs';
+import { createReadStream, createWriteStream, existsSync, mkdirSync } from 'fs';
 
 const getDataFile = file => join(app.getPath('userData'), file);
+
+const copyfile = (src, dest) => {
+  createReadStream(src).pipe(createWriteStream(dest));
+};
 
 const createPath = targetDir => {
   const initDir = isAbsolute(targetDir) ? sep : '';
@@ -34,6 +38,12 @@ const play = (pack, settings) => {
 
   if (settings.savepath.trim() !== '' && !existsSync(BASEDIR)) {
     createPath(BASEDIR);
+    if (existsSync(sourceport.configDefault) && sourceport.hasConfig) {
+      copyfile(
+        sourceport.configDefault,
+        `${BASEDIR}/${sourceport.configFilename}`
+      );
+    }
   }
 
   selected.forEach(i =>

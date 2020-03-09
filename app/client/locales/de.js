@@ -25,6 +25,7 @@ export default {
     binary: 'Programmdatei',
     name: 'Name',
     savegameparam: 'Seperate Speicherdateien nach Paket',
+    configDefault: 'Standard Konfiguration',
     configparam: 'Seperate Konfiguration nach Paket',
     toastSaved: 'Sourceport erfolgreich gespeichert',
     toastDeleted: 'Sourceport gelöscht'

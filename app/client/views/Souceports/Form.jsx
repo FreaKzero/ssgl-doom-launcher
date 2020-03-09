@@ -84,55 +84,56 @@ const Form = ({ item, onSave, onDelete }) => {
         fluid
       />
 
-      <Flex.Grid>
-        <Flex.Col>
-          <FormBorder>
-            <Checkbox
-              value={form.hasSavedir}
-              label={t('sourceports:savegameparam')}
-              name="hasSavedir"
-              onChange={onComponent}
+      <FormBorder>
+        <Checkbox
+          value={form.hasConfig}
+          label={t('sourceports:configparam')}
+          name="hasConfig"
+          onChange={onComponent}
+        />
+        {form.hasConfig ? (
+          <>
+            <Input
+              value={form.paramConfig}
+              name="paramConfig"
+              label={t('sourceports:parameter')}
+              onChange={onInput}
+              fluid
             />
-            {form.hasSavedir ? (
-              <Input
-                value={form.paramSave}
-                name="paramSave"
-                label={t('sourceports:parameter')}
-                onChange={onInput}
-                fluid
-              />
-            ) : null}
-          </FormBorder>
-        </Flex.Col>
-        <Flex.Col>
-          <FormBorder>
-            <Checkbox
-              value={form.hasConfig}
-              label={t('sourceports:configparam')}
-              name="hasConfig"
-              onChange={onComponent}
+            <Input
+              value={form.configFilename}
+              name="configFilename"
+              label={t('sourceports:filename')}
+              onChange={onInput}
+              fluid
             />
-            {form.hasConfig ? (
-              <>
-                <Input
-                  value={form.paramConfig}
-                  name="paramConfig"
-                  label={t('sourceports:parameter')}
-                  onChange={onInput}
-                  fluid
-                />
-                <Input
-                  value={form.configFilename}
-                  name="configFilename"
-                  label={t('sourceports:filename')}
-                  onChange={onInput}
-                  fluid
-                />
-              </>
-            ) : null}
-          </FormBorder>
-        </Flex.Col>
-      </Flex.Grid>
+            <SelectFile
+              onFile={onComponent}
+              value={form.configDefault}
+              name="configDefault"
+              label={t('sourceports:configDefault')}
+              fluid
+            />
+          </>
+        ) : null}
+      </FormBorder>
+      <FormBorder>
+        <Checkbox
+          value={form.hasSavedir}
+          label={t('sourceports:savegameparam')}
+          name="hasSavedir"
+          onChange={onComponent}
+        />
+        {form.hasSavedir ? (
+          <Input
+            value={form.paramSave}
+            name="paramSave"
+            label={t('sourceports:parameter')}
+            onChange={onInput}
+            fluid
+          />
+        ) : null}
+      </FormBorder>
       <SubmitArea>
         <Button
           border={'#f55945'}

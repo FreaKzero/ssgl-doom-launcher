@@ -26,6 +26,7 @@ export default {
     binary: 'Sourceport Path',
     name: 'Sourceport Name',
     savegameparam: 'Seperate Savegames by Package',
+    configDefault: 'Default Config File',
     configparam: 'Seperate Config by Package',
     toastSaved: 'Successfully saved Sourceport',
     toastDeleted: 'Deleted Sourceport'

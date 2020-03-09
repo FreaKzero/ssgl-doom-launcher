@@ -36,6 +36,7 @@ const SourcePorts = () => {
       paramSave: '-savedir',
       paramConfig: '-config',
       configFilename: '',
+      configDefault: '',
       paramScreen: '',
       name: 'New Sourceport',
       binary: ''
@@ -96,7 +97,7 @@ const SourcePorts = () => {
         </Box>
       </Flex.Col>
       <Flex.Col>
-        <Box noscroll>
+        <Box>
           {selected ? (
             <>
               <Form

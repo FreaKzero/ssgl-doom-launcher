@@ -25,6 +25,7 @@ export default {
     binary: 'Путь к файлу',
     name: 'Название',
     savegameparam: 'Использует параметр сохранения',
+    configDefault: 'Default Config File',
     configparam: 'Использует параметр конфига',
     toastSaved: 'Порт сохранён',
     toastDeleted: 'Порт удалён'
