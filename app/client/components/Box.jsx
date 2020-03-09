@@ -21,10 +21,10 @@ const BoxStyle = styled.div`
 
   .content {
     margin-right: 5px;
+    margin-bottom: ${p => (p.noscroll ? '0px' : '80px')};
   }
 `;
 
-// TODO: define scrollbar...
 const Box = ({ children, fixed, noscroll = false }) => {
   return (
     <BoxStyle noscroll={noscroll} fixed={fixed}>
