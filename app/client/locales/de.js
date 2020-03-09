@@ -18,6 +18,8 @@ export default {
     packReset: 'Reset'
   },
   sourceports: {
+    parameter: 'Parameter',
+    filename: 'Dateiname',
     delete: 'Sourceport Löschen',
     save: 'Sourceport Speichern',
     binary: 'Programmdatei',

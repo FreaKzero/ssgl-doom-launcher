@@ -23,10 +23,12 @@ const PackageAreaNew = () => {
   const [ipc] = useIpc();
   const [toast] = useToast();
 
-  const opts = gstate.packages.map(item => ({
-    label: item.name,
-    value: item.id
-  }));
+  const opts = gstate.packages
+    .sort((a, b) => b.lastplayed - a.lastplayed)
+    .map(item => ({
+      label: item.name,
+      value: item.id
+    }));
 
   useEffect(() => {
     if (form.id !== gstate.package.id) {

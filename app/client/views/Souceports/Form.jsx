@@ -97,6 +97,7 @@ const Form = ({ item, onSave, onDelete }) => {
               <Input
                 value={form.paramSave}
                 name="paramSave"
+                label={t('sourceports:parameter')}
                 onChange={onInput}
                 fluid
               />
@@ -112,12 +113,22 @@ const Form = ({ item, onSave, onDelete }) => {
               onChange={onComponent}
             />
             {form.hasConfig ? (
-              <Input
-                value={form.paramConfig}
-                name="paramConfig"
-                onChange={onInput}
-                fluid
-              />
+              <>
+                <Input
+                  value={form.paramConfig}
+                  name="paramConfig"
+                  label={t('sourceports:parameter')}
+                  onChange={onInput}
+                  fluid
+                />
+                <Input
+                  value={form.configFilename}
+                  name="configFilename"
+                  label={t('sourceports:filename')}
+                  onChange={onInput}
+                  fluid
+                />
+              </>
             ) : null}
           </FormBorder>
         </Flex.Col>

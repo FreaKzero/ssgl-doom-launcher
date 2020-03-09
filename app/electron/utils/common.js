@@ -43,7 +43,7 @@ const play = (pack, settings) => {
   if (sourceport.hasConfig) {
     params = params.concat([
       sourceport.paramConfig,
-      `${BASEDIR}/gzdoom-${hostname().replace('.local', '')}.ini`
+      `${BASEDIR}/${sourceport.configFilename}`
     ]);
   }
 

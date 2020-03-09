@@ -18,6 +18,8 @@ export default {
     packReset: 'Сбросить'
   },
   sourceports: {
+    parameter: 'Parameter',
+    filename: 'File Name',
     delete: 'Удалить порт',
     save: 'Сохранить порт',
     binary: 'Путь к файлу',
