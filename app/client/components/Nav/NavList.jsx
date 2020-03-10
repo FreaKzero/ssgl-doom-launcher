@@ -25,7 +25,17 @@ const Nav = () => {
   const [location] = useLocation();
 
   const r = routes.filter(item => {
-    if (item.label === 'packages' && gstate.packages.length < 1) {
+    const { packages, mods, sourceports } = gstate;
+    const { label } = item;
+
+    if (label === 'packages' && packages.length < 1) {
+      return false;
+    }
+    if (label === 'wads' && mods.length < 1) {
+      return false;
+    }
+
+    if (label === 'settings' && sourceports.length < 1) {
       return false;
     }
 

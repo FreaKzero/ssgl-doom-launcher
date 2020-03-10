@@ -42,6 +42,7 @@ const SourcePorts = () => {
       binary: ''
     };
     setSourcePorts([...sourcePorts, item]);
+    setSelected(item);
   };
 
   const selectSourceport = item => () => setSelected(item);
