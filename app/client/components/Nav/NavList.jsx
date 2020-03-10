@@ -25,7 +25,7 @@ const Nav = () => {
   const [location] = useLocation();
 
   const r = routes.filter(item => {
-    const { packages, mods, sourceports } = gstate;
+    const { packages, mods, sourceports, settings } = gstate;
     const { label } = item;
 
     if (label === 'packages' && packages.length < 1) {
@@ -35,7 +35,7 @@ const Nav = () => {
       return false;
     }
 
-    if (label === 'settings' && sourceports.length < 1) {
+    if (label === 'settings' && sourceports.length < 1 && !settings.modpath) {
       return false;
     }
 
