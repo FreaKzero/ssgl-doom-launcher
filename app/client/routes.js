@@ -1,7 +1,7 @@
-import Wads from './views/Wads';
+import Packages from './views/Packages';
 import Settings from './views/Settings';
 import SourcePorts from './views/Sourceports';
-import Packages from './views/Packages';
+import Wads from './views/Wads';
 
 const routes = [
   {

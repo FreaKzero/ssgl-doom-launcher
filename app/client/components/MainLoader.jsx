@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import styles from '#Style';
-import Logo from './Logo';
+
 import { useTranslation } from '../utils';
+import Logo from './Logo';
 
 const MainLoaderStyle = styled.div`
   font-family: ${styles.font.head};

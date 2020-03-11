@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import { useTranslation } from './index';
 
 function setTitle(title) {

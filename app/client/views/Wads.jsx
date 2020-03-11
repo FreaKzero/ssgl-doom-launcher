@@ -1,21 +1,21 @@
-import React, { useState, useContext } from 'react';
-import { StoreContext } from '../state';
+import { remote } from 'electron';
 import { AnimatePresence } from 'framer-motion';
 import fuzz from 'fuzzysearch';
+import React, { useContext, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
-import { useTranslation, setTitle, useIpc, useToast } from '../utils';
-import { remote } from 'electron';
 
 import {
   Box,
-  ModItem,
+  Flex,
   ModBox,
   ModFilter,
-  PlayOverlay,
+  ModItem,
   PackageAreaNew,
   PlayIcon,
-  Flex
+  PlayOverlay
 } from '../components';
+import { StoreContext } from '../state';
+import { setTitle, useIpc, useToast, useTranslation } from '../utils';
 
 const Wads = () => {
   setTitle('wads');

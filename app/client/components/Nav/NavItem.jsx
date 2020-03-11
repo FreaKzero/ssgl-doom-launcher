@@ -1,8 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import styled from 'styled-components';
-import styles from '#Style';
 import { Link } from 'wouter';
+
+import styles from '#Style';
 
 const NavItemStyle = styled.li`
   display: table-cell;

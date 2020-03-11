@@ -1,13 +1,14 @@
-import React, { useEffect, useContext, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { StoreContext } from '../../state';
-import { setTitle, useIpc, useTranslation, useToast } from '../../utils';
 import uuid from 'uuid-quick';
-import { Flex, Box } from '../../components';
+
+import { Box, Flex } from '../../components';
 import { Button } from '../../components/Form';
+import { StoreContext } from '../../state';
+import { setTitle, useIpc, useToast, useTranslation } from '../../utils';
 import Form from './Form';
 import SourcePortItem from './SourcePortItem';
-import { AnimatePresence } from 'framer-motion';
 
 const SourcePortListStyle = styled.ul`
   margin-top: 15px;

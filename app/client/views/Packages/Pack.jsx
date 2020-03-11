@@ -1,13 +1,15 @@
-import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
-import { StoreContext } from '../../state';
-import { ButtonStyle } from '../../components/Form/Button';
-import { useTranslation, useIpc, setTitle } from '../../utils';
-import styles from '#Style';
-import styled from 'styled-components';
-import covers from '../../assets/covers';
-import { useLocation } from 'wouter';
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { useLocation } from 'wouter';
+
+import styles from '#Style';
+
+import covers from '../../assets/covers';
+import { ButtonStyle } from '../../components/Form/Button';
+import { StoreContext } from '../../state';
+import { setTitle, useIpc, useTranslation } from '../../utils';
 
 const PackageMotion = ({ children, ...rest }) => {
   return (

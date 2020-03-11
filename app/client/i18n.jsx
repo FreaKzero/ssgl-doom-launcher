@@ -1,8 +1,9 @@
+import { formatDistance } from 'date-fns';
+import { de, en, ru } from 'date-fns/locale';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+
 import locales from './locales';
-import { formatDistance } from 'date-fns';
-import { en, de, ru } from 'date-fns/locale';
 
 const lngs = {
   en: en,

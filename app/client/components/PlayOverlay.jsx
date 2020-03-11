@@ -1,13 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { StoreContext } from '../state';
-import IWad from './IWad';
-import Dropdown from './Form/Dropdown';
-import BackDrop from './Backdrop';
+import PropTypes from 'prop-types';
+import React, { useContext, useEffect, useState } from 'react';
+import styled from 'styled-components';
+
 import styles from '#Style';
+
+import { StoreContext } from '../state';
 import { useIpc } from '../utils';
+import BackDrop from './Backdrop';
+import Dropdown from './Form/Dropdown';
+import IWad from './IWad';
 
 const DrawerMotion = ({ active, children, ...rest }) => {
   const variants = {

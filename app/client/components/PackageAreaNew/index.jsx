@@ -1,10 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
+
 import { StoreContext } from '../../state';
+import { useIpc, useToast, useTranslation } from '../../utils';
 import { Button, Dropdown } from '../Form';
-import { useTranslation, useIpc, useToast } from '../../utils';
+import { createPackages, initState } from './helper';
 import PackageModal from './PackageModal';
-import { initState, createPackages } from './helper';
 
 const PackageAreaStyle = styled.div`
   display: flex;

@@ -1,8 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import styles from '#Style';
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
+
+import styles from '#Style';
 
 const Meta = styled.div`
   color: #858585;

@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
-import { StoreContext } from '../../state';
 import styled from 'styled-components';
 import { useLocation } from 'wouter';
-import NavItem from './NavItem';
+
 import routes from '#/routes';
-import { useTranslation } from '../../utils';
 import styles from '#Style';
 
+import { StoreContext } from '../../state';
+import { useTranslation } from '../../utils';
+import NavItem from './NavItem';
 
 // TODO: key
 const NavList = styled.ul`

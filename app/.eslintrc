@@ -10,11 +10,14 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
+  "plugins": ["simple-import-sort"],
   "rules": {
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
     "prettier/prettier": ["error", { "singleQuote": true }],
-    "semi": "error"
+    "semi": "error",
+    "simple-import-sort/sort": "error"
+    
   },
   "settings": {
     "react": {

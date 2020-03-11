@@ -1,7 +1,9 @@
-import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
+
 import styles from '#Style';
+
 import Label from './Label';
 
 export const InputStyle = styled.input`

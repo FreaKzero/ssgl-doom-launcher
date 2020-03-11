@@ -1,10 +1,11 @@
-import React, { useState, useContext } from 'react';
-import { StoreContext } from '../state';
-import { setTitle, useToast, useIpc, useTranslation } from '../utils';
-import { SelectFile, Dropdown, SubmitArea, Button } from '../components/Form';
-import { Flex, Box } from '../components';
-import { AVAILABLE_LOCALES } from '../locales';
+import React, { useContext, useState } from 'react';
+
+import { Box, Flex } from '../components';
+import { Button, Dropdown, SelectFile, SubmitArea } from '../components/Form';
 import i18n from '../i18n';
+import { AVAILABLE_LOCALES } from '../locales';
+import { StoreContext } from '../state';
+import { setTitle, useIpc, useToast, useTranslation } from '../utils';
 
 const Settings = () => {
   setTitle('settings');

@@ -1,9 +1,10 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import styles from '#Style';
-import spinner from ' #/assets/icon/spinner.svg';
+import React from 'react';
 import Svg from 'react-svg-inline';
+import styled from 'styled-components';
+
+import spinner from ' #/assets/icon/spinner.svg';
+import styles from '#Style';
 
 const SpinnerStyle = styled.div`
   svg {

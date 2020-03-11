@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import styles from '#Style';
 import { remote } from 'electron';
-import Label from './Label';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+
+import styles from '#Style';
+
+import { useTranslation } from '../../utils';
 import { ButtonStyle } from './Button';
 import { InputContainerStyle, InputStyle } from './Input';
-import { useTranslation } from '../../utils';
+import Label from './Label';
 
 const Input = styled(InputStyle)`
   cursor: default;

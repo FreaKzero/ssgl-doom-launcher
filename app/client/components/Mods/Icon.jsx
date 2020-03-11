@@ -1,10 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import circle from ' #/assets/icon/circle.svg';
-import up from ' #/assets/icon/up.svg';
-import down from ' #/assets/icon/down.svg';
+import React from 'react';
 import SvgInline from 'react-svg-inline';
 import styled from 'styled-components';
+
+import circle from ' #/assets/icon/circle.svg';
+import down from ' #/assets/icon/down.svg';
+import up from ' #/assets/icon/up.svg';
 import styles from '#Style';
 
 // TODO: color / refactor

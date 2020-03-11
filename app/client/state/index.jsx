@@ -1,4 +1,4 @@
-import { reducer, initState } from './reducer';
 import StoreContext from './context';
+import { initState, reducer } from './reducer';
 
 export { reducer, initState, StoreContext };

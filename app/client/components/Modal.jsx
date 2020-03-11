@@ -1,13 +1,14 @@
-import React from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import BackDrop from './Backdrop';
+
 import styles from '#Style';
-import Button from './Form/Button';
+
 import { useTranslation } from '../utils';
-import { AnimatePresence } from 'framer-motion';
+import BackDrop from './Backdrop';
+import Button from './Form/Button';
 
 const DialogMotion = ({ children, ...rest }) => {
   return (

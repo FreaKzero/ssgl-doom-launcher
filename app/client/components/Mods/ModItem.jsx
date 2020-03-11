@@ -1,10 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import styles from '#Style';
-import Icon from './Icon';
-import Check from './Check';
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
+
+import styles from '#Style';
+
+import Check from './Check';
+import Icon from './Icon';
 
 const Divider = styled.div`
   width: 5px;

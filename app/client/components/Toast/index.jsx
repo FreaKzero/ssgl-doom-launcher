@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
+
 import styles from '#Style';
-import { motion, AnimatePresence } from 'framer-motion';
+
 import ToastContext from './ToastContext';
 
 let currentTimeout;

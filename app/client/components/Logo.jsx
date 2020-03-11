@@ -1,8 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import svgLogo from ' #/assets/Logo.svg';
+import React from 'react';
 import SVG from 'react-svg-inline';
 import styled from 'styled-components';
+
+import svgLogo from ' #/assets/Logo.svg';
 
 const LogoContainer = styled.div`
   padding: 10px 0 0 10px;

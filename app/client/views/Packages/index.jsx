@@ -1,10 +1,11 @@
-import React, { useState, useContext } from 'react';
-import { StoreContext } from '../../state';
-import { Box } from '../../components';
-import fuzz from 'fuzzysearch';
-import Pack from './Pack';
 import { AnimatePresence } from 'framer-motion';
+import fuzz from 'fuzzysearch';
+import React, { useContext, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
+
+import { Box } from '../../components';
+import { StoreContext } from '../../state';
+import Pack from './Pack';
 import PackageFilter from './PackageFilter';
 
 const Packages = () => {

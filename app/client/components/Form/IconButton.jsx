@@ -1,9 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import styles from '#Style';
-import { ButtonStyle } from './Button';
+import React from 'react';
 import SvgInline from 'react-svg-inline';
+import styled from 'styled-components';
+
+import styles from '#Style';
+
+import { ButtonStyle } from './Button';
 
 const IconButtonStyle = styled(ButtonStyle)`
   min-width: 0;

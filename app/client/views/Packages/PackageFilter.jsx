@@ -1,8 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { Input, Dropdown } from '../../components/Form';
-import { useTranslation } from '../../utils';
+import React from 'react';
 import styled from 'styled-components';
+
+import { Dropdown, Input } from '../../components/Form';
+import { useTranslation } from '../../utils';
 
 const PackageFilterStyle = styled.div`
   display: flex;

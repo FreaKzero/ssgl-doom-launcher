@@ -1,6 +1,7 @@
 import React from 'react';
-import { Route } from 'wouter';
 import styled from 'styled-components';
+import { Route } from 'wouter';
+
 import routes from '#/routes';
 
 const ViewStyle = styled.div`

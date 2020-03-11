@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { ipcRenderer } from 'electron';
+import { useState } from 'react';
 
 const useIpc = (opt = {}) => {
   const [load, setLoad] = useState(false);

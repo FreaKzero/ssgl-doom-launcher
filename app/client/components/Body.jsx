@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import background from ' #/assets/ssglwall.png';
 
 export default styled.div`

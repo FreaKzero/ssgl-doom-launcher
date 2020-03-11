@@ -1,10 +1,12 @@
-import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import down from ' #/assets/icon/down.svg';
-import { InputContainerStyle, InputStyle } from './Input';
-import styles from '#Style';
+import React, { useEffect, useRef, useState } from 'react';
 import SVG from 'react-svg-inline';
+import styled from 'styled-components';
+
+import down from ' #/assets/icon/down.svg';
+import styles from '#Style';
+
+import { InputContainerStyle, InputStyle } from './Input';
 import Label from './Label';
 
 const Wrapper = styled(InputContainerStyle)`

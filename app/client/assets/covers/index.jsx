@@ -1,20 +1,20 @@
-import heretic from './heretic.jpg';
-import chex2 from './chex2.jpg';
-import hexdd from './hexdd.jpg';
-import freedoom1 from './freedoom1.jpg';
-import doom from './doom.jpg';
-import freedoom2 from './freedoom2.jpg';
-import strife0 from './strife0.jpg';
 import chex from './chex.jpg';
-import tnt from './tnt.jpg';
-import hacx from './hacx.jpg';
-import strife1 from './strife1.jpg';
-import hexen from './hexen.jpg';
-import doom64 from './doom64.jpg';
+import chex2 from './chex2.jpg';
+import doom from './doom.jpg';
 import doom2 from './doom2.jpg';
-import heretic1 from './heretic1.jpg';
-import plutonia from './plutonia.jpg';
+import doom64 from './doom64.jpg';
 import freedm from './freedm.jpg';
+import freedoom1 from './freedoom1.jpg';
+import freedoom2 from './freedoom2.jpg';
+import hacx from './hacx.jpg';
+import heretic from './heretic.jpg';
+import heretic1 from './heretic1.jpg';
+import hexdd from './hexdd.jpg';
+import hexen from './hexen.jpg';
+import plutonia from './plutonia.jpg';
+import strife0 from './strife0.jpg';
+import strife1 from './strife1.jpg';
+import tnt from './tnt.jpg';
 
 export default {
   heretic,

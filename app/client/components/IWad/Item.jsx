@@ -1,7 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import styled from 'styled-components';
+
 import styles from '#Style';
+
 import Covers from '../../assets/covers';
 
 const ListItemStyle = styled.li`
