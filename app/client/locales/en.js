@@ -54,7 +54,7 @@ export default {
   },
   packages: {
     lastplayed: 'Last played: {{value, date}}',
-    never: 'Never',
+    never: 'Last played: Never',
     filter: 'Filter {{size}} Packages',
     titleSave: 'Save as: {{name}}',
     titleEdit: 'Edit: {{name}}',

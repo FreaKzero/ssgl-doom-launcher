@@ -53,7 +53,7 @@ export default {
   },
   packages: {
     lastplayed: 'Zuletzt: {{value, date}}',
-    never: 'Nie',
+    never: 'Zuletzt: Nie',
     filter: 'Filter {{size}} Pakete',
     titleSave: 'Speichern als: {{name}}',
     titleEdit: 'Bearbeiten: {{name}}',
