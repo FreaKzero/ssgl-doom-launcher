@@ -3,7 +3,7 @@ import React from 'react';
 import Svg from 'react-svg-inline';
 import styled from 'styled-components';
 
-import spinner from ' #/assets/icon/spinner.svg';
+import spinner from '#/assets/icon/spinner.svg';
 import styles from '#Style';
 
 const SpinnerStyle = styled.div`

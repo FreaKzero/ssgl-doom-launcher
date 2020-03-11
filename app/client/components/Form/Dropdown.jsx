@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import SVG from 'react-svg-inline';
 import styled from 'styled-components';
 
-import down from ' #/assets/icon/down.svg';
+import down from '#/assets/icon/down.svg';
 import styles from '#Style';
 
 import { InputContainerStyle, InputStyle } from './Input';
