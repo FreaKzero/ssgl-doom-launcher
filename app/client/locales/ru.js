@@ -5,6 +5,7 @@ export default {
     selectDir: 'Папка'
   },
   filters: {
+    lastplayed: 'Last played',
     oldest: 'Сначала старые',
     newest: 'Сначала новые',
     active: 'Сначала активные'
@@ -41,8 +42,11 @@ export default {
     loading: 'Загрузка',
     language: 'Язык',
     success: 'Успех',
+    error: 'Error',
     cancel: 'Отмена',
-    ok: 'Ок'
+    ok: 'Ок',
+    required: 'Required',
+    toastRequired: 'Please Fill out the required Fields'
   },
   nav: {
     appname: 'Super Shotgun Launcher',

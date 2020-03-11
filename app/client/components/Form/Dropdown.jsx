@@ -76,6 +76,7 @@ const Dropdown = ({
   value,
   name,
   fluid,
+  error = null,
   ...rest
 }) => {
   const selectRef = useRef(null);
@@ -110,7 +111,8 @@ const Dropdown = ({
   return (
     <>
       {label ? <Label>{label}</Label> : null}
-      <Wrapper width={width} fluid={fluid}>
+      {error ? <Label error>{error}</Label> : null}
+      <Wrapper width={width} fluid={fluid} error={error}>
         <Input
           type="text"
           onBlur={onBlur}
@@ -150,6 +152,7 @@ const Dropdown = ({
 Dropdown.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
+  error: PropTypes.any,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({

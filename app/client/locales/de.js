@@ -41,8 +41,11 @@ export default {
     loading: 'Laden',
     language: 'Sprache',
     success: 'Aktion erfolgreich',
+    error: 'Fehler',
     cancel: 'Abbrechen',
-    ok: 'Ok'
+    ok: 'Ok',
+    required: 'Erforderlich',
+    toastRequired: 'Bitte Erforderliche Felder ausfüllen'
   },
   nav: {
     appname: 'Super Shotgun Launcher',

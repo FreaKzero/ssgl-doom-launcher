@@ -31,6 +31,7 @@ const SelectFile = ({
   fluid = false,
   onFile,
   directory,
+  error = null,
   ...rest
 }) => {
   const [file, setFile] = useState('');
@@ -56,7 +57,8 @@ const SelectFile = ({
   return (
     <>
       {label ? <Label>{label}</Label> : null}
-      <InputContainerStyle width={width} fluid={fluid}>
+      {error ? <Label error>{error}</Label> : null}
+      <InputContainerStyle width={width} fluid={fluid} error={error}>
         <SelectButton type="button" onClick={onSelect}>
           {file ? t('reset') : directory ? t('selectDir') : t('selectFile')}
         </SelectButton>
@@ -73,7 +75,8 @@ SelectFile.propTypes = {
   name: PropTypes.string,
   onFile: PropTypes.func.isRequired,
   value: PropTypes.string,
-  width: PropTypes.string
+  width: PropTypes.string,
+  error: PropTypes.any
 };
 
 export default SelectFile;

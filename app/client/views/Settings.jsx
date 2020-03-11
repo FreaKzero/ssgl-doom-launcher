@@ -12,6 +12,7 @@ const Settings = () => {
   const { gstate, dispatch } = React.useContext(StoreContext);
   const { settings } = gstate;
   const [form, setForm] = React.useState(settings);
+  const [errors, setError] = React.useState({});
   const [toast] = useToast();
   const [saveSettings] = useIpc();
   const [fetchInit, loadInit] = useIpc();
@@ -33,15 +34,45 @@ const Settings = () => {
     }
   };
 
-  const onSubmit = async e => {
-    // TODO: error handling
-    e.preventDefault();
-    const newSettings = await saveSettings('settings/save', form);
-    dispatch({ type: 'settings/save', data: newSettings });
+  const validate = () => {
+    const fields = ['modpath', 'savepath', 'defaultsourceport'];
+    let temp = {};
+    let hasError = false;
 
-    const newState = await fetchInit('main/init', null);
-    dispatch({ type: 'main/init', data: newState });
-    toast('ok', t('common:success'), t('settings:toastSaved'));
+    fields.forEach(field => {
+      if (form[field].trim() === '') {
+        hasError = true;
+        temp = {
+          ...temp,
+          [field]: t('common:required')
+        };
+      } else {
+        temp = {
+          ...temp,
+          [field]: null
+        };
+      }
+    });
+
+    setError(temp);
+
+    return hasError;
+  };
+
+  const onSubmit = async e => {
+    e.preventDefault();
+    const hasError = validate();
+
+    if (!hasError) {
+      const newSettings = await saveSettings('settings/save', form);
+      dispatch({ type: 'settings/save', data: newSettings });
+
+      const newState = await fetchInit('main/init', null);
+      dispatch({ type: 'main/init', data: newState });
+      toast('ok', t('common:success'), t('settings:toastSaved'));
+    } else {
+      toast('danger', t('common:error'), t('common:toastRequired'));
+    }
   };
 
   return (
@@ -62,6 +93,7 @@ const Settings = () => {
               label="Favourite Sourceport"
               value={form.defaultsourceport}
               onChange={onComponent}
+              error={errors.defaultsourceport}
             />
             <Dropdown
               name="language"
@@ -77,6 +109,7 @@ const Settings = () => {
               onFile={onComponent}
               label={t('settings:waddir')}
               value={form.modpath}
+              error={errors.modpath}
               directory
               fluid
             />
@@ -85,6 +118,7 @@ const Settings = () => {
               onFile={onComponent}
               label={t('settings:savepath')}
               value={form.savepath}
+              error={errors.savepath}
               directory
               fluid
             />

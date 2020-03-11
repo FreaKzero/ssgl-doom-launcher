@@ -25,7 +25,10 @@ export const InputStyle = styled.input`
 export const InputContainerStyle = styled.div`
   background-color: ${styles.color.backdrop};
   border-radius: ${styles.border.radius};
-  border: 1px solid ${styles.border.idle};
+  border: ${p =>
+    p.error
+      ? `1px solid ${styles.border.red};`
+      : `1px solid ${styles.border.idle};`};
   transition: ${styles.transition.out};
   margin-bottom: 15px;
   display: flex;
@@ -53,6 +56,7 @@ const Input = ({
   width = '250px',
   label,
   onChange,
+  error = null,
   fluid = false,
   ...rest
 }) => {
@@ -62,7 +66,8 @@ const Input = ({
   return (
     <>
       {label ? <Label>{label}</Label> : null}
-      <InputContainerStyle width={width} fluid={fluid}>
+      {error ? <Label error>{error}</Label> : null}
+      <InputContainerStyle width={width} fluid={fluid} error={error}>
         <InputStyle
           ref={inputRef}
           type="text"
@@ -78,7 +83,8 @@ Input.propTypes = {
   fluid: PropTypes.bool,
   label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  width: PropTypes.string
+  width: PropTypes.string,
+  error: PropTypes.any
 };
 
 export default Input;
