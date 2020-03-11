@@ -27,7 +27,7 @@ ipcMain.handle('sourceports/play', async (e, pack) => {
       newpacks = packages.map(item => {
         if (pack.id === item.id) {
           return {
-            ...pack,
+            ...item,
             lastplayed: Date.now()
           };
         } else {
