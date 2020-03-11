@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { StoreContext } from '#State';
 import { setTitle, useToast, useIpc, useTranslation } from '#Util';
 import { SelectFile, Dropdown, SubmitArea, Button } from '#Component/Form';
@@ -9,10 +9,10 @@ import i18n from '../i18n';
 const Settings = () => {
   setTitle('settings');
   const { t } = useTranslation(['settings', 'common']);
-  const { gstate, dispatch } = React.useContext(StoreContext);
+  const { gstate, dispatch } = useContext(StoreContext);
   const { settings } = gstate;
-  const [form, setForm] = React.useState(settings);
-  const [errors, setError] = React.useState({});
+  const [form, setForm] = useState(settings);
+  const [errors, setError] = useState({});
   const [toast] = useToast();
   const [saveSettings] = useIpc();
   const [fetchInit, loadInit] = useIpc();

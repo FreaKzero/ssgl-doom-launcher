@@ -1,8 +1,8 @@
-import React from 'react';
+import { useState } from 'react';
 import { ipcRenderer } from 'electron';
 
 const useIpc = (opt = {}) => {
-  const [load, setLoad] = React.useState(false);
+  const [load, setLoad] = useState(false);
 
   const fetch = (route, args = null) => {
     // eslint-disable-next-line no-async-promise-executor

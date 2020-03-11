@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { StoreContext } from '#State';
 import { Button, Dropdown } from '#Component/Form';
-import { useTranslation, setTitle, useIpc, useToast } from '#Util';
+import { useTranslation, useIpc, useToast } from '#Util';
 import PackageModal from './PackageModal';
 import { initState, createPackages } from './helper';
 

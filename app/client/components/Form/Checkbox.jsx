@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import styles from '#Style';
@@ -67,9 +67,9 @@ const Checked = () => (
   </svg>
 );
 const Checkbox = ({ label, value, onChange, name, ...rest }) => {
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = useState(false);
 
-  React.useEffect(() => setChecked(value), [value]);
+  useEffect(() => setChecked(value), [value]);
 
   const onChangeWrap = () => {
     setChecked(!checked);

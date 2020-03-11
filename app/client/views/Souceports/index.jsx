@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import styled from 'styled-components';
 import { StoreContext } from '#State';
 import { Flex, Box } from '#Component';
@@ -15,9 +15,9 @@ const SourcePortListStyle = styled.ul`
 
 const SourcePorts = () => {
   setTitle('sourceports');
-  const { gstate, dispatch } = React.useContext(StoreContext);
-  const [selected, setSelected] = React.useState(null);
-  const [sourcePorts, setSourcePorts] = React.useState(gstate.sourceports);
+  const { gstate, dispatch } = useContext(StoreContext);
+  const [selected, setSelected] = useState(null);
+  const [sourcePorts, setSourcePorts] = useState(gstate.sourceports);
   const [ipc] = useIpc();
   const [toast] = useToast();
   const { t } = useTranslation(['sourceports', 'common']);

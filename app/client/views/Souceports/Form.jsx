@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import styles from '#Style';
-import { Flex } from '#Component';
 import { useTranslation, useToast } from '#Util';
 import {
   Input,
@@ -21,8 +20,8 @@ const FormBorder = styled.div`
 `;
 
 const Form = ({ item, onSave, onDelete }) => {
-  const [form, setForm] = React.useState(item);
-  const [errors, setErrors] = React.useState({});
+  const [form, setForm] = useState(item);
+  const [errors, setErrors] = useState({});
   const { t } = useTranslation(['sourceports', 'common']);
   const [toast] = useToast();
 

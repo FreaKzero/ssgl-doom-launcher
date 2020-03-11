@@ -51,4 +51,11 @@ const PackageFilter = ({ onInput, onSort, sortValue, size }) => {
   );
 };
 
+PackageFilter.propTypes = {
+  onInput: PropTypes.func.isRequired,
+  onSort: PropTypes.func.isRequired,
+  size: PropTypes.number.isRequired,
+  sortValue: PropTypes.string
+};
+
 export default PackageFilter;

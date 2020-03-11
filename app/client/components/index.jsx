@@ -15,7 +15,6 @@ import iWad from './IWad';
 import Routes from './Router';
 import BackDrop from './Backdrop';
 import Modal from './Modal';
-import PackageModal from './PackageModal';
 
 export {
   BackDrop,
@@ -34,6 +33,5 @@ export {
   ModItem,
   iWad,
   Routes,
-  Modal,
-  PackageModal
+  Modal
 };

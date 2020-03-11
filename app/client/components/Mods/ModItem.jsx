@@ -119,8 +119,10 @@ ModItem.propTypes = {
     kind: PropTypes.string.isRequired,
     size: PropTypes.string.isRequired
   }),
+  style: PropTypes.any,
   onDown: PropTypes.func,
   onUp: PropTypes.func,
+  onCircle: PropTypes.func,
   onSelect: PropTypes.func.isRequired,
   selected: PropTypes.bool
 };

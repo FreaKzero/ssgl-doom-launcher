@@ -16,7 +16,6 @@ import {
   PlayIcon,
   Flex
 } from '#Component';
-import { Button } from '#Component/Form';
 
 const Wads = () => {
   setTitle('wads');
@@ -28,7 +27,7 @@ const Wads = () => {
   const { t } = useTranslation(['common', 'wads']);
   const [toast] = useToast();
 
-  const onSelect = id => e => {
+  const onSelect = id => () => {
     dispatch({ type: 'mod/select', id });
   };
 

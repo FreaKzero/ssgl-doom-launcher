@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import PropTypes from 'prop-types';
 import { StoreContext } from '#State';
 import { Box } from '#Component';
 import fuzz from 'fuzzysearch';
@@ -9,7 +8,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import PackageFilter from './PackageFilter';
 
 const Packages = () => {
-  const { gstate, dispatch } = useContext(StoreContext);
+  const { gstate } = useContext(StoreContext);
   const [filter, setRawFilter] = useState('');
   const [sort, setSort] = useState('last');
 

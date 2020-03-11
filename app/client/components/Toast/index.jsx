@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
@@ -97,7 +97,7 @@ ToastMotion.propTypes = {
 };
 
 const ToastContainer = ({ children }) => {
-  const [toasts, setToasts] = React.useState([]);
+  const [toasts, setToasts] = useState([]);
 
   const addToast = (scope, title, text) => {
     console.log(scope, title, text);

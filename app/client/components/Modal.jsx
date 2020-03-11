@@ -10,14 +10,6 @@ import { useTranslation } from '#Util';
 import { AnimatePresence } from 'framer-motion';
 
 const DialogMotion = ({ children, ...rest }) => {
-  const variants = {
-    anim: {
-      opacity: 1,
-      top: 30
-    },
-    init: { opacity: 0, top: -300 }
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, top: -300 }}

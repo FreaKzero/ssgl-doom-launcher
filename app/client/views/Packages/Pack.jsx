@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { StoreContext } from '#State';
 import { ButtonStyle } from '../../components/Form/Button';
@@ -23,6 +23,10 @@ const PackageMotion = ({ children, ...rest }) => {
       {children}
     </motion.div>
   );
+};
+
+PackageMotion.propTypes = {
+  children: PropTypes.any
 };
 
 const Meta = styled.div`
@@ -97,11 +101,12 @@ const PackageStyle = styled(PackageMotion)`
   }
 `;
 
-const Pack = ({ pack, style }) => {
+const Pack = ({ pack }) => {
   setTitle('packages');
-  const [ipc, loading] = useIpc();
+  const [ipc] = useIpc();
   const { gstate, dispatch } = useContext(StoreContext);
   const { t } = useTranslation('packages');
+  // eslint-disable-next-line no-unused-vars
   const [location, setLocation] = useLocation();
 
   const onPlay = async () => {
@@ -159,6 +164,11 @@ const Pack = ({ pack, style }) => {
       </div>
     </PackageStyle>
   );
+};
+
+Pack.propTypes = {
+  pack: PropTypes.any,
+  style: PropTypes.any
 };
 
 export default Pack;

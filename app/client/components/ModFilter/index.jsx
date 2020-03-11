@@ -66,7 +66,10 @@ ModFilter.propTypes = {
   onInput: PropTypes.func.isRequired,
   onRefresh: PropTypes.func.isRequired,
   refreshLoad: PropTypes.bool.isRequired,
-  valueInput: PropTypes.string
+  valueInput: PropTypes.string.isRequired,
+  sortValue: PropTypes.string.isRequired,
+  onSort: PropTypes.func.isRequired,
+  size: PropTypes.number.isRequired
 };
 
 export default ModFilter;

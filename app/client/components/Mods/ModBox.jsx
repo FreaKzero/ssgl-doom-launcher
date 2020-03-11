@@ -1,4 +1,5 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
+import PropTypes from 'prop-types';
 import VirtualList from 'react-tiny-virtual-list';
 import ModItem from './ModItem';
 import styled from 'styled-components';
@@ -54,6 +55,12 @@ const ModBox = ({ data, onClick, fixed }) => {
       </ul>
     </BoxStyle>
   );
+};
+
+ModBox.propTypes = {
+  data: PropTypes.any,
+  fixed: PropTypes.bool,
+  onClick: PropTypes.func.isRequired
 };
 
 export default ModBox;

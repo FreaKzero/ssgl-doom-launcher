@@ -5,8 +5,7 @@ import Modal from '../Modal';
 
 import { Input, Dropdown, SelectFile } from '#Component/Form';
 import Flex from '../Flex';
-import covers from '../../assets/covers';
-import { useTranslation, setTitle, useIpc, useToast } from '#Util';
+import { useTranslation } from '#Util';
 
 const PackageModal = ({
   active,
@@ -108,6 +107,16 @@ const PackageModal = ({
       </form>
     </Modal>
   );
+};
+
+PackageModal.propTypes = {
+  active: PropTypes.bool,
+  edit: PropTypes.bool,
+  form: PropTypes.any,
+  onCancel: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  setActive: PropTypes.func.isRequired,
+  setForm: PropTypes.func.isRequired
 };
 
 export default PackageModal;

@@ -39,7 +39,8 @@ const Box = ({ children, fixed, noscroll = false }) => {
 
 Box.propTypes = {
   children: PropTypes.any,
-  fixed: PropTypes.element
+  fixed: PropTypes.element,
+  noscroll: PropTypes.bool
 };
 
 export default Box;

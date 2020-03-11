@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { StoreContext } from '#State';
-import { ipcRenderer } from 'electron';
 import IWad from './IWad';
 import Dropdown from './Form/Dropdown';
 import BackDrop from './Backdrop';
@@ -48,8 +47,8 @@ const Drawer = styled(DrawerMotion)`
 `;
 
 const PlayOverlay = ({ active, setActive }) => {
-  const { gstate, dispatch } = React.useContext(StoreContext);
-  const [sourceport, setSourceport] = React.useState();
+  const { gstate, dispatch } = useContext(StoreContext);
+  const [sourceport, setSourceport] = useState();
   const [ipc] = useIpc();
 
   const options = gstate.sourceports.map(item => ({
