@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import down from '#Asset/icon/down.svg';
+import down from ' #/assets/icon/down.svg';
 import { InputContainerStyle, InputStyle } from './Input';
 import styles from '#Style';
 import SVG from 'react-svg-inline';

@@ -1,10 +1,10 @@
 import React, { useEffect, useContext, useState } from 'react';
 import styled from 'styled-components';
-import { StoreContext } from '#State';
-import { Flex, Box } from '#Component';
-import { setTitle, useIpc, useTranslation, useToast } from '#Util';
+import { StoreContext } from '../../state';
+import { setTitle, useIpc, useTranslation, useToast } from '../../utils';
 import uuid from 'uuid-quick';
-import { Button } from '#Component/Form';
+import { Flex, Box } from '../../components';
+import { Button } from '../../components/Form';
 import Form from './Form';
 import SourcePortItem from './SourcePortItem';
 import { AnimatePresence } from 'framer-motion';

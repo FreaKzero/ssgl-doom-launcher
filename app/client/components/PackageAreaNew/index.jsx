@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { StoreContext } from '#State';
-import { Button, Dropdown } from '#Component/Form';
-import { useTranslation, useIpc, useToast } from '#Util';
+import { StoreContext } from '../../state';
+import { Button, Dropdown } from '../Form';
+import { useTranslation, useIpc, useToast } from '../../utils';
 import PackageModal from './PackageModal';
 import { initState, createPackages } from './helper';
 

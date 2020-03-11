@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useTranslation } from '#Util/translation';
+import { useTranslation } from './index';
 
 function setTitle(title) {
   const { t } = useTranslation('nav');

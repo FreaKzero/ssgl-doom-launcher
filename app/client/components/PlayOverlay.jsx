@@ -2,12 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { StoreContext } from '#State';
+import { StoreContext } from '../state';
 import IWad from './IWad';
 import Dropdown from './Form/Dropdown';
 import BackDrop from './Backdrop';
 import styles from '#Style';
-import { useIpc } from '#Util';
+import { useIpc } from '../utils';
 
 const DrawerMotion = ({ active, children, ...rest }) => {
   const variants = {

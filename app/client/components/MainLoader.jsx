@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import styles from '#Style';
 import Logo from './Logo';
-import { useTranslation } from '#Util/translation';
+import { useTranslation } from '../utils';
 
 const MainLoaderStyle = styled.div`
   font-family: ${styles.font.head};

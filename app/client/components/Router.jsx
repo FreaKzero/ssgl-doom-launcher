@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'wouter';
 import styled from 'styled-components';
-import routes from '#Root/routes';
+import routes from '#/routes';
 
 const ViewStyle = styled.div`
   margin: 15px;

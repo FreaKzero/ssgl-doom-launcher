@@ -1,8 +1,6 @@
 const path = require('path');
-const webpack = require('webpack');
 
 const res = p => path.resolve(__dirname, p);
-// test: /.*covers\/.*\.(png|jpe?g|gif)$/i,
 module.exports = {
   module: {
     rules: [
@@ -46,12 +44,7 @@ module.exports = {
     extensions: ['*', '.js', '.jsx'],
     alias: {
       '#Style': res(`${process.cwd()}/client/styles.js`),
-      '#Component': res(`${process.cwd()}/client/components/`),
-      '#Asset': res(`${process.cwd()}/client/assets/`),
-      '#View': res(`${process.cwd()}/client/views/`),
-      '#Util': res(`${process.cwd()}/client/utils/`),
-      '#State': res(`${process.cwd()}/client/state/index.jsx`),
-      '#Root': res(`${process.cwd()}/client/`)
+      '#': res(`${process.cwd()}/client/`)
     }
   }
 };

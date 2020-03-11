@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { StoreContext } from '#State';
-import { Box } from '#Component';
+import { StoreContext } from '../../state';
+import { Box } from '../../components';
 import fuzz from 'fuzzysearch';
 import Pack from './Pack';
 import { AnimatePresence } from 'framer-motion';

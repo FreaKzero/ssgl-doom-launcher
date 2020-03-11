@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Input, Dropdown } from '../../components/Form';
-import { useTranslation } from '#Util';
+import { useTranslation } from '../../utils';
 import styled from 'styled-components';
 
 const PackageFilterStyle = styled.div`

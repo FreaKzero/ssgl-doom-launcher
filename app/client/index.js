@@ -1,11 +1,10 @@
 import React, { useReducer, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-// eslint-disable-next-line no-unused-vars
 import i18n from './i18n';
-import { initState, reducer, StoreContext } from '#State';
-import useIpc from '#Util/useIpc';
+import { initState, reducer, StoreContext } from './state';
+import { useIpc } from './utils';
 import { useLocation } from 'wouter';
-import { Body, Head, Routes, MainLoader, ToastContainer } from '#Component';
+import { Body, Head, Routes, MainLoader, ToastContainer } from './components';
 
 import './global.css';
 

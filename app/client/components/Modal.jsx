@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import BackDrop from './Backdrop';
 import styles from '#Style';
 import Button from './Form/Button';
-import { useTranslation } from '#Util';
+import { useTranslation } from '../utils';
 import { AnimatePresence } from 'framer-motion';
 
 const DialogMotion = ({ children, ...rest }) => {

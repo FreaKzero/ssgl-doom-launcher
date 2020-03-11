@@ -6,7 +6,7 @@ import { remote } from 'electron';
 import Label from './Label';
 import { ButtonStyle } from './Button';
 import { InputContainerStyle, InputStyle } from './Input';
-import { useTranslation } from '#Util/translation';
+import { useTranslation } from '../../utils';
 
 const Input = styled(InputStyle)`
   cursor: default;

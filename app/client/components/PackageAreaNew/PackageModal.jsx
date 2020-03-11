@@ -1,11 +1,10 @@
 import React, { useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { StoreContext } from '#State';
+import { StoreContext } from '../../state';
 import Modal from '../Modal';
-
-import { Input, Dropdown, SelectFile } from '#Component/Form';
+import { Input, Dropdown, SelectFile } from '../Form';
 import Flex from '../Flex';
-import { useTranslation } from '#Util';
+import { useTranslation } from '../../utils';
 
 const PackageModal = ({
   active,

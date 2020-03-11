@@ -1,10 +1,9 @@
 import React, { useState, useContext } from 'react';
-import { StoreContext } from '#State';
+import { StoreContext } from '../state';
 import { AnimatePresence } from 'framer-motion';
 import fuzz from 'fuzzysearch';
 import { useDebouncedCallback } from 'use-debounce';
-import { useTranslation, setTitle, useIpc, useToast } from '#Util';
-import PackageAreaNew from '../components/PackageAreaNew';
+import { useTranslation, setTitle, useIpc, useToast } from '../utils';
 import { remote } from 'electron';
 
 import {
@@ -13,9 +12,10 @@ import {
   ModBox,
   ModFilter,
   PlayOverlay,
+  PackageAreaNew,
   PlayIcon,
   Flex
-} from '#Component';
+} from '../components';
 
 const Wads = () => {
   setTitle('wads');

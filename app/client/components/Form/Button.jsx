@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import styles from '#Style';
-import spinner from '#Asset/icon/spinner.svg';
+import spinner from ' #/assets/icon/spinner.svg';
 import Svg from 'react-svg-inline';
 
 const SpinnerStyle = styled.div`

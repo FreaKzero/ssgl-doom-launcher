@@ -1,6 +1,6 @@
-import Wads from '#View/Wads';
-import Settings from '#View/Settings';
-import SourcePorts from './views/Souceports';
+import Wads from './views/Wads';
+import Settings from './views/Settings';
+import SourcePorts from './views/Sourceports';
 import Packages from './views/Packages';
 
 const routes = [

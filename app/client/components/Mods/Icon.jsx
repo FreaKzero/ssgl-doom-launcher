@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import circle from '#Asset/icon/circle.svg';
-import up from '#Asset/icon/up.svg';
-import down from '#Asset/icon/down.svg';
+import circle from ' #/assets/icon/circle.svg';
+import up from ' #/assets/icon/up.svg';
+import down from ' #/assets/icon/down.svg';
 import SvgInline from 'react-svg-inline';
 import styled from 'styled-components';
 import styles from '#Style';

@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import styles from '#Style';
-import { useTranslation, useToast } from '#Util';
+import { useTranslation, useToast } from '../../utils';
 import {
   Input,
   Checkbox,
   SelectFile,
   Button,
   SubmitArea
-} from '#Component/Form';
+} from '../../components/Form';
 
 const FormBorder = styled.div`
   background: rgba(255, 255, 255, 0.05);

@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
-import { StoreContext } from '#State';
-import { setTitle, useToast, useIpc, useTranslation } from '#Util';
-import { SelectFile, Dropdown, SubmitArea, Button } from '#Component/Form';
-import { Flex, Box } from '#Component';
+import { StoreContext } from '../state';
+import { setTitle, useToast, useIpc, useTranslation } from '../utils';
+import { SelectFile, Dropdown, SubmitArea, Button } from '../components/Form';
+import { Flex, Box } from '../components';
 import { AVAILABLE_LOCALES } from '../locales';
 import i18n from '../i18n';
 

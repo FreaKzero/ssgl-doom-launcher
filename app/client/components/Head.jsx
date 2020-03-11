@@ -1,6 +1,6 @@
 import React from 'react';
-import Logo from '#Component/Logo';
-import NavList from '#Component/Nav/NavList';
+import Logo from './Logo';
+import NavList from './Nav/NavList';
 import styled from 'styled-components';
 
 const Head = styled(({ ...rest }) => {

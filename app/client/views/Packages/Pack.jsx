@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { StoreContext } from '#State';
+import { StoreContext } from '../../state';
 import { ButtonStyle } from '../../components/Form/Button';
-import { useTranslation, useIpc, setTitle } from '#Util';
+import { useTranslation, useIpc, setTitle } from '../../utils';
 import styles from '#Style';
 import styled from 'styled-components';
 import covers from '../../assets/covers';
