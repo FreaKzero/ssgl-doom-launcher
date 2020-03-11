@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const merge = require('webpack-merge');
 const base = require('./wp.renderer.base');
 
@@ -12,5 +11,5 @@ module.exports = merge.smart(base, {
     publicPath: 'build/',
     filename: 'renderer-bundle.js'
   },
-  devtool: 'source-map'
+  devtool: false
 });
