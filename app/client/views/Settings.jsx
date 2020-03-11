@@ -40,7 +40,7 @@ const Settings = () => {
     let hasError = false;
 
     fields.forEach(field => {
-      if (form[field].trim() === '') {
+      if (!form[field] || form[field].trim() === '') {
         hasError = true;
         temp = {
           ...temp,
