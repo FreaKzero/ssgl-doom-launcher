@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import styles from '#Style';
 import { Flex } from '#Component';
-import { useTranslation } from '#Util';
+import { useTranslation, useToast } from '#Util';
 import {
   Input,
   Checkbox,
@@ -22,7 +22,9 @@ const FormBorder = styled.div`
 
 const Form = ({ item, onSave, onDelete }) => {
   const [form, setForm] = React.useState(item);
-  const { t } = useTranslation(['sourceports']);
+  const [errors, setErrors] = React.useState({});
+  const { t } = useTranslation(['sourceports', 'common']);
+  const [toast] = useToast();
 
   useEffect(() => {
     setForm(item);
@@ -62,9 +64,48 @@ const Form = ({ item, onSave, onDelete }) => {
     }
   };
 
+  const validate = () => {
+    let tmp = {};
+    let hasError = false;
+
+    if (form.binary.trim() === '') {
+      tmp.binary = 'Required';
+    }
+
+    if (form.name.trim() === '') {
+      tmp.name = 'Required';
+    }
+
+    if (form.hasConfig === true) {
+      if (form.paramConfig[0] !== '-') {
+        tmp.paramConfig = 'Parameters must start with -';
+      }
+      if (form.configFilename.trim() === '') {
+        tmp.configFilename = 'Required';
+      }
+    }
+
+    if (form.hasSavedir === true && form.paramSave[0] !== '-') {
+      tmp.paramSave = 'Parameters must start with -';
+    }
+
+    if (Object.keys(tmp).length > 0) {
+      hasError = true;
+    }
+
+    setErrors(tmp);
+
+    return hasError;
+  };
+
   const onSubmitWrapper = e => {
     e.preventDefault();
-    onSave(form);
+    const hasError = validate();
+    if (!hasError) {
+      onSave(form);
+    } else {
+      toast('danger', t('common:error'), t('common:toastRequired'));
+    }
   };
 
   return (
@@ -74,6 +115,7 @@ const Form = ({ item, onSave, onDelete }) => {
         value={form.binary}
         name="binary"
         label={t('sourceports:binary')}
+        error={errors.binary}
         fluid
       />
       <Input
@@ -81,6 +123,7 @@ const Form = ({ item, onSave, onDelete }) => {
         name="name"
         label={t('sourceports:name')}
         onChange={onInput}
+        error={errors.name}
         fluid
       />
 
@@ -98,6 +141,7 @@ const Form = ({ item, onSave, onDelete }) => {
               name="paramConfig"
               label={t('sourceports:parameter')}
               onChange={onInput}
+              error={errors.paramConfig}
               fluid
             />
             <Input
@@ -105,6 +149,7 @@ const Form = ({ item, onSave, onDelete }) => {
               name="configFilename"
               label={t('sourceports:filename')}
               onChange={onInput}
+              error={errors.configFilename}
               fluid
             />
             <SelectFile
@@ -130,6 +175,7 @@ const Form = ({ item, onSave, onDelete }) => {
             name="paramSave"
             label={t('sourceports:parameter')}
             onChange={onInput}
+            error={errors.paramSave}
             fluid
           />
         ) : null}
