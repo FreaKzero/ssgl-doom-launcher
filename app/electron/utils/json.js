@@ -1,9 +1,9 @@
 import fs from 'fs';
+
 import { getDataFile } from './common';
 
 const getJSON = path => {
   const file = `${getDataFile(path)}.json`;
-  console.log(file);
   return new Promise((resolve, reject) => {
     if (!fs.existsSync(file)) {
       return resolve([]);

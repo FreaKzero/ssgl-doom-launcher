@@ -1,21 +1,9 @@
 import { ipcMain } from 'electron';
-import { walkWadDir } from '../utils/mods';
+
 import { getJSON } from '../utils/json';
+import { walkWadDir } from '../utils/mods';
 
-const sp = [
-  {
-    id: 'some-id-yeah',
-    hasSavedir: false,
-    hasConfig: true,
-    paramSave: '',
-    paramConfig: '',
-    paramScreen: '',
-    name: 'gzDoom',
-    binary: '/Applications/GZDoom.app'
-  }
-];
-
-ipcMain.handle('main/init', async (e, args) => {
+ipcMain.handle('main/init', async () => {
   try {
     const settings = await getJSON('settings');
     const sourceports = (await getJSON('sourceports')) || [];

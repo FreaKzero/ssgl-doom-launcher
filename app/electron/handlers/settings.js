@@ -1,4 +1,5 @@
 import { ipcMain } from 'electron';
+
 import { setJSON } from '../utils/json';
 
 ipcMain.handle('settings/save', async (e, data) => {

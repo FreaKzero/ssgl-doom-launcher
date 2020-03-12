@@ -1,8 +1,8 @@
-import { isAbsolute, resolve, sep, parse, join } from 'path';
-import { app } from 'electron';
 import { spawn } from 'child_process';
-import { hostname, platform } from 'os';
+import { app } from 'electron';
 import { createReadStream, createWriteStream, existsSync, mkdirSync } from 'fs';
+import { platform } from 'os';
+import { isAbsolute, join, parse, resolve, sep } from 'path';
 
 const getDataFile = file => join(app.getPath('userData'), file);
 
@@ -75,7 +75,6 @@ const play = (pack, settings) => {
   if (platform() === 'darwin') {
     let MAC = [sourceport.binary, '--args'];
     COMMAND = [...MAC, ...COMMAND];
-    console.log(COMMAND);
     spawn('open', COMMAND);
   } else {
     spawn(sourceport.binary, COMMAND);

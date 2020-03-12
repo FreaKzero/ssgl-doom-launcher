@@ -102,7 +102,6 @@ const ToastContainer = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
   const addToast = (scope, title, text) => {
-    console.log(scope, title, text);
     setToasts([{ title, scope, text }, ...toasts]);
 
     if (currentTimeout) {
