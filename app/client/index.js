@@ -21,7 +21,7 @@ const App = () => {
         const data = await fetch('main/init');
         dispatch({ type: 'main/init', data: data });
         i18n.changeLanguage(data.settings.language || 'en');
-        setLocation('/test');
+        setLocation('/');
       } catch (e) {
         setLocation('/sourceports');
       }
