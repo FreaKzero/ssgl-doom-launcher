@@ -11,7 +11,7 @@ const Meta = styled.div`
   margin-bottom: 5px;
 `;
 
-const SourcePortStyle = styled.li`
+const SourcePortStyle = styled.div`
   display: flex;
   background: rgba(12, 8, 8, 0.8);
   border-radius: ${styles.border.radius};

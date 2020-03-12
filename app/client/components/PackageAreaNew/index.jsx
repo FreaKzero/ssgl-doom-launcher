@@ -97,6 +97,7 @@ const PackageAreaNew = () => {
               options={opts}
               onChange={onSelect}
               placeholder={'Select Package'}
+              name="packageSelector"
               fluid
             />
           ) : null}

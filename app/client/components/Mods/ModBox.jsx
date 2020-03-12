@@ -61,7 +61,7 @@ const ModBox = ({ data, onClick, fixed }) => {
 
 ModBox.propTypes = {
   data: PropTypes.any,
-  fixed: PropTypes.bool,
+  fixed: PropTypes.element,
   onClick: PropTypes.func.isRequired
 };
 

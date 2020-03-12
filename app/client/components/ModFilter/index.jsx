@@ -14,7 +14,6 @@ const ModFilter = ({
   onSort,
   onRefresh,
   onInput,
-  valueInput,
   refreshLoad,
   size
 }) => {
@@ -47,11 +46,11 @@ const ModFilter = ({
     <ModFilterStyle>
       <Input
         onChange={onInput}
-        value={valueInput}
         placeholder={t('wads:filter', { size })}
         fluid
       />
       <Dropdown
+        name="sortvalue"
         options={opts}
         width="200px"
         onChange={onSort}
@@ -66,7 +65,6 @@ ModFilter.propTypes = {
   onInput: PropTypes.func.isRequired,
   onRefresh: PropTypes.func.isRequired,
   refreshLoad: PropTypes.bool.isRequired,
-  valueInput: PropTypes.string.isRequired,
   sortValue: PropTypes.string.isRequired,
   onSort: PropTypes.func.isRequired,
   size: PropTypes.number.isRequired

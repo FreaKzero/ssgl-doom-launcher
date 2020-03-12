@@ -26,7 +26,11 @@ export const initState = {
   packages: [],
   sourceports: [],
   settings: {
-    language: 'en'
+    language: 'en',
+    defaultsourceport: '',
+    modpath: '',
+    savepath: '',
+    background: ''
   }
 };
 

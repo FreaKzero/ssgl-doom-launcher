@@ -1,9 +1,15 @@
 import Packages from './views/Packages';
 import Settings from './views/Settings';
 import SourcePorts from './views/Sourceports';
+import Test from './views/Test';
 import Wads from './views/Wads';
 
 const routes = [
+  {
+    label: 'test',
+    href: '/test',
+    component: Test
+  },
   {
     label: 'wads',
     href: '/',

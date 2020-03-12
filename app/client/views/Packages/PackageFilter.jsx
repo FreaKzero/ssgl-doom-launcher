@@ -43,6 +43,7 @@ const PackageFilter = ({ onInput, onSort, sortValue, size }) => {
         fluid
       />
       <Dropdown
+        name="packageSort"
         options={opts}
         width="200px"
         onChange={onSort}
