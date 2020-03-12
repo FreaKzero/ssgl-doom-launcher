@@ -1,6 +1,5 @@
 import { remote } from 'electron';
 import { AnimatePresence } from 'framer-motion';
-import fuzz from 'fuzzysearch';
 import React, { useContext, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
@@ -15,7 +14,7 @@ import {
   PlayOverlay
 } from '../components';
 import { StoreContext } from '../state';
-import { setTitle, useIpc, useToast, useTranslation } from '../utils';
+import { setTitle, sortList, useIpc, useToast, useTranslation } from '../utils';
 
 const Wads = () => {
   setTitle('wads');
@@ -51,49 +50,7 @@ const Wads = () => {
     setSort(value);
   };
 
-  const buildShowList = () => {
-    const srt = () => {
-      switch (sort) {
-        case 'asc':
-          return gstate.mods.sort((a, b) => {
-            if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-            if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-            return 0;
-          });
-        case 'desc':
-          return gstate.mods.sort((a, b) => {
-            if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
-            if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
-            return 0;
-          });
-        case 'new':
-          return gstate.mods.sort((a, b) => b.date - a.date);
-        case 'old':
-          return gstate.mods.sort((a, b) => a.date - b.date);
-        case 'active':
-          return gstate.mods.sort((a, b) => b.active - a.active);
-        default:
-          return gstate.mods;
-      }
-    };
-
-    if (gstate.mods.length) {
-      let show = srt();
-      return filter.trim() !== ''
-        ? show
-            .filter(i => fuzz(filter, `${i.name.toLowerCase()} ${i.lastdir}`))
-            .sort((a, b) => {
-              if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-              if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-              return 0;
-            })
-        : show;
-    }
-
-    return [];
-  };
-
-  let show = buildShowList();
+  let show = sortList(gstate.mods, sort, filter);
 
   return (
     <>

@@ -1,9 +1,10 @@
-import { getExt } from './common';
-import path from 'path';
-import uuid from 'uuid-quick';
 import byteSize from 'byte-size';
 import klaw from 'klaw';
+import path from 'path';
+import uuid from 'uuid-quick';
+
 import { AVAILABLE_IWADS, MOD_EXTENSIONS } from '../constants';
+import { getExt } from './common';
 
 const walkWadDir = dir => {
   if (!dir || dir.trim() === '') {
@@ -58,7 +59,7 @@ const IWADItem = item => {
     kind: getExt(item.path),
     path: item.path,
     size: `${sz.value} ${sz.unit}`,
-    date: item.stats.birthtimeMs,
+    created: item.stats.birthtimeMs,
     active: false
   };
 };
@@ -82,7 +83,7 @@ const modItem = item => {
     kind: getExt(item.path),
     path: item.path,
     size: `${sz.value} ${sz.unit}`,
-    date: item.stats.birthtimeMs,
+    created: item.stats.birthtimeMs,
     active: false
   };
 };
