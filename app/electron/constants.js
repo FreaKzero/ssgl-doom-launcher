@@ -1,4 +1,4 @@
-const MOD_EXTENSIONS = ['PK3', 'WAD', 'DEH', 'ZIP', 'RAR'];
+const MOD_EXTENSIONS = ['PK3', 'PK7', 'WAD', 'DEH', 'BEX', 'ZIP', 'RAR'];
 
 const AVAILABLE_IWADS = [
   'chex',
