@@ -9,7 +9,7 @@ import { setTitle, useIpc, useToast, useTranslation } from '../utils';
 
 const Settings = () => {
   setTitle('settings');
-  const { t } = useTranslation(['settings', 'common']);
+  const { t } = useTranslation(['settings', 'common', 'nav']);
   const { gstate, dispatch } = useContext(StoreContext);
   const { settings } = gstate;
   const [form, setForm] = useState(settings);
@@ -17,6 +17,17 @@ const Settings = () => {
   const [toast] = useToast();
   const [saveSettings] = useIpc();
   const [fetchInit, loadInit] = useIpc();
+
+  const viewOptions = [
+    {
+      label: t('nav:wads'),
+      value: '/'
+    },
+    {
+      label: t('nav:packages'),
+      value: '/packages'
+    }
+  ];
 
   const sourceportOptions = gstate.sourceports.map(item => ({
     label: item.name,
@@ -82,6 +93,15 @@ const Settings = () => {
         <Flex.Grid>
           <Flex.Col width="50%">
             <SelectFile
+              name="modpath"
+              onFile={onComponent}
+              label={t('settings:waddir')}
+              value={form.modpath}
+              error={errors.modpath}
+              directory
+              fluid
+            />
+            <SelectFile
               name="background"
               onFile={onComponent}
               label={t('settings:wallpaper')}
@@ -96,24 +116,8 @@ const Settings = () => {
               onChange={onComponent}
               error={errors.defaultsourceport}
             />
-            <Dropdown
-              name="language"
-              options={AVAILABLE_LOCALES}
-              label={t('common:language')}
-              value={form.language}
-              onChange={onComponent}
-            />
           </Flex.Col>
           <Flex.Col width="50%">
-            <SelectFile
-              name="modpath"
-              onFile={onComponent}
-              label={t('settings:waddir')}
-              value={form.modpath}
-              error={errors.modpath}
-              directory
-              fluid
-            />
             <SelectFile
               name="savepath"
               onFile={onComponent}
@@ -122,6 +126,22 @@ const Settings = () => {
               error={errors.savepath}
               directory
               fluid
+            />
+            {gstate.packages.length > 0 ? (
+              <Dropdown
+                name="startView"
+                options={viewOptions}
+                label="Startview"
+                value={form.startView}
+                onChange={onComponent}
+              />
+            ) : null}
+            <Dropdown
+              name="language"
+              options={AVAILABLE_LOCALES}
+              label={t('common:language')}
+              value={form.language}
+              onChange={onComponent}
             />
           </Flex.Col>
         </Flex.Grid>
