@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { useLocation } from 'wouter';
 
 import routes from '#/routes';
 import styles from '#Style';
@@ -24,7 +23,6 @@ const NavList = styled.ul`
 const Nav = () => {
   const { gstate } = useContext(StoreContext);
   const { t } = useTranslation('nav');
-  const [location] = useLocation();
 
   const r = routes.filter(item => {
     const { packages, mods, sourceports, settings } = gstate;
@@ -48,11 +46,7 @@ const Nav = () => {
     <NavList>
       {r.map(route => {
         return (
-          <NavItem
-            key={`rote_${route.href}_${route.label}`}
-            active={route.href === window.location.hash}
-            to={route.href}
-          >
+          <NavItem key={`rote_${route.href}_${route.label}`} to={route.href}>
             {t(route.label)}
           </NavItem>
         );

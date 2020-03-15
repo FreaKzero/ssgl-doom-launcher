@@ -21,11 +21,11 @@ const Settings = () => {
   const viewOptions = [
     {
       label: t('nav:wads'),
-      value: '/'
+      value: '/#/'
     },
     {
       label: t('nav:packages'),
-      value: '/packages'
+      value: '/#/packages'
     }
   ];
 

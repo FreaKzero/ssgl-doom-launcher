@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'wouter';
 
 import styles from '#Style';
+
+import { useHashLocation } from '../../utils';
 
 const NavItemStyle = styled.li`
   display: table-cell;
@@ -45,10 +46,14 @@ const NavItemStyle = styled.li`
   }
 `;
 
-const NavItem = ({ children, to, active }) => {
+/*
+  We have to do it that way because of the hashrouter - <Link> doesnt recognize the hashs
+*/
+const NavItem = ({ children, to }) => {
+  const [location] = useHashLocation();
   return (
     <NavItemStyle>
-      <a className={active ? 'active' : undefined} href={'#' + to}>
+      <a className={location === to ? 'active' : undefined} href={'#' + to}>
         {children}
       </a>
     </NavItemStyle>
