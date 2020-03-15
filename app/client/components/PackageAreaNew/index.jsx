@@ -32,7 +32,11 @@ const PackageAreaNew = () => {
     }));
 
   useEffect(() => {
-    if (form.id !== gstate.package.id) {
+    if (gstate.package.id === null) {
+      setForm({
+        ...gstate.package
+      });
+    } else if (form.id !== gstate.package.id) {
       setForm({
         ...gstate.package,
         iwad: gstate.package.iwad.path,

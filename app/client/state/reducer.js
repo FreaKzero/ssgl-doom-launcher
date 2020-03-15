@@ -20,7 +20,7 @@ export const initState = {
     sourceport: null,
     iwad: null,
     cover: null,
-    name: 'unnamed',
+    name: '',
     selected: []
   },
   packages: [],
@@ -38,7 +38,7 @@ export const initState = {
 export function reducer(state, action) {
   switch (action.type) {
     case 'main/init':
-      return act({ ...state, ...action.data });
+      return act({ ...state, ...action.data, package: initState.package });
 
     case 'sourceports/save':
       return act({
