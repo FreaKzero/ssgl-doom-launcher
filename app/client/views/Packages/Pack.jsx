@@ -6,7 +6,7 @@ import { useLocation } from 'wouter';
 
 import styles from '#Style';
 
-import covers from '../../assets/covers';
+import covers from '../../assets/ssgl-iwad-covers';
 import { ButtonStyle } from '../../components/Form/Button';
 import { StoreContext } from '../../state';
 import { setTitle, useIpc, useTranslation } from '../../utils';

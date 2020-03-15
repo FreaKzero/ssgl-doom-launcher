@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import styles from '#Style';
 
-import Covers from '../../assets/covers';
+import Covers from '../../assets/ssgl-iwad-covers';
 
 const ListItemStyle = styled.li`
   margin-right: 10px;

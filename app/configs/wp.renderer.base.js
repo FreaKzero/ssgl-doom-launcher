@@ -18,7 +18,18 @@ module.exports = {
         use: ['babel-loader']
       },
       {
-        test: /\.(eot|woff|woff2|ttf|png|jpe?g|gif)([\?]?.*)$/,
+        test: /.*ssgl-iwad-covers\/.*\.(png|jpe?g|gif)$/i,
+        loader: 'url-loader'
+      },
+      {
+        test: /^((?!ssgl-iwad-covers).)*\.(png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]'
+        }
+      },
+      {
+        test: /\.(eot|woff|woff2|ttf)([\?]?.*)$/,
         use: ['file-loader']
       }
     ]
