@@ -36,7 +36,8 @@ export default {
     waddir: 'WAD Bestandslijst',
     wallpaper: 'Achtergrond Afbeelding',
     save: 'Instellingen Opslaan',
-    toastSaved: 'Instellingen Succesvol Opgeslagen'
+    toastSaved: 'Instellingen Succesvol Opgeslagen',
+    startView: 'Open View when SSGL starts'
   },
   common: {
     loading: 'Laden',
@@ -50,7 +51,7 @@ export default {
   },
   nav: {
     appname: 'Super Shotgun Launcher',
-    wads: 'Wads',
+    wads: 'Mods',
     packages: 'Pakketten',
     sourceports: 'Bronpoorten',
     settings: 'Instellingen'
@@ -64,7 +65,8 @@ export default {
     toastSave: 'Opgeslagen Pakket',
     use: 'Gebruik',
     play: 'Nu Spelen',
-    delete: 'Verwijder'
+    delete: 'Verwijder',
+    selectPackage: 'Select Package'
   },
   errors: {
     SETTINGS_FILE: 'No Settings found',

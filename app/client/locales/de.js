@@ -11,7 +11,7 @@ export default {
     active: 'Gewählt'
   },
   wads: {
-    filter: 'Filter {{size}} Mods',
+    filter: 'Suche unter {{size}} Mods',
     toastIndex: 'Mod Verzeichnis neu geladen',
     packEdit: 'Editieren',
     packSaveAs: 'Speichern als',
@@ -36,7 +36,8 @@ export default {
     waddir: 'Wad Verzeichnis',
     wallpaper: 'Hintergrundbild',
     save: 'Einstellungen Speichern',
-    toastSaved: 'Einstellungen erfolgreich gespeichert'
+    toastSaved: 'Einstellungen erfolgreich gespeichert',
+    startView: 'Startseite wenn SSGL geöffnet wird'
   },
   common: {
     loading: 'Laden',
@@ -58,13 +59,14 @@ export default {
   packages: {
     lastplayed: 'Zuletzt: {{value, date}}',
     never: 'Zuletzt: Nie',
-    filter: 'Filter {{size}} Pakete',
+    filter: 'Suche unter {{size}} Pakete',
     titleSave: 'Speichern als: {{name}}',
     titleEdit: 'Bearbeiten: {{name}}',
     toastSave: 'Paket gespeichert',
     use: 'Wählen',
     play: 'Spielen',
-    delete: 'Löschen'
+    delete: 'Löschen',
+    selectPackage: 'Paket wählen'
   },
   errors: {
     SETTINGS_FILE: 'No Settings found',

@@ -36,7 +36,8 @@ export default {
     waddir: 'WAD Directory',
     wallpaper: 'Wallpaper Image',
     save: 'Save Settings',
-    toastSaved: 'Successfully saved Settings'
+    toastSaved: 'Successfully saved Settings',
+    startView: 'Open View when SSGL starts'
   },
   common: {
     loading: 'Loading',
@@ -50,7 +51,7 @@ export default {
   },
   nav: {
     appname: 'Super Shotgun Launcher',
-    wads: 'Wads',
+    wads: 'Mods',
     packages: 'Packages',
     sourceports: 'Sourceports',
     settings: 'Settings'
@@ -64,7 +65,8 @@ export default {
     toastSave: 'Saved Package',
     use: 'Use',
     play: 'Play now',
-    delete: 'Delete'
+    delete: 'Delete',
+    selectPackage: 'Select Package'
   },
   errors: {
     SETTINGS_FILE: 'No Settings found',

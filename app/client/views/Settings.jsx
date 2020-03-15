@@ -131,7 +131,7 @@ const Settings = () => {
               <Dropdown
                 name="startView"
                 options={viewOptions}
-                label="Startview"
+                label={t('settings:startView')}
                 value={form.startView}
                 onChange={onComponent}
               />

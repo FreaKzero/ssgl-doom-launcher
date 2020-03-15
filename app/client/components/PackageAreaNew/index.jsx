@@ -96,7 +96,7 @@ const PackageAreaNew = () => {
             <Dropdown
               options={opts}
               onChange={onSelect}
-              placeholder={'Select Package'}
+              placeholder={t('packages:selectPackage')}
               name="packageSelector"
               fluid
             />
