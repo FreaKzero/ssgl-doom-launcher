@@ -46,15 +46,17 @@ const Nav = () => {
 
   return (
     <NavList>
-      {r.map(route => (
-        <NavItem
-          key={`rote_${route.href}_${route.label}`}
-          active={route.href === location}
-          to={route.href}
-        >
-          {t(route.label)}
-        </NavItem>
-      ))}
+      {r.map(route => {
+        return (
+          <NavItem
+            key={`rote_${route.href}_${route.label}`}
+            active={route.href === window.location.hash}
+            to={route.href}
+          >
+            {t(route.label)}
+          </NavItem>
+        );
+      })}
     </NavList>
   );
 };

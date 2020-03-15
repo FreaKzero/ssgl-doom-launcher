@@ -48,9 +48,9 @@ const NavItemStyle = styled.li`
 const NavItem = ({ children, to, active }) => {
   return (
     <NavItemStyle>
-      <Link className={active ? 'active' : undefined} href={to}>
+      <a className={active ? 'active' : undefined} href={'#' + to}>
         {children}
-      </Link>
+      </a>
     </NavItemStyle>
   );
 };

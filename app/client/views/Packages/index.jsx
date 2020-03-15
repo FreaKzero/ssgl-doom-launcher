@@ -8,6 +8,7 @@ import { sortList } from '../../utils';
 import Pack from './Pack';
 import PackageFilter from './PackageFilter';
 
+console.log(location.href);
 const Packages = () => {
   const { gstate } = useContext(StoreContext);
   const [filter, setRawFilter] = useState('');
