@@ -13,23 +13,12 @@ module.exports = {
         loader: 'svg-inline-loader'
       },
       {
-        test: /.*covers\/.*\.(png|jpe?g|gif)$/i,
-        loader: 'url-loader'
-      },
-      {
-        test: /^((?!covers).)*\.(png|jpe?g|gif)$/i,
-        loader: 'file-loader',
-        options: {
-          name: '[path][name].[ext]'
-        }
-      },
-      {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader']
       },
       {
-        test: /\.(eot|woff|woff2|ttf)([\?]?.*)$/,
+        test: /\.(eot|woff|woff2|ttf|png|jpe?g|gif)([\?]?.*)$/,
         use: ['file-loader']
       }
     ]
