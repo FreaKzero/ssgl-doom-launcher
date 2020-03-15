@@ -18,7 +18,7 @@ module.exports = {
         use: ['babel-loader']
       },
       {
-        test: /.*ssgl-iwad-covers\/.*\.(png|jpe?g|gif)$/i,
+        test: /.*ssgl-iwad-covers.*jpg$/i,
         loader: 'url-loader'
       },
       {
