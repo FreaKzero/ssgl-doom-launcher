@@ -21,8 +21,8 @@ export default {
   sourceports: {
     parameter: 'Parameter',
     filename: 'Bestandsnaam',
-    delete: 'Verwijder Bronpoort',
-    save: 'Bronpoort opslaan',
+    delete: 'Verwijder',
+    save: 'Opslaan',
     binary: 'Locatie Bronpoort',
     name: 'Naam Bronpoort',
     savegameparam: 'Afzonderlijke Games Opslaan Per Pakket',
@@ -65,5 +65,11 @@ export default {
     use: 'Gebruik',
     play: 'Nu Spelen',
     delete: 'Verwijder'
+  },
+  errors: {
+    SETTINGS_FILE: 'No Settings found',
+    UNEXPECTED: 'Unexpected Error happened',
+    WALKER_ERROR: 'FileWalker Error',
+    JSON_WRITE: 'Error while writing JSON File'
   }
 };

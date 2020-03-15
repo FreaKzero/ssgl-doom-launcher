@@ -16,7 +16,7 @@ const Input = styled(InputStyle)`
 
 const SelectButton = styled(ButtonStyle)`
   user-select: none;
-  min-width: 100px;
+  min-width: 150px;
   border-radius: ${styles.border.radius} 0 0 ${styles.border.radius};
   padding: 0;
 

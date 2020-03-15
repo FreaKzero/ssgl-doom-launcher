@@ -30,6 +30,7 @@ export const ButtonStyle = styled.button`
   padding: 7px;
   cursor: pointer;
   margin-right: 10px;
+  white-space: nowrap;
 
   &:hover {
     border: ${p =>

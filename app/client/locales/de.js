@@ -5,6 +5,7 @@ export default {
     selectDir: 'Ordner'
   },
   filters: {
+    lastplayed: 'Zuletzt gespielt',
     oldest: 'Älteste',
     newest: 'Neueste',
     active: 'Gewählt'
@@ -64,5 +65,11 @@ export default {
     use: 'Wählen',
     play: 'Spielen',
     delete: 'Löschen'
+  },
+  errors: {
+    SETTINGS_FILE: 'No Settings found',
+    UNEXPECTED: 'Unexpected Error happened',
+    WALKER_ERROR: 'FileWalker Error',
+    JSON_WRITE: 'Error while writing JSON File'
   }
 };

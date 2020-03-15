@@ -65,5 +65,11 @@ export default {
     use: 'Use',
     play: 'Play now',
     delete: 'Delete'
+  },
+  errors: {
+    SETTINGS_FILE: 'No Settings found',
+    UNEXPECTED: 'Unexpected Error happened',
+    WALKER_ERROR: 'FileWalker Error',
+    JSON_WRITE: 'Error while writing JSON File'
   }
 };

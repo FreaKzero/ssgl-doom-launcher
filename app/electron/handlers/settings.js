@@ -1,5 +1,6 @@
 import { ipcMain } from 'electron';
 
+import ERRORS from '../utils/errors';
 import { setJSON } from '../utils/json';
 
 ipcMain.handle('settings/save', async (e, data) => {
@@ -10,9 +11,6 @@ ipcMain.handle('settings/save', async (e, data) => {
       error: null
     };
   } catch (e) {
-    return {
-      data: null,
-      error: e
-    };
+    return ERRORS.JSON_WRITE;
   }
 });

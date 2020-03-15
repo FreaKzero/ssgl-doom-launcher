@@ -1,7 +1,15 @@
 import { ipcMain } from 'electron';
 
 import { play } from '../utils/common';
+import ERRORS from '../utils/errors';
 import { getJSON, setJSON } from '../utils/json';
+
+ipcMain.handle('sourceports/test', async (e, data) => {
+  return {
+    data: null,
+    error: 'FUCK'
+  };
+});
 
 ipcMain.handle('sourceports/save', async (e, data) => {
   try {
@@ -11,10 +19,7 @@ ipcMain.handle('sourceports/save', async (e, data) => {
       error: null
     };
   } catch (e) {
-    return {
-      data: null,
-      error: e.message
-    };
+    return ERRORS.JSON_WRITE;
   }
 });
 

@@ -1,5 +1,6 @@
 import { ipcMain } from 'electron';
 
+import ERRORS from '../utils/errors';
 import { getJSON } from '../utils/json';
 import { walkWadDir } from '../utils/mods';
 
@@ -21,15 +22,9 @@ ipcMain.handle('main/init', async () => {
         }
       };
     } catch (e) {
-      return {
-        data: null,
-        error: e.message
-      };
+      return ERRORS.WALKER_ERROR;
     }
   } catch (e) {
-    return {
-      data: null,
-      error: 'Cant load Settings'
-    };
+    return ERRORS.SETTINGS_FILE;
   }
 });
