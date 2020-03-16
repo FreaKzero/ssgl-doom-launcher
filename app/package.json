@@ -44,14 +44,17 @@
   "author": "me",
   "devDependencies": {
     "@babel/core": "^7.6.4",
+    "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
+    "@babel/runtime": "^7.7.7",
     "babel-loader": "^8.0.6",
     "babel-plugin-styled-components": "^1.10.6",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "concurrently": "^5.0.0",
     "css-loader": "^3.3.0",
     "electron": "^7.0.0",
-    "electron-builder": "^21.2.0",
+    "electron-builder": "^22.0.0",
     "electron-reload": "^1.5.0",
     "error-overlay-webpack-plugin": "^0.4.1",
     "eslint": "^6.6.0",
@@ -74,10 +77,7 @@
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.9.0",
     "webpack-electron-reload": "^1.0.0",
-    "webpack-merge": "^4.2.2",
-    "@babel/plugin-transform-runtime": "^7.7.6",
-    "@babel/runtime": "^7.7.7",
-    "babel-plugin-transform-runtime": "^6.23.0"
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "byte-size": "^6.2.0",
