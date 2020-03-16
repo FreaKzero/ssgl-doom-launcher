@@ -18,7 +18,7 @@
     "productName": "ssgl-doom-launcher",
     "appId": "ssgl-doom-launcher",
     "mac": {
-      "target": "zip"
+      "target": "dmg"
     },
     "win": {
       "target": "portable"
@@ -73,12 +73,12 @@
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.9.0",
     "webpack-electron-reload": "^1.0.0",
-    "webpack-merge": "^4.2.2"
-  },
-  "dependencies": {
+    "webpack-merge": "^4.2.2",
     "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/runtime": "^7.7.7",
-    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-plugin-transform-runtime": "^6.23.0"
+  },
+  "dependencies": {
     "byte-size": "^6.2.0",
     "date-fns": "^2.10.0",
     "framer-motion": "^1.6.18",
