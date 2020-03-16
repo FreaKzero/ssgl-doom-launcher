@@ -1,6 +1,6 @@
 {
   "name": "ssgl-doom-launcher",
-  "version": "2.0.0-devpreview.6",
+  "version": "2.0.0-devpreview.7",
   "description": "...",
   "main": "./build/main-bundle.js",
   "repository": "https://github.com/FreaKzero/ssgl-doom-launcher",
@@ -19,12 +19,10 @@
     "productName": "ssgl-doom-launcher",
     "appId": "ssgl-doom-launcher",
     "mac": {
-      "target": "dmg",
-      "publish": ["github"]
+      "target": "dmg"
     },
     "win": {
-      "target": "portable",
-      "publish": ["github"]
+      "target": "portable"
     },
     "files": [
       "production.html",
