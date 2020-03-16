@@ -19,10 +19,12 @@
     "productName": "ssgl-doom-launcher",
     "appId": "ssgl-doom-launcher",
     "mac": {
-      "target": "dmg"
+      "target": "dmg",
+      "publish": ["github"]
     },
     "win": {
-      "target": "portable"
+      "target": "portable",
+      "publish": ["github"]
     },
     "files": [
       "production.html",
