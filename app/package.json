@@ -16,8 +16,8 @@
     "package": "yarn clean && yarn build && electron-builder build --publish never"
   },
   "build": {
-    "productName": "ssgl-doom-launcher",
-    "appId": "ssgl-doom-launcher",
+    "productName": "ssgl",
+    "appId": "ssgl",
     "mac": {
       "target": "dmg"
     },
