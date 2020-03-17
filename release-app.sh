@@ -1,7 +1,4 @@
-git checkout latest
-git pull
 git checkout master
-git pull
 git merge latest
 
 VERSION="v"
@@ -18,5 +15,6 @@ else
     git tag "$VERSION"
     git push && git push --tags
     git checkout latest
+    git merge master
     open "https://github.com/FreaKzero/ssgl-doom-launcher/actions"
 fi
