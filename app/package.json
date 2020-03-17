@@ -16,8 +16,8 @@
     "package": "yarn clean && yarn build && electron-builder build --publish never"
   },
   "build": {
-    "productName": "ssgl",
-    "appId": "ssgl",
+    "productName": "SSGL",
+    "appId": "SSGL",
     "mac": {
       "target": "dmg"
     },
@@ -25,7 +25,8 @@
       "target": "portable"
     },
     "linux": {
-      "target": "snap"
+      "target": "snap",
+      "publish": ["github"]
     },
     "files": [
       "production.html",
