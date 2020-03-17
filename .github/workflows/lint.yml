@@ -1,8 +1,7 @@
-name: SSGL-CI
+name: Audit/lint
 on: [push]
 jobs:
   lint:
-    name: Audit and Lint
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -13,7 +12,7 @@ jobs:
       working-directory: './app'
       
     - name: Audit
-      run: yarn audit
+      run: yarn audit --groups dependencies
       working-directory: './app'
       
     - name: Lint
