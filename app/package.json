@@ -24,6 +24,9 @@
     "win": {
       "target": "portable"
     },
+    "linux": {
+      "target": "snap"
+    },
     "files": [
       "production.html",
       "build/**/*.*",
