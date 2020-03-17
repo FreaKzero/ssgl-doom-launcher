@@ -1,6 +1,6 @@
 {
   "name": "ssgl-doom-launcher",
-  "version": "2.0.0-devpreview.11",
+  "version": "2.0.0-devpreview.12",
   "description": "...",
   "main": "./build/main-bundle.js",
   "repository": "https://github.com/FreaKzero/ssgl-doom-launcher",
