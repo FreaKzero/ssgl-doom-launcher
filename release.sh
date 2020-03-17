@@ -17,5 +17,6 @@ else
     git commit -am "$VERSION"
     git tag "$VERSION"
     git push && git push --tags
+    git checkout latest
     open "https://github.com/FreaKzero/ssgl-doom-launcher/actions"
 fi
