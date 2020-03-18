@@ -1,4 +1,3 @@
-# Super Shotgun Launcher
 <p align="center"><img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/app/icon.png" width="250"></p>
 Multi Operating System DooM Frontend
 
