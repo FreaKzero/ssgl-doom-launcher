@@ -1,16 +1,9 @@
-# Super Shotgun Launcher (Doom Frontend/WAD Launcher)
-<p align="center"><img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/master/SOON.png" width="400"></p>
+# Super Shotgun Launcher 
+## Multi Operating System DooM Frontend
+<p align="center"><img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/app/icon.png" width="250"></p>
+[Developer Preview Release](https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v2.0.0-devpreview.13)  
+[Discord Server](https://discord.gg/MsjZhHF)  
 
-Discord Server: https://discord.gg/MsjZhHF
+Currently gets completely rewritten and redesigned in React and Electron because of abandonment/EOL of Angular 1.5 and NWjs.
 
-Currently gets rewritten in React and Electron because of abandonment/EOL of Angular 1.5 and NWjs.
-
-My own Goals for this Rewrite: 
-- Get as close as the original with the UI design
-- Just scan 1 Folder and SSGL should figure the rest out, no differentiating between iWads and Wad Folders anymore
-- Nicer and Simpler Codebase/Building as the old one
-- "Own" Component/UI with animations (styled-components and Framer Motion)
-- Better handling of Sourceports, user should be able to configure the Sourceport and parameters as he want
-- "Fresh" Visual Design and possibility to change Wallpapers, roughly based on DOOM 2016 Design
-- Nicer "Modlist" selection which is now called "Packages"
-- In the long run: Controller Support
+<p align="center"><img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/screen.png" width="700"></p>
