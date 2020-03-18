@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
 const path = require('path');
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Menu } = require('electron');
+const menu = require('./menu');
 
 const whenProd = (whenProd, notProd) =>
   app.name.toLowerCase() === 'electron' ? notProd : whenProd;
@@ -24,10 +25,11 @@ function createWindow() {
   );
 
   mainWindow.loadURL(url);
-
   mainWindow.on('closed', function() {
     mainWindow = null;
   });
+
+  Menu.setApplicationMenu(menu);
 }
 
 app.on('ready', createWindow);
