@@ -11,7 +11,7 @@ export default {
     active: 'Active first'
   },
   wads: {
-    filter: 'Filter {{size}} Mods',
+    filter: 'Search in {{size}} Mods',
     toastIndex: 'Reindexed Mod Directory',
     packEdit: 'Edit',
     packSaveAs: 'Save as',
@@ -59,7 +59,7 @@ export default {
   packages: {
     lastplayed: 'Last played: {{value, date}}',
     never: 'Last played: Never',
-    filter: 'Filter {{size}} Packages',
+    filter: 'Search in {{size}} Packages',
     titleSave: 'Save as: {{name}}',
     titleEdit: 'Edit: {{name}}',
     toastSave: 'Saved Package',
