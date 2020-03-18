@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readmelogo.png" width="250"></p>
+<p align="center"><img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readmelogo.png" width="350"></p>
 
 - [Developer Preview Release](https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v2.0.0-devpreview.13)
 - [Discord Server](https://discord.gg/MsjZhHF)
