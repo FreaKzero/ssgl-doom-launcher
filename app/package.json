@@ -1,7 +1,7 @@
 {
   "name": "ssgl-doom-launcher",
   "version": "2.0.0-devpreview.13",
-  "description": "...",
+  "description": "Modern Doom Frontend/Mod Launcher for every Desktop Operating System",
   "main": "./build/main-bundle.js",
   "repository": "https://github.com/FreaKzero/ssgl-doom-launcher",
   "scripts": {
