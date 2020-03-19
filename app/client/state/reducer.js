@@ -68,7 +68,10 @@ export function reducer(state, action) {
             active: true
           };
         } else {
-          return mod;
+          return {
+            ...mod,
+            active: false
+          }
         }
       });
 
