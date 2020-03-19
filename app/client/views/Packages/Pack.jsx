@@ -9,7 +9,7 @@ import styles from '#Style';
 import covers from '../../assets/ssgl-iwad-covers';
 import { ButtonStyle } from '../../components/Form/Button';
 import { StoreContext } from '../../state';
-import { setTitle, useIpc, useTranslation } from '../../utils';
+import { setTitle, useIpc, useToast, useTranslation } from '../../utils';
 
 const PackageMotion = ({ children, ...rest }) => {
   return (
@@ -107,16 +107,25 @@ const Pack = ({ pack }) => {
   setTitle('packages');
   const [ipc] = useIpc();
   const { gstate, dispatch } = useContext(StoreContext);
-  const { t } = useTranslation('packages');
+  const { t } = useTranslation(['packages', 'common']);
   // eslint-disable-next-line no-unused-vars
   const [location, setLocation] = useLocation();
+  const [toast] = useToast();
 
   const onPlay = async () => {
     const newPackages = await ipc('sourceports/play', {
       ...pack
     });
-
     dispatch({ type: 'packages/save', packages: newPackages, package: pack });
+
+    toast(
+      'ok',
+      t('common:toastStart'),
+      t('common:toastStartText', {
+        sourceport: pack.sourceport.name,
+        num: newPackages.length
+      })
+    );
   };
 
   const onUse = () => {
@@ -141,16 +150,16 @@ const Pack = ({ pack }) => {
         </Meta>
         <Meta>
           {pack.lastplayed === 0
-            ? t('never')
-            : t('lastplayed', { value: pack.lastplayed })}
+            ? t('packages:never')
+            : t('packages:lastplayed', { value: pack.lastplayed })}
         </Meta>
 
         <ButtonContainer>
           <Button type="submit" onClick={onPlay}>
-            {t('play')}
+            {t('packages:play')}
           </Button>
           <Button type="submit" onClick={onUse}>
-            {t('use')}
+            {t('packages:use')}
           </Button>
 
           <Button
@@ -160,7 +169,7 @@ const Pack = ({ pack }) => {
             color={'#ff2f00'}
             onClick={onDelete}
           >
-            {t('delete')}
+            {t('packages:delete')}
           </Button>
         </ButtonContainer>
       </div>

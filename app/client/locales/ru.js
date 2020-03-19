@@ -46,7 +46,9 @@ export default {
     cancel: 'Отмена',
     ok: 'Ок',
     required: 'Required',
-    toastRequired: 'Please Fill out the required Fields'
+    toastRequired: 'Please Fill out the required Fields',
+    toastStart: 'Starting Sourceport',
+    toastStartText: `Starting {{sourceport}} with {{num}} Mods`
   },
   nav: {
     appname: 'Super Shotgun Launcher',

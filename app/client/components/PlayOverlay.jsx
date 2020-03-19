@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import styles from '#Style';
 
 import { StoreContext } from '../state';
-import { useIpc } from '../utils';
+import { useIpc, useToast, useTranslation } from '../utils';
 import BackDrop from './Backdrop';
 import Dropdown from './Form/Dropdown';
 import IWad from './IWad';
@@ -52,7 +52,8 @@ const PlayOverlay = ({ active, setActive }) => {
   const { gstate, dispatch } = useContext(StoreContext);
   const [sourceport, setSourceport] = useState();
   const [ipc] = useIpc();
-
+  const [toast] = useToast();
+  const { t } = useTranslation(['common']);
   const options = gstate.sourceports.map(item => ({
     label: item.name,
     value: item.id
@@ -88,6 +89,14 @@ const PlayOverlay = ({ active, setActive }) => {
     });
 
     setActive(false);
+    toast(
+      'ok',
+      t('common:toastStart'),
+      t('common:toastStartText', {
+        sourceport: useSourceport.name,
+        num: newPackages.length
+      })
+    );
   };
 
   return (

@@ -47,7 +47,9 @@ export default {
     cancel: 'Annuleren',
     ok: 'Ok',
     required: 'Verplicht',
-    toastRequired: 'Vul Alstublieft De Verplichte Velden In'
+    toastRequired: 'Vul Alstublieft De Verplichte Velden In',
+    toastStart: 'Starting Sourceport',
+    toastStartText: `Starting {{sourceport}} with {{num}} Mods`
   },
   nav: {
     appname: 'Super Shotgun Launcher',
