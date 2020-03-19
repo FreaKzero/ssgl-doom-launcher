@@ -1,8 +1,8 @@
 import { ipcMain } from 'electron';
 
-import { play } from '../utils/common';
 import ERRORS from '../utils/errors';
 import { getJSON, setJSON } from '../utils/json';
+import play from '../utils/play';
 
 ipcMain.handle('sourceports/test', async (e, data) => {
   return {

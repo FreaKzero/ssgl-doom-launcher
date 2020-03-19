@@ -1,7 +1,5 @@
-import { spawn } from 'child_process';
 import { app } from 'electron';
 import { createReadStream, createWriteStream, existsSync, mkdirSync } from 'fs';
-import { platform } from 'os';
 import { isAbsolute, join, parse, resolve, sep } from 'path';
 
 const getDataFile = file => join(app.getPath('userData'), file);
@@ -27,62 +25,4 @@ const getExt = str =>
     .ext.toUpperCase()
     .substr(1);
 
-const play = (pack, settings) => {
-  let deh = [];
-  let file = [];
-  let params = [];
-
-  const { iwad, selected, sourceport, name } = pack;
-
-  const BASEDIR = `${settings.savepath}/${sourceport.name}/${name}`;
-
-  if (settings.savepath.trim() !== '' && !existsSync(BASEDIR)) {
-    createPath(BASEDIR);
-    if (existsSync(sourceport.configDefault) && sourceport.hasConfig) {
-      copyfile(
-        sourceport.configDefault,
-        `${BASEDIR}/${sourceport.configFilename}`
-      );
-    }
-  }
-
-  selected.forEach(i =>
-    i.kind === 'DEH' ? deh.push(i.path) : file.push(i.path)
-  );
-
-  if (sourceport.hasConfig) {
-    params = params.concat([
-      sourceport.paramConfig,
-      `${BASEDIR}/${sourceport.configFilename}`
-    ]);
-  }
-
-  if (sourceport.hasSavedir) {
-    params = params.concat([sourceport.paramSave, `${BASEDIR}/saves`]);
-  }
-
-  let COMMAND = ['-iwad', iwad.path, '-file', ...file];
-
-  if (params.length > 0) {
-    COMMAND = COMMAND.concat(params);
-  }
-
-  if (deh.length > 0) {
-    const DEH = ['-deh', ...deh];
-    COMMAND = COMMAND.concat(DEH);
-  }
-
-  if (platform() === 'darwin') {
-    let MAC = [sourceport.binary, '--args'];
-    COMMAND = [...MAC, ...COMMAND];
-    spawn('open', COMMAND);
-  } else {
-    spawn(sourceport.binary, COMMAND);
-  }
-
-  return {
-    data: pack,
-    error: null
-  };
-};
-export { getExt, getDataFile, play };
+export { getExt, getDataFile, copyfile, createPath };

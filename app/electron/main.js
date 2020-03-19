@@ -29,7 +29,7 @@ function createWindow() {
     mainWindow = null;
   });
 
-  Menu.setApplicationMenu(menu);
+  
 }
 
 app.on('ready', createWindow);
