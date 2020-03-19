@@ -5,15 +5,16 @@ import styled from 'styled-components';
 
 import circle from '#/assets/icon/circle.svg';
 import down from '#/assets/icon/down.svg';
+import times from '#/assets/icon/times.svg';
 import up from '#/assets/icon/up.svg';
 import styles from '#Style';
 
 // TODO: color / refactor
-const IconStyle = styled.div`
+export const IconStyle = styled.div`
   cursor: pointer;
 
   svg {
-    stroke: ${styles.border.idle};
+    stroke: ${p => (p.stroke ? p.stroke : styles.border.idle)};
     transition: ${styles.transition.out};
   }
 
@@ -28,19 +29,21 @@ const IconStyle = styled.div`
 const names = {
   up,
   down,
-  circle
+  circle,
+  times
 };
 
-const Icon = ({ name, ...rest }) => {
+const Icon = ({ name, stroke, ...rest }) => {
   return names[name] ? (
-    <IconStyle>
+    <IconStyle stroke={stroke}>
       <SvgInline {...rest} svg={names[name]} component="div" />
     </IconStyle>
   ) : null;
 };
 
 Icon.propTypes = {
-  name: PropTypes.string
+  name: PropTypes.string,
+  stroke: PropTypes.string
 };
 
 export default Icon;

@@ -68,7 +68,8 @@ export default {
     use: 'Use',
     play: 'Play now',
     delete: 'Delete',
-    selectPackage: 'Select Package'
+    selectPackage: 'Select Package',
+    datadir: 'Data'
   },
   errors: {
     SETTINGS_FILE: 'No Settings found',

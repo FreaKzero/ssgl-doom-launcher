@@ -68,7 +68,8 @@ export default {
     use: 'Wählen',
     play: 'Spielen',
     delete: 'Löschen',
-    selectPackage: 'Paket wählen'
+    selectPackage: 'Paket wählen',
+    datadir: 'Daten'
   },
   errors: {
     SETTINGS_FILE: 'No Settings found',

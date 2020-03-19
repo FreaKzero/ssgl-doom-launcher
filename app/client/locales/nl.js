@@ -11,7 +11,7 @@ export default {
     active: 'Actieve eerst'
   },
   wads: {
-    filter: 'Filter {{size}} Mods',
+    filter: 'Zoek in {{size}} Mods',
     toastIndex: 'Reindexed Mod Directory',
     packEdit: 'Wijzig',
     packSaveAs: 'Opslaan als',
@@ -61,14 +61,15 @@ export default {
   packages: {
     lastplayed: 'Laatst Gespeeld: {{value, date}}',
     never: 'Laatst Gespeeld: Nooit',
-    filter: 'Filter {{size}} Pakketten',
+    filter: 'Zoek in {{size}} pakketten',
     titleSave: 'Opslaan Als: {{name}}',
     titleEdit: 'Wijzig: {{name}}',
     toastSave: 'Opgeslagen Pakket',
     use: 'Gebruik',
     play: 'Nu Spelen',
     delete: 'Verwijder',
-    selectPackage: 'Select Package'
+    selectPackage: 'Kies een pakket',
+    datadir: 'gegevens'
   },
   errors: {
     SETTINGS_FILE: 'No Settings found',

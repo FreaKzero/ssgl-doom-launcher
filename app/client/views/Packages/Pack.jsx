@@ -1,3 +1,4 @@
+import { remote } from 'electron';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
@@ -8,6 +9,7 @@ import styles from '#Style';
 
 import covers from '../../assets/ssgl-iwad-covers';
 import { ButtonStyle } from '../../components/Form/Button';
+import Icon from '../../components/Mods/Icon';
 import { StoreContext } from '../../state';
 import { setTitle, useIpc, useToast, useTranslation } from '../../utils';
 
@@ -90,6 +92,12 @@ const PackageStyle = styled(PackageMotion)`
     color: white;
   }
 
+  .delete {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
   .content {
     width: 260px;
     height: 160px;
@@ -128,6 +136,11 @@ const Pack = ({ pack }) => {
     );
   };
 
+  const onData = () => {
+    remote.shell.openItem(
+      `${gstate.settings.savepath}/${pack.sourceport.name}/${pack.id}`
+    );
+  };
   const onUse = () => {
     dispatch({ type: 'packages/select', id: pack.id });
     setLocation('/');
@@ -144,6 +157,9 @@ const Pack = ({ pack }) => {
   return (
     <PackageStyle cover={cover}>
       <div className="content">
+        <div className="delete">
+          <Icon stroke="white" name="times" width="13" onClick={onDelete} />
+        </div>
         <h1>{pack.name}</h1>
         <Meta>
           {pack.sourceport.name} - {pack.selected.length} Mods
@@ -162,14 +178,8 @@ const Pack = ({ pack }) => {
             {t('packages:use')}
           </Button>
 
-          <Button
-            type="button"
-            border={'#f55945'}
-            glow={'#b8342a'}
-            color={'#ff2f00'}
-            onClick={onDelete}
-          >
-            {t('packages:delete')}
+          <Button type="submit" onClick={onData}>
+            {t('packages:datadir')}
           </Button>
         </ButtonContainer>
       </div>
