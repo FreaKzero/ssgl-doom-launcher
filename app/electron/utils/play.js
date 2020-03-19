@@ -27,10 +27,9 @@ const play = (pack, settings) => {
   let bex = [];
   let file = [];
   let params = [];
+  const { iwad, selected, sourceport, id } = pack;
 
-  const { iwad, selected, sourceport, name } = pack;
-
-  const BASEDIR = `${settings.savepath}/${sourceport.name}/${name}`;
+  const BASEDIR = `${settings.savepath}/${sourceport.name}/${id}`;
 
   if (settings.savepath.trim() !== '' && !existsSync(BASEDIR)) {
     createPath(BASEDIR);
