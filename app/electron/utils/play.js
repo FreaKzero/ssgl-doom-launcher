@@ -34,12 +34,17 @@ const play = (pack, settings) => {
 
   if (settings.savepath.trim() !== '' && !existsSync(BASEDIR)) {
     createPath(BASEDIR);
-    if (existsSync(sourceport.configDefault) && sourceport.hasConfig) {
-      copyfile(
-        sourceport.configDefault,
-        `${BASEDIR}/${sourceport.configFilename}`
-      );
-    }
+  }
+
+  if (
+    existsSync(sourceport.configDefault) &&
+    !existsSync(`${BASEDIR}/${sourceport.configFilename}`) &&
+    sourceport.hasConfig
+  ) {
+    copyfile(
+      sourceport.configDefault,
+      `${BASEDIR}/${sourceport.configFilename}`
+    );
   }
 
   selected.forEach(i => {
