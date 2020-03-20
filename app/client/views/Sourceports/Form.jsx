@@ -90,6 +90,10 @@ const Form = ({ item, onSave, onDelete }) => {
       tmp.paramSave = 'Parameters must start with -';
     }
 
+    if (form.hasSavedir === true && form.paramLoad[0] !== '-') {
+      tmp.paramLoad = 'Parameters must start with -';
+    }
+
     if (Object.keys(tmp).length > 0) {
       hasError = true;
     }
@@ -171,14 +175,24 @@ const Form = ({ item, onSave, onDelete }) => {
           onChange={onComponent}
         />
         {form.hasSavedir ? (
-          <Input
-            value={form.paramSave}
-            name="paramSave"
-            label={t('sourceports:parameter')}
-            onChange={onInput}
-            error={errors.paramSave}
-            fluid
-          />
+          <>
+            <Input
+              value={form.paramSave}
+              name="paramSave"
+              label={t('sourceports:paramSave')}
+              onChange={onInput}
+              error={errors.paramSave}
+              fluid
+            />
+            <Input
+              value={form.paramLoad}
+              name="paramLoad"
+              label={t('sourceports:paramLoad')}
+              onChange={onInput}
+              error={errors.paramLoad}
+              fluid
+            />
+          </>
         ) : null}
       </FormBorder>
       <SubmitArea>
@@ -207,7 +221,7 @@ Form.propTypes = {
     name: PropTypes.string,
     paramConfig: PropTypes.string,
     paramSave: PropTypes.string,
-    paramScreen: PropTypes.string
+    paramLoad: PropTypes.string
   }),
   onDelete: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired

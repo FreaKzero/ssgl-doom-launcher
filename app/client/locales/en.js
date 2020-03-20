@@ -19,6 +19,8 @@ export default {
     packReset: 'Reset'
   },
   sourceports: {
+    paramSave: 'Save Directory Parameter',
+    paramLoad: 'Load Savegame Parameter',
     parameter: 'Parameter',
     filename: 'File Name',
     delete: 'Delete Sourceport',

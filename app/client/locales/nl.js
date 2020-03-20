@@ -19,6 +19,8 @@ export default {
     packReset: 'Opnieuw Instellen'
   },
   sourceports: {
+    paramSave: 'Directoryparameter opslaan',
+    paramLoad: 'Laad Spel parameter',
     parameter: 'Parameter',
     filename: 'Bestandsnaam',
     delete: 'Verwijder',

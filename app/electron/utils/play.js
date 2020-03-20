@@ -10,9 +10,6 @@ const getLastSaveGame = dir => {
     return null;
   }
 
-  // const latestSave = getLastSaveGame(`${BASEDIR}/saves`);
-  // COMMAND = COMMAND.concat(['-loadgame', latestSave]);
-
   const files = readdirSync(dir);
   return files
     .map(name => {
@@ -29,7 +26,7 @@ const play = (pack, settings) => {
   let params = [];
   const { iwad, selected, sourceport, id } = pack;
 
-  const BASEDIR = `${settings.savepath}/${sourceport.name}/${id}`;
+  const BASEDIR = `${settings.savepath}/${sourceport.id}/${id}`;
 
   if (settings.savepath.trim() !== '' && !existsSync(BASEDIR)) {
     createPath(BASEDIR);
@@ -59,6 +56,8 @@ const play = (pack, settings) => {
     }
   });
 
+  let COMMAND = ['-iwad', iwad.path, '-file', ...file];
+
   if (sourceport.hasConfig) {
     params = params.concat([
       sourceport.paramConfig,
@@ -68,9 +67,12 @@ const play = (pack, settings) => {
 
   if (sourceport.hasSavedir) {
     params = params.concat([sourceport.paramSave, `${BASEDIR}/saves`]);
-  }
 
-  let COMMAND = ['-iwad', iwad.path, '-file', ...file];
+    const save = getLastSaveGame(`${BASEDIR}/saves`);
+    if (save) {
+      COMMAND = COMMAND.concat([sourceport.paramLoad, save]);
+    }
+  }
 
   if (params.length > 0) {
     COMMAND = COMMAND.concat(params);
@@ -87,6 +89,7 @@ const play = (pack, settings) => {
   if (platform() === 'darwin') {
     let MAC = [sourceport.binary, '--args'];
     COMMAND = [...MAC, ...COMMAND];
+    console.log(COMMAND.join(' '));
     spawn('open', COMMAND);
   } else {
     spawn(sourceport.binary, COMMAND);

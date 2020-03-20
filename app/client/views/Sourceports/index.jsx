@@ -34,11 +34,11 @@ const SourcePorts = () => {
       id: uuid(),
       hasSavedir: false,
       hasConfig: false,
+      paramLoad: '-loadgame',
       paramSave: '-savedir',
       paramConfig: '-config',
       configFilename: '',
       configDefault: '',
-      paramScreen: '',
       name: 'New Sourceport',
       binary: ''
     };

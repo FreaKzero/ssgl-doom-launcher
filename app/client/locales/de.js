@@ -19,6 +19,8 @@ export default {
     packReset: 'Reset'
   },
   sourceports: {
+    paramSave: 'Speicher Verzeichnis Parameter',
+    paramLoad: 'Spielstand Lade Parameter',
     parameter: 'Parameter',
     filename: 'Dateiname',
     delete: 'Sourceport Löschen',
