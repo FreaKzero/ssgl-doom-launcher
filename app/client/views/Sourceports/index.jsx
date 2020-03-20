@@ -1,7 +1,7 @@
 import { AnimatePresence } from 'framer-motion';
 import React, { useContext, useEffect, useState } from 'react';
+import shortid from 'shortid';
 import styled from 'styled-components';
-import uuid from 'uuid-quick';
 
 import { Box, Flex } from '../../components';
 import { Button } from '../../components/Form';
@@ -31,7 +31,7 @@ const SourcePorts = () => {
 
   const createSourceport = () => {
     const item = {
-      id: uuid(),
+      id: shortid.generate(),
       hasSavedir: false,
       hasConfig: false,
       paramLoad: '-loadgame',

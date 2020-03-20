@@ -1,7 +1,6 @@
 import byteSize from 'byte-size';
 import klaw from 'klaw';
 import path from 'path';
-import uuid from 'uuid-quick';
 
 import { AVAILABLE_IWADS, MOD_EXTENSIONS } from '../constants';
 import { getExt } from './common';

@@ -26,7 +26,9 @@
     },
     "linux": {
       "target": "snap",
-      "publish": ["github"]
+      "publish": [
+        "github"
+      ]
     },
     "files": [
       "production.html",
@@ -96,10 +98,10 @@
     "react-i18next": "^11.0.1",
     "react-svg-inline": "^2.1.1",
     "react-tiny-virtual-list": "^2.2.0",
+    "shortid": "^2.2.15",
     "styled-components": "^4.4.1",
     "url-loader": "^3.0.0",
     "use-debounce": "^3.1.0",
-    "uuid-quick": "^0.1.0",
     "wouter": "^2.4.0"
   }
 }

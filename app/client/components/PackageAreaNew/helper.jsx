@@ -1,4 +1,4 @@
-import uuid from 'uuid-quick';
+import shortid from 'shortid';
 
 export const initState = {
   name: '',
@@ -24,7 +24,7 @@ export const createPackages = (form, state) => {
       : { isFile: false, use: useIwad.name.toLowerCase() };
 
   const newPackage = {
-    id: form.id ? form.id : uuid(),
+    id: form.id ? form.id : shortid.generate(),
     name: form.name,
     iwad: useIwad,
     sourceport: useSourceport,
