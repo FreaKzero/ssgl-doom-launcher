@@ -2,20 +2,6 @@ const { app, Menu } = require('electron');
 const { shell } = require('electron');
 const isMac = process.platform === 'darwin';
 
-
-// {
-//   label: 'Join Discord',
-//   click: async () => {
-//     await shell.openExternal('https://discord.gg/MsjZhHF');
-//   }
-// },
-// {
-//   label: 'Open Github',
-//   click: async () => {
-//     await shell.openExternal('https://github.com/FreaKzero/ssgl-doom-launcher');
-//   }
-// },
-
 const template = [
   ...(isMac
     ? [
@@ -35,6 +21,25 @@ const template = [
         }
       ]
     : []),
+  {
+    label: 'Community',
+    submenu: [
+      {
+        label: 'Join Discord',
+        click: async () => {
+          await shell.openExternal('https://discord.gg/MsjZhHF');
+        }
+      },
+      {
+        label: 'Open Github',
+        click: async () => {
+          await shell.openExternal(
+            'https://github.com/FreaKzero/ssgl-doom-launcher'
+          );
+        }
+      }
+    ]
+  },
   {
     label: 'Edit',
     submenu: [
