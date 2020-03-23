@@ -49,7 +49,7 @@ const Drawer = styled(DrawerMotion)`
 `;
 
 const PlayOverlay = ({ active, setActive }) => {
-  const { gstate, dispatch } = useContext(StoreContext);
+  const { gstate } = useContext(StoreContext);
   const [sourceport, setSourceport] = useState();
   const [ipc] = useIpc();
   const [toast] = useToast();

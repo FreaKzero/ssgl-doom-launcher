@@ -33,10 +33,5 @@ export const createPackage = (form, state) => {
     cover
   };
 
-  const newPackages =
-    form.id === null
-      ? [newPackage, ...state.packages]
-      : state.packages.map(item => (item.id === form.id ? newPackage : item));
-
   return newPackage;
 };

@@ -10,9 +10,9 @@ import { useIpc } from './utils';
 import { useHashLocation } from './utils';
 
 const App = () => {
-  // eslint-disable-next-line no-unused-vars
   const [gstate, dispatch] = useReducer(reducer, initState);
   const [fetch, loading] = useIpc({ delayLoad: 1000 });
+  // eslint-disable-next-line no-unused-vars
   const [location, navigate] = useHashLocation();
 
   useEffect(() => {

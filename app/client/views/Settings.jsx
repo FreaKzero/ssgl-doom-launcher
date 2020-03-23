@@ -23,6 +23,7 @@ const Settings = () => {
   const [toast] = useToast();
   const [saveSettings] = useIpc();
   const [fetchInit, loadInit] = useIpc();
+  // eslint-disable-next-line no-unused-vars
   const [loc, navigate] = useHashLocation();
   const viewOptions = [
     {
