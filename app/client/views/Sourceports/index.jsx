@@ -1,6 +1,5 @@
 import { AnimatePresence } from 'framer-motion';
 import React, { useContext, useEffect, useState } from 'react';
-import shortid from 'shortid';
 import styled from 'styled-components';
 
 import { Box, Flex } from '../../components';
@@ -31,7 +30,7 @@ const SourcePorts = () => {
 
   const createSourceport = () => {
     const item = {
-      id: shortid.generate(),
+      id: null,
       hasSavedir: false,
       hasConfig: false,
       paramLoad: '-loadgame',
@@ -49,12 +48,10 @@ const SourcePorts = () => {
   const selectSourceport = item => () => setSelected(item);
 
   const onDeleteSourcePort = id => async () => {
-    const newSourcePorts = sourcePorts.filter(item => item.id !== id);
-
     try {
-      await ipc('sourceports/save', newSourcePorts);
-      setSourcePorts(newSourcePorts);
-      dispatch({ type: 'sourceports/save', data: newSourcePorts });
+      const newSourceports = await ipc('sourceports/delete', id);
+      setSourcePorts(newSourceports);
+      dispatch({ type: 'sourceports/save', data: newSourceports });
       toast('ok', t('common:success'), t('sourceports:toastDeleted'));
     } catch (e) {
       toast('danger', 'Error ?!');
