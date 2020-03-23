@@ -12,6 +12,9 @@ ipcMain.handle('sourceports/delete', async (e, id) => {
   try {
     const sourceports = await getJSON('sourceports');
     const newSourceports = sourceports.filter(item => item.id !== id);
+
+    await setJSON('sourceports', newSourceports);
+
     return {
       data: newSourceports,
       error: null
