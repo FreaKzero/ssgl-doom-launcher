@@ -1,11 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import discSvg from '../../assets/icon/disc.svg';
+import editSvg from '../../assets/icon/edit.svg';
+import trashSvg from '../../assets/icon/trash.svg';
 import { StoreContext } from '../../state';
 import { useIpc, useToast, useTranslation } from '../../utils';
-import { Button, Dropdown } from '../Form';
-import { createPackages, initState } from './helper';
+import { Dropdown, IconButton } from '../Form';
+import { createPackage, initState } from './helper';
 import PackageModal from './PackageModal';
+
+const NULLCONST = '#NULL';
 
 const PackageAreaStyle = styled.div`
   display: flex;
@@ -23,13 +28,13 @@ const PackageAreaNew = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [ipc] = useIpc();
   const [toast] = useToast();
-
-  const opts = gstate.packages
-    .sort((a, b) => b.lastplayed - a.lastplayed)
-    .map(item => ({
+  const [modValue, setModValue] = useState(NULLCONST);
+  const opts = [{ name: 'No Package', id: NULLCONST }, ...gstate.packages].map(
+    item => ({
       label: item.name,
       value: item.id
-    }));
+    })
+  );
 
   useEffect(() => {
     if (gstate.package.id === null) {
@@ -39,24 +44,33 @@ const PackageAreaNew = () => {
     } else if (form.id !== gstate.package.id) {
       setForm({
         ...gstate.package,
-        iwad: gstate.package.iwad.path,
-        sourceport: gstate.package.sourceport.id,
+        iwad: gstate.package.iwad,
+        sourceport: gstate.package.sourceport,
         cover: gstate.package.cover.isFile ? gstate.package.cover.use : ''
       });
     }
   }, [gstate]);
 
-  const onSelect = ({ value }) =>
-    dispatch({ type: 'packages/select', id: value });
+  const onSelect = ({ value }) => {
+    if (value === NULLCONST) {
+      dispatch({ type: 'packages/reset' });
+    } else {
+      dispatch({ type: 'packages/select', id: value });
+    }
+
+    setModValue(value);
+  };
 
   const onReset = () => {
     dispatch({ type: 'packages/reset' });
+    setModValue(NULLCONST);
     setForm(initState);
   };
 
   const onSaveAs = () => {
     setForm({
       ...form,
+      copy: form.id,
       id: null
     });
 
@@ -65,9 +79,18 @@ const PackageAreaNew = () => {
 
   const onModalSubmit = async e => {
     e.preventDefault();
-    const { packages, pack } = createPackages(form, gstate);
-    await ipc('packages/save', packages);
-    dispatch({ type: 'packages/save', packages: packages, package: pack });
+    const pack = createPackage(form, gstate);
+    try {
+      const data = await ipc('packages/save', pack);
+      dispatch({
+        type: 'packages/save',
+        packages: data.packages,
+        package: data.package
+      });
+    } catch (e) {
+      console.log(e);
+    }
+
     toast('ok', t('common:success'), t('packages:toastSave'));
   };
 
@@ -82,7 +105,33 @@ const PackageAreaNew = () => {
         setActive={() => setModalOpen(!modalOpen)}
         edit={form.id !== null}
       />
+
       {form.id !== null ? (
+        <IconButton svg={editSvg} onClick={() => setModalOpen(true)} />
+      ) : null}
+
+      <Dropdown
+        options={opts}
+        onChange={onSelect}
+        placeholder={t('packages:selectPackage')}
+        name="packageSelector"
+        value={modValue}
+        fluid
+      />
+      {gstate.package.selected.length > 0 ? (
+        <>
+          <IconButton svg={discSvg} onClick={onSaveAs} />
+          <IconButton svg={trashSvg} onClick={onReset} />
+        </>
+      ) : null}
+    </PackageAreaStyle>
+  );
+};
+
+export default PackageAreaNew;
+
+/*
+{form.id !== null ? (
         <>
           <Button onClick={() => setModalOpen(true)} fluid>
             {t('wads:packEdit')}
@@ -110,8 +159,4 @@ const PackageAreaNew = () => {
           </Button>
         </>
       )}
-    </PackageAreaStyle>
-  );
-};
-
-export default PackageAreaNew;
+      */

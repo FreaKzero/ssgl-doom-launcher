@@ -16,11 +16,12 @@ export const initState = {
   iwads: [],
   mods: [],
   package: {
+    datapath: null,
     id: null,
     sourceport: null,
     iwad: null,
     cover: null,
-    name: '',
+    name: null,
     selected: []
   },
   packages: [],
@@ -52,6 +53,14 @@ export function reducer(state, action) {
         settings: action.data
       });
 
+    case 'packages/delete':
+      return act({
+        ...state,
+        package: initState.package,
+        packages: action.packages,
+        mods: state.mods.map(mod => ({ ...mod, active: false }))
+      });
+
     case 'packages/reset':
       return act({
         ...state,
@@ -71,7 +80,7 @@ export function reducer(state, action) {
           return {
             ...mod,
             active: false
-          }
+          };
         }
       });
 

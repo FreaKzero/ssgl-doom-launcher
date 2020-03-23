@@ -61,16 +61,14 @@ const SourcePorts = () => {
     }
   };
 
-  const onSaveSourcePort = async values => {
-    const newSourcePorts = sourcePorts.map(item =>
-      item.id === values.id ? values : item
-    );
+  const onSaveSourcePort = async sourceport => {
     try {
-      await ipc('sourceports/save', newSourcePorts);
+      const newSourcePorts = await ipc('sourceports/save', sourceport);
       setSourcePorts(newSourcePorts);
       dispatch({ type: 'sourceports/save', data: newSourcePorts });
       toast('ok', t('common:success'), t('sourceports:toastSaved'));
     } catch (e) {
+      console.log(e);
       toast('Error ?!', 'danger');
     }
   };

@@ -1,16 +1,14 @@
-import shortid from 'shortid';
-
 export const initState = {
   name: '',
-  iwad: {},
+  iwad: '',
   sourceport: '',
   cover: '',
-  id: null
+  id: null,
+  copy: null
 };
 
-export const createPackages = (form, state) => {
-  const useSourceport = state.sourceports.find(i => i.id === form.sourceport);
-  const useIwad = state.iwads.find(i => i.path === form.iwad);
+export const createPackage = (form, state) => {
+  const iwad = state.iwads.find(i => i.path === form.iwad);
 
   const cover =
     form.cover && form.cover.trim() !== ''
@@ -21,17 +19,18 @@ export const createPackages = (form, state) => {
               ? form.cover
               : `file://${form.cover}`
         }
-      : { isFile: false, use: useIwad.name.toLowerCase() };
+      : { isFile: false, use: iwad.name.toLowerCase() };
 
   const newPackage = {
-    id: form.id ? form.id : shortid.generate(),
+    id: form.id,
+    copy: form.copy,
     name: form.name,
-    iwad: useIwad,
-    sourceport: useSourceport,
+    iwad: form.iwad,
+    sourceport: form.sourceport,
     selected: state.package.selected,
-    cover: cover,
     created: Date.now(),
-    lastplayed: 0
+    lastplayed: 0,
+    cover
   };
 
   const newPackages =
@@ -39,5 +38,5 @@ export const createPackages = (form, state) => {
       ? [newPackage, ...state.packages]
       : state.packages.map(item => (item.id === form.id ? newPackage : item));
 
-  return { packages: newPackages, pack: newPackage };
+  return newPackage;
 };

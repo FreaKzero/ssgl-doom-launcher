@@ -57,6 +57,18 @@ const Form = ({ item, onSave, onDelete }) => {
         [name]: value,
         name: namevalue
       });
+    } else if (name === 'configDefault' && value) {
+      const configFilename = value
+        .split('\\')
+        .pop()
+        .split('/')
+        .pop();
+
+      setForm({
+        ...form,
+        [name]: value,
+        configFilename
+      });
     } else {
       setForm({
         ...form,

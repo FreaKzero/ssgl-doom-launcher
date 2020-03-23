@@ -121,39 +121,39 @@ const Pack = ({ pack }) => {
   const [toast] = useToast();
 
   const onPlay = async () => {
-    const newPackages = await ipc('sourceports/play', {
+    const newPackages = await ipc('packages/play', {
       ...pack
     });
-    dispatch({ type: 'packages/save', packages: newPackages, package: pack });
+
+    dispatch({ type: 'packages/save', packages: newPackages, package: null });
 
     toast(
       'ok',
       t('common:toastStart'),
       t('common:toastStartText', {
-        sourceport: pack.sourceport.name,
+        sourceport: sourceport.name,
         num: newPackages.length
       })
     );
   };
 
   const onData = () => {
-    remote.shell.openItem(
-      `${gstate.settings.savepath}/${pack.sourceport.name}/${pack.id}`
-    );
+    remote.shell.openItem(pack.datapath);
   };
+
   const onUse = () => {
     dispatch({ type: 'packages/select', id: pack.id });
     setLocation('/');
   };
 
   const onDelete = async () => {
-    const newPackages = gstate.packages.filter(item => item.id !== pack.id);
-    await ipc('packages/save', newPackages);
-    dispatch({ type: 'packages/save', packages: newPackages, package: null });
+    const newPackages = await ipc('packages/delete', pack.id);
+    dispatch({ type: 'packages/delete', packages: newPackages });
   };
 
   const cover = pack.cover.isFile ? pack.cover.use : covers[pack.cover.use];
-  //
+  const sourceport = gstate.sourceports.find(i => i.id === pack.sourceport);
+
   return (
     <PackageStyle cover={cover}>
       <div className="content">
@@ -162,7 +162,7 @@ const Pack = ({ pack }) => {
         </div>
         <h1>{pack.name}</h1>
         <Meta>
-          {pack.sourceport.name} - {pack.selected.length} Mods
+          {sourceport.name} - {pack.selected.length} Mods
         </Meta>
         <Meta>
           {pack.lastplayed === 0

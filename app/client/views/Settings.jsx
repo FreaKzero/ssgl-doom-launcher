@@ -5,7 +5,13 @@ import { Button, Dropdown, SelectFile, SubmitArea } from '../components/Form';
 import i18n from '../i18n';
 import { AVAILABLE_LOCALES } from '../locales';
 import { StoreContext } from '../state';
-import { setTitle, useIpc, useToast, useTranslation } from '../utils';
+import {
+  setTitle,
+  useHashLocation,
+  useIpc,
+  useToast,
+  useTranslation
+} from '../utils';
 
 const Settings = () => {
   setTitle('settings');
@@ -17,15 +23,15 @@ const Settings = () => {
   const [toast] = useToast();
   const [saveSettings] = useIpc();
   const [fetchInit, loadInit] = useIpc();
-
+  const [loc, navigate] = useHashLocation();
   const viewOptions = [
     {
       label: t('nav:wads'),
-      value: '/#/'
+      value: '/'
     },
     {
       label: t('nav:packages'),
-      value: '/#/packages'
+      value: '/packages'
     }
   ];
 
@@ -47,7 +53,7 @@ const Settings = () => {
   };
 
   const validate = () => {
-    const fields = ['modpath', 'savepath', 'defaultsourceport'];
+    const fields = ['modpath', 'savepath'];
     let temp = {};
     let hasError = false;
 
@@ -82,6 +88,10 @@ const Settings = () => {
       const newState = await fetchInit('main/init', null);
       dispatch({ type: 'main/init', data: newState });
       toast('ok', t('common:success'), t('settings:toastSaved'));
+
+      if (gstate.sourceports.length < 1) {
+        navigate('/sourceports');
+      }
     } else {
       toast('danger', t('common:error'), t('common:toastRequired'));
     }
@@ -108,14 +118,16 @@ const Settings = () => {
               value={form.background}
               fluid
             />
-            <Dropdown
-              name="defaultsourceport"
-              options={sourceportOptions}
-              label="Favourite Sourceport"
-              value={form.defaultsourceport}
-              onChange={onComponent}
-              error={errors.defaultsourceport}
-            />
+            {gstate.sourceports.length > 0 ? (
+              <Dropdown
+                name="defaultsourceport"
+                options={sourceportOptions}
+                label="Favourite Sourceport"
+                value={form.defaultsourceport}
+                onChange={onComponent}
+                error={errors.defaultsourceport}
+              />
+            ) : null}
           </Flex.Col>
           <Flex.Col width="50%">
             <SelectFile

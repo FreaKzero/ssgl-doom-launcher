@@ -25,17 +25,20 @@ const Nav = () => {
   const { t } = useTranslation('nav');
 
   const r = routes.filter(item => {
-    const { packages, mods, sourceports, settings } = gstate;
+    const { packages, mods, settings, sourceports } = gstate;
     const { label } = item;
 
     if (label === 'packages' && packages.length < 1) {
       return false;
     }
-    if (label === 'wads' && mods.length < 1) {
+    if (
+      (label === 'wads' && mods.length < 1) ||
+      (label === 'wads' && sourceports.length < 1)
+    ) {
       return false;
     }
 
-    if (label === 'settings' && sourceports.length < 1 && !settings.modpath) {
+    if (label === 'sourceports' && settings.savepath === '') {
       return false;
     }
 

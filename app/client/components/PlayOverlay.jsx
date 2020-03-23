@@ -61,7 +61,7 @@ const PlayOverlay = ({ active, setActive }) => {
 
   useEffect(() => {
     if (gstate.package.sourceport !== null) {
-      setSourceport(gstate.package.sourceport.id);
+      setSourceport(gstate.package.sourceport);
     } else if (gstate.settings.defaultsourceport) {
       setSourceport(gstate.settings.defaultsourceport);
     } else if (gstate.sourceports[0]) {
@@ -76,25 +76,20 @@ const PlayOverlay = ({ active, setActive }) => {
   const onPlay = iwad => async () => {
     const useSourceport = gstate.sourceports.find(i => i.id === sourceport);
 
-    const newPackages = await ipc('sourceports/play', {
+    await ipc('sourceports/play', {
       ...gstate.package,
-      sourceport: useSourceport,
-      iwad
-    });
-
-    dispatch({
-      type: 'packages/save',
-      packages: newPackages,
-      package: gstate.package
+      iwad: iwad.path,
+      sourceport
     });
 
     setActive(false);
+
     toast(
       'ok',
       t('common:toastStart'),
       t('common:toastStartText', {
         sourceport: useSourceport.name,
-        num: newPackages.length
+        num: gstate.package.selected.length
       })
     );
   };

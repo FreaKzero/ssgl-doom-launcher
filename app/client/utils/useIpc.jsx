@@ -16,7 +16,7 @@ const useIpc = (opt = {}) => {
       } else {
         setLoad(false);
       }
-      return res.error ? reject(new Error(res.error)) : resolve(res.data);
+      return res.error ? reject(res.error) : resolve(res.data);
     });
   };
 
