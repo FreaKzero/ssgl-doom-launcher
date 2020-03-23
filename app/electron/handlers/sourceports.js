@@ -62,8 +62,8 @@ ipcMain.handle('sourceports/save', async (e, data) => {
       }
 
       const newSourceports = await setJSON('sourceports', [
-        data,
-        ...sourceports
+        ...sourceports,
+        data
       ]);
 
       return {
@@ -72,7 +72,6 @@ ipcMain.handle('sourceports/save', async (e, data) => {
       };
     }
   } catch (e) {
-    console.log(e);
     return {
       data: null,
       error: e.message
