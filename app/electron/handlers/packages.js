@@ -83,7 +83,7 @@ ipcMain.handle('packages/save', async (e, pack) => {
 
     if (pack.id) {
       const newPackages = packages.map(item => {
-        return item.id === pack.id ? pack : item;
+        return item.id === pack.id ? { ...item, pack } : item;
       });
 
       await setJSON('packages', newPackages);
