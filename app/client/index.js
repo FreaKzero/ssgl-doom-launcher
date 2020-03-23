@@ -2,18 +2,18 @@ import './global.css';
 
 import React, { useEffect, useReducer } from 'react';
 import ReactDOM from 'react-dom';
-import { useLocation } from 'wouter';
 
 import { Body, Head, MainLoader, Routes, ToastContainer } from './components';
 import i18n from './i18n';
 import { initState, reducer, StoreContext } from './state';
 import { useIpc } from './utils';
+import { useHashLocation } from './utils';
 
 const App = () => {
   // eslint-disable-next-line no-unused-vars
-  const [location, setLocation] = useLocation();
   const [gstate, dispatch] = useReducer(reducer, initState);
   const [fetch, loading] = useIpc({ delayLoad: 1000 });
+  const [location, navigate] = useHashLocation();
 
   useEffect(() => {
     async function resolve() {
@@ -21,9 +21,9 @@ const App = () => {
         const data = await fetch('main/init');
         dispatch({ type: 'main/init', data: data });
         i18n.changeLanguage(data.settings.language || 'en');
-        setLocation(data.settings.startView || '/');
+        navigate(data.settings.startView || '/');
       } catch (e) {
-        setLocation('/sourceports');
+        navigate('/settings');
       }
     }
     resolve();
