@@ -22,9 +22,15 @@ ipcMain.handle('main/init', async () => {
         }
       };
     } catch (e) {
-      return ERRORS.WALKER_ERROR;
+      return {
+        data: null,
+        error: e.message
+      };
     }
   } catch (e) {
-    return ERRORS.SETTINGS_FILE;
+    return {
+      data: null,
+      error: e.message
+    };
   }
 });

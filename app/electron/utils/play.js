@@ -3,7 +3,7 @@ import { existsSync, readdirSync, statSync } from 'fs';
 import { platform } from 'os';
 import { join } from 'path';
 
-import { copyfile, createPath } from './common';
+import { getJSON } from './json';
 
 const getLastSaveGame = dir => {
   if (!existsSync(dir)) {
@@ -11,94 +11,94 @@ const getLastSaveGame = dir => {
   }
 
   const files = readdirSync(dir);
-  return files
+  const sorted = files
     .map(name => {
       const p = join(dir, name);
       return { path: p, ctime: statSync(p).ctime };
     })
-    .sort((a, b) => b.ctime - a.ctime)[0].path;
+    .sort((a, b) => b.ctime - a.ctime);
+
+  return sorted.length ? sorted[0].path : null;
 };
 
-const play = (pack, settings) => {
+const play = async (pack, loadLast = false) => {
   let deh = [];
   let bex = [];
   let file = [];
   let params = [];
-  const { iwad, selected, sourceport, id } = pack;
+  const { iwad, selected } = pack;
 
-  const BASEDIR = `${settings.savepath}/${sourceport.id}/${id}`;
+  try {
+    const sourceports = await getJSON('sourceports');
+    const sourceport = sourceports.find(i => i.id === pack.sourceport);
 
-  if (settings.savepath.trim() !== '' && !existsSync(BASEDIR)) {
-    createPath(BASEDIR);
-  }
+    selected.forEach(i => {
+      switch (i.kind) {
+        case 'DEH':
+          deh.push(i.path);
+          break;
+        case 'BEX':
+          bex.push(i.path);
+          break;
+        default:
+          file.push(i.path);
+      }
+    });
 
-  if (
-    existsSync(sourceport.configDefault) &&
-    !existsSync(`${BASEDIR}/${sourceport.configFilename}`) &&
-    sourceport.hasConfig
-  ) {
-    copyfile(
-      sourceport.configDefault,
-      `${BASEDIR}/${sourceport.configFilename}`
-    );
-  }
+    let COMMAND = ['-iwad', iwad, '-file', ...file];
 
-  selected.forEach(i => {
-    switch (i.kind) {
-      case 'DEH':
-        deh.push(i.path);
-        break;
-      case 'BEX':
-        bex.push(i.path);
-        break;
-      default:
-        file.push(i.path);
+    if (sourceport.hasConfig) {
+      params = params.concat([
+        sourceport.paramConfig,
+        join(pack.datapath, sourceport.configFilename)
+      ]);
     }
-  });
 
-  let COMMAND = ['-iwad', iwad.path, '-file', ...file];
+    if (sourceport.hasSavedir) {
+      params = params.concat([
+        sourceport.paramSave,
+        join(pack.datapath, 'saves')
+      ]);
 
-  if (sourceport.hasConfig) {
-    params = params.concat([
-      sourceport.paramConfig,
-      `${BASEDIR}/${sourceport.configFilename}`
-    ]);
-  }
-
-  if (sourceport.hasSavedir) {
-    params = params.concat([sourceport.paramSave, `${BASEDIR}/saves`]);
-
-    const save = getLastSaveGame(`${BASEDIR}/saves`);
-    if (save) {
-      COMMAND = COMMAND.concat([sourceport.paramLoad, save]);
+      if (loadLast) {
+        const save = getLastSaveGame(join(pack.datapath, 'saves'));
+        if (save) {
+          COMMAND = COMMAND.concat([sourceport.paramLoad, save]);
+        }
+      }
     }
-  }
 
-  if (params.length > 0) {
-    COMMAND = COMMAND.concat(params);
-  }
+    if (params.length > 0) {
+      COMMAND = COMMAND.concat(params);
+    }
 
-  if (deh.length > 0) {
-    COMMAND = COMMAND.concat(['-deh', ...deh]);
-  }
+    if (deh.length > 0) {
+      COMMAND = COMMAND.concat(['-deh', ...deh]);
+    }
 
-  if (bex.length > 0) {
-    COMMAND = COMMAND.concat(['-bex', ...bex]);
-  }
+    if (bex.length > 0) {
+      COMMAND = COMMAND.concat(['-bex', ...bex]);
+    }
 
-  if (platform() === 'darwin') {
-    let MAC = [sourceport.binary, '--args'];
-    COMMAND = [...MAC, ...COMMAND];
-    console.log(COMMAND.join(' '));
-    spawn('open', COMMAND);
-  } else {
-    spawn(sourceport.binary, COMMAND);
-  }
+    if (platform() === 'darwin') {
+      let MAC = [sourceport.binary, '--args'];
+      COMMAND = [...MAC, ...COMMAND];
+      console.log(COMMAND.join(' '));
+      spawn('open', COMMAND);
+    } else {
+      spawn(sourceport.binary, COMMAND);
+    }
 
-  return {
-    data: pack,
-    error: null
-  };
+    return {
+      data: pack,
+      error: null
+    };
+  } catch (e) {
+    return {
+      data: null,
+      error: e.message
+    };
+  }
 };
 
 export default play;

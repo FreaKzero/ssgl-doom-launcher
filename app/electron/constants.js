@@ -1,3 +1,5 @@
+const NAME_UNPURE_PACKAGE = 'unnamed';
+
 const MOD_EXTENSIONS = [
   'PK3',
   'PK7',
@@ -32,4 +34,4 @@ const AVAILABLE_IWADS = [
   'tnt'
 ];
 
-export { AVAILABLE_IWADS, MOD_EXTENSIONS };
+export { AVAILABLE_IWADS, MOD_EXTENSIONS, NAME_UNPURE_PACKAGE };
