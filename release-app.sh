@@ -22,9 +22,9 @@ else
 
     echo "## Changelog:"
     if [ -z "$1" ]; then
-      echo $(git log --pretty=format:%s "$LASTTAG"..HEAD | grep -E "FIX|ADD|FEATURE|BREAK|REFACTOR" | awk '{print "\\n- "$0}')
+      echo $(git log --pretty=format:%s "$LASTTAG"..HEAD | grep -E "FIX:|ADD:|FEATURE:|BREAK:" | awk '{print "\\n- "$0}')
     else 
-      echo $(git log --pretty=format:%s "$LASTTAG"..HEAD | grep -E "FIX|ADD|FEATURE|BREAK|REFACTOR" | awk '{print "\\n- "$0}')
+      echo $(git log --pretty=format:%s "$LASTTAG"..HEAD | grep -E "FIX:|ADD:|FEATURE:|BREAK:" | awk '{print "\\n- "$0}')
     fi
 
     open "https://github.com/FreaKzero/ssgl-doom-launcher/actions"
