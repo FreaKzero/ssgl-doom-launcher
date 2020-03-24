@@ -1,6 +1,4 @@
 #!/bin/sh
-git checkout master
-git merge latest
 
 VERSION="v"
 VERSION+=$(jq -r .version ./app/package.json)
@@ -14,18 +12,18 @@ then
     echo "Version $VERSION already exists - please change it in the package.json and dont commit the change"
 else
 # Not Found
+    git checkout master
+    git merge latest
+
     git commit -am "$VERSION"
     git tag "$VERSION"
+    
     git push && git push --tags
     git checkout latest
     git merge master
 
     echo "## Changelog:"
-    if [ -z "$1" ]; then
-      echo $(git log --pretty=format:%s "$LASTTAG"..HEAD | grep -E "FIX:|ADD:|FEATURE:|BREAK:" | awk '{print "\\n- "$0}')
-    else 
-      echo $(git log --pretty=format:%s "$LASTTAG"..HEAD | grep -E "FIX:|ADD:|FEATURE:|BREAK:" | awk '{print "\\n- "$0}')
-    fi
+      echo $(git log --pretty=format:%s "$LASTTAG"..HEAD | grep -E "FIX:|UPDATE:|FEATURE:|BREAK:" | awk '{print "\\n- "$0}')
 
     open "https://github.com/FreaKzero/ssgl-doom-launcher/actions"
 fi
