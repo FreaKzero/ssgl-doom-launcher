@@ -9,6 +9,7 @@
 # Features
 
 - Builds for Windows, Linux (Snap) and MacOS
+- Easy and Fast Setup
 - Sourceport agnostic (As long the Sourceport runs in Terminal/Cmd.exe)
 - "Package" System for Modlists
 - Can manage seperate Configs and Savegamefolders for Packages automatically
@@ -29,6 +30,6 @@ See the LATEST [English Locale File](https://github.com/FreaKzero/ssgl-doom-laun
 # Big Thanks to
 - [Xeno1979](https://github.com/Xeno1979) (Alphatesting MacOS and NL Translation)
 - [CthePredatorG](https://github.com/CthePredatorG) (Alphatesting Windows)
-- [Scar45](https://github.com/scar45) Scar45 (Alphatesting Linux)
+- [Scar45](https://github.com/scar45) (Alphatesting Linux)
 - [WolVexus](https://www.youtube.com/channel/UCC6ixAIHqKkSh3lv2tM5wwQ) (Alphatesting Windows)
 - [js2me](https://github.com/js2me) and [PROPHESSOR](https://github.com/PROPHESSOR) (RU Translation)
