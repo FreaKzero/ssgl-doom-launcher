@@ -1,14 +1,3 @@
-
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
-
-- [Features](#features)
-- [Roadmap / Soon](#roadmap-soon)
-- [Want to see SSGL in your Mother Tongue ?](#want-to-see-ssgl-in-your-mother-tongue)
-- [Big Thanks to](#big-thanks-to)
-
-<!-- /code_chunk_output -->
 <p align="center"><img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readmelogo.png" width="350"></p>
 
 - [Current Developer Preview Release](https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v2.0.0-devpreview.14)
