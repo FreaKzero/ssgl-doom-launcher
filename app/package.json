@@ -88,7 +88,7 @@
   "dependencies": {
     "byte-size": "^6.2.0",
     "date-fns": "^2.10.0",
-    "framer-motion": "^1.6.18",
+    "framer-motion": "^1.10.2",
     "fuzzysearch": "^1.0.3",
     "i18next": "^19.0.0",
     "klaw": "^3.0.0",
