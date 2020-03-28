@@ -99,6 +99,14 @@ const template = [
     label: 'Community',
     submenu: [
       {
+        label: 'Open First Setup Guide',
+        click: async () => {
+          await shell.openExternal(
+            'https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup'
+          );
+        }
+      },
+      {
         label: 'Join Discord',
         click: async () => {
           await shell.openExternal('https://discord.gg/MsjZhHF');
