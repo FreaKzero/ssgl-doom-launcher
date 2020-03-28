@@ -1,6 +1,25 @@
 const { app, Menu } = require('electron');
 const { shell } = require('electron');
 const isMac = process.platform === 'darwin';
+const { getJSON } = require('./utils/json');
+const { getDataFile } = require('./utils/common');
+
+const openFromSettings = async property => {
+  try {
+    const settings = await getJSON('settings');
+    shell.openItem(settings[property]);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const openApplicationSettings = async () => {
+  try {
+    shell.openItem(getDataFile(''));
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 const template = [
   ...(isMac
@@ -22,21 +41,20 @@ const template = [
       ]
     : []),
   {
-    label: 'Community',
+    label: 'Directories',
     submenu: [
       {
-        label: 'Join Discord',
-        click: async () => {
-          await shell.openExternal('https://discord.gg/MsjZhHF');
-        }
+        label: 'Mod Directory',
+        click: () => openFromSettings('modpath')
       },
       {
-        label: 'Open Github',
-        click: async () => {
-          await shell.openExternal(
-            'https://github.com/FreaKzero/ssgl-doom-launcher'
-          );
-        }
+        label: 'SSGL Data Directory',
+        click: () => openFromSettings('savepath')
+      },
+      { type: 'separator' },
+      {
+        label: 'Application Directory',
+        click: openApplicationSettings
       }
     ]
   },
@@ -75,6 +93,25 @@ const template = [
       ...(isMac
         ? [{ type: 'separator' }, { role: 'front' }]
         : [{ role: 'close' }])
+    ]
+  },
+  {
+    label: 'Community',
+    submenu: [
+      {
+        label: 'Join Discord',
+        click: async () => {
+          await shell.openExternal('https://discord.gg/MsjZhHF');
+        }
+      },
+      {
+        label: 'Open Github',
+        click: async () => {
+          await shell.openExternal(
+            'https://github.com/FreaKzero/ssgl-doom-launcher'
+          );
+        }
+      }
     ]
   }
 ];
