@@ -7,7 +7,7 @@ export const initState = {
   copy: null
 };
 
-export const createPackage = (form, state) => {
+export const createPackage = (form, state, copy) => {
   const iwad = state.iwads.find(i => i.path === form.iwad);
 
   const cover =
@@ -22,8 +22,8 @@ export const createPackage = (form, state) => {
       : { isFile: false, use: iwad.name.toLowerCase() };
 
   const newPackage = {
-    id: form.id,
-    copy: form.copy,
+    id: copy ? null : form.id,
+    copy: copy,
     name: form.name,
     iwad: form.iwad,
     sourceport: form.sourceport,

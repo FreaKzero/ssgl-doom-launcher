@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
-import React, { useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 
 import { StoreContext } from '../../state';
 import { useTranslation } from '../../utils';
 import Flex from '../Flex';
-import { Dropdown, Input, SelectFile } from '../Form';
+import { Button, Dropdown, Input, SelectFile } from '../Form';
 import Modal from '../Modal';
 
 const PackageModal = ({
   active,
-  setActive,
+  toggle,
   setForm,
   form,
   onSubmit,
@@ -18,7 +18,6 @@ const PackageModal = ({
 }) => {
   const { t } = useTranslation('packages');
   const { gstate } = useContext(StoreContext);
-  const formRef = useRef(null);
 
   const iwadOptions = gstate.iwads.map(item => {
     return {
@@ -33,8 +32,6 @@ const PackageModal = ({
       value: item.id
     };
   });
-
-  const onSave = () => formRef.current.dispatchEvent(new Event('submit'));
 
   const onComponent = ({ name, value }) => {
     setForm({
@@ -51,19 +48,13 @@ const PackageModal = ({
     });
   };
 
+  const title = edit
+    ? t('titleEdit', { name: form.name })
+    : t('titleSave', { name: form.name });
+
   return (
-    <Modal
-      active={active}
-      setActive={setActive}
-      onOk={onSave}
-      onCancel={onCancel}
-    >
-      <h1>
-        {edit
-          ? t('titleEdit', { name: form.name })
-          : t('titleSave', { name: form.name })}
-      </h1>
-      <form onSubmit={onSubmit} ref={formRef}>
+    <Modal active={active} toggle={toggle} title={title} strict>
+      <form onSubmit={onSubmit}>
         <Flex.Grid>
           <Flex.Col>
             <Input
@@ -104,6 +95,21 @@ const PackageModal = ({
             />
           </Flex.Col>
         </Flex.Grid>
+        <div style={{ textAlign: 'right' }}>
+          <Button
+            type="button"
+            border={'#f55945'}
+            glow={'#b8342a'}
+            color={'#ff2f00'}
+            onClick={onCancel}
+            width="100px"
+          >
+            {t('cancel')}
+          </Button>
+          <Button type="submit" style={{ margin: 0 }} width="100px">
+            {t('ok')}
+          </Button>
+        </div>
       </form>
     </Modal>
   );
@@ -111,12 +117,12 @@ const PackageModal = ({
 
 PackageModal.propTypes = {
   active: PropTypes.bool,
-  edit: PropTypes.bool,
+  toggle: PropTypes.func.isRequired,
+  setForm: PropTypes.func.isRequired,
   form: PropTypes.any,
-  onCancel: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  setActive: PropTypes.func.isRequired,
-  setForm: PropTypes.func.isRequired
+  onCancel: PropTypes.func.isRequired,
+  edit: PropTypes.bool
 };
 
 export default PackageModal;

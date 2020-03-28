@@ -6,111 +6,88 @@ import styled from 'styled-components';
 
 import styles from '#Style';
 
-import { useTranslation } from '../utils';
 import BackDrop from './Backdrop';
-import Button from './Form/Button';
 
-const DialogMotion = ({ children, ...rest }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, top: -300 }}
-      animate={{
-        opacity: 1,
-        top: 30
-      }}
-      exit={{ opacity: 0, top: -300 }}
-      transition={{ type: 'tween' }}
-      {...rest}
-    >
-      {children}
-    </motion.div>
-  );
-};
-
-DialogMotion.propTypes = {
-  active: PropTypes.bool,
-  children: PropTypes.any
-};
-
-const Dialog = styled(DialogMotion)`
+const Dialog = motion.custom(styled.div`
   font-family: ${styles.font.content};
   background: ${styles.color.back};
   position: absolute;
-  left: 15%;
+  left: ${p => (p.tiny ? '25%' : '15%;')};
   top: 40px;
-  width: 65%;
+  width: ${p => (p.tiny ? '45%' : '75%;')};
   padding: 15px;
   border-radius: 4px;
+  z-index: 999;
 
-  .buttons {
-    text-align: right;
+  & .element {
+    color: white;
   }
 
-  .content {
-    min-height: 200px;
+  & h1 {
+    font-size: 16px;
+    font-family: ${styles.font.head};
+    text-transform: uppercase;
+    color: #ffa800;
+    text-shadow: 0 -1px 4px #ff0000, 0 0 15px #ff0000;
+    margin-bottom: 15px;
+  }
+`);
 
-    & h1 {
-      font-size: 16px;
-      font-family: ${styles.font.head};
-      text-transform: uppercase;
-      color: #ffa800;
-      text-shadow: 0 -1px 4px #ff0000, 0 0 15px #ff0000;
-      margin-bottom: 15px;
+const ModalMotion = ({ children, title, tiny }) => {
+  const variants = {
+    init: {
+      opacity: 1,
+      scale: 1
+    },
+    exit: {
+      opacity: 0,
+      scale: 1.5
     }
-  }
-`;
-
-const Modal = ({ children, active, setActive, onOk, onCancel }) => {
-  const { t } = useTranslation('common');
-
-  const onOkWrapper = e => {
-    onOk(e);
-    setActive(false);
   };
-
-  const onCancelWrapper = e => {
-    onCancel(e);
-    setActive(false);
-  };
-
-  return active
-    ? createPortal(
-        <>
-          <BackDrop onClick={onCancelWrapper} active={active} />
-          <AnimatePresence>
-            <Dialog active={active}>
-              <div className="content">{children}</div>
-              <div className="buttons">
-                <Button
-                  type="button"
-                  border={'#f55945'}
-                  glow={'#b8342a'}
-                  color={'#ff2f00'}
-                  onClick={onCancelWrapper}
-                  width="100px"
-                >
-                  {t('cancel')}
-                </Button>
-                <Button
-                  style={{ margin: 0 }}
-                  width="100px"
-                  type="button"
-                  onClick={onOkWrapper}
-                >
-                  {t('ok')}
-                </Button>
-              </div>
-            </Dialog>
-          </AnimatePresence>
-        </>,
-        document.body
-      )
-    : null;
+  return (
+    <Dialog
+      tiny={tiny}
+      variants={variants}
+      transition={{ type: 'tween', ease: 'anticipate' }}
+      initial="exit"
+      animate="init"
+      exit="exit"
+    >
+      <h1 className="title">{title}</h1>
+      <div className="element">{children}</div>
+    </Dialog>
+  );
 };
 
-Modal.propTypes = {
-  active: PropTypes.bool,
-  setActive: PropTypes.func.isRequired
+ModalMotion.propTypes = {
+  children: PropTypes.any,
+  title: PropTypes.string,
+  tiny: PropTypes.bool
+};
+
+const Modal = ({
+  title,
+  children,
+  onBackdrop,
+  active,
+  tiny = false,
+  strict = false
+}) => {
+  return createPortal(
+    <>
+      <AnimatePresence>
+        {active && (
+          <>
+            <BackDrop active={active} onClick={strict ? null : onBackdrop} />
+            <ModalMotion tiny={tiny} title={title}>
+              {children}
+            </ModalMotion>
+          </>
+        )}
+      </AnimatePresence>
+    </>,
+    document.body
+  );
 };
 
 export default Modal;
