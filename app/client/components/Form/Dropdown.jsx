@@ -42,6 +42,7 @@ const Input = styled(InputStyle)`
 `;
 
 const OptionList = styled.ul`
+  ${styles.scrollbar};
   background-color: ${styles.color.backdrop};
   border-radius: ${styles.border.radius};
   border: 1px solid ${styles.border.active};
@@ -50,6 +51,9 @@ const OptionList = styled.ul`
   width: 100%;
   overflow: hidden;
   z-index: 999;
+  max-height: 180px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;
 
 const Option = styled.li`
