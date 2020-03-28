@@ -6,11 +6,6 @@ import styles from '#Style';
 
 import Label from './Label';
 
-const LabelStyle = styled(Label)`
-  display: inline-block;
-  margin-left: 10px;
-`;
-
 const CheckboxStyle = styled.button`
   background: ${styles.button.back};
   border: 1px solid ${styles.border.idle};
@@ -23,6 +18,7 @@ const CheckboxStyle = styled.button`
   height: 25px;
   width: 24px;
   padding: 2px 2px 5px 1px;
+  margin-right: 5px;
 
   svg {
     transition: ${styles.transition.short};
@@ -68,7 +64,7 @@ const Checked = () => (
     />
   </svg>
 );
-const Checkbox = ({ label, value, onChange, name, ...rest }) => {
+const Checkbox = ({ label, value, onChange, name, info, ...rest }) => {
   const [checked, setChecked] = useState(false);
 
   useEffect(() => setChecked(value), [value]);
@@ -85,10 +81,14 @@ const Checkbox = ({ label, value, onChange, name, ...rest }) => {
         {...rest}
         className={checked === true ? 'active' : undefined}
         onClick={onChangeWrap}
+        id={`checkbox_${name}`}
       >
         <Checked />
       </CheckboxStyle>
-      <LabelStyle htmlFor={name}>{label}</LabelStyle>
+
+      <Label info={info} htmlFor={`checkbox_${name}`}>
+        {label}
+      </Label>
       <input type="hidden" name={name} value={checked} />
     </div>
   );
@@ -98,7 +98,8 @@ Checkbox.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   onChange: PropTypes.func,
-  value: PropTypes.bool
+  value: PropTypes.bool,
+  info: PropTypes.string
 };
 
 export default Checkbox;

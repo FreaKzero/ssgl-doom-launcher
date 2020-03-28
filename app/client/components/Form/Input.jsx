@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import styles from '#Style';
 
+import Icon from '../Mods/Icon';
 import Label from './Label';
 
 export const InputStyle = styled.input`
@@ -60,6 +61,7 @@ const Input = ({
   onChange,
   error = null,
   fluid = false,
+  info = null,
   ...rest
 }) => {
   const inputRef = useRef(null);
@@ -67,7 +69,7 @@ const Input = ({
 
   return (
     <>
-      {label ? <Label>{label}</Label> : null}
+      {label ? <Label info={info}>{label}</Label> : null}
       {error ? <Label error>{error}</Label> : null}
       <InputContainerStyle width={width} fluid={fluid} error={error}>
         <InputStyle

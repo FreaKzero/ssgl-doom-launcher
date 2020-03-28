@@ -79,6 +79,7 @@ const Dropdown = ({
   name,
   fluid,
   error = null,
+  info = null,
   ...rest
 }) => {
   const selectRef = useRef(null);
@@ -112,7 +113,7 @@ const Dropdown = ({
 
   return (
     <>
-      {label ? <Label>{label}</Label> : null}
+      {label ? <Label info={info}>{label}</Label> : null}
       {error ? <Label error>{error}</Label> : null}
       <Wrapper width={width} fluid={fluid} error={error}>
         <Input
@@ -165,7 +166,8 @@ Dropdown.propTypes = {
   placeholder: PropTypes.any,
   value: PropTypes.any,
   width: PropTypes.any,
-  fluid: PropTypes.bool
+  fluid: PropTypes.bool,
+  info: PropTypes.string
 };
 
 export default Dropdown;
