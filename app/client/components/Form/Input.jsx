@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import styles from '#Style';
 
-import Icon from '../Mods/Icon';
 import Label from './Label';
 
 export const InputStyle = styled.input`
@@ -88,7 +87,8 @@ Input.propTypes = {
   label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   width: PropTypes.string,
-  error: PropTypes.any
+  error: PropTypes.any,
+  info: PropTypes.string
 };
 
 export default Input;

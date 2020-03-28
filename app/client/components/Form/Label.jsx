@@ -1,6 +1,6 @@
 import { remote } from 'electron';
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import styles from '#Style';
