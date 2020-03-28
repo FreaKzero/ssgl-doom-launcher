@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { Box, Flex } from '../../components';
+import Confirm from '../../components/Confirm';
 import { Button } from '../../components/Form';
 import { StoreContext } from '../../state';
 import { setTitle, useIpc, useToast, useTranslation } from '../../utils';
@@ -21,7 +22,7 @@ const SourcePorts = () => {
   const [ipc] = useIpc();
   const [toast] = useToast();
   const { t } = useTranslation(['sourceports', 'common']);
-
+  const [confirm, setConfirm] = useState({ id: null, open: false });
   useEffect(() => {
     if (sourcePorts.length > 0) {
       setSelected(sourcePorts[0]);
@@ -47,16 +48,36 @@ const SourcePorts = () => {
 
   const selectSourceport = item => () => setSelected(item);
 
-  const onDeleteSourcePort = id => async () => {
+  const onOkDelete = async () => {
+    if (!confirm.id) {
+      return;
+    }
+
     try {
-      const newSourceports = await ipc('sourceports/delete', id);
+      const newSourceports = await ipc('sourceports/delete', confirm.id);
       setSourcePorts(newSourceports);
       dispatch({ type: 'sourceports/save', data: newSourceports });
-      toast('ok', t('common:success'), t('sourceports:toastDeleted'));
+      setConfirm({
+        id: null,
+        open: false
+      });
+      setSelected(sourcePorts[0]);
     } catch (e) {
       toast('danger', 'Error ?!');
     }
   };
+
+  const onDeleteSourcePort = id => () =>
+    setConfirm({
+      id: id,
+      open: true
+    });
+
+  const onCancelDelete = () =>
+    setConfirm({
+      id: null,
+      open: false
+    });
 
   const onSaveSourcePort = async sourceport => {
     try {
@@ -71,42 +92,49 @@ const SourcePorts = () => {
   };
 
   return (
-    <Flex.Grid>
-      <Flex.Col width="450px">
-        <Box>
-          <Button onClick={createSourceport} fluid>
-            Add Sourceport
-          </Button>
-          <SourcePortListStyle>
-            <AnimatePresence>
-              {sourcePorts.map(item => (
-                <SourcePortItem
-                  className={
-                    selected && item.id === selected.id ? 'active' : undefined
-                  }
-                  key={item.id}
-                  item={item}
-                  onClick={selectSourceport(item)}
+    <>
+      <Flex.Grid>
+        <Flex.Col width="450px">
+          <Box>
+            <Button onClick={createSourceport} fluid>
+              Add Sourceport
+            </Button>
+            <SourcePortListStyle>
+              <AnimatePresence>
+                {sourcePorts.map(item => (
+                  <SourcePortItem
+                    className={
+                      selected && item.id === selected.id ? 'active' : undefined
+                    }
+                    key={item.id}
+                    item={item}
+                    onClick={selectSourceport(item)}
+                  />
+                ))}
+              </AnimatePresence>
+            </SourcePortListStyle>
+          </Box>
+        </Flex.Col>
+        <Flex.Col>
+          <Box>
+            {selected ? (
+              <>
+                <Form
+                  item={selected}
+                  onSave={onSaveSourcePort}
+                  onDelete={onDeleteSourcePort}
                 />
-              ))}
-            </AnimatePresence>
-          </SourcePortListStyle>
-        </Box>
-      </Flex.Col>
-      <Flex.Col>
-        <Box>
-          {selected ? (
-            <>
-              <Form
-                item={selected}
-                onSave={onSaveSourcePort}
-                onDelete={onDeleteSourcePort}
-              />
-            </>
-          ) : null}
-        </Box>
-      </Flex.Col>
-    </Flex.Grid>
+              </>
+            ) : null}
+          </Box>
+        </Flex.Col>
+      </Flex.Grid>
+      <Confirm
+        active={confirm.open}
+        onOk={onOkDelete}
+        onCancel={onCancelDelete}
+      />
+    </>
   );
 };
 

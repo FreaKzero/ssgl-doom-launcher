@@ -1,9 +1,7 @@
-import { remote } from 'electron';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { useLocation } from 'wouter';
 
 import styles from '#Style';
 
@@ -11,7 +9,7 @@ import covers from '../../assets/ssgl-iwad-covers';
 import { ButtonStyle } from '../../components/Form/Button';
 import Icon from '../../components/Mods/Icon';
 import { StoreContext } from '../../state';
-import { setTitle, useIpc, useToast, useTranslation } from '../../utils';
+import { setTitle, useTranslation } from '../../utils';
 
 const PackageMotion = ({ children, ...rest }) => {
   return (
@@ -78,7 +76,6 @@ const PackageStyle = styled(PackageMotion)`
 
   & h1 {
     font-size: 18px;
-    margin-top: 5px;
     margin-bottom: 5px;
     transition: ${styles.transition.out};
     text-transform: uppercase;
@@ -111,45 +108,10 @@ const PackageStyle = styled(PackageMotion)`
   }
 `;
 
-const Pack = ({ pack }) => {
+const Pack = ({ pack, onUse, onData, onPlay, onDelete }) => {
   setTitle('packages');
-  const [ipc] = useIpc();
-  const { gstate, dispatch } = useContext(StoreContext);
+  const { gstate } = useContext(StoreContext);
   const { t } = useTranslation(['packages', 'common']);
-  // eslint-disable-next-line no-unused-vars
-  const [location, setLocation] = useLocation();
-  const [toast] = useToast();
-
-  const onPlay = async () => {
-    const newPackages = await ipc('packages/play', {
-      ...pack
-    });
-
-    dispatch({ type: 'packages/save', packages: newPackages, package: null });
-
-    toast(
-      'ok',
-      t('common:toastStart'),
-      t('common:toastStartText', {
-        sourceport: sourceport.name,
-        num: newPackages.length
-      })
-    );
-  };
-
-  const onData = () => {
-    remote.shell.openItem(pack.datapath);
-  };
-
-  const onUse = () => {
-    dispatch({ type: 'packages/select', id: pack.id });
-    setLocation('/');
-  };
-
-  const onDelete = async () => {
-    const newPackages = await ipc('packages/delete', pack.id);
-    dispatch({ type: 'packages/delete', packages: newPackages });
-  };
 
   const cover = pack.cover.isFile ? pack.cover.use : covers[pack.cover.use];
   const sourceport = gstate.sourceports.find(i => i.id === pack.sourceport);
@@ -158,7 +120,12 @@ const Pack = ({ pack }) => {
     <PackageStyle cover={cover}>
       <div className="content">
         <div className="delete">
-          <Icon stroke="white" name="times" width="13" onClick={onDelete} />
+          <Icon
+            stroke="white"
+            name="times"
+            width="17"
+            onClick={onDelete(pack.id)}
+          />
         </div>
         <h1>{pack.name}</h1>
         <Meta>
@@ -171,14 +138,14 @@ const Pack = ({ pack }) => {
         </Meta>
 
         <ButtonContainer>
-          <Button type="submit" onClick={onPlay}>
+          <Button type="button" onClick={onPlay(pack, sourceport)}>
             {t('packages:play')}
           </Button>
-          <Button type="submit" onClick={onUse}>
+          <Button type="button" onClick={onUse(pack.id)}>
             {t('packages:use')}
           </Button>
 
-          <Button type="submit" onClick={onData}>
+          <Button type="button" onClick={onData(pack.datapath)}>
             {t('packages:datadir')}
           </Button>
         </ButtonContainer>
@@ -188,8 +155,12 @@ const Pack = ({ pack }) => {
 };
 
 Pack.propTypes = {
-  pack: PropTypes.any,
-  style: PropTypes.any
+  onDelete: PropTypes.func.isRequired,
+  pack: PropTypes.any.isRequired,
+  style: PropTypes.any,
+  onUse: PropTypes.func.isRequired,
+  onData: PropTypes.func.isRequired,
+  onPlay: PropTypes.func.isRequired
 };
 
 export default Pack;

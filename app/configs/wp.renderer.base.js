@@ -31,6 +31,13 @@ module.exports = {
       {
         test: /\.(eot|woff|woff2|ttf)([\?]?.*)$/,
         use: ['file-loader']
+      },
+      {
+        test: /\.(ogg)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]'
+        }
       }
     ]
   },

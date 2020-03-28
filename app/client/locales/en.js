@@ -42,6 +42,8 @@ export default {
     startView: 'Open View when SSGL starts'
   },
   common: {
+    deleteTitle: 'Confirm Deletion',
+    deleteText: 'Do you really want to delete this Item ?',
     loading: 'Loading',
     language: 'Language',
     success: 'Success',

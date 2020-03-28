@@ -1,19 +1,32 @@
+import { remote } from 'electron';
 import { AnimatePresence } from 'framer-motion';
 import React, { useContext, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { Box } from '../../components';
+import Confirm from '../../components/Confirm';
 import { StoreContext } from '../../state';
-import { sortList } from '../../utils';
+import {
+  sortList,
+  useHashLocation,
+  useIpc,
+  useToast,
+  useTranslation
+} from '../../utils';
 import Pack from './Pack';
 import PackageFilter from './PackageFilter';
 
 const Packages = () => {
-  const { gstate } = useContext(StoreContext);
+  const { gstate, dispatch } = useContext(StoreContext);
   const [filter, setRawFilter] = useState('');
   const [sort, setSort] = useState('last');
-
+  const [ipc] = useIpc();
   const onSort = ({ value }) => setSort(value);
+  const [confirm, setConfirm] = useState({ id: null, open: false });
+  const { t } = useTranslation(['common']);
+  const [toast] = useToast();
+  // eslint-disable-next-line no-unused-vars
+  const [location, navigate] = useHashLocation();
 
   const [onInput] = useDebouncedCallback(val => {
     setRawFilter(val.toLowerCase());
@@ -21,6 +34,56 @@ const Packages = () => {
 
   let show = sortList(gstate.packages, sort, filter);
 
+  const onDelete = id => () => {
+    setConfirm({
+      open: true,
+      id: id
+    });
+  };
+
+  const onOk = async () => {
+    if (!confirm.id) {
+      return;
+    }
+
+    const newPackages = await ipc('packages/delete', confirm.id);
+    dispatch({ type: 'packages/delete', packages: newPackages });
+    setConfirm({
+      open: false,
+      id: null
+    });
+  };
+
+  const onCancel = () => {
+    setConfirm({
+      open: false,
+      id: null
+    });
+  };
+
+  const onPlay = (pack, sourceport) => async () => {
+    const newPackages = await ipc('packages/play', {
+      ...pack
+    });
+
+    dispatch({ type: 'packages/save', packages: newPackages, package: null });
+
+    toast(
+      'ok',
+      t('common:toastStart'),
+      t('common:toastStartText', {
+        sourceport: sourceport.name,
+        num: newPackages.length
+      })
+    );
+  };
+
+  const onData = path => () => remote.shell.openItem(path);
+
+  const onUse = id => () => {
+    dispatch({ type: 'packages/select', id: id });
+    navigate('/');
+  };
   return (
     <Box
       fixed={
@@ -34,9 +97,17 @@ const Packages = () => {
     >
       <AnimatePresence>
         {show.map(pack => (
-          <Pack pack={pack} key={pack.id} />
+          <Pack
+            pack={pack}
+            key={pack.id}
+            onDelete={onDelete}
+            onUse={onUse}
+            onData={onData}
+            onPlay={onPlay}
+          />
         ))}
       </AnimatePresence>
+      <Confirm active={confirm.open} onOk={onOk} onCancel={onCancel} />
     </Box>
   );
 };

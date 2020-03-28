@@ -42,6 +42,8 @@ export default {
     startView: 'Startseite wenn SSGL geöffnet wird'
   },
   common: {
+    deleteTitle: 'Löschen Bestätigen',
+    deleteText: 'Diesen Eintrag wirklich Löschen ?',
     loading: 'Laden',
     language: 'Sprache',
     success: 'Aktion erfolgreich',
