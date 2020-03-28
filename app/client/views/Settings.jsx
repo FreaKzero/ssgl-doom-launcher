@@ -110,6 +110,7 @@ const Settings = () => {
               value={form.modpath}
               error={errors.modpath}
               directory
+              info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#wad-directory-required"
               fluid
             />
             <SelectFile
@@ -138,6 +139,7 @@ const Settings = () => {
               value={form.savepath}
               error={errors.savepath}
               directory
+              info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#ssgl-data-directory-required"
               fluid
             />
             {gstate.packages.length > 0 ? (

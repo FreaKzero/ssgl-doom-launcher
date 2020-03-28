@@ -133,6 +133,7 @@ const Form = ({ item, onSave, onDelete }) => {
         name="binary"
         label={t('sourceports:binary')}
         error={errors.binary}
+        info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#sourceport-path-required"
         fluid
       />
       <Input
@@ -141,6 +142,7 @@ const Form = ({ item, onSave, onDelete }) => {
         label={t('sourceports:name')}
         onChange={onInput}
         error={errors.name}
+        info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#sourceport-name-required"
         fluid
       />
 
@@ -150,6 +152,7 @@ const Form = ({ item, onSave, onDelete }) => {
           label={t('sourceports:configparam')}
           name="hasConfig"
           onChange={onComponent}
+          info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#seperate-config-by-package"
         />
         {form.hasConfig ? (
           <>
@@ -185,6 +188,7 @@ const Form = ({ item, onSave, onDelete }) => {
           label={t('sourceports:savegameparam')}
           name="hasSavedir"
           onChange={onComponent}
+          info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#seperate-savegames-by-package"
         />
         {form.hasSavedir ? (
           <>
