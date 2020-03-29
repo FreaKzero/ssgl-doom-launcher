@@ -14,6 +14,7 @@ Developer Preview - There can be alot of Changes which is breaking the Experienc
 - Builds for Windows, Linux (Snap) and MacOS
 - Easy and Fast Setup
 - Sourceport agnostic (As long the Sourceport runs in Terminal/Cmd.exe)
+- DEH and BEX Support
 - "Package" System for Modlists
 - Can manage seperate Configs and Savegamefolders for Packages automatically
 - "Instant Play" for Packages, and loads the last Savegame automatically
@@ -22,6 +23,7 @@ Developer Preview - There can be alot of Changes which is breaking the Experienc
 - Multi Language Support
 
 ## Roadmap / Soon
+- Drag Mods into SSGL to import them automatically to your Mod folder
 - "Userparameters" for Packages (like `-fastmonsters`, `-screendir`, etc)
 - Different Themes (Wallpapers already Supported)
 - Package Import/Export System (Operating System agnostic)
