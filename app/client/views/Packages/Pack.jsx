@@ -9,7 +9,7 @@ import covers from '../../assets/ssgl-iwad-covers';
 import { ButtonStyle } from '../../components/Form/Button';
 import Icon from '../../components/Mods/Icon';
 import { StoreContext } from '../../state';
-import { setTitle, useTranslation } from '../../utils';
+import { image, setTitle, useTranslation } from '../../utils';
 
 const PackageMotion = ({ children, ...rest }) => {
   return (
@@ -58,7 +58,7 @@ const PackageStyle = styled(PackageMotion)`
   position: relative;
   margin: 0 10px 10px 0;
   background-color: rgba(12, 8, 8, 0.8);
-  background-image: ${p => `url(${p.cover});`};
+  background-image: ${p => `url("${image(p.cover)}");`};
   background-size: 100%;
   background-position: center top;
   background-repeat: no-repeat;
