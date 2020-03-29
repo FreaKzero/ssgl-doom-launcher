@@ -4,6 +4,7 @@ import React, { useEffect, useReducer } from 'react';
 import ReactDOM from 'react-dom';
 
 import { Body, Head, MainLoader, Routes, ToastContainer } from './components';
+import Update from './components/Update';
 import i18n from './i18n';
 import { initState, reducer, StoreContext } from './state';
 import { useIpc } from './utils';
@@ -25,6 +26,13 @@ const App = () => {
       } catch (e) {
         navigate('/settings');
       }
+
+      try {
+        const update = await fetch('main/checkupdate');
+        dispatch({ type: 'update/set', data: update, done: false });
+      } catch (e) {
+        console.log('blubb');
+      }
     }
     resolve();
   }, []);
@@ -36,6 +44,7 @@ const App = () => {
           <MainLoader />
         ) : (
           <Body background={gstate.settings.background}>
+            {gstate.update.available ? <Update /> : null}
             <Head />
             <Routes />
           </Body>

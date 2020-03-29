@@ -15,6 +15,14 @@ export const removeIndex = (arr, index) => [
 export const initState = {
   iwads: [],
   mods: [],
+  update: {
+    available: false,
+    download: null,
+    version: null,
+    date: null,
+    prerelease: null,
+    changelog: null
+  },
   package: {
     datapath: null,
     id: null,
@@ -40,6 +48,21 @@ export function reducer(state, action) {
   switch (action.type) {
     case 'main/init':
       return act({ ...state, ...action.data, package: initState.package });
+
+    case 'update/done':
+      return act({
+        ...state,
+        update: {
+          ...state.update,
+          available: false
+        }
+      });
+
+    case 'update/set':
+      return act({
+        ...state,
+        update: action.data
+      });
 
     case 'sourceports/save':
       return act({
