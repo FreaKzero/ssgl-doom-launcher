@@ -15,6 +15,14 @@ ipcMain.handle('main/checkupdate', async () => {
       prerelease: null,
       changelog: null
     };
+
+    if (app.name.toLowerCase() === 'electron') {
+      return {
+        data: update,
+        error: null
+      };
+    }
+
     const res = await got(
       'https://api.github.com/repos/FreaKzero/ssgl-doom-launcher/releases'
     ).json();
