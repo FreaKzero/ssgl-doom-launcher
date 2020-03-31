@@ -11,70 +11,31 @@ import Icon from '../../components/Mods/Icon';
 import { StoreContext } from '../../state';
 import { image, setTitle, useTranslation } from '../../utils';
 
-const PackageMotion = ({ children, ...rest }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1
-      }}
-      exit={{ opacity: 0 }}
-      positionTransition={{ type: 'tween' }}
-      {...rest}
-    >
-      {children}
-    </motion.div>
-  );
-};
-
-PackageMotion.propTypes = {
-  children: PropTypes.any
-};
-
-const Meta = styled.div`
-  color: ${styles.color.meta};
-  font-size: 14px;
-  margin-bottom: 5px;
-  text-shadow: 2 1px 1px black, 2 -1px -1px black;
-  transition: ${styles.transition.out};
-`;
-
-const Button = styled(ButtonStyle)`
-  display: inline;
-  min-width: auto;
-  width: 80px;
-  padding: 3px 0 3px 0;
-  margin-top: 5px;
-`;
-
-const ButtonContainer = styled.div`
-  position: absolute;
-  left: 10px;
-  bottom: 10px;
-`;
-
-const PackageStyle = styled(PackageMotion)`
+const Package = motion.custom(styled.div`
   display: inline-block;
   position: relative;
   margin: 0 10px 10px 0;
   background-color: rgba(12, 8, 8, 0.8);
   background-image: ${p => `url("${image(p.cover)}");`};
   background-size: 100%;
-  background-position: center top;
+  background-position: center center;
   background-repeat: no-repeat;
   border-radius: ${styles.border.radius};
   border: 1px solid ${styles.border.idle};
   user-select: none;
   width: 280px;
   height: 180px;
+  overflow: hidden;
 
   &:hover {
     transition: ${styles.transition.out};
-    background-size: 110%;
+    background-size: 116%;
     border: 1px solid ${styles.border.active};
   }
 
   & h1 {
+    display: block;
+    width: 240px;
     font-size: 18px;
     margin-bottom: 5px;
     transition: ${styles.transition.out};
@@ -106,6 +67,28 @@ const PackageStyle = styled(PackageMotion)`
       background: rgba(0, 0, 0, 0.8);
     }
   }
+`);
+
+const Meta = styled.div`
+  color: ${styles.color.meta};
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-shadow: 2 1px 1px black, 2 -1px -1px black;
+  transition: ${styles.transition.out};
+`;
+
+const Button = styled(ButtonStyle)`
+  display: inline;
+  min-width: auto;
+  width: 80px;
+  padding: 3px 0 3px 0;
+  margin-top: 5px;
+`;
+
+const ButtonContainer = styled.div`
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
 `;
 
 const Pack = ({ pack, onUse, onData, onPlay, onDelete }) => {
@@ -117,7 +100,15 @@ const Pack = ({ pack, onUse, onData, onPlay, onDelete }) => {
   const sourceport = gstate.sourceports.find(i => i.id === pack.sourceport);
 
   return (
-    <PackageStyle cover={cover}>
+    <Package
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: 1
+      }}
+      exit={{ opacity: 0 }}
+      positionTransition={{ type: 'tween' }}
+      cover={cover}
+    >
       <div className="content">
         <div className="delete">
           <Icon
@@ -150,7 +141,7 @@ const Pack = ({ pack, onUse, onData, onPlay, onDelete }) => {
           </Button>
         </ButtonContainer>
       </div>
-    </PackageStyle>
+    </Package>
   );
 };
 
