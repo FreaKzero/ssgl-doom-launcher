@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import Check from './Check';
+import { StoreContext } from '../../state';
+import Check from './Checkmarks';
 import Icon from './Icon';
 
 const Divider = styled.div`
@@ -75,6 +76,8 @@ const ModItem = ({
   onCircle = () => null,
   selected = false
 }) => {
+  const { gstate } = useContext(StoreContext);
+
   return (
     <motion.li
       style={style}
@@ -89,7 +92,12 @@ const ModItem = ({
       }}
     >
       <ItemStyle>
-        <Check size="50" active={item.active} onClick={onSelect} />
+        <Check
+          theme={gstate.settings.theme}
+          size="50"
+          active={item.active}
+          onClick={onSelect}
+        />
         <Divider />
         <Content className={item.active ? 'active' : undefined}>
           <h1>{item.name}</h1>
