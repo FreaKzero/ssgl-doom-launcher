@@ -31,13 +31,17 @@ Developer Preview - There can be alot of Changes which is breaking the Experienc
 
 ## Theme Examples
 Wallpapers which are shown here dont ship with SSGL  
+
 ### Hell  
 <img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readme/theme-hell.png" width="700" />
-### UAC 
+
+### UAC  
 <img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readme/theme-uac.png" width="700" />
-### Phobos
+
+### Phobos  
 <img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readme/theme-phobos.png" width="700" />
-### Pinkie
+
+### Pinkie  
 <img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readme/theme-pinkie.png" width="700" />
 
 ## Want to see SSGL in your Mother Tongue ?
