@@ -4,13 +4,11 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
-import styles from '#Style';
-
 import BackDrop from './Backdrop';
 
 const Dialog = motion.custom(styled.div`
-  font-family: ${styles.font.content};
-  background: ${styles.color.back};
+  font-family: ${({ theme }) => theme.font.content};
+  background: ${({ theme }) => theme.color.back};
   position: absolute;
   left: ${p => (p.tiny ? '25%' : '15%;')};
   top: 40px;
@@ -25,7 +23,7 @@ const Dialog = motion.custom(styled.div`
 
   & h1 {
     font-size: 16px;
-    font-family: ${styles.font.head};
+    font-family: ${({ theme }) => theme.font.head};
     text-transform: uppercase;
     color: #ffa800;
     text-shadow: 0 -1px 4px #ff0000, 0 0 15px #ff0000;

@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
-import styles from '#Style';
-
 const PlayIconStyle = styled.div`
   position: absolute;
   right: 30px;
@@ -12,7 +10,7 @@ const PlayIconStyle = styled.div`
   pointer-events: none;
 
   .ring-outer {
-    transition: ${styles.transition.bouncelong};
+    transition: ${({ theme }) => theme.transition.bouncelong};
     transform-origin: center center;
     transform: scale(0.1);
     opacity: 0;
@@ -20,15 +18,15 @@ const PlayIconStyle = styled.div`
   }
 
   .ring-inner {
-    transition: ${styles.transition.out};
-    stroke: ${styles.svg.yellow};
+    transition: ${({ theme }) => theme.transition.out};
+    stroke: ${({ theme }) => theme.svg.yellow};
     stroke-width: 0;
     opacity: 0;
     r: 15;
   }
 
   .play {
-    stroke: ${styles.svg.grey};
+    stroke: ${({ theme }) => theme.svg.grey};
     transform-origin: center center;
     opacity: 0;
     transform: scale(0);
@@ -45,25 +43,25 @@ const PlayIconStyle = styled.div`
   }
 
   .active .ring-outer {
-    stroke: ${styles.svg.red};
+    stroke: ${({ theme }) => theme.svg.red};
     transform: scale(1);
     opacity: 1;
   }
 
   .active .ring-inner {
-    stroke: ${styles.svg.red};
+    stroke: ${({ theme }) => theme.svg.red};
     stroke-width: 15;
     r: 60;
     opacity: 0;
   }
 
   &:hover .active .play {
-    stroke: ${styles.svg.yellow};
+    stroke: ${({ theme }) => theme.svg.yellow};
   }
 
   &:hover .active .ring-outer {
     transform: rotate(45deg);
-    stroke: ${styles.svg.yellow};
+    stroke: ${({ theme }) => theme.svg.yellow};
   }
 
   &:hover .active .ring-inner {
@@ -72,7 +70,7 @@ const PlayIconStyle = styled.div`
   }
 
   .backdrop {
-    transition: ${styles.transition.bounce};
+    transition: ${({ theme }) => theme.transition.bounce};
     transform-origin: center center;
     transform: scale(0);
     fill: black;

@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
-import styles from '#Style';
-
 import { useHashLocation } from '../../utils';
 
 const NavItemStyle = styled.li`
@@ -11,8 +9,8 @@ const NavItemStyle = styled.li`
   position: relative;
 
   a {
-    color: ${styles.color.idle};
-    transition: ${styles.transition.short};
+    color: ${({ theme }) => theme.color.idle};
+    transition: ${({ theme }) => theme.transition.short};
     text-transform: uppercase;
     text-decoration: none;
     display: inline-block;
@@ -21,8 +19,8 @@ const NavItemStyle = styled.li`
   }
 
   a::after {
-    color: ${styles.color.active};
-    transition: ${styles.transition.short};
+    color: ${({ theme }) => theme.color.active};
+    transition: ${({ theme }) => theme.transition.short};
     bottom: 0;
     content: '';
     display: block;
@@ -34,13 +32,13 @@ const NavItemStyle = styled.li`
 
   a:hover,
   a.active {
-    color: ${styles.color.active};
-    text-shadow: ${styles.font.glow};
+    color: ${({ theme }) => theme.color.active};
+    text-shadow: ${({ theme }) => theme.font.glow};
   }
 
   a:hover::after {
-    background-color: ${styles.color.active};
-    box-shadow: ${styles.font.glow};
+    background-color: ${({ theme }) => theme.color.active};
+    box-shadow: ${({ theme }) => theme.font.glow};
     width: 100%;
     left: 0;
   }

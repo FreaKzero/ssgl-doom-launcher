@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import styles from '#Style';
-
 import { StoreContext } from '../state';
 import { useIpc, useToast, useTranslation } from '../utils';
 import BackDrop from './Backdrop';
@@ -38,7 +36,7 @@ DrawerMotion.propTypes = {
 };
 
 const Drawer = styled(DrawerMotion)`
-  background: ${styles.color.backdrop};
+  background: ${({ theme }) => theme.color.backdrop};
   backdrop-filter: blur(5px);
   height: 200px;
   position: absolute;

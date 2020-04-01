@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
-import styles from '#Style';
-
 const Meta = styled.div`
   color: #858585;
   font-size: 14px;
@@ -14,27 +12,27 @@ const Meta = styled.div`
 const SourcePortStyle = styled.div`
   display: flex;
   background: rgba(12, 8, 8, 0.8);
-  border-radius: ${styles.border.radius};
+  border-radius: ${({ theme }) => theme.border.radius};
   padding: 10px;
-  border: 1px solid ${styles.border.idle};
-  transition: ${styles.transition.out};
+  border: 1px solid ${({ theme }) => theme.border.idle};
+  transition: ${({ theme }) => theme.transition.out};
   margin-bottom: 5px;
   user-select: none;
   cursor: pointer;
 
   .indicator {
-    background-color: ${styles.color.active};
-    box-shadow: ${styles.font.glow};
+    background-color: ${({ theme }) => theme.color.active};
+    box-shadow: ${({ theme }) => theme.font.glow};
     margin-right: 10px;
     width: 0;
-    transition: ${styles.transition.out};
+    transition: ${({ theme }) => theme.transition.out};
   }
 
   & h1 {
     font-size: 18px;
     margin-top: 5px;
     margin-bottom: 5px;
-    transition: ${styles.transition.out};
+    transition: ${({ theme }) => theme.transition.out};
     text-transform: uppercase;
   }
 
@@ -45,11 +43,11 @@ const SourcePortStyle = styled.div`
 
   &:hover h1,
   &.active h1 {
-    color: ${styles.color.active};
+    color: ${({ theme }) => theme.color.active};
   }
 
   &:hover {
-    border: 1px solid ${styles.border.active};
+    border: 1px solid ${({ theme }) => theme.border.active};
   }
 `;
 

@@ -2,13 +2,11 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 
-import styles from '#Style';
-
 import Label from './Label';
 
 export const InputStyle = styled.input`
-  font-family: ${styles.font.content};
-  color: ${styles.color.idle};
+  font-family: ${({ theme }) => theme.font.content};
+  color: ${({ theme }) => theme.color.idle};
   padding: 7px 7px 7px 10px;
   width: 100%;
   font-size: 16px;
@@ -25,13 +23,13 @@ export const InputStyle = styled.input`
 `;
 
 export const InputContainerStyle = styled.div`
-  background-color: ${styles.color.backdrop};
-  border-radius: ${styles.border.radius};
+  background-color: ${({ theme }) => theme.color.backdrop};
+  border-radius: ${({ theme }) => theme.border.radius};
   border: ${p =>
     p.error
-      ? `1px solid ${styles.border.red};`
-      : `1px solid ${styles.border.idle};`};
-  transition: ${styles.transition.out};
+      ? `1px solid ${p.theme.border.red};`
+      : `1px solid ${p.theme.border.idle};`};
+  transition: ${({ theme }) => theme.transition.out};
   margin-bottom: 15px;
   display: flex;
   margin-right: 5px;
@@ -46,11 +44,11 @@ export const InputContainerStyle = styled.div`
   }};
 
   &:hover {
-    border: 1px solid ${styles.border.active};
+    border: 1px solid ${({ theme }) => theme.border.active};
   }
 
   &:focus-within {
-    border: 1px solid ${styles.border.active};
+    border: 1px solid ${({ theme }) => theme.border.active};
   }
 `;
 

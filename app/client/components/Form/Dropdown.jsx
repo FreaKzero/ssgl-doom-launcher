@@ -4,7 +4,6 @@ import SVG from 'react-svg-inline';
 import styled from 'styled-components';
 
 import down from '#/assets/icon/down.svg';
-import styles from '#Style';
 
 import { InputContainerStyle, InputStyle } from './Input';
 import Label from './Label';
@@ -15,14 +14,14 @@ const Wrapper = styled(InputContainerStyle)`
   position: relative;
 
   svg {
-    stroke: ${styles.button.idle};
+    stroke: ${({ theme }) => theme.button.idle};
     margin: 11px 10px 0 0;
     transition: all 0.21s ease-out;
   }
 
   &:hover svg {
-    stroke: ${styles.svg.yellow};
-    filter: ${styles.svg.glow};
+    stroke: ${({ theme }) => theme.svg.yellow};
+    filter: ${({ theme }) => theme.svg.glow};
   }
 
   &:focus-within svg {
@@ -37,15 +36,15 @@ const Input = styled(InputStyle)`
   cursor: pointer;
 
   &:hover {
-    text-shadow: 0 0 0 ${styles.color.active};
+    text-shadow: 0 0 0 ${({ theme }) => theme.color.active};
   }
 `;
 
 const OptionList = styled.ul`
-  ${styles.scrollbar};
-  background-color: ${styles.color.backdrop};
-  border-radius: ${styles.border.radius};
-  border: 1px solid ${styles.border.active};
+  ${({ theme }) => theme.scrollbar};
+  background-color: ${({ theme }) => theme.color.backdrop};
+  border-radius: ${({ theme }) => theme.border.radius};
+  border: 1px solid ${({ theme }) => theme.border.active};
   position: absolute;
   top: 35px;
   width: 100%;
@@ -57,19 +56,19 @@ const OptionList = styled.ul`
 `;
 
 const Option = styled.li`
-  transition: ${styles.transition.out};
+  transition: ${({ theme }) => theme.transition.out};
   width: 100%;
   padding: 10px 0 10px 10px;
   cursor: pointer;
 
   &:hover {
-    color: ${styles.color.active};
-    background-color: ${styles.color.back};
+    color: ${({ theme }) => theme.color.active};
+    background-color: ${({ theme }) => theme.color.back};
     padding: 10px 0 10px 20px;
   }
 
   &.selected {
-    color: ${styles.color.active};
+    color: ${({ theme }) => theme.color.active};
   }
 `;
 

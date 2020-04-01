@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import styles from '#Style';
-
 import covers from '../../assets/ssgl-iwad-covers';
 import { ButtonStyle } from '../../components/Form/Button';
 import Icon from '../../components/Mods/Icon';
@@ -20,17 +18,17 @@ const Package = motion.custom(styled.div`
   background-size: 100%;
   background-position: center top;
   background-repeat: no-repeat;
-  border-radius: ${styles.border.radius};
-  border: 1px solid ${styles.border.idle};
+  border-radius: ${({ theme }) => theme.border.radius};
+  border: 1px solid ${({ theme }) => theme.border.idle};
   user-select: none;
   width: 280px;
   height: 180px;
   overflow: hidden;
 
   &:hover {
-    transition: ${styles.transition.out};
+    transition: ${({ theme }) => theme.transition.out};
     background-size: 116%;
-    border: 1px solid ${styles.border.active};
+    border: 1px solid ${({ theme }) => theme.border.active};
   }
 
   & h1 {
@@ -38,12 +36,12 @@ const Package = motion.custom(styled.div`
     width: 240px;
     font-size: 18px;
     margin-bottom: 5px;
-    transition: ${styles.transition.out};
+    transition: ${({ theme }) => theme.transition.out};
     text-transform: uppercase;
   }
 
   &:hover h1 {
-    color: ${styles.color.active};
+    color: ${({ theme }) => theme.color.active};
   }
 
   &:hover div {
@@ -70,11 +68,11 @@ const Package = motion.custom(styled.div`
 `);
 
 const Meta = styled.div`
-  color: ${styles.color.meta};
+  color: ${({ theme }) => theme.color.meta};
   font-size: 14px;
   margin-bottom: 5px;
   text-shadow: 2 1px 1px black, 2 -1px -1px black;
-  transition: ${styles.transition.out};
+  transition: ${({ theme }) => theme.transition.out};
 `;
 
 const Button = styled(ButtonStyle)`

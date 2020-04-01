@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
-import styles from '#Style';
-
 import Check from './Check';
 import Icon from './Icon';
 
@@ -15,11 +13,11 @@ const Content = styled.div`
   width: 100%;
 
   p {
-    transition: ${styles.transition.out};
+    transition: ${({ theme }) => theme.transition.out};
   }
 
   h1 {
-    transition: ${styles.transition.out};
+    transition: ${({ theme }) => theme.transition.out};
     font-size: 18px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -27,7 +25,7 @@ const Content = styled.div`
   }
 
   &.active h1 {
-    color: ${styles.color.active};
+    color: ${({ theme }) => theme.color.active};
   }
 
   &.active p {
@@ -36,7 +34,7 @@ const Content = styled.div`
 `;
 
 const Meta = styled.p`
-  color: ${styles.color.meta};
+  color: ${({ theme }) => theme.color.meta};
   font-size: 14px;
   margin-bottom: 5px;
 `;
@@ -49,10 +47,10 @@ const IconContainer = styled.div`
 `;
 
 const ItemStyle = styled.div`
-  background: ${styles.color.backdrop};
-  border-radius: ${styles.border.radius};
-  border: 1px solid ${styles.border.idle};
-  transition: ${styles.transition.out};
+  background: ${({ theme }) => theme.color.backdrop};
+  border-radius: ${({ theme }) => theme.border.radius};
+  border: 1px solid ${({ theme }) => theme.border.idle};
+  transition: ${({ theme }) => theme.transition.out};
   padding: 10px;
   height: 50px;
   display: flex;
@@ -60,11 +58,11 @@ const ItemStyle = styled.div`
   user-select: none;
 
   &:hover {
-    border: 1px solid ${styles.border.active};
+    border: 1px solid ${({ theme }) => theme.border.active};
   }
 
   &:hover h1 {
-    color: ${styles.color.active};
+    color: ${({ theme }) => theme.color.active};
   }
 `;
 

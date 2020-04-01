@@ -3,14 +3,12 @@ import React, { useLayoutEffect, useRef, useState } from 'react';
 import VirtualList from 'react-tiny-virtual-list';
 import styled from 'styled-components';
 
-import styles from '#Style';
-
 import ModItem from './ModItem';
 
 const BoxStyle = styled.div`
-  border: 1px solid ${styles.border.idle};
-  border-radius: ${styles.border.radius};
-  background: ${styles.box.backdrop};
+  border: 1px solid ${({ theme }) => theme.border.idle};
+  border-radius: ${({ theme }) => theme.border.radius};
+  background: ${({ theme }) => theme.box.backdrop};
   backdrop-filter: blur(5px);
   flex-grow: 1;
   padding: 10px;
@@ -18,7 +16,7 @@ const BoxStyle = styled.div`
 
   & > ul > div {
     padding-right: 5px;
-    ${styles.scrollbar};
+    ${({ theme }) => theme.scrollbar};
   }
 `;
 

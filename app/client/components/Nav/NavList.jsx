@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import routes from '#/routes';
-import styles from '#Style';
 
 import { StoreContext } from '../../state';
 import { useTranslation } from '../../utils';
@@ -12,7 +11,7 @@ import NavItem from './NavItem';
 const NavList = styled.ul`
   user-select: none;
   height: 65px;
-  font-family: ${styles.font.head};
+  font-family: ${({ theme }) => theme.font.head};
   list-style: none;
   display: table;
   width: 50%;

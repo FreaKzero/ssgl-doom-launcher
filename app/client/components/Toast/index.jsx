@@ -4,8 +4,6 @@ import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
-import styles from '#Style';
-
 import ToastContext from './ToastContext';
 
 let currentTimeout;
@@ -28,8 +26,8 @@ const scopeStyle = scope => {
 };
 
 const Indicator = styled.div`
-  background-color: ${styles.color.active};
-  box-shadow: ${styles.font.glow};
+  background-color: ${({ theme }) => theme.color.active};
+  box-shadow: ${({ theme }) => theme.font.glow};
   animation: toasttimer ${DEFAULT_TOAST_DURATION}ms;
 `;
 
@@ -43,7 +41,7 @@ const ToastPortalStyle = styled.div`
 const ToastStyle = styled.div`
   background: #1d2025;
   border: 1px solid #1d2226;
-  border-radius: ${styles.border.radius};
+  border-radius: ${({ theme }) => theme.border.radius};
   width: 400px;
   padding: 15px;
   color: white;
@@ -51,12 +49,12 @@ const ToastStyle = styled.div`
 
   p {
     margin: 8px 0 8px 0;
-    font-family: ${styles.font.content};
+    font-family: ${({ theme }) => theme.font.content};
   }
 
   h1 {
     font-size: 16px;
-    font-family: ${styles.font.head};
+    font-family: ${({ theme }) => theme.font.head};
     text-transform: uppercase;
     ${p => scopeStyle(p.scope)}
   }

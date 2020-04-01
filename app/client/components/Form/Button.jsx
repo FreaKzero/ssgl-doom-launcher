@@ -4,27 +4,26 @@ import Svg from 'react-svg-inline';
 import styled from 'styled-components';
 
 import spinner from '#/assets/icon/spinner.svg';
-import styles from '#Style';
 
 const SpinnerStyle = styled.div`
   svg {
-    fill: ${styles.color.active};
-    filter: ${styles.svg.glow};
+    fill: ${({ theme }) => theme.color.active};
+    filter: ${({ theme }) => theme.svg.glow};
     margin-bottom: -2px;
     animation: spin 0.7s infinite;
   }
 `;
 
 export const ButtonStyle = styled.button`
-  color: ${styles.button.idle};
-  transition: ${styles.transition.out};
+  color: ${({ theme }) => theme.button.idle};
+  transition: ${({ theme }) => theme.transition.out};
   width: ${p => (p.fluid ? '100%' : p.width ? p.width : 'auto')};
-  border: 1px solid ${styles.border.idle};
+  border: 1px solid ${({ theme }) => theme.border.idle};
   background: ${p =>
-    p.disabled ? styles.button.disabled : styles.button.back};
-  text-shadow: ${styles.button.shadow};
+    p.disabled ? p.theme.button.disabled : p.theme.button.back};
+  text-shadow: ${({ theme }) => theme.button.shadow};
   box-sizing: border-box;
-  border-radius: ${styles.border.radius};
+  border-radius: ${({ theme }) => theme.border.radius};
   text-transform: uppercase;
   min-width: 100px;
   padding: 7px;
@@ -36,12 +35,12 @@ export const ButtonStyle = styled.button`
     border: ${p =>
       p.border
         ? `1px solid ${p.border};`
-        : `1px solid ${styles.border.active};`};
-    color: ${p => (p.color ? `${p.color};` : `${styles.color.active};`)};
+        : `1px solid ${p.theme.border.active};`};
+    color: ${p => (p.color ? `${p.color};` : `${p.theme.color.active};`)};
     text-shadow: ${p =>
       p.glow
         ? `0 0px 5px ${p.glow}, 0 0px 15px ${p.glow};`
-        : `0 0px 5px ${styles.color.glow}, 0 0px 15px ${styles.color.glow};`};
+        : `0 0px 5px ${p.theme.color.glow}, 0 0px 15px ${p.theme.color.glow};`};
   }
 `;
 

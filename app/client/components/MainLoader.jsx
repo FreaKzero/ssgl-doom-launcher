@@ -1,13 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import styles from '#Style';
-
 import { useTranslation } from '../utils';
 import Logo from './Logo';
 
 const MainLoaderStyle = styled.div`
-  font-family: ${styles.font.head};
+  font-family: ${({ theme }) => theme.font.head};
   text-align: center;
   text-transform: uppercase;
   background-color: #1d2025;

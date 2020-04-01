@@ -35,6 +35,7 @@ export const initState = {
   packages: [],
   sourceports: [],
   settings: {
+    theme: 'hell',
     startView: '/',
     language: 'en',
     defaultsourceport: '',

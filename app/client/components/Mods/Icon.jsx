@@ -7,20 +7,19 @@ import circle from '#/assets/icon/circle.svg';
 import down from '#/assets/icon/down.svg';
 import times from '#/assets/icon/times.svg';
 import up from '#/assets/icon/up.svg';
-import styles from '#Style';
 
 // TODO: color / refactor
 export const IconStyle = styled.div`
   cursor: pointer;
 
   svg {
-    stroke: ${p => (p.stroke ? p.stroke : styles.border.idle)};
-    transition: ${styles.transition.out};
+    stroke: ${p => (p.stroke ? p.stroke : p.theme.border.idle)};
+    transition: ${({ theme }) => theme.transition.out};
   }
 
   div:hover {
     svg {
-      stroke: ${styles.border.active};
+      stroke: ${({ theme }) => theme.border.active};
       filter: drop-shadow(0 0 10px #ff0000) drop-shadow(0 0 15px #ff0000);
     }
   }

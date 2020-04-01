@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import styles from '#Style';
-
 import {
   Button,
   Checkbox,
@@ -15,8 +13,8 @@ import { useToast, useTranslation } from '../../utils';
 
 const FormBorder = styled.div`
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid ${styles.border.idle};
-  border-radius: ${styles.border.radius};
+  border: 1px solid ${({ theme }) => theme.border.idle};
+  border-radius: ${({ theme }) => theme.border.radius};
   padding: 10px 10px 0 10px;
   margin-bottom: 15px;
 `;

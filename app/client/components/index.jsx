@@ -1,7 +1,6 @@
 import BackDrop from './Backdrop';
 import Body from './Body';
 import Box from './Box';
-import ErrorMessage from './ErrorMessage';
 import Flex from './Flex';
 import Head from './Head';
 import iWad from './IWad';
@@ -24,7 +23,6 @@ export {
   Logo,
   Head,
   Flex,
-  ErrorMessage,
   Box,
   Body,
   ToastContainer,

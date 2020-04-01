@@ -2,11 +2,13 @@ import './global.css';
 
 import React, { useEffect, useReducer } from 'react';
 import ReactDOM from 'react-dom';
+import { ThemeProvider } from 'styled-components';
 
 import { Body, Head, MainLoader, Routes, ToastContainer } from './components';
 import Update from './components/Update';
 import i18n from './i18n';
 import { initState, reducer, StoreContext } from './state';
+import themes from './Theme';
 import { useIpc } from './utils';
 import { useHashLocation } from './utils';
 
@@ -38,19 +40,21 @@ const App = () => {
   }, []);
 
   return (
-    <ToastContainer>
-      <StoreContext.Provider value={{ gstate, dispatch }}>
-        {loading ? (
-          <MainLoader />
-        ) : (
-          <Body background={gstate.settings.background}>
-            {gstate.update.available ? <Update /> : null}
-            <Head />
-            <Routes />
-          </Body>
-        )}
-      </StoreContext.Provider>
-    </ToastContainer>
+    <ThemeProvider theme={themes['hell']}>
+      <ToastContainer>
+        <StoreContext.Provider value={{ gstate, dispatch }}>
+          {loading ? (
+            <MainLoader />
+          ) : (
+            <Body background={gstate.settings.background}>
+              {gstate.update.available ? <Update /> : null}
+              <Head />
+              <Routes />
+            </Body>
+          )}
+        </StoreContext.Provider>
+      </ToastContainer>
+    </ThemeProvider>
   );
 };
 

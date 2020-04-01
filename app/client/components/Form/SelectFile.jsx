@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import styles from '#Style';
-
 import { useTranslation } from '../../utils';
 import { ButtonStyle } from './Button';
 import { InputContainerStyle, InputStyle } from './Input';
@@ -17,7 +15,8 @@ const Input = styled(InputStyle)`
 const SelectButton = styled(ButtonStyle)`
   user-select: none;
   min-width: 150px;
-  border-radius: ${styles.border.radius} 0 0 ${styles.border.radius};
+  border-radius: ${({ theme }) =>
+    `${theme.border.radius} 0 0 ${theme.border.radius}`};
   padding: 0;
 
   &:hover {

@@ -2,16 +2,14 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import styles from '#Style';
-
 import Label from './Label';
 
 const CheckboxStyle = styled.button`
-  background: ${styles.button.back};
-  border: 1px solid ${styles.border.idle};
-  transition: ${styles.transition.out};
-  text-shadow: ${styles.button.shadow};
-  border-radius: ${styles.border.radius};
+  background: ${({ theme }) => theme.button.back};
+  border: 1px solid ${({ theme }) => theme.border.idle};
+  transition: ${({ theme }) => theme.transition.out};
+  text-shadow: ${({ theme }) => theme.button.shadow};
+  border-radius: ${({ theme }) => theme.border.radius};
   text-transform: uppercase;
   cursor: pointer;
   min-width: 0;
@@ -21,8 +19,8 @@ const CheckboxStyle = styled.button`
   margin-right: 5px;
 
   svg {
-    transition: ${styles.transition.short};
-    stroke: ${styles.button.idle};
+    transition: ${({ theme }) => theme.transition.short};
+    stroke: ${({ theme }) => theme.button.idle};
     transform: scale(0);
     width: 20px;
   }
@@ -32,13 +30,13 @@ const CheckboxStyle = styled.button`
   }
 
   &:hover {
-    border: 1px solid ${styles.border.active};
-    text-shadow: ${styles.font.glow};
+    border: 1px solid ${({ theme }) => theme.border.active};
+    text-shadow: ${({ theme }) => theme.font.glow};
   }
 
   &:hover svg {
-    filter: ${styles.svg.glow};
-    stroke: ${styles.color.active};
+    filter: ${({ theme }) => theme.svg.glow};
+    stroke: ${({ theme }) => theme.color.active};
   }
 `;
 

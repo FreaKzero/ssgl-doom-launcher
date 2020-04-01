@@ -2,12 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
-import styles from '#Style';
-
 const BoxStyle = styled.div`
-  border: 1px solid ${styles.border.idle};
-  border-radius: ${styles.border.radius};
-  background: ${styles.box.backdrop};
+  border: 1px solid ${({ theme }) => theme.border.idle};
+  border-radius: ${({ theme }) => theme.border.radius};
+  background: ${({ theme }) => theme.box.backdrop};
   backdrop-filter: blur(5px);
   flex-grow: 1;
   padding: 10px;
@@ -15,7 +13,7 @@ const BoxStyle = styled.div`
 
   .scroll {
     overflow-y: ${p => (p.noscroll ? 'hidden' : 'scroll')};
-    ${p => (p.noscroll ? null : styles.scrollbar)};
+    ${p => (p.noscroll ? null : p.theme.scrollbar)};
     height: ${p => (p.fixed ? 'calc(100vh - 195px)' : '100%')};
     overflow-x: hidden;
   }

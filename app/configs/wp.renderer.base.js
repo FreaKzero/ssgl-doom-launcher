@@ -50,7 +50,6 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx'],
     alias: {
-      '#Style': res(`${process.cwd()}/client/styles.js`),
       '#': res(`${process.cwd()}/client/`)
     }
   }

@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
-import styles from '#Style';
-
 const LabelStyle = styled.label`
   display: inline-block;
   text-transform: uppercase;
@@ -14,7 +12,7 @@ const LabelStyle = styled.label`
   color: ${p => (p.error ? 'red' : 'white')};
 
   .info {
-    color: ${styles.color.active};
+    color: ${({ theme }) => theme.color.active};
     cursor: pointer;
   }
 `;

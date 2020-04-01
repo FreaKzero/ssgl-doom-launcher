@@ -2,14 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
-import styles from '#Style';
-
 const IconStyle = styled.div`
   cursor: pointer;
 
   .ring-outer {
-    stroke: ${styles.svg.red};
-    transition: ${styles.transition.bounce};
+    stroke: ${({ theme }) => theme.svg.red};
+    transition: ${({ theme }) => theme.transition.bounce};
     transform-origin: center center;
     transform: scale(0.7);
     stroke-width: 20;
@@ -17,7 +15,7 @@ const IconStyle = styled.div`
 
   .ring-inner {
     stroke-width: 30;
-    stroke: ${styles.svg.red};
+    stroke: ${({ theme }) => theme.svg.red};
     r: 15;
     transition: all 0.2s ease-out;
   }
@@ -30,14 +28,14 @@ const IconStyle = styled.div`
   }
 
   .active .ring-outer {
-    stroke: ${styles.svg.yellow};
+    stroke: ${({ theme }) => theme.svg.yellow};
     transform: rotate(45deg) scale(1);
     stroke-width: 12;
   }
 
   .active .ring-inner {
     stroke-width: 20;
-    stroke: ${styles.svg.red};
+    stroke: ${({ theme }) => theme.svg.red};
     r: 80;
   }
 
@@ -47,11 +45,11 @@ const IconStyle = styled.div`
   }
 
   &:hover .ring-inner {
-    stroke: ${styles.svg.yellow};
+    stroke: ${({ theme }) => theme.svg.yellow};
   }
 
   & .active:hover .ring-inner {
-    stroke: ${styles.svg.red};
+    stroke: ${({ theme }) => theme.svg.red};
   }
 `;
 

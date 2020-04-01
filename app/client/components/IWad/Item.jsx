@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
-import styles from '#Style';
-
 import Covers from '../../assets/ssgl-iwad-covers';
 
 const ListItemStyle = styled.li`
@@ -15,8 +13,8 @@ const IconStyle = styled.div`
   cursor: pointer;
 
   .ring-outer {
-    transition: ${styles.transition.bouncelong};
-    stroke: ${styles.svg.red};
+    transition: ${({ theme }) => theme.transition.bouncelong};
+    stroke: ${({ theme }) => theme.svg.red};
     transform-origin: center center;
     stroke-width: 9;
   }
@@ -26,21 +24,21 @@ const IconStyle = styled.div`
   }
 
   .backdrop-overlay {
-    transition: ${styles.transition.short};
+    transition: ${({ theme }) => theme.transition.short};
     transform-origin: center center;
     opacity: 0.5;
     transform: scale(0);
   }
 
   .play {
-    transition: ${styles.transition.bouncelong};
-    stroke: ${styles.svg.yellow};
+    transition: ${({ theme }) => theme.transition.bouncelong};
+    stroke: ${({ theme }) => theme.svg.yellow};
     transform-origin: center center;
     transform: scale(0);
   }
 
   &:hover .ring-outer {
-    stroke: ${styles.svg.yellow};
+    stroke: ${({ theme }) => theme.svg.yellow};
     transform: rotate(45deg);
   }
 
