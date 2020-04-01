@@ -18,7 +18,7 @@ const Package = motion.custom(styled.div`
   background-color: rgba(12, 8, 8, 0.8);
   background-image: ${p => `url("${image(p.cover)}");`};
   background-size: 100%;
-  background-position: center center;
+  background-position: center top;
   background-repeat: no-repeat;
   border-radius: ${styles.border.radius};
   border: 1px solid ${styles.border.idle};
