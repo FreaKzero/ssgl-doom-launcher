@@ -20,7 +20,7 @@ export const IconStyle = styled.div`
   div:hover {
     svg {
       stroke: ${({ theme }) => theme.border.active};
-      filter: drop-shadow(0 0 10px #ff0000) drop-shadow(0 0 15px #ff0000);
+      filter: ${({ theme }) => theme.svg.glow};
     }
   }
 `;

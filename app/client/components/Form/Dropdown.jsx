@@ -20,7 +20,7 @@ const Wrapper = styled(InputContainerStyle)`
   }
 
   &:hover svg {
-    stroke: ${({ theme }) => theme.svg.yellow};
+    stroke: ${({ theme }) => theme.svg.bright};
     filter: ${({ theme }) => theme.svg.glow};
   }
 

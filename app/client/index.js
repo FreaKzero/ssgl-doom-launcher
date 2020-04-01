@@ -40,7 +40,7 @@ const App = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={themes['hell']}>
+    <ThemeProvider theme={themes[gstate.settings.theme || 'hell']}>
       <ToastContainer>
         <StoreContext.Provider value={{ gstate, dispatch }}>
           {loading ? (

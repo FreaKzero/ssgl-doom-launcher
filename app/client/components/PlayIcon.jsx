@@ -19,7 +19,7 @@ const PlayIconStyle = styled.div`
 
   .ring-inner {
     transition: ${({ theme }) => theme.transition.out};
-    stroke: ${({ theme }) => theme.svg.yellow};
+    stroke: ${({ theme }) => theme.svg.bright};
     stroke-width: 0;
     opacity: 0;
     r: 15;
@@ -43,25 +43,25 @@ const PlayIconStyle = styled.div`
   }
 
   .active .ring-outer {
-    stroke: ${({ theme }) => theme.svg.red};
+    stroke: ${({ theme }) => theme.svg.dark};
     transform: scale(1);
     opacity: 1;
   }
 
   .active .ring-inner {
-    stroke: ${({ theme }) => theme.svg.red};
+    stroke: ${({ theme }) => theme.svg.dark};
     stroke-width: 15;
     r: 60;
     opacity: 0;
   }
 
   &:hover .active .play {
-    stroke: ${({ theme }) => theme.svg.yellow};
+    stroke: ${({ theme }) => theme.svg.bright};
   }
 
   &:hover .active .ring-outer {
     transform: rotate(45deg);
-    stroke: ${({ theme }) => theme.svg.yellow};
+    stroke: ${({ theme }) => theme.svg.bright};
   }
 
   &:hover .active .ring-inner {

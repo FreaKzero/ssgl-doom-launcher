@@ -48,7 +48,15 @@ export const initState = {
 export function reducer(state, action) {
   switch (action.type) {
     case 'main/init':
-      return act({ ...state, ...action.data, package: initState.package });
+      return act({
+        ...state,
+        ...action.data,
+        settings: {
+          ...initState.settings,
+          ...action.data.settings
+        },
+        package: initState.package
+      });
 
     case 'update/done':
       return act({

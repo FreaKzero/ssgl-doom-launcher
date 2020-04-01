@@ -25,8 +25,9 @@ const Dialog = motion.custom(styled.div`
     font-size: 16px;
     font-family: ${({ theme }) => theme.font.head};
     text-transform: uppercase;
-    color: #ffa800;
-    text-shadow: 0 -1px 4px #ff0000, 0 0 15px #ff0000;
+    color: ${({ theme }) => theme.color.active};
+    text-shadow: ${({ theme }) =>
+      `0 -1px 4px ${theme.color.active}, 0 0 15px ${theme.color.active}`};
     margin-bottom: 15px;
   }
 `);

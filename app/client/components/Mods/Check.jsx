@@ -6,7 +6,7 @@ const IconStyle = styled.div`
   cursor: pointer;
 
   .ring-outer {
-    stroke: ${({ theme }) => theme.svg.red};
+    stroke: ${({ theme }) => theme.svg.dark};
     transition: ${({ theme }) => theme.transition.bounce};
     transform-origin: center center;
     transform: scale(0.7);
@@ -15,7 +15,7 @@ const IconStyle = styled.div`
 
   .ring-inner {
     stroke-width: 30;
-    stroke: ${({ theme }) => theme.svg.red};
+    stroke: ${({ theme }) => theme.svg.dark};
     r: 15;
     transition: all 0.2s ease-out;
   }
@@ -25,17 +25,18 @@ const IconStyle = styled.div`
     transition: all 0.15s ease-out;
     transform: scale(0.1);
     transform-origin: center center;
+    fill: ${({ theme }) => theme.svg.bright};
   }
 
   .active .ring-outer {
-    stroke: ${({ theme }) => theme.svg.yellow};
+    stroke: ${({ theme }) => theme.svg.bright};
     transform: rotate(45deg) scale(1);
     stroke-width: 12;
   }
 
   .active .ring-inner {
     stroke-width: 20;
-    stroke: ${({ theme }) => theme.svg.red};
+    stroke: ${({ theme }) => theme.svg.dark};
     r: 80;
   }
 
@@ -45,11 +46,11 @@ const IconStyle = styled.div`
   }
 
   &:hover .ring-inner {
-    stroke: ${({ theme }) => theme.svg.yellow};
+    stroke: ${({ theme }) => theme.svg.bright};
   }
 
   & .active:hover .ring-inner {
-    stroke: ${({ theme }) => theme.svg.red};
+    stroke: ${({ theme }) => theme.svg.dark};
   }
 `;
 
@@ -77,13 +78,11 @@ const Check = ({ active, size, onClick }) => {
             fillRule="evenodd"
             clipRule="evenodd"
             d="M172.893 277.482L235.321 90L172.368 132.836L110.464 90.5673L172.893 277.482ZM173.424 247.133L129.591 114.68L173.165 145.599L216.998 114.68L173.424 247.133Z"
-            fill="#FFA800"
           />
           <path
             fillRule="evenodd"
             clipRule="evenodd"
             d="M274.077 203.259L181.932 139.643L162.805 139.643L74 202.447L274.077 203.259ZM240.11 192.676L104.626 192.676L173.424 144.748L240.11 192.676Z"
-            fill="#FFA800"
           />
         </g>
       </svg>

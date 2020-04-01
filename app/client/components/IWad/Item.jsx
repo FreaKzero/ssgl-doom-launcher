@@ -14,7 +14,7 @@ const IconStyle = styled.div`
 
   .ring-outer {
     transition: ${({ theme }) => theme.transition.bouncelong};
-    stroke: ${({ theme }) => theme.svg.red};
+    stroke: ${({ theme }) => theme.svg.dark};
     transform-origin: center center;
     stroke-width: 9;
   }
@@ -32,13 +32,13 @@ const IconStyle = styled.div`
 
   .play {
     transition: ${({ theme }) => theme.transition.bouncelong};
-    stroke: ${({ theme }) => theme.svg.yellow};
+    stroke: ${({ theme }) => theme.svg.bright};
     transform-origin: center center;
     transform: scale(0);
   }
 
   &:hover .ring-outer {
-    stroke: ${({ theme }) => theme.svg.yellow};
+    stroke: ${({ theme }) => theme.svg.bright};
     transform: rotate(45deg);
   }
 

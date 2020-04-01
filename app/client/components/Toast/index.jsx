@@ -56,7 +56,11 @@ const ToastStyle = styled.div`
     font-size: 16px;
     font-family: ${({ theme }) => theme.font.head};
     text-transform: uppercase;
-    ${p => scopeStyle(p.scope)}
+    text-shadow: ${p =>
+      p.scope === 'danger'
+        ? `0 -1px 4px #b8342a, 0 0px 15px #b8342a`
+        : `0 -1px 4px ${p.theme.color.glow}, 0 0px 15px ${p.theme.color.glow}`};
+    color: ${p => (p.scope === 'danger' ? `#ff2f00` : p.theme.color.active)};
   }
 `;
 

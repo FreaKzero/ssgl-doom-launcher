@@ -25,6 +25,25 @@ const Settings = () => {
   const [fetchInit, loadInit] = useIpc();
   // eslint-disable-next-line no-unused-vars
   const [loc, navigate] = useHashLocation();
+
+  const themeOptions = [
+    {
+      label: 'Hell',
+      value: 'hell'
+    },
+    {
+      label: 'UAC',
+      value: 'uac'
+    },
+    {
+      label: 'Phobos',
+      value: 'phobos'
+    },
+    {
+      label: 'Pinkie',
+      value: 'pinkie'
+    }
+  ];
   const viewOptions = [
     {
       label: t('nav:wads'),
@@ -46,11 +65,6 @@ const Settings = () => {
       ...form,
       [name]: value ? value : ''
     });
-
-    switch (name) {
-      case 'language':
-        return i18n.changeLanguage(value);
-    }
   };
 
   const validate = () => {
@@ -88,8 +102,8 @@ const Settings = () => {
 
       const newState = await fetchInit('main/init', null);
       dispatch({ type: 'main/init', data: newState });
+      i18n.changeLanguage(newState.settings.language);
       toast('ok', t('common:success'), t('settings:toastSaved'));
-
       if (gstate.sourceports.length < 1) {
         navigate('/sourceports');
       }
@@ -130,6 +144,13 @@ const Settings = () => {
                 error={errors.defaultsourceport}
               />
             ) : null}
+            <Dropdown
+              name="language"
+              options={AVAILABLE_LOCALES}
+              label={t('common:language')}
+              value={form.language}
+              onChange={onComponent}
+            />
           </Flex.Col>
           <Flex.Col width="50%">
             <SelectFile
@@ -142,6 +163,13 @@ const Settings = () => {
               info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#ssgl-data-directory-required"
               fluid
             />
+            <Dropdown
+              name="theme"
+              options={themeOptions}
+              label="Colortheme"
+              value={form.theme}
+              onChange={onComponent}
+            />
             {gstate.packages.length > 0 ? (
               <Dropdown
                 name="startView"
@@ -151,13 +179,6 @@ const Settings = () => {
                 onChange={onComponent}
               />
             ) : null}
-            <Dropdown
-              name="language"
-              options={AVAILABLE_LOCALES}
-              label={t('common:language')}
-              value={form.language}
-              onChange={onComponent}
-            />
           </Flex.Col>
         </Flex.Grid>
 
