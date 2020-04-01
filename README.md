@@ -29,7 +29,7 @@ Developer Preview - There can be alot of Changes which is breaking the Experienc
 - Package Import/Export System (Operating System agnostic)
 - Oblige/Obhack Integration (like in SSGL Version 1)
 
-## Theme Examples
+## Customization Examples
 Wallpapers which are shown here dont ship with SSGL  
 
 ### Hell  
