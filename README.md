@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readmelogo.png" width="350"></p>
+<p align="center"><img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readme/readmelogo.png" width="350"></p>
 
 - [Current Developer Preview Release](https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v2.0.0-devpreview.16)
 - [First Setup Instructions](https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup)
