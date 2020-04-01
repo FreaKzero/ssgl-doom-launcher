@@ -1,5 +1,4 @@
 import { remote } from 'electron';
-import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 
 import { StoreContext } from '../state';
@@ -8,7 +7,6 @@ import { Button } from './Form';
 import { Modal } from './index';
 
 const Update = () => {
-  const { t } = useTranslation(['common']);
   const { gstate, dispatch } = useContext(StoreContext);
 
   const onOk = () => {
