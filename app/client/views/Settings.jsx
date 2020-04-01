@@ -128,22 +128,20 @@ const Settings = () => {
               fluid
             />
             <SelectFile
+              name="obligepath"
+              onFile={onComponent}
+              label={t('settings:obligepath')}
+              value={form.obligepath}
+              fluid
+            />
+            <SelectFile
               name="background"
               onFile={onComponent}
               label={t('settings:wallpaper')}
               value={form.background}
               fluid
             />
-            {gstate.sourceports.length > 0 ? (
-              <Dropdown
-                name="defaultsourceport"
-                options={sourceportOptions}
-                label="Favourite Sourceport"
-                value={form.defaultsourceport}
-                onChange={onComponent}
-                error={errors.defaultsourceport}
-              />
-            ) : null}
+
             <Dropdown
               name="language"
               options={AVAILABLE_LOCALES}
@@ -163,6 +161,16 @@ const Settings = () => {
               info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#ssgl-data-directory-required"
               fluid
             />
+            {gstate.sourceports.length > 0 ? (
+              <Dropdown
+                name="defaultsourceport"
+                options={sourceportOptions}
+                label="Favourite Sourceport"
+                value={form.defaultsourceport}
+                onChange={onComponent}
+                error={errors.defaultsourceport}
+              />
+            ) : null}
             <Dropdown
               name="theme"
               options={themeOptions}
