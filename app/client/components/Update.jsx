@@ -2,7 +2,6 @@ import { remote } from 'electron';
 import React, { useContext } from 'react';
 
 import { StoreContext } from '../state';
-import { useTranslation } from '../utils';
 import { Button } from './Form';
 import { Modal } from './index';
 

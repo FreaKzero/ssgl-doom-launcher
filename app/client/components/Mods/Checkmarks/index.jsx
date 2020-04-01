@@ -37,7 +37,8 @@ const CheckMark = ({ theme, active, size, onClick }) => {
 CheckMark.propTypes = {
   active: PropTypes.bool,
   onClick: PropTypes.func,
-  size: PropTypes.string
+  size: PropTypes.string,
+  theme: PropTypes.string
 };
 
 export default CheckMark;

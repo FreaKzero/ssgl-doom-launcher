@@ -10,21 +10,6 @@ let currentTimeout;
 
 const DEFAULT_TOAST_DURATION = 2400;
 
-const scopeStyle = scope => {
-  switch (scope) {
-    case 'danger':
-      return `
-        color: #ff2f00;
-        text-shadow: 0 -1px 4px #b8342a, 0 0px 15px #b8342a;
-        `;
-    default:
-      return `
-        color: #ffa800;
-        text-shadow: 0 -1px 4px #ff0000, 0 0px 15px #ff0000;
-      `;
-  }
-};
-
 const Indicator = styled.div`
   background-color: ${({ theme }) => theme.color.active};
   box-shadow: ${({ theme }) => theme.font.glow};
