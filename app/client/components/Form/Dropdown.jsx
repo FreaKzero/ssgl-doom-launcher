@@ -49,7 +49,7 @@ const OptionList = styled.ul`
   top: 35px;
   width: 100%;
   overflow: hidden;
-  z-index: 999;
+  z-index: 100;
   max-height: 180px;
   overflow-y: scroll;
   overflow-x: hidden;

@@ -15,7 +15,7 @@ const Dialog = motion.custom(styled.div`
   width: ${p => (p.tiny ? '45%' : '75%;')};
   padding: 15px;
   border-radius: 4px;
-  z-index: 999;
+  z-index: 900;
 
   & .element {
     color: white;
