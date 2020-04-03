@@ -1,7 +1,14 @@
 import React, { useContext, useState } from 'react';
 
 import { Box, Flex } from '../components';
-import { Button, Dropdown, SelectFile, SubmitArea } from '../components/Form';
+import {
+  Button,
+  Checkbox,
+  Dropdown,
+  FormCollection,
+  SelectFile,
+  SubmitArea
+} from '../components/Form';
 import i18n from '../i18n';
 import { AVAILABLE_LOCALES } from '../locales';
 import { StoreContext } from '../state';
@@ -68,24 +75,27 @@ const Settings = () => {
   };
 
   const validate = () => {
-    const fields = ['modpath', 'savepath'];
+    const fields = ['modpath', 'savepath', 'obligeBinary', 'obligeConfigPath'];
+
     let temp = {};
     let hasError = false;
 
-    fields.forEach(field => {
-      if (!form[field] || form[field].trim() === '') {
-        hasError = true;
-        temp = {
-          ...temp,
-          [field]: t('common:required')
-        };
-      } else {
-        temp = {
-          ...temp,
-          [field]: null
-        };
-      }
-    });
+    fields
+      .filter(field => (form.obligeActive ? true : field.indexOf('oblige') < 0))
+      .forEach(field => {
+        if (!form[field] || form[field].trim() === '') {
+          hasError = true;
+          temp = {
+            ...temp,
+            [field]: t('common:required')
+          };
+        } else {
+          temp = {
+            ...temp,
+            [field]: null
+          };
+        }
+      });
 
     setError(temp);
 
@@ -115,80 +125,117 @@ const Settings = () => {
   return (
     <Box>
       <form onSubmit={onSubmit}>
-        <Flex.Grid>
-          <Flex.Col width="50%">
-            <SelectFile
-              name="modpath"
-              onFile={onComponent}
-              label={t('settings:waddir')}
-              value={form.modpath}
-              error={errors.modpath}
-              directory
-              info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#wad-directory-required"
-              fluid
-            />
-            <SelectFile
-              name="obligepath"
-              onFile={onComponent}
-              label={t('settings:obligepath')}
-              value={form.obligepath}
-              fluid
-            />
-            <SelectFile
-              name="background"
-              onFile={onComponent}
-              label={t('settings:wallpaper')}
-              value={form.background}
-              fluid
-            />
+        <FormCollection title="Directories">
+          <Flex.Grid>
+            <Flex.Col width="50%">
+              <SelectFile
+                name="modpath"
+                onFile={onComponent}
+                label={t('settings:waddir')}
+                value={form.modpath}
+                error={errors.modpath}
+                directory
+                info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#wad-directory-required"
+                fluid
+              />
+            </Flex.Col>
+            <Flex.Col width="50%">
+              <SelectFile
+                name="savepath"
+                onFile={onComponent}
+                label={t('settings:savepath')}
+                value={form.savepath}
+                error={errors.savepath}
+                directory
+                info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#ssgl-data-directory-required"
+                fluid
+              />
+            </Flex.Col>
+          </Flex.Grid>
+        </FormCollection>
 
-            <Dropdown
-              name="language"
-              options={AVAILABLE_LOCALES}
-              label={t('common:language')}
-              value={form.language}
-              onChange={onComponent}
-            />
-          </Flex.Col>
-          <Flex.Col width="50%">
-            <SelectFile
-              name="savepath"
-              onFile={onComponent}
-              label={t('settings:savepath')}
-              value={form.savepath}
-              error={errors.savepath}
-              directory
-              info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#ssgl-data-directory-required"
-              fluid
-            />
-            {gstate.sourceports.length > 0 ? (
-              <Dropdown
-                name="defaultsourceport"
-                options={sourceportOptions}
-                label="Favourite Sourceport"
-                value={form.defaultsourceport}
-                onChange={onComponent}
-                error={errors.defaultsourceport}
+        <FormCollection title="Customization">
+          <Flex.Grid>
+            <Flex.Col width="50%">
+              <SelectFile
+                name="background"
+                onFile={onComponent}
+                label={t('settings:wallpaper')}
+                value={form.background}
+                fluid
               />
-            ) : null}
-            <Dropdown
-              name="theme"
-              options={themeOptions}
-              label="Colortheme"
-              value={form.theme}
-              onChange={onComponent}
-            />
-            {gstate.packages.length > 0 ? (
               <Dropdown
-                name="startView"
-                options={viewOptions}
-                label={t('settings:startView')}
-                value={form.startView}
+                name="language"
+                options={AVAILABLE_LOCALES}
+                label={t('common:language')}
+                value={form.language}
                 onChange={onComponent}
               />
-            ) : null}
-          </Flex.Col>
-        </Flex.Grid>
+              {gstate.packages.length > 0 ? (
+                <Dropdown
+                  name="startView"
+                  options={viewOptions}
+                  label={t('settings:startView')}
+                  value={form.startView}
+                  onChange={onComponent}
+                />
+              ) : null}
+            </Flex.Col>
+            <Flex.Col width="50%">
+              <Dropdown
+                name="theme"
+                options={themeOptions}
+                label="Colortheme"
+                value={form.theme}
+                onChange={onComponent}
+              />
+              {gstate.sourceports.length > 0 ? (
+                <Dropdown
+                  name="defaultsourceport"
+                  options={sourceportOptions}
+                  label="Favourite Sourceport"
+                  value={form.defaultsourceport}
+                  onChange={onComponent}
+                  error={errors.defaultsourceport}
+                />
+              ) : null}
+            </Flex.Col>
+          </Flex.Grid>
+        </FormCollection>
+
+        <FormCollection title="Oblige Configuration">
+          <Checkbox
+            value={form.obligeActive}
+            label={t('sourceports:obligeActive')}
+            name="obligeActive"
+            onChange={onComponent}
+          />
+          {form.obligeActive ? (
+            <Flex.Grid>
+              <Flex.Col width="50%">
+                <SelectFile
+                  name="obligeBinary"
+                  onFile={onComponent}
+                  label={t('settings:obligeBinary')}
+                  value={form.obligeBinary}
+                  error={errors.obligeBinary}
+                  fluid
+                />
+              </Flex.Col>
+              <Flex.Col width="50%">
+                <SelectFile
+                  name="obligeConfigPath"
+                  onFile={onComponent}
+                  label={t('settings:obligeConfigPath')}
+                  value={form.obligeConfigPath}
+                  error={errors.obligeConfigPath}
+                  directory
+                  fluid
+                />
+              </Flex.Col>
+            </Flex.Grid>
+          ) : null}
+        </FormCollection>
 
         <SubmitArea>
           <Button type="submit" load={loadInit} width="200px">

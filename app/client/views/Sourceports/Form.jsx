@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import { FormCollection } from '../../components/Form';
 import {
   Button,
   Checkbox,
@@ -10,14 +11,6 @@ import {
   SubmitArea
 } from '../../components/Form';
 import { useToast, useTranslation } from '../../utils';
-
-const FormBorder = styled.div`
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid ${({ theme }) => theme.border.idle};
-  border-radius: ${({ theme }) => theme.border.radius};
-  padding: 10px 10px 0 10px;
-  margin-bottom: 15px;
-`;
 
 const Form = ({ item, onSave, onDelete }) => {
   const [form, setForm] = useState(item);
@@ -144,7 +137,7 @@ const Form = ({ item, onSave, onDelete }) => {
         fluid
       />
 
-      <FormBorder>
+      <FormCollection>
         <Checkbox
           value={form.hasConfig}
           label={t('sourceports:configparam')}
@@ -179,8 +172,8 @@ const Form = ({ item, onSave, onDelete }) => {
             />
           </>
         ) : null}
-      </FormBorder>
-      <FormBorder>
+      </FormCollection>
+      <FormCollection>
         <Checkbox
           value={form.hasSavedir}
           label={t('sourceports:savegameparam')}
@@ -208,7 +201,7 @@ const Form = ({ item, onSave, onDelete }) => {
             />
           </>
         ) : null}
-      </FormBorder>
+      </FormCollection>
       <SubmitArea>
         <Button
           border={'#f55945'}

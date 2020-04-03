@@ -35,7 +35,9 @@ export const initState = {
   packages: [],
   sourceports: [],
   settings: {
-    obligepath: '',
+    obligeActive: false,
+    obligeBinary: '',
+    obligeConfigPath: '',
     theme: 'hell',
     startView: '/',
     language: 'en',
