@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
+import folderSvg from '../../assets/icon/folder.svg';
+import playSvg from '../../assets/icon/play.svg';
+import randSvg from '../../assets/icon/rand.svg';
+import useSvg from '../../assets/icon/use.svg';
 import covers from '../../assets/ssgl-iwad-covers';
-import { ButtonStyle } from '../../components/Form/Button';
+import { IconButton } from '../../components/Form';
 import Icon from '../../components/Mods/Icon';
 import { StoreContext } from '../../state';
 import { image, setTitle, useTranslation } from '../../utils';
@@ -16,13 +20,13 @@ const Package = motion.custom(styled.div`
   background-color: rgba(12, 8, 8, 0.8);
   background-image: ${p => `url("${image(p.cover)}");`};
   background-size: 100%;
-  background-position: center top;
+  background-position: center center;
   background-repeat: no-repeat;
   border-radius: ${({ theme }) => theme.border.radius};
   border: 1px solid ${({ theme }) => theme.border.idle};
   user-select: none;
-  width: 280px;
-  height: 180px;
+  width: 240px;
+  height: 160px;
   overflow: hidden;
 
   &:hover {
@@ -44,52 +48,61 @@ const Package = motion.custom(styled.div`
     color: ${({ theme }) => theme.color.active};
   }
 
-  &:hover div {
-    color: white;
-  }
-
   .delete {
+    transition: all 0.2s ease-out;
     position: absolute;
     right: 10px;
     top: 10px;
+    transform: scale(0);
+    transform-origin: center center;
+  }
+
+  &:hover .delete {
+    transform: scale(1);
   }
 
   .content {
     width: 260px;
     height: 160px;
     padding: 10px;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease-out;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.6);
     }
+  }
+
+  .buttonContainer {
+    width: 95%;
+    position: absolute;
+    left: 10px;
+    bottom: -40px;
+    text-align: center;
+    transition: all 0.3s ease-out;
+  }
+
+  &:hover .buttonContainer {
+    bottom: 10px;
+  }
+
+  .meta {
+    color: white;
+    font-size: 14px;
+    margin-bottom: 5px;
+    text-shadow: 2 1px 1px black, 2 -1px -1px black;
+    transition: ${({ theme }) => theme.transition.out};
+    opacity: 0;
+    margin-top: 15px;
+  }
+
+  &:hover .meta {
+    opacity: 1;
+    margin-top: 0;
   }
 `);
 
-const Meta = styled.div`
-  color: ${({ theme }) => theme.color.meta};
-  font-size: 14px;
-  margin-bottom: 5px;
-  text-shadow: 2 1px 1px black, 2 -1px -1px black;
-  transition: ${({ theme }) => theme.transition.out};
-`;
-
-const Button = styled(ButtonStyle)`
-  display: inline;
-  min-width: auto;
-  width: 80px;
-  padding: 3px 0 3px 0;
-  margin-top: 5px;
-`;
-
-const ButtonContainer = styled.div`
-  position: absolute;
-  left: 10px;
-  bottom: 10px;
-`;
-
-const Pack = ({ pack, onUse, onData, onPlay, onDelete }) => {
+const Pack = ({ pack, onUse, onData, onPlay, onDelete, onOblige }) => {
   setTitle('packages');
   const { gstate } = useContext(StoreContext);
   const { t } = useTranslation(['packages', 'common']);
@@ -114,30 +127,25 @@ const Pack = ({ pack, onUse, onData, onPlay, onDelete }) => {
             name="times"
             width="17"
             onClick={onDelete(pack.id)}
+            danger
           />
         </div>
         <h1>{pack.name}</h1>
-        <Meta>
-          {sourceport.name} - {pack.selected.length} Mods
-        </Meta>
-        <Meta>
+        <div className="meta">
+          {sourceport.name} - {pack.selected.length} Mods <br />
           {pack.lastplayed === 0
             ? t('packages:never')
             : t('packages:lastplayed', { value: pack.lastplayed })}
-        </Meta>
+        </div>
 
-        <ButtonContainer>
-          <Button type="button" onClick={onPlay(pack, sourceport)}>
-            {t('packages:play')}
-          </Button>
-          <Button type="button" onClick={onUse(pack.id)}>
-            {t('packages:use')}
-          </Button>
-
-          <Button type="button" onClick={onData(pack.datapath)}>
-            {t('packages:datadir')}
-          </Button>
-        </ButtonContainer>
+        <div className="buttonContainer">
+          <IconButton svg={playSvg} onClick={onPlay(pack, sourceport)} />
+          {gstate.settings.obligeActive ? (
+            <IconButton svg={randSvg} onClick={onOblige} />
+          ) : null}
+          <IconButton svg={useSvg} onClick={onUse(pack.id)} />
+          <IconButton svg={folderSvg} onClick={onData(pack.datapath)} />
+        </div>
       </div>
     </Package>
   );
@@ -149,7 +157,8 @@ Pack.propTypes = {
   style: PropTypes.any,
   onUse: PropTypes.func.isRequired,
   onData: PropTypes.func.isRequired,
-  onPlay: PropTypes.func.isRequired
+  onPlay: PropTypes.func.isRequired,
+  onOblige: PropTypes.func.isRequired
 };
 
 export default Pack;

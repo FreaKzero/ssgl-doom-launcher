@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 
 import { FormCollection } from '../../components/Form';
 import {
@@ -118,25 +117,26 @@ const Form = ({ item, onSave, onDelete }) => {
 
   return (
     <form onSubmit={onSubmitWrapper}>
-      <SelectFile
-        onFile={onComponent}
-        value={form.binary}
-        name="binary"
-        label={t('sourceports:binary')}
-        error={errors.binary}
-        info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#sourceport-path-required"
-        fluid
-      />
-      <Input
-        value={form.name}
-        name="name"
-        label={t('sourceports:name')}
-        onChange={onInput}
-        error={errors.name}
-        info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#sourceport-name-required"
-        fluid
-      />
-
+      <FormCollection>
+        <SelectFile
+          onFile={onComponent}
+          value={form.binary}
+          name="binary"
+          label={t('sourceports:binary')}
+          error={errors.binary}
+          info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#sourceport-path-required"
+          fluid
+        />
+        <Input
+          value={form.name}
+          name="name"
+          label={t('sourceports:name')}
+          onChange={onInput}
+          error={errors.name}
+          info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#sourceport-name-required"
+          fluid
+        />
+      </FormCollection>
       <FormCollection>
         <Checkbox
           value={form.hasConfig}

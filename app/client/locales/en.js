@@ -10,6 +10,15 @@ export default {
     newest: 'Newest first',
     active: 'Active first'
   },
+  oblige: {
+    buildMessage: 'Please wait, Oblige is Building',
+    selectConfig: 'Select Build Config',
+    modalTitle: 'Oblige Build and Play',
+    open: 'Open Oblige',
+    openDir: 'Config Directory',
+    last: 'Play last',
+    build: 'Build'
+  },
   wads: {
     filter: 'Search in {{size}} Mods',
     toastIndex: 'Reindexed Mod Directory',
@@ -50,6 +59,7 @@ export default {
     startView: 'Open View when SSGL starts'
   },
   common: {
+    close: 'Close',
     deleteTitle: 'Confirm Deletion',
     deleteText: 'Do you really want to delete this Item ?',
     loading: 'Loading',

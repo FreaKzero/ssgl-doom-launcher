@@ -10,6 +10,15 @@ export default {
     newest: 'Nieuwste eerst',
     active: 'Actieve eerst'
   },
+  oblige: {
+    buildMessage: 'Please wait, Oblige is Building',
+    selectConfig: 'Select Build Config',
+    modalTitle: 'Oblige Build and Play',
+    open: 'Open Oblige',
+    openDir: 'Config Directory',
+    last: 'Play last',
+    build: 'Build'
+  },
   wads: {
     filter: 'Zoek in {{size}} Mods',
     toastIndex: 'Reindexed Mod Directory',
@@ -34,6 +43,14 @@ export default {
     toastDeleted: 'Bronpoort Verwijderd'
   },
   settings: {
+    titleDirectories: 'Directories',
+    titleCustomization: 'Customization',
+    titleOblige: 'Oblige Integration',
+    colorTheme: 'Color Theme',
+    favouriteSourceport: 'Favourite Sourceport',
+    obligeConfigPath: 'Oblige Build Configs',
+    obligeBinary: 'Oblige Binary',
+    obligeActive: 'Activate Oblige',
     savepath: 'SSGL Bestandsgegevens',
     waddir: 'WAD Bestandslijst',
     wallpaper: 'Achtergrond Afbeelding',
@@ -63,6 +80,7 @@ export default {
     settings: 'Instellingen'
   },
   packages: {
+    close: 'Close',
     lastplayed: 'Laatst Gespeeld: {{value, date}}',
     never: 'Laatst Gespeeld: Nooit',
     filter: 'Zoek in {{size}} pakketten',

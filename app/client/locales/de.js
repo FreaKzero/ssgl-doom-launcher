@@ -10,6 +10,15 @@ export default {
     newest: 'Neueste',
     active: 'Gewählt'
   },
+  oblige: {
+    buildMessage: 'Bitte warten, Oblige baut gerade',
+    selectConfig: 'Konfigurationsdatei wählen',
+    modalTitle: 'Oblige Generator',
+    open: 'Öffne Oblige',
+    openDir: 'Konfigurationsverzeichnis',
+    last: 'Letzte Spielen',
+    build: 'Generieren'
+  },
   wads: {
     filter: 'Suche unter {{size}} Mods',
     toastIndex: 'Mod Verzeichnis neu geladen',
@@ -50,6 +59,7 @@ export default {
     startView: 'Startseite wenn SSGL geöffnet wird'
   },
   common: {
+    close: 'Schließen',
     deleteTitle: 'Löschen Bestätigen',
     deleteText: 'Diesen Eintrag wirklich Löschen ?',
     loading: 'Laden',
