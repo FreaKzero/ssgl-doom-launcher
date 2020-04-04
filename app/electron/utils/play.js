@@ -93,9 +93,17 @@ const play = async (pack, loadLast = false, oblige = null) => {
       let MAC = [sourceport.binary, '--args'];
       COMMAND = [...MAC, ...COMMAND];
       console.log(COMMAND.join(' '));
-      spawn('open', COMMAND);
+      const proc = spawn('open', COMMAND, {
+        detached: true,
+        stdio: 'ignore'
+      });
+      proc.unref();
     } else {
-      spawn(sourceport.binary, COMMAND);
+      const proc = spawn(sourceport.binary, COMMAND, {
+        detached: true,
+        stdio: 'ignore'
+      });
+      proc.unref();
     }
 
     return {
