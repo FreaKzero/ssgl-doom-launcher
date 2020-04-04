@@ -1,4 +1,3 @@
-import { remote } from 'electron';
 import { AnimatePresence } from 'framer-motion';
 import React, { useContext, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
@@ -82,8 +81,7 @@ const Packages = () => {
     );
   };
 
-  const onData = path => () =>
-    remote.shell.openItem(`${gstate.settings.savepath}/${path}`);
+  const onData = path => () => ipc('packages/open', { path: path });
 
   const onUse = id => () => {
     dispatch({ type: 'packages/select', id: id });
