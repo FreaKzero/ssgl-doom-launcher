@@ -52,7 +52,6 @@ export const build = async (config, pack) => {
   try {
     const settings = await getJSON('settings');
     let log = '';
-    console.log('old log', log);
 
     ipcMain.on('log', event => {
       event.returnValue = log;
@@ -94,14 +93,17 @@ export const build = async (config, pack) => {
           ipcMain.removeAllListeners('log');
           return resolve({
             data: {
-              active: true,
-              created: Date.now(),
-              id: 'OBLIGE-GENERATED-IWAD-NO-ID',
-              kind: 'WAD',
-              lastdir: 'data',
-              name: 'Oblige Generated xxx',
-              path: GENERATED_WAD_PATH,
-              size: '0 MB'
+              wad: {
+                active: true,
+                created: Date.now(),
+                id: 'OBLIGE-GENERATED-IWAD-NO-ID',
+                kind: 'WAD',
+                lastdir: 'data',
+                name: 'Oblige Generated xxx',
+                path: GENERATED_WAD_PATH,
+                size: '0 MB'
+              },
+              log: log
             },
             error: null
           });

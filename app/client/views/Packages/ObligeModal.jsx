@@ -63,17 +63,18 @@ const ObligeModal = ({ pack, toggle, active }) => {
           logref.current.scrollTop = logref.current.scrollHeight;
         }, 2000);
 
-        const generatedWad = await buildIpc('oblige/build', {
+        const data = await buildIpc('oblige/build', {
           config: selectedConfig,
           pack: pack
         });
 
         clearInterval(interval);
+        setMessage(data.log);
 
         const newPackages = await ipc('packages/play', {
           pack: pack,
           load: false,
-          oblige: generatedWad
+          oblige: data.wad
         });
 
         dispatch({

@@ -46,7 +46,7 @@ const play = async (pack, loadLast = false, oblige = null) => {
       }
     });
 
-    if (typeof oblige === 'object' && oblige.path) {
+    if (typeof oblige === 'object' && oblige !== null && oblige.path) {
       file.push(oblige.path);
     } else if (typeof oblige === 'boolean' && oblige === true) {
       file.push(join(settings.savepath, pack.datapath, 'generated.wad'));
