@@ -8,7 +8,8 @@ import { copyfile, createPath } from '../utils/common';
 import { getJSON, setJSON } from '../utils/json';
 import play from '../utils/play';
 
-ipcMain.handle('packages/play', async (e, pack) => {
+ipcMain.handle('packages/play', async (e, data) => {
+  const { load, pack, oblige } = data;
   try {
     const packages = await getJSON('packages');
     const newpacks = packages.map(item => {
@@ -24,13 +25,14 @@ ipcMain.handle('packages/play', async (e, pack) => {
 
     setJSON('packages', newpacks);
 
-    await play(pack, true);
+    await play(pack, load, oblige);
 
     return {
       data: newpacks,
       error: null
     };
   } catch (e) {
+    console.log(e);
     return {
       data: null,
       error: e.message
@@ -45,13 +47,11 @@ ipcMain.handle('packages/delete', async (e, id) => {
     const removedPack = packages.find(i => i.id === id);
 
     if (removedPack) {
+      const DATAPATH = path.join(settings.savepath, removedPack.datapath);
       const newPackages = packages.filter(i => i.id !== id);
-      if (
-        removedPack.datapath &&
-        removedPack.datapath.indexOf(settings.savepath) === 0 &&
-        existsSync(removedPack.datapath)
-      ) {
-        rimraf.sync(removedPack.datapath);
+
+      if (DATAPATH && DATAPATH && existsSync(DATAPATH)) {
+        rimraf.sync(DATAPATH);
       }
 
       await setJSON('packages', newPackages);
@@ -97,15 +97,16 @@ ipcMain.handle('packages/save', async (e, pack) => {
       };
     } else {
       pack.id = shortid.generate();
-      pack.datapath = path.join(settings.savepath, pack.sourceport, pack.id);
+      pack.datapath = path.join(pack.sourceport, pack.id);
 
-      if (settings.savepath.trim() !== '' && !existsSync(pack.datapath)) {
-        createPath(pack.datapath);
+      const DATAPATH = path.join(settings.savepath, pack.datapath);
+      if (settings.savepath.trim() !== '' && !existsSync(DATAPATH)) {
+        createPath(DATAPATH);
       }
 
       if (
         existsSync(sourceport.configDefault) &&
-        !existsSync(path.join(pack.datapath, sourceport.configFilename)) &&
+        !existsSync(path.join(DATAPATH, sourceport.configFilename)) &&
         sourceport.hasConfig
       ) {
         if (pack.copy) {
@@ -117,12 +118,12 @@ ipcMain.handle('packages/save', async (e, pack) => {
 
           copyfile(
             path.join(copyPath, sourceport.configFilename),
-            path.join(pack.datapath, sourceport.configFilename)
+            path.join(DATAPATH, sourceport.configFilename)
           );
         } else {
           copyfile(
             sourceport.configDefault,
-            path.join(pack.datapath, sourceport.configFilename)
+            path.join(DATAPATH, sourceport.configFilename)
           );
         }
       }

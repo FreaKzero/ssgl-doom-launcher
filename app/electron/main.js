@@ -10,7 +10,7 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1000,
+    width: 1075,
     height: 610,
 
     webPreferences: {
@@ -47,3 +47,4 @@ require('./handlers/main');
 require('./handlers/sourceports');
 require('./handlers/settings');
 require('./handlers/packages');
+require('./handlers/oblige');
