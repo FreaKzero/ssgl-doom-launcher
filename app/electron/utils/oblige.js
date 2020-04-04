@@ -75,9 +75,6 @@ export const build = async (config, pack) => {
 
       const procObl = spawn(settings.obligeBinary, params);
 
-      procObl.stdout.pipe(process.stdout);
-      procObl.stderr.pipe(process.stderr);
-
       procObl.stdout.on('data', data => {
         log += data;
       });
