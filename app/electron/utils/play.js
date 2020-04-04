@@ -21,7 +21,7 @@ const getLastSaveGame = dir => {
   return sorted.length ? sorted[0].path : null;
 };
 
-const play = async (pack, loadLast = false) => {
+const play = async (pack, loadLast = false, oblige = null) => {
   let deh = [];
   let bex = [];
   let file = [];
@@ -30,8 +30,9 @@ const play = async (pack, loadLast = false) => {
 
   try {
     const sourceports = await getJSON('sourceports');
-    const sourceport = sourceports.find(i => i.id === pack.sourceport);
+    const settings = await getJSON('settings');
 
+    const sourceport = sourceports.find(i => i.id === pack.sourceport);
     selected.forEach(i => {
       switch (i.kind) {
         case 'DEH':
@@ -45,23 +46,31 @@ const play = async (pack, loadLast = false) => {
       }
     });
 
+    if (typeof oblige === 'object' && oblige.path) {
+      file.push(oblige.path);
+    } else if (typeof oblige === 'boolean' && oblige === true) {
+      file.push(join(settings.savepath, pack.datapath, 'generated.wad'));
+    }
+
     let COMMAND = ['-iwad', iwad, '-file', ...file];
 
     if (sourceport.hasConfig) {
       params = params.concat([
         sourceport.paramConfig,
-        join(pack.datapath, sourceport.configFilename)
+        join(settings.savepath, pack.datapath, sourceport.configFilename)
       ]);
     }
 
     if (sourceport.hasSavedir) {
       params = params.concat([
         sourceport.paramSave,
-        join(pack.datapath, 'saves')
+        join(settings.savepath, pack.datapath, 'saves')
       ]);
 
       if (loadLast) {
-        const save = getLastSaveGame(join(pack.datapath, 'saves'));
+        const save = getLastSaveGame(
+          join(settings.savepath, pack.datapath, 'saves')
+        );
         if (save) {
           COMMAND = COMMAND.concat([sourceport.paramLoad, save]);
         }
@@ -94,6 +103,7 @@ const play = async (pack, loadLast = false) => {
       error: null
     };
   } catch (e) {
+    console.log(e);
     return {
       data: null,
       error: e.message
