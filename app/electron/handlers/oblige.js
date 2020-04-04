@@ -1,6 +1,5 @@
-import { ipcMain, shell } from 'electron';
+import { ipcMain } from 'electron';
 
-import { getJSON } from '../utils/json';
 import { build, getConfigs, open } from '../utils/oblige';
 
 ipcMain.handle('oblige/open', async (e, args) => {

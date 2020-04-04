@@ -1,4 +1,4 @@
-import { ipcMain } from 'electron';
+import { ipcMain, shell } from 'electron';
 import { existsSync } from 'fs';
 import path from 'path';
 import rimraf from 'rimraf';
@@ -7,6 +7,23 @@ import shortid from 'shortid';
 import { copyfile, createPath } from '../utils/common';
 import { getJSON, setJSON } from '../utils/json';
 import play from '../utils/play';
+
+ipcMain.handle('packages/open', async (e, data) => {
+  try {
+    const settings = await getJSON('settings');
+    shell.openItem(path.join(settings.savepath, data.path));
+
+    return {
+      data: null,
+      error: null
+    };
+  } catch (e) {
+    return {
+      data: null,
+      error: e.message
+    };
+  }
+});
 
 ipcMain.handle('packages/play', async (e, data) => {
   const { load, pack, oblige } = data;
