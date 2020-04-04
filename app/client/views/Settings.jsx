@@ -209,6 +209,7 @@ const Settings = () => {
             label={t('settings:obligeActive')}
             name="obligeActive"
             onChange={onComponent}
+            info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#oblige-integration"
           />
           {form.obligeActive ? (
             <Flex.Grid>
@@ -219,6 +220,7 @@ const Settings = () => {
                   label={t('settings:obligeBinary')}
                   value={form.obligeBinary}
                   error={errors.obligeBinary}
+                  info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#oblige-binary"
                   fluid
                 />
               </Flex.Col>
@@ -229,6 +231,7 @@ const Settings = () => {
                   label={t('settings:obligeConfigPath')}
                   value={form.obligeConfigPath}
                   error={errors.obligeConfigPath}
+                  info="https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup#oblige-build-configs"
                   directory
                   fluid
                 />
