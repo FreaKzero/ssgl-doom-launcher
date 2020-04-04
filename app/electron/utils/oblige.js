@@ -1,8 +1,6 @@
 import { spawn } from 'child_process';
 import { ipcMain, shell } from 'electron';
-import { existsSync, readdirSync, statSync } from 'fs';
 import fs from 'fs';
-import { platform } from 'os';
 import { dirname, join } from 'path';
 
 import { getJSON } from './json';
@@ -57,7 +55,7 @@ export const build = async (config, pack) => {
       event.returnValue = log;
     });
 
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       const GENERATED_WAD_PATH = join(
         settings.savepath,
         pack.datapath,
