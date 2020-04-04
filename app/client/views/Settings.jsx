@@ -125,7 +125,7 @@ const Settings = () => {
   return (
     <Box>
       <form onSubmit={onSubmit}>
-        <FormCollection title="Directories">
+        <FormCollection title={t('settings:titleDirectories')}>
           <Flex.Grid>
             <Flex.Col width="50%">
               <SelectFile
@@ -154,7 +154,7 @@ const Settings = () => {
           </Flex.Grid>
         </FormCollection>
 
-        <FormCollection title="Customization">
+        <FormCollection title={t('settings:titleCustomization')}>
           <Flex.Grid>
             <Flex.Col width="50%">
               <SelectFile
@@ -185,7 +185,7 @@ const Settings = () => {
               <Dropdown
                 name="theme"
                 options={themeOptions}
-                label="Colortheme"
+                label={t('settings:colorTheme')}
                 value={form.theme}
                 onChange={onComponent}
               />
@@ -193,7 +193,7 @@ const Settings = () => {
                 <Dropdown
                   name="defaultsourceport"
                   options={sourceportOptions}
-                  label="Favourite Sourceport"
+                  label={t('settings:favouriteSourceport')}
                   value={form.defaultsourceport}
                   onChange={onComponent}
                   error={errors.defaultsourceport}
@@ -203,10 +203,10 @@ const Settings = () => {
           </Flex.Grid>
         </FormCollection>
 
-        <FormCollection title="Oblige Configuration">
+        <FormCollection title={t('settings:titleOblige')}>
           <Checkbox
             value={form.obligeActive}
-            label={t('sourceports:obligeActive')}
+            label={t('settings:obligeActive')}
             name="obligeActive"
             onChange={onComponent}
           />

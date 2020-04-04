@@ -34,6 +34,14 @@ export default {
     toastDeleted: 'Sourceport gelöscht'
   },
   settings: {
+    titleDirectories: 'Verzeichnisse',
+    titleCustomization: 'Anpassung',
+    titleOblige: 'Oblige Integration',
+    colorTheme: 'Farbthema',
+    favouriteSourceport: 'Standard Programm',
+    obligeConfigPath: 'Oblige Konfigurationsverzeichnis',
+    obligeBinary: 'Oblige Programmdatei',
+    obligeActive: 'Oblige aktivieren',
     savepath: 'SSGL Daten Verzeichnis',
     waddir: 'Wad Verzeichnis',
     wallpaper: 'Hintergrundbild',
