@@ -13,6 +13,7 @@ import {
   useToast,
   useTranslation
 } from '../../utils';
+import ObligeModal from './ObligeModal';
 import Pack from './Pack';
 import PackageFilter from './PackageFilter';
 
@@ -27,6 +28,7 @@ const Packages = () => {
   const [toast] = useToast();
   // eslint-disable-next-line no-unused-vars
   const [location, navigate] = useHashLocation();
+  const [selectedPack, setSelectedPack] = useState(null);
 
   const [onInput] = useDebouncedCallback(val => {
     setRawFilter(val.toLowerCase());
@@ -63,7 +65,9 @@ const Packages = () => {
 
   const onPlay = (pack, sourceport) => async () => {
     const newPackages = await ipc('packages/play', {
-      ...pack
+      pack: pack,
+      load: true,
+      oblige: null
     });
 
     dispatch({ type: 'packages/save', packages: newPackages, package: null });
@@ -78,12 +82,14 @@ const Packages = () => {
     );
   };
 
-  const onData = path => () => remote.shell.openItem(path);
+  const onData = path => () =>
+    remote.shell.openItem(`${gstate.settings.savepath}/${path}`);
 
   const onUse = id => () => {
     dispatch({ type: 'packages/select', id: id });
     navigate('/');
   };
+
   return (
     <Box
       fixed={
@@ -104,10 +110,18 @@ const Packages = () => {
             onUse={onUse}
             onData={onData}
             onPlay={onPlay}
+            onOblige={() => setSelectedPack(pack)}
           />
         ))}
       </AnimatePresence>
       <Confirm active={confirm.open} onOk={onOk} onCancel={onCancel} />
+      {gstate.settings.obligeActive ? (
+        <ObligeModal
+          active={selectedPack}
+          toggle={setSelectedPack}
+          pack={selectedPack}
+        />
+      ) : null}
     </Box>
   );
 };
