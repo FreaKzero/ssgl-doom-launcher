@@ -1,6 +1,6 @@
 <p align="center"><img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readme/readmelogo.png" width="350"></p>
 
-- [Current Developer Preview Release](https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v2.0.0-devpreview.16)
+- [Current Developer Preview Release](https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v2.0.0-devpreview.17)
 - [First Setup Instructions](https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup)
 - [Join the SSGL Discord Server](https://discord.gg/MsjZhHF)
 
@@ -10,7 +10,6 @@ Developer Preview - There can be alot of Changes which is breaking the Experienc
 <p align="center"><img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readme/readmedemo.gif" width="700" /></p>
 
 ## Features
-
 - Builds for Windows, Linux (Snap) and MacOS
 - Easy and Fast Setup
 - Sourceport agnostic (As long the Sourceport runs in Terminal/Cmd.exe)
@@ -22,12 +21,13 @@ Developer Preview - There can be alot of Changes which is breaking the Experienc
 - Designed towards a "Fast in - Fast Out" User Experience
 - Multi Language Support
 - Different Colorthemes and Wallpaper Support
+- Oblige/Obhack Integration for Packages (Every Package has its own generated Map)
 
 ## Roadmap / Soon
-- Drag Mods into SSGL to import them automatically to your Mod folder
 - "Userparameters" for Packages (like `-fastmonsters`, `-screendir`, etc)
 - Package Import/Export System (Operating System agnostic)
-- Oblige/Obhack Integration (like in SSGL Version 1)
+- Addon Management for Oblige
+- Soundfeedback (can be turned off)
 
 ## Customization Examples
 Wallpapers which are shown here dont ship with SSGL  
