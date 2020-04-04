@@ -19,8 +19,11 @@ export const IconStyle = styled.div`
 
   div:hover {
     svg {
-      stroke: ${({ theme }) => theme.border.active};
-      filter: ${({ theme }) => theme.svg.glow};
+      stroke: ${p => (p.danger ? '#f55945' : p.theme.border.active)};
+      filter: ${p =>
+        p.danger
+          ? `drop-shadow(0 -1px 4px #ff2f00) drop-shadow(0 0 10px #ff2f00)`
+          : p.theme.svg.glow};
     }
   }
 `;
@@ -32,9 +35,9 @@ const names = {
   times
 };
 
-const Icon = ({ name, stroke, ...rest }) => {
+const Icon = ({ name, danger, stroke, ...rest }) => {
   return names[name] ? (
-    <IconStyle stroke={stroke}>
+    <IconStyle stroke={stroke} danger={danger}>
       <SvgInline {...rest} svg={names[name]} component="div" />
     </IconStyle>
   ) : null;
@@ -42,7 +45,8 @@ const Icon = ({ name, stroke, ...rest }) => {
 
 Icon.propTypes = {
   name: PropTypes.string,
-  stroke: PropTypes.string
+  stroke: PropTypes.string,
+  danger: PropTypes.danger
 };
 
 export default Icon;
