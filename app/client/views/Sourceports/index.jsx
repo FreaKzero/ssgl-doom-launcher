@@ -37,7 +37,7 @@ const SourcePorts = () => {
       paramLoad: '-loadgame',
       paramSave: '-savedir',
       paramConfig: '-config',
-      configFilename: '',
+      configFilename: 'gzdoom.ini',
       configDefault: '',
       name: 'New Sourceport',
       binary: ''
