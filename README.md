@@ -26,7 +26,6 @@ Developer Preview - There can be alot of Changes which is breaking the Experienc
 ## Roadmap / Soon
 - "Userparameters" for Packages (like `-fastmonsters`, `-screendir`, etc)
 - Package Import/Export System (Operating System agnostic)
-- Addon Management for Oblige
 - Soundfeedback (can be turned off)
 
 ## Customization Examples
