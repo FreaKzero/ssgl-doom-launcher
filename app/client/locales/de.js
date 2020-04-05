@@ -59,6 +59,8 @@ export default {
     startView: 'Startseite wenn SSGL geöffnet wird'
   },
   common: {
+    iwad: 'iWad',
+    sourceport: 'Sourceport',
     close: 'Schließen',
     deleteTitle: 'Löschen Bestätigen',
     deleteText: 'Diesen Eintrag wirklich Löschen ?',
@@ -81,6 +83,9 @@ export default {
     settings: 'Einstellungen'
   },
   packages: {
+    cover: 'Bild',
+    packageName: 'Paketname',
+    userParams: 'Start Parameter',
     lastplayed: 'Zuletzt: {{value, date}}',
     never: 'Zuletzt: Nie',
     filter: 'Suche unter {{size}} Pakete',

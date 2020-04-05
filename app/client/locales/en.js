@@ -59,6 +59,8 @@ export default {
     startView: 'Open View when SSGL starts'
   },
   common: {
+    iwad: 'iWad',
+    sourceport: 'Sourceport',
     close: 'Close',
     deleteTitle: 'Confirm Deletion',
     deleteText: 'Do you really want to delete this Item ?',
@@ -81,6 +83,9 @@ export default {
     settings: 'Settings'
   },
   packages: {
+    cover: 'Cover',
+    packageName: 'Package Name',
+    userParams: 'Start Parameters',
     lastplayed: 'Last played: {{value, date}}',
     never: 'Last played: Never',
     filter: 'Search in {{size}} Packages',

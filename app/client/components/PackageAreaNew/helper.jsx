@@ -4,7 +4,8 @@ export const initState = {
   sourceport: '',
   cover: '',
   id: null,
-  copy: null
+  copy: null,
+  userparams: null
 };
 
 export const createPackage = (form, state, copy) => {
@@ -30,6 +31,7 @@ export const createPackage = (form, state, copy) => {
     selected: state.package.selected,
     created: Date.now(),
     lastplayed: 0,
+    userparams: form.userparams,
     cover
   };
 

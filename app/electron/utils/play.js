@@ -89,6 +89,13 @@ const play = async (pack, loadLast = false, oblige = null) => {
       COMMAND = COMMAND.concat(['-bex', ...bex]);
     }
 
+    if (pack.userparams) {
+      const USERPARAMS = pack.userparams
+        .match(/(?:[^\s"]+|"[^"]*")+/g)
+        .map(i => i.replace(/['"]+/g, ''));
+      COMMAND = COMMAND.concat(USERPARAMS);
+    }
+
     if (platform() === 'darwin') {
       let MAC = [sourceport.binary, '--args'];
       COMMAND = [...MAC, ...COMMAND];

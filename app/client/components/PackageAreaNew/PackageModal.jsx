@@ -16,7 +16,7 @@ const PackageModal = ({
   onCancel,
   edit = false
 }) => {
-  const { t } = useTranslation('packages');
+  const { t } = useTranslation(['common', 'packages']);
   const { gstate } = useContext(StoreContext);
 
   const iwadOptions = gstate.iwads.map(item => {
@@ -59,7 +59,7 @@ const PackageModal = ({
           <Flex.Col>
             <Input
               name="name"
-              label="Package Name"
+              label={t('packages:packageName')}
               fluid
               onChange={onInput}
               value={form.name}
@@ -69,7 +69,7 @@ const PackageModal = ({
             <SelectFile
               name="cover"
               onFile={onComponent}
-              label={'cover'}
+              label={t('packages:cover')}
               value={form.cover}
               fluid
             />
@@ -81,7 +81,7 @@ const PackageModal = ({
               options={iwadOptions}
               name="iwad"
               value={form.iwad}
-              label="iwad"
+              label={t('common:iwad')}
               onChange={onComponent}
             />
           </Flex.Col>
@@ -90,11 +90,18 @@ const PackageModal = ({
               options={sourceportOptions}
               value={form.sourceport}
               name="sourceport"
-              label="sourceport"
+              label={t('common:sourceport')}
               onChange={onComponent}
             />
           </Flex.Col>
         </Flex.Grid>
+        <Input
+          name="userparams"
+          label={t('packages:userParams')}
+          onChange={onInput}
+          value={form.userparams}
+          fluid
+        />
         <div style={{ textAlign: 'right' }}>
           <Button
             type="button"
