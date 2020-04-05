@@ -26,7 +26,7 @@ const Package = motion.custom(styled.div`
   border: 1px solid ${({ theme }) => theme.border.idle};
   user-select: none;
   width: 240px;
-  height: 160px;
+  height: 135px;
   overflow: hidden;
 
   &:hover {
