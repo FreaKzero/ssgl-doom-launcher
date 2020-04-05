@@ -89,7 +89,7 @@ const play = async (pack, loadLast = false, oblige = null) => {
       COMMAND = COMMAND.concat(['-bex', ...bex]);
     }
 
-    if (pack.userparams) {
+    if (pack.userparams.trim() !== '') {
       const USERPARAMS = pack.userparams
         .match(/(?:[^\s"]+|"[^"]*")+/g)
         .map(i => i.replace(/['"]+/g, ''));

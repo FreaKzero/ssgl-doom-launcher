@@ -5,7 +5,7 @@ export const initState = {
   cover: '',
   id: null,
   copy: null,
-  userparams: null
+  userparams: ''
 };
 
 export const createPackage = (form, state, copy) => {
