@@ -49,8 +49,8 @@ const PackageModal = ({
   };
 
   const title = edit
-    ? t('titleEdit', { name: form.name })
-    : t('titleSave', { name: form.name });
+    ? t('packages:titleEdit', { name: form.name })
+    : t('packages:titleSave', { name: form.name });
 
   return (
     <Modal active={active} toggle={toggle} title={title} strict>

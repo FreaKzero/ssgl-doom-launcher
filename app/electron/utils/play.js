@@ -89,10 +89,14 @@ const play = async (pack, loadLast = false, oblige = null) => {
       COMMAND = COMMAND.concat(['-bex', ...bex]);
     }
 
-    if (pack.userparams.trim() !== '') {
-      const USERPARAMS = pack.userparams
-        .match(/(?:[^\s"]+|"[^"]*")+/g)
-        .map(i => i.replace(/['"]+/g, ''));
+    if (pack.userparams && pack.userparams.trim() !== '') {
+      const USERPARAMS = pack.userparams.match(/(?:[^\s"]+|"[^"]*")+/g).map(i =>
+        i
+          .replace('<data>', settings.savepath)
+          .replace('<package>', join(settings.savepath, pack.datapath))
+          .replace(/['"]+/g, '')
+      );
+
       COMMAND = COMMAND.concat(USERPARAMS);
     }
 
