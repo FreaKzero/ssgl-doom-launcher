@@ -36,9 +36,9 @@ export default {
     save: 'Sourceport Speichern',
     binary: 'Programmdatei',
     name: 'Name',
-    savegameparam: 'Seperate Speicherdateien nach Paket',
+    savegameparam: 'Separate Speicherdateien nach Paket',
     configDefault: 'Standard Konfiguration',
-    configparam: 'Seperate Konfiguration nach Paket',
+    configparam: 'Separate Konfiguration nach Paket',
     toastSaved: 'Sourceport erfolgreich gespeichert',
     toastDeleted: 'Sourceport gelöscht'
   },
