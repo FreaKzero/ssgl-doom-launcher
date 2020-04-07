@@ -37,8 +37,8 @@ const Package = motion.custom(styled.div`
 
   & h1 {
     display: block;
-    width: 240px;
-    font-size: 18px;
+    width: 220px;
+    font-size: 17px;
     margin-bottom: 5px;
     transition: ${({ theme }) => theme.transition.out};
     text-transform: uppercase;
