@@ -11,17 +11,17 @@ export default {
     active: 'Actieve eerst'
   },
   oblige: {
-    buildMessage: 'Please wait, Oblige is Building',
-    selectConfig: 'Select Build Config',
-    modalTitle: 'Oblige Build and Play',
+    buildMessage: 'Even Geduld, Oblige Is Aan Het Bouwen',
+    selectConfig: 'Selecteer Project Configuratie',
+    modalTitle: 'Oblige Bouw en Speel',
     open: 'Open Oblige',
-    openDir: 'Config Directory',
-    last: 'Play last',
-    build: 'Build'
+    openDir: 'Configuratie Bestandslijst',
+    last: 'Speel laatste',
+    build: 'Bouw'
   },
   wads: {
     filter: 'Zoek in {{size}} Mods',
-    toastIndex: 'Reindexed Mod Directory',
+    toastIndex: 'Mod Bestandslijst Geherindexeerd',
     packEdit: 'Wijzig',
     packSaveAs: 'Opslaan als',
     packSave: 'Opslaan',
@@ -43,27 +43,27 @@ export default {
     toastDeleted: 'Bronpoort Verwijderd'
   },
   settings: {
-    titleDirectories: 'Directories',
-    titleCustomization: 'Customization',
-    titleOblige: 'Oblige Integration',
-    colorTheme: 'Color Theme',
-    favouriteSourceport: 'Favourite Sourceport',
-    obligeConfigPath: 'Oblige Build Configs',
-    obligeBinary: 'Oblige Binary',
-    obligeActive: 'Activate Oblige',
+    titleDirectories: 'Bestandslijsten',
+    titleCustomization: 'Aanpassingen',
+    titleOblige: 'Oblige Integratie',
+    colorTheme: 'Kleuren Thema',
+    favouriteSourceport: 'Favoriete Bronpoort',
+    obligeConfigPath: 'Oblige Project Configuraties',
+    obligeBinary: 'Oblige Binair',
+    obligeActive: 'Activeer Oblige',
     savepath: 'SSGL Bestandsgegevens',
     waddir: 'WAD Bestandslijst',
     wallpaper: 'Achtergrond Afbeelding',
     save: 'Instellingen Opslaan',
     toastSaved: 'Instellingen Succesvol Opgeslagen',
-    startView: 'Open View when SSGL starts'
+    startView: 'Beginscherm Wanneer SSGL Opstart'
   },
   common: {
-    close: 'Close',
+    close: 'Sluit Af',
     iwad: 'iWad',
-    sourceport: 'Sourceport',
-    deleteTitle: 'Confirm Deletion',
-    deleteText: 'Do you really want to delete this Item ?',
+    sourceport: 'Bronpoort',
+    deleteTitle: 'Verwijderen Bevestigen',
+    deleteText: 'Weet U Zeker Dat U Dit Item Wilt Verwijderen?',
     loading: 'Laden',
     language: 'Taal',
     success: 'Succes',
@@ -72,8 +72,8 @@ export default {
     ok: 'Ok',
     required: 'Verplicht',
     toastRequired: 'Vul Alstublieft De Verplichte Velden In',
-    toastStart: 'Starting Sourceport',
-    toastStartText: `Starting {{sourceport}} with {{num}} Mods`
+    toastStart: 'Bronpoort Starten',
+    toastStartText: `Start {{sourceport}} met {{num}} Mods`
   },
   nav: {
     appname: 'Super Shotgun Launcher',
@@ -83,8 +83,8 @@ export default {
     settings: 'Instellingen'
   },
   packages: {
-    cover: 'Cover',
-    packageName: 'Package Name',
+    cover: 'Afbeelding',
+    packageName: 'Pakket Naam',
     userParams: 'Start Parameters',
     lastplayed: 'Laatst Gespeeld: {{value, date}}',
     never: 'Laatst Gespeeld: Nooit',
@@ -99,9 +99,9 @@ export default {
     datadir: 'gegevens'
   },
   errors: {
-    SETTINGS_FILE: 'No Settings found',
-    UNEXPECTED: 'Unexpected Error happened',
-    WALKER_ERROR: 'FileWalker Error',
-    JSON_WRITE: 'Error while writing JSON File'
+    SETTINGS_FILE: 'Geen Instellingen Gevonden',
+    UNEXPECTED: 'Een Onverwachte Fout Deed Zich Voor',
+    WALKER_ERROR: 'FileWalker Fout',
+    JSON_WRITE: 'Fout Bij Schrijven JSon Bestand'
   }
 };
