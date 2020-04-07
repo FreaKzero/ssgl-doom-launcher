@@ -7,6 +7,7 @@ import Covers from '../../assets/ssgl-iwad-covers';
 const ListItemStyle = styled.li`
   margin-right: 10px;
   text-align: center;
+  display: inline-block;
 `;
 
 const IconStyle = styled.div`

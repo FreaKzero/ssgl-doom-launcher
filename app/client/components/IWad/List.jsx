@@ -3,9 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ListStyle = styled.ul`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+  text-align: center;
 `;
 
 const List = ({ children }) => <ListStyle>{children}</ListStyle>;

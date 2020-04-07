@@ -9,13 +9,13 @@ import BackDrop from './Backdrop';
 import Dropdown from './Form/Dropdown';
 import IWad from './IWad';
 
-const DrawerMotion = ({ active, children, ...rest }) => {
+const DrawerMotion = ({ active, big, children, ...rest }) => {
   const variants = {
     anim: {
       bottom: `0px`,
       opacity: 1
     },
-    init: { bottom: `-200px`, opacity: 0 }
+    init: { bottom: big ? '-260px' : '-160px', opacity: 0 }
   };
   return (
     <motion.div
@@ -38,7 +38,7 @@ DrawerMotion.propTypes = {
 const Drawer = styled(DrawerMotion)`
   background: ${({ theme }) => theme.color.backdrop};
   backdrop-filter: blur(5px);
-  height: 200px;
+  height: ${p => (p.big ? '260px' : '160px')};
   position: absolute;
   left: 0;
   padding: 20px;
@@ -95,7 +95,7 @@ const PlayOverlay = ({ active, setActive }) => {
   return (
     <>
       <BackDrop onClick={() => setActive(false)} active={active} />
-      <Drawer active={active}>
+      <Drawer active={active} big={gstate.iwads.length > 11}>
         <Dropdown
           name="language"
           options={options}

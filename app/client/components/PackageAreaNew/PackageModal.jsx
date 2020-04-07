@@ -53,7 +53,7 @@ const PackageModal = ({
     : t('packages:titleSave', { name: form.name });
 
   return (
-    <Modal active={active} toggle={toggle} title={title} strict>
+    <Modal active={active} toggle={toggle} title={title}>
       <form onSubmit={onSubmit}>
         <Flex.Grid>
           <Flex.Col>

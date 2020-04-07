@@ -35,6 +35,11 @@ const walkWadDir = dir => {
             }
           }
         }
+        iwads.sort((a, b) => {
+          if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+          if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+          return 0;
+        });
       })
       .on('end', () => resolve({ mods, iwads }))
       .on('error', err => reject(err.message));
