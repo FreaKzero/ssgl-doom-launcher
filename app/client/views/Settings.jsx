@@ -43,8 +43,12 @@ const Settings = () => {
       value: 'uac'
     },
     {
-      label: 'Phobos',
-      value: 'phobos'
+      label: 'BFG',
+      value: 'bfg'
+    },
+    {
+      label: 'Slayer',
+      value: 'slayer'
     },
     {
       label: 'Pinkie',
