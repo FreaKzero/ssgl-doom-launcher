@@ -92,10 +92,7 @@ const Wads = () => {
           </Box>
         </Flex.Col>
       </Flex.Grid>
-      <PlayIcon
-        active={gstate.package.selected.length}
-        onClick={() => setPoActive(true)}
-      />
+      <PlayIcon active={true} onClick={() => setPoActive(true)} />
       <PlayOverlay active={poActive} setActive={setPoActive} />
     </>
   );
