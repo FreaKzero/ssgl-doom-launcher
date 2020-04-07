@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import styled from 'styled-components';
 
 import { StoreContext } from '../../state';
 import { useTranslation } from '../../utils';
@@ -7,6 +8,13 @@ import Flex from '../Flex';
 import { Button, Dropdown, Input, SelectFile } from '../Form';
 import Modal from '../Modal';
 
+const Hint = styled.div`
+  font-size: 12px;
+
+  .code {
+    font-family: monospace;
+  }
+`;
 const PackageModal = ({
   active,
   toggle,
@@ -18,7 +26,7 @@ const PackageModal = ({
 }) => {
   const { t } = useTranslation(['common', 'packages']);
   const { gstate } = useContext(StoreContext);
-
+  const [errors, setErrors] = useState({});
   const iwadOptions = gstate.iwads.map(item => {
     return {
       label: item.name,
@@ -32,6 +40,37 @@ const PackageModal = ({
       value: item.id
     };
   });
+
+  const validate = () => {
+    const fields = ['name', 'iwad', 'sourceport'];
+    let hasError = false;
+    let temp = {};
+
+    fields.forEach(field => {
+      if (!form[field] || form[field].trim() === '') {
+        hasError = true;
+        temp = {
+          ...temp,
+          [field]: t('common:required')
+        };
+      } else {
+        temp = {
+          ...temp,
+          [field]: null
+        };
+      }
+    });
+
+    setErrors(temp);
+    return hasError;
+  };
+
+  const onSubmitWrapper = e => {
+    e.preventDefault();
+    const hasError = validate();
+
+    return hasError ? null : onSubmit(e);
+  };
 
   const onComponent = ({ name, value }) => {
     setForm({
@@ -54,7 +93,7 @@ const PackageModal = ({
 
   return (
     <Modal active={active} toggle={toggle} title={title}>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmitWrapper}>
         <Flex.Grid>
           <Flex.Col>
             <Input
@@ -63,6 +102,7 @@ const PackageModal = ({
               fluid
               onChange={onInput}
               value={form.name}
+              error={errors.name}
             />
           </Flex.Col>
           <Flex.Col>
@@ -83,6 +123,7 @@ const PackageModal = ({
               value={form.iwad}
               label={t('common:iwad')}
               onChange={onComponent}
+              error={errors.iwad}
             />
           </Flex.Col>
           <Flex.Col>
@@ -92,6 +133,7 @@ const PackageModal = ({
               name="sourceport"
               label={t('common:sourceport')}
               onChange={onComponent}
+              error={errors.sourceport}
             />
           </Flex.Col>
         </Flex.Grid>
@@ -102,6 +144,11 @@ const PackageModal = ({
           value={form.userparams}
           fluid
         />
+        <Hint>
+          <span className="code">&lt;package&gt;</span> - References to package
+          data directory. <span className="code">&lt;data&gt;</span> -
+          References to SSGL-Data Directory
+        </Hint>
         <div style={{ textAlign: 'right' }}>
           <Button
             type="button"
