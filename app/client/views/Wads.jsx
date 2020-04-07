@@ -46,12 +46,11 @@ const Wads = () => {
     toast('ok', t('common:success'), t('wads:toastIndex'));
   };
 
-  const onSortList = ({ value }) => {
-    setSort(value);
-  };
+  const onSortList = ({ value }) => setSort(value);
 
-  let show = sortList(gstate.mods, sort, filter);
-
+  let show = sortList(gstate.mods, sort, filter, (i, fuzz) =>
+    fuzz(filter, `${i.name.toLowerCase()} ${i.lastdir.toLowerCase()}`)
+  );
   return (
     <>
       <Flex.Grid>

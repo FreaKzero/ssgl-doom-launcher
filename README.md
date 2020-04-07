@@ -52,3 +52,6 @@ See the LATEST [English Locale File](https://github.com/FreaKzero/ssgl-doom-laun
 - [Scar45](https://github.com/scar45) (Alphatesting Linux)
 - [WolVexus](https://www.youtube.com/channel/UCC6ixAIHqKkSh3lv2tM5wwQ) (Alphatesting Windows)
 - [js2me](https://github.com/js2me) and [PROPHESSOR](https://github.com/PROPHESSOR) (RU Translation)
+
+DOOM is a registered Trademark of id Software LLC, a Zenimax Media company in the US and/or other Countries, and is used without permission.
+All other Trademarks are the property of their respective holders. SSGL is in no way affiliated with nor endorsed by id Software.

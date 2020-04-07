@@ -1,6 +1,6 @@
 import fuzz from 'fuzzysearch';
 
-const sortList = (arr, sort, filter) => {
+const sortList = (arr, sort, filter, filterCallback) => {
   const srt = () => {
     switch (sort) {
       case 'asc':
@@ -31,13 +31,7 @@ const sortList = (arr, sort, filter) => {
   if (arr.length) {
     let show = srt();
     return filter.trim() !== ''
-      ? show
-          .filter(i => fuzz(filter, i.name.toLowerCase()))
-          .sort((a, b) => {
-            if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-            if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-            return 0;
-          })
+      ? show.filter(i => filterCallback(i, fuzz))
       : show;
   }
 

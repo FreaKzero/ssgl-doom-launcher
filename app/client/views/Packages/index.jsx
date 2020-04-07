@@ -33,7 +33,9 @@ const Packages = () => {
     setRawFilter(val.toLowerCase());
   }, 300);
 
-  let show = sortList(gstate.packages, sort, filter);
+  let show = sortList(gstate.packages, sort, filter, (i, fuzz) =>
+    fuzz(filter, i.name.toLowerCase())
+  );
 
   const onDelete = id => () => {
     setConfirm({
