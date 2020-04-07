@@ -31,6 +31,7 @@ const DrawerMotion = ({ active, big, children, ...rest }) => {
 };
 
 DrawerMotion.propTypes = {
+  big: PropTypes.bool,
   active: PropTypes.bool,
   children: PropTypes.any
 };
