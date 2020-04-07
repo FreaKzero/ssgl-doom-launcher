@@ -132,7 +132,10 @@ export function reducer(state, action) {
       return act({
         ...state,
         packages: action.packages,
-        package: action.package || initState.package
+        package: action.package || initState.package,
+        mods: action.package
+          ? state.mods
+          : state.mods.map(mod => ({ ...mod, active: false }))
       });
 
     case 'mod/move':
