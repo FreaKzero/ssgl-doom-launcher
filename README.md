@@ -1,6 +1,6 @@
 <p align="center"><img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readme/readmelogo.png" width="350"></p>
 
-- [Current Developer Preview Release](https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v2.0.0-devpreview.17)
+- [Current Developer Preview Release](https://github.com/FreaKzero/ssgl-doom-launcher/releases/tag/v2.0.0-devpreview.18)
 - [First Setup Instructions](https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup)
 - [Join the SSGL Discord Server](https://discord.gg/MsjZhHF)
 
@@ -21,12 +21,13 @@ Developer Preview - There can be alot of Changes which is breaking the Experienc
 - Designed towards a "Fast in - Fast Out" User Experience
 - Multi Language Support
 - Different Colorthemes and Wallpaper Support
-- Oblige/Obhack Integration for Packages (Every Package has its own generated Map)
+- Oblige Integration for Packages (Every Package has its own generated Map)
+- "Userparameters" for Packages (like `-fastmonsters`, `-screendir`, etc)
 
 ## Roadmap / Soon
-- "Userparameters" for Packages (like `-fastmonsters`, `-screendir`, etc)
 - Package Import/Export System (Operating System agnostic)
 - Soundfeedback (can be turned off)
+- New Indexing System so users can manage their MODS directly on the harddrive all the time
 
 ## Customization Examples
 Wallpapers which are shown here dont ship with SSGL  
@@ -37,8 +38,11 @@ Wallpapers which are shown here dont ship with SSGL
 ### UAC  
 <img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readme/theme-uac.png" width="700" />
 
-### Phobos  
-<img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readme/theme-phobos.png" width="700" />
+### BFG  
+<img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readme/theme-bfg.png" width="700" />
+
+### Slayer  
+<img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readme/theme-slayer.png" width="700" />
 
 ### Pinkie  
 <img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readme/theme-pinkie.png" width="700" />
