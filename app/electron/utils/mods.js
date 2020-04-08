@@ -41,26 +41,35 @@ const walkWadDir = dir => {
           return 0;
         });
       })
-      .on('end', () => resolve({ mods, iwads }))
+      .on('end', () => {
+        return resolve({
+          mods: Object.values(
+            mods.reduce((acc, cur) => Object.assign(acc, { [cur.id]: cur }), {})
+          ),
+          iwads
+        });
+      })
       .on('error', err => reject(err.message));
   });
 };
 
-const genIndexedID = item =>
-  `${item.path}${item.size}${item.kind}`
-    .replace(/[\W_]+/g, '')
-    .split('')
-    .map((c, i) => {
-      return i % 2 === 0 ? c.toLowerCase() : '';
-    })
-    .join('') + `${item.stats.birthtimeMs}`;
+const getMetaData = item => {
+  const name = path.parse(item.path).name.replace(/_/g, ' ');
+  const ext = getExt(item.path);
+  return {
+    ext: getExt(item.path),
+    name: name,
+    id: `${name}${item.stats.size}${ext}`
+  };
+};
 
 const IWADItem = item => {
   const sz = byteSize(item.stats.size);
+  const meta = getMetaData(item);
   return {
-    id: genIndexedID(item),
-    name: path.parse(item.path).name.replace(/_/g, ' '),
-    kind: getExt(item.path),
+    id: meta.id,
+    name: meta.name,
+    kind: meta.ext,
     path: item.path,
     size: `${sz.value} ${sz.unit}`,
     created: item.stats.birthtimeMs,
@@ -80,11 +89,13 @@ const isModFile = item => {
 
 const modItem = item => {
   const sz = byteSize(item.stats.size);
+  const meta = getMetaData(item);
+
   return {
-    id: genIndexedID(item),
+    id: meta.id,
     lastdir: path.basename(path.dirname(item.path)).toLowerCase(),
-    name: path.parse(item.path).name.replace(/_/g, ' '),
-    kind: getExt(item.path),
+    name: meta.name,
+    kind: meta.ext,
     path: item.path,
     size: `${sz.value} ${sz.unit}`,
     created: item.stats.birthtimeMs,
