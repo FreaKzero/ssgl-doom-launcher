@@ -51,11 +51,11 @@ const ObligeModal = ({ pack, toggle, active }) => {
   };
 
   const onBuild = async () => {
-    setBuildState(true);
     const hasError = validate();
     if (hasError) {
       return setErrors(hasError);
     } else {
+      setBuildState(true);
       try {
         const interval = setInterval(() => {
           const msg = ipcRenderer.sendSync('log', 'ping');
