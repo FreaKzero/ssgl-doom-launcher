@@ -11,9 +11,13 @@ let currentTimeout;
 const DEFAULT_TOAST_DURATION = 2400;
 
 const Indicator = styled.div`
-  background-color: ${({ theme }) => theme.color.active};
-  box-shadow: ${({ theme }) => theme.font.glow};
   animation: toasttimer ${DEFAULT_TOAST_DURATION}ms;
+  box-shadow: ${p =>
+    p.scope === 'danger'
+      ? `0 -1px 4px #b8342a, 0 0px 15px #b8342a`
+      : `0 -1px 4px ${p.theme.color.glow}, 0 0px 15px ${p.theme.color.glow}`};
+  background-color: ${p =>
+    p.scope === 'danger' ? `#ff2f00` : p.theme.color.active};
 `;
 
 const ToastPortalStyle = styled.div`
@@ -71,7 +75,7 @@ const ToastMotion = ({ toast }) => {
       <ToastStyle scope={toast.scope}>
         <h1>{toast.title}</h1>
         {toast.text ? <p>{toast.text}</p> : null}
-        <Indicator />
+        <Indicator scope={toast.scope} />
       </ToastStyle>
     </motion.div>
   );
