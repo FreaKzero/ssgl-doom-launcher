@@ -177,8 +177,8 @@ const ObligeModal = ({ pack, toggle, active }) => {
 };
 
 ObligeModal.propTypes = {
-  active: PropTypes.bool.isRequired,
-  pack: PropTypes.any.isRequired,
+  active: PropTypes.bool,
+  pack: PropTypes.any,
   toggle: PropTypes.func.isRequired
 };
 

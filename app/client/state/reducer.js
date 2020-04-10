@@ -19,12 +19,12 @@ export const initState = {
     changelog: null
   },
   package: {
-    datapath: null,
-    id: null,
-    sourceport: null,
-    iwad: null,
-    cover: null,
-    name: null,
+    datapath: '',
+    id: '',
+    sourceport: '',
+    iwad: '',
+    cover: '',
+    name: '',
     selected: []
   },
   packages: [],

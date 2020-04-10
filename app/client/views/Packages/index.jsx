@@ -118,7 +118,7 @@ const Packages = () => {
       <Confirm active={confirm.open} onOk={onOk} onCancel={onCancel} />
       {gstate.settings.obligeActive ? (
         <ObligeModal
-          active={selectedPack}
+          active={Boolean(selectedPack)}
           toggle={setSelectedPack}
           pack={selectedPack}
         />

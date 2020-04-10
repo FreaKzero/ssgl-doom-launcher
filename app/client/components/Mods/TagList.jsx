@@ -24,7 +24,7 @@ const TagList = ({ item }) => {
   return item.tags.length ? (
     <Tags>
       {item.tags.map(tag => {
-        return <Tag key={`${item.id}_${item.tag}`}>{tag}</Tag>;
+        return <Tag key={`${item.id}_${tag}`}>{tag}</Tag>;
       })}
     </Tags>
   ) : null;

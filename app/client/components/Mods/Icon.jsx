@@ -46,7 +46,7 @@ const Icon = ({ name, danger, stroke, ...rest }) => {
 Icon.propTypes = {
   name: PropTypes.string,
   stroke: PropTypes.string,
-  danger: PropTypes.danger
+  danger: PropTypes.bool
 };
 
 export default Icon;
