@@ -1,7 +1,6 @@
 import { app, ipcMain } from 'electron';
 import got from 'got';
 
-import ERRORS from '../utils/errors';
 import { getJSON } from '../utils/json';
 import { walkWadDir } from '../utils/mods';
 

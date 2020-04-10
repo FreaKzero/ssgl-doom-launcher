@@ -21,18 +21,18 @@ const getLastSaveGame = dir => {
   return sorted.length ? sorted[0].path : null;
 };
 
-const play = async (pack, loadLast = false, oblige = null) => {
+const play = async (pack, selected, loadLast = false, oblige = null) => {
   let deh = [];
   let bex = [];
   let file = [];
   let params = [];
-  const { iwad, selected } = pack;
+  const { iwad } = pack;
 
   try {
     const sourceports = await getJSON('sourceports');
     const settings = await getJSON('settings');
-
     const sourceport = sourceports.find(i => i.id === pack.sourceport);
+
     selected.forEach(i => {
       switch (i.kind) {
         case 'DEH':

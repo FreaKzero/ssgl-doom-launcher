@@ -7,11 +7,6 @@ export const move = (data, from, to) => {
   return array;
 };
 
-export const removeIndex = (arr, index) => [
-  ...arr.slice(0, index),
-  ...arr.slice(index + 1)
-];
-
 export const initState = {
   iwads: [],
   mods: [],
@@ -105,8 +100,9 @@ export function reducer(state, action) {
 
     case 'packages/select':
       const pack = state.packages.find(pack => pack.id === action.id);
+
       const mods = state.mods.map(mod => {
-        if (pack.selected.findIndex(item => mod.id === item.id) > -1) {
+        if (pack.selected.findIndex(item => mod.id === item) > -1) {
           return {
             ...mod,
             active: true
@@ -153,26 +149,17 @@ export function reducer(state, action) {
     case 'mod/select':
       const newItem = state.mods.find(item => action.id === item.id);
 
-      if (!newItem) {
-        return act(state);
-      }
+      const selected = newItem.active
+        ? state.package.selected.filter(i => i !== action.id)
+        : [...state.package.selected, action.id];
 
       newItem.active = !newItem.active;
-
-      const found = state.package.selected.findIndex(
-        item => action.id === item.id
-      );
-
-      const selected =
-        found > -1
-          ? removeIndex(state.package.selected, found)
-          : [...state.package.selected, newItem];
 
       return act({
         ...state,
         package: {
           ...state.package,
-          selected
+          selected: selected
         },
         mods: state.mods.map(item => (item.id === action.id ? newItem : item))
       });

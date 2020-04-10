@@ -43,6 +43,7 @@ const ObligeModal = ({ pack, toggle, active }) => {
   const onPlay = async () => {
     const newPackages = await ipc('packages/play', {
       pack: pack,
+      selected: gstate.mods.filter(i => pack.selected.indexOf(i.id) > -1),
       load: false,
       oblige: true
     });
@@ -74,6 +75,7 @@ const ObligeModal = ({ pack, toggle, active }) => {
         const newPackages = await ipc('packages/play', {
           pack: pack,
           load: false,
+          selected: gstate.mods.filter(i => pack.selected.indexOf(i.id) > -1),
           oblige: data.wad
         });
 

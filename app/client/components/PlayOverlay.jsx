@@ -53,10 +53,6 @@ const PlayOverlay = ({ active, setActive }) => {
   const [ipc] = useIpc();
   const [toast] = useToast();
   const { t } = useTranslation(['common']);
-  const options = gstate.sourceports.map(item => ({
-    label: item.name,
-    value: item.id
-  }));
 
   useEffect(() => {
     if (gstate.package.sourceport !== null) {
@@ -68,17 +64,23 @@ const PlayOverlay = ({ active, setActive }) => {
     }
   }, [gstate]);
 
-  const onSourceport = ({ value }) => {
-    setSourceport(value);
-  };
+  const options = gstate.sourceports.map(item => ({
+    label: item.name,
+    value: item.id
+  }));
+
+  const onSourceport = ({ value }) => setSourceport(value);
 
   const onPlay = iwad => async () => {
     const useSourceport = gstate.sourceports.find(i => i.id === sourceport);
 
     await ipc('sourceports/play', {
-      ...gstate.package,
-      iwad: iwad.path,
-      sourceport
+      pack: {
+        ...gstate.package,
+        iwad: iwad.path,
+        sourceport
+      },
+      selected: gstate.mods.filter(i => i.active === true)
     });
 
     setActive(false);

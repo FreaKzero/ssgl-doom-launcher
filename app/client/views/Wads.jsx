@@ -22,26 +22,23 @@ const Wads = () => {
   const [filter, setRawFilter] = useState('');
   const [poActive, setPoActive] = useState(false);
   const [sort, setSort] = useState('new');
-  const [fetch, loading] = useIpc();
+  const [ipc, loading] = useIpc();
   const { t } = useTranslation(['common', 'wads']);
   const [toast] = useToast();
-
-  const onSelect = id => () => {
-    dispatch({ type: 'mod/select', id });
-  };
-
-  const onSort = (index, direction) => () => {
-    dispatch({ type: 'mod/move', direction, index });
-  };
-
-  const onCircle = path => () => remote.shell.showItemInFolder(path);
 
   const [onInput] = useDebouncedCallback(val => {
     setRawFilter(val.toLowerCase());
   }, 200);
 
+  const onSelect = id => () => dispatch({ type: 'mod/select', id });
+
+  const onCircle = path => () => remote.shell.showItemInFolder(path);
+
+  const onSort = (index, direction) => () =>
+    dispatch({ type: 'mod/move', direction, index });
+
   const onRefresh = async () => {
-    const data = await fetch('main/init');
+    const data = await ipc('main/init');
     dispatch({ type: 'main/init', data: data });
     toast('ok', t('common:success'), t('wads:toastIndex'));
   };
@@ -49,8 +46,9 @@ const Wads = () => {
   const onSortList = ({ value }) => setSort(value);
 
   let show = sortList(gstate.mods, sort, filter, (i, fuzz) =>
-    fuzz(filter, `${i.name.toLowerCase()} ${i.lastdir.toLowerCase()}`)
+    fuzz(filter, `${i.name.toLowerCase()} ${i.tags.join(' ')}`)
   );
+
   return (
     <>
       <Flex.Grid>
@@ -75,17 +73,20 @@ const Wads = () => {
             <ul>
               <AnimatePresence>
                 {gstate.package.selected.length &&
-                  gstate.package.selected.map((item, itemindex) => (
-                    <ModItem
-                      key={`selected_${item.id}`}
-                      item={item}
-                      onSelect={onSelect(item.id)}
-                      onUp={onSort(itemindex, 'up')}
-                      onCircle={onCircle(item.path)}
-                      onDown={onSort(itemindex, 'down')}
-                      selected
-                    />
-                  ))}
+                  gstate.package.selected.map((id, itemindex) => {
+                    const item = gstate.mods.find(i => i.id === id);
+                    return (
+                      <ModItem
+                        key={`selected_${item.id}`}
+                        item={item}
+                        onSelect={onSelect(item.id)}
+                        onUp={onSort(itemindex, 'up')}
+                        onCircle={onCircle(item.path)}
+                        onDown={onSort(itemindex, 'down')}
+                        selected
+                      />
+                    );
+                  })}
               </AnimatePresence>
             </ul>
           </Box>
