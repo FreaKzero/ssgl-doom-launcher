@@ -10,25 +10,26 @@ Developer Preview - There can be alot of Changes which is breaking the Experienc
 <p align="center"><img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readme/readmedemo.gif" width="700" /></p>
 
 ## Features
-- Builds available for Windows, Linux (Snap) and MacOS
-- Easy and Fast Setup
-- Designed towards a "Fast in - Fast Out" User Experience
-- Organize your WADs as you want on your Harddrive via Folders 
-
+- Main Goals
+  - Builds available for Windows, Linux (Snap) and MacOS
+  - Easy and Fast Setup
+  - Designed towards a "Fast in - Fast Out" User Experience
+  - Organize your WADs as you want on your Harddrive via Folders
+  
 - Customization
- - Different Colorthemes
- - Set your own Wallpaper
- - Multi Language Support (NL, DE, EN)
-
+  - Different Colorthemes
+  - Set your own Wallpaper
+  - Multi Language Support (NL, DE, EN)
+  
 - Sourceports
   - DEH and BEX Support
   - Sourceport agnostic, just configure the Sourceport as you want
   - **SOON:** Predefined Recipies for Sourceports based on the Filename
-
+  
 - Filter/Search abilities for Mods and Packages
   - Fuzzyfilter by Modname or Directory location 
   - Sort Mods and Packages by Newest, Oldest, Active, ASC or DESC 
-
+  
 - Package (Mod List) System
   - Oblige Build and Play direct in SSGL, every Modlist/Package can has its own generated Map
   - Config/Savegame Management by Package/Modlist (if the flags are set in the Sourceport)
