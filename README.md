@@ -10,24 +10,31 @@ Developer Preview - There can be alot of Changes which is breaking the Experienc
 <p align="center"><img src="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/readme/readmedemo.gif" width="700" /></p>
 
 ## Features
-- Builds for Windows, Linux (Snap) and MacOS
+- Builds available for Windows, Linux (Snap) and MacOS
 - Easy and Fast Setup
-- Sourceport agnostic (As long the Sourceport runs in Terminal/Cmd.exe)
-- DEH and BEX Support
-- "Package" System for Modlists
-- Can manage seperate Configs and Savegamefolders for Packages automatically
-- "Instant Play" for Packages, and loads the last Savegame automatically
-- Vast Filter/Search abilities for Mods and Packages
 - Designed towards a "Fast in - Fast Out" User Experience
-- Multi Language Support
-- Different Colorthemes and Wallpaper Support
-- Oblige Integration for Packages (Every Package has its own generated Map)
-- "Userparameters" for Packages (like `-fastmonsters`, `-screendir`, etc)
+- Organize your WADs as you want on your Harddrive via Folders 
 
-## Roadmap / Soon
-- Package Import/Export System (Operating System agnostic)
-- Soundfeedback (can be turned off)
-- New Indexing System so users can manage their MODS directly on the harddrive all the time
+- Customization
+ - Different Colorthemes
+ - Set your own Wallpaper
+ - Multi Language Support (NL, DE, EN)
+
+- Sourceports
+  - DEH and BEX Support
+  - Sourceport agnostic, just configure the Sourceport as you want
+  - **SOON:** Predefined Recipies for Sourceports based on the Filename
+
+- Filter/Search abilities for Mods and Packages
+  - Fuzzyfilter by Modname or Directory location 
+  - Sort Mods and Packages by Newest, Oldest, Active, ASC or DESC 
+
+- Package (Mod List) System
+  - Oblige Build and Play direct in SSGL, every Modlist/Package can has its own generated Map
+  - Config/Savegame Management by Package/Modlist (if the flags are set in the Sourceport)
+  - Instant Play Feature which also loads the last Savegame of the Package
+  - "Userparameters" for Advanced usage (`--fastmonsters -warp etc.`)
+  - **SOON:** Import/Export Feature
 
 ## Customization Examples
 Wallpapers which are shown here dont ship with SSGL  
