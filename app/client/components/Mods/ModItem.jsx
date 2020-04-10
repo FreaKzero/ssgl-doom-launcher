@@ -19,8 +19,10 @@ const Content = styled.div`
   }
 
   h1 {
+    white-space: nowrap;
     transition: ${({ theme }) => theme.transition.out};
     font-size: 18px;
+    margin-top: 5px;
     margin-bottom: 5px;
     text-transform: uppercase;
   }
@@ -54,6 +56,7 @@ const IconContainer = styled.div`
 `;
 
 const ItemStyle = styled.div`
+  overflow: hidden;
   background: ${({ theme }) => theme.color.backdrop};
   border-radius: ${({ theme }) => theme.border.radius};
   border: 1px solid ${({ theme }) => theme.border.idle};
@@ -61,8 +64,8 @@ const ItemStyle = styled.div`
   padding: 10px;
   height: 50px;
   display: flex;
-  margin-bottom: 5px;
   user-select: none;
+  margin-bottom: 5px;
 
   &:hover {
     border: 1px solid ${({ theme }) => theme.border.active};

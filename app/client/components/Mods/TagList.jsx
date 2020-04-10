@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 const Tags = styled.ul`
   user-select: none;
-  height: 65px;
   list-style: none;
   display: inline-block;
 `;
