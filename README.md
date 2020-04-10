@@ -14,6 +14,7 @@ Developer Preview - There can be alot of Changes which is breaking the Experienc
   - Builds available for Windows, Linux (Snap) and MacOS
   - Easy and Fast Setup
   - Designed towards a "Fast in - Fast Out" User Experience
+  - Modern UI
   - Organize your WADs as you want on your Harddrive via Folders
   
 - Customization
