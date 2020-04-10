@@ -26,7 +26,7 @@ ipcMain.handle('packages/open', async (e, data) => {
 });
 
 ipcMain.handle('packages/play', async (e, data) => {
-  const { load, pack, oblige } = data;
+  const { load, pack, selected, oblige } = data;
   try {
     const packages = await getJSON('packages');
     const newpacks = packages.map(item => {
@@ -42,7 +42,7 @@ ipcMain.handle('packages/play', async (e, data) => {
 
     setJSON('packages', newpacks);
 
-    await play(pack, load, oblige);
+    await play(pack, selected, load, oblige);
 
     return {
       data: newpacks,
@@ -99,10 +99,10 @@ ipcMain.handle('packages/save', async (e, pack) => {
     const sourceport = sourceports.find(port => pack.sourceport === port.id);
 
     if (pack.id) {
+      pack.copy = undefined;
       const newPackages = packages.map(item => {
         return item.id === pack.id ? { ...item, ...pack } : item;
       });
-
       await setJSON('packages', newPackages);
 
       return {
@@ -146,6 +146,7 @@ ipcMain.handle('packages/save', async (e, pack) => {
       }
     }
 
+    pack.copy = undefined;
     const newPackages = [pack, ...packages];
 
     await setJSON('packages', newPackages);

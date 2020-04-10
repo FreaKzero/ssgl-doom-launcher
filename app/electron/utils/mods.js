@@ -31,7 +31,7 @@ const walkWadDir = dir => {
             if (AVAILABLE_IWADS.indexOf(checkname) > -1) {
               iwads.push(IWADItem(item));
             } else if (isModFile(item.path)) {
-              mods.push(modItem(item));
+              mods.push(modItem(item, dir));
             }
           }
         }
@@ -53,13 +53,26 @@ const walkWadDir = dir => {
   });
 };
 
-const getMetaData = item => {
+const getMetaData = (item, dir) => {
   const name = path.parse(item.path).name.replace(/_/g, ' ');
   const ext = getExt(item.path);
+
+  let tags = item.path
+    .substring(0, item.path.lastIndexOf(path.sep))
+    .replace(`${dir}`, '')
+    .toLowerCase()
+    .split(path.sep)
+    .filter(i => i.trim() !== '');
+
+  if (tags.length > 3) {
+    tags = tags.slice(0, 3);
+  }
+
   return {
-    ext: getExt(item.path),
+    id: `${name}${item.stats.size}${ext}`,
     name: name,
-    id: `${name}${item.stats.size}${ext}`
+    ext: getExt(item.path),
+    tags: tags
   };
 };
 
@@ -87,13 +100,14 @@ const isModFile = item => {
   return MOD_EXTENSIONS.indexOf(EXT) > -1;
 };
 
-const modItem = item => {
+const modItem = (item, dir) => {
   const sz = byteSize(item.stats.size);
-  const meta = getMetaData(item);
+  const meta = getMetaData(item, dir);
 
   return {
     id: meta.id,
     lastdir: path.basename(path.dirname(item.path)).toLowerCase(),
+    tags: meta.tags,
     name: meta.name,
     kind: meta.ext,
     path: item.path,

@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { StoreContext } from '../../state';
 import Check from './Checkmarks';
 import Icon from './Icon';
+import TagList from './TagList';
 
 const Divider = styled.div`
   width: 5px;
@@ -13,14 +14,13 @@ const Divider = styled.div`
 const Content = styled.div`
   width: 100%;
 
-  p {
+  span {
     transition: ${({ theme }) => theme.transition.out};
   }
 
   h1 {
     transition: ${({ theme }) => theme.transition.out};
     font-size: 18px;
-    margin-top: 5px;
     margin-bottom: 5px;
     text-transform: uppercase;
   }
@@ -29,15 +29,16 @@ const Content = styled.div`
     color: ${({ theme }) => theme.color.active};
   }
 
-  &.active p {
+  &.active span {
     color: #fff;
   }
 `;
 
-const Meta = styled.p`
+const Meta = styled.span`
   color: ${({ theme }) => theme.color.meta};
   font-size: 14px;
   margin-bottom: 5px;
+  margin-right: 5px;
 `;
 
 const IconContainer = styled.div`
@@ -102,8 +103,9 @@ const ModItem = ({
         <Content className={item.active ? 'active' : undefined}>
           <h1>{item.name}</h1>
           <Meta>
-            {item.lastdir} / {item.kind} / {item.size}
+            {item.size} {item.kind}{' '}
           </Meta>
+          <TagList item={item} />
         </Content>
         {selected ? (
           <IconContainer>

@@ -82,14 +82,14 @@ ipcMain.handle('sourceports/save', async (e, data) => {
   }
 });
 
-ipcMain.handle('sourceports/play', async (e, pack) => {
+ipcMain.handle('sourceports/play', async (e, data) => {
   try {
+    const { pack, selected } = data;
     if (!pack.datadir) {
-      const settings = await getJSON('settings');
       pack.datapath = path.join(pack.sourceport, NAME_UNPURE_PACKAGE);
     }
 
-    await play(pack, false, null);
+    await play(pack, selected, false, null);
 
     return {
       data: [],

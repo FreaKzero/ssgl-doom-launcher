@@ -33,10 +33,6 @@ const Packages = () => {
     setRawFilter(val.toLowerCase());
   }, 300);
 
-  let show = sortList(gstate.packages, sort, filter, (i, fuzz) =>
-    fuzz(filter, i.name.toLowerCase())
-  );
-
   const onDelete = id => () => {
     setConfirm({
       open: true,
@@ -67,6 +63,7 @@ const Packages = () => {
   const onPlay = (pack, sourceport) => async () => {
     const newPackages = await ipc('packages/play', {
       pack: pack,
+      selected: gstate.mods.filter(i => pack.selected.indexOf(i.id) > -1),
       load: true,
       oblige: null
     });
@@ -89,6 +86,10 @@ const Packages = () => {
     dispatch({ type: 'packages/select', id: id });
     navigate('/');
   };
+
+  const show = sortList(gstate.packages, sort, filter, (i, fuzz) =>
+    fuzz(filter, i.name.toLowerCase())
+  );
 
   return (
     <Box
