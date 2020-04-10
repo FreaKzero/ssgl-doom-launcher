@@ -20,7 +20,7 @@ export const initState = {
   },
   package: {
     datapath: '',
-    id: '',
+    id: null,
     sourceport: '',
     iwad: '',
     cover: '',
