@@ -32,6 +32,11 @@ const Content = styled.div`
   &.active span {
     color: #fff;
   }
+
+  &.active li {
+    border: 1px solid white;
+    color: white;
+  }
 `;
 
 const Meta = styled.span`

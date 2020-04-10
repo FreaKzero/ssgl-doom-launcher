@@ -10,13 +10,13 @@ const Tags = styled.ul`
 `;
 
 const Tag = styled.li`
-  color: white;
+  transition: ${({ theme }) => theme.transition.out};
+  color: ${({ theme }) => theme.color.meta};
   display: inline;
   margin-right: 5px;
   font-size: 12px;
-  border: 1px solid black;
+  border: ${({ theme }) => `1px solid ${theme.color.meta}`};
   border-radius: 4px;
-  background: ${({ theme }) => theme.svg.dark};
   padding: 0 6px 0 6px;
 `;
 
