@@ -16,7 +16,7 @@ Developer Preview - There can be alot of Changes which is breaking the Experienc
 
 ## Features
 - Main Goals
-  - Builds available for Windows, Linux (Snap) and MacOS
+  - Builds available for Windows, MacOS and **SOON** Linux (AppImage)
   - Easy and Fast Setup
   - Designed towards a "Fast in - Fast Out" User Experience
   - Modern "handmade" UI
