@@ -85,7 +85,7 @@ ipcMain.handle('sourceports/save', async (e, data) => {
 ipcMain.handle('sourceports/play', async (e, data) => {
   try {
     const { pack, selected } = data;
-    if (!pack.datadir) {
+    if (!pack.datapath) {
       pack.datapath = path.join(pack.sourceport, NAME_UNPURE_PACKAGE);
     }
 
@@ -96,8 +96,6 @@ ipcMain.handle('sourceports/play', async (e, data) => {
       error: null
     };
   } catch (e) {
-    console.log(e);
-    console.log(pack);
     return {
       data: null,
       error: e.message
