@@ -12,15 +12,14 @@ then
     echo "Version $VERSION already exists - please change it in the package.json and dont commit the change"
 else
 # Not Found
+    git commit -am "$VERSION"
+    git tag "$VERSION"
+
     git checkout master
     git merge latest
 
-    git commit -am "$VERSION"
-    git tag "$VERSION"
-    
     git push && git push --tags
     git checkout latest
-    git merge master
 
     echo "## Changelog:"
       echo $(git log --pretty=format:%s "$LASTTAG"..HEAD | grep -E "FIX:|UPDATE:|FEATURE:|BREAK:" | awk '{print "\\n- "$0}')
