@@ -55,9 +55,9 @@ const PlayOverlay = ({ active, setActive }) => {
   const { t } = useTranslation(['common']);
 
   useEffect(() => {
-    if (gstate.package.sourceport !== null) {
+    if (gstate.package.sourceport.trim() !== '') {
       setSourceport(gstate.package.sourceport);
-    } else if (gstate.settings.defaultsourceport) {
+    } else if (gstate.settings.defaultsourceport.trim() !== '') {
       setSourceport(gstate.settings.defaultsourceport);
     } else if (gstate.sourceports[0]) {
       setSourceport(gstate.sourceports[0].id);
