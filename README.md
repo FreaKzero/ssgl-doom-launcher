@@ -4,6 +4,11 @@
 - [First Setup Instructions](https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup)
 - [Join the SSGL Discord Server](https://discord.gg/MsjZhHF)
 
+## HELP NEEDED: Testers/Guidance for Linux Desktop Systems
+**Apparently - Linux Builds right now are "fundamentally" broken.**  
+See Ticket here: https://github.com/FreaKzero/ssgl-doom-launcher/issues/92  
+Would be awesome if you could join Discord and guide me/test SSGL until the devpreview phase ends.  
+
 ## Current Status of Release:
 Developer Preview - There can be alot of Changes which is breaking the Experience (Crashes, Invalid Configs which have to be deleted, etc), be sure of that before Downloading.
 
@@ -14,7 +19,7 @@ Developer Preview - There can be alot of Changes which is breaking the Experienc
   - Builds available for Windows, Linux (Snap) and MacOS
   - Easy and Fast Setup
   - Designed towards a "Fast in - Fast Out" User Experience
-  - Modern UI
+  - Modern "handmade" UI
   - Organize your WADs as you want on your Harddrive via Folders
   
 - Customization
@@ -62,7 +67,6 @@ See the LATEST [English Locale File](https://github.com/FreaKzero/ssgl-doom-laun
 # Big Thanks to
 - [Xeno1979](https://github.com/Xeno1979) (Alphatesting MacOS and NL Translation)
 - [CthePredatorG](https://github.com/CthePredatorG) (Alphatesting Windows)
-- [Scar45](https://github.com/scar45) (Alphatesting Linux)
 - [WolVexus](https://www.youtube.com/channel/UCC6ixAIHqKkSh3lv2tM5wwQ) (Alphatesting Windows)
 - [js2me](https://github.com/js2me) and [PROPHESSOR](https://github.com/PROPHESSOR) (RU Translation)
 
