@@ -23,6 +23,14 @@ const sortList = (arr, sort, filter, filterCallback) => {
         return arr.sort((a, b) => b.active - a.active);
       case 'last':
         return arr.sort((a, b) => b.lastplayed - a.lastplayed);
+      // Sort by tag in filter - and the items with the most tags should be first
+      case 'tag':
+        return arr.sort(
+          (a, b) =>
+            b.tags.indexOf(filter) -
+            a.tags.indexOf(filter) +
+            (b.tags.length - a.tags.length)
+        );
       default:
         return arr;
     }

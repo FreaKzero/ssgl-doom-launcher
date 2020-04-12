@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const ObligeLog = styled.div`
   width: calc(100% - 20px);
   height: 200px;
-  overflow-x: none;
+  overflow-x: hidden;
   overflow-y: scroll;
   font-family: monospace;
   background-color: ${({ theme }) => theme.color.backdrop};

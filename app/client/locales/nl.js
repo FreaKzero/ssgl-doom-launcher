@@ -5,6 +5,7 @@ export default {
     selectDir: 'Bestandslijst'
   },
   filters: {
+    tag: 'Op label',
     lastplayed: 'Laatst gespeeld',
     oldest: 'Oudste eerst',
     newest: 'Nieuwste eerst',
@@ -96,6 +97,7 @@ export default {
     play: 'Nu Spelen',
     delete: 'Verwijder',
     selectPackage: 'Kies een pakket',
+    noPackage: 'Geen Pakket',
     datadir: 'gegevens'
   },
   errors: {

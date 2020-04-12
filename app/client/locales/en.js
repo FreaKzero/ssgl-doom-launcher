@@ -5,6 +5,7 @@ export default {
     selectDir: 'Directory'
   },
   filters: {
+    tag: 'By Tag',
     lastplayed: 'Last played',
     oldest: 'Oldest first',
     newest: 'Newest first',
@@ -96,6 +97,7 @@ export default {
     play: 'Play now',
     delete: 'Delete',
     selectPackage: 'Select Package',
+    noPackage: 'No Package',
     datadir: 'Data'
   },
   errors: {

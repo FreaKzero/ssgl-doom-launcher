@@ -1,7 +1,7 @@
 import { remote } from 'electron';
 import { AnimatePresence } from 'framer-motion';
 import React, { useContext, useState } from 'react';
-import { useDebouncedCallback } from 'use-debounce';
+import { useDebounce } from 'use-debounce';
 
 import {
   Box,
@@ -19,16 +19,14 @@ import { setTitle, sortList, useIpc, useToast, useTranslation } from '../utils';
 const Wads = () => {
   setTitle('wads');
   const { gstate, dispatch } = useContext(StoreContext);
-  const [filter, setRawFilter] = useState('');
   const [poActive, setPoActive] = useState(false);
   const [sort, setSort] = useState('new');
   const [ipc, loading] = useIpc();
   const { t } = useTranslation(['common', 'wads']);
   const [toast] = useToast();
 
-  const [onInput] = useDebouncedCallback(val => {
-    setRawFilter(val.toLowerCase());
-  }, 200);
+  const [rawFilter, setFilter] = useState('');
+  const [filter] = useDebounce(rawFilter, 200);
 
   const onSelect = id => () => dispatch({ type: 'mod/select', id });
 
@@ -45,8 +43,23 @@ const Wads = () => {
 
   const onSortList = ({ value }) => setSort(value);
 
+  const onFilterInput = (e, { value }) => {
+    if (sort === 'tag') {
+      setSort('asc');
+    }
+    setFilter(value);
+  };
+  const onTag = tag => () => {
+    if (tag === '##BACK##') {
+      setFilter('');
+    } else {
+      setSort('tag');
+      setFilter(tag);
+    }
+  };
+
   let show = sortList(gstate.mods, sort, filter, (i, fuzz) =>
-    fuzz(filter, `${i.name.toLowerCase()} ${i.tags.join(' ')}`)
+    fuzz(filter.toLowerCase(), `${i.name.toLowerCase()} ${i.tags.join(' ')}`)
   );
 
   return (
@@ -56,9 +69,11 @@ const Wads = () => {
           <ModBox
             data={show}
             onClick={onSelect}
+            onTag={onTag}
             fixed={
               <ModFilter
-                onInput={(e, { value }) => onInput(value)}
+                filterValue={rawFilter}
+                onInput={onFilterInput}
                 onRefresh={onRefresh}
                 refreshLoad={loading}
                 onSort={onSortList}
@@ -83,6 +98,7 @@ const Wads = () => {
                         onUp={onSort(itemindex, 'up')}
                         onCircle={onCircle(item.path)}
                         onDown={onSort(itemindex, 'down')}
+                        onTag={onTag}
                         selected
                       />
                     );

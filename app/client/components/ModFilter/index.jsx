@@ -10,6 +10,7 @@ const ModFilterStyle = styled.div`
   display: flex;
 `;
 const ModFilter = ({
+  filterValue,
   sortValue,
   onSort,
   onRefresh,
@@ -39,12 +40,17 @@ const ModFilter = ({
     {
       label: 'Z-A',
       value: 'desc'
+    },
+    {
+      label: t('filters:tag'),
+      value: 'tag'
     }
   ];
 
   return (
     <ModFilterStyle>
       <Input
+        value={filterValue}
         onChange={onInput}
         placeholder={t('wads:filter', { size })}
         fluid
@@ -56,12 +62,18 @@ const ModFilter = ({
         onChange={onSort}
         value={sortValue}
       />
-      <IconButton svg={refreshSvg} onClick={onRefresh} load={refreshLoad} />
+      <IconButton
+        svg={refreshSvg}
+        onClick={onRefresh}
+        load={refreshLoad}
+        style={{ margin: 0 }}
+      />
     </ModFilterStyle>
   );
 };
 
 ModFilter.propTypes = {
+  filterValue: PropTypes.string.isRequired,
   onInput: PropTypes.func.isRequired,
   onRefresh: PropTypes.func.isRequired,
   refreshLoad: PropTypes.bool.isRequired,

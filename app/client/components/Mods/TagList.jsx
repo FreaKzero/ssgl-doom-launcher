@@ -17,20 +17,45 @@ const Tag = styled.li`
   border: ${({ theme }) => `1px solid ${theme.color.meta}`};
   border-radius: 4px;
   padding: 0 6px 0 6px;
+
+  &.clickable {
+    cursor: pointer;
+  }
+
+  &.clickable:hover {
+    border: ${({ theme }) => `1px solid ${theme.color.active}`};
+    color: ${({ theme }) => theme.color.active};
+  }
 `;
 
-const TagList = ({ item }) => {
+const TagList = ({ item, onTag }) => {
   return item.tags.length ? (
     <Tags>
+      <Tag
+        key={`${item.id}_##BACK##`}
+        className={onTag ? 'clickable' : ''}
+        onClick={onTag ? onTag('##BACK##') : null}
+      >
+        /
+      </Tag>
       {item.tags.map(tag => {
-        return <Tag key={`${item.id}_${tag}`}>{tag}</Tag>;
+        return (
+          <Tag
+            key={`${item.id}_${tag}`}
+            className={onTag ? 'clickable' : ''}
+            onClick={onTag ? onTag(tag) : null}
+          >
+            {tag}
+          </Tag>
+        );
       })}
     </Tags>
   ) : null;
 };
 
 TagList.propTypes = {
-  item: PropTypes.any
+  item: PropTypes.any,
+  onTag: PropTypes.any
 };
 
 export default TagList;

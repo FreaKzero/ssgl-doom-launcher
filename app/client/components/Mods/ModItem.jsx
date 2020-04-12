@@ -83,6 +83,7 @@ const ModItem = ({
   onUp,
   onDown,
   onCircle = () => null,
+  onTag = null,
   selected = false
 }) => {
   const { gstate } = useContext(StoreContext);
@@ -113,7 +114,7 @@ const ModItem = ({
           <Meta>
             {item.size} {item.kind}{' '}
           </Meta>
-          <TagList item={item} />
+          <TagList item={item} onTag={onTag} />
         </Content>
         {selected ? (
           <IconContainer>
@@ -142,6 +143,7 @@ ModItem.propTypes = {
   onUp: PropTypes.func,
   onCircle: PropTypes.func,
   onSelect: PropTypes.func.isRequired,
+  onTag: PropTypes.any,
   selected: PropTypes.bool
 };
 

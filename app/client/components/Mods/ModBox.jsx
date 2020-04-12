@@ -16,11 +16,13 @@ const BoxStyle = styled.div`
 
   & > ul > div {
     padding-right: 5px;
+    overflow-x: hidden !important;
+    overflow-y: scroll !important;
     ${({ theme }) => theme.scrollbar};
   }
 `;
 
-const ModBox = ({ data, onClick, fixed }) => {
+const ModBox = ({ data, onClick, onTag, fixed }) => {
   const boxRef = useRef(null);
   const [height, setHeight] = useState(365);
 
@@ -49,6 +51,7 @@ const ModBox = ({ data, onClick, fixed }) => {
               key={`mod_${data[index].id}`}
               item={data[index]}
               onSelect={onClick(data[index].id)}
+              onTag={onTag}
             />
           )}
         />
@@ -60,7 +63,8 @@ const ModBox = ({ data, onClick, fixed }) => {
 ModBox.propTypes = {
   data: PropTypes.any,
   fixed: PropTypes.element,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  onTag: PropTypes.any
 };
 
 export default ModBox;

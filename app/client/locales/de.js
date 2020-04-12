@@ -5,6 +5,7 @@ export default {
     selectDir: 'Ordner'
   },
   filters: {
+    tag: 'Nach Etikett',
     lastplayed: 'Zuletzt gespielt',
     oldest: 'Älteste',
     newest: 'Neueste',
@@ -96,6 +97,7 @@ export default {
     play: 'Spielen',
     delete: 'Löschen',
     selectPackage: 'Paket wählen',
+    noPackage: 'Kein Paket',
     datadir: 'Daten'
   },
   errors: {
