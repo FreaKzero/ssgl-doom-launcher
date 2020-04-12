@@ -31,7 +31,8 @@ export const ButtonStyle = styled.button`
   margin-right: 10px;
   white-space: nowrap;
 
-  &:hover {
+  &:hover,
+  &:focus {
     border: ${p =>
       p.border
         ? `1px solid ${p.border};`

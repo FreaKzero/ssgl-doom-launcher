@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
+import { useHotkeys } from 'react-hotkeys-hook';
 import SVG from 'react-svg-inline';
 import styled from 'styled-components';
 
-import down from '#/assets/icon/down.svg';
+import down from '#/assets/icon/dd.svg';
 
 import { InputContainerStyle, InputStyle } from './Input';
 import Label from './Label';
@@ -12,20 +13,37 @@ const Wrapper = styled(InputContainerStyle)`
   color: red;
   flex-wrap: wrap;
   position: relative;
+  cursor: pointer;
 
   svg {
-    stroke: ${({ theme }) => theme.button.idle};
+    fill: ${({ theme }) => theme.button.idle};
     margin: 11px 10px 0 0;
     transition: all 0.21s ease-out;
+
+    & .down {
+      opacity: 0;
+    }
+
+    & .up {
+      transform: translateY(4px);
+    }
   }
 
   &:hover svg {
-    stroke: ${({ theme }) => theme.svg.bright};
+    fill: ${({ theme }) => theme.svg.bright};
     filter: ${({ theme }) => theme.svg.glow};
   }
 
   &:focus-within svg {
-    transform: rotate(180deg);
+    transform: rotate(90deg);
+
+    & .down {
+      opacity: 1;
+    }
+
+    & .up {
+      transform: translateY(0);
+    }
   }
 `;
 
@@ -61,7 +79,8 @@ const Option = styled.li`
   padding: 10px 0 10px 10px;
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &.focused {
     color: ${({ theme }) => theme.color.active};
     background-color: ${({ theme }) => theme.color.back};
     padding: 10px 0 10px 20px;
@@ -83,14 +102,24 @@ const Dropdown = ({
   fluid,
   error = null,
   info = null,
+  shortcut = '',
   ...rest
 }) => {
+  const inputRef = useRef(null);
+  const optionRef = useRef(null);
   const selectRef = useRef(null);
   const [open, setOpen] = useState(false);
+  const [index, setIndex] = useState(0);
+
   const [current, setCurrent] = useState({
     label: '',
     value: ''
   });
+
+  if (shortcut.trim() !== '') {
+    useHotkeys(shortcut, () => inputRef.current.focus());
+    useHotkeys('escape', () => inputRef.current.blur(), { filter: () => true });
+  }
 
   useEffect(() => {
     if (value && typeof value === 'string' && value.trim() !== '') {
@@ -101,7 +130,38 @@ const Dropdown = ({
     }
   });
 
-  const onFocus = () => setOpen(true);
+  const wat = e => {
+    const K = {
+      UP: 38,
+      DOWN: 40,
+      ENTER: 13
+    };
+    if (open) {
+      switch (e.which) {
+        case K.UP:
+          if (index < 3) {
+            optionRef.current.scrollTop = 0;
+          }
+          return index !== 0 ? setIndex(index - 1) : null;
+
+        case K.DOWN:
+          if (index === 4) {
+            optionRef.current.scrollTop = optionRef.current.scrollHeight;
+          }
+
+          return index < options.length - 1 ? setIndex(index + 1) : null;
+        case K.ENTER:
+          onSelect(options[index])();
+          return e.currentTarget.blur();
+      }
+    }
+  };
+  const onFocus = () => {
+    setOpen(true);
+  };
+
+  const onIcon = () =>
+    open ? inputRef.current.blur() : inputRef.current.focus();
 
   const onBlur = () => {
     setTimeout(() => {
@@ -120,6 +180,8 @@ const Dropdown = ({
       {error ? <Label error>{error}</Label> : null}
       <Wrapper width={width} fluid={fluid} error={error}>
         <Input
+          ref={inputRef}
+          onKeyUp={wat}
           type="text"
           onBlur={onBlur}
           onFocus={onFocus}
@@ -134,15 +196,21 @@ const Dropdown = ({
           value={current.value}
           ref={selectRef}
         />
-        <SVG height={'12px'} svg={down} />
+        <SVG height={'12px'} svg={down} onClick={onIcon} />
         {open ? (
-          <OptionList>
+          <OptionList ref={optionRef}>
             {options.map((item, key) => {
               return (
                 <Option
                   key={`${name}_${key}_${item.value}`}
                   onClick={onSelect(item)}
-                  className={value === item.value ? 'selected' : undefined}
+                  className={
+                    value === item.value
+                      ? 'selected'
+                      : index === key
+                      ? 'focused'
+                      : undefined
+                  }
                 >
                   {item.label}
                 </Option>

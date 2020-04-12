@@ -26,7 +26,8 @@ const IconButtonStyle = styled(ButtonStyle)`
     animation-timing-function: linear;
   }
 
-  &:hover:not(.load) svg {
+  &:hover:not(.load) svg,
+  &:focus:not(.load) svg {
     filter: ${({ theme }) => theme.svg.glow};
     fill: ${({ theme }) => theme.color.active};
   }

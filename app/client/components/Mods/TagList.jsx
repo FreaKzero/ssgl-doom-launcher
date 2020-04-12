@@ -38,10 +38,10 @@ const TagList = ({ item, onTag }) => {
       >
         /
       </Tag>
-      {item.tags.map(tag => {
+      {item.tags.map((tag, idx) => {
         return (
           <Tag
-            key={`${item.id}_${tag}`}
+            key={`${item.id}_${idx}_${tag}`}
             className={onTag ? 'clickable' : ''}
             onClick={onTag ? onTag(tag) : null}
           >
