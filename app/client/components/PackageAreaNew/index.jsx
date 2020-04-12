@@ -30,12 +30,13 @@ const PackageAreaNew = () => {
   const [toast] = useToast();
   const [copy, setCopy] = useState(null);
 
-  const opts = [{ name: 'No Package', id: NULLCONST }, ...gstate.packages].map(
-    item => ({
-      label: item.name,
-      value: item.id
-    })
-  );
+  const opts = [
+    { name: t('packages:noPackage'), id: NULLCONST },
+    ...gstate.packages
+  ].map(item => ({
+    label: item.name,
+    value: item.id
+  }));
 
   useEffect(() => {
     if (gstate.package.id === null) {
