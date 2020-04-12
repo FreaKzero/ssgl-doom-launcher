@@ -117,6 +117,7 @@ const PackageAreaNew = () => {
         placeholder={t('packages:selectPackage')}
         name="packageSelector"
         value={gstate.package.id || NULLCONST}
+        shortcut="ctrl+p,cmd+p"
         fluid
       />
       {gstate.package.selected.length > 0 ? (

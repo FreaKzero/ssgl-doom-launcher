@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
+import { useHotkeys } from 'react-hotkeys-hook';
 import styled from 'styled-components';
 
 import Label from './Label';
@@ -59,9 +60,16 @@ const Input = ({
   error = null,
   fluid = false,
   info = null,
+  shortcut = '',
   ...rest
 }) => {
   const inputRef = useRef(null);
+
+  if (shortcut.trim() !== '') {
+    useHotkeys(shortcut, () => inputRef.current.focus());
+    useHotkeys('escape', () => inputRef.current.blur(), { filter: () => true });
+  }
+
   const onChangeWrap = e => onChange(e, inputRef.current);
 
   return (
@@ -86,7 +94,8 @@ Input.propTypes = {
   onChange: PropTypes.func.isRequired,
   width: PropTypes.string,
   error: PropTypes.any,
-  info: PropTypes.string
+  info: PropTypes.string,
+  shortcut: PropTypes.string
 };
 
 export default Input;

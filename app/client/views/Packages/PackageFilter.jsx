@@ -40,6 +40,7 @@ const PackageFilter = ({ onInput, onSort, sortValue, size }) => {
       <Input
         placeholder={t('packages:filter', { size })}
         onChange={onInput}
+        shortcut="ctrl+f, cmd+f"
         fluid
       />
       <Dropdown
@@ -48,6 +49,7 @@ const PackageFilter = ({ onInput, onSort, sortValue, size }) => {
         width="200px"
         onChange={onSort}
         value={sortValue}
+        shortcut="ctrl+d, cmd+d"
       />
     </PackageFilterStyle>
   );

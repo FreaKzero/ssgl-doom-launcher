@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 import refreshSvg from '../../assets/icon/refresh.svg';
@@ -53,6 +53,7 @@ const ModFilter = ({
         value={filterValue}
         onChange={onInput}
         placeholder={t('wads:filter', { size })}
+        shortcut="ctrl+f,cmd+f"
         fluid
       />
       <Dropdown
@@ -61,6 +62,7 @@ const ModFilter = ({
         width="200px"
         onChange={onSort}
         value={sortValue}
+        shortcut="ctrl+d,cmd+d"
       />
       <IconButton
         svg={refreshSvg}

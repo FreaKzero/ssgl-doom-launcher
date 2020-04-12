@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHotkeys } from 'react-hotkeys-hook';
 import styled from 'styled-components';
 import { Route, Router } from 'wouter';
 
@@ -11,16 +12,20 @@ const ViewStyle = styled.div`
 `;
 
 const Routes = () => {
+  const [loc, navigate] = useHashLocation();
   return (
     <ViewStyle>
       <Router hook={useHashLocation}>
-        {routes.map(route => (
-          <Route
-            key={`route_${route.href}`}
-            path={route.href}
-            component={route.component}
-          />
-        ))}
+        {routes.map((route, idx) => {
+          useHotkeys(`F${idx + 1}`, () => navigate(route.href));
+          return (
+            <Route
+              key={`route_${route.href}`}
+              path={route.href}
+              component={route.component}
+            />
+          );
+        })}
       </Router>
     </ViewStyle>
   );
