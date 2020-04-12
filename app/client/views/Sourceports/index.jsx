@@ -7,6 +7,7 @@ import Confirm from '../../components/Confirm';
 import { Button } from '../../components/Form';
 import { StoreContext } from '../../state';
 import { setTitle, useIpc, useToast, useTranslation } from '../../utils';
+import AnimatedView from '../AnimatedView';
 import Form from './Form';
 import SourcePortItem from './SourcePortItem';
 
@@ -28,7 +29,6 @@ const SourcePorts = () => {
       setSelected(sourcePorts[0]);
     }
   }, []);
-
   const createSourceport = () => {
     const item = {
       id: null,
@@ -92,7 +92,7 @@ const SourcePorts = () => {
   };
 
   return (
-    <>
+    <AnimatedView>
       <Flex.Grid>
         <Flex.Col width="450px">
           <Box>
@@ -134,7 +134,7 @@ const SourcePorts = () => {
         onOk={onOkDelete}
         onCancel={onCancelDelete}
       />
-    </>
+    </AnimatedView>
   );
 };
 

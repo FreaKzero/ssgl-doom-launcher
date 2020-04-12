@@ -15,6 +15,7 @@ import {
 } from '../components';
 import { StoreContext } from '../state';
 import { setTitle, sortList, useIpc, useToast, useTranslation } from '../utils';
+import AnimatedView from './AnimatedView';
 
 const Wads = () => {
   setTitle('wads');
@@ -63,7 +64,7 @@ const Wads = () => {
   );
 
   return (
-    <>
+    <AnimatedView>
       <Flex.Grid>
         <Flex.Col>
           <ModBox
@@ -110,7 +111,7 @@ const Wads = () => {
       </Flex.Grid>
       <PlayIcon active={true} onClick={() => setPoActive(true)} />
       <PlayOverlay active={poActive} setActive={setPoActive} />
-    </>
+    </AnimatedView>
   );
 };
 

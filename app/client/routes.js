@@ -26,4 +26,6 @@ const routes = [
   }
 ];
 
+export const order = routes.map(r => r.href);
+
 export default routes;

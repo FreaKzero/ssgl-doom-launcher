@@ -12,6 +12,7 @@ import {
   useToast,
   useTranslation
 } from '../../utils';
+import AnimatedView from '../AnimatedView';
 import ObligeModal from './ObligeModal';
 import Pack from './Pack';
 import PackageFilter from './PackageFilter';
@@ -92,38 +93,40 @@ const Packages = () => {
   );
 
   return (
-    <Box
-      fixed={
-        <PackageFilter
-          sortValue={sort}
-          onSort={onSort}
-          size={show.length}
-          onInput={(e, { value }) => onInput(value)}
-        />
-      }
-    >
-      <AnimatePresence>
-        {show.map(pack => (
-          <Pack
-            pack={pack}
-            key={pack.id}
-            onDelete={onDelete}
-            onUse={onUse}
-            onData={onData}
-            onPlay={onPlay}
-            onOblige={() => setSelectedPack(pack)}
+    <AnimatedView>
+      <Box
+        fixed={
+          <PackageFilter
+            sortValue={sort}
+            onSort={onSort}
+            size={show.length}
+            onInput={(e, { value }) => onInput(value)}
           />
-        ))}
-      </AnimatePresence>
-      <Confirm active={confirm.open} onOk={onOk} onCancel={onCancel} />
-      {gstate.settings.obligeActive ? (
-        <ObligeModal
-          active={Boolean(selectedPack)}
-          toggle={setSelectedPack}
-          pack={selectedPack}
-        />
-      ) : null}
-    </Box>
+        }
+      >
+        <AnimatePresence>
+          {show.map(pack => (
+            <Pack
+              pack={pack}
+              key={pack.id}
+              onDelete={onDelete}
+              onUse={onUse}
+              onData={onData}
+              onPlay={onPlay}
+              onOblige={() => setSelectedPack(pack)}
+            />
+          ))}
+        </AnimatePresence>
+        <Confirm active={confirm.open} onOk={onOk} onCancel={onCancel} />
+        {gstate.settings.obligeActive ? (
+          <ObligeModal
+            active={Boolean(selectedPack)}
+            toggle={setSelectedPack}
+            pack={selectedPack}
+          />
+        ) : null}
+      </Box>
+    </AnimatedView>
   );
 };
 export default Packages;

@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
+let refer = '/';
+
 export const currentLocation = () =>
   window.location.hash.replace('#', '') || '/';
 
@@ -14,6 +16,9 @@ export const useHashLocation = () => {
     return () => window.removeEventListener('hashchange', handler);
   }, []);
 
-  const navigate = useCallback(to => (window.location.hash = to), []);
-  return [loc, navigate];
+  const navigate = useCallback(to => {
+    refer = currentLocation();
+    return (window.location.hash = to);
+  }, []);
+  return [loc, navigate, refer];
 };

@@ -7,8 +7,9 @@ import { useHashLocation } from '../../utils';
 const NavItemStyle = styled.li`
   display: table-cell;
   position: relative;
+  cursor: pointer;
 
-  a {
+  span {
     color: ${({ theme }) => theme.color.idle};
     transition: ${({ theme }) => theme.transition.short};
     text-transform: uppercase;
@@ -18,7 +19,7 @@ const NavItemStyle = styled.li`
     position: relative;
   }
 
-  a::after {
+  span::after {
     color: ${({ theme }) => theme.color.active};
     transition: ${({ theme }) => theme.transition.short};
     bottom: 0;
@@ -30,13 +31,13 @@ const NavItemStyle = styled.li`
     width: 0;
   }
 
-  a:hover,
-  a.active {
+  span:hover,
+  span.active {
     color: ${({ theme }) => theme.color.active};
     text-shadow: ${({ theme }) => theme.font.glow};
   }
 
-  a:hover::after {
+  span:hover::after {
     background-color: ${({ theme }) => theme.color.active};
     box-shadow: ${({ theme }) => theme.font.glow};
     width: 100%;
@@ -48,12 +49,15 @@ const NavItemStyle = styled.li`
   We have to do it that way because of the hashrouter - <Link> doesnt recognize the hashs
 */
 const NavItem = ({ children, to }) => {
-  const [location] = useHashLocation();
+  const [location, navigate] = useHashLocation();
   return (
     <NavItemStyle>
-      <a className={location === to ? 'active' : undefined} href={'#' + to}>
+      <span
+        className={location === to ? 'active' : undefined}
+        onClick={() => navigate(to)}
+      >
         {children}
-      </a>
+      </span>
     </NavItemStyle>
   );
 };
