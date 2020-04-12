@@ -238,7 +238,8 @@ Dropdown.propTypes = {
   value: PropTypes.any,
   width: PropTypes.any,
   fluid: PropTypes.bool,
-  info: PropTypes.string
+  info: PropTypes.string,
+  shortcut: PropTypes.string
 };
 
 export default Dropdown;

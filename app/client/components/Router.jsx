@@ -12,6 +12,7 @@ const ViewStyle = styled.div`
 `;
 
 const Routes = () => {
+  // eslint-disable-next-line no-unused-vars
   const [loc, navigate] = useHashLocation();
   return (
     <ViewStyle>
