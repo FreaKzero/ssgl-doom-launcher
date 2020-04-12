@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-import React, { useContext, useState } from 'react';
+import React from 'react';
 
 import { order } from '../routes';
 import { useHashLocation } from '../utils';
