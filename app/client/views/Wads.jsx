@@ -60,7 +60,7 @@ const Wads = () => {
   };
 
   let show = sortList(gstate.mods, sort, filter, (i, fuzz) =>
-    fuzz(filter.toLowerCase(), `${i.name.toLowerCase()} ${i.tags.join(' ')}`)
+    fuzz(filter.toLowerCase(), `${i.tags.join(' ')} ${i.name.toLowerCase()}`)
   );
 
   return (
