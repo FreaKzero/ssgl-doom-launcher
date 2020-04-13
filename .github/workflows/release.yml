@@ -1,9 +1,6 @@
 name: Build/release
 
-on:
-  push:
-    branches:    
-      - master
+on: push
 
 jobs:
   release:
@@ -21,12 +18,6 @@ jobs:
         with:
           node-version: 10
       
-      - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v1.1.0
-        if: startsWith(matrix.os, 'ubuntu')
-        with:
-          snapcraft_token: ${{ secrets.snapcraft_token }}
-
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1.3.0
         with:
