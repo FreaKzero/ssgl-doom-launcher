@@ -4,11 +4,6 @@
 - [First Setup Instructions](https://github.com/FreaKzero/ssgl-doom-launcher/wiki/SSGL---First-Setup)
 - [Join the SSGL Discord Server](https://discord.gg/MsjZhHF)
 
-## HELP NEEDED: Testers/Guidance for Linux Desktop Systems
-**Apparently - Linux Builds right now are "fundamentally" broken.**  
-See Ticket here: https://github.com/FreaKzero/ssgl-doom-launcher/issues/92  
-Would be awesome if you could join Discord and guide me/test SSGL until the devpreview phase ends.  
-
 ## Current Status of Release:
 Developer Preview - There can be alot of Changes which is breaking the Experience (Crashes, Invalid Configs which have to be deleted, etc), be sure of that before Downloading.
 
@@ -16,10 +11,10 @@ Developer Preview - There can be alot of Changes which is breaking the Experienc
 
 ## Features
 - Main Goals
-  - Builds available for Windows, MacOS and **SOON** Linux (AppImage)
+  - Builds available for Windows, MacOS and Linux (AppImage)
   - Easy and Fast Setup
   - Designed towards a "Fast in - Fast Out" User Experience
-  - Modern "handmade" UI
+  - Modern and Customizeable UI 
   - Organize your WADs as you want on your Harddrive via Folders
   
 - Customization
@@ -34,6 +29,7 @@ Developer Preview - There can be alot of Changes which is breaking the Experienc
   
 - Filter/Search abilities for Mods and Packages
   - Fuzzyfilter by Modname or Directory location 
+  - Find your Mods easily your own directories on your Harddrive
   - Sort Mods and Packages by Newest, Oldest, Active, ASC or DESC 
   
 - Package (Mod List) System

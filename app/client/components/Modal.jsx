@@ -10,7 +10,7 @@ const Dialog = motion.custom(styled.div`
   font-family: ${({ theme }) => theme.font.content};
   background: ${({ theme }) => theme.color.back};
   position: absolute;
-  left: ${p => (p.tiny ? '25%' : '15%;')};
+  left: ${p => (p.tiny ? '25%' : '10%;')};
   top: 40px;
   width: ${p => (p.tiny ? '45%' : '75%;')};
   padding: 15px;
