@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
-const BoxStyle = styled.div`
+export const BoxStyle = styled.div`
   border: 1px solid ${({ theme }) => theme.border.idle};
   border-radius: ${({ theme }) => theme.border.radius};
   background: ${({ theme }) => theme.box.backdrop};

@@ -17,8 +17,11 @@ const Routes = () => {
   return (
     <ViewStyle>
       <Router hook={useHashLocation}>
-        {routes.map((route, idx) => {
-          useHotkeys(`F${idx + 1}`, () => navigate(route.href));
+        {routes.map(route => {
+          if (route.shortcut && route.shortcut.trim() !== '') {
+            useHotkeys(route.shortcut, () => navigate(route.href));
+          }
+
           return (
             <Route
               key={`route_${route.href}`}

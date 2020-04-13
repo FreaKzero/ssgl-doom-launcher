@@ -25,7 +25,11 @@ const Nav = () => {
 
   const r = routes.filter(item => {
     const { packages, mods, settings, sourceports } = gstate;
-    const { label } = item;
+    const { label, hide } = item;
+
+    if (hide) {
+      return false;
+    }
 
     if (label === 'packages' && packages.length < 1) {
       return false;

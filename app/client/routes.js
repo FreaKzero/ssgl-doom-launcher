@@ -1,3 +1,4 @@
+import About from './views/About';
 import Packages from './views/Packages';
 import Settings from './views/Settings';
 import SourcePorts from './views/Sourceports';
@@ -7,22 +8,37 @@ const routes = [
   {
     label: 'wads',
     href: '/',
-    component: Wads
+    component: Wads,
+    hide: false,
+    shortcut: 'F1'
   },
   {
     label: 'packages',
     href: '/packages',
-    component: Packages
+    component: Packages,
+    hide: false,
+    shortcut: 'F2'
   },
   {
     label: 'sourceports',
     href: '/sourceports',
-    component: SourcePorts
+    component: SourcePorts,
+    hide: false,
+    shortcut: 'F3'
   },
   {
     label: 'settings',
     href: '/settings',
-    component: Settings
+    component: Settings,
+    hide: false,
+    shortcut: 'F4'
+  },
+  {
+    label: 'about',
+    href: '/about',
+    component: About,
+    hide: true,
+    shortcut: ''
   }
 ];
 
