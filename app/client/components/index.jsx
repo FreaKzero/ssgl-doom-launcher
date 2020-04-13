@@ -8,6 +8,7 @@ import Logo from './Logo';
 import MainLoader from './MainLoader';
 import Modal from './Modal';
 import ModFilter from './ModFilter';
+import ErrorItem from './Mods/ErrorItem';
 import ModBox from './Mods/ModBox';
 import ModItem from './Mods/ModItem';
 import PackageAreaNew from './PackageAreaNew';
@@ -17,6 +18,7 @@ import Routes from './Router';
 import ToastContainer from './Toast';
 
 export {
+  ErrorItem,
   BackDrop,
   PlayIcon,
   MainLoader,

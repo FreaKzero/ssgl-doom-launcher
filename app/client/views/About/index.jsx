@@ -1,4 +1,5 @@
 import { remote } from 'electron';
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -68,6 +69,11 @@ const Link = ({ children, to }) => {
       {children}
     </span>
   );
+};
+
+Link.propTypes = {
+  children: PropTypes.any,
+  to: PropTypes.string
 };
 
 const About = () => {

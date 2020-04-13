@@ -149,6 +149,16 @@ export function reducer(state, action) {
     case 'mod/select':
       const newItem = state.mods.find(item => action.id === item.id);
 
+      if (!newItem) {
+        return act({
+          ...state,
+          package: {
+            ...state.package,
+            selected: state.package.selected.filter(i => i !== action.id)
+          }
+        });
+      }
+
       const selected = newItem.active
         ? state.package.selected.filter(i => i !== action.id)
         : [...state.package.selected, action.id];

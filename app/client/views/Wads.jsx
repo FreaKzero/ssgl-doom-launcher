@@ -5,6 +5,7 @@ import { useDebounce } from 'use-debounce';
 
 import {
   Box,
+  ErrorItem,
   Flex,
   ModBox,
   ModFilter,
@@ -91,7 +92,7 @@ const Wads = () => {
                 {gstate.package.selected.length &&
                   gstate.package.selected.map((id, itemindex) => {
                     const item = gstate.mods.find(i => i.id === id);
-                    return (
+                    return item ? (
                       <ModItem
                         key={`selected_${item.id}`}
                         item={item}
@@ -101,6 +102,12 @@ const Wads = () => {
                         onDown={onSort(itemindex, 'down')}
                         onTag={onTag}
                         selected
+                      />
+                    ) : (
+                      <ErrorItem
+                        key={`NOTFOUND_ERROR${id}`}
+                        id={id}
+                        onSelect={onSelect(id)}
                       />
                     );
                   })}
