@@ -5,6 +5,7 @@ import { currentLocation, useHashLocation } from './location';
 import setTitle from './setTitle';
 import sortList from './sortList';
 import useIpc from './useIpc';
+import useSound from './useSound';
 import useToast from './useToast';
 
 export {
@@ -15,5 +16,6 @@ export {
   useToast,
   sortList,
   currentLocation,
-  useHashLocation
+  useHashLocation,
+  useSound
 };

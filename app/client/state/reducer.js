@@ -30,6 +30,10 @@ export const initState = {
   packages: [],
   sourceports: [],
   settings: {
+    soundDrawer: '',
+    soundModSelect: '',
+    soundToastSuccess: '',
+    soundToastError: '',
     obligeActive: false,
     obligeBinary: '',
     obligeConfigPath: '',
@@ -39,7 +43,8 @@ export const initState = {
     defaultsourceport: '',
     modpath: '',
     savepath: '',
-    background: ''
+    background: '',
+    volume: 0.5
   }
 };
 

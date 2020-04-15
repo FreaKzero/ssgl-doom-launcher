@@ -6,6 +6,7 @@ import {
   Checkbox,
   Dropdown,
   FormCollection,
+  Input,
   SelectFile,
   SubmitArea
 } from '../components/Form';
@@ -79,6 +80,13 @@ const Settings = () => {
     });
   };
 
+  const onInput = e => {
+    const { name, value } = e.currentTarget;
+    setForm({
+      ...form,
+      [name]: value
+    });
+  };
   const validate = () => {
     const fields = ['modpath', 'savepath', 'obligeBinary', 'obligeConfigPath'];
 
@@ -245,7 +253,49 @@ const Settings = () => {
               </Flex.Grid>
             ) : null}
           </FormCollection>
-
+          <FormCollection title="sounds">
+            <Flex.Grid>
+              <Flex.Col width="50%">
+                <SelectFile
+                  name="soundModSelect"
+                  onFile={onComponent}
+                  label="Mod Select"
+                  value={form.soundModSelect}
+                  fluid
+                />
+                <SelectFile
+                  name="soundToastSuccess"
+                  onFile={onComponent}
+                  label="Toast Success"
+                  value={form.soundToastSuccess}
+                  fluid
+                />
+              </Flex.Col>
+              <Flex.Col width="50%">
+                <SelectFile
+                  name="soundToastError"
+                  onFile={onComponent}
+                  label="Toast Error"
+                  value={form.soundToastError}
+                  fluid
+                />
+                <SelectFile
+                  name="soundDrawer"
+                  onFile={onComponent}
+                  label="Play Drawer open"
+                  value={form.soundDrawer}
+                  fluid
+                />
+                <Input
+                  value={form.volume}
+                  name="volume"
+                  label={'volume'}
+                  onChange={onInput}
+                  fluid
+                />
+              </Flex.Col>
+            </Flex.Grid>
+          </FormCollection>
           <SubmitArea>
             <Button type="submit" load={loadInit} width="200px">
               {t('settings:save')}

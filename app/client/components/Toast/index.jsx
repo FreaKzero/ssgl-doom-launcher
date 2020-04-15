@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
+import useSound from '../../utils/useSound';
 import ToastContext from './ToastContext';
 
 let currentTimeout;
@@ -91,10 +92,11 @@ ToastMotion.propTypes = {
 
 const ToastContainer = ({ children }) => {
   const [toasts, setToasts] = useState([]);
+  const [play] = useSound();
 
   const addToast = (scope, title, text) => {
     setToasts([{ title, scope, text }, ...toasts]);
-
+    scope === 'danger' ? play('soundToastError') : play('soundToastSuccess');
     if (currentTimeout) {
       clearTimeout(currentTimeout);
     }

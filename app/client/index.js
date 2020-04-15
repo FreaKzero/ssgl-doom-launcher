@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components';
 
 import { Body, Head, MainLoader, Routes, ToastContainer } from './components';
+import AudioProvider from './components/Audio';
 import Update from './components/Update';
 import i18n from './i18n';
 import { initState, reducer, StoreContext } from './state';
@@ -40,21 +41,23 @@ const App = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={themes[gstate.settings.theme || 'hell']}>
-      <ToastContainer>
-        <StoreContext.Provider value={{ gstate, dispatch }}>
-          {loading ? (
-            <MainLoader />
-          ) : (
-            <Body background={gstate.settings.background}>
-              {gstate.update.available ? <Update /> : null}
-              <Head />
-              <Routes />
-            </Body>
-          )}
-        </StoreContext.Provider>
-      </ToastContainer>
-    </ThemeProvider>
+    <StoreContext.Provider value={{ gstate, dispatch }}>
+      <AudioProvider>
+        <ThemeProvider theme={themes[gstate.settings.theme || 'hell']}>
+          <ToastContainer>
+            {loading ? (
+              <MainLoader />
+            ) : (
+              <Body background={gstate.settings.background}>
+                {gstate.update.available ? <Update /> : null}
+                <Head />
+                <Routes />
+              </Body>
+            )}
+          </ToastContainer>
+        </ThemeProvider>
+      </AudioProvider>
+    </StoreContext.Provider>
   );
 };
 

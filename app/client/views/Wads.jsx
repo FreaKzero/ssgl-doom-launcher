@@ -16,6 +16,7 @@ import {
 } from '../components';
 import { StoreContext } from '../state';
 import { setTitle, sortList, useIpc, useToast, useTranslation } from '../utils';
+import { useSound } from '../utils';
 import AnimatedView from './AnimatedView';
 
 const Wads = () => {
@@ -26,11 +27,14 @@ const Wads = () => {
   const [ipc, loading] = useIpc();
   const { t } = useTranslation(['common', 'wads']);
   const [toast] = useToast();
-
+  const [play] = useSound();
   const [rawFilter, setFilter] = useState('');
   const [filter] = useDebounce(rawFilter, 200);
 
-  const onSelect = id => () => dispatch({ type: 'mod/select', id });
+  const onSelect = id => () => {
+    play('soundModSelect');
+    dispatch({ type: 'mod/select', id });
+  };
 
   const onCircle = path => () => remote.shell.showItemInFolder(path);
 
@@ -58,6 +62,11 @@ const Wads = () => {
       setSort('tag');
       setFilter(tag);
     }
+  };
+
+  const openDrawer = () => {
+    setPoActive(true);
+    play('soundDrawer');
   };
 
   let show = sortList(gstate.mods, sort, filter, (i, fuzz) =>
@@ -116,7 +125,7 @@ const Wads = () => {
           </Box>
         </Flex.Col>
       </Flex.Grid>
-      <PlayIcon active={true} onClick={() => setPoActive(true)} />
+      <PlayIcon active={true} onClick={openDrawer} />
       <PlayOverlay active={poActive} setActive={setPoActive} />
     </AnimatedView>
   );
