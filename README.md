@@ -65,6 +65,7 @@ See the LATEST [English Locale File](https://github.com/FreaKzero/ssgl-doom-laun
 - [CthePredatorG](https://github.com/CthePredatorG) (Alphatesting Windows)
 - [Rain](https://github.com/starpotion) (Alphatesting Windows)
 - [WolVexus](https://www.youtube.com/channel/UCC6ixAIHqKkSh3lv2tM5wwQ) (Alphatesting Windows)
+- [Leaguesman](https://github.com/Leaguesman) (Alphatesting Linux)
 - [js2me](https://github.com/js2me) and [PROPHESSOR](https://github.com/PROPHESSOR) (RU Translation)
 
 # Fineprint
