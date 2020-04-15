@@ -66,5 +66,11 @@ See the LATEST [English Locale File](https://github.com/FreaKzero/ssgl-doom-laun
 - [WolVexus](https://www.youtube.com/channel/UCC6ixAIHqKkSh3lv2tM5wwQ) (Alphatesting Windows)
 - [js2me](https://github.com/js2me) and [PROPHESSOR](https://github.com/PROPHESSOR) (RU Translation)
 
-DOOM is a registered Trademark of id Software LLC, a Zenimax Media company in the US and/or other Countries, and is used without permission.
-All other Trademarks are the property of their respective holders. SSGL is in no way affiliated with nor endorsed by id Software.
+# Fineprint
+<p align="center">DOOM is a registered Trademark of id Software LLC, a Zenimax Media company in the US and/or other Countries, and is used without permission.
+All other Trademarks are the property of their respective holders. SSGL is in no way affiliated with nor endorsed by id Software.</p>
+
+<p align="center">All Icons and Graphics included in this Project are created by me (Thomas Petrovic) and Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></p>
+
+<p align="center"> Code Licensed under <a href="https://github.com/FreaKzero/ssgl-doom-launcher/blob/latest/app/LICENSE" target="_blank">MIT License</a> <br /> Copyright (c) 2015 Thomas Petrovic</p>
+
