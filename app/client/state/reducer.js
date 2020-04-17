@@ -32,6 +32,7 @@ export const initState = {
   settings: {
     soundActive: false,
     soundDrawer: '',
+    soundStart: '',
     soundModSelect: '',
     soundToastSuccess: '',
     soundToastError: '',

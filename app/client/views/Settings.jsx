@@ -276,6 +276,16 @@ const Settings = () => {
             {form.soundActive ? (
               <Flex.Grid>
                 <Flex.Col width="50%">
+                  <Range
+                    value={form.volume}
+                    min="0"
+                    max="1"
+                    step="0.1"
+                    name="volume"
+                    label={'volume'}
+                    onChange={onInput}
+                    fluid
+                  />
                   <SelectFile
                     name="soundModSelect"
                     onFile={onComponent}
@@ -288,6 +298,13 @@ const Settings = () => {
                     onFile={onComponent}
                     label={t('settings:soundToastSuccess')}
                     value={form.soundToastSuccess}
+                    fluid
+                  />
+                  <SelectFile
+                    name="soundStart"
+                    onFile={onComponent}
+                    label={t('settings:soundStart')}
+                    value={form.soundStart}
                     fluid
                   />
                 </Flex.Col>
@@ -304,17 +321,6 @@ const Settings = () => {
                     onFile={onComponent}
                     label={t('settings:soundToastError')}
                     value={form.soundToastError}
-                    fluid
-                  />
-
-                  <Range
-                    value={form.volume}
-                    min="0"
-                    max="1"
-                    step="0.1"
-                    name="volume"
-                    label={'volume'}
-                    onChange={onInput}
                     fluid
                   />
                 </Flex.Col>

@@ -9,6 +9,7 @@ const AudioProvider = ({ children }) => {
   const { gstate } = useContext(StoreContext);
   const play = name => {
     const DEFAULTS = {
+      soundStart: click,
       soundDrawer: click,
       soundModSelect: click,
       soundToastSuccess: click,
