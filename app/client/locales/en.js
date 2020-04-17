@@ -45,6 +45,7 @@ export default {
   },
   settings: {
     titleSound: 'Sounds',
+    soundStart: 'Overwrite Start Sourceport',
     soundDrawer: 'Overwrite Open IWAD Drawer',
     soundToastError: 'Overwrite Toast Error',
     soundToastSuccess: 'Overwrite Toast Success',

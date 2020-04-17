@@ -45,6 +45,7 @@ export default {
   },
   settings: {
     titleSound: 'Töne',
+    soundStart: 'Überschreibe Starte Programm',
     soundDrawer: 'Überschreibe IWAD Overlay',
     soundToastError: 'Überschreibe Toast Fehler',
     soundToastSuccess: 'Überschreibe Toast Erfolgreich',
