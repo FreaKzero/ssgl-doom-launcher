@@ -30,12 +30,17 @@ export const testers = [
   {
     name: 'CthePredatorG',
     role: 'Alphatesting Windows',
-    link: 'https://github.com/CthePredatorG'
+    link: 'https://www.voices.com/actors/CthePredatorG'
   },
   {
     name: 'WolVexus',
     role: 'Alphatesting Windows',
     link: 'https://www.youtube.com/channel/UCC6ixAIHqKkSh3lv2tM5wwQ'
+  },
+  {
+    name: 'Rain',
+    role: 'Alphatesting Windows',
+    link: 'https://github.com/starpotion'
   },
   {
     name: 'Leaguesman',

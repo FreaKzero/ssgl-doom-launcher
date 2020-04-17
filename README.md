@@ -62,7 +62,7 @@ See the LATEST [English Locale File](https://github.com/FreaKzero/ssgl-doom-laun
 
 # Big Thanks to
 - [Xeno1979](https://github.com/Xeno1979) (Alphatesting MacOS and NL Translation)
-- [CthePredatorG](https://github.com/CthePredatorG) (Alphatesting Windows)
+- [CthePredatorG](https://www.voices.com/actors/CthePredatorG) (Alphatesting Windows)
 - [WolVexus](https://www.youtube.com/channel/UCC6ixAIHqKkSh3lv2tM5wwQ) (Alphatesting Windows)
 - [js2me](https://github.com/js2me) and [PROPHESSOR](https://github.com/PROPHESSOR) (RU Translation)
 
