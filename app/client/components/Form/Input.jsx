@@ -43,18 +43,6 @@ export const InputContainerStyle = styled.div`
     }
   }};
 
-  @keyframes grow {
-    0% {
-      transform: scale(0);
-      opacity: 0;
-    }
-
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
   .fu {
     margin-top: 5px;
     margin-right: 5px;
