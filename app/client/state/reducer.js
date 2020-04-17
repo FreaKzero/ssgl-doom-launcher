@@ -30,10 +30,12 @@ export const initState = {
   packages: [],
   sourceports: [],
   settings: {
+    soundActive: false,
     soundDrawer: '',
     soundModSelect: '',
     soundToastSuccess: '',
     soundToastError: '',
+    notifyRelease: 'beta',
     obligeActive: false,
     obligeBinary: '',
     obligeConfigPath: '',

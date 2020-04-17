@@ -5,7 +5,7 @@ import discSvg from '../../assets/icon/disc.svg';
 import editSvg from '../../assets/icon/edit.svg';
 import trashSvg from '../../assets/icon/trash.svg';
 import { StoreContext } from '../../state';
-import { useIpc, useToast, useTranslation } from '../../utils';
+import { useIpc, useSound, useToast, useTranslation } from '../../utils';
 import { Dropdown, IconButton } from '../Form';
 import { createPackage, initState } from './helper';
 import PackageModal from './PackageModal';
@@ -29,7 +29,7 @@ const PackageAreaNew = () => {
   const [ipc] = useIpc();
   const [toast] = useToast();
   const [copy, setCopy] = useState(null);
-
+  const [play] = useSound('sound');
   const opts = [
     { name: t('packages:noPackage'), id: NULLCONST },
     ...gstate.packages
@@ -59,6 +59,7 @@ const PackageAreaNew = () => {
     } else {
       dispatch({ type: 'packages/select', id: value });
     }
+    play('soundModSelect');
   };
 
   const onReset = () => {

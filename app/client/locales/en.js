@@ -44,6 +44,17 @@ export default {
     toastDeleted: 'Deleted Sourceport'
   },
   settings: {
+    titleSound: 'Sounds',
+    soundDrawer: 'Overwrite Open IWAD Drawer',
+    soundToastError: 'Overwrite Toast Error',
+    soundToastSuccess: 'Overwrite Toast Success',
+    soundModSelect: 'Overwrite Mod Select',
+    soundActive: 'Activate Sound Feedback',
+    notifyRelease: 'Update Notifier',
+    notifyBeta: 'Beta and Stable Releases',
+    notifyStable: 'Only Stable Releases',
+    notifyOff: 'Turn off',
+    // ===================
     titleDirectories: 'Directories',
     titleCustomization: 'Customization',
     titleOblige: 'Oblige Integration',

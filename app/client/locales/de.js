@@ -44,6 +44,16 @@ export default {
     toastDeleted: 'Sourceport gelöscht'
   },
   settings: {
+    titleSound: 'Töne',
+    soundDrawer: 'Überschreibe IWAD Overlay',
+    soundToastError: 'Überschreibe Toast Fehler',
+    soundToastSuccess: 'Überschreibe Toast Erfolgreich',
+    soundModSelect: 'Überschreibe Mod Wählen',
+    soundActive: 'Töne Aktivieren',
+    notifyRelease: 'Aktualisierungen',
+    notifyBeta: 'Beta und Stabile Aktualisierungen',
+    notifyStable: 'Nur Stabile Aktualisierungen',
+    notifyOff: 'Abschalten',
     titleDirectories: 'Verzeichnisse',
     titleCustomization: 'Anpassung',
     titleOblige: 'Oblige Integration',

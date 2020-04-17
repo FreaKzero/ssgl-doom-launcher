@@ -6,7 +6,7 @@ import {
   Checkbox,
   Dropdown,
   FormCollection,
-  Input,
+  Range,
   SelectFile,
   SubmitArea
 } from '../components/Form';
@@ -34,6 +34,12 @@ const Settings = () => {
   const [fetchInit, loadInit] = useIpc();
   // eslint-disable-next-line no-unused-vars
   const [loc, navigate] = useHashLocation();
+
+  const notifyReleaseOptions = [
+    { label: t('settings:notifyBeta'), value: 'beta' },
+    { label: t('settings:notifyStable'), value: 'stable' },
+    { label: t('settings:notifyOff'), value: 'off' }
+  ];
 
   const themeOptions = [
     {
@@ -213,6 +219,13 @@ const Settings = () => {
                     error={errors.defaultsourceport}
                   />
                 ) : null}
+                <Dropdown
+                  name="notifyRelease"
+                  options={notifyReleaseOptions}
+                  label={t('settings:notifyRelease')}
+                  value={form.notifyRelease}
+                  onChange={onComponent}
+                />
               </Flex.Col>
             </Flex.Grid>
           </FormCollection>
@@ -253,48 +266,60 @@ const Settings = () => {
               </Flex.Grid>
             ) : null}
           </FormCollection>
-          <FormCollection title="sounds">
-            <Flex.Grid>
-              <Flex.Col width="50%">
-                <SelectFile
-                  name="soundModSelect"
-                  onFile={onComponent}
-                  label="Mod Select"
-                  value={form.soundModSelect}
-                  fluid
-                />
-                <SelectFile
-                  name="soundToastSuccess"
-                  onFile={onComponent}
-                  label="Toast Success"
-                  value={form.soundToastSuccess}
-                  fluid
-                />
-              </Flex.Col>
-              <Flex.Col width="50%">
-                <SelectFile
-                  name="soundToastError"
-                  onFile={onComponent}
-                  label="Toast Error"
-                  value={form.soundToastError}
-                  fluid
-                />
-                <SelectFile
-                  name="soundDrawer"
-                  onFile={onComponent}
-                  label="Play Drawer open"
-                  value={form.soundDrawer}
-                  fluid
-                />
-                <Input
-                  value={form.volume}
-                  name="volume"
-                  label={'volume'}
-                  onChange={onInput}
-                  fluid
-                />
-              </Flex.Col>
-            </Flex.Grid>
+          <FormCollection title={t('settings:titleSound')}>
+            <Checkbox
+              value={form.soundActive}
+              label={t('settings:soundActive')}
+              name="soundActive"
+              onChange={onComponent}
+            />
+            {form.soundActive ? (
+              <Flex.Grid>
+                <Flex.Col width="50%">
+                  <SelectFile
+                    name="soundModSelect"
+                    onFile={onComponent}
+                    label={t('settings:soundModSelect')}
+                    value={form.soundModSelect}
+                    fluid
+                  />
+                  <SelectFile
+                    name="soundToastSuccess"
+                    onFile={onComponent}
+                    label={t('settings:soundToastSuccess')}
+                    value={form.soundToastSuccess}
+                    fluid
+                  />
+                </Flex.Col>
+                <Flex.Col width="50%">
+                  <SelectFile
+                    name="soundDrawer"
+                    onFile={onComponent}
+                    label={t('settings:soundDrawer')}
+                    value={form.soundDrawer}
+                    fluid
+                  />
+                  <SelectFile
+                    name="soundToastError"
+                    onFile={onComponent}
+                    label={t('settings:soundToastError')}
+                    value={form.soundToastError}
+                    fluid
+                  />
+
+                  <Range
+                    value={form.volume}
+                    min="0"
+                    max="1"
+                    step="0.1"
+                    name="volume"
+                    label={'volume'}
+                    onChange={onInput}
+                    fluid
+                  />
+                </Flex.Col>
+              </Flex.Grid>
+            ) : null}
           </FormCollection>
           <SubmitArea>
             <Button type="submit" load={loadInit} width="200px">
