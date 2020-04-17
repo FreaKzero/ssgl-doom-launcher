@@ -19,22 +19,38 @@ const App = () => {
   // eslint-disable-next-line no-unused-vars
   const [location, navigate] = useHashLocation();
 
+  const openNotifier = state => {
+    if (state.update.available) {
+      if (
+        state.settings.notifyRelease === 'stable' &&
+        state.update.prerelease === true
+      ) {
+        return false;
+      }
+      return true;
+    }
+
+    return false;
+  };
+
   useEffect(() => {
     async function resolve() {
       try {
         const data = await fetch('main/init');
         dispatch({ type: 'main/init', data: data });
         i18n.changeLanguage(data.settings.language || 'en');
-        navigate(data.settings.startView || '/');
+        //        navigate(data.settings.startView || '/');
+        navigate('/settings');
+        if (data.settings.notifyRelease !== 'off') {
+          try {
+            const update = await fetch('main/checkupdate');
+            dispatch({ type: 'update/set', data: update, done: false });
+          } catch (e) {
+            console.log(e);
+          }
+        }
       } catch (e) {
         navigate('/settings');
-      }
-
-      try {
-        const update = await fetch('main/checkupdate');
-        dispatch({ type: 'update/set', data: update, done: false });
-      } catch (e) {
-        console.log('blubb');
       }
     }
     resolve();
@@ -49,7 +65,7 @@ const App = () => {
               <MainLoader />
             ) : (
               <Body background={gstate.settings.background}>
-                {gstate.update.available ? <Update /> : null}
+                {openNotifier(gstate) ? <Update /> : null}
                 <Head />
                 <Routes />
               </Body>
