@@ -1,6 +1,6 @@
 import { AnimatePresence } from 'framer-motion';
 import React, { useContext, useState } from 'react';
-import { useDebouncedCallback } from 'use-debounce';
+import { useDebounce } from 'use-debounce';
 
 import { Box } from '../../components';
 import Confirm from '../../components/Confirm';
@@ -19,7 +19,7 @@ import PackageFilter from './PackageFilter';
 
 const Packages = () => {
   const { gstate, dispatch } = useContext(StoreContext);
-  const [filter, setRawFilter] = useState('');
+  const [rawFilter, setFilter] = useState('');
   const [sort, setSort] = useState('last');
   const [ipc] = useIpc();
   const onSort = ({ value }) => setSort(value);
@@ -29,10 +29,7 @@ const Packages = () => {
   // eslint-disable-next-line no-unused-vars
   const [location, navigate] = useHashLocation();
   const [selectedPack, setSelectedPack] = useState(null);
-
-  const [onInput] = useDebouncedCallback(val => {
-    setRawFilter(val.toLowerCase());
-  }, 300);
+  const [filter] = useDebounce(rawFilter, 200);
 
   const onDelete = id => () => {
     setConfirm({
@@ -100,7 +97,9 @@ const Packages = () => {
             sortValue={sort}
             onSort={onSort}
             size={show.length}
-            onInput={(e, { value }) => onInput(value)}
+            onInput={(e, { value }) => setFilter(value)}
+            onClear={() => setFilter('')}
+            filterValue={rawFilter}
           />
         }
       >

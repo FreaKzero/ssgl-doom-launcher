@@ -9,7 +9,14 @@ const PackageFilterStyle = styled.div`
   display: flex;
 `;
 
-const PackageFilter = ({ onInput, onSort, sortValue, size }) => {
+const PackageFilter = ({
+  onInput,
+  onSort,
+  onClear,
+  sortValue,
+  filterValue,
+  size
+}) => {
   const { t } = useTranslation(['packages', 'filters']);
 
   const opts = [
@@ -41,6 +48,8 @@ const PackageFilter = ({ onInput, onSort, sortValue, size }) => {
         placeholder={t('packages:filter', { size })}
         onChange={onInput}
         shortcut="ctrl+f, cmd+f"
+        onClear={onClear}
+        value={filterValue}
         fluid
       />
       <Dropdown
@@ -58,8 +67,10 @@ const PackageFilter = ({ onInput, onSort, sortValue, size }) => {
 PackageFilter.propTypes = {
   onInput: PropTypes.func.isRequired,
   onSort: PropTypes.func.isRequired,
+  onClear: PropTypes.func.isRequired,
   size: PropTypes.number.isRequired,
-  sortValue: PropTypes.string
+  sortValue: PropTypes.string,
+  filterValue: PropTypes.string.isRequired
 };
 
 export default PackageFilter;

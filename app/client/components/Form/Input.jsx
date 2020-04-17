@@ -4,7 +4,6 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import styled from 'styled-components';
 
 import Label from './Label';
-
 export const InputStyle = styled.input`
   font-family: ${({ theme }) => theme.font.content};
   color: ${({ theme }) => theme.color.idle};
@@ -44,6 +43,32 @@ export const InputContainerStyle = styled.div`
     }
   }};
 
+  @keyframes grow {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .fu {
+    margin-top: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    transition: ${({ theme }) => theme.transition.short};
+    stroke: ${({ theme }) => theme.button.idle};
+    cursor: pointer;
+  }
+
+  .fu:hover {
+    filter: ${({ theme }) => theme.svg.glow};
+    stroke: ${({ theme }) => theme.color.active};
+  }
+
   &:hover {
     border: 1px solid ${({ theme }) => theme.border.active};
   }
@@ -57,10 +82,12 @@ const Input = ({
   width = '250px',
   label,
   onChange,
+  onClear,
   error = null,
   fluid = false,
   info = null,
   shortcut = '',
+  value,
   ...rest
 }) => {
   const inputRef = useRef(null);
@@ -72,6 +99,35 @@ const Input = ({
 
   const onChangeWrap = e => onChange(e, inputRef.current);
 
+  const Checked = ({ size, ...rest }) => (
+    <svg
+      className="fu"
+      width={size}
+      height={size}
+      viewBox="0 0 12 12"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...rest}
+    >
+      <path
+        d="M1 1.00003L11 11"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M1.00003 11L11 1"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+
+  Checked.propTypes = {
+    size: PropTypes.number
+  };
+
   return (
     <>
       {label ? <Label info={info}>{label}</Label> : null}
@@ -81,8 +137,12 @@ const Input = ({
           ref={inputRef}
           type="text"
           onChange={onChangeWrap}
+          value={value}
           {...rest}
         />
+        {onClear && value.length ? (
+          <Checked size="14" onClick={onClear} />
+        ) : null}
       </InputContainerStyle>
     </>
   );
@@ -92,10 +152,12 @@ Input.propTypes = {
   fluid: PropTypes.bool,
   label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  onClear: PropTypes.any,
   width: PropTypes.string,
   error: PropTypes.any,
   info: PropTypes.string,
-  shortcut: PropTypes.string
+  shortcut: PropTypes.string,
+  value: PropTypes.any
 };
 
 export default Input;

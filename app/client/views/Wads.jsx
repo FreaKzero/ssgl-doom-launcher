@@ -64,6 +64,8 @@ const Wads = () => {
     }
   };
 
+  const onClear = () => setFilter('');
+
   const openDrawer = () => {
     setPoActive(true);
     play('soundDrawer');
@@ -85,6 +87,7 @@ const Wads = () => {
               <ModFilter
                 filterValue={rawFilter}
                 onInput={onFilterInput}
+                onClear={onClear}
                 onRefresh={onRefresh}
                 refreshLoad={loading}
                 onSort={onSortList}

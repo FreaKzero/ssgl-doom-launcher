@@ -16,6 +16,7 @@ const ModFilter = ({
   onRefresh,
   onInput,
   refreshLoad,
+  onClear,
   size
 }) => {
   const { t } = useTranslation(['wads', 'filters']);
@@ -54,6 +55,7 @@ const ModFilter = ({
         onChange={onInput}
         placeholder={t('wads:filter', { size })}
         shortcut="ctrl+f,cmd+f"
+        onClear={onClear}
         fluid
       />
       <Dropdown
@@ -81,7 +83,8 @@ ModFilter.propTypes = {
   refreshLoad: PropTypes.bool.isRequired,
   sortValue: PropTypes.string.isRequired,
   onSort: PropTypes.func.isRequired,
-  size: PropTypes.number.isRequired
+  size: PropTypes.number.isRequired,
+  onClear: PropTypes.func.isRequired
 };
 
 export default ModFilter;
