@@ -300,13 +300,6 @@ const Settings = () => {
                     value={form.soundToastSuccess}
                     fluid
                   />
-                  <SelectFile
-                    name="soundStart"
-                    onFile={onComponent}
-                    label={t('settings:soundStart')}
-                    value={form.soundStart}
-                    fluid
-                  />
                 </Flex.Col>
                 <Flex.Col width="50%">
                   <SelectFile
@@ -321,6 +314,13 @@ const Settings = () => {
                     onFile={onComponent}
                     label={t('settings:soundToastError')}
                     value={form.soundToastError}
+                    fluid
+                  />
+                  <SelectFile
+                    name="soundStart"
+                    onFile={onComponent}
+                    label={t('settings:soundStart')}
+                    value={form.soundStart}
                     fluid
                   />
                 </Flex.Col>

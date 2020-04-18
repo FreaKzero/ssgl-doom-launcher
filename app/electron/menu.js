@@ -1,12 +1,21 @@
 const { app, Menu } = require('electron');
 const { shell } = require('electron');
 const isMac = process.platform === 'darwin';
-const { getJSON } = require('./utils/json');
 const { getDataFile } = require('./utils/common');
+const fs = require('fs');
+const { open } = require('./utils/oblige');
+
+let hasSettings = false;
+let settings = {};
+const settingsPath = getDataFile('settings.json');
+
+if (fs.existsSync(settingsPath)) {
+  hasSettings = true;
+  settings = JSON.parse(fs.readFileSync(settingsPath, 'utf8'));
+}
 
 const openFromSettings = async property => {
   try {
-    const settings = await getJSON('settings');
     shell.openItem(settings[property]);
   } catch (e) {
     console.log(e);
@@ -41,17 +50,36 @@ const createMenu = (win, url) => {
         ]
       : []),
     {
-      label: 'Directories',
+      label: 'Open',
       submenu: [
-        {
-          label: 'Mod Directory',
-          click: () => openFromSettings('modpath')
-        },
-        {
-          label: 'SSGL Data Directory',
-          click: () => openFromSettings('savepath')
-        },
+        ...(hasSettings
+          ? [
+              {
+                label: 'Mod Directory',
+                click: () => openFromSettings('modpath')
+              },
+              {
+                label: 'SSGL Data Directory',
+                click: () => openFromSettings('savepath')
+              }
+            ]
+          : []),
+        ...(hasSettings && settings.obligeActive
+          ? [
+              { type: 'separator' },
+              {
+                label: 'Oblige',
+                click: () => open('binary')
+              },
+              {
+                label: 'Oblige Config Directory',
+                click: () => open('configs')
+              }
+            ]
+          : []),
+
         { type: 'separator' },
+
         {
           label: 'Application Directory',
           click: openApplicationSettings
