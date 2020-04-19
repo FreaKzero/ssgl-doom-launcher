@@ -266,7 +266,7 @@ const Settings = () => {
               </Flex.Grid>
             ) : null}
           </FormCollection>
-          <FormCollection title={t('settings:titleSound')}>
+          {/* <FormCollection title={t('settings:titleSound')}>
             <Checkbox
               value={form.soundActive}
               label={t('settings:soundActive')}
@@ -326,7 +326,7 @@ const Settings = () => {
                 </Flex.Col>
               </Flex.Grid>
             ) : null}
-          </FormCollection>
+          </FormCollection> */}
           <SubmitArea>
             <Button type="submit" load={loadInit} width="200px">
               {t('settings:save')}
