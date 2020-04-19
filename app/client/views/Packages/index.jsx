@@ -61,7 +61,7 @@ const Packages = () => {
   const onPlay = (pack, sourceport) => async () => {
     const newPackages = await ipc('packages/play', {
       pack: pack,
-      selected: gstate.mods.filter(i => pack.selected.indexOf(i.id) > -1),
+      selected: pack.selected.map(id => gstate.mods.find(mod => id === mod.id)),
       load: true,
       oblige: null
     });

@@ -23,6 +23,7 @@ Developer Preview - There can be alot of Changes which is breaking the Experienc
   - Multi Language Support (NL, DE, EN)
   
 - Sourceports
+  - Loadorder of Mods
   - DEH and BEX Support (only have to care about load order)
   - Sourceport agnostic, just configure the Sourceport as you want
   - **SOON:** Predefined Recipies for Sourceports based on the Filename

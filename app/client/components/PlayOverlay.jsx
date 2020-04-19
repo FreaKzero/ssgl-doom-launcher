@@ -80,7 +80,9 @@ const PlayOverlay = ({ active, setActive }) => {
         iwad: iwad.path,
         sourceport
       },
-      selected: gstate.mods.filter(i => i.active === true)
+      selected: gstate.package.selected.map(id =>
+        gstate.mods.find(mod => id === mod.id)
+      )
     });
 
     setActive(false);
