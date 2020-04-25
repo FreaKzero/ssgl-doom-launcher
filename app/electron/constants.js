@@ -2,6 +2,7 @@ const NAME_UNPURE_PACKAGE = 'unnamed';
 
 const MOD_EXTENSIONS = [
   'PK3',
+  'IPK3',
   'PK7',
   'WAD',
   'DEH',
@@ -17,6 +18,7 @@ const MOD_EXTENSIONS = [
 const AVAILABLE_IWADS = [
   'chex',
   'chex2',
+  'chex3',
   'doom',
   'doom2',
   'doom64',
@@ -31,7 +33,9 @@ const AVAILABLE_IWADS = [
   'plutonia',
   'strife0',
   'strife1',
-  'tnt'
+  'tnt',
+  'square1',
+  'Castlevania'
 ];
 
 export { AVAILABLE_IWADS, MOD_EXTENSIONS, NAME_UNPURE_PACKAGE };
