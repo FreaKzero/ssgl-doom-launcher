@@ -35,6 +35,7 @@ const AVAILABLE_IWADS = [
   'strife1',
   'tnt',
   'square1',
+  'megagame',
   'Castlevania'
 ];
 
