@@ -5,7 +5,7 @@ export default {
     selectDir: 'Папка'
   },
   filters: {
-    lastplayed: 'Last played',
+    lastplayed: 'Последние',
     oldest: 'Сначала старые',
     newest: 'Сначала новые',
     active: 'Сначала активные'
@@ -19,20 +19,20 @@ export default {
     packReset: 'Сбросить'
   },
   sourceports: {
-    parameter: 'Parameter',
-    filename: 'File Name',
+    parameter: 'Параметр',
+    filename: 'Имя файла',
     delete: 'Удалить порт',
     save: 'Сохранить порт',
     binary: 'Путь к файлу',
     name: 'Название',
     savegameparam: 'Использует параметр сохранения',
-    configDefault: 'Default Config File',
+    configDefault: 'Стандартный файл конфига',
     configparam: 'Использует параметр конфига',
     toastSaved: 'Порт сохранён',
     toastDeleted: 'Порт удалён'
   },
   settings: {
-    savepath: 'SSGL Data Directory',
+    savepath: 'Папка данных SSGL',
     waddir: "Папка WAD'ов",
     wallpaper: 'Обои',
     save: 'Сохранить настройки',
@@ -42,13 +42,13 @@ export default {
     loading: 'Загрузка',
     language: 'Язык',
     success: 'Успех',
-    error: 'Error',
+    error: 'Ошибка',
     cancel: 'Отмена',
     ok: 'Ок',
-    required: 'Required',
-    toastRequired: 'Please Fill out the required Fields',
-    toastStart: 'Starting Sourceport',
-    toastStartText: `Starting {{sourceport}} with {{num}} Mods`
+    required: 'Обязательно',
+    toastRequired: 'Пожалуйста, заполните обязательные поля',
+    toastStart: 'Запускаю порт',
+    toastStartText: `Запускаю {{sourceport}} с {{num}} модами`
   },
   nav: {
     appname: 'Super Shotgun Launcher',
@@ -58,13 +58,13 @@ export default {
     settings: 'Настройки'
   },
   packages: {
-    lastplayed: 'Last played: {{value, date}}',
-    never: 'Last played: Never',
-    filter: 'Filter {{size}} Packages',
-    titleSave: 'Save as: {{name}}',
-    titleEdit: 'Edit: {{name}}',
-    toastSave: 'Saved Package',
-    use: 'Use',
+    lastplayed: 'Последний: {{value, date}}',
+    never: 'Последний: Отсутствует',
+    filter: 'Отфильтровано {{size}} пакетов',
+    titleSave: 'Сохранить как: {{name}}',
+    titleEdit: 'Редактировать: {{name}}',
+    toastSave: 'Пакет сохранён',
+    use: 'Использовать',
     play: 'Запустить',
     delete: 'Удалить'
   }
